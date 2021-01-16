@@ -4,15 +4,15 @@
 
 /* Write your own custom base styles here */
 h1 {
-    @apply text-4xl lg:text-6xl font-primary font-bold;
+    @apply text-4xl font-bold lg:text-6xl font-primary;
 }
 
 h2 {
-    @apply text-2xl lg:text-5xl font-primary font-bold;
+    @apply text-2xl font-bold lg:text-5xl font-primary;
 }
 
 h3 {
-    @apply text-xl lg:text-4xl font-primary font-bold;
+    @apply text-xl font-bold lg:text-4xl font-primary;
 }
 
 /* Start purging... */
@@ -22,6 +22,9 @@ h3 {
 /* Write your own custom component styles here */
 .btn-blue {
     @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+}
+
+.special {
 }
 
 /* Start purging... */
