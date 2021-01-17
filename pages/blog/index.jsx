@@ -1,4 +1,5 @@
 import BlogCard from '../../components/BlogCard';
+import SpotifyPlaying from '../../components/SpotifyPlaying';
 
 export default function BlogPage() {
     return (
@@ -9,6 +10,7 @@ export default function BlogPage() {
             {['first-blog', 'second-blog', 'makan-bibi', 'air-tawar'].map((slug) => (
                 <BlogCard key={slug} slug={slug} />
             ))}
+            <SpotifyPlaying />
         </div>
     );
 }

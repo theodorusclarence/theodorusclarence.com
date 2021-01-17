@@ -1,8 +1,8 @@
 import useSWR from 'swr';
 import Link from 'next/link';
+import fetcher from '../utils/fetcher';
 
 export default function BlogCard({ slug }) {
-    const fetcher = () => fetch(`/api/${slug}`).then((res) => res.json());
     const { data } = useSWR(`/api/${slug}`, fetcher);
 
     return (
