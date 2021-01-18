@@ -8,13 +8,16 @@ export default function TechStack() {
     return (
         <div className='flex mt-2 space-x-4'>
             <IconContext.Provider
-                value={{ className: 'text-black dark:text-green hover:text-accent-200 w-12 h-12' }}
+                value={{
+                    className:
+                        'text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 w-12 h-12',
+                }}
             >
                 <Tippy
                     animation='scale-subtle'
                     interactive={true}
                     content={
-                        <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                        <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                             <CustomLink href='https://nextjs.org'>Next.js</CustomLink>, currently my
                             go-to framework because of the static generation, dynamic paths, and
                             built-in api.
@@ -29,7 +32,7 @@ export default function TechStack() {
                     animation='scale-subtle'
                     interactive={true}
                     content={
-                        <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                        <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                             <CustomLink href='https://reactjs.org/'>Create React App</CustomLink>,
                             first frontend framework that I learned, great if you are making an
                             authenticated website.
@@ -44,7 +47,7 @@ export default function TechStack() {
                     animation='scale-subtle'
                     interactive={true}
                     content={
-                        <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                        <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                             <CustomLink href='https://tailwindcss.com/'>Tailwindcss</CustomLink>, I
                             recently converted my styling from SCSS to tailwindcss, a great
                             decision. Make sure you get the{' '}
@@ -63,7 +66,7 @@ export default function TechStack() {
                     animation='scale-subtle'
                     interactive={true}
                     content={
-                        <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                        <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                             <CustomLink href='https://swr.vercel.app/'>SWR by Vercel</CustomLink>,
                             great react hooks for data fetching and caching, the{' '}
                             <CustomLink href='https://swr.vercel.app/docs/revalidation#revalidate-on-focus'>
@@ -81,7 +84,7 @@ export default function TechStack() {
                     animation='scale-subtle'
                     interactive={true}
                     content={
-                        <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                        <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                             <CustomLink href='https://nodejs.org/'>Node.js</CustomLink>, simple
                             backend language so you don't need to learn another language. Not using
                             this too often because Next.js already has a backend built-in.

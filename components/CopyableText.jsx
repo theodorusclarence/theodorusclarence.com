@@ -16,7 +16,7 @@ export default function CopyableText({ children }) {
             hideOnClick={false}
             offset={5}
             content={
-                <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                     {copyStatus}
                 </span>
             }

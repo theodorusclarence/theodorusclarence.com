@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     const { slug } = req.query;
     if (!(await checkSlugExist(slug))) {
         await createSlugView(slug);
-        console.log(slug);
+        // console.log(slug);
     }
 
     const document = await getViewBySlug(slug);

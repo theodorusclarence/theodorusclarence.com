@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import CustomLink from '../components/CustomLink';
 import Nav from '../components/Nav';
 import PostCard from '../components/PostCard';
@@ -7,8 +9,11 @@ import TechStack from '../components/TechStack';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import { projects } from '../data/projects';
+import { BLOGS_PATH, postFilePaths } from '../utils/mdxUtils';
+import matter from 'gray-matter';
+import { featured } from '../data/featured';
 
-export default function Home() {
+export default function Home({ posts }) {
     return (
         <>
             <Seo pageTitle='NextJS Tailwind Starter' />
@@ -21,7 +26,7 @@ export default function Home() {
                             <br />
                             You can call me <span className='accent'>Clarence</span>
                         </h1>
-                        <p className='prose'>
+                        <p className='prose dark:text-light'>
                             I'm a fast learner and hardworking Informatics Student at Institut
                             Teknologi Sepuluh Nopember. I'm currently really interested in Frontend
                             Development. <CustomLink href='/about'>Reach me out</CustomLink> to talk
@@ -53,8 +58,9 @@ export default function Home() {
                     <main className='layout'>
                         <h2 className='mb-4'>Featured Posts</h2>
                         <div className='mb-4 space-y-4'>
-                            {/* <PostCard />
-                            <PostCard /> */}
+                            {posts.map((post) => (
+                                <PostCard key={post.filePath} post={post} />
+                            ))}
                         </div>
                         <Button href='/blog'>See More</Button>
                     </main>
@@ -63,4 +69,26 @@ export default function Home() {
             </div>
         </>
     );
+}
+
+export function getStaticProps() {
+    const posts = postFilePaths
+        .filter((filePath) => {
+            const slugPath = filePath.replace(/\.mdx?$/, '');
+            return featured.find((feature) => feature === slugPath);
+        })
+        .map((filePath) => {
+            const source = fs.readFileSync(path.join(BLOGS_PATH, filePath));
+            const { content, data } = matter(source);
+            const slug = filePath.replace(/\.mdx?$/, '');
+
+            return {
+                content,
+                data,
+                filePath,
+                slug,
+            };
+        });
+
+    return { props: { posts } };
 }

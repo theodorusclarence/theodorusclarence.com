@@ -1,11 +1,12 @@
 ---
-title: 'Analyzing 10+ Years of My Facebook Data'
+title: 'This is my first mdx blog'
 publishedAt: '2018-04-04'
-description: 'Which year was I the most active? Who has commented on my pictures the most? How many songs have I streamed?'
+description: 'This really works!'
 ---
 
-```js
+```jsx
 const name = 'hellow';
+const lorem30 = 'lorem imsdifouhwe fiausdhf wesksis adfis adifuhekjf piauhsdfkje fsiuhekrjh ssfkjh'
 <div class='ha'>waw</div>;
 ```
 
@@ -35,3 +36,27 @@ yarn add nodemon
 ## heading
 
 <a href='/'>makan</a>
+
+```jsx
+export function getStaticProps() {
+    const posts = postFilePaths
+        .filter((filePath) => {
+            const slugPath = filePath.replace(/\.mdx?$/, '');
+            return featured.find((feature) => feature === slugPath);
+        })
+        .map((filePath) => {
+            const source = fs.readFileSync(path.join(BLOGS_PATH, filePath));
+            const { content, data } = matter(source);
+            const slug = filePath.replace(/\.mdx?$/, '');
+
+            return {
+                content,
+                data,
+                filePath,
+                slug,
+            };
+        });
+
+    return { props: { posts } };
+}
+```

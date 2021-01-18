@@ -12,7 +12,8 @@ export default function ProjectCard({ data }) {
                 <div className='flex space-x-2'>
                     <IconContext.Provider
                         value={{
-                            className: 'text-dark hover:text-accent-200 w-5 h-5 align-middle',
+                            className:
+                                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-5 h-5 align-middle',
                         }}
                     >
                         {data.github && (

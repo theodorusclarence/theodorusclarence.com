@@ -19,13 +19,13 @@ import { IoLogoVercel } from 'react-icons/io5';
 export default function PickTech({ techs }) {
     return (
         <div className='flex mt-2 mb-2 space-x-2'>
-            <IconContext.Provider value={{ className: 'text-dark w-6 h-6' }}>
+            <IconContext.Provider value={{ className: 'text-dark dark:text-light w-6 h-6' }}>
                 {techs.find((tech) => tech === 'nextjs') && (
                     <Tippy
                         animation='scale-subtle'
                         interactive={true}
                         content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                                 NextJS
                             </span>
                         }
@@ -40,7 +40,7 @@ export default function PickTech({ techs }) {
                         animation='scale-subtle'
                         interactive={true}
                         content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                                 Create React App
                             </span>
                         }
@@ -55,7 +55,7 @@ export default function PickTech({ techs }) {
                         animation='scale-subtle'
                         interactive={true}
                         content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                                 Tailwindcss
                             </span>
                         }
@@ -70,7 +70,7 @@ export default function PickTech({ techs }) {
                         animation='scale-subtle'
                         interactive={true}
                         content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                                 SCSS
                             </span>
                         }
@@ -85,7 +85,7 @@ export default function PickTech({ techs }) {
                         animation='scale-subtle'
                         interactive={true}
                         content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                                 MongoDB
                             </span>
                         }
@@ -100,7 +100,7 @@ export default function PickTech({ techs }) {
                         animation='scale-subtle'
                         interactive={true}
                         content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                                 NodeJS
                             </span>
                         }
@@ -115,7 +115,7 @@ export default function PickTech({ techs }) {
                         animation='scale-subtle'
                         interactive={true}
                         content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
+                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                                 SWR
                             </span>
                         }

@@ -11,7 +11,6 @@ export default function Footer() {
 
     const clickToCopy = () => {
         navigator.clipboard.writeText('theodorusclarence@gmail.com');
-        'theodorusclarence@gmail.com'.select();
         setCopyStatus('Copied to clipboard');
         setTimeout(() => setCopyStatus('Click to Copy'), 1500);
     };
@@ -23,7 +22,8 @@ export default function Footer() {
                 <div className='flex mb-4 space-x-4'>
                     <IconContext.Provider
                         value={{
-                            className: 'text-dark hover:text-accent-200 w-7 h-7 align-middle',
+                            className:
+                                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-7 h-7 align-middle',
                         }}
                     >
                         <Tippy
@@ -32,7 +32,7 @@ export default function Footer() {
                             hideOnClick={false}
                             className='focus:outline-none'
                             content={
-                                <span className='inline-flex flex-col items-center p-2 bg-white rounded-md shadow-md border-thin'>
+                                <span className='inline-flex flex-col items-center p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
                                     {/* <button onClick={clickToCopy} className='focus:outline-none'> */}
                                     {copyStatus}
                                     <span className='inline-block font-medium accent ring-0'>
@@ -49,7 +49,8 @@ export default function Footer() {
                     </IconContext.Provider>
                     <IconContext.Provider
                         value={{
-                            className: 'text-dark hover:text-accent-200 w-6 h-6 align-middle',
+                            className:
+                                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-6 h-6 align-middle',
                         }}
                     >
                         <CustomLink href='https://github.com/theodorusclarence'>

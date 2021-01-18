@@ -9,11 +9,13 @@ import mdxPrism from 'mdx-prism';
 import CustomLink from '../../components/CustomLink.jsx';
 import { postFilePaths, BLOGS_PATH } from '../../utils/mdxUtils';
 import { useEffect } from 'react';
-import { mutate } from 'swr';
+import useSWR, { mutate } from 'swr';
 import Nav from '../../components/Nav.jsx';
 import Seo from '../../components/Seo.jsx';
 import { formatDate } from '../../utils/helper.js';
 import CustomCode, { Pre } from '../../components/CustomCode.jsx';
+import fetcher from '../../utils/fetcher.js';
+import Footer from '../../components/Footer.jsx';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -31,16 +33,17 @@ const components = {
     pre: Pre,
 };
 
-export default function PostPage({ source, frontMatter }) {
+export default function PostPage({ source, frontMatter, slug }) {
     const content = hydrate(source, { components });
-    // useEffect(() => {
-    //     const addCount = async () => {
-    //         await fetch(`/api/${slug}`, { method: 'POST' });
-    //         mutate(`/api/${slug}`);
-    //     };
+    const { data } = useSWR(`/api/${slug}`, fetcher);
+    useEffect(() => {
+        const addCount = async () => {
+            await fetch(`/api/${slug}`, { method: 'POST' });
+            mutate(`/api/${slug}`);
+        };
 
-    //     addCount();
-    // }, []);
+        addCount();
+    }, []);
 
     return (
         <>
@@ -53,7 +56,7 @@ export default function PostPage({ source, frontMatter }) {
                         <div className='pb-4 border-b-thin'>
                             <h1>{frontMatter.title}</h1>
 
-                            <p className='component text-dark'>
+                            <p className='component text-dark dark:text-light'>
                                 Written on {formatDate(frontMatter.publishedAt)} by{' '}
                                 <div className='inline-flex items-end align-bottom'>
                                     <div style={{ width: 25, height: 25 }}>
@@ -69,10 +72,15 @@ export default function PostPage({ source, frontMatter }) {
                                     <p className='ml-1'>Theodorus Clarence.</p>
                                 </div>
                             </p>
+
+                            <p className='component text-dark dark:text-light'>
+                                {data?.count >= 0 ? data.count : '–––'} views
+                            </p>
                         </div>
-                        <article className='py-4 prose'>{content}</article>
+                        <article className='py-4 prose dark:prose-dark'>{content}</article>
                     </main>
                 </section>
+                <Footer />
             </div>
         </>
     );
@@ -98,6 +106,7 @@ export const getStaticProps = async ({ params }) => {
         props: {
             source: mdxSource,
             frontMatter: data,
+            slug: params.slug,
         },
     };
 };

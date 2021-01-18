@@ -1,5 +1,8 @@
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { FiSun, FiMoon } from 'react-icons/fi';
+import { useRouter } from 'next/router';
 
 const links = [
     { href: '/', label: 'Home' },
@@ -10,6 +13,9 @@ const links = [
 
 export default function Nav() {
     const [onTop, setOnTop] = useState(true);
+    // sets class dark to html
+    const { theme, setTheme } = useTheme();
+    const { route } = useRouter();
 
     const handleScroll = () => {
         if (onTop !== (window.pageYOffset === 0)) {
@@ -27,18 +33,40 @@ export default function Nav() {
     return (
         <header className={`${onTop ? '' : 'shadow-sm'} transition-shadow sticky top-0 z-10`}>
             <div className='h-2 bg-gradient-to-tr from-accent-100 via-accent-200 to-accent-300'></div>
-            <nav className='bg-white'>
+            <nav className='transition-colors bg-white dark:bg-dark'>
                 <ul className='flex items-center justify-between max-w-4xl p-4 px-4 mx-auto'>
                     <ul className='flex items-center justify-between space-x-4'>
                         {links.map(({ href, label }) => (
                             <li key={`${href}${label}`}>
                                 <Link href={href}>
-                                    <a className='text-black hover:text-green-400'>{label}</a>
+                                    <a
+                                        className={`
+                                        ${
+                                            route === href || route === href + '/[slug]'
+                                                ? 'text-transparent'
+                                                : 'text-black dark:text-white'
+                                        } 
+                                        font-medium  hover:text-accent-200 dark:hover:text-accent-200`}
+                                    >
+                                        <span
+                                            className={`${
+                                                (route === href || route === href + '/[slug]') &&
+                                                'accent'
+                                            }`}
+                                        >
+                                            {label}
+                                        </span>
+                                    </a>
                                 </Link>
                             </li>
                         ))}
                     </ul>
-                    <button>a</button>
+                    <button
+                        className='p-2.5 rounded-md border-thin hover:border-accent-200 dark:hover:border-accent-200 hover:text-accent-200 dark:hover:text-accent-200'
+                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                    >
+                        {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
+                    </button>
                 </ul>
             </nav>
         </header>

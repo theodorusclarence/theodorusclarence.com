@@ -1,5 +1,4 @@
 export function Pre(props) {
-    console.log(props.children);
     return (
         <pre {...props}>
             {props.children}
@@ -14,7 +13,6 @@ export function Pre(props) {
 }
 
 export default function CustomCode(props) {
-    console.log(props);
     const language = props.className?.includes('language')
         ? props.className.replace('language-', '')
         : null;
