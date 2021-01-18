@@ -16,7 +16,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className='pb-2'>
+        <footer className='pb-2 mt-auto'>
             <main className='flex flex-col items-center pt-6 border-t-thin layout'>
                 <p className='mb-1 font-medium'>Reach me out</p>
                 <div className='flex mb-4 space-x-4'>
@@ -28,18 +28,20 @@ export default function Footer() {
                         <Tippy
                             animation='scale-subtle'
                             interactive={true}
+                            hideOnClick={false}
+                            className='focus:outline-none'
                             content={
-                                <span className='inline-block p-2 bg-white rounded-md shadow-md border-thin'>
-                                    <button onClick={clickToCopy} className='focus:outline-none'>
-                                        {copyStatus}
-                                        <span className='inline-block font-medium accent ring-0'>
-                                            theodorusclarence@gmail.com
-                                        </span>
-                                    </button>
+                                <span className='inline-flex flex-col items-center p-2 bg-white rounded-md shadow-md border-thin'>
+                                    {/* <button onClick={clickToCopy} className='focus:outline-none'> */}
+                                    {copyStatus}
+                                    <span className='inline-block font-medium accent ring-0'>
+                                        theodorusclarence@gmail.com
+                                    </span>
+                                    {/* </button> */}
                                 </span>
                             }
                         >
-                            <div>
+                            <div onClick={clickToCopy}>
                                 <FiMail />
                             </div>
                         </Tippy>

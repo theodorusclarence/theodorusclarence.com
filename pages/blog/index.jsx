@@ -1,33 +1,68 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
-import Link from 'next/link';
-import BlogCard from '../../components/BlogCard';
-import SpotifyPlaying from '../../components/SpotifyPlaying';
 import { BLOGS_PATH, postFilePaths } from '../../utils/mdxUtils';
+import Seo from '../../components/Seo';
+import Nav from '../../components/Nav';
+import Footer from '../../components/Footer';
+import PostCard from '../../components/PostCard';
+import { useState } from 'react';
 
 export default function BlogPage({ posts }) {
-    return (
-        <div className='container mx-auto'>
-            <h1 className='inline-block text-transparent bg-gradient-to-tr from-green-400 to-cyan-400 bg-clip-text'>
-                My Blog
-            </h1>
-            {['first-blog', 'second-blog', 'makan-bibi', 'air-tawar'].map((slug) => (
-                <BlogCard key={slug} slug={slug} />
-            ))}
+    const [text, setText] = useState('');
+    const [filteredPosts, setFilteredPosts] = useState([...posts]);
+    // sort the newest blog first.
+    posts.sort(
+        (postA, postB) => new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
+    );
 
-            <ul>
-                {posts.map((post) => (
-                    <li key={post.filePath}>
-                        <Link href={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}>
-                            <a>{post.data.title}</a>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            {/* <pre>{JSON.stringify(posts, null, 2)}</pre> */}
-            <SpotifyPlaying />
-        </div>
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setText(e.target.value);
+        setFilteredPosts(
+            posts.filter((post) => post.data.title.toLowerCase().includes(text.toLowerCase()))
+        );
+        if (e.target.value === '') {
+            console.log(text);
+            setFilteredPosts([...posts]);
+        }
+    };
+
+    return (
+        <>
+            <Seo pageTitle='NextJS Tailwind Starter' />
+            <div className='flex flex-col min-h-screen'>
+                <Nav />
+                <section className='py-6 mt-4'>
+                    <main className='space-y-4 layout'>
+                        <header>
+                            <h1>Blog</h1>
+                            <p className='text-dark'>Some of my thoughts.</p>
+                        </header>
+                        <div className='pb-4'>
+                            <p className='font-medium'>Search</p>
+                            <input
+                                className='w-full px-4 py-1 rounded-md border-thin focus:outline-none focus:ring-1 focus:ring-accent-200'
+                                type='text'
+                                placeholder='Type to search...'
+                                value={text}
+                                onChange={handleSearch}
+                            />
+                        </div>
+                        <ul className='space-y-4'>
+                            {filteredPosts.map((post) => (
+                                <PostCard key={post.filePath} post={post} />
+                            ))}
+
+                            {filteredPosts.length === 0 && (
+                                <h4>Oops, not found, try searching another one ;)</h4>
+                            )}
+                        </ul>
+                    </main>
+                </section>
+                <Footer />
+            </div>
+        </>
     );
 }
 
@@ -35,11 +70,13 @@ export function getStaticProps() {
     const posts = postFilePaths.map((filePath) => {
         const source = fs.readFileSync(path.join(BLOGS_PATH, filePath));
         const { content, data } = matter(source);
+        const slug = filePath.replace(/\.mdx?$/, '');
 
         return {
             content,
             data,
             filePath,
+            slug,
         };
     });
 
