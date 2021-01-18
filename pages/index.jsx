@@ -5,6 +5,7 @@ import ProjectCard from '../components/ProjectCard';
 import Seo from '../components/Seo';
 import TechStack from '../components/TechStack';
 import Button from '../components/Button';
+import Footer from '../components/Footer';
 
 export default function Home() {
     return (
@@ -55,6 +56,7 @@ export default function Home() {
                     <Button href='/blog'>See More</Button>
                 </main>
             </section>
+            <Footer />
         </>
     );
 }

@@ -10,7 +10,7 @@ module.exports = {
                 accent: {
                     100: '#DBFF00',
                     200: '#00FF94',
-                    300: '#00FFDF',
+                    300: '#00E0F3',
                 },
                 dark: '#333333',
                 light: '#eeeeee',
