@@ -54,7 +54,7 @@ export default function PostPage({ source, frontMatter, slug }) {
                 <section className='py-6 mt-4'>
                     <main className='layout'>
                         <div className='pb-4 border-b-thin'>
-                            <h1>{frontMatter.title}</h1>
+                            <h1 className='mb-2'>{frontMatter.title}</h1>
 
                             <p className='component text-dark dark:text-light'>
                                 Written on {formatDate(frontMatter.publishedAt)} by{' '}
@@ -77,7 +77,9 @@ export default function PostPage({ source, frontMatter, slug }) {
                                 {data?.count >= 0 ? data.count : '–––'} views
                             </p>
                         </div>
-                        <article className='py-4 prose dark:prose-dark'>{content}</article>
+                        <article className='py-4 prose transition-colors dark:prose-dark'>
+                            {content}
+                        </article>
                     </main>
                 </section>
                 <Footer />
