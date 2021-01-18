@@ -1,21 +1,29 @@
-const colors = require('tailwindcss/colors');
-
 module.exports = {
     purge: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
-    darkMode: false, // or 'media' or 'class'
+    darkMode: 'class', // or 'media' or 'class'
     theme: {
         extend: {
             fontFamily: {
-                primary: ['Montserrat', 'sans-serif'],
+                primary: ['Inter', 'sans-serif'],
             },
             colors: {
-                emerald: colors.emerald,
-                cyan: colors.cyan,
+                accent: {
+                    100: '#DBFF00',
+                    200: '#00FF94',
+                    300: '#00FFDF',
+                },
+                dark: '#333333',
+                light: '#eeeeee',
+            },
+            borderWidth: {
+                thin: '0.2px',
             },
         },
     },
     variants: {
-        extend: {},
+        extend: {
+            boxShadow: ['active'],
+        },
     },
     plugins: [require('@tailwindcss/typography')],
 };

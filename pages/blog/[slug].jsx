@@ -9,6 +9,8 @@ import path from 'path';
 import mdxPrism from 'mdx-prism';
 import CustomLink from '../../components/CustomLink.jsx';
 import { postFilePaths, BLOGS_PATH } from '../../utils/mdxUtils';
+import { useEffect } from 'react';
+import { mutate } from 'swr';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -27,6 +29,15 @@ const components = {
 
 export default function PostPage({ source, frontMatter }) {
     const content = hydrate(source, { components });
+    // useEffect(() => {
+    //     const addCount = async () => {
+    //         await fetch(`/api/${slug}`, { method: 'POST' });
+    //         mutate(`/api/${slug}`);
+    //     };
+
+    //     addCount();
+    // }, []);
+
     return (
         <div>
             <header>
@@ -96,14 +107,3 @@ export const getStaticPaths = async () => {
         fallback: false,
     };
 };
-
-// import { useEffect } from 'react';
-// import { mutate } from 'swr';
-// useEffect(() => {
-//     const addCount = async () => {
-//         await fetch(`/api/${slug}`, { method: 'POST' });
-//         mutate(`/api/${slug}`);
-//     };
-
-//     addCount();
-// }, []);

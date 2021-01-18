@@ -1,18 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
 @tailwind base;
 
 /* Write your own custom base styles here */
 h1 {
-    @apply text-4xl font-bold lg:text-6xl font-primary;
+    @apply text-3xl font-bold lg:text-5xl font-primary;
 }
 
 h2 {
-    @apply text-2xl font-bold lg:text-5xl font-primary;
+    @apply text-2xl font-bold lg:text-4xl font-primary;
 }
 
 h3 {
-    @apply text-xl font-bold lg:text-4xl font-primary;
+    @apply text-xl font-bold lg:text-3xl font-primary;
+}
+
+h4 {
+    @apply text-lg font-bold font-primary;
+}
+
+body {
+    @apply font-primary;
+}
+
+p.component {
+    @apply text-sm;
+}
+
+.layout {
+    max-width: 43.75rem;
+    @apply w-11/12 mx-auto;
 }
 
 /* Start purging... */
@@ -24,7 +39,8 @@ h3 {
     @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
 }
 
-.special {
+span.accent {
+    @apply text-transparent bg-gradient-to-tr from-accent-200 to-accent-300 bg-clip-text;
 }
 
 /* Start purging... */
