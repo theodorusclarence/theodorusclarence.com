@@ -6,6 +6,7 @@ import Seo from '../components/Seo';
 import TechStack from '../components/TechStack';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
+import { projects } from '../data/projects';
 
 export default function Home() {
     return (
@@ -39,8 +40,9 @@ export default function Home() {
                 <main className='layout'>
                     <h2 className='mb-4'>Featured Projects</h2>
                     <div className='flex flex-col justify-between mb-4 space-y-4 md:space-y-0 md:flex-row'>
-                        <ProjectCard />
-                        <ProjectCard />
+                        {projects.map((project, index) => (
+                            <ProjectCard key={index} data={project} />
+                        ))}
                     </div>
                     <Button href='/projects'>See More</Button>
                 </main>

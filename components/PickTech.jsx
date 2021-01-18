@@ -110,7 +110,7 @@ export default function PickTech({ techs }) {
                         </div>
                     </Tippy>
                 )}
-                {techs.find((tech) => tech === 'nodejs') && (
+                {techs.find((tech) => tech === 'swr') && (
                     <Tippy
                         animation='scale-subtle'
                         interactive={true}

@@ -18,11 +18,15 @@ module.exports = {
             borderWidth: {
                 thin: '0.2px',
             },
+            maxWidth: {
+                project: '21rem',
+            },
         },
     },
     variants: {
         extend: {
             boxShadow: ['active'],
+            margin: ['even'],
         },
     },
     plugins: [require('@tailwindcss/typography')],
