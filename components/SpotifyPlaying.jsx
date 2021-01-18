@@ -7,6 +7,8 @@ export default function SpotifyPlaying() {
     const { data } = useSWR('/api/spotify', fetcher);
     return (
         <a
+            target='_blank'
+            rel='noopener noreferer'
             href={
                 data?.isPlaying
                     ? data.songUrl

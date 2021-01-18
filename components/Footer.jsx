@@ -11,6 +11,7 @@ export default function Footer() {
 
     const clickToCopy = () => {
         navigator.clipboard.writeText('theodorusclarence@gmail.com');
+        'theodorusclarence@gmail.com'.select();
         setCopyStatus('Copied to clipboard');
         setTimeout(() => setCopyStatus('Click to Copy'), 1500);
     };

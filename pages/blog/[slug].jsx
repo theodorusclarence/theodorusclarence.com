@@ -4,13 +4,16 @@ import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import path from 'path';
 import mdxPrism from 'mdx-prism';
 import CustomLink from '../../components/CustomLink.jsx';
 import { postFilePaths, BLOGS_PATH } from '../../utils/mdxUtils';
 import { useEffect } from 'react';
 import { mutate } from 'swr';
+import Nav from '../../components/Nav.jsx';
+import Seo from '../../components/Seo.jsx';
+import { formatDate } from '../../utils/helper.js';
+import CustomCode, { Pre } from '../../components/CustomCode.jsx';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -24,7 +27,8 @@ const components = {
     // TestComponent: dynamic(() => import('../../components/TestComponent')),
     Head,
     Image,
-    // code: CodeBlock,
+    code: CustomCode,
+    pre: Pre,
 };
 
 export default function PostPage({ source, frontMatter }) {
@@ -39,35 +43,38 @@ export default function PostPage({ source, frontMatter }) {
     // }, []);
 
     return (
-        <div>
-            <header>
-                <nav>
-                    <Link href='/'>
-                        <a>👈 Go back home</a>
-                    </Link>
-                </nav>
-            </header>
-            <div className='post-header'>
-                <h1>{frontMatter.title}</h1>
-                {frontMatter.description && (
-                    <p className='description'>{frontMatter.description}</p>
-                )}
+        <>
+            <Seo pageTitle='NextJS Tailwind Starter' />
+            <div className='flex flex-col min-h-screen'>
+                <Nav />
+
+                <section className='py-6 mt-4'>
+                    <main className='layout'>
+                        <div className='pb-4 border-b-thin'>
+                            <h1>{frontMatter.title}</h1>
+
+                            <p className='component text-dark'>
+                                Written on {formatDate(frontMatter.publishedAt)} by{' '}
+                                <div className='inline-flex items-end align-bottom'>
+                                    <div style={{ width: 25, height: 25 }}>
+                                        <Image
+                                            width={500}
+                                            className='rounded-full '
+                                            height={500}
+                                            objectFit='cover'
+                                            src={'/images/me.jpg'}
+                                            alt={'photo of me'}
+                                        />{' '}
+                                    </div>
+                                    <p className='ml-1'>Theodorus Clarence.</p>
+                                </div>
+                            </p>
+                        </div>
+                        <article className='py-4 prose'>{content}</article>
+                    </main>
+                </section>
             </div>
-
-            <article className='prose'>{content}</article>
-
-            <style jsx>{`
-                .post-header h1 {
-                    margin-bottom: 0;
-                }
-                .post-header {
-                    margin-bottom: 2rem;
-                }
-                .description {
-                    opacity: 0.6;
-                }
-            `}</style>
-        </div>
+        </>
     );
 }
 

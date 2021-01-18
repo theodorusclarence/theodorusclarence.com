@@ -3,6 +3,7 @@ import Seo from '../components/Seo';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import CopyableText from '../components/CopyableText';
+import Image from 'next/image';
 
 export default function about() {
     return (
@@ -11,11 +12,23 @@ export default function about() {
             <div className='flex flex-col min-h-screen'>
                 <Nav />
                 <section className='py-6 mt-4'>
-                    <main className='space-y-2 layout'>
-                        <h1 className=''>
-                            About <span className='accent'>Theodorus Clarence</span>
+                    <main className='layout'>
+                        <h1 className='mb-4'>
+                            About
+                            <br />
+                            <span className='accent'>Theodorus Clarence</span>
                         </h1>
-                        <p className='prose'>
+                        <div className='float-right ml-6'>
+                            <Image
+                                width={210}
+                                height={210}
+                                objectFit='cover'
+                                objectPosition='30%'
+                                src={'/images/me.jpg'}
+                                alt={'photo of me'}
+                            />
+                        </div>
+                        <p className='mb-2 prose'>
                             Hello! Thank’s for coming to my personal website / blog. This is my
                             first biggest site that I made with Next.js, Tailwindcss, MDX, and
                             FaunaDB. I also have a{' '}

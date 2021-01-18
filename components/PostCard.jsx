@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import useSWR from 'swr';
 import fetcher from '../utils/fetcher';
+import { formatDate } from '../utils/helper';
 
 export default function PostCard({ post }) {
     //TODO uncomment this
@@ -16,7 +17,7 @@ export default function PostCard({ post }) {
                         {data?.count >= 0 ? data.count : '–––'} views
                     </p>
                 </header>
-                <p className='component text-dark'>{postData.publishedAt}</p>
+                <p className='component text-dark'>{formatDate(postData.publishedAt)}</p>
                 <p className='component'>{postData.description}</p>
             </a>
         </Link>
