@@ -12,6 +12,17 @@ import {
 
 import { IoLogoVercel } from 'react-icons/io5';
 
+const techSpan = {
+    nextjs: ['Next.js', () => <SiNextDotJs />],
+    react: ['Create React App', () => <SiReact />],
+    tailwindcss: ['Tailwindcss', () => <SiTailwindcss />],
+    scss: ['SCSS', () => <SiSass />],
+    nodejs: ['Node.js', () => <SiNodeDotJs />],
+    mongodb: ['MongoDB', () => <SiMongodb />],
+    swr: ['SWR', () => <IoLogoVercel />],
+    mdx: ['MDX', () => <SiMarkdown />],
+};
+
 /**
  * Pick tech stack
  *
@@ -21,126 +32,19 @@ export default function PickTech({ techs }) {
     return (
         <div className='flex mt-2 mb-2 space-x-2'>
             <IconContext.Provider value={{ className: 'text-dark dark:text-light w-6 h-6' }}>
-                {techs.find((tech) => tech === 'nextjs') && (
+                {techs.map((tech) => (
                     <Tippy
                         animation='scale-subtle'
                         interactive={true}
                         content={
                             <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                NextJS
+                                {techSpan[tech][0]}
                             </span>
                         }
                     >
-                        <div>
-                            <SiNextDotJs />
-                        </div>
+                        <div>{techSpan[tech][1]()}</div>
                     </Tippy>
-                )}
-                {techs.find((tech) => tech === 'react') && (
-                    <Tippy
-                        animation='scale-subtle'
-                        interactive={true}
-                        content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                Create React App
-                            </span>
-                        }
-                    >
-                        <div>
-                            <SiReact />
-                        </div>
-                    </Tippy>
-                )}
-                {techs.find((tech) => tech === 'tailwindcss') && (
-                    <Tippy
-                        animation='scale-subtle'
-                        interactive={true}
-                        content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                Tailwindcss
-                            </span>
-                        }
-                    >
-                        <div>
-                            <SiTailwindcss />
-                        </div>
-                    </Tippy>
-                )}
-                {techs.find((tech) => tech === 'scss') && (
-                    <Tippy
-                        animation='scale-subtle'
-                        interactive={true}
-                        content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                SCSS
-                            </span>
-                        }
-                    >
-                        <div>
-                            <SiSass />
-                        </div>
-                    </Tippy>
-                )}
-                {techs.find((tech) => tech === 'mongodb') && (
-                    <Tippy
-                        animation='scale-subtle'
-                        interactive={true}
-                        content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                MongoDB
-                            </span>
-                        }
-                    >
-                        <div>
-                            <SiMongodb />
-                        </div>
-                    </Tippy>
-                )}
-                {techs.find((tech) => tech === 'nodejs') && (
-                    <Tippy
-                        animation='scale-subtle'
-                        interactive={true}
-                        content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                NodeJS
-                            </span>
-                        }
-                    >
-                        <div>
-                            <SiNodeDotJs />
-                        </div>
-                    </Tippy>
-                )}
-                {techs.find((tech) => tech === 'swr') && (
-                    <Tippy
-                        animation='scale-subtle'
-                        interactive={true}
-                        content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                SWR
-                            </span>
-                        }
-                    >
-                        <div>
-                            <IoLogoVercel />
-                        </div>
-                    </Tippy>
-                )}
-                {techs.find((tech) => tech === 'mdx') && (
-                    <Tippy
-                        animation='scale-subtle'
-                        interactive={true}
-                        content={
-                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                MDX
-                            </span>
-                        }
-                    >
-                        <div>
-                            <SiMarkdown />
-                        </div>
-                    </Tippy>
-                )}
+                ))}
             </IconContext.Provider>
         </div>
     );

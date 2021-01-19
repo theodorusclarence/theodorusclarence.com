@@ -1,5 +1,14 @@
 // only for reference
-const availableStack = ['nextjs', 'react', 'tailwindcss', 'scss', 'mongodb', 'nodejs', 'swr'];
+const availableStack = [
+    'nextjs',
+    'react',
+    'tailwindcss',
+    'scss',
+    'mongodb',
+    'nodejs',
+    'swr',
+    'mdx',
+];
 
 export const projects = [
     {
