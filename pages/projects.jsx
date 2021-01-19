@@ -3,11 +3,25 @@ import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import { projects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
+import { NextSeo } from 'next-seo';
+
+const url = 'https://theodorusclarence.com/projects';
+const title = 'Projects – theodorusclarence.com';
+const description = 'Showcase of my works on frontend development.';
 
 export default function ProjectsPage() {
     return (
         <>
-            <Seo pageTitle='NextJS Tailwind Starter' />
+            <NextSeo
+                title={title}
+                description={description}
+                canonical={url}
+                openGraph={{
+                    url,
+                    title,
+                    description,
+                }}
+            />
             <Nav />
             <section className='py-6 mt-4'>
                 <main className='space-y-2 layout'>

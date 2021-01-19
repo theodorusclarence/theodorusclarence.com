@@ -7,6 +7,7 @@ import {
     SiReact,
     SiTailwindcss,
     SiNodeDotJs,
+    SiMarkdown,
 } from 'react-icons/si';
 
 import { IoLogoVercel } from 'react-icons/io5';
@@ -122,6 +123,21 @@ export default function PickTech({ techs }) {
                     >
                         <div>
                             <IoLogoVercel />
+                        </div>
+                    </Tippy>
+                )}
+                {techs.find((tech) => tech === 'mdx') && (
+                    <Tippy
+                        animation='scale-subtle'
+                        interactive={true}
+                        content={
+                            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
+                                MDX
+                            </span>
+                        }
+                    >
+                        <div>
+                            <SiMarkdown />
                         </div>
                     </Tippy>
                 )}

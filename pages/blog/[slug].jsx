@@ -16,6 +16,7 @@ import { formatDate } from '../../utils/helper.js';
 import CustomCode, { Pre } from '../../components/CustomCode.jsx';
 import fetcher from '../../utils/fetcher.js';
 import Footer from '../../components/Footer.jsx';
+import { NextSeo } from 'next-seo';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -34,6 +35,10 @@ const components = {
 };
 
 export default function PostPage({ source, frontMatter, slug }) {
+    const url = `https://theodorusclarence.com/blog/${slug}`;
+    const title = `${frontMatter.title} – theodorusclarence.com`;
+    const description = frontMatter.description;
+
     const content = hydrate(source, { components });
     const { data } = useSWR(`/api/${slug}`, fetcher);
     useEffect(() => {
@@ -47,7 +52,16 @@ export default function PostPage({ source, frontMatter, slug }) {
 
     return (
         <>
-            <Seo pageTitle='NextJS Tailwind Starter' />
+            <NextSeo
+                title={title}
+                description={description}
+                canonical={url}
+                openGraph={{
+                    url,
+                    title,
+                    description,
+                }}
+            />
             <div className='flex flex-col min-h-screen'>
                 <Nav />
 

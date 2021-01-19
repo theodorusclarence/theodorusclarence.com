@@ -7,6 +7,11 @@ import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
 import PostCard from '../../components/PostCard';
 import { useState } from 'react';
+import { NextSeo } from 'next-seo';
+
+const url = 'https://theodorusclarence.com/blog';
+const title = 'Blog – theodorusclarence.com';
+const description = 'Thoughts on the frontend development and other interesting things.';
 
 export default function BlogPage({ posts }) {
     const [text, setText] = useState('');
@@ -33,7 +38,16 @@ export default function BlogPage({ posts }) {
 
     return (
         <>
-            <Seo pageTitle='NextJS Tailwind Starter' />
+            <NextSeo
+                title={title}
+                description={description}
+                canonical={url}
+                openGraph={{
+                    url,
+                    title,
+                    description,
+                }}
+            />
             <div className='flex flex-col min-h-screen'>
                 <Nav />
                 <section className='py-6 mt-4'>

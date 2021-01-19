@@ -32,9 +32,8 @@ export const projects = [
     {
         id: 'personal-web-2',
         name: 'theodorusclarence.com',
-        description:
-            'This is my current website, complete with backend services with FaunaDB and MDX.',
-        techStack: ['nextjs', 'tailwindcss', 'swr'],
+        description: 'This is my current website using FaunaDB and MDX.',
+        techStack: ['nextjs', 'tailwindcss', 'swr', 'mdx'],
         thumbnail: 'personal-web-2/personal-web-2.jpg',
         thumbnailDark: 'personal-web-2/personal-web-2-dark.jpg',
         github: 'https://theodorusclarence.com',

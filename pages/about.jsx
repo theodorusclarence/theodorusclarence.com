@@ -1,14 +1,27 @@
 import CustomLink from '../components/CustomLink';
-import Seo from '../components/Seo';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import CopyableText from '../components/CopyableText';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
+
+const url = 'https://theodorusclarence.com/about';
+const title = 'About – theodorusclarence.com';
+const description = 'Know more about me.';
 
 export default function about() {
     return (
         <>
-            <Seo pageTitle='NextJS Tailwind Starter' />
+            <NextSeo
+                title={title}
+                description={description}
+                canonical={url}
+                openGraph={{
+                    url,
+                    title,
+                    description,
+                }}
+            />
             <div className='flex flex-col min-h-screen'>
                 <Nav />
                 <section className='py-6 mt-4'>

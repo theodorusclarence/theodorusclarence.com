@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { NextSeo } from 'next-seo';
 import Nav from '../components/Nav';
 import Seo from '../components/Seo';
 import CustomLink from '../components/CustomLink';
@@ -16,7 +17,7 @@ import { featured, featuredProj } from '../data/featured';
 export default function Home({ featuredPosts, featuredProjects }) {
     return (
         <>
-            <Seo pageTitle='NextJS Tailwind Starter' />
+            <NextSeo />
             <div className='flex flex-col min-h-screen'>
                 <Nav />
                 <section className='py-6 mt-4'>
