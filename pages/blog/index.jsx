@@ -63,8 +63,8 @@ export default function BlogPage({ posts }) {
                                     // offset={5}
                                     content={
                                         <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                            I felt like there are not much content in Indonesia for
-                                            Next.js and other frontend.
+                                            I felt like there are not much content in Bahasa
+                                            Indonesia for Next.js and other frontend technologies.
                                         </span>
                                     }
                                 >
