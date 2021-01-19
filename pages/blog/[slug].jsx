@@ -91,7 +91,7 @@ export default function PostPage({ source, frontMatter, slug }) {
                                 {data?.count >= 0 ? data.count : '–––'} views
                             </p>
                         </div>
-                        <article className='py-4 prose transition-colors dark:prose-dark'>
+                        <article className='py-4 mx-auto prose transition-colors dark:prose-dark'>
                             {content}
                         </article>
                     </main>
