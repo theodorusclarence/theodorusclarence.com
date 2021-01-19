@@ -20,7 +20,11 @@ export default function BlogPage({ posts }) {
         e.preventDefault();
         setText(e.target.value);
         setFilteredPosts(
-            posts.filter((post) => post.data.title.toLowerCase().includes(text.toLowerCase()))
+            posts.filter(
+                (post) =>
+                    post.data.title.toLowerCase().includes(text.toLowerCase()) ||
+                    post.data.description.toLowerCase().includes(text.toLowerCase())
+            )
         );
         if (e.target.value === '') {
             setFilteredPosts([...posts]);
@@ -41,7 +45,7 @@ export default function BlogPage({ posts }) {
                         <div className='pb-4'>
                             <p className='font-medium'>Search</p>
                             <input
-                                className='w-full px-4 py-1 rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
+                                className='w-full px-4 py-2 rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
                                 type='text'
                                 placeholder='Type to search...'
                                 value={text}

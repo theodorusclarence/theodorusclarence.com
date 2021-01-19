@@ -62,7 +62,7 @@ export default function Nav() {
                         ))}
                     </ul>
                     <button
-                        className='p-2.5 rounded-md border-thin hover:border-accent-200 dark:hover:border-accent-200 hover:text-accent-200 dark:hover:text-accent-200'
+                        className='p-2.5 focus:outline-none rounded-md border-thin hover:border-accent-200 dark:hover:border-accent-200 hover:text-accent-200 dark:hover:text-accent-200'
                         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     >
                         {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}

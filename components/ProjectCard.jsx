@@ -4,9 +4,11 @@ import { IconContext } from 'react-icons/lib';
 import PickTech from './PickTech';
 import Image from 'next/image';
 import CustomLink from './CustomLink';
+import { useTheme } from 'next-themes';
 export default function ProjectCard({ data }) {
+    const { theme } = useTheme();
     return (
-        <div className='max-w-sm p-5 transition-shadow rounded-md md:w-full hover:shadow-md border-thin md:even:ml-4'>
+        <div className='max-w-sm p-5 transition-shadow rounded-md md:w-full hover:shadow-md border-thin '>
             <header className='flex justify-between'>
                 <h4>{data.name}</h4>
                 <div className='flex space-x-2'>
@@ -22,9 +24,11 @@ export default function ProjectCard({ data }) {
                             </CustomLink>
                         )}
 
-                        <CustomLink href={data.link}>
-                            <FiExternalLink />
-                        </CustomLink>
+                        {data.link && (
+                            <CustomLink href={data.link}>
+                                <FiExternalLink />
+                            </CustomLink>
+                        )}
                     </IconContext.Provider>
                 </div>
             </header>
@@ -32,13 +36,24 @@ export default function ProjectCard({ data }) {
             <PickTech techs={data.techStack} />
 
             <div className='w-full shadow-md'>
-                <Image
-                    width={1400}
-                    height={834}
-                    layout='responsive'
-                    src={`/images/projects/${data.thumbnail}`}
-                    alt='petrolida'
-                />
+                {/* if in white mode, show the dark image. vice versa */}
+                {data?.thumbnailDark && theme === 'light' ? (
+                    <Image
+                        width={1400}
+                        height={834}
+                        layout='responsive'
+                        src={`/images/projects/${data.thumbnailDark}`}
+                        alt='petrolida'
+                    />
+                ) : (
+                    <Image
+                        width={1400}
+                        height={834}
+                        layout='responsive'
+                        src={`/images/projects/${data.thumbnail}`}
+                        alt='petrolida'
+                    />
+                )}
             </div>
         </div>
     );

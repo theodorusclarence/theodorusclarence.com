@@ -29,9 +29,9 @@ export default function about() {
                             />
                         </div>
                         <p className='mb-2 prose dark:text-light'>
-                            Hello! Thank’s for coming to my personal website / blog. This is my
-                            first biggest site that I made with Next.js, Tailwindcss, MDX, and
-                            FaunaDB. I also have a{' '}
+                            Hello! Thanks for coming to my personal website / blog. This is my first
+                            biggest site that I made with Next.js, Tailwindcss, MDX, and FaunaDB. I
+                            also have a{' '}
                             <CustomLink href='https://github.com/theodorusclarence/nextjs-tailwind-starter'>
                                 nextjs-tailwind-starter
                             </CustomLink>{' '}
@@ -39,7 +39,7 @@ export default function about() {
                         </p>
                         <p className='prose dark:text-light'>
                             If you actually know me you might call me by Ce. I went to Kolese
-                            Kanisius Highschool, and currently a Undergraduate Informatics Student
+                            Kanisius Highschool, and currently an Undergraduate Informatics Student
                             in Institut Teknologi Sepuluh Nopember.
                         </p>
                     </main>

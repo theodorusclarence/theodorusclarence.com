@@ -1,19 +1,19 @@
 import fs from 'fs';
 import path from 'path';
-import CustomLink from '../components/CustomLink';
+import matter from 'gray-matter';
 import Nav from '../components/Nav';
-import PostCard from '../components/PostCard';
-import ProjectCard from '../components/ProjectCard';
 import Seo from '../components/Seo';
+import CustomLink from '../components/CustomLink';
 import TechStack from '../components/TechStack';
+import ProjectCard from '../components/ProjectCard';
+import PostCard from '../components/PostCard';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
-import { projects } from '../data/projects';
 import { BLOGS_PATH, postFilePaths } from '../utils/mdxUtils';
-import matter from 'gray-matter';
-import { featured } from '../data/featured';
+import { projects } from '../data/projects';
+import { featured, featuredProj } from '../data/featured';
 
-export default function Home({ posts }) {
+export default function Home({ featuredPosts, featuredProjects }) {
     return (
         <>
             <Seo pageTitle='NextJS Tailwind Starter' />
@@ -45,8 +45,9 @@ export default function Home({ posts }) {
                 <section className='py-6'>
                     <main className='layout'>
                         <h2 className='mb-4'>Featured Projects</h2>
-                        <div className='flex flex-col justify-between mb-4 space-y-4 md:space-y-0 md:flex-row'>
-                            {projects.map((project, index) => (
+                        {/* <div className='flex flex-col justify-between mb-4 space-y-4 md:space-y-0 md:flex-row'> */}
+                        <div className='grid gap-4 mb-4 md:grid-cols-2'>
+                            {featuredProjects.map((project, index) => (
                                 <ProjectCard key={index} data={project} />
                             ))}
                         </div>
@@ -58,7 +59,7 @@ export default function Home({ posts }) {
                     <main className='layout'>
                         <h2 className='mb-4'>Featured Posts</h2>
                         <div className='mb-4 space-y-4'>
-                            {posts.map((post) => (
+                            {featuredPosts.map((post) => (
                                 <PostCard key={post.filePath} post={post} />
                             ))}
                         </div>
@@ -72,7 +73,7 @@ export default function Home({ posts }) {
 }
 
 export function getStaticProps() {
-    const posts = postFilePaths
+    const featuredPosts = postFilePaths
         .filter((filePath) => {
             const slugPath = filePath.replace(/\.mdx?$/, '');
             return featured.find((feature) => feature === slugPath);
@@ -90,5 +91,9 @@ export function getStaticProps() {
             };
         });
 
-    return { props: { posts } };
+    const featuredProjects = projects.filter((project) =>
+        featuredProj.find((pr) => pr === project.id)
+    );
+
+    return { props: { featuredPosts, featuredProjects } };
 }
