@@ -88,6 +88,19 @@ class MyDocument extends Document {
                     <meta name='msapplication-TileColor' content='#ffffff' />
                     <meta name='msapplication-TileImage' content='/favicon/ms-icon-144x144.png' />
                     <meta name='theme-color' content='#ffffff' />
+
+                    {/* Google Analytics */}
+                    <script async src='https://www.googletagmanager.com/gtag/js?id=G-W9DWSYL7DY' />
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `window.dataLayer = window.dataLayer || [];
+                                function gtag(){dataLayer.push(arguments);}
+                                gtag('js', new Date());
+
+                                gtag('config', 'G-W9DWSYL7DY');
+                    `,
+                        }}
+                    />
                 </Head>
                 <body className='transition-colors bg-white dark:text-white dark:bg-dark'>
                     <Main />

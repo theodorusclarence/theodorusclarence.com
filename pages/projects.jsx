@@ -25,7 +25,7 @@ export default function ProjectsPage() {
             <Nav />
             <section className='py-6 mt-4'>
                 <main className='space-y-2 layout'>
-                    <header>
+                    <header className='mb-8 space-y-2'>
                         <h1 className=''>My Projects</h1>
                         <p className='prose dark:text-light'>Some projects that I have made.</p>
                     </header>

@@ -32,8 +32,9 @@ export default function PickTech({ techs }) {
     return (
         <div className='flex mt-2 mb-2 space-x-2'>
             <IconContext.Provider value={{ className: 'text-dark dark:text-light w-6 h-6' }}>
-                {techs.map((tech) => (
+                {techs.map((tech, index) => (
                     <Tippy
+                        key={index}
                         animation='scale-subtle'
                         interactive={true}
                         content={

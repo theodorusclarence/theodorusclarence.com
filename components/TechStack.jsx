@@ -72,8 +72,9 @@ export default function TechStack() {
                         'text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 w-12 h-12',
                 }}
             >
-                {currentTechStack.map((tech) => (
+                {currentTechStack.map((tech, index) => (
                     <Tippy
+                        key={index}
                         animation='scale-subtle'
                         interactive={true}
                         content={

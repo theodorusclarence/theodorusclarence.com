@@ -45,7 +45,7 @@ module.exports = {
                                 backgroundColor: theme('colors.light'),
                             },
                             hr: {
-                                borderColor: theme('colors.light'),
+                                borderColor: 'rgba(255, 255, 255, 0.4)',
                             },
                             blockquote: {
                                 color: theme('colors.gray.200'),
