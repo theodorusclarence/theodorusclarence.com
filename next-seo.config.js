@@ -1,5 +1,5 @@
 const title = 'theodorusclarence.com';
-const description = 'Front-end developer, JavaScript enthusiast, and course creator.';
+const description = 'An online portfolio and blog by Theodorus Clarence';
 
 const SEO = {
     title,
