@@ -45,7 +45,16 @@ export const projects = [
         techStack: ['nextjs', 'tailwindcss', 'swr', 'mdx'],
         thumbnail: 'personal-web-2/personal-web-2.jpg',
         thumbnailDark: 'personal-web-2/personal-web-2-dark.jpg',
-        github: 'https://theodorusclarence.com',
+        github: 'https://github.com/theodorusclarence/theodorusclarence.com',
         link: null,
+    },
+    {
+        id: '20-javascript',
+        name: '20 Javascript Mini Project',
+        description: 'An attempt to study Vanilla JavaScript faster.',
+        techStack: ['js'],
+        thumbnail: '20-javascript.jpg',
+        github: null,
+        link: '/projects/20-javascript',
     },
 ];

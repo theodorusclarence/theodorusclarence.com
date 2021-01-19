@@ -8,6 +8,7 @@ import {
     SiTailwindcss,
     SiNodeDotJs,
     SiMarkdown,
+    SiJavascript,
 } from 'react-icons/si';
 
 import { IoLogoVercel } from 'react-icons/io5';
@@ -17,6 +18,7 @@ const techSpan = {
     react: ['Create React App', () => <SiReact />],
     tailwindcss: ['Tailwindcss', () => <SiTailwindcss />],
     scss: ['SCSS', () => <SiSass />],
+    js: ['Vanilla JavaScript', () => <SiJavascript />],
     nodejs: ['Node.js', () => <SiNodeDotJs />],
     mongodb: ['MongoDB', () => <SiMongodb />],
     swr: ['SWR', () => <IoLogoVercel />],
