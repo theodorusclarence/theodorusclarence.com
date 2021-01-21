@@ -5,6 +5,10 @@
             "destination": "https://instagram.com/theodorusclarence"
         },
         {
+            "source": "/github",
+            "destination": "https://github.com/theodorusclarence"
+        },
+        {
             "source": "/line",
             "destination": "https://line.me/ti/p/PiyTgmKCiL"
         }
