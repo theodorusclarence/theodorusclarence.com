@@ -1,0 +1,12 @@
+{
+    "redirects": [
+        {
+            "source": "/ig",
+            "destination": "https://instagram.com/theodorusclarence"
+        },
+        {
+            "source": "/line",
+            "destination": "https://line.me/ti/p/PiyTgmKCiL"
+        }
+    ]
+}
