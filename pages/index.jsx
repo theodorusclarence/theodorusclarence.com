@@ -25,13 +25,15 @@ export default function Home({ featuredPosts, featuredProjects }) {
                         <h1 className=''>
                             Hi!
                             <br />
-                            You can call me <span className='accent'>Clarence</span>
+                            You can call me{' '}
+                            <span className='accent'>Clarence</span>
                         </h1>
                         <p className='prose dark:text-light'>
-                            I'm a fast learner and hardworking Informatics Student at Institut
-                            Teknologi Sepuluh Nopember. I'm currently really interested in Frontend
-                            Development. <CustomLink href='/about'>Reach me out</CustomLink> to talk
-                            more about frontend works!
+                            I'm a fast learner and hardworking Informatics
+                            Student at Institut Teknologi Sepuluh Nopember. I'm
+                            currently really interested in Frontend Development.{' '}
+                            <CustomLink href='/about'>Reach me out</CustomLink>{' '}
+                            to talk more about frontend works!
                         </p>
                     </main>
                 </section>
@@ -65,6 +67,16 @@ export default function Home({ featuredPosts, featuredProjects }) {
                             ))}
                         </div>
                         <Button href='/blog'>See More</Button>
+                    </main>
+                </section>
+
+                <section className='py-6'>
+                    <main className='layout'>
+                        <h2 className=''>Check out my code library</h2>
+                        <p className='mb-4 component'>
+                            List of code snippets that I store for easy access.
+                        </p>
+                        <Button href='/library'>Go to Code Library</Button>
                     </main>
                 </section>
                 <Footer />

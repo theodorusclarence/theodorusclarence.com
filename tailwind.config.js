@@ -1,7 +1,10 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    purge: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
+    purge: [
+        './pages/**/*.{js,jsx,ts,tsx}',
+        './components/**/*.{js,jsx,ts,tsx}',
+    ],
     darkMode: 'class', // or 'media' or 'class'
     theme: {
         extend: {
@@ -13,6 +16,7 @@ module.exports = {
                     100: '#DBFF00',
                     200: '#00FF94',
                     300: '#00E0F3',
+                    400: '#00c4fd',
                 },
                 dark: '#333333',
                 light: '#eeeeee',

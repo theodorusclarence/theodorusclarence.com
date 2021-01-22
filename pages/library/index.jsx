@@ -1,25 +1,24 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
-import { BLOGS_PATH, postFilePaths } from '../../utils/mdxUtils';
+import { LIBRARY_PATH, postLibraryPaths } from '../../utils/mdxUtils';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
-import PostCard from '../../components/PostCard';
 import { useState } from 'react';
 import { NextSeo } from 'next-seo';
-import Tippy from '@tippyjs/react';
+import LibraryCard from '../../components/LibraryCard';
 
 const url = 'https://theodorusclarence.com/blog';
-const title = 'Blog – theodorusclarence.com';
+const title = 'Library – theodorusclarence.com';
 const description =
-    'Thoughts on the frontend development and other interesting things.';
+    'Some collection of codes that I usually use that I put for easy access, feel free to reuse!';
 
-export default function BlogPage({ posts }) {
+export default function BlogPage({ snippets }) {
     const [text, setText] = useState('');
-    const [filteredPosts, setFilteredPosts] = useState([...posts]);
+    const [filteredSnippets, setFilteredSnippets] = useState([...snippets]);
 
     // sort the newest blog first.
-    posts.sort(
+    snippets.sort(
         (postA, postB) =>
             new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
     );
@@ -27,19 +26,19 @@ export default function BlogPage({ posts }) {
     const handleSearch = (e) => {
         e.preventDefault();
         setText(e.target.value);
-        setFilteredPosts(
-            posts.filter(
-                (post) =>
-                    post.data.title
+        setFilteredSnippets(
+            snippets.filter(
+                (snippet) =>
+                    snippet.data.title
                         .toLowerCase()
                         .includes(text.toLowerCase()) ||
-                    post.data.description
+                    snippet.data.description
                         .toLowerCase()
                         .includes(text.toLowerCase())
             )
         );
         if (e.target.value === '') {
-            setFilteredPosts([...posts]);
+            setFilteredSnippets([...snippets]);
         }
     };
 
@@ -60,26 +59,9 @@ export default function BlogPage({ posts }) {
                 <section className='py-6 mt-4'>
                     <main className='space-y-4 layout'>
                         <header className='space-y-2'>
-                            <h1>Blog</h1>
+                            <h1>Library</h1>
                             <p className='text-dark dark:text-light'>
-                                Some of my thoughts. It will be written in{' '}
-                                <Tippy
-                                    animation='scale-subtle'
-                                    // offset={5}
-                                    content={
-                                        <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                            I felt like there are not much
-                                            content in Bahasa Indonesia for
-                                            Next.js and other frontend
-                                            technologies.
-                                        </span>
-                                    }
-                                >
-                                    <span className='accent'>
-                                        Bahasa Indonesia
-                                    </span>
-                                </Tippy>
-                                .
+                                {description}
                             </p>
                         </header>
                         <div className='pb-4'>
@@ -92,12 +74,16 @@ export default function BlogPage({ posts }) {
                                 onChange={handleSearch}
                             />
                         </div>
-                        <ul className='space-y-4'>
-                            {filteredPosts.map((post) => (
-                                <PostCard key={post.filePath} post={post} />
+                        <ul className='grid gap-4 md:grid-cols-2'>
+                            {filteredSnippets.map((snippet) => (
+                                <LibraryCard
+                                    key={snippet.slug}
+                                    post={snippet.data}
+                                    slug={snippet.slug}
+                                />
                             ))}
 
-                            {filteredPosts.length === 0 && (
+                            {filteredSnippets.length === 0 && (
                                 <h4>
                                     Oops, not found, try searching another one
                                     ;)
@@ -113,8 +99,8 @@ export default function BlogPage({ posts }) {
 }
 
 export function getStaticProps() {
-    const posts = postFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(BLOGS_PATH, filePath));
+    const snippets = postLibraryPaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(LIBRARY_PATH, filePath));
         const { content, data } = matter(source);
         const slug = filePath.replace(/\.mdx?$/, '');
 
@@ -126,5 +112,5 @@ export function getStaticProps() {
         };
     });
 
-    return { props: { posts } };
+    return { props: { snippets } };
 }
