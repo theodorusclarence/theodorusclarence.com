@@ -185,8 +185,8 @@ pre[class*='language-'] {
     color: var(--foreground);
     background: var(--background);
     text-shadow: none;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-        'Courier New', monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        'Liberation Mono', 'Courier New', monospace;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -263,6 +263,10 @@ pre[class*='language-'] {
 
 .language-css .token {
     color: var(--pink);
+}
+
+.token.maybe-class-name {
+    color: var(--cyan);
 }
 
 .token.script {
@@ -364,7 +368,7 @@ pre[class*='language-'] {
 }
 
 .token.punctuation {
-    color: var(--pink);
+    color: var(--foreground);
 }
 
 .language-css .token.punctuation {
