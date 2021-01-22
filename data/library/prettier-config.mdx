@@ -1,0 +1,30 @@
+---
+title: 'Prettier Config'
+techs: 'prettier'
+description: 'My Prettier Config'
+---
+
+### .prettierrc.js
+
+```js
+module.exports = {
+  arrowParens: 'always',
+  singleQuote: true,
+  jsxSingleQuote: true,
+  tabWidth: 4,
+  overrides: [
+    {
+      files: '*.mdx',
+      options: {
+        tabWidth: 2,
+      },
+    },
+  ],
+};
+```
+
+### .prettierignore
+
+```
+copy .gitignore here
+```

@@ -9,6 +9,8 @@ import {
     SiNodeDotJs,
     SiMarkdown,
     SiJavascript,
+    SiPrettier,
+    SiGoogleanalytics,
 } from 'react-icons/si';
 
 import { IoLogoVercel } from 'react-icons/io5';
@@ -23,6 +25,8 @@ const techSpan = {
     mongodb: ['MongoDB', () => <SiMongodb />],
     swr: ['SWR', () => <IoLogoVercel />],
     mdx: ['MDX', () => <SiMarkdown />],
+    prettier: ['Prettier', () => <SiPrettier />],
+    analytics: ['Google Analytics', () => <SiGoogleanalytics />],
 };
 
 /**
@@ -33,7 +37,9 @@ const techSpan = {
 export default function PickTech({ techs }) {
     return (
         <div className='flex mt-2 mb-2 space-x-2'>
-            <IconContext.Provider value={{ className: 'text-dark dark:text-light w-6 h-6' }}>
+            <IconContext.Provider
+                value={{ className: 'text-dark dark:text-light w-6 h-6' }}
+            >
                 {techs.map((tech, index) => (
                     <Tippy
                         key={index}
