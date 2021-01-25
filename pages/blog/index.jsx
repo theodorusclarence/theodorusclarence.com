@@ -1,6 +1,7 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
+import readingTime from 'reading-time';
 import { BLOGS_PATH, postFilePaths } from '../../utils/mdxUtils';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
@@ -123,6 +124,7 @@ export function getStaticProps() {
             data,
             filePath,
             slug,
+            readingTime: readingTime(content).text,
         };
     });
 

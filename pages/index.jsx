@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { NextSeo } from 'next-seo';
+import readingTime from 'reading-time';
 import Nav from '../components/Nav';
 import Seo from '../components/Seo';
 import CustomLink from '../components/CustomLink';
@@ -101,6 +102,7 @@ export function getStaticProps() {
                 data,
                 filePath,
                 slug,
+                readingTime: readingTime(content).text,
             };
         });
 

@@ -2,6 +2,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
+import readingTime from 'reading-time';
 import Head from 'next/head';
 import Image from 'next/image';
 import path from 'path';
@@ -11,12 +12,12 @@ import { postFilePaths, BLOGS_PATH } from '../../utils/mdxUtils';
 import { useEffect } from 'react';
 import useSWR, { mutate } from 'swr';
 import Nav from '../../components/Nav.jsx';
-import Seo from '../../components/Seo.jsx';
 import { formatDate } from '../../utils/helper.js';
 import CustomCode, { Pre } from '../../components/CustomCode.jsx';
 import fetcher from '../../utils/fetcher.js';
 import Footer from '../../components/Footer.jsx';
 import { NextSeo } from 'next-seo';
+import Link from 'next/link';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -34,7 +35,7 @@ const components = {
     pre: Pre,
 };
 
-export default function PostPage({ source, frontMatter, slug }) {
+export default function PostPage({ source, frontMatter, slug, readingTime }) {
     const url = `https://theodorusclarence.com/blog/${slug}`;
     const title = `${frontMatter.title} – theodorusclarence.com`;
     const description = frontMatter.description;
@@ -71,7 +72,8 @@ export default function PostPage({ source, frontMatter, slug }) {
                             <h1 className='mb-2'>{frontMatter.title}</h1>
 
                             <p className='component text-dark dark:text-light'>
-                                Written on {formatDate(frontMatter.publishedAt)} by{' '}
+                                Written on {formatDate(frontMatter.publishedAt)}{' '}
+                                by{' '}
                                 <div className='inline-flex items-end align-bottom'>
                                     <div style={{ width: 25, height: 25 }}>
                                         <Image
@@ -85,11 +87,17 @@ export default function PostPage({ source, frontMatter, slug }) {
                                     </div>
                                     <p className='ml-1'>Theodorus Clarence.</p>
                                 </div>
+                                <p>
+                                    {data?.count >= 0 ? data.count : '–––'}{' '}
+                                    views • {readingTime}
+                                </p>
                             </p>
 
-                            <p className='component text-dark dark:text-light'>
-                                {data?.count >= 0 ? data.count : '–––'} views
-                            </p>
+                            {/* <Link href={`/blog/${slug}`} scroll={false}>
+                                <a className='fixed p-2 text-black bg-green-200 rounded-md bottom-6 right-6'>
+                                    Reload
+                                </a>
+                            </Link> */}
                         </div>
                         <article className='py-4 mx-auto prose transition-colors dark:prose-dark'>
                             {content}
@@ -123,6 +131,7 @@ export const getStaticProps = async ({ params }) => {
             source: mdxSource,
             frontMatter: data,
             slug: params.slug,
+            readingTime: readingTime(content).text,
         },
     };
 };

@@ -60,6 +60,10 @@ p.component {
     @apply w-11/12 mx-auto;
 }
 
+.prose code {
+    @apply py-1 rounded-md border-thin;
+}
+
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */

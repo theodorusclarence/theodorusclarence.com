@@ -16,7 +16,7 @@ export default function PostCard({ post }) {
                     </p>
                 </header>
                 <p className='component text-dark dark:text-light'>
-                    {formatDate(postData.publishedAt)}
+                    {formatDate(postData.publishedAt)} • {post.readingTime}
                 </p>
                 <p className='component'>{postData.description}</p>
             </a>
