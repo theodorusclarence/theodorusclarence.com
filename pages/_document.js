@@ -86,11 +86,17 @@ class MyDocument extends Document {
                     />
                     <link rel='manifest' href='/favicon/manifest.json' />
                     <meta name='msapplication-TileColor' content='#ffffff' />
-                    <meta name='msapplication-TileImage' content='/favicon/ms-icon-144x144.png' />
+                    <meta
+                        name='msapplication-TileImage'
+                        content='/favicon/ms-icon-144x144.png'
+                    />
                     <meta name='theme-color' content='#ffffff' />
 
                     {/* Google Analytics */}
-                    <script async src='https://www.googletagmanager.com/gtag/js?id=G-W9DWSYL7DY' />
+                    <script
+                        async
+                        src='https://www.googletagmanager.com/gtag/js?id=G-W9DWSYL7DY'
+                    />
                     <script
                         dangerouslySetInnerHTML={{
                             __html: `window.dataLayer = window.dataLayer || [];

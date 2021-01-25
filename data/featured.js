@@ -1,5 +1,11 @@
-export const featured = ['youtube-list', 'nextjs-vs-cra'];
+export const featured = ['youtube-list', 'spotify-now-playing'];
 
 export const featuredProj = ['petrolida-2021', 'personal-web-2'];
 
-export const currentTechStack = ['nextjs', 'react', 'tailwindcss', 'swr', 'nodejs'];
+export const currentTechStack = [
+    'nextjs',
+    'react',
+    'tailwindcss',
+    'swr',
+    'nodejs',
+];
