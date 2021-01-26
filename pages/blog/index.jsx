@@ -9,6 +9,7 @@ import PostCard from '../../components/PostCard';
 import { useState } from 'react';
 import { NextSeo } from 'next-seo';
 import Tippy from '@tippyjs/react';
+import CustomLink from '../../components/CustomLink';
 
 const url = 'https://theodorusclarence.com/blog';
 const title = 'Blog – theodorusclarence.com';
@@ -82,6 +83,12 @@ export default function BlogPage({ posts }) {
                                 </Tippy>
                                 .
                             </p>
+                            <CustomLink
+                                className='inline-block p-2 rounded-md border-thin'
+                                href='/suggest'
+                            >
+                                Suggest Topic or Give Feedback
+                            </CustomLink>
                         </header>
                         <div className='pb-4'>
                             <p className='font-medium'>Search</p>
