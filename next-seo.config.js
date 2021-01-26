@@ -18,6 +18,13 @@ const SEO = {
                 width: 1200,
                 height: 628,
             },
+            {
+                url:
+                    'https://theodorusclarence.com/favicon/ms-icon-144x144.png',
+                alt: title,
+                width: 144,
+                height: 144,
+            },
         ],
     },
 };
