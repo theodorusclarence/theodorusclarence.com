@@ -15,10 +15,12 @@ import { BLOGS_PATH, postFilePaths } from '../utils/mdxUtils';
 import { projects } from '../data/projects';
 import { featured, featuredProj } from '../data/featured';
 
+const title = 'Home – theodorusclarence.com';
+
 export default function Home({ featuredPosts, featuredProjects }) {
     return (
         <>
-            <NextSeo />
+            <NextSeo title={title} />
             <div className='flex flex-col min-h-screen'>
                 <Nav />
                 <section className='py-6 mt-4'>
