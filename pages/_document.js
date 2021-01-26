@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
     render() {
         return (
-            <Html className='dark'>
+            <Html className='dark' lang='en'>
                 <Head>
                     {/* <link rel='preconnect' href='https://fonts.gstatic.com' />
                     <link
