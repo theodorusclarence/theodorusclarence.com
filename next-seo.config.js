@@ -1,4 +1,4 @@
-const title = 'theodorusclarence.com';
+const title = 'Theodorus Clarence | theodorusclarence.com';
 const description = 'An online portfolio and blog by Theodorus Clarence';
 
 const SEO = {
@@ -13,7 +13,8 @@ const SEO = {
         description,
         images: [
             {
-                url: 'https://theodorusclarence.com/favicon/ms-icon-144x144.png',
+                url:
+                    'https://theodorusclarence.com/favicon/ms-icon-144x144.png',
                 alt: title,
                 width: 144,
                 height: 144,
