@@ -13,7 +13,7 @@ const SEO = {
         description,
         images: [
             {
-                url: 'https://theodorusclarence.com/favicon/large-og.png',
+                url: 'https://theodorusclarence.com/favicon/large-og.jpg',
                 alt: title,
                 width: 1200,
                 height: 628,
