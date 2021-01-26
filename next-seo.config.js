@@ -16,11 +16,7 @@ const SEO = {
                 url: 'https://theodorusclarence.com/favicon/large-og.jpg',
                 alt: title,
                 width: 1200,
-<<<<<<< HEAD
-                height: 628,
-=======
                 height: 1200,
->>>>>>> develop
             },
         ],
     },
