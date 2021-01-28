@@ -1,8 +1,8 @@
 import { NextSeo } from 'next-seo';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Footer from '../components/Footer';
-import Nav from '../components/Nav';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 
 export default function SuggestionPage() {
     const url = 'https://theodorusclarence.com/suggest';
@@ -15,7 +15,7 @@ export default function SuggestionPage() {
     const onSubmit = async (data) => {
         const res = await fetch('/api/suggest', {
             method: 'POST',
-            body: JSON.stringify({...data, date: new Date()}),
+            body: JSON.stringify({ ...data, date: new Date() }),
             headers: { 'Content-Type': 'application/json' },
         });
 

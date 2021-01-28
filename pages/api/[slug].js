@@ -1,4 +1,9 @@
-import { checkSlugExist, createSlugView, getViewBySlug, updateView } from '../../utils/Fauna';
+import {
+    checkSlugExist,
+    createSlugView,
+    getViewBySlug,
+    updateView,
+} from '@/utils/Fauna';
 
 export default async function handler(req, res) {
     const { slug } = req.query;

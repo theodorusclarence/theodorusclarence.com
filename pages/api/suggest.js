@@ -1,4 +1,4 @@
-import { createSuggestion, getAllSuggestions } from '../../utils/Fauna';
+import { createSuggestion, getAllSuggestions } from '@/utils/Fauna';
 
 export default async function handler(req, res) {
     if (req.method === 'GET') {

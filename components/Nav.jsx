@@ -31,7 +31,11 @@ export default function Nav() {
     });
 
     return (
-        <header className={`${onTop ? '' : 'shadow-sm'} transition-shadow sticky top-0 z-10`}>
+        <header
+            className={`${
+                onTop ? '' : 'shadow-sm'
+            } transition-shadow sticky top-0 z-10`}
+        >
             <div className='h-2 bg-gradient-to-tr from-accent-100 via-accent-200 to-accent-300'></div>
             <nav className='transition-colors bg-white dark:bg-dark'>
                 <ul className='flex items-center justify-between max-w-4xl p-4 px-4 mx-auto'>
@@ -42,15 +46,18 @@ export default function Nav() {
                                     <a
                                         className={`
                                         ${
-                                            route === href || route === href + '/[slug]'
+                                            route === href ||
+                                            route === href + '/[slug]'
                                                 ? 'text-transparent'
                                                 : 'text-black dark:text-white'
                                         } 
-                                        font-medium  hover:text-accent-200 dark:hover:text-accent-200`}
+                                        font-medium ring-vis rounded-sm hover:text-accent-200 dark:hover:text-accent-200`}
                                     >
                                         <span
                                             className={`${
-                                                (route === href || route === href + '/[slug]') &&
+                                                (route === href ||
+                                                    route ===
+                                                        href + '/[slug]') &&
                                                 'accent'
                                             }`}
                                         >
@@ -62,10 +69,16 @@ export default function Nav() {
                         ))}
                     </ul>
                     <button
-                        className='p-2.5 focus:outline-none rounded-md border-thin hover:border-accent-200 dark:hover:border-accent-200 hover:text-accent-200 dark:hover:text-accent-200'
-                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                        className='p-2.5 focus:outline-none rounded-md border-thin hover:border-accent-200 dark:hover:border-accent-200 hover:text-accent-200 dark:hover:text-accent-200 focus:border-accent-200 dark:focus:border-accent-200 focus:text-accent-200 dark:focus:text-accent-200'
+                        onClick={() =>
+                            setTheme(theme === 'dark' ? 'light' : 'dark')
+                        }
                     >
-                        {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
+                        {theme === 'light' ? (
+                            <FiMoon size={20} />
+                        ) : (
+                            <FiSun size={20} />
+                        )}
                     </button>
                 </ul>
             </nav>

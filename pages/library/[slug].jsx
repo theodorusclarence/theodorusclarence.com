@@ -4,20 +4,15 @@ import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
 import Head from 'next/head';
 import Image from 'next/image';
-import path from 'path';
-import mdxPrism from 'mdx-prism';
-import CustomLink from '../../components/CustomLink.jsx';
-import { postLibraryPaths, LIBRARY_PATH } from '../../utils/mdxUtils';
-import { useEffect } from 'react';
-import useSWR, { mutate } from 'swr';
-import Nav from '../../components/Nav.jsx';
-import Seo from '../../components/Seo.jsx';
-import { formatDate } from '../../utils/helper.js';
-import CustomCode, { Pre } from '../../components/CustomCode.jsx';
-import fetcher from '../../utils/fetcher.js';
-import Footer from '../../components/Footer.jsx';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
+import path from 'path';
+import mdxPrism from 'mdx-prism';
+import CustomLink from '@/components/CustomLink.jsx';
+import { postLibraryPaths, LIBRARY_PATH } from '@/utils/mdxUtils';
+import Nav from '@/components/Nav.jsx';
+import CustomCode, { Pre } from '@/components/CustomCode.jsx';
+import Footer from '@/components/Footer.jsx';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how

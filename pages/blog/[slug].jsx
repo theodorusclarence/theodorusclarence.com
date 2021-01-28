@@ -1,23 +1,23 @@
 import fs from 'fs';
 import matter from 'gray-matter';
+import mdxPrism from 'mdx-prism';
 import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
-import readingTime from 'reading-time';
+import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import Image from 'next/image';
 import path from 'path';
-import mdxPrism from 'mdx-prism';
-import CustomLink from '../../components/CustomLink.jsx';
-import { postFilePaths, BLOGS_PATH } from '../../utils/mdxUtils';
 import { useEffect } from 'react';
+import readingTime from 'reading-time';
 import useSWR, { mutate } from 'swr';
-import Nav from '../../components/Nav.jsx';
-import { formatDate } from '../../utils/helper.js';
-import CustomCode, { Pre } from '../../components/CustomCode.jsx';
-import fetcher from '../../utils/fetcher.js';
-import Footer from '../../components/Footer.jsx';
-import { NextSeo } from 'next-seo';
 import Link from 'next/link';
+import CustomCode, { Pre } from '@/components/CustomCode.jsx';
+import CustomLink from '@/components/CustomLink.jsx';
+import Footer from '@/components/Footer.jsx';
+import Nav from '@/components/Nav.jsx';
+import fetcher from '@/utils/fetcher.js';
+import { formatDate } from '@/utils/helper.js';
+import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how

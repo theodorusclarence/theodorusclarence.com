@@ -1,7 +1,7 @@
 import useSWR from 'swr';
-import Footer from '../../../components/Footer';
-import Nav from '../../../components/Nav';
-import fetcher from '../../../utils/fetcher';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import fetcher from '@/utils/fetcher';
 
 export default function SuggestionViewPage() {
     const { data } = useSWR('/api/suggest', fetcher);

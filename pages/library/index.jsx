@@ -1,12 +1,12 @@
 import fs from 'fs';
-import matter from 'gray-matter';
 import path from 'path';
-import { LIBRARY_PATH, postLibraryPaths } from '../../utils/mdxUtils';
-import Nav from '../../components/Nav';
-import Footer from '../../components/Footer';
+import matter from 'gray-matter';
 import { useState } from 'react';
 import { NextSeo } from 'next-seo';
-import LibraryCard from '../../components/LibraryCard';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import LibraryCard from '@/components/LibraryCard';
+import { LIBRARY_PATH, postLibraryPaths } from '@/utils/mdxUtils';
 
 const url = 'https://theodorusclarence.com/blog';
 const title = 'Library – theodorusclarence.com';
