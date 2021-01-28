@@ -4,11 +4,17 @@ import { IconContext } from 'react-icons/lib';
 import PickTech from './PickTech';
 import Image from 'next/image';
 import CustomLink from './CustomLink';
+import UnstyledLink from './UnstyledLink';
 import { useTheme } from 'next-themes';
 export default function ProjectCard({ data }) {
     const { theme } = useTheme();
     return (
-        <div className='max-w-sm p-5 transition-shadow rounded-md md:w-full hover:shadow-md border-thin '>
+        <UnstyledLink
+            href={data.link || data.github}
+            // target='_blank'
+            // rel='noopener noreferrer'
+            className='max-w-sm p-5 transition-shadow rounded-md md:w-full hover:shadow-md border-thin ring-vis-0'
+        >
             <header className='flex justify-between'>
                 <h4>{data.name}</h4>
                 <div className='flex space-x-2'>
@@ -39,22 +45,24 @@ export default function ProjectCard({ data }) {
                 {/* if in white mode, show the dark image. vice versa */}
                 {data?.thumbnailDark && theme === 'light' ? (
                     <Image
+                        className='bg-gray-500'
                         width={1400}
                         height={834}
                         layout='responsive'
                         src={`/images/projects/${data.thumbnailDark}`}
-                        alt='petrolida'
+                        alt={data.name}
                     />
                 ) : (
                     <Image
+                        className='bg-gray-500'
                         width={1400}
                         height={834}
                         layout='responsive'
                         src={`/images/projects/${data.thumbnail}`}
-                        alt='petrolida'
+                        alt={data.name}
                     />
                 )}
             </div>
-        </div>
+        </UnstyledLink>
     );
 }

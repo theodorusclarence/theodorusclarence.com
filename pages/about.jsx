@@ -1,15 +1,15 @@
-import CustomLink from '../components/CustomLink';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import CopyableText from '../components/CopyableText';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
+import CustomLink from '@/components/CustomLink';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import CopyableText from '@/components/CopyableText';
 
 const url = 'https://theodorusclarence.com/about';
 const title = 'About – theodorusclarence.com';
 const description = 'Know more about me.';
 
-export default function about() {
+export default function About() {
     return (
         <>
             <NextSeo
@@ -19,7 +19,7 @@ export default function about() {
                 openGraph={{
                     url,
                     title,
-                    description
+                    description,
                 }}
             />
             <div className='flex flex-col min-h-screen'>
@@ -31,8 +31,9 @@ export default function about() {
                             <br />
                             <span className='accent'>Theodorus Clarence</span>
                         </h1>
-                        <div className='float-right ml-6'>
+                        <div className='float-right ml-6 '>
                             <Image
+                                className='bg-gray-700'
                                 width={210}
                                 height={210}
                                 objectFit='cover'

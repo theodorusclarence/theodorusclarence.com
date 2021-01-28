@@ -24,6 +24,9 @@ module.exports = {
             borderWidth: {
                 thin: '0.2px',
             },
+            ringWidth: {
+                thin: '0.2px',
+            },
             maxWidth: {
                 project: '21rem',
             },
@@ -97,6 +100,11 @@ module.exports = {
     },
     variants: {
         extend: {
+            ringColor: ['focus-visible'],
+            ringOffsetColor: ['focus-visible'],
+            ringOffsetWidth: ['focus-visible'],
+            ringOpacity: ['focus-visible'],
+            ringWidth: ['focus-visible'],
             boxShadow: ['active'],
             margin: ['even'],
             typography: ['dark'],

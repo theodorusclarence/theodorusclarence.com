@@ -1,10 +1,10 @@
 import { NextSeo } from 'next-seo';
 import { IconContext } from 'react-icons/lib';
 import { SiGithub } from 'react-icons/si';
-import CustomLink from '../../components/CustomLink';
-import Footer from '../../components/Footer';
-import Nav from '../../components/Nav';
-import ResponsiveIframe from '../../components/ResponsiveIframe';
+import CustomLink from '@/components/CustomLink';
+import Footer from '@/components/Footer';
+import Nav from '@/components/Nav';
+import ResponsiveIframe from '@/components/ResponsiveIframe';
 
 const url = 'https://theodorusclarence.com/projects/20-javascript';
 const title = '20 JavaScript Mini Project – theodorusclarence.com';
@@ -30,12 +30,16 @@ export default function JavascriptPage({ videos }) {
                         <header>
                             <h1>20 Javascript Mini Projects</h1>
                             <p className='text-dark dark:text-light'>
-                                An attempt to study Vanilla JavaScript faster, done in a month.
+                                An attempt to study Vanilla JavaScript faster,
+                                done in a month.
                             </p>
                         </header>
                         <ul className='grid gap-4 md:grid-cols-2'>
                             {videos.map((video, index) => (
-                                <li key={index} className='p-4 space-y-2 rounded-md border-thin'>
+                                <li
+                                    key={index}
+                                    className='p-4 space-y-2 rounded-md border-thin'
+                                >
                                     <div className='flex justify-between space-x-2'>
                                         <h4>{video[0]}</h4>
                                         <IconContext.Provider
@@ -49,7 +53,10 @@ export default function JavascriptPage({ videos }) {
                                             </CustomLink>
                                         </IconContext.Provider>
                                     </div>
-                                    <ResponsiveIframe ratio={5 / 4} video={video} />
+                                    <ResponsiveIframe
+                                        ratio={5 / 4}
+                                        video={video}
+                                    />
                                 </li>
                             ))}
                         </ul>

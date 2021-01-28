@@ -29,9 +29,11 @@
         "react-icons": "^4.1.0",
         "reading-time": "^1.2.1",
         "swr": "^0.4.0",
-        "tailwindcss": "^2.0.2"
+        "tailwindcss": "^2.0.2",
+        "tailwindcss-border-gradients": "^2.0.3"
     },
     "devDependencies": {
+        "postcss-focus-visible": "^5.0.0",
         "rehype": "^11.0.0"
     }
 }

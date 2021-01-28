@@ -57,15 +57,47 @@ p.component {
     @apply w-11/12 mx-auto;
 }
 
-.prose code {
-    @apply py-1 rounded-md border-thin;
-}
-
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */
 
 /* Write your own custom component styles here */
+.prose code {
+    @apply px-1 py-1 rounded-md border-thin;
+}
+
+.prose a {
+    text-decoration: none;
+}
+
+.prose > ol > li > :last-child,
+.prose > ul > li > :last-child {
+    margin-bottom: 0;
+}
+.prose > ol > li > :first-child,
+.prose > ul > li > :first-child {
+    margin-top: 0;
+}
+
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+    content: '';
+}
+
+.prose blockquote,
+.dark .dark\:prose-dark blockquote {
+    border-style: solid;
+    border-width: 0 0 0 0.25rem;
+    border-image: linear-gradient(to top, #00ff94, #00e0f3, #00c4fd) 1;
+}
+
+.prose hr,
+.dark .dark\:prose-dark hr {
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-image: linear-gradient(to right, #00ff9480, #00e0f380, #00c4fd80) 1;
+}
+
 .btn-blue {
     @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
 }
@@ -79,3 +111,16 @@ span.accent {
 /* Stop purging. */
 
 /* Your own custom utilities */
+
+.ring-vis {
+    @apply transition-all focus-visible:ring-accent-200 focus-visible:ring-offset-4 focus-visible:ring-offset-white dark:focus-visible:ring-offset-dark focus-visible:ring-1 focus:outline-none;
+}
+
+/* ring with no offset */
+.ring-vis-0 {
+    @apply transition-all focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1;
+}
+
+.ring-vis-0:focus {
+    outline: none;
+}

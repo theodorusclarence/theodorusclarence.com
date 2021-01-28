@@ -1,9 +1,8 @@
-import Seo from '../components/Seo';
-import Footer from '../components/Footer';
-import Nav from '../components/Nav';
-import { projects } from '../data/projects';
-import ProjectCard from '../components/ProjectCard';
 import { NextSeo } from 'next-seo';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import ProjectCard from '@/components/ProjectCard';
+import { projects } from '@/data/projects';
 
 const url = 'https://theodorusclarence.com/projects';
 const title = 'Projects – theodorusclarence.com';
@@ -27,7 +26,9 @@ export default function ProjectsPage() {
                 <main className='space-y-2 layout'>
                     <header className='mb-8 space-y-2'>
                         <h1 className=''>My Projects</h1>
-                        <p className='prose dark:text-light'>Some projects that I have made.</p>
+                        <p className='prose dark:text-light'>
+                            Some projects that I have made.
+                        </p>
                     </header>
                     <div className='grid gap-4 md:grid-cols-2'>
                         {projects.map((project, index) => (

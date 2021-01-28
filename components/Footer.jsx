@@ -27,7 +27,7 @@ export default function Footer() {
                     <IconContext.Provider
                         value={{
                             className:
-                                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-7 h-7 align-middle'
+                                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-7 h-7 align-middle',
                         }}
                     >
                         <Tippy
@@ -46,15 +46,18 @@ export default function Footer() {
                                 </span>
                             }
                         >
-                            <div onClick={clickToCopy}>
+                            <button
+                                className='rounded-sm ring-vis'
+                                onClick={clickToCopy}
+                            >
                                 <FiMail />
-                            </div>
+                            </button>
                         </Tippy>
                     </IconContext.Provider>
                     <IconContext.Provider
                         value={{
                             className:
-                                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-6 h-6 align-middle'
+                                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-6 h-6 align-middle my-auto',
                         }}
                     >
                         <CustomLink href='https://github.com/theodorusclarence'>
@@ -74,7 +77,7 @@ export default function Footer() {
                                 </span>
                             }
                         >
-                            <div>
+                            <div className='flex items-center'>
                                 <CustomLink href='/library'>
                                     <IoCode />
                                 </CustomLink>

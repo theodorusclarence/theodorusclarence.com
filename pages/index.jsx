@@ -3,17 +3,18 @@ import path from 'path';
 import matter from 'gray-matter';
 import { NextSeo } from 'next-seo';
 import readingTime from 'reading-time';
-import Nav from '../components/Nav';
-import Seo from '../components/Seo';
-import CustomLink from '../components/CustomLink';
-import TechStack from '../components/TechStack';
-import ProjectCard from '../components/ProjectCard';
-import PostCard from '../components/PostCard';
-import Button from '../components/Button';
-import Footer from '../components/Footer';
-import { BLOGS_PATH, postFilePaths } from '../utils/mdxUtils';
-import { projects } from '../data/projects';
-import { featured, featuredProj } from '../data/featured';
+
+import Nav from '@/components/Nav';
+import CustomLink from '@/components/CustomLink';
+import TechStack from '@/components/TechStack';
+import ProjectCard from '@/components/ProjectCard';
+import PostCard from '@/components/PostCard';
+import Button from '@/components/Button';
+import Footer from '@/components/Footer';
+
+import { projects } from '@/data/projects';
+import { featured, featuredProj } from '@/data/featured';
+import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 
 const title = 'Home – theodorusclarence.com';
 

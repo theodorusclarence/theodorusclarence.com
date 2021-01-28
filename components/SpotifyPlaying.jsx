@@ -14,7 +14,7 @@ export default function SpotifyPlaying() {
                     ? data.songUrl
                     : 'https://open.spotify.com/user/erence21?si=yTsrZT5JSHOp7tn3ist7Ig'
             }
-            className='relative flex items-center p-5 space-x-4 rounded-md w-72 border-thin'
+            className='relative flex items-center p-5 space-x-4 rounded-md w-72 border-thin ring-vis-0'
         >
             {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
             <div className='w-16'>
