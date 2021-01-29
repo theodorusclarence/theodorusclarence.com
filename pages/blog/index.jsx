@@ -83,12 +83,20 @@ export default function BlogPage({ posts }) {
                                 </Tippy>
                                 .
                             </p>
-                            <CustomLink
-                                className='inline-block p-2 rounded-md border-thin'
-                                href='/suggest'
-                            >
-                                Suggest Topic or Give Feedback
-                            </CustomLink>
+                            <p className='text-dark dark:text-light'>
+                                Kindly{' '}
+                                <CustomLink href='https://buttondown.email/theodorusclarence'>
+                                    subscribe to my newsletter
+                                </CustomLink>{' '}
+                                if you want an update everytime I post, also you
+                                can{' '}
+                                <CustomLink
+                                    className='inline-block p-2 rounded-md border-thin'
+                                    href='/suggest'
+                                >
+                                    Suggest Topic or Give Feedback
+                                </CustomLink>
+                            </p>
                         </header>
                         <div className='pb-4'>
                             <p className='font-medium'>Search</p>
