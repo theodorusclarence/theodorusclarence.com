@@ -64,7 +64,14 @@ export default function Home({ featuredPosts, featuredProjects }) {
 
                 <section className='py-6'>
                     <main className='layout'>
-                        <h2 className='mb-4'>Featured Posts</h2>
+                        <h2>Featured Posts</h2>
+                        <p className='mb-4 component'>
+                            Kindly{' '}
+                            <CustomLink href='https://buttondown.email/theodorusclarence'>
+                                subscribe to my newsletter
+                            </CustomLink>{' '}
+                            if you want an update everytime I post.
+                        </p>
                         <div className='mb-4 space-y-4'>
                             {featuredPosts.map((post) => (
                                 <PostCard key={post.filePath} post={post} />
