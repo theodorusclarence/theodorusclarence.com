@@ -1,4 +1,4 @@
-export const featured = ['youtube-list', 'spotify-now-playing'];
+export const featured = ['youtube-list', 'btb-flexbox-grid'];
 
 export const featuredProj = ['petrolida-2021', 'personal-web-2'];
 
