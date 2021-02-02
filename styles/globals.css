@@ -63,6 +63,10 @@ p.component {
 /* Stop purging. */
 
 /* Write your own custom component styles here */
+.prose {
+    max-width: 50rem;
+}
+
 .prose code {
     @apply px-1 py-1 rounded-md border-thin;
 }
