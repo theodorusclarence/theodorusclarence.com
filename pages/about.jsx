@@ -24,7 +24,7 @@ export default function About() {
             />
             <div className='flex flex-col min-h-screen'>
                 <Nav />
-                <section className='py-6 mt-4'>
+                <section className='flex flex-col justify-center min-h-screen pb-6 -mt-16'>
                     <main className='layout'>
                         <h1 className='mb-4'>
                             About
@@ -73,7 +73,7 @@ export default function About() {
                     </main>
                 </section>
 
-                <section className='py-6'>
+                <section className='pt-6 pb-16'>
                     <main className='layout'>
                         <h2 className=''>Business Inquiries</h2>
                         <p className='prose dark:text-light'>

@@ -8,7 +8,7 @@ import SEO from '@/next-seo.config';
 
 function MyApp({ Component, pageProps }) {
     return (
-        <ThemeProvider attribute='class' defaultTheme='system'>
+        <ThemeProvider attribute='class' defaultTheme='dark'>
             <DefaultSeo {...SEO} />
             <Component {...pageProps} />
         </ThemeProvider>
