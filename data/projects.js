@@ -23,16 +23,19 @@ export const projects = [
     {
         id: 'personal-web-1',
         name: 'Personal Website 1.0',
-        description: 'This is my first personal website, made with SCSS and static HTML. ',
+        description:
+            'This is my first personal website, made with SCSS and static HTML. ',
         techStack: ['scss'],
         thumbnail: 'theodorusclarence-github.jpg',
-        github: 'https://github.com/theodorusclarence/theodorusclarence.github.io',
+        github:
+            'https://github.com/theodorusclarence/theodorusclarence.github.io',
         link: 'https://theodorusclarence.github.io',
     },
     {
         id: 'voting-page',
         name: 'Voting Page',
-        description: 'This project is made to provide a voting platform for Universitas Padjajaran',
+        description:
+            'This project is made to provide a voting platform for Universitas Padjajaran',
         techStack: ['react', 'scss'],
         thumbnail: 'voting-page.jpg',
         github: null,
@@ -41,7 +44,7 @@ export const projects = [
     {
         id: 'personal-web-2',
         name: 'theodorusclarence.com',
-        description: 'This is my current website using FaunaDB and MDX.',
+        description: 'This is my current website built using FaunaDB and MDX.',
         techStack: ['nextjs', 'tailwindcss', 'swr', 'mdx'],
         thumbnail: 'personal-web-2/personal-web-2.jpg',
         thumbnailDark: 'personal-web-2/personal-web-2-dark.jpg',

@@ -17,7 +17,7 @@ export default function SpotifyPlaying() {
             className='relative flex items-center p-5 space-x-4 rounded-md w-72 border-thin ring-vis-0'
         >
             {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-            <div className='w-16'>
+            <div className='w-16 text-dark dark:text-light'>
                 {data?.isPlaying ? (
                     <img
                         className='w-16 shadow-sm'
@@ -25,7 +25,7 @@ export default function SpotifyPlaying() {
                         alt={data?.album}
                     />
                 ) : (
-                    <SiSpotify size={64} color={'#1ED760'} />
+                    <SiSpotify size={64} />
                 )}
             </div>
 

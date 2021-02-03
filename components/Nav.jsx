@@ -38,7 +38,7 @@ export default function Nav() {
         >
             <div className='h-2 bg-gradient-to-tr from-accent-100 via-accent-200 to-accent-300'></div>
             <nav className='transition-colors bg-white dark:bg-dark'>
-                <ul className='flex items-center justify-between max-w-4xl p-4 px-4 mx-auto'>
+                <ul className='flex items-center justify-between py-4 layout'>
                     <ul className='flex items-center justify-between space-x-4'>
                         {links.map(({ href, label }) => (
                             <li key={`${href}${label}`}>
