@@ -10,6 +10,8 @@ import Footer from '@/components/Footer';
 import PostCard from '@/components/PostCard';
 import CustomLink from '@/components/CustomLink';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
+import { motion } from 'framer-motion';
+import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 
 const url = 'https://theodorusclarence.com/blog';
 const title = 'Blog – theodorusclarence.com';
@@ -59,11 +61,21 @@ export default function BlogPage({ posts }) {
             />
             <div className='flex flex-col min-h-screen'>
                 <Nav />
-                <section className='py-6 mt-4'>
-                    <main className='space-y-4 layout'>
+                <motion.section
+                    className='py-6 mt-4'
+                    initial='initial'
+                    animate='animate'
+                >
+                    <motion.main
+                        className='space-y-4 layout'
+                        variants={staggerFaster}
+                    >
                         <header className='space-y-2'>
-                            <h1>Blog</h1>
-                            <p className='text-dark dark:text-light'>
+                            <motion.h1 variants={fadeInAndUp}>Blog</motion.h1>
+                            <motion.p
+                                variants={fadeInAndUp}
+                                className='text-dark dark:text-light'
+                            >
                                 Some of my thoughts. It will be written in{' '}
                                 <Tippy
                                     animation='scale-subtle'
@@ -82,8 +94,11 @@ export default function BlogPage({ posts }) {
                                     </span>
                                 </Tippy>
                                 .
-                            </p>
-                            <p className='text-dark dark:text-light'>
+                            </motion.p>
+                            <motion.p
+                                variants={fadeInAndUp}
+                                className='text-dark dark:text-light'
+                            >
                                 Kindly{' '}
                                 <CustomLink href='https://buttondown.email/theodorusclarence'>
                                     subscribe to my newsletter
@@ -96,9 +111,9 @@ export default function BlogPage({ posts }) {
                                 >
                                     Suggest Topic or Give Feedback
                                 </CustomLink>
-                            </p>
+                            </motion.p>
                         </header>
-                        <div className='pb-4'>
+                        <motion.div variants={fadeInAndUp} className='pb-4'>
                             <p className='font-medium'>Search</p>
                             <input
                                 className='w-full px-4 py-2 transition-colors rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
@@ -107,9 +122,9 @@ export default function BlogPage({ posts }) {
                                 value={text}
                                 onChange={handleSearch}
                             />
-                        </div>
-                        <ul className='space-y-4'>
-                            {filteredPosts.map((post) => (
+                        </motion.div>
+                        <motion.ul variants={fadeInAndUp} className='space-y-4'>
+                            {filteredPosts.map((post, index) => (
                                 <PostCard key={post.filePath} post={post} />
                             ))}
 
@@ -119,9 +134,9 @@ export default function BlogPage({ posts }) {
                                     ;)
                                 </h4>
                             )}
-                        </ul>
-                    </main>
-                </section>
+                        </motion.ul>
+                    </motion.main>
+                </motion.section>
                 <Footer />
             </div>
         </>

@@ -3,6 +3,8 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import { projects } from '@/data/projects';
+import { motion } from 'framer-motion';
+import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 
 const url = 'https://theodorusclarence.com/projects';
 const title = 'Projects – theodorusclarence.com';
@@ -22,21 +24,36 @@ export default function ProjectsPage() {
                 }}
             />
             <Nav />
-            <section className='py-6 mt-4'>
-                <main className='space-y-2 layout'>
+            <motion.section
+                initial='initial'
+                animate='animate'
+                className='py-6 mt-4'
+            >
+                <motion.main
+                    variants={staggerFaster}
+                    className='space-y-2 layout'
+                >
                     <header className='mb-8 space-y-2'>
-                        <h1 className=''>My Projects</h1>
-                        <p className='prose dark:text-light'>
+                        <motion.h1 variants={fadeInAndUp} className=''>
+                            My Projects
+                        </motion.h1>
+                        <motion.p
+                            variants={fadeInAndUp}
+                            className='prose dark:text-light'
+                        >
                             Some projects that I have made.
-                        </p>
+                        </motion.p>
                     </header>
-                    <div className='grid gap-4 md:grid-cols-2'>
+                    <motion.div
+                        variants={fadeInAndUp}
+                        className='grid gap-4 md:grid-cols-2'
+                    >
                         {projects.map((project, index) => (
                             <ProjectCard key={index} data={project} />
                         ))}
-                    </div>
-                </main>
-            </section>
+                    </motion.div>
+                </motion.main>
+            </motion.section>
             <Footer />
         </>
     );

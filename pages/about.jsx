@@ -4,6 +4,8 @@ import CustomLink from '@/components/CustomLink';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import CopyableText from '@/components/CopyableText';
+import { motion } from 'framer-motion';
+import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 
 const url = 'https://theodorusclarence.com/about';
 const title = 'About – theodorusclarence.com';
@@ -25,15 +27,22 @@ export default function About() {
             <Nav />
 
             {/* //* About */}
-            <div className='flex flex-col min-h-screen'>
+            <motion.div
+                initial='initial'
+                animate='animate'
+                variants={staggerFaster}
+                className='flex flex-col min-h-screen'
+            >
                 <section className='py-10'>
                     <main className='layout'>
-                        <h1 className='mb-4'>
-                            About
-                            <br />
+                        <motion.h1 variants={fadeInAndUp}>About</motion.h1>
+                        <motion.h1 variants={fadeInAndUp} className='mb-4'>
                             <span className='accent'>Theodorus Clarence</span>
-                        </h1>
-                        <div className='float-right ml-6 '>
+                        </motion.h1>
+                        <motion.div
+                            variants={fadeInAndUp}
+                            className='float-right ml-6 '
+                        >
                             <Image
                                 className='bg-gray-700'
                                 width={210}
@@ -43,8 +52,11 @@ export default function About() {
                                 src={'/images/me.jpg'}
                                 alt={'photo of me'}
                             />
-                        </div>
-                        <p className='mb-2 prose dark:text-light'>
+                        </motion.div>
+                        <motion.p
+                            variants={fadeInAndUp}
+                            className='mb-2 prose dark:text-light'
+                        >
                             Hello! Thanks for coming to my personal website /
                             blog. This is my first biggest site that I made with
                             Next.js, Tailwindcss, MDX, and FaunaDB. I also have
@@ -54,43 +66,56 @@ export default function About() {
                             </CustomLink>{' '}
                             as a template to bootstrap your work with my
                             opinionated style.
-                        </p>
-                        <p className='prose dark:text-light'>
+                        </motion.p>
+                        <motion.p
+                            variants={fadeInAndUp}
+                            className='prose dark:text-light'
+                        >
                             If you actually know me you might call me by Ce. I
                             went to Kolese Kanisius Highschool, and currently an
                             Undergraduate Informatics Student in Institut
                             Teknologi Sepuluh Nopember.
-                        </p>
+                        </motion.p>
                     </main>
                 </section>
 
                 {/* //* Contacts */}
                 <section className='py-10'>
                     <main className='layout'>
-                        <h2 className=''>Contact</h2>
-                        <p className='prose dark:text-light'>
+                        <motion.h2 variants={fadeInAndUp} className=''>
+                            Contact
+                        </motion.h2>
+                        <motion.p
+                            variants={fadeInAndUp}
+                            className='prose dark:text-light'
+                        >
                             Do contact me if you need my opinion about web
                             development, especially frontend works. I’ll be
                             happy to help! (find my email in the footer)
-                        </p>
+                        </motion.p>
                     </main>
                 </section>
 
                 {/* //* Business Inquiries */}
                 <section className='pt-10 pb-16'>
                     <main className='layout'>
-                        <h2 className=''>Business Inquiries</h2>
-                        <p className='prose dark:text-light'>
+                        <motion.h2 variants={fadeInAndUp} className=''>
+                            Business Inquiries
+                        </motion.h2>
+                        <motion.p
+                            variants={fadeInAndUp}
+                            className='prose dark:text-light'
+                        >
                             Contact me if you want to build a personal website.
                             If you need a more complex website contact me
                             through{' '}
                             <CopyableText>etzytech@gmail.com</CopyableText>{' '}
                             agency.
-                        </p>
+                        </motion.p>
                     </main>
                 </section>
                 <Footer />
-            </div>
+            </motion.div>
         </>
     );
 }
