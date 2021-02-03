@@ -22,12 +22,14 @@ export default function Home({ featuredPosts, featuredProjects }) {
     return (
         <>
             <NextSeo title={title} />
+            <Nav />
+
             <div className='flex flex-col min-h-screen'>
-                <Nav />
+                {/* //* Home and Tech Stack */}
                 <div className='flex flex-col justify-center min-h-screen'>
                     <section className='pb-6 -mt-24'>
                         <main className='layout'>
-                            <h2 className='mb-2'>Hi!</h2>
+                            <h2 className='md:mb-2'>Hi!</h2>
                             <h1 className='mb-2'>
                                 You can call me{' '}
                                 <span className='accent'>Clarence</span>
@@ -44,7 +46,6 @@ export default function Home({ featuredPosts, featuredProjects }) {
                             </p>
                         </main>
                     </section>
-
                     <section className='py-6'>
                         <main className='layout'>
                             <h2 className='mb-2'>
@@ -55,6 +56,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
                     </section>
                 </div>
 
+                {/* //* Featured Projects */}
                 {/* padding top smaller to reduce gap */}
                 <section className='pt-2 pb-16'>
                     <main className='layout'>
@@ -69,6 +71,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
                     </main>
                 </section>
 
+                {/* //* Featured Posts */}
                 <section className='py-16'>
                     <main className='layout'>
                         <h2>Featured Posts</h2>
@@ -88,6 +91,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
                     </main>
                 </section>
 
+                {/* //* Code Library */}
                 <section className='py-16'>
                     <main className='layout'>
                         <h2 className=''>Check out my code library</h2>

@@ -22,9 +22,11 @@ export default function About() {
                     description,
                 }}
             />
+            <Nav />
+
+            {/* //* About */}
             <div className='flex flex-col min-h-screen'>
-                <Nav />
-                <section className='flex flex-col justify-center min-h-screen pb-6 -mt-16'>
+                <section className='py-10'>
                     <main className='layout'>
                         <h1 className='mb-4'>
                             About
@@ -62,7 +64,8 @@ export default function About() {
                     </main>
                 </section>
 
-                <section className='py-6'>
+                {/* //* Contacts */}
+                <section className='py-10'>
                     <main className='layout'>
                         <h2 className=''>Contact</h2>
                         <p className='prose dark:text-light'>
@@ -73,7 +76,8 @@ export default function About() {
                     </main>
                 </section>
 
-                <section className='pt-6 pb-16'>
+                {/* //* Business Inquiries */}
+                <section className='pt-10 pb-16'>
                     <main className='layout'>
                         <h2 className=''>Business Inquiries</h2>
                         <p className='prose dark:text-light'>
