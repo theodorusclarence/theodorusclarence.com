@@ -7,6 +7,8 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import LibraryCard from '@/components/LibraryCard';
 import { LIBRARY_PATH, postLibraryPaths } from '@/utils/mdxUtils';
+import { motion } from 'framer-motion';
+import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 
 const url = 'https://theodorusclarence.com/blog';
 const title = 'Library – theodorusclarence.com';
@@ -54,17 +56,26 @@ export default function BlogPage({ snippets }) {
                     description,
                 }}
             />
-            <div className='flex flex-col min-h-screen'>
+            <motion.div
+                initial='initial'
+                animate='animate'
+                className='flex flex-col min-h-screen'
+            >
                 <Nav />
-                <section className='py-6 mt-4'>
+                <motion.section className='py-6 mt-4' variants={staggerFaster}>
                     <main className='space-y-4 layout'>
                         <header className='space-y-2'>
-                            <h1>Library</h1>
-                            <p className='text-dark dark:text-light'>
+                            <motion.h1 variants={fadeInAndUp}>
+                                Library
+                            </motion.h1>
+                            <motion.p
+                                variants={fadeInAndUp}
+                                className='text-dark dark:text-light'
+                            >
                                 {description}
-                            </p>
+                            </motion.p>
                         </header>
-                        <div className='pb-4'>
+                        <motion.div variants={fadeInAndUp} className='pb-4'>
                             <p className='font-medium'>Search</p>
                             <input
                                 className='w-full px-4 py-2 transition-colors rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
@@ -73,8 +84,11 @@ export default function BlogPage({ snippets }) {
                                 value={text}
                                 onChange={handleSearch}
                             />
-                        </div>
-                        <ul className='grid gap-4 md:grid-cols-2'>
+                        </motion.div>
+                        <motion.ul
+                            variants={fadeInAndUp}
+                            className='grid gap-4 md:grid-cols-2'
+                        >
                             {filteredSnippets.map((snippet) => (
                                 <LibraryCard
                                     key={snippet.slug}
@@ -89,11 +103,11 @@ export default function BlogPage({ snippets }) {
                                     ;)
                                 </h4>
                             )}
-                        </ul>
+                        </motion.ul>
                     </main>
-                </section>
+                </motion.section>
                 <Footer />
-            </div>
+            </motion.div>
         </>
     );
 }

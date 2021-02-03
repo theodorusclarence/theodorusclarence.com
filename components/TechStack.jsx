@@ -9,6 +9,8 @@ import { IoLogoVercel } from 'react-icons/io5';
 import Tippy from '@tippyjs/react';
 import CustomLink from './CustomLink';
 import { currentTechStack } from '../data/featured';
+import { fadeInAndUp } from '@/utils/FramerAnimation';
+import { motion } from 'framer-motion';
 
 const techObject = {
     nextjs: [
@@ -79,7 +81,7 @@ const techObject = {
 
 export default function TechStack() {
     return (
-        <div className='flex mt-2 space-x-4'>
+        <motion.div className='flex mt-2 space-x-4' variants={fadeInAndUp}>
             <IconContext.Provider
                 value={{
                     className:
@@ -97,12 +99,12 @@ export default function TechStack() {
                             </span>
                         }
                     >
-                        <button className='rounded-sm ring-vis'>
+                        <motion.button className='rounded-sm ring-vis'>
                             {techObject[tech][1]()}
-                        </button>
+                        </motion.button>
                     </Tippy>
                 ))}
             </IconContext.Provider>
-        </div>
+        </motion.div>
     );
 }
