@@ -1,7 +1,7 @@
 export const featured = [
     'youtube-list',
     'btb-flexbox-grid',
-    'spotify-now-playing',
+    'btb-ui-fundamental',
 ];
 
 export const featuredProj = ['petrolida-2021', 'personal-web-2'];
