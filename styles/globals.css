@@ -135,7 +135,9 @@ span.accent {
 }
 
 .card:hover h4 span,
-.card:focus h4 span {
+.card:focus h4 span,
+.btn:hover span,
+.btn:focus span {
     --tw-gradient-from: #00e887;
     --tw-gradient-to: #00e0f3;
     --tw-gradient-stops: var(--tw-gradient-from),
@@ -144,7 +146,7 @@ span.accent {
     background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 
     color: transparent;
-    transition: color 100ms ease-in;
+    transition-duration: 100ms !important;
 }
 
 .card:hover,
