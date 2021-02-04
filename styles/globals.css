@@ -28,6 +28,10 @@
         url('/fonts/inter-bold-webfont.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+::selection {
+    @apply bg-accent-200 bg-opacity-40;
+}
+
 h1 {
     @apply text-3xl font-bold md:text-5xl font-primary;
 }
@@ -128,4 +132,37 @@ span.accent {
 
 .ring-vis-0:focus {
     outline: none;
+}
+
+.card:hover h4 span,
+.card:focus h4 span,
+.btn:hover span,
+.btn:focus span {
+    --tw-gradient-from: #00e887;
+    --tw-gradient-to: #00e0f3;
+    --tw-gradient-stops: var(--tw-gradient-from),
+        var(--tw-gradient-to, rgba(0, 232, 135, 0));
+    background-clip: text;
+    background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+
+    color: transparent;
+    transition-duration: 100ms !important;
+}
+
+.card:hover,
+.card:focus {
+    transition-duration: 100ms !important;
+    transform: scale(102%);
+}
+
+.btn:hover,
+.btn:focus {
+    transition-duration: 100ms !important;
+    transform: scale(110%);
+}
+
+.card:active,
+.btn:active {
+    transition-duration: 50ms !important;
+    transform: scale(97%);
 }
