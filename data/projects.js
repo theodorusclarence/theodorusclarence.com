@@ -54,10 +54,21 @@ export const projects = [
     {
         id: '20-javascript',
         name: '20 Javascript Mini Project',
-        description: 'An attempt to study Vanilla JavaScript faster.',
+        description:
+            'An attempt to study Vanilla JavaScript faster, done in a month.',
         techStack: ['js'],
         thumbnail: '20-javascript.jpg',
         github: null,
         link: '/projects/20-javascript',
+    },
+    {
+        id: 'spotify-playing',
+        name: 'Spotify Now Playing Widget',
+        description:
+            "Get data of what's playing on your spotify using Next.js ",
+        techStack: ['nextjs', 'swr'],
+        thumbnail: 'spotify-playing.png',
+        github: 'https://github.com/theodorusclarence/now-playing-spotify',
+        link: '/blog/spotify-now-playing',
     },
 ];
