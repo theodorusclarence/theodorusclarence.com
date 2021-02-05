@@ -28,6 +28,10 @@
         url('/fonts/inter-bold-webfont.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+::selection {
+    @apply bg-accent-200 bg-opacity-40;
+}
+
 h1 {
     @apply text-3xl font-bold md:text-5xl font-primary;
 }
@@ -123,9 +127,67 @@ span.accent {
 
 /* ring with no offset */
 .ring-vis-0 {
-    @apply transition-all focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1;
+    @apply focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1;
 }
 
 .ring-vis-0:focus {
     outline: none;
+}
+
+/** Span Color Animation */
+/* .card:hover h4 span,
+.card:focus h4 span, */
+.btn:hover span,
+.btn:focus span {
+    --tw-gradient-from: #00e887;
+    --tw-gradient-to: #00e0f3;
+    --tw-gradient-stops: var(--tw-gradient-from),
+        var(--tw-gradient-to, rgba(0, 232, 135, 0));
+    background-clip: text;
+    background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+
+    color: transparent;
+    position: relative;
+}
+
+/** Scaling Animation */
+.card,
+.btn {
+    transform: scale(100%);
+    transition: transform 100ms ease;
+}
+
+.card:hover,
+.card:focus {
+    transform: scale(102%);
+}
+
+.btn:hover,
+.btn:focus {
+    transform: scale(110%);
+}
+
+.card:active,
+.btn:active {
+    transition-duration: 50ms !important;
+    transform: scale(97%);
+}
+
+/** Shadows Animation */
+.card::after,
+.btn::after {
+    @apply rounded-md shadow-md dark:shadow-none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 100ms ease;
+}
+
+.card:hover::after,
+.btn:hover::after {
+    opacity: 1;
 }

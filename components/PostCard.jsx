@@ -8,9 +8,11 @@ export default function PostCard({ post }) {
     const { data: postData } = post;
     return (
         <Link href={`/blog/${post.slug}`}>
-            <a className='block w-full p-5 transition-shadow duration-100 rounded-md ring-vis-0 active:shadow-none hover:shadow-md border-thin'>
+            <a className='block w-full p-5 rounded-md card ring-vis-0 border-thin'>
                 <header className='flex justify-between'>
-                    <h4>{postData.title}</h4>
+                    <h4>
+                        <span>{postData.title}</span>
+                    </h4>
                     <p className='self-center flex-shrink-0 component text-dark dark:text-light'>
                         {data?.count >= 0 ? data.count : '–––'} views
                     </p>
