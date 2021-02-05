@@ -127,15 +127,16 @@ span.accent {
 
 /* ring with no offset */
 .ring-vis-0 {
-    @apply transition-all focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1;
+    @apply focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1;
 }
 
 .ring-vis-0:focus {
     outline: none;
 }
 
-.card:hover h4 span,
-.card:focus h4 span,
+/** Span Color Animation */
+/* .card:hover h4 span,
+.card:focus h4 span, */
 .btn:hover span,
 .btn:focus span {
     --tw-gradient-from: #00e887;
@@ -146,18 +147,23 @@ span.accent {
     background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 
     color: transparent;
-    transition-duration: 100ms !important;
+    position: relative;
+}
+
+/** Scaling Animation */
+.card,
+.btn {
+    transform: scale(100%);
+    transition: transform 100ms ease;
 }
 
 .card:hover,
 .card:focus {
-    transition-duration: 100ms !important;
     transform: scale(102%);
 }
 
 .btn:hover,
 .btn:focus {
-    transition-duration: 100ms !important;
     transform: scale(110%);
 }
 
@@ -165,4 +171,23 @@ span.accent {
 .btn:active {
     transition-duration: 50ms !important;
     transform: scale(97%);
+}
+
+/** Shadows Animation */
+.card::after,
+.btn::after {
+    @apply rounded-md shadow-md dark:shadow-none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 100ms ease;
+}
+
+.card:hover::after,
+.btn:hover::after {
+    opacity: 1;
 }

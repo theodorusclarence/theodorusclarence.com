@@ -5,7 +5,7 @@ export default function LibraryCard({ post, slug }) {
     const techArray = post.techs.split(',');
     return (
         <Link href={`/library/${slug}`}>
-            <a className='h-full p-4 transition-shadow duration-100 rounded-md card group border-thin active:shadow-none hover:shadow-md ring-vis-0'>
+            <a className='h-full p-4 rounded-md card group border-thin ring-vis-0'>
                 <div>
                     <h4>
                         <span>{post.title}</span>

@@ -105,7 +105,7 @@ module.exports = {
             ringOffsetWidth: ['focus-visible'],
             ringOpacity: ['focus-visible'],
             ringWidth: ['focus-visible'],
-            boxShadow: ['active'],
+            boxShadow: ['active', 'dark'],
             margin: ['even'],
             typography: ['dark'],
         },

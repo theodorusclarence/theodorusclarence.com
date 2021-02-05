@@ -13,7 +13,7 @@ export default function ProjectCard({ data }) {
             href={data.link || data.github}
             // target='_blank'
             // rel='noopener noreferrer'
-            className='block max-w-md p-5 transition-shadow rounded-md card md:w-full hover:shadow-md border-thin ring-vis-0'
+            className='block max-w-md p-5 rounded-md card md:w-full border-thin ring-vis-0'
         >
             <header className='flex justify-between'>
                 <h4>

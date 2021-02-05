@@ -8,7 +8,7 @@ export default function PostCard({ post }) {
     const { data: postData } = post;
     return (
         <Link href={`/blog/${post.slug}`}>
-            <a className='block w-full p-5 transition-shadow duration-100 rounded-md card ring-vis-0 active:shadow-none hover:shadow-md border-thin'>
+            <a className='block w-full p-5 rounded-md card ring-vis-0 border-thin'>
                 <header className='flex justify-between'>
                     <h4>
                         <span>{postData.title}</span>
