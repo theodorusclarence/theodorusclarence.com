@@ -1,4 +1,4 @@
-import { SiGithub } from 'react-icons/si';
+import { SiGithub, SiYoutube } from 'react-icons/si';
 import { FiExternalLink } from 'react-icons/fi';
 import { IconContext } from 'react-icons/lib';
 import PickTech from './PickTech';
@@ -10,7 +10,7 @@ export default function ProjectCard({ data }) {
     const { theme } = useTheme();
     return (
         <UnstyledLink
-            href={data.link || data.github}
+            href={data.link || data.youtube || data.github}
             // target='_blank'
             // rel='noopener noreferrer'
             className='block max-w-md p-5 rounded-md card md:w-full border-thin ring-vis-0'
@@ -29,6 +29,12 @@ export default function ProjectCard({ data }) {
                         {data.github && (
                             <CustomLink href={data.github}>
                                 <SiGithub />
+                            </CustomLink>
+                        )}
+
+                        {data.youtube && (
+                            <CustomLink href={data.youtube}>
+                                <SiYoutube />
                             </CustomLink>
                         )}
 
