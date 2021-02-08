@@ -4,12 +4,13 @@ export const featured = [
     'btb-ui-fundamental',
 ];
 
-export const featuredProj = ['petrolida-2021', 'personal-web-2'];
+export const featuredProj = ['petrolida-2021', 'love4heroes'];
 
 export const currentTechStack = [
     'nextjs',
     'react',
     'tailwindcss',
     'swr',
+    'firebase',
     'nodejs',
 ];

@@ -4,6 +4,7 @@ import {
     SiReact,
     SiTailwindcss,
     SiNodeDotJs,
+    SiFirebase,
 } from 'react-icons/si';
 import { IoLogoVercel } from 'react-icons/io5';
 import Tippy from '@tippyjs/react';
@@ -76,6 +77,19 @@ const techObject = {
             </>
         ),
         () => <IoLogoVercel />,
+    ],
+    firebase: [
+        () => (
+            <>
+                <CustomLink href='https://firebase.google.com/'>
+                    Firebase
+                </CustomLink>
+                , a great backend as a service. I just got comfortable with it,
+                and it is awesome. Combine it with Next.js API, you don't even
+                need to make a backend app
+            </>
+        ),
+        () => <SiFirebase />,
     ],
 };
 
