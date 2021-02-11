@@ -8,7 +8,7 @@ import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 
 export default function PetrolidaPage({ data }) {
-    const title = data.name;
+    const title = data.name + ' - theodorusclarence.com';
     const description =
         'Petrolida 2021 website was made to promote Petroleum Integrated Days 2021 at Sepuluh Nopember Institute of Technology. I developed this website using Next.js to implement easy route management with Static Side Generation then can be exported statically to Cpanel.';
     const url = 'https://theodorusclarence.com/projects/petrolida-2021';

@@ -8,7 +8,7 @@ import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 
 export default function PetrolidaPage({ data }) {
-    const title = data.name;
+    const title = data.name + ' - theodorusclarence.com';
     const description = `This app was created as a team for uOttaHack, Canada
                             in 36 hours. When thinking about how we could make a
                             difference within local communities impacted by

@@ -1,7 +1,7 @@
 export const projects = [
     {
         id: 'petrolida-2021',
-        page: '/projects/love4heroes',
+        page: '/projects/petrolida-2021',
         name: 'Petrolida 2021',
         category: 'Team of 2',
         description: 'This website is used to promote Petrolida 2021 event.',
