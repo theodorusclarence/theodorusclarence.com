@@ -10,10 +10,10 @@ export default function ProjectCard({ data }) {
     const { theme } = useTheme();
     return (
         <UnstyledLink
-            href={data.link || data.youtube || data.github}
+            href={data.page || data.link || data.youtube || data.github}
             // target='_blank'
             // rel='noopener noreferrer'
-            className='block max-w-md p-5 rounded-md card md:w-full border-thin ring-vis-0'
+            className='block max-w-md p-5 rounded-md card project-card md:w-full border-thin ring-vis-0'
         >
             <header className='flex justify-between'>
                 <h4>
@@ -31,13 +31,11 @@ export default function ProjectCard({ data }) {
                                 <SiGithub />
                             </CustomLink>
                         )}
-
                         {data.youtube && (
                             <CustomLink href={data.youtube}>
                                 <SiYoutube />
                             </CustomLink>
                         )}
-
                         {data.link && (
                             <CustomLink href={data.link}>
                                 <FiExternalLink />
@@ -48,7 +46,6 @@ export default function ProjectCard({ data }) {
             </header>
             <p className='component'>{data.description}</p>
             <PickTech techs={data.techStack} />
-
             <div className='w-full shadow-md'>
                 {/* if in white mode, show the dark image. vice versa */}
                 {data?.thumbnailDark && theme === 'light' ? (
@@ -71,6 +68,11 @@ export default function ProjectCard({ data }) {
                     />
                 )}
             </div>
+            {data.page && (
+                <p className='inline-block mt-4 font-medium view'>
+                    View More →
+                </p>
+            )}
         </UnstyledLink>
     );
 }
