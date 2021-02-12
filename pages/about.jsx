@@ -55,26 +55,38 @@ export default function About() {
                         </motion.div>
                         <motion.p
                             variants={fadeInAndUp}
-                            className='mb-2 prose dark:text-light'
+                            className='mb-4 prose dark:text-light'
                         >
-                            Hello! Thanks for coming to my personal website /
-                            blog. This is my first biggest site that I made with
-                            Next.js, Tailwindcss, MDX, and FaunaDB. I also have
-                            a{' '}
-                            <CustomLink href='https://github.com/theodorusclarence/nextjs-tailwind-starter'>
-                                nextjs-tailwind-starter
+                            Hello! I'm Clarence. I started learning web
+                            development in May 2020, which is the start of the
+                            pandemic. I have nothing much to do so I decided to
+                            learn web development from a udemy course, then
+                            started watching a bunch of{' '}
+                            <CustomLink href='blog/youtube-list'>
+                                youtube videos
                             </CustomLink>{' '}
-                            as a template to bootstrap your work with my
-                            opinionated style.
+                            to explore more about web development especially
+                            frontend development.
+                        </motion.p>
+                        <motion.p
+                            variants={fadeInAndUp}
+                            className='mb-4 prose dark:text-light'
+                        >
+                            There are a lot of things and technologies to learn
+                            in frontend development and I am motivated to learn
+                            as much as possible. I enjoy learning something new
+                            and getting feedback to make myself better and
+                            improve.
                         </motion.p>
                         <motion.p
                             variants={fadeInAndUp}
                             className='prose dark:text-light'
                         >
-                            If you actually know me you might call me by Ce. I
-                            went to Kolese Kanisius Highschool, and currently an
-                            Undergraduate Informatics Student in Institut
-                            Teknologi Sepuluh Nopember.
+                            In this website I will be writing some blogs and
+                            showcase my projects. I believe that writing what I
+                            have learned is the best way to remember things, and
+                            I can share my knowledge along the way. So do
+                            contact me and I will be very happy to help!
                         </motion.p>
                     </main>
                 </section>

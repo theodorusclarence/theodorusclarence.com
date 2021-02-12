@@ -60,10 +60,10 @@ export default function Footer() {
                                 'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-6 h-6 align-middle my-auto',
                         }}
                     >
-                        <CustomLink href='https://github.com/theodorusclarence'>
+                        <CustomLink href='https://clarence.link/github'>
                             <SiGithub />
                         </CustomLink>
-                        <CustomLink href='https://www.linkedin.com/in/theodorus-clarence/'>
+                        <CustomLink href='https://clarence.link/linkedin'>
                             <SiLinkedin />
                         </CustomLink>
                         <Tippy

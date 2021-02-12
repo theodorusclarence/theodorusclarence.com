@@ -4,6 +4,7 @@ import {
     SiReact,
     SiTailwindcss,
     SiNodeDotJs,
+    SiFirebase,
 } from 'react-icons/si';
 import { IoLogoVercel } from 'react-icons/io5';
 import Tippy from '@tippyjs/react';
@@ -77,15 +78,31 @@ const techObject = {
         ),
         () => <IoLogoVercel />,
     ],
+    firebase: [
+        () => (
+            <>
+                <CustomLink href='https://firebase.google.com/'>
+                    Firebase
+                </CustomLink>
+                , a great backend as a service. I just got comfortable with it,
+                and it is awesome. Combine it with Next.js API, you don't even
+                need to make a backend app
+            </>
+        ),
+        () => <SiFirebase />,
+    ],
 };
 
 export default function TechStack() {
     return (
-        <motion.div className='flex mt-2 space-x-4' variants={fadeInAndUp}>
+        <motion.div
+            className='flex mt-2 space-x-2 md:space-x-4'
+            variants={fadeInAndUp}
+        >
             <IconContext.Provider
                 value={{
                     className:
-                        'text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 w-12 h-12',
+                        'text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 w-10 h-10 md:w-12 md:h-12',
                 }}
             >
                 {currentTechStack.map((tech, index) => (
@@ -99,7 +116,7 @@ export default function TechStack() {
                             </span>
                         }
                     >
-                        <motion.button className='rounded-sm ring-vis'>
+                        <motion.button className='rounded-sm md:w-12 ring-vis'>
                             {techObject[tech][1]()}
                         </motion.button>
                     </Tippy>

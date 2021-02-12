@@ -1,0 +1,25 @@
+---
+title: 'SWR Fetcher'
+techs: 'nextjs,swr'
+description: 'Fetcher is a function used for SWR library'
+---
+
+> Used for SWR library
+
+## Code
+
+```js
+// utils/fetcher.js
+
+export default async function fetcher(...args) {
+  const res = await fetch(...args);
+
+  return res.json();
+}
+```
+
+## How To Use
+
+```jsx
+const { data } = useSWR('/api/spotify', fetcher);
+```

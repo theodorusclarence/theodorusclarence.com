@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import fetcher from '../utils/fetcher';
+import fetcher from '@/utils/fetcher';
 import { SiSpotify } from 'react-icons/si';
 import CustomLink from './CustomLink';
 
