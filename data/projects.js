@@ -7,7 +7,6 @@ export const projects = [
         description: 'This website is used to promote Petrolida 2021 event.',
         techStack: ['nextjs', 'tailwindcss'],
         thumbnail: 'petrolida.jpg',
-        github: null,
         link: 'http://petrolida.its.ac.id',
     },
     {

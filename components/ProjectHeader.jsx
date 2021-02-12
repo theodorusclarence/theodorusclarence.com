@@ -12,11 +12,11 @@ export default function ProjectHeader({ data }) {
                 {data.github && (
                     <CustomLink href={data.github}>Repository</CustomLink>
                 )}
-                {(data.youtube || data.link) && ' • '}
+                {data.github && (data.youtube || data.link) && ' • '}
                 {data.youtube && (
                     <CustomLink href={data.youtube}>Video Demo</CustomLink>
                 )}
-                {data.link && ' • '}
+                {data.youtube && data.link && ' • '}
                 {data.link && (
                     <CustomLink href={data.link}>Visit Live</CustomLink>
                 )}

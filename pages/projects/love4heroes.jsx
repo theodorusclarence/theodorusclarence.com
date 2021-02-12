@@ -147,6 +147,17 @@ export default function PetrolidaPage({ data }) {
                             together. Also, there are only 36 hours to finish a
                             functioning full-stack application.
                         </p>
+                        <figure className='w-full shadow-md dark:shadow-none'>
+                            <Image
+                                className='bg-gray-500 rounded-sm'
+                                width={2560}
+                                height={1567}
+                                layout='responsive'
+                                src={`/images/projects/love4heroes/team.png`}
+                                title='My Team on uOttaHack'
+                                alt='Team on uOttahack'
+                            />
+                        </figure>
 
                         <h3>Consideration for UX</h3>
                         <p>
