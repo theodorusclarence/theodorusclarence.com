@@ -72,4 +72,15 @@ export const projects = [
         github: 'https://github.com/theodorusclarence/now-playing-spotify',
         link: '/blog/spotify-now-playing',
     },
+    {
+        id: 'love4heroes',
+        name: 'Love 4 Heroes',
+        description:
+            'An app to express our gratitude to frontline workers using warm messages. Made for uOttaHack 4',
+        techStack: ['nextjs', 'tailwindcss', 'firebase', 'swr'],
+        thumbnail: 'love4heroes.png',
+        github: 'https://github.com/theodorusclarence/love4heroes',
+        youtube: 'https://youtu.be/5WN3ZmU_dZ8',
+        link: 'https://love4heroes.online',
+    },
 ];
