@@ -117,11 +117,11 @@ export default function Home({ featuredPosts, featuredProjects }) {
                             </CustomLink>{' '}
                             if you want an update everytime I post.
                         </p>
-                        <div className='mb-4 space-y-4'>
+                        <ul className='mb-4 space-y-4'>
                             {featuredPosts.map((post) => (
                                 <PostCard key={post.filePath} post={post} />
                             ))}
-                        </div>
+                        </ul>
                         <Button href='/blog'>See More</Button>
                     </main>
                 </InViewSection>
