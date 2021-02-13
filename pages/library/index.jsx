@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import LibraryCard from '@/components/LibraryCard';
 import { LIBRARY_PATH, postLibraryPaths } from '@/utils/mdxUtils';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 
 const url = 'https://theodorusclarence.com/blog';
@@ -16,7 +16,7 @@ const description =
     'Some collection of codes that I usually use that I put for easy access, feel free to reuse!';
 
 export default function BlogPage({ snippets }) {
-    const [text, setText] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const [filteredSnippets, setFilteredSnippets] = useState([...snippets]);
 
     // sort the newest blog first.
@@ -27,22 +27,28 @@ export default function BlogPage({ snippets }) {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        setText(e.target.value);
-        setFilteredSnippets(
-            snippets.filter(
+        setSearchTerm(e.target.value);
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const results = snippets.filter(
                 (snippet) =>
                     snippet.data.title
                         .toLowerCase()
-                        .includes(text.toLowerCase()) ||
+                        .includes(searchTerm.toLowerCase()) ||
+                    snippet.data.techs
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
                     snippet.data.description
                         .toLowerCase()
-                        .includes(text.toLowerCase())
-            )
-        );
-        if (e.target.value === '') {
-            setFilteredSnippets([...snippets]);
-        }
-    };
+                        .includes(searchTerm.toLowerCase())
+            );
+            setFilteredSnippets(results);
+        }, 200);
+
+        return () => clearTimeout(timer);
+    }, [searchTerm]);
 
     return (
         <>
@@ -80,30 +86,32 @@ export default function BlogPage({ snippets }) {
                             <input
                                 className='w-full px-4 py-2 transition-colors rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
                                 type='text'
-                                placeholder='Type to search...'
-                                value={text}
+                                placeholder='Type to search title or tech stack...'
+                                value={searchTerm}
                                 onChange={handleSearch}
                             />
                         </motion.div>
-                        <motion.ul
-                            variants={fadeInAndUp}
-                            className='grid gap-4 md:grid-cols-2'
-                        >
-                            {filteredSnippets.map((snippet) => (
-                                <LibraryCard
-                                    key={snippet.slug}
-                                    post={snippet.data}
-                                    slug={snippet.slug}
-                                />
-                            ))}
+                        <AnimatePresence>
+                            <motion.ul
+                                variants={fadeInAndUp}
+                                className='grid gap-4 md:grid-cols-2'
+                            >
+                                {filteredSnippets.map((snippet) => (
+                                    <LibraryCard
+                                        key={snippet.slug}
+                                        post={snippet.data}
+                                        slug={snippet.slug}
+                                    />
+                                ))}
 
-                            {filteredSnippets.length === 0 && (
-                                <h4>
-                                    Oops, not found, try searching another one
-                                    ;)
-                                </h4>
-                            )}
-                        </motion.ul>
+                                {filteredSnippets.length === 0 && (
+                                    <h4>
+                                        Oops, not found, try searching another
+                                        one ;)
+                                    </h4>
+                                )}
+                            </motion.ul>
+                        </AnimatePresence>
                     </main>
                 </motion.section>
                 <Footer />
