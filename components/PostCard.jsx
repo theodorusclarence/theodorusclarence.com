@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import fetcher from '../utils/fetcher';
 import { formatDate } from '../utils/helper';
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, index }) {
     const { data } = useSWR(`/api/${post.slug}`, fetcher);
     const { data: postData } = post;
     return (
@@ -13,7 +13,8 @@ export default function PostCard({ post }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            layoutId={post.slug}
+            // to remove layoutId from index page to blog page
+            layoutId={`${post.slug}${index && 'x'}`}
             whileHover={{ scale: 1.02, transition: { duration: 0.1 } }}
             className='w-full bg-white rounded-md ring-vis-0 border-thin dark:bg-dark'
         >

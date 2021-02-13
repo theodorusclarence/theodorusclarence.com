@@ -3,7 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { NextSeo } from 'next-seo';
 import readingTime from 'reading-time';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import Nav from '@/components/Nav';
 import CustomLink from '@/components/CustomLink';
@@ -117,11 +117,17 @@ export default function Home({ featuredPosts, featuredProjects }) {
                             </CustomLink>{' '}
                             if you want an update everytime I post.
                         </p>
-                        <ul className='mb-4 space-y-4'>
-                            {featuredPosts.map((post) => (
-                                <PostCard key={post.filePath} post={post} />
-                            ))}
-                        </ul>
+                        <AnimatePresence>
+                            <ul className='mb-4 space-y-4'>
+                                {featuredPosts.map((post) => (
+                                    <PostCard
+                                        key={post.filePath}
+                                        index
+                                        post={post}
+                                    />
+                                ))}
+                            </ul>
+                        </AnimatePresence>
                         <Button href='/blog'>See More</Button>
                     </main>
                 </InViewSection>
