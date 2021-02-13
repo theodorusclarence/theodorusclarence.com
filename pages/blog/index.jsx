@@ -2,7 +2,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 import readingTime from 'reading-time';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import Tippy from '@tippyjs/react';
 import Nav from '@/components/Nav';
@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 import PostCard from '@/components/PostCard';
 import CustomLink from '@/components/CustomLink';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 
 const url = 'https://theodorusclarence.com/blog';
@@ -19,7 +19,7 @@ const description =
     'Thoughts on the frontend development and other interesting things.';
 
 export default function BlogPage({ posts }) {
-    const [text, setText] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const [filteredPosts, setFilteredPosts] = useState([...posts]);
 
     // sort the newest blog first.
@@ -30,22 +30,25 @@ export default function BlogPage({ posts }) {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        setText(e.target.value);
-        setFilteredPosts(
-            posts.filter(
+        setSearchTerm(e.target.value);
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const results = posts.filter(
                 (post) =>
                     post.data.title
                         .toLowerCase()
-                        .includes(text.toLowerCase()) ||
+                        .includes(searchTerm.toLowerCase()) ||
                     post.data.description
                         .toLowerCase()
-                        .includes(text.toLowerCase())
-            )
-        );
-        if (e.target.value === '') {
-            setFilteredPosts([...posts]);
-        }
-    };
+                        .includes(searchTerm.toLowerCase())
+            );
+            setFilteredPosts(results);
+        }, 200);
+
+        return () => clearTimeout(timer);
+    }, [searchTerm]);
 
     return (
         <>
@@ -119,22 +122,27 @@ export default function BlogPage({ posts }) {
                                 className='w-full px-4 py-2 transition-colors rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
                                 type='text'
                                 placeholder='Type to search...'
-                                value={text}
+                                value={searchTerm}
                                 onChange={handleSearch}
                             />
                         </motion.div>
-                        <motion.ul variants={fadeInAndUp} className='space-y-4'>
-                            {filteredPosts.map((post, index) => (
-                                <PostCard key={post.filePath} post={post} />
-                            ))}
+                        <AnimatePresence>
+                            <motion.ul
+                                variants={fadeInAndUp}
+                                className='space-y-4'
+                            >
+                                {filteredPosts.map((post, index) => (
+                                    <PostCard key={post.filePath} post={post} />
+                                ))}
 
-                            {filteredPosts.length === 0 && (
-                                <h4>
-                                    Oops, not found, try searching another one
-                                    ;)
-                                </h4>
-                            )}
-                        </motion.ul>
+                                {filteredPosts.length === 0 && (
+                                    <h4>
+                                        Oops, not found, try searching another
+                                        one ;)
+                                    </h4>
+                                )}
+                            </motion.ul>
+                        </AnimatePresence>
                     </motion.main>
                 </motion.section>
                 <Footer />
