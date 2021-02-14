@@ -156,15 +156,9 @@ span.accent {
 }
 
 /** Scaling Animation */
-.card,
 .btn {
     transform: scale(100%);
     transition: transform 100ms ease;
-}
-
-.card:hover,
-.card:focus {
-    transform: scale(102%);
 }
 
 .btn:hover,
@@ -172,7 +166,6 @@ span.accent {
     transform: scale(110%);
 }
 
-.card:active,
 .btn:active {
     transition-duration: 50ms !important;
     transform: scale(97%);

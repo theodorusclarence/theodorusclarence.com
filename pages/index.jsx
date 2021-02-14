@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { NextSeo } from 'next-seo';
 import readingTime from 'reading-time';
 import { AnimatePresence, motion } from 'framer-motion';
+import { IoArrowDownOutline } from 'react-icons/io5';
 
 import Nav from '@/components/Nav';
 import CustomLink from '@/components/CustomLink';
@@ -35,7 +36,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
             <NextSeo title={title} />
             <Nav />
 
-            <motion.div className='flex flex-col min-h-screen'>
+            <motion.main className='flex flex-col min-h-screen'>
                 {/* //* Home and Tech Stack */}
                 <motion.div
                     className='flex flex-col justify-center min-h-screen'
@@ -44,7 +45,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
                     variants={stagger}
                 >
                     <section className='pb-6 -mt-24'>
-                        <main className='layout'>
+                        <article className='layout'>
                             <motion.h2
                                 variants={fadeInAndUp}
                                 className='md:mb-2'
@@ -68,16 +69,23 @@ export default function Home({ featuredPosts, featuredProjects }) {
                                 </CustomLink>{' '}
                                 to talk more about frontend works!
                             </motion.p>
-                        </main>
+                        </article>
                     </section>
                     <section className='py-6'>
-                        <main className='layout'>
+                        <article className='layout'>
                             <motion.h2 className='mb-2' variants={fadeInAndUp}>
                                 Current Favorite Tech Stack
                             </motion.h2>
                             <TechStack />
-                        </main>
+                        </article>
                     </section>
+                    <motion.figure
+                        variants={fadeInAndUp}
+                        className='absolute bottom-2 md:bottom-10 left-1/2'
+                        style={{ translateX: '-50%' }}
+                    >
+                        <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce' />
+                    </motion.figure>
                 </motion.div>
 
                 {/* //* Featured Projects */}
@@ -94,21 +102,21 @@ export default function Home({ featuredPosts, featuredProjects }) {
                             Featured Projects
                         </motion.h2>
                         {/* <div className='flex flex-col justify-between mb-4 space-y-4 md:space-y-0 md:flex-row'> */}
-                        <motion.div
+                        <motion.ul
                             // variants={fadeInAndUp}
                             className='grid gap-4 mb-4 md:grid-cols-2'
                         >
                             {featuredProjects.map((project, index) => (
                                 <ProjectCard key={index} data={project} />
                             ))}
-                        </motion.div>
+                        </motion.ul>
                         <Button href='/projects'>See More</Button>
                     </motion.main>
                 </InViewSection>
 
                 {/* //* Featured Posts */}
                 <InViewSection className='py-16'>
-                    <main className='layout'>
+                    <article className='layout'>
                         <h2>Featured Posts</h2>
                         <p className='mb-4 component'>
                             Kindly{' '}
@@ -128,22 +136,25 @@ export default function Home({ featuredPosts, featuredProjects }) {
                                 ))}
                             </ul>
                         </AnimatePresence>
-                        <Button href='/blog'>See More</Button>
-                    </main>
+                        <div className='space-x-4'>
+                            <Button href='/blog'>See More</Button>
+                            <Button href='/suggest'>Suggest Topic</Button>
+                        </div>
+                    </article>
                 </InViewSection>
 
                 {/* //* Code Library */}
                 <InViewSection className='py-16'>
-                    <main className='layout'>
+                    <article className='layout'>
                         <h2 className=''>Check out my code library</h2>
                         <p className='mb-4 component'>
                             List of code snippets that I store for easy access.
                         </p>
                         <Button href='/library'>Go to Code Library</Button>
-                    </main>
+                    </article>
                 </InViewSection>
-                <Footer />
-            </motion.div>
+            </motion.main>
+            <Footer />
         </>
     );
 }

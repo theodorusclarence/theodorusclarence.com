@@ -27,32 +27,33 @@ export default function About() {
             <Nav />
 
             {/* //* About */}
-            <motion.div
+            <motion.main
                 initial='initial'
                 animate='animate'
                 variants={staggerFaster}
                 className='flex flex-col min-h-screen'
             >
                 <section className='py-10'>
-                    <main className='layout'>
+                    <article className='layout'>
                         <motion.h1 variants={fadeInAndUp}>About</motion.h1>
                         <motion.h1 variants={fadeInAndUp} className='mb-4'>
                             <span className='accent'>Theodorus Clarence</span>
                         </motion.h1>
-                        <motion.div
+                        <motion.figure
                             variants={fadeInAndUp}
-                            className='float-right ml-6 '
+                            className='float-right ml-6 w-36 md:w-52'
                         >
                             <Image
                                 className='bg-gray-700'
                                 width={210}
                                 height={210}
+                                layout='responsive'
                                 objectFit='cover'
                                 objectPosition='30%'
                                 src={'/images/me.jpg'}
                                 alt={'photo of me'}
                             />
-                        </motion.div>
+                        </motion.figure>
                         <motion.p
                             variants={fadeInAndUp}
                             className='mb-4 prose dark:text-light'
@@ -88,12 +89,12 @@ export default function About() {
                             I can share my knowledge along the way. So do
                             contact me and I will be very happy to help!
                         </motion.p>
-                    </main>
+                    </article>
                 </section>
 
                 {/* //* Contacts */}
                 <section className='py-10'>
-                    <main className='layout'>
+                    <article className='layout'>
                         <motion.h2 variants={fadeInAndUp} className=''>
                             Contact
                         </motion.h2>
@@ -105,12 +106,12 @@ export default function About() {
                             development, especially frontend works. I’ll be
                             happy to help! (find my email in the footer)
                         </motion.p>
-                    </main>
+                    </article>
                 </section>
 
                 {/* //* Business Inquiries */}
                 <section className='pt-10 pb-16'>
-                    <main className='layout'>
+                    <article className='layout'>
                         <motion.h2 variants={fadeInAndUp} className=''>
                             Business Inquiries
                         </motion.h2>
@@ -124,10 +125,10 @@ export default function About() {
                             <CopyableText>etzytech@gmail.com</CopyableText>{' '}
                             agency.
                         </motion.p>
-                    </main>
+                    </article>
                 </section>
                 <Footer />
-            </motion.div>
+            </motion.main>
         </>
     );
 }

@@ -24,12 +24,12 @@ export default function ProjectsPage() {
                 }}
             />
             <Nav />
-            <motion.section
+            <motion.main
                 initial='initial'
                 animate='animate'
                 className='py-6 mt-4'
             >
-                <motion.main
+                <motion.article
                     variants={staggerFaster}
                     className='space-y-2 layout'
                 >
@@ -44,16 +44,16 @@ export default function ProjectsPage() {
                             Some projects that I have made.
                         </motion.p>
                     </header>
-                    <motion.div
+                    <motion.ul
                         variants={fadeInAndUp}
                         className='grid gap-4 md:grid-cols-2'
                     >
                         {projects.map((project, index) => (
                             <ProjectCard key={index} data={project} />
                         ))}
-                    </motion.div>
-                </motion.main>
-            </motion.section>
+                    </motion.ul>
+                </motion.article>
+            </motion.main>
             <Footer />
         </>
     );
