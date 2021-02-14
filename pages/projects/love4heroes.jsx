@@ -86,8 +86,8 @@ export default function PetrolidaPage({ data }) {
                             <figure className='w-full shadow-md dark:shadow-none'>
                                 <Image
                                     className='bg-gray-500 rounded-sm'
-                                    width={1425}
-                                    height={2772}
+                                    width={800}
+                                    height={1556}
                                     layout='responsive'
                                     src={`/images/projects/love4heroes/ss1.png`}
                                     title='Landing Page'
@@ -98,8 +98,8 @@ export default function PetrolidaPage({ data }) {
                                 <figure className='w-full shadow-md dark:shadow-none'>
                                     <Image
                                         className='bg-gray-500 rounded-sm'
-                                        width={1440}
-                                        height={767}
+                                        width={800}
+                                        height={426}
                                         layout='responsive'
                                         src={`/images/projects/love4heroes/ss2.png`}
                                         title='Filling Out Form For Cards Page'
@@ -109,8 +109,8 @@ export default function PetrolidaPage({ data }) {
                                 <figure className='w-full shadow-md dark:shadow-none'>
                                     <Image
                                         className='bg-gray-500 rounded-sm'
-                                        width={1440}
-                                        height={767}
+                                        width={800}
+                                        height={426}
                                         layout='responsive'
                                         src={`/images/projects/love4heroes/ss4.png`}
                                         title='Page after you fill the form'
@@ -120,8 +120,8 @@ export default function PetrolidaPage({ data }) {
                                 <figure className='w-full shadow-md dark:shadow-none'>
                                     <Image
                                         className='bg-gray-500 rounded-sm'
-                                        width={1440}
-                                        height={767}
+                                        width={800}
+                                        height={426}
                                         layout='responsive'
                                         src={`/images/projects/love4heroes/ss3.png`}
                                         title='Card when sended to the frontline workers'
@@ -150,8 +150,8 @@ export default function PetrolidaPage({ data }) {
                         <figure className='w-full shadow-md dark:shadow-none'>
                             <Image
                                 className='bg-gray-500 rounded-sm'
-                                width={2560}
-                                height={1567}
+                                width={1000}
+                                height={608}
                                 layout='responsive'
                                 src={`/images/projects/love4heroes/team.png`}
                                 title='My Team on uOttaHack'
