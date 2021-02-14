@@ -13,7 +13,7 @@ import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 const url = 'https://theodorusclarence.com/blog';
 const title = 'Library – theodorusclarence.com';
 const description =
-    'Some collection of codes that I usually use that I put for easy access, feel free to reuse!';
+    'Some collection of code snippets that I put for easy access, feel free to reuse!';
 
 export default function BlogPage({ snippets }) {
     const [searchTerm, setSearchTerm] = useState('');

@@ -13,12 +13,12 @@ import ProjectCard from '@/components/ProjectCard';
 import PostCard from '@/components/PostCard';
 import Button from '@/components/Button';
 import Footer from '@/components/Footer';
+import InViewSection from '@/components/InViewSection';
 
 import { projects } from '@/data/projects';
 import { featured, featuredProj } from '@/data/featured';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 import { fadeInAndUp, stagger, staggerFaster } from '@/utils/FramerAnimation';
-import InViewSection from '@/components/InViewSection';
 
 const title = 'Home – theodorusclarence.com';
 
@@ -90,7 +90,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
 
                 {/* //* Featured Projects */}
                 {/* padding top smaller to reduce gap */}
-                <InViewSection className='pt-2 pb-16'>
+                <InViewSection id='projects' className='pt-2 pb-16'>
                     <motion.main
                         className='layout'
                         // variants={staggerFaster}
