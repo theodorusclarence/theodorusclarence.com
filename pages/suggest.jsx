@@ -50,15 +50,16 @@ export default function SuggestionPage() {
                             </p>
                         </header>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <label htmlFor='name'>Name (optional)</label>
+                            <label className='block mb-2' htmlFor='name'>
+                                Name (optional)
+                            </label>
                             <input
                                 type='text'
                                 name='name'
-                                placeholder='Theodorus Clarence'
                                 ref={register}
                                 className='w-full px-4 py-2 mb-4 transition-colors rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
                             />
-                            <label htmlFor='content'>
+                            <label className='block mb-2' htmlFor='content'>
                                 Suggestions / Feedback{' '}
                             </label>
                             {errors.content && (

@@ -75,8 +75,8 @@ export default function PetrolidaPage({ data }) {
                             <figure className='w-full shadow-md dark:shadow-none'>
                                 <Image
                                     className='bg-gray-500 rounded-sm'
-                                    width={1425}
-                                    height={4215}
+                                    width={800}
+                                    height={2366}
                                     layout='responsive'
                                     src={`/images/projects/petrolida-2021/ss1.png`}
                                     alt='Web Screenshot'
@@ -85,8 +85,8 @@ export default function PetrolidaPage({ data }) {
                             <figure className='w-full shadow-md dark:shadow-none'>
                                 <Image
                                     className='bg-gray-500 rounded-sm'
-                                    width={1178}
-                                    height={4096}
+                                    width={800}
+                                    height={2782}
                                     layout='responsive'
                                     src={`/images/projects/petrolida-2021/ss2.png`}
                                     alt='Web Screenshot'

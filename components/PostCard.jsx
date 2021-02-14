@@ -16,7 +16,7 @@ export default function PostCard({ post, index }) {
             // to remove layoutId from index page to blog page
             layoutId={`${post.slug}${index && 'x'}`}
             whileHover={{ scale: 1.02, transition: { duration: 0.1 } }}
-            className='w-full bg-white rounded-md ring-vis-0 border-thin dark:bg-dark'
+            className='w-full bg-white rounded-md card ring-vis-0 border-thin dark:bg-dark'
         >
             <Link href={`/blog/${post.slug}`}>
                 <a className='block p-5'>

@@ -106,14 +106,7 @@ export default function BlogPage({ posts }) {
                                 <CustomLink href='https://buttondown.email/theodorusclarence'>
                                     subscribe to my newsletter
                                 </CustomLink>{' '}
-                                if you want an update everytime I post, also you
-                                can{' '}
-                                <CustomLink
-                                    className='inline-block p-2 rounded-md border-thin'
-                                    href='/suggest'
-                                >
-                                    Suggest Topic or Give Feedback
-                                </CustomLink>
+                                if you want an update everytime I post.
                             </motion.p>
                         </header>
                         <motion.div variants={fadeInAndUp} className='pb-4'>
