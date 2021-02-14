@@ -22,7 +22,7 @@ export default function Footer() {
     return (
         <footer className='pb-2 mt-auto'>
             <main className='flex flex-col items-center pt-6 border-t-thin layout'>
-                <p className='mb-1 font-medium'>Check this out</p>
+                <p className='mb-1 font-medium'>Reach me out</p>
                 <div className='flex mb-4 space-x-4'>
                     <IconContext.Provider
                         value={{
@@ -66,7 +66,7 @@ export default function Footer() {
                         <CustomLink href='https://clarence.link/linkedin'>
                             <SiLinkedin />
                         </CustomLink>
-                        <Tippy
+                        {/* <Tippy
                             animation='scale-subtle'
                             hideOnClick={false}
                             className='focus:outline-none'
@@ -82,7 +82,7 @@ export default function Footer() {
                                     <IoCode />
                                 </CustomLink>
                             </div>
-                        </Tippy>
+                        </Tippy> */}
                     </IconContext.Provider>
                 </div>
                 <SpotifyPlaying />
