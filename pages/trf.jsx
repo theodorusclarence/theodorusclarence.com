@@ -37,7 +37,7 @@ export default function TransferPage() {
                     <article className='text-center layout'>
                         <h1>Rekening BCA</h1>
                         <p className='mt-2'>Atas Nama Clarence</p>
-                        <figure className='max-w-sm mx-auto mt-4 rounded shadow-sm dark:shadow-none'>
+                        <figure className='max-w-sm mx-auto mt-4 bg-gray-500 rounded shadow-sm dark:shadow-none'>
                             <Image
                                 className='rounded'
                                 width={992}
