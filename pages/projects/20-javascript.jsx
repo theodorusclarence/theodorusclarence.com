@@ -2,6 +2,7 @@ import { NextSeo } from 'next-seo';
 import { IconContext } from 'react-icons/lib';
 import { SiGithub } from 'react-icons/si';
 import CustomLink from '@/components/CustomLink';
+import UnstyledLink from '@/components/UnstyledLink';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
 import ResponsiveIframe from '@/components/ResponsiveIframe';
@@ -60,6 +61,12 @@ export default function JavascriptPage({ videos }) {
                                 </li>
                             ))}
                         </ul>
+                        <UnstyledLink
+                            href='/projects'
+                            className='inline-block view'
+                        >
+                            ← Back to projects
+                        </UnstyledLink>
                     </main>
                 </section>
                 <Footer />

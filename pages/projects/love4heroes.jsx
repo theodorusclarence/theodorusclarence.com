@@ -1,5 +1,6 @@
 import CustomLink from '@/components/CustomLink';
 import Footer from '@/components/Footer';
+import UnstyledLink from '@/components/UnstyledLink';
 import Nav from '@/components/Nav';
 import PickTech from '@/components/PickTech';
 import ProjectHeader from '@/components/ProjectHeader';
@@ -223,6 +224,12 @@ export default function PetrolidaPage({ data }) {
                             language 😁.
                         </p>
 
+                        <UnstyledLink
+                            href='/projects'
+                            className='inline-block mt-4 view'
+                        >
+                            ← Back to projects
+                        </UnstyledLink>
                         <style jsx>{`
                             blockquote h2 {
                                 font-style: normal;
