@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 
 const links = [
+    { href: '/', label: 'Home' },
     { href: '/projects', label: 'Projects' },
     { href: '/blog', label: 'Blog' },
     { href: '/library', label: 'Library' },
@@ -16,7 +16,13 @@ export default function Nav() {
     const [onTop, setOnTop] = useState(true);
     // sets class dark to html
     const { theme, setTheme } = useTheme();
-    const { route } = useRouter();
+    const router = useRouter();
+    const { route } = router;
+
+    /** Ex: /projects/petrolida-2021 -> ['', 'projects', 'petrolida-2021'] */
+    const arrOfRoute = route.split('/');
+    const baseRoute = '/' + arrOfRoute[1];
+    console.log('🚀 ~ file: Nav.jsx ~ line 25 ~ Nav ~ baseRoute', baseRoute);
 
     const handleScroll = () => {
         if (onTop !== (window.pageYOffset === 0)) {
@@ -41,6 +47,7 @@ export default function Nav() {
             <nav className='transition-colors bg-white dark:bg-dark'>
                 <ul className='flex items-center justify-between py-4 layout'>
                     <ul className='flex items-center justify-between space-x-3 text-xs md:space-x-4 md:text-base'>
+                        {/* //* still considering for the logo
                         <li>
                             <Link href='/'>
                                 <a>
@@ -53,15 +60,14 @@ export default function Nav() {
                                     </figure>
                                 </a>
                             </Link>
-                        </li>
+                        </li> */}
                         {links.map(({ href, label }) => (
                             <li key={`${href}${label}`}>
                                 <Link href={href}>
                                     <a
                                         className={`
                                         ${
-                                            route === href ||
-                                            route === href + '/[slug]'
+                                            href === baseRoute
                                                 ? 'text-transparent'
                                                 : 'text-black dark:text-white'
                                         } 
@@ -69,10 +75,7 @@ export default function Nav() {
                                     >
                                         <span
                                             className={`${
-                                                (route === href ||
-                                                    route ===
-                                                        href + '/[slug]') &&
-                                                'accent'
+                                                href === baseRoute && 'accent'
                                             }`}
                                         >
                                             {label}

@@ -1,4 +1,5 @@
 import CustomLink from '@/components/CustomLink';
+import UnstyledLink from '@/components/UnstyledLink';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
 import PickTech from '@/components/PickTech';
@@ -170,6 +171,12 @@ export default function PetrolidaPage({ data }) {
                             cleaner code and make the development process more
                             effective by using some library that helps.
                         </p>
+                        <UnstyledLink
+                            href='/projects'
+                            className='inline-block mt-4 view'
+                        >
+                            ← Back to projects
+                        </UnstyledLink>
 
                         <style jsx>{`
                             blockquote h2 {

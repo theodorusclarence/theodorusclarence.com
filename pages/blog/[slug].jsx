@@ -13,6 +13,7 @@ import useSWR, { mutate } from 'swr';
 import Link from 'next/link';
 import CustomCode, { Pre } from '@/components/CustomCode.jsx';
 import CustomLink from '@/components/CustomLink.jsx';
+import UnstyledLink from '@/components/UnstyledLink.jsx';
 import Footer from '@/components/Footer.jsx';
 import Nav from '@/components/Nav.jsx';
 import fetcher from '@/utils/fetcher.js';
@@ -102,6 +103,12 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
                         <article className='py-4 mx-auto prose transition-colors dark:prose-dark'>
                             {content}
                         </article>
+                        <UnstyledLink
+                            href='/blog'
+                            className='inline-block mt-4 view'
+                        >
+                            ← Back to blog
+                        </UnstyledLink>
                     </main>
                 </section>
                 <Footer />

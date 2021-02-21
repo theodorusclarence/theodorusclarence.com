@@ -13,6 +13,7 @@ import { postLibraryPaths, LIBRARY_PATH } from '@/utils/mdxUtils';
 import Nav from '@/components/Nav.jsx';
 import CustomCode, { Pre } from '@/components/CustomCode.jsx';
 import Footer from '@/components/Footer.jsx';
+import UnstyledLink from '@/components/UnstyledLink';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -55,7 +56,10 @@ export default function PostPage({ source, frontMatter, slug }) {
                 <section className='py-6 mt-4'>
                     <main className='layout'>
                         <div className='pb-4 border-b-thin'>
-                            <Link href={`/library/${slug}`}>
+                            <Link
+                                href={`/library/${slug}`}
+                                className='focus:outline-none'
+                            >
                                 <a>
                                     <h1 className='mb-2'>
                                         {frontMatter.title}
@@ -70,6 +74,12 @@ export default function PostPage({ source, frontMatter, slug }) {
                         <article className='py-4 mx-auto prose transition-colors dark:prose-dark'>
                             {content}
                         </article>
+                        <UnstyledLink
+                            href='/library'
+                            className='inline-block mt-4 view'
+                        >
+                            ← Back to library
+                        </UnstyledLink>
                     </main>
                 </section>
                 <Footer />

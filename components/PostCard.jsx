@@ -14,7 +14,7 @@ export default function PostCard({ post, index }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             // to remove layoutId from index page to blog page
-            layoutId={`${post.slug}${index && 'x'}`}
+            layoutId={index ? null : post.slug}
             whileHover={{ scale: 1.02, transition: { duration: 0.1 } }}
             className='w-full bg-white rounded-md card ring-vis-0 border-thin dark:bg-dark'
         >
