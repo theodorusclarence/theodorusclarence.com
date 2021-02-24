@@ -18,7 +18,7 @@ import InViewSection from '@/components/InViewSection';
 import { projects } from '@/data/projects';
 import { featured, featuredProj } from '@/data/featured';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
-import { fadeInAndUp, stagger, staggerFaster } from '@/utils/FramerAnimation';
+import { fadeInAndUp, stagger } from '@/utils/FramerAnimation';
 
 const title = 'Home – theodorusclarence.com';
 
@@ -31,6 +31,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
     console.log(
         'Welcome to my page! Also feel free to contact me via email at theodorusclarence@gmail.com 🙌'
     );
+
     return (
         <>
             <NextSeo title={title} />

@@ -46,6 +46,17 @@ export default function PetrolidaPage({ data }) {
 
                 <section className='py-6 mt-4'>
                     <article className='space-y-4 prose dark:prose-dark layout'>
+                        <p>
+                            <CustomLink href='https://devpost.com/software/love4heroes'>
+                                <span
+                                    style={{ backgroundColor: '#F3BF1E' }}
+                                    className='px-2 py-1 mr-2 text-xs tracking-wide uppercase rounded text-dark'
+                                >
+                                    Winner
+                                </span>
+                                uOttaHack4 Deloitte Challenge
+                            </CustomLink>
+                        </p>
                         <blockquote>
                             <h2>Short Explanation</h2>
                         </blockquote>
