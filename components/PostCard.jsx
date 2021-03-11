@@ -2,10 +2,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import useSWR from 'swr';
 import fetcher from '../utils/fetcher';
-import { formatDate } from '../utils/helper';
+import { checkBlogPrefix, formatDate } from '../utils/helper';
 
 export default function PostCard({ post, index }) {
-    const { data } = useSWR(`/api/${post.slug}`, fetcher);
+    const checkedSlug = checkBlogPrefix(post.slug);
+    const { data } = useSWR(`/api/${checkedSlug}`, fetcher);
     const { data: postData } = post;
     return (
         <motion.li

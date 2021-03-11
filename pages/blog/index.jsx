@@ -2,7 +2,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 import readingTime from 'reading-time';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import Tippy from '@tippyjs/react';
 import Nav from '@/components/Nav';
@@ -19,11 +19,27 @@ const description =
     'Thoughts on the frontend development and other interesting things.';
 
 export default function BlogPage({ posts }) {
+    const englishPosts = [];
+    const indPosts = [];
+
+    posts.forEach((post) => {
+        // post indo
+        if (post.slug.slice(0, 3) !== 'id-') {
+            englishPosts.push(post);
+        } else {
+            indPosts.push(post);
+        }
+    });
+
+    const [selectedEnglish, setSelectedEnglish] = useState(true);
+    const [selectedPosts, setSelectedPosts] = useState([...englishPosts]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredPosts, setFilteredPosts] = useState([...posts]);
+    const [filteredPosts, setFilteredPosts] = useState([...englishPosts]);
+
+    console.log(selectedPosts);
 
     // sort the newest blog first.
-    posts.sort(
+    selectedPosts.sort(
         (postA, postB) =>
             new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
     );
@@ -35,7 +51,7 @@ export default function BlogPage({ posts }) {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            const results = posts.filter(
+            const results = selectedPosts.filter(
                 (post) =>
                     post.data.title
                         .toLowerCase()
@@ -49,6 +65,39 @@ export default function BlogPage({ posts }) {
 
         return () => clearTimeout(timer);
     }, [searchTerm]);
+
+    // // Set Preferred Language on Render
+    // useEffect(() => {
+    //     let preferredLanguage = localStorage.getItem('preferredBlogLang');
+    //     console.log(
+    //         '🚀 ~ file: index.jsx ~ line 97 ~ useEffect ~ preferredLanguage',
+    //         preferredLanguage
+    //     );
+    //     if (!preferredLanguage) {
+    //         localStorage.setItem('preferredBlogLang', 'en');
+    //         preferredLanguage = 'en';
+    //     } else if (preferredLanguage === 'id') {
+    //         setSelectedEnglish(false);
+    //     }
+    // }, []);
+
+    // Change post state based on languange
+    const initialRender = useRef(true);
+    useEffect(() => {
+        if (initialRender.current) {
+            initialRender.current = false;
+        } else {
+            if (selectedEnglish) {
+                setSelectedPosts(englishPosts);
+                setFilteredPosts(englishPosts);
+            } else {
+                setSelectedPosts(indPosts);
+                setFilteredPosts(indPosts);
+            }
+            // reset filter
+            setSearchTerm('');
+        }
+    }, [selectedEnglish]);
 
     return (
         <>
@@ -74,29 +123,15 @@ export default function BlogPage({ posts }) {
                         variants={staggerFaster}
                     >
                         <header className='space-y-2'>
-                            <motion.h1 variants={fadeInAndUp}>Blog</motion.h1>
+                            <motion.h1 variants={fadeInAndUp}>
+                                Blog
+                                {selectedEnglish ? '' : ' Bahasa Indonesia'}
+                            </motion.h1>
                             <motion.p
                                 variants={fadeInAndUp}
                                 className='text-dark dark:text-light'
                             >
-                                Some of my thoughts. It will be written in{' '}
-                                <Tippy
-                                    animation='scale-subtle'
-                                    // offset={5}
-                                    content={
-                                        <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                            I felt like there are not much
-                                            content in Bahasa Indonesia for
-                                            Next.js and other frontend
-                                            technologies.
-                                        </span>
-                                    }
-                                >
-                                    <span className='accent'>
-                                        Bahasa Indonesia
-                                    </span>
-                                </Tippy>
-                                .
+                                Some of my thoughts.
                             </motion.p>
                             <motion.p
                                 variants={fadeInAndUp}
@@ -108,11 +143,27 @@ export default function BlogPage({ posts }) {
                                 </CustomLink>{' '}
                                 if you want an update everytime I post.
                             </motion.p>
+                            <motion.div
+                                variants={fadeInAndUp}
+                                className='text-dark dark:text-light'
+                            >
+                                <button
+                                    className='inline-block px-4 py-2 font-medium transition-shadow duration-100 rounded-md btn active:shadow-none hover:shadow-md border-thin'
+                                    onClick={() =>
+                                        setSelectedEnglish(!selectedEnglish)
+                                    }
+                                >
+                                    Read in{' '}
+                                    {selectedEnglish
+                                        ? 'Bahasa Indonesia'
+                                        : 'English'}
+                                </button>
+                            </motion.div>
                         </header>
                         <motion.div variants={fadeInAndUp} className='pb-4'>
                             <p className='font-medium'>Search</p>
                             <input
-                                className='w-full px-4 py-2 transition-colors rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
+                                className='w-full px-4 py-2 transition-colors rounded-md shadow-none border-thin dark:bg-dark focus:border-accent-200 focus:outline-none focus:ring-1 focus:ring-accent-200 '
                                 type='text'
                                 placeholder='Type to search...'
                                 value={searchTerm}

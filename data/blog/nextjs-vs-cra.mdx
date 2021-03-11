@@ -1,57 +1,60 @@
 ---
 title: 'Create React App vs Next.js'
 publishedAt: '2021-01-19'
-description: 'Apa itu Next.js dan CRA, dan apa kelebihan kekurangannya?'
+description: "What's the difference between Next.js and Create React App?"
 ---
 
-## Apa itu Create React App?
+## What is Create React App?
 
-Create React App (CRA) adalah cara membuat React App standar yang disarankan oleh [React](https://reactjs.org/). Awalnya, saya juga menggunakan CRA untuk melakukan web development.
+Create React App (CRA) is the standard way that is introduced by [React](https://reactjs.org/). I started learning React using CRA.
 
-## Apa itu Next.js?
+## What is Next.js?
 
-Next.js adalah sebuah framework yang dibuat di atas React, sehingga tetap mendapatkan segala macam fitur yang dimiliki React, serta ditambah banyak fitur yang Next.js bawa. Awalnya, Next.js lebih dikenal sebagai framework yang menggunakan [Server Side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering). Tetapi, sekarang Next.js memiliki support untuk melakukan Static Site Generation. Next.js juga bisa menggunakan Client Side Rendering seperti CRA.
+Next.js is a framework that is made for React, it has all of the features in React and some new feature that is introduced. Earlier, Next.js is known for [Server Side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) framework. But, on Next.js 10, they released a feature that supports Static Site Generation. Next.js can also use client-side rendering like CRA.
 
 ---
 
-## Kelebihan Create React App
+## Create React App Strengths
 
-### 1. Lebih Mudah Di-deploy
+### 1. Easier to deploy
 
-CRA adalah website yang tidak membutuhkan node server dan hanya static saja, data fetching yang dilakukan biasanya menggunakan fetch API atau axios.
+CRA is a static website that doesn't need a node server, we usually fetch the data using fetch API or axios.
 
-### 2. Lebih Familiar
+### 2. More Familiar
 
-CRA adalah pilihan pertama kali dalam mempelajari React, karena CRA memang simple dan cukup mudah untuk dimengerti jika sudah bisa memahami konsep seperti React Components
+CRA is the first choice when we first started learning React because CRA is simpler and easier to learn, definitely will get you to understand React patterns.
 
-## Kelebihan Next.js
+## Next.js Strengths
 
-### 1. Performance yang Baik
+### 1. Great Performance
 
-Dengan menggunakan Static Side Generation(SSG), tentunya akan membuat website kita terasa lebih cepat karena data yang diberikan kepada pengguna website berupa static HTML files, berbeda dengan CRA yang memberikan HTML kosong, kemudian baru menarik data" sesaat pengguna website membuka websitenya.
+By using Static Site Generation (SSG), our website will be significantly faster because it only ships the user the HTML, CSS, and JS files. Different from CRA that gives blank HTML and fetches the data once it loads.
 
-Selain itu, dalam performance development, menggunakan Next.js akan jauh lebih cepat karena kita tidak perlu melakukan konfigurasi untuk React Router, semuanya sudah built-in dan kita hanya perlu
-lin mengikuti [folder structure](https://nextjs.org/docs/routing/introduction) yang diberikan saja.
+Other than that, in development performance, using Next.js will be so much faster because we didn't need to set up router, all of it already built-in and we only need to implement that by following the [folder structure](https://nextjs.org/docs/routing/introduction).
 
 ### 2. Built In API
 
-Next.js juga memiliki fitur [built-in api](https://nextjs.org/docs/api-routes/introduction) yaitu dalam aplikasi yang sama, memiliki fitur untuk membuat api mirip seperti express server pada Node.js. Hal ini sangat membantu karena kita bisa langsung mengakses database (biasanya berupa serverless database) / api tanpa perlu membuat proxy, karena data dan route yang kita gunakan untuk mengambil data tidak akan dibagikan kepada user.
+Next.js also has a [built-in api](https://nextjs.org/docs/api-routes/introduction) in the same app, having these can simulate an express app in Node.js. This really helps because we can directly access the database or call an API directly from a single application.
 
-### 3. Keuntungan SEO
+### 3. Better SEO
 
-SEO atau Search Engine Optimization adalah proses dalam mengoptimisasi website sehingga lebih mudah untuk dicari di searching platform seperti Google.
+SEO or Search Engine Optimization is a process on how to optimize a website so it can be easily searched on a search platform like Google.
 
-Dengan menggunakan Next.js, initial data yang dikirimkan adalah berupa Full HTML yang kemudian akan di hydrate dengan fungsionalitas JavaScript sehingga website menjadi interaktif. Perbandingan dibawah ini akan menunjukkan perbedaan page source dari aplikasi CRA dan Next.js.
+By using Next.js, the initial data that was sent is the full HTML, then it will be hydrated by JavaScript functionality so the website can be interactive. This comparison will show the difference in the page source of CRA and Next.js.
 
-### Hasil Page Source Create React App
+### Page Source of Create React App
 
 <Image src={'/images/blogs/nextjs-vs-cra/cra.png'} width={1552} height={989} />
 
-### Hasil Page Source Next.js
+### Page Source of Next.js
 
-<Image src={'/images/blogs/nextjs-vs-cra/nextjs.png'} width={1552} height={989} />
+<Image
+  src={'/images/blogs/nextjs-vs-cra/nextjs.png'}
+  width={1552}
+  height={989}
+/>
 
-Bisa kita lihat, Page Source dari Next.js lebih banyak karena berisi teks" dari website yang kita miliki, sedangkan Page Source dari Create React App hanya mengembalikan
+As we can see, Next.js give so much more data in the page source, because all of the content on the website is shipped initially. Different from Create React App where it only gives blank div:
 
 ```jsx
 <div id='root'></div>
@@ -59,36 +62,38 @@ Bisa kita lihat, Page Source dari Next.js lebih banyak karena berisi teks" dari 
 
 ---
 
-## Kekurangan Create React App
+## Create React App Weaknesses
 
-### 1. Hanya Bisa Client Side Rendering
+### 1. Only Support Client Side Rendering
 
-CRA hanya bisa melakukan satu tipe rendering yaitu Client Side Rendering, kita kehilangan beberapa fleksibilitas dari Next.js jika menggunakan CRA.
+CRA can only do one type of rendering which is Client Side Rendering, we lost some flexibility from Next.js when using CRA.
 
-### 2. Harus Setup React Router
+### 2. Need to Setup React Router
 
-Dengan menggunakan CRA, kita harus setup React Router secara manual sehingga routing bisa bekerja. Hal ini akan sangat repetitif karena harus dilakukan berkali-kali.
+By using CRA, we need to setup React Router manually every single time. This is kind of annoying, but you can create a template so you don't need to make it each one.
 
-### 3. SEO yang buruk
+### 3. Bad SEO
 
-Sama seperti yang sebelumnya sudah disampaikan di keuntungan menggunakan Next.js, CRA hanya mengembalikan div kosong lalu baru melakukan request
+CRA only sends out blank div so it will be harder for the website crawler to get the data.
 
-## Kekurangan Next.js
+## Next.js Weaknesses
 
 ### 1. Opinionated
 
 Framework ini 'work on its own way', maka ada beberapa convention yang harus kita ikuti seperi folder structure, penggunaan api dan lainnya.
 
-### 2. Komunitas yang tidak terlalu besar
+Next.js work in its own way, so there are some conventions like folder structure, api route, and others that we need to follow.
+
+### 2. Medium Sized Community
 
 Next.js adalah framework yang masih baru dan penggunanya belum terlalu banyak, sehingga kadang sedikit sulit untuk mencari tutorial yang menjelaskan Next.js secara mendalam
 
+Next.js is a new framework and does not have so many users, so it will be hard sometimes to find resources to learn Next.js deeply.
+
 ---
 
-## Pilih Create React App atau Next.js?
+## Do we choose Create React App or Next.js?
 
-_jawaban ini berdasarkan opini saya_
+Personally, for projects that use authentication, and all of the content lurks behind the authentication gate, I will use Create React App because we don't need the SEO. Usually, a complex website also has a backend application so we don't need to call an API or database.
 
-Untuk project" yang menggunakan authentication, dan tidak ada konten yang bisa dilihat jika tidak melakukan login (seperti project Voting Page) saya akan menggunakan CRA, karena tidak dibutuhkan SEO, dan untuk kemudahan dalam mendeploy, biasanya aplikasi yang cukup kompleks dan menggunakan authentication juga akan memiliki API yang sudah dibuat terlebih dahulu, sehingga akses database atau public API tidak dibutuhkan.
-
-Tetapi, untuk project yang **selain** di atas, saya akan selalu menggunakan Next.js. Next.js memiliki sangat banyak fitur walaupun memang, Next.js adalah framework yang opinionated.
+But, for projects other than that, I will always use Next.js. Next.js was my greatest find and I enjoy my time developing a website with it.

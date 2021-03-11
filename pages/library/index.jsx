@@ -84,7 +84,7 @@ export default function BlogPage({ snippets }) {
                         <motion.div variants={fadeInAndUp} className='pb-4'>
                             <p className='font-medium'>Search</p>
                             <input
-                                className='w-full px-4 py-2 transition-colors rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
+                                className='w-full px-4 py-2 transition-colors rounded-md shadow-none focus:border-accent-200 border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
                                 type='text'
                                 placeholder='Type to search title or tech stack...'
                                 value={searchTerm}
