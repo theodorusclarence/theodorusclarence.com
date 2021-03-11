@@ -22,7 +22,6 @@ export default function Nav() {
     /** Ex: /projects/petrolida-2021 -> ['', 'projects', 'petrolida-2021'] */
     const arrOfRoute = route.split('/');
     const baseRoute = '/' + arrOfRoute[1];
-    console.log('🚀 ~ file: Nav.jsx ~ line 25 ~ Nav ~ baseRoute', baseRoute);
 
     const handleScroll = () => {
         if (onTop !== (window.pageYOffset === 0)) {
