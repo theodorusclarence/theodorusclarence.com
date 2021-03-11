@@ -63,7 +63,7 @@ export default function About() {
                             pandemic. I have nothing much to do so I decided to
                             learn web development from a udemy course, then
                             started watching a bunch of{' '}
-                            <CustomLink href='blog/youtube-list'>
+                            <CustomLink href='/blog/youtube-list'>
                                 youtube videos
                             </CustomLink>{' '}
                             to explore more about web development especially

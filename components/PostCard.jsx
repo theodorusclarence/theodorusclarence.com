@@ -2,10 +2,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import useSWR from 'swr';
 import fetcher from '../utils/fetcher';
-import { formatDate } from '../utils/helper';
+import { checkBlogPrefix, formatDate } from '../utils/helper';
 
 export default function PostCard({ post, index }) {
-    const { data } = useSWR(`/api/${post.slug}`, fetcher);
+    const checkedSlug = checkBlogPrefix(post.slug);
+    const { data } = useSWR(`/api/${checkedSlug}`, fetcher);
     const { data: postData } = post;
     return (
         <motion.li
@@ -14,7 +15,7 @@ export default function PostCard({ post, index }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             // to remove layoutId from index page to blog page
-            layoutId={index ? null : post.slug}
+            layoutId={index ? null : checkedSlug}
             whileHover={{ scale: 1.02, transition: { duration: 0.1 } }}
             className='w-full bg-white rounded-md card ring-vis-0 border-thin dark:bg-dark'
         >

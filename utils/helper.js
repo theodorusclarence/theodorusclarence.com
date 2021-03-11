@@ -19,5 +19,15 @@ const months = [
  */
 export const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
-    return `${months[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+    return `${
+        months[dateObj.getMonth()]
+    } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+};
+
+export const checkBlogPrefix = (slug) => {
+    if (slug.slice(0, 3) === 'id-') {
+        return slug.slice(3);
+    } else {
+        return slug;
+    }
 };

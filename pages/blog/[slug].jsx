@@ -17,7 +17,7 @@ import UnstyledLink from '@/components/UnstyledLink.jsx';
 import Footer from '@/components/Footer.jsx';
 import Nav from '@/components/Nav.jsx';
 import fetcher from '@/utils/fetcher.js';
-import { formatDate } from '@/utils/helper.js';
+import { checkBlogPrefix, formatDate } from '@/utils/helper.js';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 
 // Custom components/renderers to pass to MDX.
@@ -40,13 +40,15 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
     const url = `https://theodorusclarence.com/blog/${slug}`;
     const title = `${frontMatter.title} – theodorusclarence.com`;
     const description = frontMatter.description;
+    const checkedSlug = checkBlogPrefix(slug);
+    const isEnglish = checkedSlug === slug;
 
     const content = hydrate(source, { components });
-    const { data } = useSWR(`/api/${slug}`, fetcher);
+    const { data } = useSWR(`/api/${checkedSlug}`, fetcher);
     useEffect(() => {
         const addCount = async () => {
-            await fetch(`/api/${slug}`, { method: 'POST' });
-            mutate(`/api/${slug}`);
+            await fetch(`/api/${checkedSlug}`, { method: 'POST' });
+            mutate(`/api/${checkedSlug}`);
         };
 
         addCount();
@@ -88,10 +90,18 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
                                     </div>
                                     <p className='ml-1'>Theodorus Clarence.</p>
                                 </div>
-                                <p>
+                                <p className='mb-2'>
                                     {data?.count >= 0 ? data.count : '–––'}{' '}
                                     views • {readingTime}
                                 </p>
+                                <CustomLink
+                                    href={`/blog/${
+                                        isEnglish ? 'id-' : ''
+                                    }${checkedSlug}`}
+                                >
+                                    Read in{' '}
+                                    {isEnglish ? 'Bahasa Indonesia' : 'English'}
+                                </CustomLink>
                             </p>
 
                             {/* <Link href={`/blog/${slug}`} scroll={false}>
