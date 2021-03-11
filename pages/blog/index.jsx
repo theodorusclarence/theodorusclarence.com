@@ -36,6 +36,8 @@ export default function BlogPage({ posts }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredPosts, setFilteredPosts] = useState([...englishPosts]);
 
+    console.log(selectedPosts);
+
     // sort the newest blog first.
     selectedPosts.sort(
         (postA, postB) =>
@@ -121,29 +123,15 @@ export default function BlogPage({ posts }) {
                         variants={staggerFaster}
                     >
                         <header className='space-y-2'>
-                            <motion.h1 variants={fadeInAndUp}>Blog</motion.h1>
+                            <motion.h1 variants={fadeInAndUp}>
+                                Blog
+                                {selectedEnglish ? '' : ' Bahasa Indonesia'}
+                            </motion.h1>
                             <motion.p
                                 variants={fadeInAndUp}
                                 className='text-dark dark:text-light'
                             >
-                                Some of my thoughts. It will be written in{' '}
-                                <Tippy
-                                    animation='scale-subtle'
-                                    // offset={5}
-                                    content={
-                                        <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                            I felt like there are not much
-                                            content in Bahasa Indonesia for
-                                            Next.js and other frontend
-                                            technologies.
-                                        </span>
-                                    }
-                                >
-                                    <span className='accent'>
-                                        Bahasa Indonesia
-                                    </span>
-                                </Tippy>
-                                .
+                                Some of my thoughts.
                             </motion.p>
                             <motion.p
                                 variants={fadeInAndUp}
@@ -175,7 +163,7 @@ export default function BlogPage({ posts }) {
                         <motion.div variants={fadeInAndUp} className='pb-4'>
                             <p className='font-medium'>Search</p>
                             <input
-                                className='w-full px-4 py-2 transition-colors rounded-md border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
+                                className='w-full px-4 py-2 transition-colors rounded-md shadow-none border-thin dark:bg-dark focus:border-accent-200 focus:outline-none focus:ring-1 focus:ring-accent-200 '
                                 type='text'
                                 placeholder='Type to search...'
                                 value={searchTerm}
