@@ -36,8 +36,6 @@ export default function BlogPage({ posts }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredPosts, setFilteredPosts] = useState([...englishPosts]);
 
-    console.log(selectedPosts);
-
     // sort the newest blog first.
     selectedPosts.sort(
         (postA, postB) =>
