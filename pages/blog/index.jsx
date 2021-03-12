@@ -36,8 +36,6 @@ export default function BlogPage({ posts }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredPosts, setFilteredPosts] = useState([...englishPosts]);
 
-    console.log(selectedPosts);
-
     // sort the newest blog first.
     selectedPosts.sort(
         (postA, postB) =>
@@ -148,7 +146,7 @@ export default function BlogPage({ posts }) {
                                 className='text-dark dark:text-light'
                             >
                                 <button
-                                    className='inline-block px-4 py-2 font-medium transition-shadow duration-100 rounded-md btn active:shadow-none hover:shadow-md border-thin'
+                                    className='inline-block px-4 py-2 mt-2 font-medium transition-shadow duration-100 rounded-md btn active:shadow-none hover:shadow-md border-thin'
                                     onClick={() =>
                                         setSelectedEnglish(!selectedEnglish)
                                     }
