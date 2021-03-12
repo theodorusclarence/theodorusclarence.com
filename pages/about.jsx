@@ -95,7 +95,7 @@ export default function About() {
                 {/* //* Contacts */}
                 <section className='py-10'>
                     <article className='layout'>
-                        <motion.h2 variants={fadeInAndUp} className=''>
+                        <motion.h2 variants={fadeInAndUp} className='mb-2'>
                             Contact
                         </motion.h2>
                         <motion.p
@@ -112,7 +112,7 @@ export default function About() {
                 {/* //* Business Inquiries */}
                 <section className='pt-10 pb-16'>
                     <article className='layout'>
-                        <motion.h2 variants={fadeInAndUp} className=''>
+                        <motion.h2 variants={fadeInAndUp} className='mb-2'>
                             Business Inquiries
                         </motion.h2>
                         <motion.p
