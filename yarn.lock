@@ -4818,6 +4818,13 @@ react-dom@17.0.1:
     object-assign "^4.1.1"
     scheduler "^0.20.1"
 
+react-flashlight@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-flashlight/-/react-flashlight-1.0.6.tgz#d2f0bda72164cbf7d5c78c75e4d812675cd47730"
+  integrity sha512-yszNWMAYwNvxvfvQViVMYEnoA56awHRxeqfW0QEGIyASgP/BhYP4mpaVgG6l/EVaCyj0sFHtByVYXQaQtIwq2A==
+  dependencies:
+    resize-observer-polyfill "^1.5.1"
+
 react-hook-form@^6.14.2:
   version "6.14.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.14.2.tgz#60ab0b5367b220a3d96aa0b17bd0f13f9d8c326a"
@@ -5072,6 +5079,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
+
+resize-observer-polyfill@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
+  integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
 resolve-url-loader@3.1.2:
   version "3.1.2"
