@@ -107,6 +107,15 @@ class MyDocument extends Document {
                     `,
                         }}
                     />
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `window.onload = function(){
+                                    const el = document.querySelector('body');
+                                    el.classList.add('loaded');
+                                    };
+                    `,
+                        }}
+                    />
                 </Head>
                 <body className='transition-colors bg-white dark:text-white dark:bg-dark'>
                     <Main />

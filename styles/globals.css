@@ -1,6 +1,11 @@
 @tailwind base;
 
 /* Write your own custom base styles here */
+body.loaded .preloader {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* inter-regular - latin */
 @font-face {
     font-family: 'Inter';
