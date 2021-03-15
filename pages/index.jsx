@@ -36,7 +36,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
     return (
         <>
             <NextSeo title={title} />
-            <div className='fixed inset-0 transition-opacity preloader bg-dark'></div>
+            <div className='fixed inset-0 transition-opacity bg-white preloader dark:bg-dark'></div>
             <Nav />
 
             <motion.main className='flex flex-col min-h-screen'>
