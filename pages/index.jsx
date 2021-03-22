@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { NextSeo } from 'next-seo';
 import readingTime from 'reading-time';
+import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
@@ -35,6 +36,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
     return (
         <>
             <NextSeo title={title} />
+            <div className='fixed inset-0 transition-opacity bg-white preloader dark:bg-dark'></div>
             <Nav />
 
             <motion.main className='flex flex-col min-h-screen'>
