@@ -12,5 +12,34 @@
             "source": "/linkedin",
             "destination": "https://www.linkedin.com/in/theodorus-clarence/"
         }
+    ],
+    "headers": [
+        {
+            "source": "/fonts/inter-bold-webfont.woff2",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        },
+        {
+            "source": "/fonts/inter-medium-webfont.woff2",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        },
+        {
+            "source": "/fonts/inter-regular-webfont.woff2",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        }
     ]
 }

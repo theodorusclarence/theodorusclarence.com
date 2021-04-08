@@ -41,16 +41,26 @@ export default function About() {
                         </motion.h1>
                         <motion.figure
                             variants={fadeInAndUp}
-                            className='float-right ml-6 w-36 md:w-52'
+                            className='relative float-right ml-6 w-36 md:w-52'
                         >
+                            <img
+                                aria-hidden='true'
+                                alt=''
+                                src='/images/me-loads.png'
+                                className='absolute inset-0 block object-contain'
+                                style={{
+                                    width: 215,
+                                    height: 250,
+                                }}
+                            />
                             <Image
-                                className='bg-gray-700'
-                                width={210}
-                                height={210}
+                                className=''
+                                width={215}
+                                height={260}
                                 layout='responsive'
-                                objectFit='cover'
-                                objectPosition='30%'
-                                src={'/images/me.jpg'}
+                                objectFit='contain'
+                                objectPosition='center 80%'
+                                src={'/images/me3.png'}
                                 alt={'photo of me'}
                             />
                         </motion.figure>

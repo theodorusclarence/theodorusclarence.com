@@ -16,6 +16,27 @@ class MyDocument extends Document {
                         rel='stylesheet'
                     /> */}
                     <link
+                        rel='preload'
+                        href='/fonts/inter-bold-webfont.woff2'
+                        as='font'
+                        type='font/woff2'
+                        crossOrigin='anonymous'
+                    />
+                    <link
+                        rel='preload'
+                        href='/fonts/inter-medium-webfont.woff2'
+                        as='font'
+                        type='font/woff2'
+                        crossOrigin='anonymous'
+                    />
+                    <link
+                        rel='preload'
+                        href='/fonts/inter-regular-webfont.woff2'
+                        as='font'
+                        type='font/woff2'
+                        crossOrigin='anonymous'
+                    />
+                    <link
                         rel='apple-touch-icon'
                         sizes='57x57'
                         href='/favicon/apple-icon-57x57.png'
