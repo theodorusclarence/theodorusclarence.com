@@ -43,7 +43,7 @@ export default function About() {
                             variants={fadeInAndUp}
                             className='relative float-right ml-6 w-36 md:w-52'
                         >
-                            <img
+                            {/* <img
                                 aria-hidden='true'
                                 alt=''
                                 src='/images/me-loads.png'
@@ -52,7 +52,7 @@ export default function About() {
                                     width: 215,
                                     height: 250,
                                 }}
-                            />
+                            /> */}
                             <Image
                                 className=''
                                 width={215}
