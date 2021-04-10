@@ -5,18 +5,14 @@ import CustomLink from './CustomLink';
 import Tippy from '@tippyjs/react';
 import { useState } from 'react';
 import SpotifyPlaying from './SpotifyPlaying';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { IoCode } from 'react-icons/io5';
 
 export default function Footer() {
-    const [copyStatus, setCopyStatus] = useState('Click to Copy');
-    const { route } = useRouter();
+    const [copyStatus, setCopyStatus] = useState('Click again to copy');
 
     const clickToCopy = () => {
         navigator.clipboard.writeText('theodorusclarence@gmail.com');
         setCopyStatus('Copied to clipboard');
-        setTimeout(() => setCopyStatus('Click to Copy'), 1500);
+        setTimeout(() => setCopyStatus('Click again to copy'), 1500);
     };
 
     return (
@@ -66,23 +62,6 @@ export default function Footer() {
                         <CustomLink href='https://clarence.link/linkedin'>
                             <SiLinkedin />
                         </CustomLink>
-                        {/* <Tippy
-                            animation='scale-subtle'
-                            hideOnClick={false}
-                            className='focus:outline-none'
-                            content={
-                                <span className='inline-flex flex-col items-center p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                                    Personal Code Library, list of code that I
-                                    store for easy access.
-                                </span>
-                            }
-                        >
-                            <div className='flex items-center'>
-                                <CustomLink href='/library'>
-                                    <IoCode />
-                                </CustomLink>
-                            </div>
-                        </Tippy> */}
                     </IconContext.Provider>
                 </div>
                 <SpotifyPlaying />
