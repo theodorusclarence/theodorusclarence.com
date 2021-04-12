@@ -3,7 +3,6 @@ import path from 'path';
 import matter from 'gray-matter';
 import { NextSeo } from 'next-seo';
 import readingTime from 'reading-time';
-import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
@@ -32,8 +31,6 @@ export default function Home({ featuredPosts, featuredProjects }) {
     console.log(
         'Welcome to my page! Also feel free to contact me via email at theodorusclarence@gmail.com 🙌'
     );
-
-    const projects = useRef();
 
     return (
         <>
@@ -97,10 +94,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
                             });
                         }}
                     >
-                        <IoArrowDownOutline
-                            ref={projects}
-                            className='w-8 h-8 md:w-10 md:h-10 animate-bounce hover:text-accent-300'
-                        />
+                        <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce hover:text-accent-300' />
                     </motion.figure>
                 </motion.div>
 
