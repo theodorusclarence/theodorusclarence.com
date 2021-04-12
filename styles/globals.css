@@ -12,9 +12,7 @@ body.loaded .preloader {
     font-style: normal;
     font-weight: 400;
     font-display: optional;
-    src: local('Inter'),
-        url('/fonts/inter-regular-webfont.woff2') format('woff2'),
-        url('/fonts/inter-regular-webfont.woff') format('woff');
+    src: url('/fonts/inter-regular-webfont.woff2') format('woff2');
 }
 
 /* inter-500 - latin */
@@ -23,9 +21,7 @@ body.loaded .preloader {
     font-style: normal;
     font-weight: 500;
     font-display: optional;
-    src: local('Inter'),
-        url('/fonts/inter-medium-webfont.woff2') format('woff2'),
-        url('/fonts/inter-medium-webfont.woff') format('woff');
+    src: url('/fonts/inter-medium-webfont.woff2') format('woff2');
 }
 
 /* inter-700 - latin */
@@ -34,8 +30,7 @@ body.loaded .preloader {
     font-style: normal;
     font-weight: 700;
     font-display: optional;
-    src: local('Inter'), url('/fonts/inter-bold-webfont.woff2') format('woff2'),
-        url('/fonts/inter-bold-webfont.woff') format('woff');
+    src: url('/fonts/inter-bold-webfont.woff2') format('woff2');
 }
 
 ::selection {
