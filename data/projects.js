@@ -10,6 +10,16 @@ export const projects = [
         link: 'http://petrolida.its.ac.id',
     },
     {
+        id: 'tutee-id',
+        page: '/projects/tutee-id',
+        name: 'tutee.id',
+        category: 'Team of 4',
+        description:
+            'This website is made for tutee.id startup that meets tutors from universities with customers.',
+        techStack: ['react', 'redux', 'firebase'],
+        thumbnail: 'tutee-id/tutee-id.png',
+    },
+    {
         id: 'love4heroes',
         page: '/projects/love4heroes',
         name: 'Love 4 Heroes',
