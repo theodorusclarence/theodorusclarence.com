@@ -12,6 +12,7 @@ import {
     SiPrettier,
     SiGoogleanalytics,
     SiFirebase,
+    SiRedux,
 } from 'react-icons/si';
 
 import { IoLogoVercel } from 'react-icons/io5';
@@ -26,6 +27,7 @@ const techSpan = {
     firebase: ['Firebase', () => <SiFirebase />],
     mongodb: ['MongoDB', () => <SiMongodb />],
     swr: ['SWR', () => <IoLogoVercel />],
+    redux: ['Redux', () => <SiRedux />],
     mdx: ['MDX', () => <SiMarkdown />],
     prettier: ['Prettier', () => <SiPrettier />],
     analytics: ['Google Analytics', () => <SiGoogleanalytics />],
