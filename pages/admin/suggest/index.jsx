@@ -20,19 +20,19 @@ export default function SuggestionViewPage() {
                         <ul className='grid gap-4 '>
                             {data?.map((suggestion) => (
                                 <li
-                                    key={suggestion.id}
+                                    key={suggestion?.id}
                                     className='p-2 rounded-md border-thin'
                                 >
                                     <h4>
                                         {suggestion.data.name} •{' '}
                                         <p className='inline component'>
                                             {`${new Date(
-                                                suggestion.data.date
+                                                suggestion?.data?.date
                                             )}`}
                                         </p>
                                     </h4>
                                     <p className='component'>
-                                        {suggestion.data.content}
+                                        {suggestion?.data?.content}
                                     </p>
                                 </li>
                             ))}
