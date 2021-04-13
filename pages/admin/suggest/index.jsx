@@ -44,16 +44,3 @@ export default function SuggestionViewPage() {
         </>
     );
 }
-
-export async function getStaticPaths() {
-    return {
-        paths: [{ params: { pw: process.env.ADMIN_PASSWORD } }],
-        fallback: false,
-    };
-}
-
-export async function getStaticProps(context) {
-    return {
-        props: {},
-    };
-}
