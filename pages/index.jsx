@@ -109,7 +109,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
                             // variants={fadeInAndUp}
                             className='mb-4'
                         >
-                            Featured Projects
+                            <span className='accent'>Featured Projects</span>
                         </motion.h2>
                         {/* <div className='flex flex-col justify-between mb-4 space-y-4 md:space-y-0 md:flex-row'> */}
                         <motion.ul
@@ -127,7 +127,9 @@ export default function Home({ featuredPosts, featuredProjects }) {
                 {/* //* Featured Posts */}
                 <InViewSection className='py-16'>
                     <article className='layout'>
-                        <h2>Featured Posts</h2>
+                        <h2>
+                            <span className='accent'>Featured Posts</span>
+                        </h2>
                         <p className='mb-4 component'>
                             Kindly{' '}
                             <CustomLink href='https://buttondown.email/theodorusclarence'>
@@ -156,7 +158,11 @@ export default function Home({ featuredPosts, featuredProjects }) {
                 {/* //* Code Library */}
                 <InViewSection className='py-16'>
                     <article className='layout'>
-                        <h2 className=''>Check out my code library</h2>
+                        <h2 className=''>
+                            <span className='accent'>
+                                Check out my code library
+                            </span>
+                        </h2>
                         <p className='mb-4 component'>
                             List of code snippets that I store for easy access.
                         </p>

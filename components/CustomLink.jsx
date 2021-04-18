@@ -9,7 +9,10 @@ export default function CustomLink(props) {
     if (isInternalLink) {
         return (
             <Link href={href}>
-                <a {...props} className='inline-flex items-center rounded-sm ring-vis'>
+                <a
+                    {...props}
+                    className='inline-flex items-center rounded-sm ring-vis view'
+                >
                     <span className={style}>{props.children}</span>
                 </a>
             </Link>
@@ -18,7 +21,7 @@ export default function CustomLink(props) {
 
     return (
         <a
-            className='inline-flex items-center rounded-sm ring-vis'
+            className='inline-flex items-center rounded-sm ring-vis view'
             target='_blank'
             rel='noopener noreferrer'
             {...props}

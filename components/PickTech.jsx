@@ -40,7 +40,7 @@ const techSpan = {
  */
 export default function PickTech({ techs }) {
     return (
-        <div className='flex mt-2 mb-2 space-x-2'>
+        <div className='flex mt-3 mb-5 space-x-2'>
             <IconContext.Provider
                 value={{ className: 'text-dark dark:text-light w-6 h-6' }}
             >
