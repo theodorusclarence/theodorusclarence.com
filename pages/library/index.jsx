@@ -72,7 +72,7 @@ export default function BlogPage({ snippets }) {
                     <main className='space-y-4 layout'>
                         <header className='space-y-2'>
                             <motion.h1 variants={fadeInAndUp}>
-                                Library
+                                <span className='accent'>Library</span>
                             </motion.h1>
                             <motion.p
                                 variants={fadeInAndUp}

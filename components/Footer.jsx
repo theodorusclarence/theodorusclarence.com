@@ -1,7 +1,7 @@
 import { IconContext } from 'react-icons/lib';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { FiMail } from 'react-icons/fi';
-import CustomLink from './CustomLink';
+import UnstyledLink from './UnstyledLink';
 import Tippy from '@tippyjs/react';
 import { useState } from 'react';
 import SpotifyPlaying from './SpotifyPlaying';
@@ -56,12 +56,18 @@ export default function Footer() {
                                 'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-6 h-6 align-middle my-auto',
                         }}
                     >
-                        <CustomLink href='https://clarence.link/github'>
+                        <UnstyledLink
+                            className='inline-flex items-center justify-center rounded-sm ring-vis'
+                            href='https://clarence.link/github'
+                        >
                             <SiGithub />
-                        </CustomLink>
-                        <CustomLink href='https://clarence.link/linkedin'>
+                        </UnstyledLink>
+                        <UnstyledLink
+                            className='inline-flex items-center justify-center rounded-sm ring-vis'
+                            href='https://clarence.link/linkedin'
+                        >
                             <SiLinkedin />
-                        </CustomLink>
+                        </UnstyledLink>
                     </IconContext.Provider>
                 </div>
                 <SpotifyPlaying />

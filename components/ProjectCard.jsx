@@ -3,7 +3,6 @@ import { FiExternalLink } from 'react-icons/fi';
 import { IconContext } from 'react-icons/lib';
 import PickTech from './PickTech';
 import Image from 'next/image';
-import CustomLink from './CustomLink';
 import UnstyledLink from './UnstyledLink';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
@@ -18,7 +17,7 @@ export default function ProjectCard({ data }) {
                 href={data.page || data.link || data.youtube || data.github}
                 // target='_blank'
                 // rel='noopener noreferrer'
-                className='block p-5'
+                className='block p-5 rounded-md ring-vis-0'
             >
                 <header className='flex justify-between'>
                     <h4>
@@ -32,19 +31,28 @@ export default function ProjectCard({ data }) {
                             }}
                         >
                             {data.github && (
-                                <CustomLink href={data.github}>
+                                <UnstyledLink
+                                    className='inline-flex items-center justify-center rounded-sm ring-vis'
+                                    href={data.github}
+                                >
                                     <SiGithub />
-                                </CustomLink>
+                                </UnstyledLink>
                             )}
                             {data.youtube && (
-                                <CustomLink href={data.youtube}>
+                                <UnstyledLink
+                                    className='inline-flex items-center justify-center rounded-sm ring-vis'
+                                    href={data.youtube}
+                                >
                                     <SiYoutube />
-                                </CustomLink>
+                                </UnstyledLink>
                             )}
                             {data.link && (
-                                <CustomLink href={data.link}>
+                                <UnstyledLink
+                                    className='inline-flex items-center justify-center rounded-sm ring-vis'
+                                    href={data.link}
+                                >
                                     <FiExternalLink />
-                                </CustomLink>
+                                </UnstyledLink>
                             )}
                         </IconContext.Provider>
                     </div>

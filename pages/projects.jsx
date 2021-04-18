@@ -35,7 +35,7 @@ export default function ProjectsPage() {
                 >
                     <header className='mb-8 space-y-2'>
                         <motion.h1 variants={fadeInAndUp} className=''>
-                            My Projects
+                            <span className='accent'>My Projects</span>
                         </motion.h1>
                         <motion.p
                             variants={fadeInAndUp}

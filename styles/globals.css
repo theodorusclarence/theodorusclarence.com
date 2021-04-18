@@ -50,7 +50,7 @@ h3 {
 }
 
 h4 {
-    @apply text-lg font-bold font-primary;
+    @apply text-lg font-bold md:text-xl font-primary;
 }
 
 body {
@@ -132,7 +132,7 @@ span.accent {
 
 /* ring with no offset */
 .ring-vis-0 {
-    @apply focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1;
+    @apply focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1 focus:outline-none;
 }
 
 .ring-vis-0:focus {
@@ -157,18 +157,18 @@ span.accent {
 
 /** Scaling Animation */
 .btn {
-    transform: scale(100%);
+    transform: scale(1);
     transition: transform 100ms ease;
 }
 
 .btn:hover,
 .btn:focus {
-    transform: scale(110%);
+    transform: scale(1.1);
 }
 
 .btn:active {
     transition-duration: 50ms !important;
-    transform: scale(97%);
+    transform: scale(0.97);
 }
 
 /** Shadows Animation */

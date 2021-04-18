@@ -3,6 +3,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import fetcher from '../utils/fetcher';
 import { checkBlogPrefix, formatDate } from '../utils/helper';
+import UnstyledLink from './UnstyledLink';
 
 export default function PostCard({ post, index }) {
     const checkedSlug = checkBlogPrefix(post.slug);
@@ -19,22 +20,26 @@ export default function PostCard({ post, index }) {
             whileHover={{ scale: 1.02, transition: { duration: 0.1 } }}
             className='w-full bg-white rounded-md card ring-vis-0 border-thin dark:bg-dark'
         >
-            <Link href={`/blog/${post.slug}`}>
-                <a className='block p-5'>
-                    <header className='flex justify-between'>
-                        <h4>
-                            <span>{postData.title}</span>
-                        </h4>
-                        <p className='self-center flex-shrink-0 component text-dark dark:text-light'>
-                            {data?.count >= 0 ? data.count : '–––'} views
-                        </p>
-                    </header>
-                    <p className='component text-dark dark:text-light'>
-                        {formatDate(postData.publishedAt)} • {post.readingTime}
+            <UnstyledLink
+                className='block p-5 rounded-md ring-vis-0'
+                href={`/blog/${post.slug}`}
+            >
+                <header className='flex justify-between'>
+                    <h4>
+                        <span>{postData.title}</span>
+                    </h4>
+                    <p className='self-center flex-shrink-0 component text-dark dark:text-light'>
+                        {data?.count >= 0 ? data.count : '–––'} views
                     </p>
-                    <p className='component'>{postData.description}</p>
-                </a>
-            </Link>
+                </header>
+                <p className='my-2 component text-dark dark:text-light'>
+                    <span className='font-bold'>
+                        {formatDate(postData.publishedAt)}
+                    </span>{' '}
+                    • <span>{post.readingTime}</span>
+                </p>
+                <p className='component'>{postData.description}</p>
+            </UnstyledLink>
         </motion.li>
     );
 }
