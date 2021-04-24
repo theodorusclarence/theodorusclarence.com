@@ -24,3 +24,40 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 This starter file has a opinionated styling for heading with responsive size and Montserrat font imported from the google fonts.
 
 There is also Seo Component to customize page title and opengraph meta tags.
+
+## Image Guide on MDX
+
+### Small Image
+```jsx
+<figure class='flex justify-center'>
+  <Image
+    className='bg-gray-500'
+    src='/images/blogs/my-addons/ff-4.png'
+    alt='Eye dropper'
+    width={321}
+    height={382}
+  />
+</figure>
+```
+
+### Full Image
+```jsx
+<Image
+  className='bg-gray-500'
+  layout='responsive'
+  src='/images/blogs/my-addons/ff-3.png'
+  alt='Mobile View'
+  width={1440}
+  height={880}
+/>
+```
+
+### GIF
+```jsx
+<img
+  className='mx-auto w-full'
+  src='/images/blogs/my-addons/visbug.gif'
+  alt='Visbug'
+/>
+```
+
