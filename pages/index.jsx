@@ -195,6 +195,12 @@ export function getStaticProps() {
             };
         });
 
+    // Sort Featured Posts Newest First
+    featuredPosts.sort(
+        (postA, postB) =>
+            new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
+    );
+
     const featuredProjects = projects.filter((project) =>
         featuredProj.find((pr) => pr === project.id)
     );
