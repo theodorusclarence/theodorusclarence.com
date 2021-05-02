@@ -1,4 +1,4 @@
-export const featured = ['btb-flexbox-grid', 'btb-rem-em', 'my-addons'];
+export const featured = ['vite-cra', 'btb-rem-em', 'my-addons'];
 
 export const featuredProj = ['tutee-id', 'love4heroes'];
 
