@@ -6,6 +6,7 @@ import Image from 'next/image';
 import UnstyledLink from './UnstyledLink';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
+import CloudinaryImg from './CloudinaryImg';
 export default function ProjectCard({ data }) {
     const { theme } = useTheme();
     return (
@@ -60,26 +61,12 @@ export default function ProjectCard({ data }) {
                 <p className='component'>{data.description}</p>
                 <PickTech techs={data.techStack} />
                 <div className='w-full shadow-md'>
-                    {/* if in white mode, show the dark image. vice versa */}
-                    {data?.thumbnailDark && theme === 'light' ? (
-                        <Image
-                            className='bg-gray-500'
-                            width={1400}
-                            height={834}
-                            layout='responsive'
-                            src={`/images/projects/${data.thumbnailDark}`}
-                            alt={data.name}
-                        />
-                    ) : (
-                        <Image
-                            className='bg-gray-500'
-                            width={1400}
-                            height={834}
-                            layout='responsive'
-                            src={`/images/projects/${data.thumbnail}`}
-                            alt={data.name}
-                        />
-                    )}
+                    <CloudinaryImg
+                        publicId={data.cloudinaryPublicId}
+                        width='1440'
+                        height='792'
+                        altImg={data.name}
+                    />
                 </div>
                 {data.page && (
                     <p className='inline-block mt-4 font-medium view'>

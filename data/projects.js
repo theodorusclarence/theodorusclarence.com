@@ -7,6 +7,7 @@ export const projects = [
         description: 'This website is used to promote Petrolida 2021 event.',
         techStack: ['nextjs', 'tailwindcss'],
         thumbnail: 'petrolida.jpg',
+        cloudinaryPublicId: 'theodorusclarence/tc-petrolida-2021_bmwmxz.png',
         link: 'http://petrolida.its.ac.id',
     },
     {
@@ -18,6 +19,7 @@ export const projects = [
             'This website is made for tutee.id startup that meets tutors from universities with customers.',
         techStack: ['react', 'redux', 'firebase'],
         thumbnail: 'tutee-id/tutee-id.png',
+        cloudinaryPublicId: 'theodorusclarence/tc-tutee-id_rl5i6j.png',
     },
     {
         id: 'love4heroes',
@@ -28,6 +30,7 @@ export const projects = [
             'An app to express our gratitude to frontline workers using warm messages. Made for uOttaHack 4',
         techStack: ['nextjs', 'tailwindcss', 'firebase', 'swr'],
         thumbnail: 'love4heroes.png',
+        cloudinaryPublicId: 'theodorusclarence/tc-love4heroes_kruael.png',
         github: 'https://github.com/theodorusclarence/love4heroes',
         youtube: 'https://youtu.be/5WN3ZmU_dZ8',
         link: 'https://love4heroes.online',
@@ -39,6 +42,7 @@ export const projects = [
             'An attempt to study Vanilla JavaScript faster, done in a month.',
         techStack: ['js'],
         thumbnail: '20-javascript.jpg',
+        cloudinaryPublicId: 'theodorusclarence/tc-20-javascript_awcd7i.jpg',
         github: null,
         page: '/projects/20-javascript',
     },
@@ -49,6 +53,7 @@ export const projects = [
             'This is my first personal website, made with SCSS and static HTML. ',
         techStack: ['scss'],
         thumbnail: 'theodorusclarence-github.jpg',
+        cloudinaryPublicId: 'theodorusclarence/tc-personal-web-1_zletzq.png',
         github:
             'https://github.com/theodorusclarence/theodorusclarence.github.io',
         link: 'https://theodorusclarence.github.io',
@@ -60,6 +65,7 @@ export const projects = [
             'This project is made to provide a voting platform for Universitas Padjajaran',
         techStack: ['react', 'scss'],
         thumbnail: 'voting-page.jpg',
+        cloudinaryPublicId: 'theodorusclarence/tc-voting-page_amcxtl.png',
         github: null,
         youtube: 'https://youtu.be/NZf-xuB-Lxg',
     },

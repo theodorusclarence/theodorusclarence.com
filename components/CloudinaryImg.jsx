@@ -1,7 +1,12 @@
 import Image from 'next/image';
 import { buildUrl } from 'cloudinary-build-url';
 
-export default function CloudinaryImg({ publicId, height, width }) {
+export default function CloudinaryImg({
+    publicId,
+    height,
+    width,
+    altImg = 'Project Image',
+}) {
     const urlBlurred = buildUrl(publicId, {
         cloud: {
             cloudName: 'theodorusclarence',
@@ -41,7 +46,7 @@ export default function CloudinaryImg({ publicId, height, width }) {
                     width={width}
                     height={height}
                     src={url}
-                    alt='Cloudinary'
+                    alt={altImg}
                     unoptimized={true}
                 />
             </div>
