@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import CloudinaryImg from './CloudinaryImg';
 import CustomLink from './CustomLink';
 
@@ -22,12 +21,12 @@ export default function ProjectHeader({ data }) {
                     <CustomLink href={data.link}>Visit Live</CustomLink>
                 )}
             </p>
-            <figure className='shadow-md dark:shadow-none'>
+            <figure className='overflow-hidden rounded-sm shadow-md dark:shadow-none'>
                 <CloudinaryImg
                     publicId={data.cloudinaryPublicId}
                     width='1440'
                     height='792'
-                    altImg={data.name}
+                    alt={data.name}
                 />
             </figure>
         </header>

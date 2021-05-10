@@ -65,7 +65,7 @@ export default function ProjectCard({ data }) {
                         publicId={data.cloudinaryPublicId}
                         width='1440'
                         height='792'
-                        altImg={data.name}
+                        alt={data.name}
                     />
                 </div>
                 {data.page && (

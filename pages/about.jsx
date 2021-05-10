@@ -49,7 +49,7 @@ export default function About() {
                                 publicId='theodorusclarence/tc-me_dpzlvc.png'
                                 width='596'
                                 height='882'
-                                altImg='Photo of me'
+                                alt='Photo of me'
                             />
                         </motion.figure>
                         <motion.p

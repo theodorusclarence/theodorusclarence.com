@@ -1,11 +1,14 @@
 import Image from 'next/image';
 import { buildUrl } from 'cloudinary-build-url';
+import { IoTimeOutline } from 'react-icons/io5';
 
 export default function CloudinaryImg({
     publicId,
     height,
     width,
-    altImg = 'Project Image',
+    alt = 'Project Image',
+    title,
+    className,
 }) {
     const urlBlurred = buildUrl(publicId, {
         cloud: {
@@ -26,6 +29,7 @@ export default function CloudinaryImg({
 
     return (
         <div
+            className={className}
             style={{
                 position: 'relative',
                 height: 0,
@@ -46,8 +50,9 @@ export default function CloudinaryImg({
                     width={width}
                     height={height}
                     src={url}
-                    alt={altImg}
+                    alt={alt}
                     unoptimized={true}
+                    title={title || alt}
                 />
             </div>
         </div>

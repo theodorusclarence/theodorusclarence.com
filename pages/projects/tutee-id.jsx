@@ -1,12 +1,13 @@
-import CustomLink from '@/components/CustomLink';
-import UnstyledLink from '@/components/UnstyledLink';
-import Footer from '@/components/Footer';
-import Nav from '@/components/Nav';
-import PickTech from '@/components/PickTech';
-import ProjectHeader from '@/components/ProjectHeader';
-import { projects } from '@/data/projects';
 import { NextSeo } from 'next-seo';
-import Image from 'next/image';
+
+import { projects } from '@/data/projects';
+
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import PickTech from '@/components/PickTech';
+import UnstyledLink from '@/components/UnstyledLink';
+import ProjectHeader from '@/components/ProjectHeader';
+import CloudinaryImg from '@/components/CloudinaryImg';
 
 export default function PetrolidaPage({ data }) {
     const title = data.name + ' - theodorusclarence.com';
@@ -67,16 +68,42 @@ export default function PetrolidaPage({ data }) {
                             page, search tutor page, and session page.
                         </p>
 
-                        <figure className='w-full '>
-                            <Image
-                                className='rounded-sm'
-                                width={800}
-                                height={1320}
-                                layout='responsive'
-                                src={`/images/projects/tutee-id/preview.png`}
-                                alt='Web Screenshot'
-                            />
-                        </figure>
+                        <div className='grid items-start grid-cols-2 gap-4'>
+                            <figure className='w-full m-0 overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                <CloudinaryImg
+                                    publicId='theodorusclarence/tutee-id/tutee-1_jhx3st.png'
+                                    width={800}
+                                    height={2709}
+                                    alt='Web Screenshot'
+                                />
+                            </figure>
+                            <div className='flex flex-col justify-between w-full h-full'>
+                                <figure className='w-full m-0 overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                    <CloudinaryImg
+                                        publicId='theodorusclarence/tutee-id/tutee-2_dvybsa.png'
+                                        width={800}
+                                        height={1001}
+                                        alt='Web Screenshot'
+                                    />
+                                </figure>
+                                <figure className='w-full m-0 overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                    <CloudinaryImg
+                                        publicId='theodorusclarence/tutee-id/tutee-3_ikgyzz.png'
+                                        width={800}
+                                        height={1067}
+                                        alt='Web Screenshot'
+                                    />
+                                </figure>
+                                <figure className='w-full m-0 overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                    <CloudinaryImg
+                                        publicId='theodorusclarence/tutee-id/tutee-4_wxgcnh.png'
+                                        width={800}
+                                        height={442}
+                                        alt='Web Screenshot'
+                                    />
+                                </figure>
+                            </div>
+                        </div>
 
                         <img
                             className='mx-auto mt-8 shadow-md dark:shadow-none'
@@ -166,6 +193,10 @@ export default function PetrolidaPage({ data }) {
                             blockquote h2 {
                                 font-style: normal;
                                 margin-bottom: 0.5em;
+                            }
+
+                            .prose .grid figure {
+                                margin: 0;
                             }
                         `}</style>
                     </article>

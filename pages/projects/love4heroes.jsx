@@ -1,12 +1,14 @@
-import CustomLink from '@/components/CustomLink';
-import Footer from '@/components/Footer';
-import UnstyledLink from '@/components/UnstyledLink';
-import Nav from '@/components/Nav';
-import PickTech from '@/components/PickTech';
-import ProjectHeader from '@/components/ProjectHeader';
-import { projects } from '@/data/projects';
 import { NextSeo } from 'next-seo';
-import Image from 'next/image';
+
+import { projects } from '@/data/projects';
+
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import PickTech from '@/components/PickTech';
+import CustomLink from '@/components/CustomLink';
+import UnstyledLink from '@/components/UnstyledLink';
+import ProjectHeader from '@/components/ProjectHeader';
+import CloudinaryImg from '@/components/CloudinaryImg';
 
 export default function PetrolidaPage({ data }) {
     const title = data.name + ' - theodorusclarence.com';
@@ -95,49 +97,41 @@ export default function PetrolidaPage({ data }) {
                         </p>
 
                         <div className='grid items-start grid-cols-2 gap-4'>
-                            <figure className='w-full shadow-md dark:shadow-none'>
-                                <Image
-                                    className='bg-gray-500 rounded-sm'
+                            <figure className='w-full overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                <CloudinaryImg
+                                    publicId='theodorusclarence/love4heroes/ss1_jbyadr.png'
                                     width={800}
                                     height={1556}
-                                    layout='responsive'
-                                    src={`/images/projects/love4heroes/ss1.png`}
                                     title='Landing Page'
                                     alt='Web Screenshot'
                                 />
                             </figure>
                             <div>
-                                <figure className='w-full shadow-md dark:shadow-none'>
-                                    <Image
-                                        className='bg-gray-500 rounded-sm'
+                                <figure className='w-full overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                    <CloudinaryImg
+                                        publicId='theodorusclarence/love4heroes/ss2_qvyt5u.png'
                                         width={800}
                                         height={426}
-                                        layout='responsive'
-                                        src={`/images/projects/love4heroes/ss2.png`}
                                         title='Filling Out Form For Cards Page'
                                         alt='Web Screenshot Form'
                                     />
                                 </figure>
-                                <figure className='w-full shadow-md dark:shadow-none'>
-                                    <Image
-                                        className='bg-gray-500 rounded-sm'
+                                <figure className='w-full overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                    <CloudinaryImg
+                                        publicId='theodorusclarence/love4heroes/ss3_rr4edc.png'
                                         width={800}
                                         height={426}
-                                        layout='responsive'
-                                        src={`/images/projects/love4heroes/ss4.png`}
                                         title='Page after you fill the form'
                                         alt='Web Screenshot'
                                     />
                                 </figure>
-                                <figure className='w-full shadow-md dark:shadow-none'>
-                                    <Image
-                                        className='bg-gray-500 rounded-sm'
+                                <figure className='w-full overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                    <CloudinaryImg
+                                        publicId='theodorusclarence/love4heroes/ss4_gvawji.png'
                                         width={800}
                                         height={426}
-                                        layout='responsive'
-                                        src={`/images/projects/love4heroes/ss3.png`}
                                         title='Card when sended to the frontline workers'
-                                        alt='Web Screenshot '
+                                        alt='Web Screenshot'
                                     />
                                 </figure>
                             </div>
@@ -159,13 +153,11 @@ export default function PetrolidaPage({ data }) {
                             together. Also, there are only 36 hours to finish a
                             functioning full-stack application.
                         </p>
-                        <figure className='w-full shadow-md dark:shadow-none'>
-                            <Image
-                                className='bg-gray-500 rounded-sm'
+                        <figure className='w-full overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                            <CloudinaryImg
+                                publicId='theodorusclarence/love4heroes/team_frd6g5.png'
                                 width={1000}
                                 height={608}
-                                layout='responsive'
-                                src={`/images/projects/love4heroes/team.png`}
                                 title='My Team on uOttaHack'
                                 alt='Team on uOttahack'
                             />
@@ -205,12 +197,11 @@ export default function PetrolidaPage({ data }) {
                             like once. In the end, it was successful by
                             utilizing local storage to store the state.
                         </p>
-                        <figure className='flex justify-center shadow-md dark:shadow-none'>
-                            <Image
-                                className='bg-gray-500 rounded-sm'
+                        <figure className='mx-auto w-[210px] shadow-md dark:shadow-none'>
+                            <CloudinaryImg
+                                publicId='theodorusclarence/love4heroes/likebutton_ikdrje.png'
                                 width={210}
                                 height={149}
-                                src={`/images/projects/love4heroes/likebutton.png`}
                                 alt='Open Graph Tag'
                             />
                         </figure>
