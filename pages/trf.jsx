@@ -1,3 +1,4 @@
+import CloudinaryImg from '@/components/CloudinaryImg';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
 import { NextSeo } from 'next-seo';
@@ -25,6 +26,7 @@ export default function TransferPage() {
                 title={title}
                 description={description}
                 canonical={url}
+                noindex={true}
                 openGraph={{
                     url,
                     title,
@@ -37,13 +39,12 @@ export default function TransferPage() {
                     <article className='text-center layout'>
                         <h1>Rekening BCA</h1>
                         <p className='mt-2'>Atas Nama Clarence</p>
-                        <figure className='max-w-sm mx-auto mt-4 bg-gray-500 rounded shadow-sm dark:shadow-none'>
-                            <Image
-                                className='rounded'
+                        <figure className='max-w-sm mx-auto mt-4 overflow-hidden bg-gray-500 rounded shadow-sm dark:shadow-none'>
+                            <CloudinaryImg
+                                publicId='theodorusclarence/qr-bca_rcbkew.jpg'
                                 width={992}
                                 height={886}
-                                layout='responsive'
-                                src={`/images/qr-bca.jpg`}
+                                altImg='QR BCA'
                             />
                         </figure>
                         <div className='flex flex-col items-center mt-8 space-y-4'>
