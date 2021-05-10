@@ -63,23 +63,4 @@ export const projects = [
         github: null,
         youtube: 'https://youtu.be/NZf-xuB-Lxg',
     },
-    {
-        id: 'personal-web-2',
-        name: 'theodorusclarence.com',
-        description: 'This is my current website built using FaunaDB and MDX.',
-        techStack: ['nextjs', 'tailwindcss', 'swr', 'mdx'],
-        thumbnail: 'personal-web-2/personal-web-2.jpg',
-        thumbnailDark: 'personal-web-2/personal-web-2-dark.jpg',
-        github: 'https://github.com/theodorusclarence/theodorusclarence.com',
-        link: null,
-    },
-    {
-        id: 'spotify-playing',
-        name: 'Spotify Now Playing Widget',
-        description: "Get data of what's playing on your spotify using Next.js",
-        techStack: ['nextjs', 'swr'],
-        thumbnail: 'spotify-playing.png',
-        github: 'https://github.com/theodorusclarence/now-playing-spotify',
-        link: '/blog/spotify-now-playing',
-    },
 ];
