@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import CloudinaryImg from './CloudinaryImg';
 import CustomLink from './CustomLink';
 
 export default function ProjectHeader({ data }) {
@@ -22,13 +23,11 @@ export default function ProjectHeader({ data }) {
                 )}
             </p>
             <figure className='shadow-md dark:shadow-none'>
-                <Image
-                    className='bg-gray-500 rounded-sm '
-                    width={1400}
-                    height={834}
-                    layout='responsive'
-                    src={`/images/projects/${data.thumbnail}`}
-                    alt={data.name}
+                <CloudinaryImg
+                    publicId={data.cloudinaryPublicId}
+                    width='1440'
+                    height='792'
+                    altImg={data.name}
                 />
             </figure>
         </header>
