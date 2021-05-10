@@ -8,14 +8,14 @@ import SEO from '@/next-seo.config';
 import { AnimateSharedLayout } from 'framer-motion';
 
 function MyApp({ Component, pageProps }) {
-    return (
-        <ThemeProvider attribute='class' defaultTheme='dark'>
-            <DefaultSeo {...SEO} />
-            <AnimateSharedLayout>
-                <Component {...pageProps} />
-            </AnimateSharedLayout>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider attribute='class' defaultTheme='dark'>
+      <DefaultSeo {...SEO} />
+      <AnimateSharedLayout>
+        <Component {...pageProps} />
+      </AnimateSharedLayout>
+    </ThemeProvider>
+  );
 }
 
 export default MyApp;
