@@ -1,45 +1,45 @@
 {
-    "redirects": [
+  "redirects": [
+    {
+      "source": "/ig",
+      "destination": "https://instagram.com/theodorusclarence"
+    },
+    {
+      "source": "/github",
+      "destination": "https://github.com/theodorusclarence"
+    },
+    {
+      "source": "/linkedin",
+      "destination": "https://www.linkedin.com/in/theodorus-clarence/"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/fonts/inter-bold-webfont.woff2",
+      "headers": [
         {
-            "source": "/ig",
-            "destination": "https://instagram.com/theodorusclarence"
-        },
-        {
-            "source": "/github",
-            "destination": "https://github.com/theodorusclarence"
-        },
-        {
-            "source": "/linkedin",
-            "destination": "https://www.linkedin.com/in/theodorus-clarence/"
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
-    ],
-    "headers": [
+      ]
+    },
+    {
+      "source": "/fonts/inter-medium-webfont.woff2",
+      "headers": [
         {
-            "source": "/fonts/inter-bold-webfont.woff2",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=31536000, immutable"
-                }
-            ]
-        },
-        {
-            "source": "/fonts/inter-medium-webfont.woff2",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=31536000, immutable"
-                }
-            ]
-        },
-        {
-            "source": "/fonts/inter-regular-webfont.woff2",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=31536000, immutable"
-                }
-            ]
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
-    ]
+      ]
+    },
+    {
+      "source": "/fonts/inter-regular-webfont.woff2",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
 }
