@@ -1,12 +1,14 @@
+import { NextSeo } from 'next-seo';
+
+import { projects } from '@/data/projects';
+
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
-import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
-import PickTech from '@/components/PickTech';
 import ProjectHeader from '@/components/ProjectHeader';
-import { projects } from '@/data/projects';
-import { NextSeo } from 'next-seo';
-import Image from 'next/image';
+import PickTech from '@/components/PickTech';
+import CloudinaryImg from '@/components/CloudinaryImg';
+import Footer from '@/components/Footer';
 
 export default function PetrolidaPage({ data }) {
     const title = data.name + ' - theodorusclarence.com';
@@ -73,23 +75,21 @@ export default function PetrolidaPage({ data }) {
                         </p>
 
                         <div className='grid items-start grid-cols-2 gap-4'>
-                            <figure className='w-full shadow-md dark:shadow-none'>
-                                <Image
+                            <figure className='w-full overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                <CloudinaryImg
+                                    publicId='theodorusclarence/petrolida-2021/ss1_pvyttb.png'
                                     className='bg-gray-500 rounded-sm'
                                     width={800}
                                     height={2366}
-                                    layout='responsive'
-                                    src={`/images/projects/petrolida-2021/ss1.png`}
                                     alt='Web Screenshot'
                                 />
                             </figure>
-                            <figure className='w-full shadow-md dark:shadow-none'>
-                                <Image
+                            <figure className='w-full overflow-hidden rounded-sm shadow-md dark:shadow-none'>
+                                <CloudinaryImg
+                                    publicId='theodorusclarence/petrolida-2021/ss2_fpine4.png'
                                     className='bg-gray-500 rounded-sm'
                                     width={800}
                                     height={2782}
-                                    layout='responsive'
-                                    src={`/images/projects/petrolida-2021/ss2.png`}
                                     alt='Web Screenshot'
                                 />
                             </figure>
@@ -107,12 +107,12 @@ export default function PetrolidaPage({ data }) {
                             link preview with a custom description and opengraph
                             image.
                         </p>
-                        <figure className='flex justify-center shadow-md dark:shadow-none'>
-                            <Image
+                        <figure className='mx-auto w-[315px] shadow-md dark:shadow-none rounded-sm overflow-hidden'>
+                            <CloudinaryImg
+                                publicId='theodorusclarence/petrolida-2021/opengraph_prie5d.jpg'
                                 className='bg-gray-500 rounded-sm'
                                 width={315}
                                 height={227}
-                                src={`/images/projects/petrolida-2021/opengraph.jpg`}
                                 alt='Open Graph Tag'
                             />
                         </figure>

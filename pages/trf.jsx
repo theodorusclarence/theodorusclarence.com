@@ -44,7 +44,7 @@ export default function TransferPage() {
                                 publicId='theodorusclarence/qr-bca_rcbkew.jpg'
                                 width={992}
                                 height={886}
-                                altImg='QR BCA'
+                                alt='QR BCA'
                             />
                         </figure>
                         <div className='flex flex-col items-center mt-8 space-y-4'>
