@@ -24,10 +24,9 @@ Next.js memiliki fitur khusus yaitu kita bisa membuat api route semacam express 
 - Klik **Create An App**
 - Masukkan App Name, App description, kemudian **Create**
 
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/2.png'
+  publicId='theodorusclarence/blogs/spotify-now-playing/2_jbfz2i.png'
   alt='Dashboard'
   width={1437}
   height={795}
@@ -35,21 +34,21 @@ Next.js memiliki fitur khusus yaitu kita bisa membuat api route semacam express 
 
 - Selanjutnya, kamu akan mendapatkan `Client ID` dan `Client Secret` (Jangan memberikan kode ini ke siapa-siapa)
 
-<Image
-  className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/3.png'
-  alt='Client Info'
-  width={493}
-  height={323}
-/>
+<figure className='mx-auto' style={{ width: 493 }}>
+  <CloudinaryImg
+    className='bg-gray-500'
+    publicId='theodorusclarence/blogs/spotify-now-playing/3_pcmoan.png'
+    alt='Client Info'
+    width={493}
+    height={323}
+  />
+</figure>
 
 - Buka edit settings, kemudian masukkan `http://localhost:3000` pada RedirectURIs
 
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/4.png'
+  publicId='theodorusclarence/blogs/spotify-now-playing/4_c4ol4r.png'
   alt='Edit Settings'
   width={1437}
   height={795}
@@ -77,10 +76,9 @@ https://accounts.spotify.com/authorize?client_id=eaccb97f6d0e405897adf1dd80b95c0
 
 Buka link tersebut di browser, kemudian anda akan diarahkan ke redirect uri, copy link websitenya
 
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/5.png'
+  publicId='theodorusclarence/blogs/spotify-now-playing/5_ynbc2q.png'
   alt='Redirect URI'
   width={1440}
   height={891}
@@ -98,14 +96,15 @@ Kemudian kita membutuhkan authorization client yang telah diencrypt dengan base6
 
 Contohnya sebagai berikut:
 
-<Image
-  className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/6.png'
-  alt='Base64 Encode'
-  width={784}
-  height={619}
-/>
+<figure className='mx-auto' style={{ width: 784 }}>
+  <CloudinaryImg
+    className='bg-gray-500'
+    publicId='theodorusclarence/blogs/spotify-now-playing/6_jkbqaa.png'
+    alt='Base64 Encode'
+    width={784}
+    height={619}
+  />
+</figure>
 
 Kemudian, catat hasil encrypt `base64` tersebut.
 
@@ -139,10 +138,9 @@ Kamu akan mendapatkan return JSON yaitu:
 
 Contoh running command pada terminal:
 
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/7.png'
+  publicId='theodorusclarence/blogs/spotify-now-playing/7_rud11r.png'
   alt='Terminal'
   width={920}
   height={494}

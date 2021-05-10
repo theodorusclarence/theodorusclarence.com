@@ -19,6 +19,7 @@ import Nav from '@/components/Nav.jsx';
 import fetcher from '@/utils/fetcher.js';
 import { checkBlogPrefix, formatDate } from '@/utils/helper.js';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
+import CloudinaryImg from '@/components/CloudinaryImg';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -32,6 +33,7 @@ const components = {
     // TestComponent: dynamic(() => import('../../components/TestComponent')),
     Head,
     Image,
+    CloudinaryImg,
     code: CustomCode,
     pre: Pre,
 };
