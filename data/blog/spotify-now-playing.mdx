@@ -24,10 +24,9 @@ Next.js has a built-in API in a single application, so choosing Next.js is a per
 - Click **Create An App**
 - Fill in App Name, App description, then **Create**
 
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/2.png'
+  publicId='theodorusclarence/blogs/spotify-now-playing/2_jbfz2i.png'
   alt='Dashboard'
   width={1437}
   height={795}
@@ -35,21 +34,21 @@ Next.js has a built-in API in a single application, so choosing Next.js is a per
 
 - Next, you will be provided with `Client ID` and `Client Secret` (Don't give this secret to anyone)
 
-<Image
-  className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/3.png'
-  alt='Client Info'
-  width={493}
-  height={323}
-/>
+<figure className='mx-auto' style={{ width: 493 }}>
+  <CloudinaryImg
+    className='bg-gray-500'
+    publicId='theodorusclarence/blogs/spotify-now-playing/3_pcmoan.png'
+    alt='Client Info'
+    width={493}
+    height={323}
+  />
+</figure>
 
 - Open edit settings, then fill out `http://localhost:3000` on RedirectURIs
 
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/4.png'
+  publicId='theodorusclarence/blogs/spotify-now-playing/4_c4ol4r.png'
   alt='Edit Settings'
   width={1437}
   height={795}
@@ -77,10 +76,9 @@ https://accounts.spotify.com/authorize?client_id=eaccb97f6d0e405897adf1dd80b95c0
 
 Open that link in a browser, then you will get redirected into a uri, copy the website link
 
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/5.png'
+  publicId='theodorusclarence/blogs/spotify-now-playing/5_ynbc2q.png'
   alt='Redirect URI'
   width={1440}
   height={891}
@@ -98,14 +96,15 @@ Next we need to get authorization client that is already encrypted with base64, 
 
 For example:
 
-<Image
-  className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/6.png'
-  alt='Base64 Encode'
-  width={784}
-  height={619}
-/>
+<figure className='mx-auto' style={{ width: 784 }}>
+  <CloudinaryImg
+    className='bg-gray-500'
+    publicId='theodorusclarence/blogs/spotify-now-playing/6_jkbqaa.png'
+    alt='Base64 Encode'
+    width={784}
+    height={619}
+  />
+</figure>
 
 Next, write down the encrypted `base64`
 
@@ -139,10 +138,9 @@ You will get a JSON like this:
 
 Example on the terminal:
 
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/spotify-now-playing/7.png'
+  publicId='theodorusclarence/blogs/spotify-now-playing/7_rud11r.png'
   alt='Terminal'
   width={920}
   height={494}
