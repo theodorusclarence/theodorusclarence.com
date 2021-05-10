@@ -1,11 +1,13 @@
-import Image from 'next/image';
 import { NextSeo } from 'next-seo';
-import CustomLink from '@/components/CustomLink';
-import Nav from '@/components/Nav';
-import Footer from '@/components/Footer';
-import CopyableText from '@/components/CopyableText';
 import { motion } from 'framer-motion';
+
 import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
+
+import Nav from '@/components/Nav';
+import CustomLink from '@/components/CustomLink';
+import CloudinaryImg from '@/components/CloudinaryImg';
+import CopyableText from '@/components/CopyableText';
+import Footer from '@/components/Footer';
 
 const url = 'https://theodorusclarence.com/about';
 const title = 'About – theodorusclarence.com';
@@ -41,27 +43,13 @@ export default function About() {
                         </motion.h1>
                         <motion.figure
                             variants={fadeInAndUp}
-                            className='relative float-right ml-6 w-36 md:w-52'
+                            className='float-right ml-6 w-36 md:w-52'
                         >
-                            {/* <img
-                                aria-hidden='true'
-                                alt=''
-                                src='/images/me-loads.png'
-                                className='absolute inset-0 block object-contain'
-                                style={{
-                                    width: 215,
-                                    height: 250,
-                                }}
-                            /> */}
-                            <Image
-                                className=''
-                                width={215}
-                                height={260}
-                                layout='responsive'
-                                objectFit='contain'
-                                objectPosition='center 80%'
-                                src={'/images/me3.png'}
-                                alt={'photo of me'}
+                            <CloudinaryImg
+                                publicId='theodorusclarence/tc-me_dpzlvc.png'
+                                width='596'
+                                height='882'
+                                altImg='Photo of me'
                             />
                         </motion.figure>
                         <motion.p
