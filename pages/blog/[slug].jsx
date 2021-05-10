@@ -1,24 +1,25 @@
 import fs from 'fs';
-import matter from 'gray-matter';
-import mdxPrism from 'mdx-prism';
-import hydrate from 'next-mdx-remote/hydrate';
-import renderToString from 'next-mdx-remote/render-to-string';
+import path from 'path';
 import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import Image from 'next/image';
-import path from 'path';
 import { useEffect } from 'react';
-import readingTime from 'reading-time';
 import useSWR, { mutate } from 'swr';
-import Link from 'next/link';
+import matter from 'gray-matter';
+import readingTime from 'reading-time';
+import mdxPrism from 'mdx-prism';
+import hydrate from 'next-mdx-remote/hydrate';
+import renderToString from 'next-mdx-remote/render-to-string';
+
+import fetcher from '@/utils/fetcher.js';
+import { checkBlogPrefix, formatDate } from '@/utils/helper.js';
+import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
+
 import CustomCode, { Pre } from '@/components/CustomCode.jsx';
 import CustomLink from '@/components/CustomLink.jsx';
 import UnstyledLink from '@/components/UnstyledLink.jsx';
 import Footer from '@/components/Footer.jsx';
 import Nav from '@/components/Nav.jsx';
-import fetcher from '@/utils/fetcher.js';
-import { checkBlogPrefix, formatDate } from '@/utils/helper.js';
-import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 import CloudinaryImg from '@/components/CloudinaryImg';
 
 // Custom components/renderers to pass to MDX.

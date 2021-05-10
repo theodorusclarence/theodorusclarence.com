@@ -1,19 +1,22 @@
 import fs from 'fs';
+import path from 'path';
+import { NextSeo } from 'next-seo';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 import matter from 'gray-matter';
 import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
-import Head from 'next/head';
-import Image from 'next/image';
-import { NextSeo } from 'next-seo';
-import Link from 'next/link';
-import path from 'path';
 import mdxPrism from 'mdx-prism';
-import CustomLink from '@/components/CustomLink.jsx';
+
 import { postLibraryPaths, LIBRARY_PATH } from '@/utils/mdxUtils';
+
 import Nav from '@/components/Nav.jsx';
-import CustomCode, { Pre } from '@/components/CustomCode.jsx';
 import Footer from '@/components/Footer.jsx';
 import UnstyledLink from '@/components/UnstyledLink';
+import CustomLink from '@/components/CustomLink.jsx';
+import CustomCode, { Pre } from '@/components/CustomCode.jsx';
+import CloudinaryImg from '@/components/CloudinaryImg';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -27,6 +30,7 @@ const components = {
     // TestComponent: dynamic(() => import('../../components/TestComponent')),
     Head,
     Image,
+    CloudinaryImg,
     code: CustomCode,
     pre: Pre,
 };

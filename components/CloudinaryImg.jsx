@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { buildUrl } from 'cloudinary-build-url';
-import { IoTimeOutline } from 'react-icons/io5';
 
 export default function CloudinaryImg({
     publicId,
