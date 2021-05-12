@@ -60,17 +60,6 @@ export const projects = [
     page: '/projects/20-javascript',
   },
   {
-    id: 'personal-web-1',
-    name: 'Personal Website 1.0',
-    description:
-      'This is my first personal website, made with SCSS and static HTML. ',
-    techStack: ['scss'],
-    thumbnail: 'theodorusclarence-github.jpg',
-    cloudinaryPublicId: 'theodorusclarence/tc-personal-web-1_zletzq.png',
-    github: 'https://github.com/theodorusclarence/theodorusclarence.github.io',
-    link: 'https://theodorusclarence.github.io',
-  },
-  {
     id: 'voting-page',
     name: 'Voting Page',
     description:
@@ -81,4 +70,15 @@ export const projects = [
     github: null,
     youtube: 'https://youtu.be/NZf-xuB-Lxg',
   },
+  // {
+  //   id: 'personal-web-1',
+  //   name: 'Personal Website 1.0',
+  //   description:
+  //     'This is my first personal website, made with SCSS and static HTML. ',
+  //   techStack: ['scss'],
+  //   thumbnail: 'theodorusclarence-github.jpg',
+  //   cloudinaryPublicId: 'theodorusclarence/tc-personal-web-1_zletzq.png',
+  //   github: 'https://github.com/theodorusclarence/theodorusclarence.github.io',
+  //   link: 'https://theodorusclarence.github.io',
+  // },
 ];
