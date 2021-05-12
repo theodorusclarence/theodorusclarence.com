@@ -22,7 +22,7 @@ import Nav from '@/components/Nav';
 
 ---
 
-## Add this to root with name `jsconfig.json`
+## Add this to root with the filename of `jsconfig.json`
 
 ```json
 {
@@ -38,4 +38,44 @@ import Nav from '@/components/Nav';
   },
   "exclude": ["node_modules", ".next"]
 }
+```
+
+Or you can just use [my Next.js & Tailwindcss starter template](https://github.com/theodorusclarence/nextjs-tailwind-starter)
+
+---
+
+# For Create React App
+
+## Add this to root with the filename of `jsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./components/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/contexts/*": ["./contexts/*"],
+      "@/routes/*": ["./routes/*"]
+    }
+  },
+  "exclude": ["node_modules", "build"]
+}
+```
+
+## And in craco.config.js
+
+```js
+const path = require('path');
+
+module.exports = {
+  // ...existing code
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+};
 ```
