@@ -30,6 +30,17 @@ const techSpan = {
   mdx: ['MDX', () => <SiMarkdown />],
   prettier: ['Prettier', () => <SiPrettier />],
   analytics: ['Google Analytics', () => <SiGoogleanalytics />],
+  winner: [
+    'Won a Hackathon',
+    () => (
+      <span
+        style={{ backgroundColor: '#F3BF1E' }}
+        className='px-2 py-1 text-xs tracking-wide uppercase rounded text-dark'
+      >
+        Winner
+      </span>
+    ),
+  ],
 };
 
 /**
@@ -54,7 +65,9 @@ export default function PickTech({ techs }) {
               </span>
             }
           >
-            <div>{techSpan[tech][1]()}</div>
+            <div style={tech === 'winner' ? { marginLeft: 'auto' } : null}>
+              {techSpan[tech][1]()}
+            </div>
           </Tippy>
         ))}
       </IconContext.Provider>
