@@ -115,7 +115,7 @@ export default function SxceosleaguePage({ data }) {
             </p>
             <figure
               className='mx-auto overflow-hidden rounded-sm shadow-md dark:shadow-none'
-              style={{ width: 450 }}
+              style={{ maxWidth: 450 }}
             >
               <CloudinaryImg
                 publicId='theodorusclarence/sxceosleague/ss4_hqmquo.png'
