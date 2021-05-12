@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { buildUrl } from 'cloudinary-build-url';
+import PropTypes from 'prop-types';
 
 export default function CloudinaryImg({
   publicId,
@@ -57,3 +58,12 @@ export default function CloudinaryImg({
     </div>
   );
 }
+
+CloudinaryImg.propTypes = {
+  publicId: PropTypes.string.isRequired,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  alt: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  className: PropTypes.string,
+};
