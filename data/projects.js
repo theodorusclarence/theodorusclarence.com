@@ -41,7 +41,7 @@ export const projects = [
     category: 'Team of 4',
     description:
       'An app to express our gratitude to frontline workers using warm messages. Made for uOttaHack 4',
-    techStack: ['nextjs', 'tailwindcss', 'firebase', 'swr'],
+    techStack: ['nextjs', 'tailwindcss', 'firebase', 'swr', 'winner'],
     thumbnail: 'love4heroes.png',
     cloudinaryPublicId: 'theodorusclarence/tc-love4heroes_kruael.png',
     github: 'https://github.com/theodorusclarence/love4heroes',
