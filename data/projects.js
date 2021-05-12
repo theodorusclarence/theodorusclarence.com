@@ -1,5 +1,17 @@
 export const projects = [
   {
+    id: 'sxceosleague',
+    page: '/projects/sxceosleague',
+    name: 'StudentsxCEOs League',
+    category: 'Team of 6, as the project leader',
+    description:
+      'This website is used to promote StudentsxCEOs League, and provide form to register.',
+    techStack: ['nextjs', 'tailwindcss'],
+    thumbnail: 'sxceosleague/ss1.png',
+    cloudinaryPublicId: 'theodorusclarence/sxceosleague/ss-thumb_kzrsxq.png',
+    link: 'https://sxceosleague.com',
+  },
+  {
     id: 'petrolida-2021',
     page: '/projects/petrolida-2021',
     name: 'Petrolida 2021',
@@ -9,6 +21,7 @@ export const projects = [
     thumbnail: 'petrolida.jpg',
     cloudinaryPublicId: 'theodorusclarence/tc-petrolida-2021_bmwmxz.png',
     link: 'http://petrolida.its.ac.id',
+    github: 'https://github.com/theodorusclarence/petrolida-2021',
   },
   {
     id: 'tutee-id',
