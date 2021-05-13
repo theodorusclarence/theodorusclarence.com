@@ -13,6 +13,7 @@ import {
   SiGoogleanalytics,
   SiFirebase,
   SiRedux,
+  SiGit,
 } from 'react-icons/si';
 import { IoLogoVercel } from 'react-icons/io5';
 
@@ -30,6 +31,7 @@ const techSpan = {
   mdx: ['MDX', () => <SiMarkdown />],
   prettier: ['Prettier', () => <SiPrettier />],
   analytics: ['Google Analytics', () => <SiGoogleanalytics />],
+  git: ['Git', () => <SiGit />],
   winner: [
     'Won a Hackathon',
     () => (
