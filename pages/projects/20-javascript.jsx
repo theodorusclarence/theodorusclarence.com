@@ -1,6 +1,8 @@
 import { IconContext } from 'react-icons/lib';
 import { SiGithub } from 'react-icons/si';
 
+import { ogGenerate } from '@/utils/helper';
+
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
 import Footer from '@/components/Footer';
@@ -9,11 +11,14 @@ import Nav from '@/components/Nav';
 import ResponsiveIframe from '@/components/ResponsiveIframe';
 
 export default function JavascriptPage({ videos }) {
+  const imageOg = ogGenerate('20 Javascript Mini Project', 'Project');
+
   return (
     <>
       <Seo
         title='20 JavaScript Mini Project – theodorusclarence.com'
         description='An attempt to study Vanilla JavaScript faster.'
+        image={imageOg}
       />
       <div className='flex flex-col min-h-screen'>
         <Nav />
