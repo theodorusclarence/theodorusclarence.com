@@ -1,4 +1,5 @@
 import { projects } from '@/data/projects';
+import { ogGenerate } from '@/utils/helper';
 
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -12,10 +13,10 @@ export default function PetrolidaPage({ data }) {
   const title = data.name + ' - theodorusclarence.com';
   const description =
     'Tutee.id (Now Aksel.co.id) is a startup that meets tutors and its customer. This app was created to facilitate booking orders. On this site, there are pages to look at the available tutors, book them, and see the booking status.';
-
+  const imageOg = ogGenerate('tutee.id', 'Project');
   return (
     <>
-      <Seo title={title} description={description} />
+      <Seo title={title} description={description} image={imageOg} />
       <main className='flex flex-col min-h-screen'>
         <Nav />
         <section className='py-6 mt-4'>

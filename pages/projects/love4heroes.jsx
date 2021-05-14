@@ -1,4 +1,5 @@
 import { projects } from '@/data/projects';
+import { ogGenerate } from '@/utils/helper';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
@@ -10,11 +11,14 @@ import ProjectHeader from '@/components/ProjectHeader';
 import CloudinaryImg from '@/components/CloudinaryImg';
 
 export default function PetrolidaPage({ data }) {
+  const imageOg = ogGenerate('Love 4 Heroes', 'Project');
+
   return (
     <>
       <Seo
         title={data.name + ' - theodorusclarence.com'}
         description='This app was created as a team for uOttaHack, Canada in 36 hours. With this app, we hope to bring moments of positivity and joy to those difficult and trying moments of our frontline workers.'
+        image={imageOg}
       />
       <main className='flex flex-col min-h-screen'>
         <Nav />

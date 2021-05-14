@@ -11,7 +11,7 @@ import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
 
 import fetcher from '@/utils/fetcher.js';
-import { checkBlogPrefix, formatDate } from '@/utils/helper.js';
+import { checkBlogPrefix, formatDate, ogGenerate } from '@/utils/helper.js';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 
 import CustomCode, { Pre } from '@/components/CustomCode.jsx';
@@ -56,11 +56,14 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
     addCount();
   }, []);
 
+  const imageOg = ogGenerate(frontMatter.title);
+
   return (
     <>
       <Seo
         title={title}
         description={description}
+        image={imageOg}
         date={new Date(frontMatter.publishedAt).toISOString()}
         type='article'
       />

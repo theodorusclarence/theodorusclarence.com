@@ -1,4 +1,5 @@
 import { projects } from '@/data/projects';
+import { ogGenerate } from '@/utils/helper';
 
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
@@ -12,12 +13,14 @@ import Footer from '@/components/Footer';
 export default function PetrolidaPage({ data }) {
   const description =
     'Petrolida 2021 website was made to promote Petroleum Integrated Days 2021 at Sepuluh Nopember Institute of Technology. I developed this website using Next.js to implement easy route management with Static Side Generation then can be exported statically to Cpanel.';
+  const imageOg = ogGenerate('Petrolida 2021', 'Project');
 
   return (
     <>
       <Seo
         title={data.name + ' - theodorusclarence.com'}
         description={description}
+        image={imageOg}
       />
       <main className='flex flex-col min-h-screen'>
         <Nav />

@@ -1,4 +1,5 @@
 import { projects } from '@/data/projects';
+import { ogGenerate } from '@/utils/helper';
 
 import UnstyledLink from '@/components/UnstyledLink';
 import Nav from '@/components/Nav';
@@ -12,10 +13,11 @@ export default function SxceosleaguePage({ data }) {
   const title = data.name + ' - theodorusclarence.com';
   const description =
     'StudentsxCEOs League website was made to promote the event and provide registration solutions using Typeform. We developed this website using Next.js and Tailwindcss';
+  const imageOg = ogGenerate('StudentsxCEOs League', 'Project');
 
   return (
     <>
-      <Seo title={title} description={description} />
+      <Seo title={title} description={description} image={imageOg} />
       <main className='flex flex-col min-h-screen'>
         <Nav />
         <section className='py-6 mt-4'>

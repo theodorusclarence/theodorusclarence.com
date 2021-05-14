@@ -17,6 +17,7 @@ import CustomLink from '@/components/CustomLink.jsx';
 import CustomCode, { Pre } from '@/components/CustomCode.jsx';
 import CloudinaryImg from '@/components/CloudinaryImg';
 import Seo from '@/components/Seo';
+import { ogGenerate } from '@/utils/helper';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -41,9 +42,11 @@ export default function PostPage({ source, frontMatter, slug }) {
 
   const content = hydrate(source, { components });
 
+  const imageOg = ogGenerate(frontMatter.title, 'Code Snippets');
+
   return (
     <>
-      <Seo title={title} description={description} />
+      <Seo title={title} description={description} image={imageOg} />
       <div className='flex flex-col min-h-screen'>
         <Nav />
 
