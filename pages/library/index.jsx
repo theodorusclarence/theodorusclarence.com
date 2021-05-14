@@ -43,12 +43,12 @@ export default function BlogPage({ snippets }) {
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
+  const description =
+    'Some collection of code snippets that I put for easy access, feel free to reuse!';
+
   return (
     <>
-      <Seo
-        title='Library – theodorusclarence.com'
-        description='Some collection of code snippets that I put for easy access, feel free to reuse!'
-      />
+      <Seo title='Library – theodorusclarence.com' description={description} />
       <motion.div
         initial='initial'
         animate='animate'
