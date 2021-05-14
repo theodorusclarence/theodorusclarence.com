@@ -1,29 +1,19 @@
-import { NextSeo } from 'next-seo';
 import { motion } from 'framer-motion';
 
 import { projects } from '@/data/projects';
 import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 
+import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 
-const url = 'https://theodorusclarence.com/projects';
-const title = 'Projects – theodorusclarence.com';
-const description = 'Showcase of my works on frontend development.';
-
 export default function ProjectsPage() {
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
+      <Seo
+        title='Projects – theodorusclarence.com'
+        description='Showcase of my works on frontend development.'
       />
       <Nav />
       <motion.main initial='initial' animate='animate' className='py-6 mt-4'>

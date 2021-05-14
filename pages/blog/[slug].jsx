@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect } from 'react';
@@ -19,6 +18,7 @@ import CustomCode, { Pre } from '@/components/CustomCode.jsx';
 import CustomLink from '@/components/CustomLink.jsx';
 import UnstyledLink from '@/components/UnstyledLink.jsx';
 import Footer from '@/components/Footer.jsx';
+import Seo from '@/components/Seo';
 import Nav from '@/components/Nav.jsx';
 import CloudinaryImg from '@/components/CloudinaryImg';
 
@@ -40,7 +40,6 @@ const components = {
 };
 
 export default function PostPage({ source, frontMatter, slug, readingTime }) {
-  const url = `https://theodorusclarence.com/blog/${slug}`;
   const title = `${frontMatter.title} – theodorusclarence.com`;
   const description = frontMatter.description;
   const checkedSlug = checkBlogPrefix(slug);
@@ -59,15 +58,11 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
 
   return (
     <>
-      <NextSeo
+      <Seo
         title={title}
         description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
+        date={new Date(frontMatter.publishedAt).toISOString()}
+        type='article'
       />
       <div className='flex flex-col min-h-screen'>
         <Nav />

@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,6 +16,7 @@ import UnstyledLink from '@/components/UnstyledLink';
 import CustomLink from '@/components/CustomLink.jsx';
 import CustomCode, { Pre } from '@/components/CustomCode.jsx';
 import CloudinaryImg from '@/components/CloudinaryImg';
+import Seo from '@/components/Seo';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -36,7 +36,6 @@ const components = {
 };
 
 export default function PostPage({ source, frontMatter, slug }) {
-  const url = `https://theodorusclarence.com/library/${slug}`;
   const title = `${frontMatter.title} – theodorusclarence.com`;
   const description = frontMatter.description;
 
@@ -44,16 +43,7 @@ export default function PostPage({ source, frontMatter, slug }) {
 
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
-      />
+      <Seo title={title} description={description} />
       <div className='flex flex-col min-h-screen'>
         <Nav />
 

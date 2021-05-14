@@ -1,11 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { NextSeo } from 'next-seo';
 import readingTime from 'reading-time';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
+import { projects } from '@/data/projects';
+import { featured, featuredProj } from '@/data/featured';
+import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
+import { fadeInAndUp, stagger } from '@/utils/FramerAnimation';
+
+import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import CustomLink from '@/components/CustomLink';
 import TechStack from '@/components/TechStack';
@@ -14,13 +19,6 @@ import PostCard from '@/components/PostCard';
 import Button from '@/components/Button';
 import Footer from '@/components/Footer';
 import InViewSection from '@/components/InViewSection';
-
-import { projects } from '@/data/projects';
-import { featured, featuredProj } from '@/data/featured';
-import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
-import { fadeInAndUp, stagger } from '@/utils/FramerAnimation';
-
-const title = 'Home – theodorusclarence.com';
 
 export default function Home({ featuredPosts, featuredProjects }) {
   console.log(`██   ██ ███████ ██      ██       ██████      ██████  ███████ ██    ██ ███████ ██       ██████  ██████  ███████ ██████  ██ 
@@ -34,7 +32,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
 
   return (
     <>
-      <NextSeo title={title} />
+      <Seo />
       <div className='fixed inset-0 transition-opacity bg-white preloader dark:bg-dark'></div>
       <Nav />
 

@@ -1,14 +1,12 @@
-import { NextSeo } from 'next-seo';
 import { ReactFlashlight } from 'react-flashlight';
 
 import UnstyledLink from '@/components/UnstyledLink';
+import Seo from '@/components/Seo';
 
 export default function Custom404() {
-  const title = '404 Not Found - theodorusclarence.com';
-
   return (
     <div style={{ cursor: 'url("/images/cursor.png"), pointer' }}>
-      <NextSeo title={title} />
+      <Seo title='404 Not Found - theodorusclarence.com' />
       <ReactFlashlight
         darkness={0.8}
         size={200}

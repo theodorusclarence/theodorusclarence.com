@@ -1,15 +1,11 @@
-import { NextSeo } from 'next-seo';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 
 export default function SuggestionPage() {
-  const url = 'https://theodorusclarence.com/suggest';
-  const title = 'Suggestion – theodorusclarence.com';
-  const description = 'Feel free to leave me a feedback and suggestions!';
-
   const { register, handleSubmit, errors, reset } = useForm();
   const [success, setSuccess] = useState(false);
 
@@ -29,15 +25,9 @@ export default function SuggestionPage() {
 
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
+      <Seo
+        title='Suggestion – theodorusclarence.com'
+        description='Feel free to leave me a feedback and suggestions!'
       />
       <div className='flex flex-col min-h-screen'>
         <Nav />
