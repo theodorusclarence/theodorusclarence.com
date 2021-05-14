@@ -1,5 +1,3 @@
-import { NextSeo } from 'next-seo';
-
 import { projects } from '@/data/projects';
 
 import Nav from '@/components/Nav';
@@ -8,24 +6,16 @@ import PickTech from '@/components/PickTech';
 import UnstyledLink from '@/components/UnstyledLink';
 import ProjectHeader from '@/components/ProjectHeader';
 import CloudinaryImg from '@/components/CloudinaryImg';
+import Seo from '@/components/Seo';
 
 export default function PetrolidaPage({ data }) {
   const title = data.name + ' - theodorusclarence.com';
   const description =
     'Tutee.id (Now Aksel.co.id) is a startup that meets tutors and its customer. This app was created to facilitate booking orders. On this site, there are pages to look at the available tutors, book them, and see the booking status.';
-  const url = 'https://theodorusclarence.com/projects/petrolida-2021';
+
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
-      />
+      <Seo title={title} description={description} />
       <main className='flex flex-col min-h-screen'>
         <Nav />
         <section className='py-6 mt-4'>

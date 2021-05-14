@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import { NextSeo } from 'next-seo';
 
+import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import CloudinaryImg from '@/components/CloudinaryImg';
 
 export default function TransferPage() {
-  const title = 'Rekening Clarence - theodorusclarence.com';
-  const description = 'Buka untuk melihat QR Code dan Nomor Rekening Clarence';
-  const url = 'https://theodorusclarence.com/trf';
-
   const [copyStatus, setCopyStatus] = useState('Copy Nomor Rekening');
 
   const clickToCopy = (e) => {
@@ -21,16 +17,10 @@ export default function TransferPage() {
 
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        noindex={true}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
+      <Seo
+        title='Rekening Clarence - theodorusclarence.com'
+        description='Buka untuk melihat QR Code dan Nomor Rekening Clarence'
+        robots='noindex,nofollow'
       />
       <div className='min-h-screen'>
         <Nav />

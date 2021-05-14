@@ -1,7 +1,6 @@
-import { NextSeo } from 'next-seo';
-
 import { projects } from '@/data/projects';
 
+import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import PickTech from '@/components/PickTech';
@@ -11,32 +10,11 @@ import ProjectHeader from '@/components/ProjectHeader';
 import CloudinaryImg from '@/components/CloudinaryImg';
 
 export default function PetrolidaPage({ data }) {
-  const title = data.name + ' - theodorusclarence.com';
-  const description = `This app was created as a team for uOttaHack, Canada
-                            in 36 hours. When thinking about how we could make a
-                            difference within local communities impacted by
-                            Covid-19, what came to mind are our frontline
-                            workers. Our doctors, nurses, grocery store workers,
-                            and Covid-19 testing volunteers, who have tirelessly
-                            been putting themselves and their families on the
-                            line. They are the backbone and heartbeat of our
-                            society during these past 10 months and counting. We
-                            want them to feel the appreciation and gratitude
-                            they deserve. With this app, we hope to bring
-                            moments of positivity and joy to those difficult and
-                            trying moments of our frontline workers.`;
-  const url = 'https://theodorusclarence.com/projects/love4heroes';
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
+      <Seo
+        title={data.name + ' - theodorusclarence.com'}
+        description='This app was created as a team for uOttaHack, Canada in 36 hours. With this app, we hope to bring moments of positivity and joy to those difficult and trying moments of our frontline workers.'
       />
       <main className='flex flex-col min-h-screen'>
         <Nav />
@@ -62,7 +40,19 @@ export default function PetrolidaPage({ data }) {
             <blockquote>
               <h2>Short Explanation</h2>
             </blockquote>
-            <p>{description}</p>
+            <p>
+              This app was created as a team for uOttaHack, Canada in 36 hours.
+              When thinking about how we could make a difference within local
+              communities impacted by Covid-19, what came to mind are our
+              frontline workers. Our doctors, nurses, grocery store workers, and
+              Covid-19 testing volunteers, who have tirelessly been putting
+              themselves and their families on the line. They are the backbone
+              and heartbeat of our society during these past 10 months and
+              counting. We want them to feel the appreciation and gratitude they
+              deserve. With this app, we hope to bring moments of positivity and
+              joy to those difficult and trying moments of our frontline
+              workers.
+            </p>
 
             <br />
 

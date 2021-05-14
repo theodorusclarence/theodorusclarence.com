@@ -1,29 +1,19 @@
-import { NextSeo } from 'next-seo';
 import { IconContext } from 'react-icons/lib';
 import { SiGithub } from 'react-icons/si';
 
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import ResponsiveIframe from '@/components/ResponsiveIframe';
-
-const url = 'https://theodorusclarence.com/projects/20-javascript';
-const title = '20 JavaScript Mini Project – theodorusclarence.com';
-const description = 'An attempt to study Vanilla JavaScript faster.';
 
 export default function JavascriptPage({ videos }) {
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
+      <Seo
+        title='20 JavaScript Mini Project – theodorusclarence.com'
+        description='An attempt to study Vanilla JavaScript faster.'
       />
       <div className='flex flex-col min-h-screen'>
         <Nav />

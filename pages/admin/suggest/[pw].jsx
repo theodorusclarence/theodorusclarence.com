@@ -4,6 +4,7 @@ import fetcher from '@/utils/fetcher';
 
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 
 export default function SuggestionViewPage() {
   const { data } = useSWR('/api/suggest', fetcher);
@@ -12,6 +13,7 @@ export default function SuggestionViewPage() {
 
   return (
     <>
+      <Seo />
       <div className='flex flex-col min-h-screen'>
         <Nav />
         <section className='py-6 mt-4'>

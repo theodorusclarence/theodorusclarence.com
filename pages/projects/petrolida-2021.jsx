@@ -1,9 +1,8 @@
-import { NextSeo } from 'next-seo';
-
 import { projects } from '@/data/projects';
 
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
+import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import ProjectHeader from '@/components/ProjectHeader';
 import PickTech from '@/components/PickTech';
@@ -11,21 +10,14 @@ import CloudinaryImg from '@/components/CloudinaryImg';
 import Footer from '@/components/Footer';
 
 export default function PetrolidaPage({ data }) {
-  const title = data.name + ' - theodorusclarence.com';
   const description =
     'Petrolida 2021 website was made to promote Petroleum Integrated Days 2021 at Sepuluh Nopember Institute of Technology. I developed this website using Next.js to implement easy route management with Static Side Generation then can be exported statically to Cpanel.';
-  const url = 'https://theodorusclarence.com/projects/petrolida-2021';
+
   return (
     <>
-      <NextSeo
-        title={title}
+      <Seo
+        title={data.name + ' - theodorusclarence.com'}
         description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
       />
       <main className='flex flex-col min-h-screen'>
         <Nav />

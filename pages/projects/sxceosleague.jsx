@@ -1,32 +1,21 @@
-import { NextSeo } from 'next-seo';
-
 import { projects } from '@/data/projects';
 
-import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
 import Nav from '@/components/Nav';
 import ProjectHeader from '@/components/ProjectHeader';
 import PickTech from '@/components/PickTech';
 import CloudinaryImg from '@/components/CloudinaryImg';
 import Footer from '@/components/Footer';
+import Seo from '@/components/Seo';
 
 export default function SxceosleaguePage({ data }) {
   const title = data.name + ' - theodorusclarence.com';
   const description =
     'StudentsxCEOs League website was made to promote the event and provide registration solutions using Typeform. We developed this website using Next.js and Tailwindcss';
-  const url = 'https://theodorusclarence.com/projects/sxceosleague';
+
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
-      />
+      <Seo title={title} description={description} />
       <main className='flex flex-col min-h-screen'>
         <Nav />
         <section className='py-6 mt-4'>

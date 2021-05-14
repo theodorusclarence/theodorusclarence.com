@@ -3,7 +3,6 @@ import path from 'path';
 import readingTime from 'reading-time';
 import matter from 'gray-matter';
 import { useEffect, useRef, useState } from 'react';
-import { NextSeo } from 'next-seo';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
@@ -13,11 +12,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import PostCard from '@/components/PostCard';
 import CustomLink from '@/components/CustomLink';
-
-const url = 'https://theodorusclarence.com/blog';
-const title = 'Blog – theodorusclarence.com';
-const description =
-  'Thoughts on the frontend development and other interesting things.';
+import Seo from '@/components/Seo';
 
 export default function BlogPage({ posts }) {
   const englishPosts = [];
@@ -96,15 +91,9 @@ export default function BlogPage({ posts }) {
 
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
+      <Seo
+        title='Blog – theodorusclarence.com'
+        description='Thoughts on the frontend development and other interesting things.'
       />
       <div className='flex flex-col min-h-screen'>
         <Nav />

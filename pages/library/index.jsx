@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { useEffect, useState } from 'react';
-import { NextSeo } from 'next-seo';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { LIBRARY_PATH, postLibraryPaths } from '@/utils/mdxUtils';
@@ -11,11 +10,7 @@ import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import LibraryCard from '@/components/LibraryCard';
-
-const url = 'https://theodorusclarence.com/blog';
-const title = 'Library – theodorusclarence.com';
-const description =
-  'Some collection of code snippets that I put for easy access, feel free to reuse!';
+import Seo from '@/components/Seo';
 
 export default function BlogPage({ snippets }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -50,15 +45,9 @@ export default function BlogPage({ snippets }) {
 
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          description,
-        }}
+      <Seo
+        title='Library – theodorusclarence.com'
+        description='Some collection of code snippets that I put for easy access, feel free to reuse!'
       />
       <motion.div
         initial='initial'
