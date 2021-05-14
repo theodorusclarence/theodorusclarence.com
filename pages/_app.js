@@ -7,7 +7,7 @@ import { AnimateSharedLayout } from 'framer-motion';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider attribute='class' defaultTheme='dark'>
+    <ThemeProvider attribute='class' defaultTheme='dark' enableSystem={false}>
       <AnimateSharedLayout>
         <Component {...pageProps} />
       </AnimateSharedLayout>
