@@ -1,4 +1,8 @@
-export const featured = ['vite-cra', 'btb-rem-em', 'my-addons'];
+export const featured = [
+  'tailwindcss-best-practice',
+  'btb-rem-em',
+  'my-addons',
+];
 
 export const featuredProj = ['tutee-id', 'sxceosleague'];
 
