@@ -13,14 +13,14 @@ This component will detect your href props, if it is a `http://`, it will direct
 ```jsx
 import Link from 'next/link';
 
-export default function CustomLink(props) {
+export default function UnstyledLink(props) {
   const href = props.href;
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
 
   if (isInternalLink) {
     return (
       <Link href={href}>
-        <a {...props} className='inline-flex items-center rounded-sm'>
+        <a {...props} className={`${props?.className}`}>
           {props.children}
         </a>
       </Link>
@@ -29,13 +29,32 @@ export default function CustomLink(props) {
 
   return (
     <a
-      className='inline-flex items-center rounded-sm'
+      className={`${props?.className}`}
       target='_blank'
       rel='noopener noreferrer'
       {...props}
     >
       {props.children}
     </a>
+  );
+}
+```
+
+## Custom Style
+
+To add some classes, I usually make another component
+
+```jsx
+import UnstyledLink from './UnstyledLink';
+
+export default function CustomLink(props) {
+  return (
+    <UnstyledLink
+      {...props}
+      className={`${props.className} inline-flex items-center font-bold hover:text-primary-400`}
+    >
+      {props.children}
+    </UnstyledLink>
   );
 }
 ```
