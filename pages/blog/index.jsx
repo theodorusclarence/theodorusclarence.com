@@ -182,5 +182,10 @@ export function getStaticProps() {
     };
   });
 
+  posts.sort(
+    (postA, postB) =>
+      new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
+  );
+
   return { props: { posts } };
 }
