@@ -2,69 +2,69 @@
 
 /* Write your own custom base styles here */
 body.loaded .preloader {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* inter-regular - latin */
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-display: optional;
-    src: url('/fonts/inter-regular-webfont.woff2') format('woff2');
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('/fonts/inter-regular-webfont.woff2') format('woff2');
 }
 
 /* inter-500 - latin */
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-display: optional;
-    src: url('/fonts/inter-medium-webfont.woff2') format('woff2');
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: optional;
+  src: url('/fonts/inter-medium-webfont.woff2') format('woff2');
 }
 
 /* inter-700 - latin */
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-display: optional;
-    src: url('/fonts/inter-bold-webfont.woff2') format('woff2');
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url('/fonts/inter-bold-webfont.woff2') format('woff2');
 }
 
 ::selection {
-    @apply bg-accent-200 bg-opacity-40;
+  @apply bg-accent-200 bg-opacity-40;
 }
 
 h1 {
-    @apply text-3xl font-bold md:text-5xl font-primary;
+  @apply text-3xl font-bold md:text-5xl font-primary;
 }
 
 h2 {
-    @apply text-2xl font-bold md:text-4xl font-primary;
+  @apply text-2xl font-bold md:text-4xl font-primary;
 }
 
 h3 {
-    @apply text-xl font-bold md:text-3xl font-primary;
+  @apply text-xl font-bold md:text-3xl font-primary;
 }
 
 h4 {
-    @apply text-lg font-bold md:text-xl font-primary;
+  @apply text-lg font-bold md:text-xl font-primary;
 }
 
 body {
-    @apply font-primary;
+  @apply font-primary;
 }
 
 p.component {
-    @apply text-sm;
+  @apply text-sm;
 }
 
 .layout {
-    max-width: 43.75rem;
-    max-width: 50rem;
-    @apply w-11/12 mx-auto;
+  max-width: 43.75rem;
+  max-width: 50rem;
+  @apply w-11/12 mx-auto;
 }
 
 /* Start purging... */
@@ -73,51 +73,51 @@ p.component {
 
 /* Write your own custom component styles here */
 .prose {
-    max-width: 50rem;
+  max-width: 50rem;
 }
 
 .prose code {
-    @apply px-1 py-1 rounded-md border-thin;
+  @apply px-1 py-1 rounded-md border-thin;
 }
 
 .prose a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .prose > ol > li > :last-child,
 .prose > ul > li > :last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 .prose > ol > li > :first-child,
 .prose > ul > li > :first-child {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .prose blockquote p:first-of-type::before,
 .prose blockquote p:last-of-type::after {
-    content: '';
+  content: '';
 }
 
 .prose blockquote,
 .dark .dark\:prose-dark blockquote {
-    border-style: solid;
-    border-width: 0 0 0 0.25rem;
-    border-image: linear-gradient(to top, #00ff94, #00e0f3, #00c4fd) 1;
+  border-style: solid;
+  border-width: 0 0 0 0.25rem;
+  border-image: linear-gradient(to top, #00ff94, #00e0f3, #00c4fd) 1;
 }
 
 .prose hr,
 .dark .dark\:prose-dark hr {
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    border-image: linear-gradient(to right, #00ff9480, #00e0f380, #00c4fd80) 1;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-image: linear-gradient(to right, #00ff9480, #00e0f380, #00c4fd80) 1;
 }
 
 .btn-blue {
-    @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
 }
 
 span.accent {
-    @apply text-transparent bg-gradient-to-tr dark:from-accent-200 dark:to-accent-300 from-accent-200 to-accent-400 bg-clip-text;
+  @apply text-transparent bg-gradient-to-tr dark:from-accent-200 dark:to-accent-300 from-accent-200 to-accent-400 bg-clip-text;
 }
 
 /* Start purging... */
@@ -127,16 +127,16 @@ span.accent {
 /* Your own custom utilities */
 
 .ring-vis {
-    @apply transition-all focus-visible:ring-accent-200 focus-visible:ring-offset-4 focus-visible:ring-offset-white dark:focus-visible:ring-offset-dark focus-visible:ring-1 focus:outline-none;
+  @apply transition-all focus-visible:ring-accent-200 focus-visible:ring-offset-4 focus-visible:ring-offset-white dark:focus-visible:ring-offset-dark focus-visible:ring-1 focus:outline-none;
 }
 
 /* ring with no offset */
 .ring-vis-0 {
-    @apply focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1 focus:outline-none;
+  @apply focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1 focus:outline-none;
 }
 
 .ring-vis-0:focus {
-    outline: none;
+  outline: none;
 }
 
 /** Span Color Animation */
@@ -144,64 +144,64 @@ span.accent {
 .card:focus h4 span, */
 .btn:hover span,
 .btn:focus span {
-    --tw-gradient-from: #00e887;
-    --tw-gradient-to: #00e0f3;
-    --tw-gradient-stops: var(--tw-gradient-from),
-        var(--tw-gradient-to, rgba(0, 232, 135, 0));
-    background-clip: text;
-    background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+  --tw-gradient-from: #00e887;
+  --tw-gradient-to: #00e0f3;
+  --tw-gradient-stops: var(--tw-gradient-from),
+    var(--tw-gradient-to, rgba(0, 232, 135, 0));
+  background-clip: text;
+  background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 
-    color: transparent;
-    position: relative;
+  color: transparent;
+  position: relative;
 }
 
 /** Scaling Animation */
 .btn {
-    transform: scale(1);
-    transition: transform 100ms ease;
+  transform: scale(1);
+  transition: transform 100ms ease;
 }
 
 .btn:hover,
 .btn:focus {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .btn:active {
-    transition-duration: 50ms !important;
-    transform: scale(0.97);
+  transition-duration: 50ms !important;
+  transform: scale(0.97);
 }
 
 /** Shadows Animation */
 .card::after,
 .btn::after {
-    @apply rounded-md shadow-md dark:shadow-none;
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    transition: opacity 100ms ease;
+  @apply rounded-md shadow-md dark:shadow-none;
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 100ms ease;
 }
 
 .card:hover::after,
 .btn:hover::after {
-    opacity: 1;
+  opacity: 1;
 }
 
 .project-card .view,
 .view {
-    background-image: linear-gradient(#33333300, #33333300),
-        linear-gradient(to right, #00ff94, #00e0f3, #00c4fd);
-    background-size: 100% 2px, 0 2px;
-    background-position: 100% 100%, 0 100%;
-    background-repeat: no-repeat;
-    transition: background-size 0.3s ease;
+  background-image: linear-gradient(#33333300, #33333300),
+    linear-gradient(to right, #00ff94, #00e0f3, #00c4fd);
+  background-size: 100% 2px, 0 2px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
 }
 
 .project-card:hover .view,
 .view:hover {
-    background-size: 0 2px, 100% 2px;
+  background-size: 0 2px, 100% 2px;
 }
