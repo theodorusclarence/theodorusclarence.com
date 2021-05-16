@@ -52,6 +52,14 @@ p.component {
   @apply w-11/12 mx-auto;
 }
 
+/* Remove Safari input shadow on mobile */
+input[type='text'],
+input[type='email'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */
