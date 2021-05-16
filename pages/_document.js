@@ -17,21 +17,7 @@ class MyDocument extends Document {
                     /> */}
           <link
             rel='preload'
-            href='/fonts/inter-bold-webfont.woff2'
-            as='font'
-            type='font/woff2'
-            crossOrigin='anonymous'
-          />
-          <link
-            rel='preload'
-            href='/fonts/inter-medium-webfont.woff2'
-            as='font'
-            type='font/woff2'
-            crossOrigin='anonymous'
-          />
-          <link
-            rel='preload'
-            href='/fonts/inter-regular-webfont.woff2'
+            href='/fonts/inter-var-latin.woff2'
             as='font'
             type='font/woff2'
             crossOrigin='anonymous'
