@@ -19,36 +19,29 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## What's Inside
-
-This starter file has a opinionated styling for heading with responsive size and Montserrat font imported from the google fonts.
-
-There is also Seo Component to customize page title and opengraph meta tags.
-
 ## Image Guide on MDX
 
 ### Small Image
 ```jsx
-<figure class='flex justify-center'>
-  <Image
+<figure className='mx-auto' style={{ maxWidth: 400 }}>
+  <CloudinaryImg
     className='bg-gray-500'
-    src='/images/blogs/my-addons/ff-4.png'
-    alt='Eye dropper'
-    width={321}
-    height={382}
+    publicId='theodorusclarence/blogs/btb-ui-fundamental/6_woi3j8.jpg'
+    alt='Comic Sans'
+    width={400}
+    height={400}
   />
 </figure>
 ```
 
 ### Full Image
 ```jsx
-<Image
+<CloudinaryImg
   className='bg-gray-500'
-  layout='responsive'
-  src='/images/blogs/my-addons/ff-3.png'
-  alt='Mobile View'
-  width={1440}
-  height={880}
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/1_tm864u.jpg'
+  alt='Ilustrasi Whitespace'
+  width={953}
+  height={545}
 />
 ```
 
