@@ -5,7 +5,8 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "prepare": "husky install"
     },
     "dependencies": {
         "@mapbox/rehype-prism": "^0.5.0",
@@ -36,6 +37,9 @@
         "tailwindcss-border-gradients": "^2.0.3"
     },
     "devDependencies": {
+        "@commitlint/cli": "^12.1.4",
+        "@commitlint/config-conventional": "^12.1.4",
+        "husky": "^6.0.0",
         "postcss-focus-visible": "^5.0.0",
         "rehype": "^11.0.0"
     }
