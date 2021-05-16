@@ -88,11 +88,10 @@ Labels per page Ex: `feat(pre-event): add date label`
 \*If there is no scope needed, you don't need to write it
 
 Usable scope:
-**TODO: Change this to your scope, don't forget to change in the commitlint.config.js**
 
-- pre-event
-- conference
-- ibl-case
+- library
+- projects
+- blog
 
 ### 3. Description
 
