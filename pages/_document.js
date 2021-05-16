@@ -123,6 +123,9 @@ class MyDocument extends Document {
                     `,
             }}
           />
+
+          {/* Splitbee */}
+          <script async src='https://cdn.splitbee.io/sb.js'></script>
         </Head>
         <body className='transition-colors bg-white dark:text-white dark:bg-dark'>
           <Main />
