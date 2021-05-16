@@ -93,3 +93,11 @@ yarn lint-staged
 ```
 
 You can also add test command here if you want to do test before each commit
+
+## 4. Add postmerge hook
+
+Use this to add hook, so husky will run `yarn` everytime we pull changes.
+
+```bash
+npx husky add .husky/post-merge 'yarn'
+```
