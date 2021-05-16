@@ -76,9 +76,9 @@ Add this to package.json
 
 ```json
 {
-  // ...existing code
+  // ...existing code, you can split the html,css,json if you add eslint to configuration
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": ["yarn prettier --write"]
+    "**/*.{js,jsx,ts,tsx,html,css,json}": ["yarn prettier --write"]
   }
 }
 ```
