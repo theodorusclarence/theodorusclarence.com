@@ -1,6 +1,6 @@
 export const featured = [
   'tailwindcss-best-practice',
-  'btb-rem-em',
+  'nextjs-redirect-no-flashing',
   'my-addons',
 ];
 
