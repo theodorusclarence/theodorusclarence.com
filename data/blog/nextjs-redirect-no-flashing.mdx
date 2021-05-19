@@ -14,7 +14,7 @@ In Create React App redirecting or doing `history.push` is not really a problem 
 
 But, in Next.js, we get the static page first, then only after finishing the hydration, the javascript code that does the redirecting will run. This becomes a problem when we are making a page with an authentication barrier because the unauthorized user can see the content briefly before getting redirected.
 
-I saw a lot of this problem even in the production app, maybe they still cover up the data because some of it was fetched client-side, but the shell sometimes still shows up. Try opening this website [https://app.splitbee.io/projects/theodorusclarence.com](https://app.splitbee.io/projects/theodorusclarence.com). You are not supposed to have access to this page. You will see a flash of the dashboard shell then only after that flash, you will get redirected to the login page.
+I saw a lot of this problem even in the production app, maybe they still cover up the data because some of it was fetched client-side, but the shell sometimes still shows up. Try opening this website [app.splitbee.io/projects](https://app.splitbee.io/projects/theodorusclarence.com). You are not supposed to have access to this page. You will see a flash of the dashboard shell then only after that flash, you will get redirected to the login page.
 
 <img
   className='mx-auto'

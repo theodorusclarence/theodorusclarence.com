@@ -14,7 +14,7 @@ Pada Create React App, melakukan redirect atau `history.push` bukan sebuah masal
 
 Tetapi, di Next.js kita mendapatkan static page, kemudian setelah hydration, code JavaScript untuk redirect baru akan berjalan. Ini menjadi masalah karena akan ada content yang muncul untuk beberapa detik sebelum aplikasi di redirect. Hal ini tentunya tidak diinginkan terutama untuk konten yang tidak boleh dilihat oleh unauthorized user.
 
-Saya melihat problem ini masih ada beberapa di production app, beberapa memang menutupi data" penting karena biasanya di fetch secara client-side, tetapi kadang shell dari kontennya masih muncul untuk waktu sebentar. Coba buka website ini [https://app.splitbee.io/projects/theodorusclarence.com](https://app.splitbee.io/projects/theodorusclarence.com). Kamu seharusnya tidak memiliki akses ke website ini, tetapi karena problem tersebut, kita bisa melihat dashboard shell muncul sebentar, baru diarahkan ke /login page
+Saya melihat problem ini masih ada beberapa di production app, beberapa memang menutupi data" penting karena biasanya di fetch secara client-side, tetapi kadang shell dari kontennya masih muncul untuk waktu sebentar. Coba buka website ini [app.splitbee.io/projects](https://app.splitbee.io/projects/theodorusclarence.com). Kamu seharusnya tidak memiliki akses ke website ini, tetapi karena problem tersebut, kita bisa melihat dashboard shell muncul sebentar, baru diarahkan ke /login page
 
 <img
   className='mx-auto'
