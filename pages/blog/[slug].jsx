@@ -72,7 +72,7 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
 
         <section className='py-6 mt-4'>
           <main className='layout'>
-            <div className='pb-4 border-b-thin'>
+            <div className='pb-4 border-b-thin dark:border-gray-600'>
               <h1 className='mb-2'>{frontMatter.title}</h1>
 
               <p className='component text-dark dark:text-light'>
