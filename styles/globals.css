@@ -168,6 +168,27 @@ span.accent {
   transform: scale(0.97);
 }
 
+.card {
+  transform: scale(1);
+  transition: transform 100ms ease;
+  will-change: transform;
+}
+
+.card:hover,
+.card:focus {
+  transform: scale(1.03);
+}
+
+.card-2:hover,
+.card-2:focus {
+  transform: scale(1.02);
+}
+
+.card:active {
+  transition-duration: 50ms !important;
+  transform: scale(0.97);
+}
+
 /** Shadows Animation */
 .card::after,
 .btn::after {
