@@ -12,7 +12,6 @@ export default function LibraryCard({ post, slug }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       layoutId={slug}
-      whileHover={{ scale: 1.03, transition: { duration: 0.1 } }}
       className='h-full bg-white rounded-md card border-thin ring-vis-0 dark:bg-dark'
       style={{ minHeight: '9rem' }}
     >

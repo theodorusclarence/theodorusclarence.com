@@ -9,10 +9,7 @@ import CloudinaryImg from './CloudinaryImg';
 
 export default function ProjectCard({ data }) {
   return (
-    <motion.li
-      className='max-w-md rounded-md card project-card md:w-full border-thin ring-vis-0'
-      whileHover={{ scale: 1.03, transition: { duration: 0.1 } }}
-    >
+    <motion.li className='max-w-md rounded-md card project-card md:w-full border-thin ring-vis-0'>
       <UnstyledLink
         href={data.page || data.link || data.youtube || data.github}
         // target='_blank'
