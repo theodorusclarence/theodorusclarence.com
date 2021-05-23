@@ -16,7 +16,7 @@ module.exports = {
           300: '#00E0F3',
           400: '#00c4fd',
         },
-        dark: '#333333',
+        dark: '#222222',
         light: '#eeeeee',
       },
       borderWidth: {
