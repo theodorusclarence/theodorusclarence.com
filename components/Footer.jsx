@@ -18,7 +18,7 @@ export default function Footer() {
 
   return (
     <footer className='pb-2 mt-auto'>
-      <main className='flex flex-col items-center pt-6 border-t-thin layout'>
+      <main className='flex flex-col items-center pt-6 border-t-thin dark:border-gray-600 layout'>
         <p className='mb-1 font-medium'>Reach me out</p>
         <div className='flex mb-4 space-x-4'>
           <IconContext.Provider

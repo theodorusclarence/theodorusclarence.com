@@ -60,6 +60,10 @@ input[type='email'] {
   appearance: none;
 }
 
+.border-thin {
+  @apply dark:border-gray-600;
+}
+
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */
@@ -70,7 +74,7 @@ input[type='email'] {
 }
 
 .prose code {
-  @apply px-1 py-1 rounded-md border-thin;
+  @apply px-1 py-1 rounded-md dark:border-gray-600 border-thin;
 }
 
 .prose a {

@@ -52,7 +52,7 @@ export default function PostPage({ source, frontMatter, slug }) {
 
         <section className='py-6 mt-4'>
           <main className='layout'>
-            <div className='pb-4 border-b-thin'>
+            <div className='pb-4 border-b-thin dark:border-gray-600'>
               <Link href={`/library/${slug}`} className='focus:outline-none'>
                 <a>
                   <h1 className='mb-2'>{frontMatter.title}</h1>
