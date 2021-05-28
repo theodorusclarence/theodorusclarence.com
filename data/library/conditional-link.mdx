@@ -1,60 +1,66 @@
 ---
 title: 'Conditional Link'
-techs: 'nextjs'
+techs: 'nextjs,react'
 description: 'Component that can differentiate between internal link or new tab link'
 ---
 
 ## Usage
 
-This component will detect your href props, if it is a `http://`, it will direct you to another tab. If it starts with `/` it will use Next.js Link Component.
+This component will detect your href props, if it starts with `https://`, it will direct you to another tab. If it starts with `/` it will use Next.js / React Router Link Component.
 
-## Code:
+## Next.js Code:
 
 ```jsx
+// coponents/UnstyledLink.jsx
 import Link from 'next/link';
 
-export default function UnstyledLink(props) {
-  const href = props.href;
+export default function UnstyledLink({ href, ...rest }) {
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
 
   if (isInternalLink) {
     return (
       <Link href={href}>
-        <a {...props} className={`${props?.className}`}>
-          {props.children}
-        </a>
+        <a {...rest} />
       </Link>
     );
   }
 
-  return (
-    <a
-      className={`${props?.className}`}
-      target='_blank'
-      rel='noopener noreferrer'
-      {...props}
-    >
-      {props.children}
-    </a>
-  );
+  return <a target='_blank' rel='noopener noreferrer' {...rest} />;
+}
+```
+
+## Create React App Code:
+
+For Create React App with React Router, we need to use Link component from react router
+
+```jsx
+// coponents/UnstyledLink.jsx
+import { Link } from 'react-router-dom';
+
+export default function UnstyledLink({ href, ...rest }) {
+  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+
+  if (isInternalLink) {
+    return <Link to={href} {...rest} />;
+  }
+
+  return <a target='_blank' rel='noopener noreferrer' {...rest} />;
 }
 ```
 
 ## Custom Style
 
-To add some classes, I usually make another component
+To add some classes, I usually make another component such as buttons, hover links, etc.
 
 ```jsx
 import UnstyledLink from './UnstyledLink';
 
-export default function CustomLink(props) {
+export default function CustomLink({ className = '', ...rest }) {
   return (
     <UnstyledLink
-      {...props}
-      className={`${props.className} inline-flex items-center font-bold hover:text-primary-400`}
-    >
-      {props.children}
-    </UnstyledLink>
+      {...rest}
+      className={`inline-flex items-center font-bold hover:text-primary-400 ${className}`}
+    />
   );
 }
 ```
