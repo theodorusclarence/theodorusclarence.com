@@ -28,13 +28,15 @@ export default function PostCard({ post, index }) {
           <h4>
             <span>{postData.title}</span>
           </h4>
-          <p className='self-center flex-shrink-0 component text-dark dark:text-light'>
-            {data?.count >= 0 ? data.count : '–––'} views
+          <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light'>
+            <span className='accent'>
+              {data?.count >= 0 ? data.count : '–––'} views
+            </span>
           </p>
         </header>
         <p className='my-2 component text-dark dark:text-light'>
           <span className='font-bold'>{formatDate(postData.publishedAt)}</span>{' '}
-          • <span>{post.readingTime}</span>
+          • <span className='accent'>{post.readingTime}</span>
         </p>
         <p className='component'>{postData.description}</p>
       </UnstyledLink>
