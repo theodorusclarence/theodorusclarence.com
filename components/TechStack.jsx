@@ -99,10 +99,7 @@ const techObject = {
 
 export default function TechStack() {
   return (
-    <motion.div
-      className='flex mt-2 space-x-2 md:space-x-4'
-      variants={fadeInAndUp}
-    >
+    <div className='flex mt-2 space-x-2 md:space-x-4'>
       {currentTechStack.map((tech, index) => (
         <Tippy
           key={index}
@@ -114,11 +111,11 @@ export default function TechStack() {
             </span>
           }
         >
-          <motion.button className='rounded-sm md:w-12 ring-vis'>
+          <button className='rounded-sm md:w-12 ring-vis'>
             {techObject[tech][1]()}
-          </motion.button>
+          </button>
         </Tippy>
       ))}
-    </motion.div>
+    </div>
   );
 }
