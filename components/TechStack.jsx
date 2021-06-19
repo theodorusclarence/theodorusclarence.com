@@ -1,6 +1,5 @@
 import Tippy from '@tippyjs/react';
 import { motion } from 'framer-motion';
-import { IconContext } from 'react-icons/lib';
 import {
   SiNextDotJs,
   SiReact,
