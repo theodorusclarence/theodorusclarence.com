@@ -67,8 +67,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
               </article>
             </section>
             <figure
-              className='absolute cursor-pointer bottom-2 md:bottom-10 left-1/2'
-              style={{ translateX: '-50%' }}
+              className='absolute -translate-x-1/2 cursor-pointer bottom-2 md:bottom-10 left-1/2'
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollBy({
