@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import { FiMail } from 'react-icons/fi';
-import { IconContext } from 'react-icons/lib';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 
 import UnstyledLink from './UnstyledLink';
@@ -21,52 +20,38 @@ export default function Footer() {
       <main className='flex flex-col items-center pt-6 border-t-thin dark:border-gray-600 layout'>
         <p className='mb-1 font-medium'>Reach me out</p>
         <div className='flex mb-4 space-x-4'>
-          <IconContext.Provider
-            value={{
-              className:
-                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-7 h-7 align-middle',
-            }}
-          >
-            <Tippy
-              animation='scale-subtle'
-              interactive={true}
-              hideOnClick={false}
-              className='focus:outline-none'
-              content={
-                <span className='inline-flex flex-col items-center p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                  {/* <button onClick={clickToCopy} className='focus:outline-none'> */}
-                  {copyStatus}
-                  <span className='inline-block font-medium accent ring-0'>
-                    theodorusclarence@gmail.com
-                  </span>
-                  {/* </button> */}
+          <Tippy
+            animation='scale-subtle'
+            interactive={true}
+            hideOnClick={false}
+            className='focus:outline-none'
+            content={
+              <span className='inline-flex flex-col items-center p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
+                {/* <button onClick={clickToCopy} className='focus:outline-none'> */}
+                {copyStatus}
+                <span className='inline-block font-medium accent ring-0'>
+                  theodorusclarence@gmail.com
                 </span>
-              }
-            >
-              <button className='rounded-sm ring-vis' onClick={clickToCopy}>
-                <FiMail />
-              </button>
-            </Tippy>
-          </IconContext.Provider>
-          <IconContext.Provider
-            value={{
-              className:
-                'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-6 h-6 align-middle my-auto',
-            }}
+                {/* </button> */}
+              </span>
+            }
           >
-            <UnstyledLink
-              className='inline-flex items-center justify-center rounded-sm ring-vis'
-              href='https://clarence.link/github'
-            >
-              <SiGithub />
-            </UnstyledLink>
-            <UnstyledLink
-              className='inline-flex items-center justify-center rounded-sm ring-vis'
-              href='https://clarence.link/linkedin'
-            >
-              <SiLinkedin />
-            </UnstyledLink>
-          </IconContext.Provider>
+            <button className='rounded-sm ring-vis' onClick={clickToCopy}>
+              <FiMail className='align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-7 h-7' />
+            </button>
+          </Tippy>
+          <UnstyledLink
+            className='inline-flex items-center justify-center rounded-sm ring-vis'
+            href='https://clarence.link/github'
+          >
+            <SiGithub className='w-6 h-6 my-auto align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
+          </UnstyledLink>
+          <UnstyledLink
+            className='inline-flex items-center justify-center rounded-sm ring-vis'
+            href='https://clarence.link/linkedin'
+          >
+            <SiLinkedin className='w-6 h-6 my-auto align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
+          </UnstyledLink>
         </div>
         <SpotifyPlaying />
         <p className='mt-4 text-xs font-dark '>

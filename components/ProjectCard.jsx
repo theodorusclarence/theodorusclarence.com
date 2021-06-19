@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { IconContext } from 'react-icons/lib';
 import { FiExternalLink } from 'react-icons/fi';
 import { SiGithub, SiYoutube } from 'react-icons/si';
 
@@ -21,37 +20,30 @@ export default function ProjectCard({ data }) {
             <span>{data.name}</span>
           </h4>
           <div className='flex space-x-2'>
-            <IconContext.Provider
-              value={{
-                className:
-                  'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-5 h-5 align-middle',
-              }}
-            >
-              {data.github && (
-                <UnstyledLink
-                  className='inline-flex items-center justify-center rounded-sm ring-vis'
-                  href={data.github}
-                >
-                  <SiGithub />
-                </UnstyledLink>
-              )}
-              {data.youtube && (
-                <UnstyledLink
-                  className='inline-flex items-center justify-center rounded-sm ring-vis'
-                  href={data.youtube}
-                >
-                  <SiYoutube />
-                </UnstyledLink>
-              )}
-              {data.link && (
-                <UnstyledLink
-                  className='inline-flex items-center justify-center rounded-sm ring-vis'
-                  href={data.link}
-                >
-                  <FiExternalLink />
-                </UnstyledLink>
-              )}
-            </IconContext.Provider>
+            {data.github && (
+              <UnstyledLink
+                className='inline-flex items-center justify-center rounded-sm ring-vis'
+                href={data.github}
+              >
+                <SiGithub className='w-5 h-5 align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
+              </UnstyledLink>
+            )}
+            {data.youtube && (
+              <UnstyledLink
+                className='inline-flex items-center justify-center rounded-sm ring-vis'
+                href={data.youtube}
+              >
+                <SiYoutube className='w-5 h-5 align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
+              </UnstyledLink>
+            )}
+            {data.link && (
+              <UnstyledLink
+                className='inline-flex items-center justify-center rounded-sm ring-vis'
+                href={data.link}
+              >
+                <FiExternalLink className='w-5 h-5 align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
+              </UnstyledLink>
+            )}
           </div>
         </header>
         <p className='component'>{data.description}</p>
