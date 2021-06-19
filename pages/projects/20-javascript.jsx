@@ -1,4 +1,3 @@
-import { IconContext } from 'react-icons/lib';
 import { SiGithub } from 'react-icons/si';
 
 import { ogGenerate } from '@/utils/helper';
@@ -38,16 +37,9 @@ export default function JavascriptPage({ videos }) {
                 >
                   <div className='flex justify-between space-x-2'>
                     <h4>{video[0]}</h4>
-                    <IconContext.Provider
-                      value={{
-                        className:
-                          'text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-5 h-5 align-middle',
-                      }}
-                    >
-                      <CustomLink href={video[2]}>
-                        <SiGithub />
-                      </CustomLink>
-                    </IconContext.Provider>
+                    <CustomLink href={video[2]}>
+                      <SiGithub className='w-5 h-5 align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
+                    </CustomLink>
                   </div>
                   <ResponsiveIframe ratio={5 / 4} video={video} />
                 </li>

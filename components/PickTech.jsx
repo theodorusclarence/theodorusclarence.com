@@ -1,5 +1,4 @@
 import Tippy from '@tippyjs/react';
-import { IconContext } from 'react-icons/lib';
 import {
   SiNextDotJs,
   SiMongodb,
@@ -18,20 +17,59 @@ import {
 import { IoLogoVercel } from 'react-icons/io5';
 
 const techSpan = {
-  nextjs: ['Next.js', () => <SiNextDotJs />],
-  react: ['Create React App', () => <SiReact />],
-  tailwindcss: ['Tailwindcss', () => <SiTailwindcss />],
-  scss: ['SCSS', () => <SiSass />],
-  js: ['Vanilla JavaScript', () => <SiJavascript />],
-  nodejs: ['Node.js', () => <SiNodeDotJs />],
-  firebase: ['Firebase', () => <SiFirebase />],
-  mongodb: ['MongoDB', () => <SiMongodb />],
-  swr: ['SWR', () => <IoLogoVercel />],
-  redux: ['Redux', () => <SiRedux />],
-  mdx: ['MDX', () => <SiMarkdown />],
-  prettier: ['Prettier', () => <SiPrettier />],
-  analytics: ['Google Analytics', () => <SiGoogleanalytics />],
-  git: ['Git', () => <SiGit />],
+  nextjs: [
+    'Next.js',
+    () => <SiNextDotJs className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  react: [
+    'Create React App',
+    () => <SiReact className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  tailwindcss: [
+    'Tailwindcss',
+    () => <SiTailwindcss className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  scss: [
+    'SCSS',
+    () => <SiSass className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  js: [
+    'Vanilla JavaScript',
+    () => <SiJavascript className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  nodejs: [
+    'Node.js',
+    () => <SiNodeDotJs className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  firebase: [
+    'Firebase',
+    () => <SiFirebase className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  mongodb: [
+    'MongoDB',
+    () => <SiMongodb className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  swr: [
+    'SWR',
+    () => <IoLogoVercel className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  redux: [
+    'Redux',
+    () => <SiRedux className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  mdx: [
+    'MDX',
+    () => <SiMarkdown className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  prettier: [
+    'Prettier',
+    () => <SiPrettier className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  analytics: [
+    'Google Analytics',
+    () => <SiGoogleanalytics className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  git: ['Git', () => <SiGit className='w-6 h-6 text-dark dark:text-light' />],
   winner: [
     'Won a Hackathon',
     () => (
@@ -53,26 +91,22 @@ const techSpan = {
 export default function PickTech({ techs }) {
   return (
     <div className='flex mt-3 mb-5 space-x-2'>
-      <IconContext.Provider
-        value={{ className: 'text-dark dark:text-light w-6 h-6' }}
-      >
-        {techs.map((tech, index) => (
-          <Tippy
-            key={index}
-            animation='scale-subtle'
-            interactive={true}
-            content={
-              <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                {techSpan[tech][0]}
-              </span>
-            }
-          >
-            <div style={tech === 'winner' ? { marginLeft: 'auto' } : null}>
-              {techSpan[tech][1]()}
-            </div>
-          </Tippy>
-        ))}
-      </IconContext.Provider>
+      {techs.map((tech, index) => (
+        <Tippy
+          key={index}
+          animation='scale-subtle'
+          interactive={true}
+          content={
+            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
+              {techSpan[tech][0]}
+            </span>
+          }
+        >
+          <div style={tech === 'winner' ? { marginLeft: 'auto' } : null}>
+            {techSpan[tech][1]()}
+          </div>
+        </Tippy>
+      ))}
     </div>
   );
 }

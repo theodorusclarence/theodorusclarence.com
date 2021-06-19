@@ -24,7 +24,9 @@ const techObject = {
         built-in api.
       </>
     ),
-    () => <SiNextDotJs />,
+    () => (
+      <SiNextDotJs className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+    ),
   ],
   react: [
     () => (
@@ -34,7 +36,9 @@ const techObject = {
         authenticated website.
       </>
     ),
-    () => <SiReact />,
+    () => (
+      <SiReact className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+    ),
   ],
   tailwindcss: [
     () => (
@@ -48,7 +52,9 @@ const techObject = {
         .
       </>
     ),
-    () => <SiTailwindcss />,
+    () => (
+      <SiTailwindcss className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+    ),
   ],
   nodejs: [
     () => (
@@ -58,7 +64,9 @@ const techObject = {
         this too often because Next.js already has a backend built-in.
       </>
     ),
-    () => <SiNodeDotJs />,
+    () => (
+      <SiNodeDotJs className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+    ),
   ],
   swr: [
     () => (
@@ -71,7 +79,9 @@ const techObject = {
         is unreal. react-query is also a great alternative to this.
       </>
     ),
-    () => <IoLogoVercel />,
+    () => (
+      <IoLogoVercel className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+    ),
   ],
   firebase: [
     () => (
@@ -82,7 +92,9 @@ const techObject = {
         backend app
       </>
     ),
-    () => <SiFirebase />,
+    () => (
+      <SiFirebase className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+    ),
   ],
 };
 
@@ -92,29 +104,22 @@ export default function TechStack() {
       className='flex mt-2 space-x-2 md:space-x-4'
       variants={fadeInAndUp}
     >
-      <IconContext.Provider
-        value={{
-          className:
-            'text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 w-10 h-10 md:w-12 md:h-12',
-        }}
-      >
-        {currentTechStack.map((tech, index) => (
-          <Tippy
-            key={index}
-            animation='scale-subtle'
-            interactive={true}
-            content={
-              <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                {techObject[tech][0]()}
-              </span>
-            }
-          >
-            <motion.button className='rounded-sm md:w-12 ring-vis'>
-              {techObject[tech][1]()}
-            </motion.button>
-          </Tippy>
-        ))}
-      </IconContext.Provider>
+      {currentTechStack.map((tech, index) => (
+        <Tippy
+          key={index}
+          animation='scale-subtle'
+          interactive={true}
+          content={
+            <span className='inline-block p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
+              {techObject[tech][0]()}
+            </span>
+          }
+        >
+          <motion.button className='rounded-sm md:w-12 ring-vis'>
+            {techObject[tech][1]()}
+          </motion.button>
+        </Tippy>
+      ))}
     </motion.div>
   );
 }
