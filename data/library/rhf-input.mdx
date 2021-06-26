@@ -1,0 +1,387 @@
+---
+title: 'React Hook Form Inputs'
+techs: 'nextjs,react'
+description: 'Default inputs for text, email, password, phone, select, datepicker'
+---
+
+## Package Dependencies
+
+```bash
+yarn add react-hook-form react-datepicker @tailwindcss/forms react-icons
+```
+
+Configure tailwind.config to use forms.
+
+## Form Configuration
+
+```jsx
+import { FormProvider, useForm } from 'react-hook-form';
+
+export default function Page() {
+  const methods = useForm();
+  const { handleSubmit } = methods;
+
+  return (
+    <>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>Inputs Here</form>
+      </FormProvider>
+    </>
+  );
+}
+```
+
+---
+
+## Input Component
+
+```jsx
+import { useFormContext } from 'react-hook-form';
+import { HiExclamationCircle } from 'react-icons/hi';
+
+import { classNames } from '@/lib/helper';
+
+export default function Input({
+  label,
+  placeholder = '',
+  helperText = '',
+  id,
+  type = 'text',
+  readOnly = false,
+  validation,
+}) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <div>
+      <label htmlFor={id} className='block text-sm font-normal text-gray-700'>
+        {label}
+      </label>
+      <div className='relative mt-1'>
+        <input
+          {...register(id, validation)}
+          type={type}
+          name={id}
+          id={id}
+          readOnly={readOnly}
+          className={classNames(
+            readOnly === true ? 'bg-gray-100' : '',
+            errors[id]
+              ? 'focus:ring-red-500 border-red-500 focus:border-red-500'
+              : 'focus:ring-dark-400 focus:border-dark-400',
+            'block w-full border-gray-300 rounded-md shadow-sm'
+          )}
+          placeholder={placeholder}
+          aria-describedby={id}
+        />
+
+        {errors[id] && (
+          <div className='absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none'>
+            <HiExclamationCircle className='text-xl text-red-500' />
+          </div>
+        )}
+      </div>
+      <div className='mt-1'>
+        {helperText !== '' && (
+          <p className='text-xs text-gray-500'>{helperText}</p>
+        )}
+        {errors[id] && (
+          <span className='text-sm text-red-500'>{errors[id].message}</span>
+        )}
+      </div>
+    </div>
+  );
+}
+```
+
+### Usage: Email Input
+
+```jsx
+<Input
+  label='Email'
+  id='email'
+  type='email'
+  placeholder='you@example.com'
+  validation={{
+    required: 'Email is required',
+    pattern: {
+      value:
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      message: 'Format email salah',
+    },
+  }}
+/>
+```
+
+### Usage: Password Input
+
+```jsx
+<Input
+  label='Password'
+  id='password'
+  type='password'
+  helperText='Make sure your password is strong'
+  validation={{
+    required: 'Password is required',
+    minLength: {
+      value: 8,
+      message: 'Password must be more than 8 characters',
+    },
+  }}
+/>
+```
+
+### Usage: +62 Phone Number Input
+
+```jsx
+<Input
+  label='Phone Number'
+  id='telepon'
+  type='text'
+  helperText='Use +62 in front of your number'
+  validation={{
+    required: 'Phone number is required',
+    pattern: {
+      value: /^\+628[1-9][0-9]{8,11}$/,
+      message: 'Wrong format, use +62 format',
+    },
+  }}
+/>
+```
+
+---
+
+## Select Component
+
+```jsx
+import { useFormContext } from 'react-hook-form';
+
+export default function Select({
+  label,
+  placeholder = '',
+  id,
+  type = 'text',
+  validation = { required: true },
+  option,
+  setJenis,
+}) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <div>
+      <label htmlFor={id} className='block text-sm font-normal text-gray-700'>
+        {label}
+      </label>
+      <div className='relative mt-1 '>
+        <select
+          {...register(id, validation)}
+          name={id}
+          className='block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+        >
+          {option.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      {/* errors will return when field validation fails  */}
+      {errors[id] && (
+        <span className='text-sm text-red-500'>Kolom harus diisi</span>
+      )}
+    </div>
+  );
+}
+```
+
+### Usage: Normal Select
+
+```jsx
+<Select
+  label='Provinsi'
+  id='provinsi'
+  validation={{
+    required: 'Provinsi is required',
+  }}
+  option={[
+    { label: 'DKI Jakarta', value: 'DKI Jakarta' },
+    { label: 'Jawa Barat', value: 'Jawa Barat' },
+    { label: 'Kepulauan Riau', value: 'Kepulauan Riau' },
+  ]}
+/>
+```
+
+---
+
+## DatePicker Component
+
+```jsx
+import ReactDatePicker from 'react-datepicker';
+import { Controller, useFormContext } from 'react-hook-form';
+import { HiOutlineCalendar } from 'react-icons/hi';
+
+export default function DatePicker({
+  validation,
+  label,
+  id,
+  placeholder,
+  defaultTo,
+}) {
+  const {
+    formState: { errors },
+    control,
+  } = useFormContext();
+  const defaultDate = new Date();
+  if (defaultTo) defaultDate.setFullYear(defaultTo);
+
+  return (
+    <div className='relative'>
+      <label htmlFor={id} className='block text-sm font-normal text-gray-700'>
+        {label}
+      </label>
+
+      <Controller
+        control={control}
+        rules={validation}
+        defaultValue={null}
+        name={id}
+        render={({ field: { onChange, value } }) => (
+          <>
+            <div className='relative w-full mt-1'>
+              <ReactDatePicker
+                name={id}
+                className={`block w-full border-gray-300 text-black rounded-md shadow-sm   ${
+                  errors[id]
+                    ? 'focus:ring-red-500 border-red-500 focus:border-red-500'
+                    : 'focus:ring-indigo-500 focus:border-indigo-500'
+                }`}
+                onChange={onChange}
+                selected={value}
+                placeholderText={placeholder}
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode='select'
+                openToDate={defaultTo ? defaultDate : null}
+                dateFormat='dd/MM/yyyy'
+              />
+              <HiOutlineCalendar className='absolute text-lg text-gray-500 transform -translate-y-1/2 pointer-events-none right-4 top-1/2' />
+            </div>
+            {errors[id] && (
+              <span className='text-sm text-red-500'>{errors[id].message}</span>
+            )}
+          </>
+        )}
+      />
+    </div>
+  );
+}
+```
+
+Also, add this in your globals.css
+
+```css
+.react-datepicker-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.react-datepicker__header__dropdown {
+  margin-top: 0.5rem;
+}
+
+.react-datepicker__year-select,
+.react-datepicker__month-select {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 0.7rem;
+  border-radius: 0.5rem;
+}
+```
+
+### Usage: Normal DatePicker
+
+```jsx
+<DatePicker
+  label='Birth Date'
+  placeholder='dd/mm/yyyy'
+  id='tgl_lahir'
+  defaultTo={2001}
+  validation={{
+    required: 'Birth Date is required',
+  }}
+/>
+```
+
+---
+
+## TextArea Component
+
+```jsx
+import { useFormContext } from 'react-hook-form';
+import { HiExclamationCircle } from 'react-icons/hi';
+
+export default function TextArea({
+  label,
+  placeholder = '',
+  id,
+  type = 'text',
+  validation,
+}) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <div>
+      <label htmlFor={id} className='block text-sm font-normal text-gray-700'>
+        {label}
+      </label>
+      <div className='relative mt-1 '>
+        <textarea
+          {...register(id, validation)}
+          rows={3}
+          type={type}
+          name={id}
+          id={id}
+          className={`block w-full border-gray-300 rounded-md shadow-sm   ${
+            errors[id]
+              ? 'focus:ring-red-500 border-red-500 focus:border-red-500'
+              : 'focus:ring-indigo-500 focus:border-indigo-500'
+          }`}
+          placeholder={placeholder}
+          aria-describedby={id}
+        />
+        {errors[id] && (
+          <div className='absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none'>
+            <HiExclamationCircle className='text-xl text-red-500' />
+          </div>
+        )}
+      </div>
+      {/* errors will return when field validation fails  */}
+      {errors[id] && (
+        <span className='text-sm text-red-500'>{errors[id].message}</span>
+      )}
+    </div>
+  );
+}
+```
+
+### Usage: Normal TextArea
+
+```jsx
+<TextArea
+  label='Address'
+  id='address'
+  type='text'
+  validation={{
+    required: 'Address is required',
+  }}
+/>
+```
