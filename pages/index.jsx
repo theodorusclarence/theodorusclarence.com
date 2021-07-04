@@ -172,7 +172,6 @@ export function getStaticProps() {
       const slug = filePath.replace(/\.mdx?$/, '');
 
       return {
-        content,
         data,
         filePath,
         slug,
