@@ -1,31 +1,18 @@
-import Link from 'next/link';
+import { classNames } from '@/utils/helper';
+import UnstyledLink from './UnstyledLink';
 
-export default function CustomLink(props) {
-  const href = props.href;
-  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
-  const style = 'inline-block font-medium accent align-middle';
-
-  if (isInternalLink) {
-    return (
-      <Link href={href}>
-        <a
-          {...props}
-          className='inline-flex items-center rounded-sm ring-vis view'
-        >
-          <span className={style}>{props.children}</span>
-        </a>
-      </Link>
-    );
-  }
-
+export default function CustomLink({ children, className = '', ...rest }) {
   return (
-    <a
-      className='inline-flex items-center rounded-sm ring-vis view'
-      target='_blank'
-      rel='noopener noreferrer'
-      {...props}
+    <UnstyledLink
+      {...rest}
+      className={classNames(
+        'inline-flex items-center rounded-sm ring-vis view',
+        className
+      )}
     >
-      <span className={style}>{props.children}</span>
-    </a>
+      <span className='inline-block font-medium align-middle accent'>
+        {children}
+      </span>
+    </UnstyledLink>
   );
 }
