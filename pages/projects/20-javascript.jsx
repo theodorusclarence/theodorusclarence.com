@@ -1,6 +1,7 @@
 import { SiGithub } from 'react-icons/si';
 
 import { ogGenerate } from '@/utils/helper';
+import useContentMeta from '@/hooks/useContentMeta';
 
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
@@ -8,8 +9,14 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import ResponsiveIframe from '@/components/ResponsiveIframe';
+import LikeButton from '@/components/LikeButton';
 
 export default function JavascriptPage({ videos }) {
+  // Increment Views and Initialize Like
+  useContentMeta('p_20-javascript', {
+    runEffect: true,
+  });
+
   const imageOg = ogGenerate('20 Javascript Mini Project', 'Project');
 
   return (
@@ -45,6 +52,9 @@ export default function JavascriptPage({ videos }) {
                 </li>
               ))}
             </ul>
+            <div className='flex items-center justify-center py-8'>
+              <LikeButton slug='p_20-javascript' />
+            </div>
             <UnstyledLink href='/projects' className='inline-block view'>
               ← Back to projects
             </UnstyledLink>
