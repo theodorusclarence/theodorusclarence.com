@@ -21,7 +21,10 @@ export default function LikeButton({ slug }) {
           </svg>
         </div>
       ) : (
-        <button className='focus:outline-none' onClick={addLike}>
+        <button
+          className='rounded-md focus:outline-none heart-button'
+          onClick={addLike}
+        >
           <LikeButtonHeart likes={likesByUser} />
         </button>
       )}
