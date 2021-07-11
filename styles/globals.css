@@ -235,11 +235,18 @@ span.accent {
 }
 
 .heart-animate:hover,
-.heart-animate:focus {
+.heart-animate:focus,
+.heart-button:hover .heart-animate,
+.heart-button:focus-visible .heart-animate {
   transform: scale(1.15);
 }
 
-.heart-animate:active {
+.heart-button:focus-visible .heart-animate {
+  @apply rounded-sm ring-accent-200 ring-offset-white ring-1;
+}
+
+.heart-animate:active,
+.heart-button:active .heart-animate {
   transform: scale(1.3);
 }
 
