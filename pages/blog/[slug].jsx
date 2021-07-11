@@ -2,15 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useEffect } from 'react';
-import useSWR, { mutate } from 'swr';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import mdxPrism from 'mdx-prism';
 import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
 
-import fetcher from '@/utils/fetcher.js';
 import { checkBlogPrefix, formatDate, ogGenerate } from '@/utils/helper.js';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 
@@ -21,6 +18,8 @@ import Footer from '@/components/Footer.jsx';
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav.jsx';
 import CloudinaryImg from '@/components/CloudinaryImg';
+import useContentMeta from '@/hooks/useContentMeta';
+import LikeButton from '@/components/LikeButton';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -46,15 +45,10 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
   const isEnglish = checkedSlug === slug;
 
   const content = hydrate(source, { components });
-  const { data } = useSWR(`/api/${checkedSlug}`, fetcher);
-  useEffect(() => {
-    const addCount = async () => {
-      await fetch(`/api/${checkedSlug}`, { method: 'POST' });
-      mutate(`/api/${checkedSlug}`);
-    };
 
-    addCount();
-  }, []);
+  const { isLoading, contentViews } = useContentMeta(`b_${checkedSlug}`, {
+    runEffect: true,
+  });
 
   const imageOg = ogGenerate(frontMatter.title);
 
@@ -91,7 +85,7 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
                   <p className='ml-1'>Theodorus Clarence.</p>
                 </div>
                 <p className='mb-2'>
-                  {data?.count >= 0 ? data.count : '–––'} views • {readingTime}
+                  {isLoading ? '–––' : contentViews} views • {readingTime}
                 </p>
                 <CustomLink
                   href={`/blog/${isEnglish ? 'id-' : ''}${checkedSlug}`}
@@ -101,14 +95,17 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
               </p>
 
               {/* <Link href={`/blog/${slug}`} scroll={false}>
-                <a className='fixed p-2 text-black bg-green-200 rounded-md bottom-6 right-6'>
-                    Reload
-                </a>
-              </Link> */}
+              <a className='fixed p-2 text-black bg-green-200 rounded-md bottom-6 right-6'>
+                  Reload
+              </a>
+            </Link> */}
             </div>
             <article className='py-4 mx-auto prose transition-colors dark:prose-dark'>
               {content}
             </article>
+            <div className='flex items-center justify-center py-8'>
+              <LikeButton slug={`b_${checkedSlug}`} />
+            </div>
             <UnstyledLink href='/blog' className='inline-block mt-4 view'>
               ← Back to blog
             </UnstyledLink>
