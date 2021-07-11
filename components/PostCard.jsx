@@ -1,14 +1,13 @@
-import useSWR from 'swr';
 import { motion } from 'framer-motion';
 
 import UnstyledLink from './UnstyledLink';
 
-import fetcher from '@/utils/fetcher';
 import { checkBlogPrefix, formatDate } from '@/utils/helper';
+import useContentMeta from '@/hooks/useContentMeta';
 
 export default function PostCard({ post, index }) {
   const checkedSlug = checkBlogPrefix(post.slug);
-  const { data } = useSWR(`/api/${checkedSlug}`, fetcher);
+  const { isLoading, contentViews } = useContentMeta(`b_${checkedSlug}`);
   const { data: postData } = post;
   return (
     <motion.li
@@ -30,7 +29,7 @@ export default function PostCard({ post, index }) {
           </h4>
           <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light'>
             <span className='accent'>
-              {data?.count >= 0 ? data.count : '–––'} views
+              {isLoading ? '–––' : contentViews} views
             </span>
           </p>
         </header>
