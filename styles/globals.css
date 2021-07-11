@@ -132,6 +132,10 @@ span.accent {
   @apply focus-visible:ring-accent-200 focus-visible:ring-offset-white focus-visible:ring-1 focus:outline-none;
 }
 
+.ring-vis-0.project-card-after {
+  @apply focus-visible:after:ring-accent-200 focus-visible:after:ring-offset-white focus-visible:after:ring-1 focus:outline-none focus:ring-0;
+}
+
 .ring-vis-0:focus {
   outline: none;
 }

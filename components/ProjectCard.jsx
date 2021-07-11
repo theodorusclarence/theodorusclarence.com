@@ -9,17 +9,17 @@ import CloudinaryImg from './CloudinaryImg';
 export default function ProjectCard({ data }) {
   return (
     <motion.li className='max-w-md rounded-md card project-card md:w-full border-thin ring-vis-0'>
-      <UnstyledLink
-        href={data.page || data.link || data.youtube || data.github}
-        // target='_blank'
-        // rel='noopener noreferrer'
-        className='block p-5 rounded-md ring-vis-0'
-      >
+      <div className='relative block h-full p-5 rounded-md ring-vis-0'>
         <header className='flex justify-between'>
-          <h4>
-            <span>{data.name}</span>
-          </h4>
-          <div className='flex space-x-2'>
+          <UnstyledLink
+            href={data.page || data.link || data.youtube || data.github}
+            className='z-0 after:rounded-md after:absolute after:inset-0 ring-vis-0 project-card-after'
+          >
+            <h4>
+              <span>{data.name}</span>
+            </h4>
+          </UnstyledLink>
+          <div className='relative flex space-x-2'>
             {data.github && (
               <UnstyledLink
                 className='inline-flex items-center justify-center rounded-sm ring-vis'
@@ -48,7 +48,7 @@ export default function ProjectCard({ data }) {
         </header>
         <p className='component'>{data.description}</p>
         <PickTech techs={data.techStack} />
-        <div className='w-full shadow-md'>
+        <div className='w-full shadow-md pointer-events-none'>
           <CloudinaryImg
             publicId={data.cloudinaryPublicId}
             width='1440'
@@ -56,10 +56,11 @@ export default function ProjectCard({ data }) {
             alt={data.name}
           />
         </div>
+
         {data.page && (
-          <p className='inline-block mt-4 font-medium view'>View More →</p>
+          <a className='inline-block mt-4 font-medium view'>View More →</a>
         )}
-      </UnstyledLink>
+      </div>
     </motion.li>
   );
 }
