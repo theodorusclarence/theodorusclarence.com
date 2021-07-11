@@ -8,7 +8,7 @@ async function incrementViews(slug) {
     headers: { 'Content-Type': 'application/json' },
   });
 
-  return await res.json();
+  return res.json();
 }
 
 async function incrementLikes(slug) {
@@ -41,20 +41,25 @@ export default function useContentMeta(
     mutate(mutateData);
   }
 
-  function addLike() {
+  async function addLike() {
     if (!data || data.likesByUser >= 5) return;
 
     // Mutate optimistically
     mutate(
       {
-        ...data,
+        contentViews: data?.contentViews,
         contentLikes: data?.contentLikes + 1,
         likesByUser: data?.likesByUser + 1,
       },
       false
     );
 
-    mutate(incrementLikes(slug));
+    const fetchData = await incrementLikes(slug);
+    const mutateData = {
+      ...data,
+      ...fetchData,
+    };
+    mutate(mutateData);
   }
 
   return {
