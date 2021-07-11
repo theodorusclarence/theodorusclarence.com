@@ -28,7 +28,10 @@ export default function ProjectLayout({ data, children }) {
             <LikeButton slug={`p_${data.id}`} />
           </div>
 
-          <UnstyledLink href='/projects' className='inline-block mt-4 view'>
+          <UnstyledLink
+            href='/projects'
+            className='inline-block mt-4 rounded-sm view ring-vis'
+          >
             ← Back to projects
           </UnstyledLink>
 

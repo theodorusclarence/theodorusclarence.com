@@ -76,7 +76,10 @@ export default function PostPage({ source, frontMatter, slug }) {
             <div className='flex items-center justify-center py-8'>
               <LikeButton slug={`l_${slug}`} />
             </div>
-            <UnstyledLink href='/library' className='inline-block mt-4 view'>
+            <UnstyledLink
+              href='/library'
+              className='inline-block mt-4 rounded-sm view ring-vis'
+            >
               ← Back to library
             </UnstyledLink>
           </main>
