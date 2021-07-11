@@ -55,7 +55,10 @@ export default function JavascriptPage({ videos }) {
             <div className='flex items-center justify-center py-8'>
               <LikeButton slug='p_20-javascript' />
             </div>
-            <UnstyledLink href='/projects' className='inline-block view'>
+            <UnstyledLink
+              href='/projects'
+              className='inline-block rounded-sm view ring-vis'
+            >
               ← Back to projects
             </UnstyledLink>
           </main>
