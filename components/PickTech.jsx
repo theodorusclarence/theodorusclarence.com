@@ -102,7 +102,10 @@ export default function PickTech({ techs }) {
             </span>
           }
         >
-          <div style={tech === 'winner' ? { marginLeft: 'auto' } : null}>
+          <div
+            className='relative'
+            style={tech === 'winner' ? { marginLeft: 'auto' } : null}
+          >
             {techSpan[tech][1]()}
           </div>
         </Tippy>
