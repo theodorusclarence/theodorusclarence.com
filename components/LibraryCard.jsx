@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 
+import useContentMeta from '@/hooks/useContentMeta';
 import PickTech from './PickTech';
 import UnstyledLink from './UnstyledLink';
 
 export default function LibraryCard({ post, slug }) {
+  const { isLoading, contentLikes } = useContentMeta(`l_${slug}`);
   const techArray = post.techs.split(',');
   return (
     <motion.li
@@ -20,9 +22,16 @@ export default function LibraryCard({ post, slug }) {
         className='block h-full p-4 rounded-md ring-vis-0'
       >
         <div>
-          <h4>
-            <span>{post.title}</span>
-          </h4>
+          <header className='flex justify-between'>
+            <h4>
+              <span>{post.title}</span>
+            </h4>
+            <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light'>
+              <span className='accent'>
+                {isLoading ? '–––' : contentLikes} likes
+              </span>
+            </p>
+          </header>
           <PickTech techs={techArray} />
           <p className='component'>{post.description}</p>
         </div>

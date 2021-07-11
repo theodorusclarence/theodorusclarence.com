@@ -18,6 +18,8 @@ import CustomCode, { Pre } from '@/components/CustomCode.jsx';
 import CloudinaryImg from '@/components/CloudinaryImg';
 import Seo from '@/components/Seo';
 import { ogGenerate } from '@/utils/helper';
+import useContentMeta from '@/hooks/useContentMeta';
+import LikeButton from '@/components/LikeButton';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -42,6 +44,10 @@ export default function PostPage({ source, frontMatter, slug }) {
 
   const content = hydrate(source, { components });
 
+  const { isLoading, contentViews } = useContentMeta(`l_${slug}`, {
+    runEffect: true,
+  });
+
   const imageOg = ogGenerate(frontMatter.title, 'Code Snippets');
 
   return (
@@ -62,10 +68,14 @@ export default function PostPage({ source, frontMatter, slug }) {
               <p className='component text-dark dark:text-light'>
                 {frontMatter.description}
               </p>
+              <p className='mt-2'>{isLoading ? '–––' : contentViews} views</p>
             </div>
             <article className='py-4 mx-auto prose transition-colors dark:prose-dark'>
               {content}
             </article>
+            <div className='flex items-center justify-center py-8'>
+              <LikeButton slug={`l_${slug}`} />
+            </div>
             <UnstyledLink href='/library' className='inline-block mt-4 view'>
               ← Back to library
             </UnstyledLink>
