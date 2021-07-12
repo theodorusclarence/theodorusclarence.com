@@ -16,7 +16,7 @@ export default function PostCard({ post, index }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       // to remove layoutId from index page to blog page
-      layoutId={index ? null : post.slug}
+      // layoutId={index ? null : post.slug}
       className='w-full bg-white rounded-md card ring-vis-0 border-thin dark:bg-dark card-2'
     >
       <UnstyledLink

@@ -13,7 +13,7 @@ export default function LibraryCard({ post, slug }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      layoutId={slug}
+      // layoutId={slug}
       className='h-full bg-white rounded-md card border-thin ring-vis-0 dark:bg-dark'
       style={{ minHeight: '9rem' }}
     >
