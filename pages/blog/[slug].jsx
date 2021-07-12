@@ -84,14 +84,17 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
                   </div>
                   <p className='ml-1'>Theodorus Clarence.</p>
                 </div>
-                <p className='mb-2'>
+                <p className='mt-1'>
                   {isLoading ? '–––' : contentViews} views • {readingTime}
                 </p>
-                <CustomLink
-                  href={`/blog/${isEnglish ? 'id-' : ''}${checkedSlug}`}
-                >
-                  Read in {isEnglish ? 'Bahasa Indonesia' : 'English'}
-                </CustomLink>
+                {!frontMatter?.englishOnly && (
+                  <CustomLink
+                    href={`/blog/${isEnglish ? 'id-' : ''}${checkedSlug}`}
+                    className='mt-2'
+                  >
+                    Read in {isEnglish ? 'Bahasa Indonesia' : 'English'}
+                  </CustomLink>
+                )}
               </p>
 
               {/* <Link href={`/blog/${slug}`} scroll={false}>
@@ -108,7 +111,7 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
             </div>
             <UnstyledLink
               href='/blog'
-              className='inline-block mt-4 view rounded-sm ring-vis'
+              className='inline-block mt-4 rounded-sm view ring-vis'
             >
               ← Back to blog
             </UnstyledLink>
