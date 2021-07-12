@@ -1,5 +1,4 @@
 import { upsertLikeByUser } from '@/utils/Fauna';
-import prisma from '@/utils/prisma';
 import { createHash } from 'crypto';
 
 export default async function handler(req, res) {
