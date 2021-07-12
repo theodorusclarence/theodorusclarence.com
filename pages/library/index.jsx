@@ -12,15 +12,13 @@ import Footer from '@/components/Footer';
 import LibraryCard from '@/components/LibraryCard';
 import Seo from '@/components/Seo';
 
-export default function BlogPage({ snippets }) {
+export default function LibraryPage({ snippets }) {
+  snippets.sort((a, b) =>
+    a.data.title > b.data.title ? 1 : b.data.title > a.data.title ? -1 : 0
+  );
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredSnippets, setFilteredSnippets] = useState([...snippets]);
-
-  // sort the newest blog first.
-  snippets.sort(
-    (postA, postB) =>
-      new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
-  );
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -37,7 +35,13 @@ export default function BlogPage({ snippets }) {
             .toLowerCase()
             .includes(searchTerm.toLowerCase())
       );
-      setFilteredSnippets(results);
+
+      // sort by title
+      const sortedResult = results.sort((a, b) =>
+        a.data.title > b.data.title ? 1 : b.data.title > a.data.title ? -1 : 0
+      );
+
+      setFilteredSnippets(sortedResult);
     }, 200);
 
     return () => clearTimeout(timer);
