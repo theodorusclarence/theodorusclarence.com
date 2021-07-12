@@ -1,3 +1,4 @@
+import { getContentMeta, upsertContentMeta } from '@/utils/Fauna';
 import prisma from '@/utils/prisma';
 import { createHash } from 'crypto';
 
@@ -18,52 +19,26 @@ export default async function handler(req, res) {
     .update(ipAddress + process.env.IP_ADDRESS_SALT, 'utf8')
     .digest('hex');
 
-  const sessionId = slug + '__' + currentUserId;
+  const sessionId = currentUserId;
 
   try {
     if (req.method === 'GET') {
-      // get content likes
-      const content = await prisma.contentMeta.findUnique({
-        where: {
-          slug,
-        },
-      });
-
-      // get likes by user ip address
-      const likes = await prisma.likesByUser.findUnique({
-        where: {
-          id: sessionId,
-        },
-      });
+      const data = await getContentMeta(slug);
 
       res.status(200).json({
-        contentViews: content?.views ?? 0,
-        contentLikes: content?.likes ?? 0,
-        likesByUser: likes?.likes ?? 0,
+        contentViews: data?.data?.views ?? 0,
+        contentLikes: data?.data?.likes ?? 0,
+        likesByUser: data?.data?.likesByUser?.[sessionId] ?? 0,
       });
     } else if (req.method === 'POST') {
-      // upsert content meta views by 1
-      const content = await prisma.contentMeta.upsert({
-        where: {
-          slug,
-        },
-        update: {
-          views: {
-            increment: 1,
-          },
-        },
-        create: {
-          slug,
-          views: 1,
-        },
-      });
-
+      const { data } = await upsertContentMeta(slug);
       res.status(201).json({
-        contentViews: content?.views ?? 0,
-        contentLikes: content?.likes ?? 0,
+        contentViews: data?.views ?? 0,
+        contentLikes: data?.likes ?? 0,
       });
     }
   } catch (err) {
+    console.log('🚀 ~ file: test.js ~ line 15 ~ handler ~ err', { err });
     res.status(500).json({
       statusCode: 500,
       message: err.message,

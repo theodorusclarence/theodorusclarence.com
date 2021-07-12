@@ -1,3 +1,4 @@
+import { upsertLikeByUser } from '@/utils/Fauna';
 import prisma from '@/utils/prisma';
 import { createHash } from 'crypto';
 
@@ -18,62 +19,22 @@ export default async function handler(req, res) {
     .update(ipAddress + process.env.IP_ADDRESS_SALT, 'utf8')
     .digest('hex');
 
-  const sessionId = slug + '__' + currentUserId;
+  const sessionId = currentUserId;
 
   try {
-    // Check if the user already liked more than 5 times
-    const checkLike = await prisma.likesByUser.findUnique({
-      where: {
-        id: sessionId,
-      },
-    });
-    if (checkLike?.likes >= 5) throw new Error('Max like is 5');
-
-    // if get then get content likes
     if (req.method === 'POST') {
-      const content = await prisma.contentMeta.update({
-        where: {
-          slug,
-        },
-        data: {
-          likes: {
-            increment: 1,
-          },
-        },
-      });
-
-      // upsert content meta views by 1
-      const like = await prisma.likesByUser.upsert({
-        where: {
-          id: sessionId,
-        },
-        update: {
-          likes: {
-            increment: 1,
-          },
-        },
-        create: {
-          id: sessionId,
-          likes: 1,
-        },
-      });
-
+      const data = await upsertLikeByUser(slug, sessionId);
       res.status(201).json({
-        contentViews: content?.views ?? 0,
-        contentLikes: content?.likes ?? 0,
-        likesByUser: like.likes ?? 0,
-      });
-    } else {
-      res.status(405).json({
-        statusCode: 405,
-        message: 'Method not allowed',
+        contentViews: data?.data?.views ?? 0,
+        contentLikes: data?.data?.likes ?? 0,
+        likesByUser: data?.data?.likesByUser?.[sessionId] ?? 0,
       });
     }
   } catch (err) {
-    console.error(err);
+    console.log('🚀 ~ file: test.js ~ line 15 ~ handler ~ err', { err });
     res.status(500).json({
       statusCode: 500,
-      message: err.message,
+      message: err.description,
     });
   }
 }
