@@ -54,12 +54,12 @@ export default function useContentMeta(
       false
     );
 
-    const fetchData = await incrementLikes(slug);
-    const mutateData = {
-      ...data,
-      ...fetchData,
-    };
-    mutate(mutateData);
+    // const fetchData = await incrementLikes(slug);
+    // const mutateData = {
+    //   ...data,
+    //   ...fetchData,
+    // };
+    mutate(incrementLikes(slug));
   }
 
   return {
