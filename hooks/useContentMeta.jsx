@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import fetcher from '@/utils/fetcher';
 import { useEffect } from 'react';
+import { debounce } from '@/utils/helper';
 
 async function incrementViews(slug) {
   const res = await fetch('/api/content/' + slug, {
@@ -47,19 +48,18 @@ export default function useContentMeta(
     // Mutate optimistically
     mutate(
       {
-        contentViews: data?.contentViews,
-        contentLikes: data?.contentLikes + 1,
-        likesByUser: data?.likesByUser + 1,
+        contentViews: data.contentViews,
+        contentLikes: data.contentLikes + 1,
+        likesByUser: data.likesByUser + 1,
       },
       false
     );
 
-    // const fetchData = await incrementLikes(slug);
-    // const mutateData = {
-    //   ...data,
-    //   ...fetchData,
-    // };
-    mutate(incrementLikes(slug));
+    await incrementLikes(slug);
+
+    debounce(() => {
+      mutate();
+    }, 1000)();
   }
 
   return {
