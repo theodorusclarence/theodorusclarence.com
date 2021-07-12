@@ -26,7 +26,7 @@ export default function LibraryCard({ post, slug }) {
             <h4>
               <span>{post.title}</span>
             </h4>
-            <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light'>
+            <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light min-w-[8ch] text-right'>
               <span className='accent'>
                 {isLoading ? '–––' : contentLikes} likes
               </span>
