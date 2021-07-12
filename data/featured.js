@@ -1,7 +1,7 @@
 export const featured = [
-  'tailwindcss-best-practice',
+  'rhf',
   'nextjs-redirect-no-flashing',
-  'my-addons',
+  'tailwindcss-best-practice',
 ];
 
 export const featuredProj = ['tutee-id', 'sxceosleague'];
