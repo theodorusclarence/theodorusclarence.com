@@ -2,14 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
-import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
 import { projects } from '@/data/projects';
 import { featured, featuredProj } from '@/data/featured';
 
-import { usePreloadState } from '@/context/PreloadContext';
+import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import { classNames } from '@/utils/helper';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
@@ -25,19 +24,7 @@ import Footer from '@/components/Footer';
 import InViewSection from '@/components/InViewSection';
 
 export default function Home({ featuredPosts, featuredProjects }) {
-  const preloaded = usePreloadState();
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // if initial load, wait for the loader to went off
-    if (preloaded) {
-      setIsLoaded(true);
-    } else {
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 200);
-    }
-  }, []);
+  const { isLoaded } = useLoadingWithPreload();
 
   return (
     <>

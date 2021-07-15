@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 
 import { projects } from '@/data/projects';
 import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
+import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
@@ -9,6 +10,8 @@ import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 
 export default function ProjectsPage() {
+  const { isLoaded } = useLoadingWithPreload();
+
   return (
     <>
       <Seo
@@ -16,7 +19,11 @@ export default function ProjectsPage() {
         description='Showcase of my works on frontend development.'
       />
       <Nav />
-      <motion.main initial='initial' animate='animate' className='py-6 mt-4'>
+      <motion.main
+        initial='initial'
+        animate={isLoaded && 'animate'}
+        className='py-6 mt-4'
+      >
         <motion.article variants={staggerFaster} className='space-y-2 layout'>
           <header className='mb-8 space-y-2'>
             <motion.h1 variants={fadeInAndUp} className=''>
