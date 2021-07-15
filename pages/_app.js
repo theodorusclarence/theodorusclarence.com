@@ -5,11 +5,15 @@ import 'tippy.js/animations/scale-subtle.css';
 import { ThemeProvider } from 'next-themes';
 import { AnimateSharedLayout } from 'framer-motion';
 
+import { PreloadProvider } from '@/context/PreloadContext';
+
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider attribute='class' defaultTheme='dark' enableSystem={false}>
       <AnimateSharedLayout>
-        <Component {...pageProps} />
+        <PreloadProvider>
+          <Component {...pageProps} />
+        </PreloadProvider>
       </AnimateSharedLayout>
     </ThemeProvider>
   );
