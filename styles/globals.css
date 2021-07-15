@@ -267,3 +267,35 @@ span.accent {
 .emoji-animate {
   animation: emoji-animation 0.7s cubic-bezier(0.33, 1, 0.68, 1);
 }
+
+/* Initial Fade In */
+.animate-fade-in-initial {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.3s ease-out;
+  transition-property: transform, opacity;
+}
+
+.animate-fade-in-start .animate-fade-in-initial {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-fade-in-start .animate-fade-in-initial.fade-in-1 {
+  transition-delay: 100ms;
+}
+.animate-fade-in-start .animate-fade-in-initial.fade-in-2 {
+  transition-delay: 200ms;
+}
+.animate-fade-in-start .animate-fade-in-initial.fade-in-3 {
+  transition-delay: 300ms;
+}
+.animate-fade-in-start .animate-fade-in-initial.fade-in-4 {
+  transition-delay: 400ms;
+}
+.animate-fade-in-start .animate-fade-in-initial.fade-in-5 {
+  transition-delay: 500ms;
+}
+.animate-fade-in-start .animate-fade-in-initial.fade-in-6 {
+  transition-delay: 600ms;
+}
