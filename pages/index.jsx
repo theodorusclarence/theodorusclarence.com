@@ -2,15 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
-import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
 import { projects } from '@/data/projects';
 import { featured, featuredProj } from '@/data/featured';
+import { usePreloadState } from '@/context/PreloadContext';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 import { fadeInAndUp, stagger } from '@/utils/FramerAnimation';
-import sayHello from '@/utils/sayHello';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
@@ -23,17 +22,11 @@ import Footer from '@/components/Footer';
 import InViewSection from '@/components/InViewSection';
 
 export default function Home({ featuredPosts, featuredProjects }) {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    sayHello();
-    setIsLoaded(true);
-  });
+  const isLoaded = usePreloadState();
 
   return (
     <>
       <Seo />
-      <div className='fixed inset-0 transition-opacity bg-white preloader dark:bg-dark'></div>
       <Nav />
 
       <motion.main className='flex flex-col min-h-screen'>
