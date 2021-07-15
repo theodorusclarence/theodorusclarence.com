@@ -2,14 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
 import { projects } from '@/data/projects';
 import { featured, featuredProj } from '@/data/featured';
-import { usePreloadState } from '@/context/PreloadContext';
+import { classNames } from '@/utils/helper';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
-import { fadeInAndUp, stagger } from '@/utils/FramerAnimation';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
@@ -22,7 +22,11 @@ import Footer from '@/components/Footer';
 import InViewSection from '@/components/InViewSection';
 
 export default function Home({ featuredPosts, featuredProjects }) {
-  const isLoaded = usePreloadState();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoaded(true), 200);
+  }, []);
 
   return (
     <>
@@ -31,43 +35,39 @@ export default function Home({ featuredPosts, featuredProjects }) {
 
       <motion.main className='flex flex-col min-h-screen'>
         {/* //* Home and Tech Stack */}
-        <motion.div
-          className='flex flex-col justify-center min-h-screen'
-          initial='initial'
-          animate={isLoaded ? 'animate' : null}
-          variants={stagger}
+        <div
+          className={classNames(
+            'flex flex-col justify-center min-h-screen',
+            isLoaded && 'animate-fade-in-start'
+          )}
         >
           <section className='pb-6 -mt-24'>
             <article className='layout'>
-              <motion.h2 variants={fadeInAndUp} className='md:mb-2'>
-                Hi!
-              </motion.h2>
-              <motion.h1 variants={fadeInAndUp} className='mb-2'>
+              <h2 className='md:mb-2 animate-fade-in-initial fade-in-1'>Hi!</h2>
+              <h1 className='mb-2 animate-fade-in-initial fade-in-2'>
                 You can call me <span className='accent'>Clarence</span>
-              </motion.h1>
-              <motion.p
-                variants={fadeInAndUp}
-                className='prose dark:text-light'
-              >
+              </h1>
+              <p className='prose dark:text-light animate-fade-in-initial fade-in-3'>
                 I'm a fast learner and hardworking Informatics Student at
                 Institut Teknologi Sepuluh Nopember. I'm currently really
                 interested in Frontend Development.{' '}
                 <CustomLink href='/about'>Reach me out</CustomLink> to talk more
                 about frontend works!
-              </motion.p>
+              </p>
             </article>
           </section>
           <section className='py-6'>
             <article className='layout'>
-              <motion.h2 className='mb-2' variants={fadeInAndUp}>
+              <h2 className='mb-2 animate-fade-in-initial fade-in-4'>
                 Current Favorite Tech Stack
-              </motion.h2>
-              <TechStack />
+              </h2>
+              <figure className='animate-fade-in-initial fade-in-5'>
+                <TechStack />
+              </figure>
             </article>
           </section>
-          <motion.figure
-            variants={fadeInAndUp}
-            className='absolute cursor-pointer bottom-2 md:bottom-10 left-1/2'
+          <figure
+            className='absolute cursor-pointer bottom-2 md:bottom-10 left-1/2 animate-fade-in-initial fade-in-6'
             style={{ translateX: '-50%' }}
             onClick={(e) => {
               e.preventDefault();
@@ -79,8 +79,8 @@ export default function Home({ featuredPosts, featuredProjects }) {
             }}
           >
             <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce hover:text-accent-300' />
-          </motion.figure>
-        </motion.div>
+          </figure>
+        </div>
 
         {/* //* Featured Projects */}
         {/* padding top smaller to reduce gap */}
