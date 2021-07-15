@@ -35,7 +35,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
         {/* //* Home and Tech Stack */}
         <div
           className={classNames(
-            'flex flex-col justify-center min-h-screen',
+            'flex flex-col justify-center min-h-[calc(100vh-82px)]',
             isLoaded && 'animate-fade-in-start'
           )}
         >
@@ -65,8 +65,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
             </article>
           </section>
           <figure
-            className='absolute cursor-pointer bottom-2 md:bottom-10 left-1/2 animate-fade-in-initial fade-in-6'
-            style={{ translateX: '-50%' }}
+            className='absolute -translate-x-1/2 cursor-pointer bottom-2 md:bottom-10 left-1/2 animate-fade-in-initial fade-in-6'
             onClick={(e) => {
               e.preventDefault();
               window.scrollBy({

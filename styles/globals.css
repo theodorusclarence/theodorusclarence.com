@@ -270,15 +270,13 @@ span.accent {
 
 /* Initial Fade In */
 .animate-fade-in-initial {
-  opacity: 0;
-  transform: translateY(40px);
+  @apply translate-y-10 opacity-0;
   transition: 0.3s ease-out;
   transition-property: transform, opacity;
 }
 
 .animate-fade-in-start .animate-fade-in-initial {
-  opacity: 1;
-  transform: translateY(0);
+  @apply translate-y-0 opacity-100;
 }
 
 .animate-fade-in-start .animate-fade-in-initial.fade-in-1 {
