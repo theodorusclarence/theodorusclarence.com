@@ -9,7 +9,7 @@ export const PreloadProvider = ({ children }) => {
 
   useEffect(() => {
     sayHello();
-    setTimeout(() => setIsLoaded(true), 100);
+    setTimeout(() => setIsLoaded(true), 200);
   }, []);
 
   return (
