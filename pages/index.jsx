@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
@@ -9,6 +10,7 @@ import { projects } from '@/data/projects';
 import { featured, featuredProj } from '@/data/featured';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 import { fadeInAndUp, stagger } from '@/utils/FramerAnimation';
+import sayHello from '@/utils/sayHello';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
@@ -21,14 +23,12 @@ import Footer from '@/components/Footer';
 import InViewSection from '@/components/InViewSection';
 
 export default function Home({ featuredPosts, featuredProjects }) {
-  console.log(`██   ██ ███████ ██      ██       ██████      ██████  ███████ ██    ██ ███████ ██       ██████  ██████  ███████ ██████  ██ 
-██   ██ ██      ██      ██      ██    ██     ██   ██ ██      ██    ██ ██      ██      ██    ██ ██   ██ ██      ██   ██ ██ 
-███████ █████   ██      ██      ██    ██     ██   ██ █████   ██    ██ █████   ██      ██    ██ ██████  █████   ██████  ██ 
-██   ██ ██      ██      ██      ██    ██     ██   ██ ██       ██  ██  ██      ██      ██    ██ ██      ██      ██   ██    
-██   ██ ███████ ███████ ███████  ██████      ██████  ███████   ████   ███████ ███████  ██████  ██      ███████ ██   ██ ██ `);
-  console.log(
-    'Welcome to my page! Also feel free to contact me via email at theodorusclarence@gmail.com 🙌'
-  );
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    sayHello();
+    setIsLoaded(true);
+  });
 
   return (
     <>
@@ -41,7 +41,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
         <motion.div
           className='flex flex-col justify-center min-h-screen'
           initial='initial'
-          animate='animate'
+          animate={isLoaded ? 'animate' : null}
           variants={stagger}
         >
           <section className='pb-6 -mt-24'>
