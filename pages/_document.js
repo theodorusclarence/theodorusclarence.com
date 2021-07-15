@@ -114,15 +114,6 @@ class MyDocument extends Document {
                     `,
             }}
           />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.onload = function(){
-                                    const el = document.querySelector('body');
-                                    el.classList.add('loaded');
-                                    };
-                    `,
-            }}
-          />
 
           {/* Splitbee */}
           <script async data-api='/_hive' src='/bee.js'></script>
