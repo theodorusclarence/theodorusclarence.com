@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
 import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
+import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -15,6 +16,8 @@ import CustomLink from '@/components/CustomLink';
 import Seo from '@/components/Seo';
 
 export default function BlogPage({ posts }) {
+  const { isLoaded } = useLoadingWithPreload();
+
   const englishPosts = [];
   const indPosts = [];
 
@@ -100,7 +103,7 @@ export default function BlogPage({ posts }) {
         <motion.section
           className='py-6 mt-4'
           initial='initial'
-          animate='animate'
+          animate={isLoaded && 'animate'}
         >
           <motion.main className='space-y-4 layout' variants={staggerFaster}>
             <header className='space-y-2'>

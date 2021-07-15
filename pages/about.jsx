@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 
 import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
+import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Nav from '@/components/Nav';
 import CustomLink from '@/components/CustomLink';
@@ -10,6 +11,8 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 
 export default function About() {
+  const { isLoaded } = useLoadingWithPreload();
+
   return (
     <>
       <Seo title='About – theodorusclarence.com' />
@@ -18,7 +21,7 @@ export default function About() {
       {/* //* About */}
       <motion.main
         initial='initial'
-        animate='animate'
+        animate={isLoaded && 'animate'}
         variants={staggerFaster}
         className='flex flex-col min-h-screen'
       >

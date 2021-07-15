@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { LIBRARY_PATH, postLibraryPaths } from '@/utils/mdxUtils';
 import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
+import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -13,6 +14,8 @@ import LibraryCard from '@/components/LibraryCard';
 import Seo from '@/components/Seo';
 
 export default function LibraryPage({ snippets }) {
+  const { isLoaded } = useLoadingWithPreload();
+
   snippets.sort((a, b) =>
     a.data.title > b.data.title ? 1 : b.data.title > a.data.title ? -1 : 0
   );
@@ -55,7 +58,7 @@ export default function LibraryPage({ snippets }) {
       <Seo title='Library – theodorusclarence.com' description={description} />
       <motion.div
         initial='initial'
-        animate='animate'
+        animate={isLoaded && 'animate'}
         className='flex flex-col min-h-screen'
       >
         <Nav />
