@@ -64,19 +64,19 @@ export default function Home({ featuredPosts, featuredProjects }) {
               </figure>
             </article>
           </section>
-          <figure
-            className='absolute -translate-x-1/2 cursor-pointer bottom-2 md:bottom-10 left-1/2 animate-fade-in-initial fade-in-6'
+          <button
+            className='absolute -translate-x-1/2 rounded-md cursor-pointer bottom-2 hover:text-accent-300 focus-visible:text-accent-300 md:bottom-10 left-1/2 animate-fade-in-initial fade-in-6 ring-vis'
             onClick={(e) => {
               e.preventDefault();
               window.scrollBy({
-                top: window.innerHeight - 60,
+                top: window.innerHeight - 130,
                 left: 0,
                 behavior: 'smooth',
               });
             }}
           >
-            <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce hover:text-accent-300' />
-          </figure>
+            <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce' />
+          </button>
         </div>
 
         {/* //* Featured Projects */}
