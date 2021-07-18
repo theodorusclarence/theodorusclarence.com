@@ -3,8 +3,9 @@ import path from 'path';
 import Head from 'next/head';
 import Image from 'next/image';
 import matter from 'gray-matter';
-import readingTime from 'reading-time';
 import mdxPrism from 'mdx-prism';
+import { useEffect } from 'react';
+import readingTime from 'reading-time';
 import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
 
@@ -51,6 +52,14 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
   });
 
   const imageOg = ogGenerate(frontMatter.title);
+
+  useEffect(() => {
+    document.documentElement.classList.add('smooth');
+
+    return () => {
+      document.documentElement.classList.remove('smooth');
+    };
+  }, []);
 
   return (
     <>
@@ -133,7 +142,17 @@ export const getStaticProps = async ({ params }) => {
     components,
     // Optionally pass remark/rehype plugins
     mdxOptions: {
-      remarkPlugins: [],
+      remarkPlugins: [
+        require('remark-slug'),
+        [
+          require('remark-autolink-headings'),
+          {
+            linkProperties: {
+              className: ['hash-anchor'],
+            },
+          },
+        ],
+      ],
       rehypePlugins: [mdxPrism],
     },
     scope: data,
