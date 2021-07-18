@@ -14,6 +14,10 @@
     U+FEFF, U+FFFD;
 }
 
+html.smooth {
+  scroll-behavior: smooth;
+}
+
 ::selection {
   @apply bg-accent-200 bg-opacity-40;
 }
@@ -296,4 +300,28 @@ span.accent {
 }
 .animate-fade-in-start .animate-fade-in-initial.fade-in-6 {
   transition-delay: 600ms;
+}
+
+/* HASH ANCHOR STYLE */
+.hash-anchor {
+  @apply inset-y-0 w-full;
+  position: absolute;
+}
+
+.hash-anchor:hover:after,
+.hash-anchor:focus:after {
+  visibility: visible;
+}
+
+.hash-anchor:after {
+  @apply absolute invisible text-lg -translate-y-1/2 -right-5 text-accent-400 dark:text-accent-300 top-1/2;
+  content: '#';
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  scroll-margin-top: 100px;
+  position: relative;
+  display: inline-block;
 }
