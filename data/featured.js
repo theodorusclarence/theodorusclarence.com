@@ -1,6 +1,6 @@
 export const featured = [
   'rhf',
-  'nextjs-redirect-no-flashing',
+  'btb-flex-mental-model',
   'tailwindcss-best-practice',
 ];
 
