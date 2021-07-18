@@ -33,6 +33,8 @@
     "react-icons": "^4.1.0",
     "react-intersection-observer": "^8.31.0",
     "reading-time": "^1.2.1",
+    "remark-autolink-headings": "^6.0.1",
+    "remark-slug": "^6.1.0",
     "swr": "^0.4.0",
     "tailwindcss-border-gradients": "^2.0.3"
   },
