@@ -79,7 +79,7 @@ export default function PostPage({ source, frontMatter, slug }) {
               </p>
               <p className='mt-2'>{isLoading ? '–––' : contentViews} views</p>
             </div>
-            <article className='py-4 mx-auto prose transition-colors dark:prose-dark'>
+            <article className='py-4 mx-auto prose transition-colors mdx dark:prose-dark'>
               {content}
             </article>
             <div className='flex items-center justify-center py-8'>

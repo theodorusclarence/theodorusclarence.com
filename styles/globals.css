@@ -318,9 +318,10 @@ span.accent {
   content: '#';
 }
 
-.prose h2,
-.prose h3,
-.prose h4 {
+.mdx.prose h1,
+.mdx.prose h2,
+.mdx.prose h3,
+.mdx.prose h4 {
   scroll-margin-top: 100px;
   position: relative;
   display: inline-block;

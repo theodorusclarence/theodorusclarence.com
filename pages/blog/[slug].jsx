@@ -112,7 +112,7 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
               </a>
             </Link> */}
             </div>
-            <article className='py-4 mx-auto prose transition-colors dark:prose-dark'>
+            <article className='py-4 mx-auto prose transition-colors mdx dark:prose-dark'>
               {content}
             </article>
             <div className='flex items-center justify-center py-8'>
