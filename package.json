@@ -35,7 +35,7 @@
     "reading-time": "^1.2.1",
     "remark-autolink-headings": "^6.0.1",
     "remark-slug": "^6.1.0",
-    "swr": "^0.4.0",
+    "swr": "^0.4.2",
     "tailwindcss-border-gradients": "^2.0.3"
   },
   "devDependencies": {
