@@ -46,7 +46,7 @@
     "postcss-focus-visible": "^5.0.0",
     "prettier": "^2.3.0",
     "rehype": "^11.0.0",
-    "tailwindcss": "^2.2.2"
+    "tailwindcss": "^2.2.4"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
