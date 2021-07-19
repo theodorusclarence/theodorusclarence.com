@@ -4,7 +4,6 @@ export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
       const data = await getAllContent();
-      console.log('🚀 ~ file: index.js ~ line 7 ~ handler ~ data', data);
 
       const mappedData = data.map((item) => item.data);
       // sort by slug alphabetically
