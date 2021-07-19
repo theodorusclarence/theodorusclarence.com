@@ -75,6 +75,17 @@ const createContent = async (slug) => {
   );
 };
 
+const getAllContent = async () => {
+  const { data } = await faunaClient.query(
+    q.Map(
+      q.Paginate(q.Documents(q.Collection('contents'))),
+      q.Lambda((x) => q.Get(x))
+    )
+  );
+
+  return data;
+};
+
 // const getContentMeta = async (slug) => {
 //   return await faunaClient.query(
 //     q.If(q.Exists(q.Match(q.Index('get_contents_by_slug'), slug)),
@@ -175,4 +186,5 @@ module.exports = {
   getContentMeta,
   upsertContentMeta,
   upsertLikeByUser,
+  getAllContent,
 };
