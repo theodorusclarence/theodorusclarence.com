@@ -17,7 +17,7 @@
     "cloudinary-build-url": "^0.2.1",
     "crypto": "^1.0.1",
     "faunadb": "^4.3.0",
-    "framer-motion": "^3.3.0",
+    "framer-motion": "^3.10.6",
     "gray-matter": "^4.0.3",
     "mdx-prism": "^0.3.3",
     "next": "^11.0.1",
