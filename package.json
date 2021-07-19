@@ -18,7 +18,7 @@
     "crypto": "^1.0.1",
     "faunadb": "^4.0.0",
     "framer-motion": "^3.3.0",
-    "gray-matter": "^4.0.2",
+    "gray-matter": "^4.0.3",
     "mdx-prism": "^0.3.1",
     "next": "^11.0.0",
     "next-mdx-remote": "^2.1.1",
