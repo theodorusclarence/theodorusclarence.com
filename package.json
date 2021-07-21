@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.5.0",
@@ -43,6 +44,7 @@
     "@commitlint/config-conventional": "^12.1.4",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.1",
+    "next-sitemap": "^1.6.140",
     "postcss-focus-visible": "^5.0.0",
     "prettier": "^2.3.2",
     "rehype": "^11.0.0",
