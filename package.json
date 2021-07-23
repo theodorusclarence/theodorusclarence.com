@@ -39,7 +39,7 @@
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "husky": "^6.0.0",
-    "lint-staged": "^11.0.1",
+    "lint-staged": "^11.1.0",
     "next-sitemap": "^1.6.140",
     "postcss-focus-visible": "^5.0.0",
     "prettier": "^2.3.2",
