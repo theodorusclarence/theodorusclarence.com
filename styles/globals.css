@@ -306,6 +306,13 @@ span.accent {
 .hash-anchor {
   @apply inset-y-0 w-full;
   position: absolute;
+  background-image: none;
+  transition: none;
+}
+
+.hash-anchor:hover {
+  background-image: linear-gradient(to right, #00ff94, #00e0f3, #00c4fd);
+  background-size: 100% 2px;
 }
 
 .hash-anchor:hover:after,
