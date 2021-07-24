@@ -2,18 +2,13 @@ import { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import { FiMail } from 'react-icons/fi';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import UnstyledLink from './UnstyledLink';
 import SpotifyPlaying from './SpotifyPlaying';
 
 export default function Footer() {
-  const [copyStatus, setCopyStatus] = useState('Click again to copy');
-
-  const clickToCopy = () => {
-    navigator.clipboard.writeText('theodorusclarence@gmail.com');
-    setCopyStatus('Copied to clipboard');
-    setTimeout(() => setCopyStatus('Click again to copy'), 1500);
-  };
+  const [copyStatus, setCopyStatus] = useState('Click the mail logo to copy');
 
   return (
     <footer className='pb-2 mt-auto'>
@@ -36,9 +31,22 @@ export default function Footer() {
               </span>
             }
           >
-            <button className='rounded-sm ring-vis' onClick={clickToCopy}>
-              <FiMail className='align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-7 h-7' />
-            </button>
+            <div className='flex items-center justify-center'>
+              <CopyToClipboard
+                text='theodorusclarence@gmail.com'
+                onCopy={() => {
+                  setCopyStatus('Copied to clipboard 🥳');
+                  setTimeout(
+                    () => setCopyStatus('Click the mail logo to copy'),
+                    1500
+                  );
+                }}
+              >
+                <button className='rounded-sm ring-vis'>
+                  <FiMail className='align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200 w-7 h-7' />
+                </button>
+              </CopyToClipboard>
+            </div>
           </Tippy>
           <UnstyledLink
             className='inline-flex items-center justify-center rounded-sm ring-vis'

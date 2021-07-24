@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
@@ -7,13 +8,6 @@ import CloudinaryImg from '@/components/CloudinaryImg';
 
 export default function TransferPage() {
   const [copyStatus, setCopyStatus] = useState('Copy Nomor Rekening');
-
-  const clickToCopy = (e) => {
-    e.preventDefault();
-    navigator.clipboard.writeText('7630055037');
-    setCopyStatus('Copied to clipboard 🥳');
-    setTimeout(() => setCopyStatus('Copy Nomor Rekening'), 1500);
-  };
 
   return (
     <>
@@ -40,12 +34,17 @@ export default function TransferPage() {
               <code className='px-4 py-2 font-bold'>
                 <span className='accent'>7630055037</span>
               </code>
-              <button
-                onClick={clickToCopy}
-                className='block px-4 py-2 font-medium rounded-md ring-vis-0 btn border-thin'
+              <CopyToClipboard
+                text='7630055037'
+                onCopy={() => {
+                  setCopyStatus('Copied to clipboard 🥳');
+                  setTimeout(() => setCopyStatus('Copy Nomor Rekening'), 1500);
+                }}
               >
-                {copyStatus}
-              </button>
+                <button className='block px-4 py-2 font-medium rounded-md ring-vis-0 btn border-thin'>
+                  {copyStatus}
+                </button>
+              </CopyToClipboard>
             </div>
           </article>
         </section>
