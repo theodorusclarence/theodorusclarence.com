@@ -40,6 +40,9 @@ export default function ProjectLayout({ data, children }) {
               font-style: normal;
               margin-bottom: 0.5em;
             }
+            .yt-lite::before {
+              content: none !important;
+            }
           `}</style>
         </article>
       </section>
