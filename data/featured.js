@@ -4,7 +4,7 @@ export const featured = [
   'tailwindcss-best-practice',
 ];
 
-export const featuredProj = ['tutee-id', 'sxceosleague'];
+export const featuredProj = ['ppdbsumsel', 'sxceosleague'];
 
 export const currentTechStack = [
   'nextjs',
