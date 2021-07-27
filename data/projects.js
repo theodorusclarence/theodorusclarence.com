@@ -1,5 +1,17 @@
 export const projects = [
   {
+    id: 'ppdbsumsel',
+    page: '/projects/ppdbsumsel',
+    name: 'PPDB Sumatera Selatan 2021',
+    category: 'Team of 4, as the Frontend Project Leader',
+    description:
+      'A website to facilitate students from Sumatera Selatan to register to local high school.',
+    techStack: ['react', 'tailwindcss'],
+    cloudinaryPublicId:
+      'theodorusclarence/projects/ppdbsumsel/ppdbsumsel-banner_msa4i5',
+    link: 'https://ppdbsumsel.net',
+  },
+  {
     id: 'sxceosleague',
     page: '/projects/sxceosleague',
     name: 'StudentsxCEOs League',
