@@ -334,3 +334,27 @@ span.accent {
   display: inline-block;
   margin-right: 0.5rem;
 }
+
+.hash-anchor-non-mdx {
+  @apply relative;
+  scroll-margin-top: 100px;
+}
+
+.hash-anchor-non-mdx:hover {
+  background-image: linear-gradient(to right, #00ff94, #00e0f3, #00c4fd);
+  background-size: 100% 2px;
+}
+
+.hash-anchor-non-mdx:hover:after,
+.hash-anchor-non-mdx:focus:after {
+  visibility: visible;
+}
+
+.hash-anchor-non-mdx:after {
+  @apply absolute invisible text-lg -translate-y-1/2 -right-5 text-accent-400 dark:text-accent-300 top-1/2;
+  content: '#';
+}
+
+.scroll-margin {
+  scroll-margin-top: 100px;
+}

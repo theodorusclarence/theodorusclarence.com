@@ -13,8 +13,10 @@ import {
   SiFirebase,
   SiRedux,
   SiGit,
+  SiNotion,
 } from 'react-icons/si';
 import { IoLogoVercel } from 'react-icons/io5';
+import { classNames } from '@/utils/helper';
 
 const techSpan = {
   nextjs: [
@@ -70,6 +72,10 @@ const techSpan = {
     () => <SiGoogleanalytics className='w-6 h-6 text-dark dark:text-light' />,
   ],
   git: ['Git', () => <SiGit className='w-6 h-6 text-dark dark:text-light' />],
+  notion: [
+    'Notion API',
+    () => <SiNotion className='w-6 h-6 text-dark dark:text-light' />,
+  ],
   winner: [
     'Won a Hackathon',
     () => (
@@ -88,9 +94,14 @@ const techSpan = {
  *
  * @param {string[]} techs Techs
  */
-export default function PickTech({ techs }) {
+export default function PickTech({ techs, customMargin }) {
   return (
-    <div className='flex mt-3 mb-5 space-x-2'>
+    <div
+      className={classNames(
+        'flex space-x-2',
+        customMargin ? customMargin : 'mt-3 mb-5'
+      )}
+    >
       {techs.map((tech, index) => (
         <Tippy
           key={index}

@@ -6,13 +6,11 @@ export default function CustomLink({ children, className = '', ...rest }) {
     <UnstyledLink
       {...rest}
       className={classNames(
-        'inline-flex items-center rounded-sm ring-vis view',
+        'inline-flex items-center font-medium rounded-sm ring-vis view',
         className
       )}
     >
-      <span className='inline-block font-medium align-middle accent'>
-        {children}
-      </span>
+      <span className='inline-block align-middle accent'>{children}</span>
     </UnstyledLink>
   );
 }

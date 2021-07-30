@@ -61,13 +61,24 @@ export const projects = [
     link: 'https://love4heroes.online',
   },
   {
+    id: 'side-projects',
+    name: 'Side Projects',
+    description:
+      ' Simple projects that I build to fix small problems I found everyday.',
+    techStack: ['nextjs', 'tailwindcss', 'swr'],
+    thumbnail: '20-javascript.jpg',
+    cloudinaryPublicId: 'theodorusclarence/projects/side-projects_in0q9o',
+    github: null,
+    page: '/projects/side-projects',
+  },
+  {
     id: '20-javascript',
     name: '20 Javascript Mini Project',
     description:
       'An attempt to study Vanilla JavaScript faster, done in a month.',
     techStack: ['js'],
     thumbnail: '20-javascript.jpg',
-    cloudinaryPublicId: 'theodorusclarence/tc-20-javascript_awcd7i.jpg',
+    cloudinaryPublicId: 'theodorusclarence/projects/20-javascript_jf11ja',
     github: null,
     page: '/projects/20-javascript',
   },
