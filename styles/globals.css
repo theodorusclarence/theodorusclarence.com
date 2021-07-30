@@ -332,4 +332,5 @@ span.accent {
   scroll-margin-top: 100px;
   position: relative;
   display: inline-block;
+  margin-right: 0.5rem;
 }
