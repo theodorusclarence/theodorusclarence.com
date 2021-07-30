@@ -53,3 +53,47 @@ function addSomething() {
   toast.error('message');
 }
 ```
+
+## Toast Promise Example
+
+With promise, we don't need to use `toast.success` or `toast.error`, but directly send a promise, and it will be managed.
+
+```jsx
+toast.promise(
+  axios
+    .post('/user/login', data)
+    .then((res) => {
+      const { jwt: token } = res.data.data;
+      tempToken = token;
+      localStorage.setItem('token', token);
+
+      // chaining axios in 1 promise
+      return axios.get('/user/get-user-info');
+    })
+    .then((user) => {
+      const role = user.data.data.user_role;
+      dispatch('LOGIN', { ...user.data.data, token: tempToken });
+
+      history.replace('/');
+    }),
+  {
+    loading: 'Loading...',
+    success: 'Success',
+    error: (err) => err.response.data.msg,
+  }
+);
+```
+
+## useLoadingToast hook
+
+Using a `useLoadingToast` hook we can get access if there is any loading toast showing, then use it to disable button.
+
+```jsx
+import { useToasterStore } from 'react-hot-toast';
+
+export default function useLoadingToast() {
+  const { toasts } = useToasterStore();
+  const isLoading = toasts.some((toast) => toast.type === 'loading');
+  return isLoading;
+}
+```
