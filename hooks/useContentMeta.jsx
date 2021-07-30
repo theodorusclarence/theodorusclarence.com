@@ -28,8 +28,7 @@ export default function useContentMeta(
   const { data, error, mutate } = useSWR('/api/content/' + slug, fetcher);
 
   useEffect(() => {
-    if (!runEffect) return;
-    addViews();
+    if (runEffect && process.env.NODE_ENV === 'production') addViews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
