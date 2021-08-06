@@ -331,8 +331,10 @@ span.accent {
 .mdx.prose h4 {
   scroll-margin-top: 100px;
   position: relative;
-  display: inline-block;
+  display: block;
   margin-right: 0.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .hash-anchor-non-mdx {
