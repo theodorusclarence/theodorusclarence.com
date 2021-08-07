@@ -2,10 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 import { LIBRARY_PATH, postLibraryPaths } from '@/utils/mdxUtils';
-import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
+import { classNames } from '@/utils/helper';
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Nav from '@/components/Nav';
@@ -56,26 +56,24 @@ export default function LibraryPage({ snippets }) {
   return (
     <>
       <Seo title='Library – theodorusclarence.com' description={description} />
-      <motion.div
-        initial='initial'
-        animate={isLoaded && 'animate'}
-        className='flex flex-col min-h-screen'
+      <div
+        className={classNames(
+          'flex flex-col min-h-screen',
+          isLoaded && 'animate-fade-in-start'
+        )}
       >
         <Nav />
-        <motion.section className='py-6 mt-4' variants={staggerFaster}>
+        <section className='py-6 mt-4'>
           <main className='space-y-4 layout'>
             <header className='space-y-2'>
-              <motion.h1 variants={fadeInAndUp}>
+              <h1 className='animate-fade-in-initial fade-in-1'>
                 <span className='accent'>Library</span>
-              </motion.h1>
-              <motion.p
-                variants={fadeInAndUp}
-                className='text-dark dark:text-light'
-              >
+              </h1>
+              <p className='text-dark dark:text-light animate-fade-in-initial fade-in-2'>
                 {description}
-              </motion.p>
+              </p>
             </header>
-            <motion.div variants={fadeInAndUp} className='pb-4'>
+            <div className='pb-4 animate-fade-in-initial fade-in-3'>
               <p className='font-medium'>Search</p>
               <input
                 className='w-full px-4 py-2 transition-colors rounded-md shadow-none focus:border-accent-200 border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
@@ -84,12 +82,9 @@ export default function LibraryPage({ snippets }) {
                 value={searchTerm}
                 onChange={handleSearch}
               />
-            </motion.div>
+            </div>
             <AnimatePresence>
-              <motion.ul
-                variants={fadeInAndUp}
-                className='grid gap-4 md:grid-cols-2'
-              >
+              <ul className='grid gap-4 md:grid-cols-2 animate-fade-in-initial fade-in-4'>
                 {filteredSnippets.map((snippet) => (
                   <LibraryCard
                     key={snippet.slug}
@@ -101,12 +96,12 @@ export default function LibraryPage({ snippets }) {
                 {filteredSnippets.length === 0 && (
                   <h4>Oops, not found, try searching another one ;)</h4>
                 )}
-              </motion.ul>
+              </ul>
             </AnimatePresence>
           </main>
-        </motion.section>
+        </section>
         <Footer />
-      </motion.div>
+      </div>
     </>
   );
 }
