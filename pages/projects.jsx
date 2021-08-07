@@ -1,7 +1,5 @@
-import { motion } from 'framer-motion';
-
 import { projects } from '@/data/projects';
-import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
+import { classNames } from '@/utils/helper';
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Seo from '@/components/Seo';
@@ -19,30 +17,25 @@ export default function ProjectsPage() {
         description='Showcase of my works on frontend development.'
       />
       <Nav />
-      <motion.main
-        initial='initial'
-        animate={isLoaded && 'animate'}
-        className='py-6 mt-4'
+      <main
+        className={classNames('py-6 mt-4', isLoaded && 'animate-fade-in-start')}
       >
-        <motion.article variants={staggerFaster} className='space-y-2 layout'>
+        <article className='space-y-2 layout'>
           <header className='mb-8 space-y-2'>
-            <motion.h1 variants={fadeInAndUp} className=''>
+            <h1 className='animate-fade-in-initial fade-in-1'>
               <span className='accent'>My Projects</span>
-            </motion.h1>
-            <motion.p variants={fadeInAndUp} className='prose dark:text-light'>
+            </h1>
+            <p className='prose dark:text-light animate-fade-in-initial fade-in-2'>
               Some projects that I have made.
-            </motion.p>
+            </p>
           </header>
-          <motion.ul
-            variants={fadeInAndUp}
-            className='grid gap-4 md:grid-cols-2'
-          >
+          <ul className='grid gap-4 md:grid-cols-2 animate-fade-in-initial fade-in-3'>
             {projects.map((project, index) => (
               <ProjectCard key={index} data={project} />
             ))}
-          </motion.ul>
-        </motion.article>
-      </motion.main>
+          </ul>
+        </article>
+      </main>
       <Footer />
     </>
   );

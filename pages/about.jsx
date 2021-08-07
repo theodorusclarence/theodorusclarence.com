@@ -1,6 +1,4 @@
-import { motion } from 'framer-motion';
-
-import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
+import { classNames } from '@/utils/helper';
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Nav from '@/components/Nav';
@@ -19,33 +17,27 @@ export default function About() {
       <Nav />
 
       {/* //* About */}
-      <motion.main
-        initial='initial'
-        animate={isLoaded && 'animate'}
-        variants={staggerFaster}
-        className='flex flex-col min-h-screen'
+      <main
+        className={classNames(
+          'flex flex-col min-h-screen',
+          isLoaded && 'animate-fade-in-start'
+        )}
       >
         <section className='py-10'>
           <article className='layout'>
-            <motion.h1 variants={fadeInAndUp}>About</motion.h1>
-            <motion.h1 variants={fadeInAndUp} className='mb-4'>
+            <h1 className='animate-fade-in-initial fade-in-1'>About</h1>
+            <h1 className='mb-4 animate-fade-in-initial fade-in-2'>
               <span className='accent'>Theodorus Clarence</span>
-            </motion.h1>
-            <motion.figure
-              variants={fadeInAndUp}
-              className='float-right ml-6 w-36 md:w-52'
-            >
+            </h1>
+            <figure className='float-right ml-6 w-36 md:w-52 animate-fade-in-initial fade-in-3'>
               <CloudinaryImg
                 publicId='theodorusclarence/tc-me_dpzlvc.png'
                 width='596'
                 height='882'
                 alt='Photo of me'
               />
-            </motion.figure>
-            <motion.p
-              variants={fadeInAndUp}
-              className='mb-4 prose dark:text-light'
-            >
+            </figure>
+            <p className='mb-4 prose dark:text-light animate-fade-in-initial fade-in-4'>
               Hello! I'm Clarence. I started learning web development in May
               2020, which is the start of the pandemic. I have nothing much to
               do so I decided to learn web development from a udemy course, then
@@ -53,54 +45,49 @@ export default function About() {
               <CustomLink href='/blog/youtube-list'>youtube videos</CustomLink>{' '}
               to explore more about web development especially frontend
               development.
-            </motion.p>
-            <motion.p
-              variants={fadeInAndUp}
-              className='mb-4 prose dark:text-light'
-            >
+            </p>
+            <p className='mb-4 prose dark:text-light animate-fade-in-initial fade-in-5'>
               There are a lot of things and technologies to learn in frontend
               development and I am motivated to learn as much as possible. I
               enjoy learning something new and getting feedback to make myself
               better and improve.
-            </motion.p>
-            <motion.p variants={fadeInAndUp} className='prose dark:text-light'>
+            </p>
+            <p className='prose dark:text-light animate-fade-in-initial fade-in-6'>
               In this website I will be writing some blogs and showcase my
               projects. I believe that writing what I have learned is the best
               way to remember things, and I can share my knowledge along the
               way. So do contact me and I will be very happy to help!
-            </motion.p>
+            </p>
           </article>
         </section>
 
         {/* //* Contacts */}
         <section className='py-10'>
           <article className='layout'>
-            <motion.h2 variants={fadeInAndUp} className='mb-2'>
-              Contact
-            </motion.h2>
-            <motion.p variants={fadeInAndUp} className='prose dark:text-light'>
+            <h2 className='mb-2 animate-fade-in-initial fade-in-7'>Contact</h2>
+            <p className='prose dark:text-light animate-fade-in-initial fade-in-8'>
               Do contact me if you need my opinion about web development,
               especially frontend works. I’ll be happy to help! (find my email
               in the footer)
-            </motion.p>
+            </p>
           </article>
         </section>
 
         {/* //* Business Inquiries */}
         <section className='pt-10 pb-16'>
           <article className='layout'>
-            <motion.h2 variants={fadeInAndUp} className='mb-2'>
+            <h2 className='mb-2 animate-fade-in-initial fade-in-9'>
               Business Inquiries
-            </motion.h2>
-            <motion.p variants={fadeInAndUp} className='prose dark:text-light'>
+            </h2>
+            <p className='prose dark:text-light animate-fade-in-initial fade-in-10'>
               Contact me if you want to build a personal website. If you need a
               more complex website contact me through{' '}
               <CopyableText>etzytech@gmail.com</CopyableText> agency.
-            </motion.p>
+            </p>
           </article>
         </section>
         <Footer />
-      </motion.main>
+      </main>
     </>
   );
 }

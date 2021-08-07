@@ -301,6 +301,18 @@ span.accent {
 .animate-fade-in-start .animate-fade-in-initial.fade-in-6 {
   transition-delay: 600ms;
 }
+.animate-fade-in-start .animate-fade-in-initial.fade-in-7 {
+  transition-delay: 700ms;
+}
+.animate-fade-in-start .animate-fade-in-initial.fade-in-8 {
+  transition-delay: 800ms;
+}
+.animate-fade-in-start .animate-fade-in-initial.fade-in-9 {
+  transition-delay: 900ms;
+}
+.animate-fade-in-start .animate-fade-in-initial.fade-in-10 {
+  transition-delay: 1000ms;
+}
 
 /* HASH ANCHOR STYLE */
 .hash-anchor {

@@ -3,10 +3,10 @@ import path from 'path';
 import readingTime from 'reading-time';
 import matter from 'gray-matter';
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
+import { classNames } from '@/utils/helper';
 import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
-import { fadeInAndUp, staggerFaster } from '@/utils/FramerAnimation';
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Nav from '@/components/Nav';
@@ -100,48 +100,40 @@ export default function BlogPage({ posts }) {
       />
       <div className='flex flex-col min-h-screen'>
         <Nav />
-        <motion.section
-          className='py-6 mt-4'
-          initial='initial'
-          animate={isLoaded && 'animate'}
+        <section
+          className={classNames(
+            'py-6 mt-4',
+            isLoaded && 'animate-fade-in-start'
+          )}
         >
-          <motion.main className='space-y-4 layout' variants={staggerFaster}>
+          <main className='space-y-4 layout'>
             <header className='space-y-2'>
-              <motion.h1 variants={fadeInAndUp}>
+              <h1 className='animate-fade-in-initial fade-in-1'>
                 <span className='accent'>
                   Blog
                   {selectedEnglish ? '' : ' Bahasa Indonesia'}
                 </span>
-              </motion.h1>
-              <motion.p
-                variants={fadeInAndUp}
-                className='text-dark dark:text-light'
-              >
+              </h1>
+              <p className='text-dark dark:text-light animate-fade-in-initial fade-in-2'>
                 Some of my thoughts.
-              </motion.p>
-              <motion.p
-                variants={fadeInAndUp}
-                className='text-dark dark:text-light'
-              >
+              </p>
+              <p className='text-dark dark:text-light animate-fade-in-initial fade-in-3'>
                 Kindly{' '}
                 <CustomLink href='https://buttondown.email/theodorusclarence'>
                   subscribe to my newsletter
                 </CustomLink>{' '}
                 if you want an update everytime I post.
-              </motion.p>
-              <motion.div
-                variants={fadeInAndUp}
-                className='text-dark dark:text-light'
-              >
+              </p>
+              <div className='text-dark dark:text-light animate-fade-in-initial fade-in-4'>
                 <button
                   className='inline-block px-4 py-2 mt-2 font-medium transition-shadow duration-100 rounded-md btn active:shadow-none hover:shadow-md border-thin ring-vis-0'
                   onClick={() => setSelectedEnglish(!selectedEnglish)}
                 >
                   Read in {selectedEnglish ? 'Bahasa Indonesia' : 'English'}
                 </button>
-              </motion.div>
+              </div>
             </header>
-            <motion.div variants={fadeInAndUp} className='pb-4'>
+            <div className='pb-4 animate-fade-in-initial fade-in-5'>
               <p className='font-medium'>Search</p>
               <input
                 className='w-full px-4 py-2 transition-colors rounded-md shadow-none border-thin dark:bg-dark focus:border-accent-200 focus:outline-none focus:ring-1 focus:ring-accent-200 '
@@ -150,9 +142,9 @@ export default function BlogPage({ posts }) {
                 value={searchTerm}
                 onChange={handleSearch}
               />
-            </motion.div>
+            </div>
             <AnimatePresence>
-              <motion.ul variants={fadeInAndUp} className='space-y-4'>
+              <ul className='space-y-4 animate-fade-in-initial fade-in-6'>
                 {filteredPosts.map((post) => (
                   <PostCard key={post.filePath} post={post} />
                 ))}
@@ -160,10 +152,10 @@ export default function BlogPage({ posts }) {
                 {filteredPosts.length === 0 && (
                   <h4>Oops, not found, try searching another one ;)</h4>
                 )}
-              </motion.ul>
+              </ul>
             </AnimatePresence>
-          </motion.main>
-        </motion.section>
+          </main>
+        </section>
         <Footer />
       </div>
     </>
