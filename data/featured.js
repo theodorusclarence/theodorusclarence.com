@@ -9,8 +9,8 @@ export const featuredProj = ['ppdbsumsel', 'sxceosleague'];
 export const currentTechStack = [
   'nextjs',
   'react',
+  'typescript',
   'tailwindcss',
   'swr',
-  'firebase',
   'nodejs',
 ];

@@ -7,6 +7,7 @@ import {
   SiTailwindcss,
   SiNodeDotJs,
   SiFirebase,
+  SiTypescript,
 } from 'react-icons/si';
 import { IoLogoVercel } from 'react-icons/io5';
 
@@ -40,11 +41,28 @@ const techObject = {
       <SiReact className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
     ),
   ],
+  typescript: [
+    () => (
+      <>
+        <CustomLink href='https://www.typescriptlang.org/'>
+          TypeScript
+        </CustomLink>
+        , finally jumping on this one, I love the experience! Check out my{' '}
+        <CustomLink href='https://github.com/theodorusclarence/ts-nextjs-tailwind-starter'>
+          starter template
+        </CustomLink>{' '}
+        using Next.js, Tailwind CSS, and TypeScript
+      </>
+    ),
+    () => (
+      <SiTypescript className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+    ),
+  ],
   tailwindcss: [
     () => (
       <>
-        <CustomLink href='https://tailwindcss.com/'>Tailwindcss</CustomLink>, I
-        recently converted my styling from SCSS to tailwindcss, a great
+        <CustomLink href='https://tailwindcss.com/'>Tailwind CSS</CustomLink>, I
+        recently converted my styling from SCSS to Tailwind CSS, a great
         decision. Make sure you get the{' '}
         <CustomLink href='https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss'>
           extension
