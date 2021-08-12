@@ -35,6 +35,7 @@ export default function About() {
                 width='596'
                 height='882'
                 alt='Photo of me'
+                preview={false}
               />
             </figure>
             <p className='mb-4 prose dark:text-light animate-fade-in-initial fade-in-4'>

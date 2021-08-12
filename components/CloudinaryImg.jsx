@@ -1,6 +1,11 @@
 import Image from 'next/image';
-import { buildUrl } from 'cloudinary-build-url';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Lightbox from 'react-image-lightbox';
+import { buildUrl } from 'cloudinary-build-url';
+
+import 'react-image-lightbox/style.css';
+import { classNames } from '@/utils/helper';
 
 export default function CloudinaryImg({
   publicId,
@@ -9,7 +14,10 @@ export default function CloudinaryImg({
   alt = 'Project Image',
   title,
   className,
+  preview = true,
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   const urlBlurred = buildUrl(publicId, {
     cloud: {
       cloudName: 'theodorusclarence',
@@ -28,34 +36,41 @@ export default function CloudinaryImg({
   });
 
   return (
-    <div
-      className={className}
-      style={{
-        position: 'relative',
-        height: 0,
-        paddingTop: `${(height / width) * 100}%`,
-        backgroundImage: `url(${urlBlurred})`,
-        backgroundPosition: 'center center',
-        backgroundSize: `100%`,
-      }}
-    >
+    <>
       <div
+        className={classNames(className)}
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
+          position: 'relative',
+          height: 0,
+          paddingTop: `${(height / width) * 100}%`,
+          backgroundImage: `url(${urlBlurred})`,
+          backgroundPosition: 'center center',
+          backgroundSize: `100%`,
+          cursor: preview ? 'zoom-in' : 'default',
         }}
+        onClick={preview ? () => setIsOpen(true) : undefined}
       >
-        <Image
-          width={width}
-          height={height}
-          src={url}
-          alt={alt}
-          unoptimized={true}
-          title={title || alt}
-        />
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+          }}
+        >
+          <Image
+            width={width}
+            height={height}
+            src={url}
+            alt={alt}
+            unoptimized={true}
+            title={title || alt}
+          />
+        </div>
       </div>
-    </div>
+      {isOpen && (
+        <Lightbox mainSrc={url} onCloseRequest={() => setIsOpen(false)} />
+      )}
+    </>
   );
 }
 
@@ -66,4 +81,5 @@ CloudinaryImg.propTypes = {
   alt: PropTypes.string.isRequired,
   title: PropTypes.string,
   className: PropTypes.string,
+  preview: PropTypes.bool,
 };
