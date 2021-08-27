@@ -21,6 +21,7 @@ import Nav from '@/components/Nav.jsx';
 import CloudinaryImg from '@/components/CloudinaryImg';
 import useContentMeta from '@/hooks/useContentMeta';
 import LikeButton from '@/components/LikeButton';
+import Comments from '@/components/Comments';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -118,6 +119,7 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
             <div className='flex items-center justify-center py-8'>
               <LikeButton slug={`b_${checkedSlug}`} />
             </div>
+            <Comments />
             <UnstyledLink
               href='/blog'
               className='inline-block mt-4 rounded-sm view ring-vis'

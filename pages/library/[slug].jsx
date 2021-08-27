@@ -21,6 +21,7 @@ import Seo from '@/components/Seo';
 import { ogGenerate } from '@/utils/helper';
 import useContentMeta from '@/hooks/useContentMeta';
 import LikeButton from '@/components/LikeButton';
+import Comments from '@/components/Comments';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -85,6 +86,7 @@ export default function PostPage({ source, frontMatter, slug }) {
             <div className='flex items-center justify-center py-8'>
               <LikeButton slug={`l_${slug}`} />
             </div>
+            <Comments />
             <UnstyledLink
               href='/library'
               className='inline-block mt-4 rounded-sm view ring-vis'
