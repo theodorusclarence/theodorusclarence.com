@@ -87,12 +87,20 @@ export default function PostPage({ source, frontMatter, slug }) {
               <LikeButton slug={`l_${slug}`} />
             </div>
             <Comments />
-            <UnstyledLink
-              href='/library'
-              className='inline-block mt-4 rounded-sm view ring-vis'
-            >
-              ← Back to library
-            </UnstyledLink>
+
+            <div className='flex flex-col gap-4 mt-4 md:flex-row-reverse md:justify-between'>
+              <CustomLink
+                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/data/library/${slug}.mdx`}
+              >
+                Edit this on GitHub
+              </CustomLink>
+              <UnstyledLink
+                href='/library'
+                className='inline-block rounded-sm view ring-vis'
+              >
+                ← Back to library
+              </UnstyledLink>
+            </div>
           </main>
         </section>
         <Footer />

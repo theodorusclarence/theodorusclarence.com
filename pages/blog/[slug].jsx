@@ -120,12 +120,19 @@ export default function PostPage({ source, frontMatter, slug, readingTime }) {
               <LikeButton slug={`b_${checkedSlug}`} />
             </div>
             <Comments />
-            <UnstyledLink
-              href='/blog'
-              className='inline-block mt-4 rounded-sm view ring-vis'
-            >
-              ← Back to blog
-            </UnstyledLink>
+            <div className='flex flex-col gap-4 mt-4 md:flex-row-reverse md:justify-between'>
+              <CustomLink
+                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/data/blog/${slug}.mdx`}
+              >
+                Edit this on GitHub
+              </CustomLink>
+              <UnstyledLink
+                href='/blog'
+                className='inline-block rounded-sm view ring-vis'
+              >
+                ← Back to blog
+              </UnstyledLink>
+            </div>
           </main>
         </section>
         <Footer />
