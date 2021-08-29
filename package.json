@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "prepare": "husky install",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "release": "standard-version"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.4.1",
@@ -47,6 +48,7 @@
     "postcss-focus-visible": "^5.0.0",
     "prettier": "^2.3.2",
     "rehype": "^11.0.0",
+    "standard-version": "^9.3.1",
     "tailwindcss": "^2.2.7"
   },
   "lint-staged": {
