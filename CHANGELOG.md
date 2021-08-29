@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.0...v0.1.1) (2021-08-29)
+
+
+### Features
+
+* add footer links and twitter ([67cdfca](https://github.com/theodorusclarence/theodorusclarence.com/commit/67cdfca04a1ad6a036d54d578f3f7e73bbfd72b9))
+
 ## 0.1.0 (2021-08-29)
 
 
