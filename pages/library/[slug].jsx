@@ -88,7 +88,7 @@ export default function PostPage({ source, frontMatter, slug }) {
             </div>
             <Comments />
 
-            <div className='flex flex-col gap-4 mt-4 md:flex-row-reverse md:justify-between'>
+            <div className='flex flex-col items-start gap-4 mt-4 md:flex-row-reverse md:justify-between'>
               <CustomLink
                 href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/data/library/${slug}.mdx`}
               >
