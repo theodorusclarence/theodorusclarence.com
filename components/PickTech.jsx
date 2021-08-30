@@ -14,6 +14,7 @@ import {
   SiRedux,
   SiGit,
   SiNotion,
+  SiTypescript,
 } from 'react-icons/si';
 import { IoLogoVercel } from 'react-icons/io5';
 import { classNames } from '@/utils/helper';
@@ -38,6 +39,10 @@ const techSpan = {
   js: [
     'Vanilla JavaScript',
     () => <SiJavascript className='w-6 h-6 text-dark dark:text-light' />,
+  ],
+  ts: [
+    'TypeScript',
+    () => <SiTypescript className='w-6 h-6 text-dark dark:text-light' />,
   ],
   nodejs: [
     'Node.js',
