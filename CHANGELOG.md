@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.1...v0.1.2) (2021-08-30)
+
+
+### Features
+
+* add ts to `PickTech` ([ca84686](https://github.com/theodorusclarence/theodorusclarence.com/commit/ca84686dc0be934848928a943749940e5a42bfd5))
+* **library:** add js & ts logo to auth-context ([03b89ea](https://github.com/theodorusclarence/theodorusclarence.com/commit/03b89eadac8c4ee13acb12f80809d221e763103c))
+* **library:** add new link for conditional-link ([4627a2b](https://github.com/theodorusclarence/theodorusclarence.com/commit/4627a2bc642c1dd4ffade64f0902bde5255cedea))
+* **library:** add swr hook for toast ([7432a51](https://github.com/theodorusclarence/theodorusclarence.com/commit/7432a5123fbfe2e27f89c290004459cf9f047a09))
+* **library:** add tailwind config to basestyle ([38585a2](https://github.com/theodorusclarence/theodorusclarence.com/commit/38585a2ac069524b44fb4001bcc1c9c641842fb3))
+* **library:** add ts version to seo ([cde9836](https://github.com/theodorusclarence/theodorusclarence.com/commit/cde9836f809f4e48abc6a0e2b7056ad932bea68a))
+* **projects:** add github link for sxceosleague ([464f0a8](https://github.com/theodorusclarence/theodorusclarence.com/commit/464f0a8ab493fdcb6156bd41aae30d0981eedfa2))
+
+
+### Bug Fixes
+
+* edit on github link full width ([f5d1c16](https://github.com/theodorusclarence/theodorusclarence.com/commit/f5d1c16071d2e1fefeb72d256b69deb7f1996898))
+* tailwind css spelling ([17235ee](https://github.com/theodorusclarence/theodorusclarence.com/commit/17235eee9d10136a359fc95e24a1f24e13355a12))
+
 ### [0.1.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.0...v0.1.1) (2021-08-29)
 
 
