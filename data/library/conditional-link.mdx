@@ -1,6 +1,6 @@
 ---
 title: 'Conditional Link'
-techs: 'nextjs,react'
+techs: 'nextjs,react,ts'
 description: 'Component that can differentiate between internal link or new tab link'
 ---
 
@@ -10,23 +10,49 @@ This component will detect your href props, if it starts with `https://`, it wil
 
 ## Next.js Code:
 
-```jsx
-// components/UnstyledLink.jsx
-import Link from 'next/link';
+```tsx
+// components/UnstyledLink.tsx
+import clsx from 'clsx';
+import Link, { LinkProps } from 'next/link';
 
-export default function UnstyledLink({ children, href, ...rest }) {
-  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+export type UnstyledLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  openNewTab?: boolean;
+  className?: string;
+} & React.ComponentPropsWithoutRef<'a'> &
+  LinkProps;
 
-  if (isInternalLink) {
+export default function UnstyledLink({
+  children,
+  href,
+  openNewTab,
+  className,
+  ...rest
+}: UnstyledLinkProps) {
+  const isNewTab =
+    openNewTab !== undefined
+      ? openNewTab
+      : href && !href.startsWith('/') && !href.startsWith('#');
+
+  if (!isNewTab) {
     return (
       <Link href={href}>
-        <a {...rest}>{children}</a>
+        <a {...rest} className={className}>
+          {children}
+        </a>
       </Link>
     );
   }
 
   return (
-    <a target='_blank' rel='noopener noreferrer' href={href} {...rest}>
+    <a
+      target='_blank'
+      rel='noopener noreferrer'
+      href={href}
+      {...rest}
+      className={clsx(className, 'cursor-[ne-resize]')}
+    >
       {children}
     </a>
   );
@@ -38,17 +64,40 @@ export default function UnstyledLink({ children, href, ...rest }) {
 For Create React App with React Router, we need to use Link component from react router
 
 ```jsx
-// coponents/UnstyledLink.jsx
+// components/UnstyledLink.jsx
 import { Link } from 'react-router-dom';
 
-export default function UnstyledLink({ href, ...rest }) {
+export default function UnstyledLink({
+  href,
+  className = '',
+  openNewTab,
+  children,
+  ...rest
+}) {
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
 
-  if (isInternalLink) {
-    return <Link to={href} {...rest} />;
+  // If is internal link, and no override specified
+  if (isInternalLink && openNewTab === undefined) {
+    return (
+      <Link to={href} className={className}>
+        {children}
+      </Link>
+    );
   }
 
-  return <a target='_blank' rel='noopener noreferrer' {...rest} />;
+  // If no override then _blank
+  // if there is override then use the boolean
+  return (
+    <a
+      href={href}
+      className={className}
+      target={openNewTab === undefined || openNewTab ? '_blank' : undefined}
+      rel='noopener noreferrer'
+      {...rest}
+    >
+      {children}
+    </a>
+  );
 }
 ```
 
