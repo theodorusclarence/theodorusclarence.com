@@ -21,6 +21,7 @@ export const projects = [
     techStack: ['nextjs', 'tailwindcss'],
     thumbnail: 'sxceosleague/ss1.png',
     cloudinaryPublicId: 'theodorusclarence/sxceosleague/ss-thumb_kzrsxq.png',
+    github: 'https://github.com/theodorusclarence/sxceosleague',
     link: 'https://sxceosleague.com',
   },
   {
