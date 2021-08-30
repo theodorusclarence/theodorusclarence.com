@@ -1,30 +1,30 @@
 ---
-title: 'Styling Best Practices I Use With Tailwindcss'
+title: 'Styling Best Practices I Use With Tailwind CSS'
 publishedAt: '2021-05-15'
-description: 'Tailwindcss helped a lot when developing a consistent design cleanly and rapidly.'
+description: 'Tailwind CSS helped a lot when developing a consistent design cleanly and rapidly.'
 ---
 
-This blog is not about learning Tailwindcss from the ground up. Tailwind Labs has a complete [playlist in their youtube channel](https://www.youtube.com/watch?v=elgqxmdVms8&list=PL5f_mz_zU5eXWYDXHUDOLBE0scnuJofO0&ab_channel=TailwindLabs). I recommend checking that out, I learned a lot from it.
+This blog is not about learning Tailwind CSS from the ground up. Tailwind Labs has a complete [playlist in their youtube channel](https://www.youtube.com/watch?v=elgqxmdVms8&list=PL5f_mz_zU5eXWYDXHUDOLBE0scnuJofO0&ab_channel=TailwindLabs). I recommend checking that out, I learned a lot from it.
 
-> For me, Tailwindcss is like another form of writing CSS, and will not replace the knowledge about basic CSS and responsive design.
+> For me, Tailwind CSS is like another form of writing CSS, and will not replace the knowledge about basic CSS and responsive design.
 
-## Why Tailwindcss?
+## Why Tailwind CSS?
 
-Tailwindcss is a utility-first framework that is currently my go-to framework for styling on my website. It provides reusable styling and components that I can even use between multiple websites. Checkout [my library](https://theodorusclarence.com/library), I have some of my components put there so I can easily find them when I need them on another website I'm building.
+Tailwind CSS is a utility-first framework that is currently my go-to framework for styling on my website. It provides reusable styling and components that I can even use between multiple websites. Checkout [my library](https://theodorusclarence.com/library), I have some of my components put there so I can easily find them when I need them on another website I'm building.
 
-Tailwindcss is provided with a lot of CSS best practices that I also follow when writing Vanilla CSS or SCSS. It mostly suppresses all of the quirky things that most developers found in writing Vanilla CSS like box-sizing, annoying button defaults, collapsing margins, etc. Which makes many developers think that Tailwindcss is a way to avoid writing CSS and understanding all of the quirky things in a CSS.
+Tailwind CSS is provided with a lot of CSS best practices that I also follow when writing Vanilla CSS or SCSS. It mostly suppresses all of the quirky things that most developers found in writing Vanilla CSS like box-sizing, annoying button defaults, collapsing margins, etc. Which makes many developers think that Tailwind CSS is a way to avoid writing CSS and understanding all of the quirky things in a CSS.
 
-But **I love writing CSS.** I'm quite comfortable in writing CSS and understand how it works. For me, learning Vanilla CSS is really crucial and you should not replace CSS with Tailwindcss before you understand css.
+But **I love writing CSS.** I'm quite comfortable in writing CSS and understand how it works. For me, learning Vanilla CSS is really crucial and you should not replace CSS with Tailwind CSS before you understand css.
 
-> Don't get too comfortable with frameworks that you can't make a website without Tailwindcss or other frameworks like Bootstrap.
+> Don't get too comfortable with frameworks that you can't make a website without Tailwind CSS or other frameworks like Bootstrap.
 
-Well, enough talking, let's get to the best practices I use in writing CSS and Tailwindcss. Both applies because like I said, Tailwindcss is just another form of writing CSS.
+Well, enough talking, let's get to the best practices I use in writing CSS and Tailwind CSS. Both applies because like I said, Tailwind CSS is just another form of writing CSS.
 
 ## 1. Using Layout Class (or container)
 
 You probably won't notice sites without constraining width if you are not using a big monitor. Sometimes people forget to add this constraint when developing and causing styling issues for someone that have a larger viewport
 
-You can use [container class from Tailwindcss](https://tailwindcss.com/docs/container), but I prefer my own.
+You can use [container class from Tailwind CSS](https://tailwindcss.com/docs/container), but I prefer my own.
 
 ```css
 .layout {
@@ -61,7 +61,7 @@ Here is a demo of the layout class, you can also [check the codepen](https://cod
 
 ## 2. Add base style
 
-Tailwindcss has a feature called [Preflight](https://tailwindcss.com/docs/preflight), which is a set of base styles for Tailwind projects that are designed to smooth over cross-browser inconsistencies and make it easier for you to work within the constraints of your design system.
+Tailwind CSS has a feature called [Preflight](https://tailwindcss.com/docs/preflight), which is a set of base styles for Tailwind projects that are designed to smooth over cross-browser inconsistencies and make it easier for you to work within the constraints of your design system.
 
 Basically, it does something to the default stylesheet agent like removing margin, padding, even font size. Also adding some base style to buttons, links, list, etc. Find more at the [Preflight Docs](https://tailwindcss.com/docs/preflight).
 
@@ -101,7 +101,7 @@ This will add responsive font-size, and apply the font you are using. **Don't fo
 
 Still, because of preflight, default margins are removed from the base style. So we need to add the margin ourselves. I usually found `mb-2` and `mb-4` really great when adding some whitespace.
 
-Also, don't forget that Tailwindcss has a built-in CSS pattern which is [Lobotomized Owl](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/) by Heydon Pickering. This usually helps a lot even in Vanilla CSS. In Tailwindcss it is called [Space Between](https://tailwindcss.com/docs/space). It works by adding margin-top to all of the child elements except the first one.
+Also, don't forget that Tailwind CSS has a built-in CSS pattern which is [Lobotomized Owl](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/) by Heydon Pickering. This usually helps a lot even in Vanilla CSS. In Tailwind CSS it is called [Space Between](https://tailwindcss.com/docs/space). It works by adding margin-top to all of the child elements except the first one.
 
 Here is the original one by Heydon:
 
@@ -113,7 +113,7 @@ Here is the original one by Heydon:
 
 It uses relative units so it will be relative to the element's font size. Learn more about this in my [blog about rem, em, and px units](https://theodorusclarence.com/blog/btb-rem-em)
 
-Tailwindcss Space Between basically does the same, but with `rem`. So we can only use it if we are sure that the elements inside all have the same spacing. For example:
+Tailwind CSS Space Between basically does the same, but with `rem`. So we can only use it if we are sure that the elements inside all have the same spacing. For example:
 
 ```html
 <!-- Using normal margin class -->
@@ -189,10 +189,10 @@ export default function Nav() {
 
 Notice the use of space between to reduce class too. The code example is taken from this website and [available on github](https://github.com/theodorusclarence/theodorusclarence.com). Kindly star it if it helps!
 
-## Install Tailwindcss Injector Addons
+## Install Tailwind CSS Injector Addons
 
 When tailwindcss is shipped to production, the classes that is shipped is only the class that we use in the site (tree shaken). Sometimes it is needed to add some class for debugging issues, or if we just want to play around with website that don't use tailwindcss.
 
 So, I created an addons that will inject the tailwindcss CDN on the website.
 
-[Install Tailwindcss Injector](https://clarence.link/tw-inject)
+[Install Tailwind CSS Injector](https://clarence.link/tw-inject)

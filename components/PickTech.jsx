@@ -29,7 +29,7 @@ const techSpan = {
     () => <SiReact className='w-6 h-6 text-dark dark:text-light' />,
   ],
   tailwindcss: [
-    'Tailwindcss',
+    'Tailwind CSS',
     () => <SiTailwindcss className='w-6 h-6 text-dark dark:text-light' />,
   ],
   scss: [
