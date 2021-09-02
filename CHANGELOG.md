@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.2...v0.1.3) (2021-09-02)
+
+
+### Features
+
+* **blog:** add nextjs-fetch-method ([b62b030](https://github.com/theodorusclarence/theodorusclarence.com/commit/b62b03075421b8b89cd0ffe852145879726efde6))
+* change dark typography to lighter color ([f835603](https://github.com/theodorusclarence/theodorusclarence.com/commit/f8356031ff44694429b37099d3f52f1997783587))
+
+
+### Bug Fixes
+
+* **blog:** typo on nextjs-fetch-method ([6a8b260](https://github.com/theodorusclarence/theodorusclarence.com/commit/6a8b260c869d6f0d3f7b839ac8d0eeb8ca2e59af))
+
 ### [0.1.2](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.1...v0.1.2) (2021-08-30)
 
 
