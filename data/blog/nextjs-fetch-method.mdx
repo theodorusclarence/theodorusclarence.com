@@ -9,8 +9,8 @@ When I started to learn Next.js, I got overwhelmed with the list of abbreviation
 
 Next.js has many data fetching strategies. Although initially Next.js was well known to be a Server-Side Rendering Framework, it turns out that Next.js has 4 methods of Data Fetching. Here is the short explanation each so you get familiar with the abbreviation of CSR, SSR, SSG, ISR.
 
-- CSR - Client-Side Rendering, this is the usual kind of data fetching using `useEffect`, it will fetch the data from the API every single page request, on the **client-side** (after the page is rendered, then the function will run).
-- SSR - Server-Side Rendering, will run a **special function** to fetch data from API every page request, on the **server-side** (before the page is loaded, that special function will run first, creating a delay, then after that, it will serve the page)**.**
+- CSR - Client-Side Rendering, this is the usual kind of data fetching using `useEffect`, it will fetch the data from the API every single page request on the **client-side** (after the page is rendered, then the function will run).
+- SSR - Server-Side Rendering, will run a **special function** to fetch data from API every page request on the **server-side** (before the page is loaded, that special function will run first, creating a delay, then after that, it will serve the page)**.**
 - SSG - Static Site Generation, will run a **special function** to fetch data **once** when that page builds.
 - ISR – Incremental Static Regeneration, this is a new thing, shortly put, a combination of SSG, and SSR, where it served statically, but at a **certain time and certain condition** that page will rebuild and fetch the data from the API again.
 
@@ -76,7 +76,7 @@ Video Description:
 ### Keys to Emphasize
 
 1. **useEffect function**, this function is the key indicator that a page is using Client-Side Rendering.
-2. **LOADING indicator**, because the data fetching runs after the page is rendered, so the data is not fetched instantly, therefore showing a loading state.
+2. **LOADING indicator**, because the data fetching runs after the page is rendered, the data is not fetched instantly, therefore showing a loading state.
 3. **Data is fetched on every page request**, which is why the time shown is different for each reloads.
 
 <figure className='overflow-hidden rounded-sm shadow-md dark:shadow-none'>
@@ -131,7 +131,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 Video Description:
 
-1. Clicked the link on 16:32:38(RT), a slight pause for 2s, then page loads showing 16:02:44(PT)
+1. Clicked the link on 16:32:38(RT), a slight pause for 2s, then page loads showing 16:02:40(PT)
 
 ### Keys to Emphasize
 
@@ -297,7 +297,7 @@ Disclaimer: Revalidate time is set to 20 seconds.
 
 Video Description:
 
-1. At first, it was 16:40:12 (Preview Time–PT), and real-time when reloading is 16:40:25(Real-Time–RT) and 16:40:29(Real-Time–RT). In those 2 reload, Preview Time (PT) did not change.
+1. At first, it was 16:40:12(PT), and real-time when reloading is 16:40:25(RT) and 16:40:29(RT). In those 2 reload, Preview Time (PT) did not change.
 2. Then, when 16:40:32(RT) (20s after initial), reload is done twice, the first time on 16:40:36(RT) and 16:40:40(RT). The Preview Time change to 16:40:37(PT) after the **second reload.**
 
 ### Keys to Emphasize
