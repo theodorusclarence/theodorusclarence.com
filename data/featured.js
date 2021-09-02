@@ -1,5 +1,5 @@
 export const featured = [
-  'rhf',
+  'nextjs-fetch-method',
   'btb-flex-mental-model',
   'tailwindcss-best-practice',
 ];
