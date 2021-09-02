@@ -48,7 +48,7 @@ module.exports = {
         dark: {
           css: [
             {
-              color: theme('colors.white'),
+              color: theme('colors.gray.200'),
               '[class~="lead"]': {
                 color: theme('colors.gray.300'),
               },
