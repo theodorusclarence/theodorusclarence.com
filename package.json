@@ -19,9 +19,7 @@
     "faunadb": "^4.3.0",
     "framer-motion": "^3.10.6",
     "mdx-bundler": "^6.0.1",
-    "mdx-prism": "^0.3.4",
     "next": "^11.1.2",
-    "next-mdx-remote": "^2.1.4",
     "next-themes": "^0.0.14",
     "postcss": "^8.3.6",
     "querystring": "^0.2.1",
@@ -34,8 +32,6 @@
     "react-image-lightbox": "^5.1.4",
     "react-intersection-observer": "^8.32.0",
     "react-lite-youtube-embed": "^2.0.6",
-    "remark-autolink-headings": "^6.1.0",
-    "remark-slug": "^6.1.0",
     "swr": "^0.4.2"
   },
   "devDependencies": {
