@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.2...v0.2.0) (2021-09-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* use mdx-bundler
+
+### Features
+
+* **blog:** add nextjs-fetch-method ([5b07681](https://github.com/theodorusclarence/theodorusclarence.com/commit/5b07681b6c7396a526c6345aab86e26a007f03ab))
+* change dark typography to lighter color ([0042b3d](https://github.com/theodorusclarence/theodorusclarence.com/commit/0042b3d3343b4fc8a4ad8b70104f854576ad65bf))
+* change og bg color ([f15ee0d](https://github.com/theodorusclarence/theodorusclarence.com/commit/f15ee0d66cc55968b03636867633bf564599896e))
+* remove next-mdx-remote file ([1d6b828](https://github.com/theodorusclarence/theodorusclarence.com/commit/1d6b8286b80432260bceef058fb220c8d1d02819))
+* use mdx-bundler ([90bb306](https://github.com/theodorusclarence/theodorusclarence.com/commit/90bb3065c0892230d29206f1fe924653f37bdb95))
+
+
+### Bug Fixes
+
+* add text lang to blank code blocks ([67e21fe](https://github.com/theodorusclarence/theodorusclarence.com/commit/67e21feb08eb2b13b3d8b55c66f634609f2d5234))
+* **blog:** typo on nextjs-fetch-method ([98ed9d6](https://github.com/theodorusclarence/theodorusclarence.com/commit/98ed9d60faae7db4d174105b23c8ed76fc0e2ebe))
+* typo on footer ([2faf1f0](https://github.com/theodorusclarence/theodorusclarence.com/commit/2faf1f09d3de8b378cb862451f33e59fa200dcda))
+
 ### [0.1.3](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.2...v0.1.3) (2021-09-02)
 
 
