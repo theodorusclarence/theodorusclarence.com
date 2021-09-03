@@ -19,13 +19,11 @@ export default function CustomCode(props) {
   return (
     <code {...props}>
       {props.children}
-      {/* {language && (
-            )} */}
-      <div className='absolute top-0 px-3 py-1 border-t-0 rounded-b-md border-thin left-6'>
-        <span className='font-medium select-none accent'>
-          {language || 'code'}
-        </span>
-      </div>
+      {language && (
+        <div className='absolute top-0 px-3 py-1 border-t-0 rounded-b-md border-thin left-6'>
+          <span className='font-medium select-none accent'>{language}</span>
+        </div>
+      )}
     </code>
   );
 }

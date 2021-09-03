@@ -1,10 +1,17 @@
-export const featured = [
+export const featuredPostsArr = [
   'nextjs-fetch-method',
   'btb-flex-mental-model',
   'tailwindcss-best-practice',
 ];
 
-export const featuredProj = ['ppdbsumsel', 'sxceosleague'];
+export const featuredProjectsArr = ['ppdbsumsel', 'sxceosleague'];
+
+export const featuredSnippetsArr = [
+  'auth-context',
+  'absolute-import',
+  'husky-commitlint-prettier',
+  'toast',
+];
 
 export const currentTechStack = [
   'nextjs',

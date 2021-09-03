@@ -1,29 +1,34 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import readingTime from 'reading-time';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
 import { projects } from '@/data/projects';
-import { featured, featuredProj } from '@/data/featured';
+import {
+  featuredPostsArr,
+  featuredSnippetsArr,
+  featuredProjectsArr,
+} from '@/data/featured';
 
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import { classNames } from '@/utils/helper';
-import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
+import { getAllFilesFrontMatter, sortByDate, sortByTitle } from '@/utils/mdx';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import CustomLink from '@/components/CustomLink';
 import TechStack from '@/components/TechStack';
 import ProjectCard from '@/components/ProjectCard';
+import LibraryCard from '@/components/LibraryCard';
 import PostCard from '@/components/PostCard';
 import Button from '@/components/Button';
 import Footer from '@/components/Footer';
 import InViewSection from '@/components/InViewSection';
 
-export default function Home({ featuredPosts, featuredProjects }) {
+export default function Home({
+  featuredPosts,
+  featuredProjects,
+  featuredSnippets,
+}) {
   const { isLoaded } = useLoadingWithPreload();
 
   return (
@@ -82,21 +87,11 @@ export default function Home({ featuredPosts, featuredProjects }) {
         {/* //* Featured Projects */}
         {/* padding top smaller to reduce gap */}
         <InViewSection id='projects' className='pt-2 pb-16'>
-          <motion.main
-            className='layout'
-            // variants={staggerFaster}
-          >
-            <motion.h2
-              // variants={fadeInAndUp}
-              className='mb-4'
-            >
+          <motion.main className='layout'>
+            <motion.h2 className='mb-4'>
               <span className='accent'>Featured Projects</span>
             </motion.h2>
-            {/* <div className='flex flex-col justify-between mb-4 space-y-4 md:space-y-0 md:flex-row'> */}
-            <motion.ul
-              // variants={fadeInAndUp}
-              className='grid gap-4 mb-4 md:grid-cols-2'
-            >
+            <motion.ul className='grid gap-4 mb-4 md:grid-cols-2'>
               {featuredProjects.map((project, index) => (
                 <ProjectCard key={index} data={project} />
               ))}
@@ -121,7 +116,7 @@ export default function Home({ featuredPosts, featuredProjects }) {
             <AnimatePresence>
               <ul className='mb-4 space-y-4'>
                 {featuredPosts.map((post) => (
-                  <PostCard key={post.filePath} index post={post} />
+                  <PostCard key={post.slug} index post={post} />
                 ))}
               </ul>
             </AnimatePresence>
@@ -138,10 +133,19 @@ export default function Home({ featuredPosts, featuredProjects }) {
             <h2 className=''>
               <span className='accent'>Check out my code library</span>
             </h2>
-            <p className='mb-4 component'>
+            <p className='mt-2 mb-4 component'>
               List of code snippets that I store for easy access.
             </p>
-            <Button href='/library'>Go to Code Library</Button>
+            <AnimatePresence>
+              <ul className='grid gap-4 md:grid-cols-2'>
+                {featuredSnippets.map((snippet) => (
+                  <LibraryCard key={snippet.slug} index snippet={snippet} />
+                ))}
+              </ul>
+            </AnimatePresence>
+            <Button className='mt-4' href='/library'>
+              See more
+            </Button>
           </article>
         </InViewSection>
       </motion.main>
@@ -150,34 +154,26 @@ export default function Home({ featuredPosts, featuredProjects }) {
   );
 }
 
-export function getStaticProps() {
-  const featuredPosts = postFilePaths
-    .filter((filePath) => {
-      const slugPath = filePath.replace(/\.mdx?$/, '');
-      return featured.find((feature) => feature === slugPath);
-    })
-    .map((filePath) => {
-      const source = fs.readFileSync(path.join(BLOGS_PATH, filePath));
-      const { content, data } = matter(source);
-      const slug = filePath.replace(/\.mdx?$/, '');
-
-      return {
-        data,
-        filePath,
-        slug,
-        readingTime: readingTime(content).text,
-      };
-    });
-
-  // Sort Featured Posts Newest First
-  featuredPosts.sort(
-    (postA, postB) =>
-      new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
+export async function getStaticProps() {
+  const posts = await getAllFilesFrontMatter('blog');
+  const featuredPosts = sortByDate(
+    posts.filter((post) => featuredPostsArr.includes(post.slug))
   );
 
   const featuredProjects = projects.filter((project) =>
-    featuredProj.find((pr) => pr === project.id)
+    featuredProjectsArr.find((pr) => pr === project.id)
   );
 
-  return { props: { featuredPosts, featuredProjects } };
+  const snippets = await getAllFilesFrontMatter('library');
+  const featuredSnippets = sortByTitle(
+    snippets.filter((snippet) => featuredSnippetsArr.includes(snippet.slug))
+  );
+
+  return {
+    props: {
+      featuredPosts,
+      featuredProjects,
+      featuredSnippets,
+    },
+  };
 }
