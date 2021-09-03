@@ -62,14 +62,14 @@ Step pertama selesai! Sekarang kamu harus melakukan authentication untuk mendapa
 
 Untuk melakukan authentication, kita harus menyiapkan `CLIENT ID` dan memasukkan ke link dibawah:
 
-```
+```text
 https://accounts.spotify.com/authorize?client_id=MASUKKAN_CLIENT_ID_DISINI&response_type=code&redirect_uri=http
 %3A%2F%2Flocalhost:3000&scope=user-read-currently-playing
 ```
 
 contoh:
 
-```
+```text
 https://accounts.spotify.com/authorize?client_id=eaccb97f6d0e405897adf1dd80b95c01&response_type=code&redirect_uri=http
 %3A%2F%2Flocalhost:3000&scope=user-read-currently-playing
 ```
@@ -86,7 +86,7 @@ Buka link tersebut di browser, kemudian anda akan diarahkan ke redirect uri, cop
 
 Contoh link redirect sebagai berikut:
 
-```
+```text
 http://localhost:3000/?code=AQBeA9SD7QbA9hUfv_TfmatYxT51CY87msMnOZmMbhf7ZaxfbvG7oKEsATOJBxDyFap0Aq6uftY0v4Hq1QSy3MgQBfAHhmrifty-62rfDRlFnd0AzXRBOMpoOSA6SNw_uTPp7AixAE5zosgiIIf7efhzf1QOJfLh1HUYi248z8jk1x2jjKG2YLvMyJuP0rjB5tP5UHjoFGBvKbULpchkF6yiJHnS
 ```
 
@@ -242,7 +242,7 @@ export default async (_, res) => {
 
 Tambahkan .env.local dengan data authorization yang sudah kita dapatkan (ubahlah data" dibawah dengan data kamu)
 
-```
+```text
 SPOTIFY_CLIENT_ID=eaccb97f6d0e405897adf1dd80b95c01
 SPOTIFY_CLIENT_SECRET=a4195c2d0a4243609e697e602e70b7
 SPOTIFY_REFRESH_TOKEN=AQAtxXvnzRTt4c2-2_Av2WyJQKWxUW_hMVN6QNiqv2i8A2ZElVarmvdhqyc8Pf-Z5n827FTFxTpHq5E3kOsrlRWM3TuJWxjVQsW0icR0zo3BXRFLt2FB2Qfj-pFaZwY-qc8
