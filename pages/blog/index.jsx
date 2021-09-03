@@ -1,19 +1,15 @@
-import fs from 'fs';
-import path from 'path';
-import readingTime from 'reading-time';
-import matter from 'gray-matter';
-import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 import { classNames } from '@/utils/helper';
-import { BLOGS_PATH, postFilePaths } from '@/utils/mdxUtils';
+import { getAllFilesFrontMatter, sortByDate } from '@/utils/mdx';
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
+import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import PostCard from '@/components/PostCard';
 import CustomLink from '@/components/CustomLink';
-import Seo from '@/components/Seo';
 
 export default function BlogPage({ posts }) {
   const { isLoaded } = useLoadingWithPreload();
@@ -37,8 +33,7 @@ export default function BlogPage({ posts }) {
 
   // sort the newest blog first.
   selectedPosts.sort(
-    (postA, postB) =>
-      new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
+    (postA, postB) => new Date(postB.publishedAt) - new Date(postA.publishedAt)
   );
 
   const handleSearch = (e) => {
@@ -50,29 +45,14 @@ export default function BlogPage({ posts }) {
     const timer = setTimeout(() => {
       const results = selectedPosts.filter(
         (post) =>
-          post.data.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          post.data.description.toLowerCase().includes(searchTerm.toLowerCase())
+          post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          post.description.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredPosts(results);
     }, 200);
 
     return () => clearTimeout(timer);
   }, [searchTerm]);
-
-  // // Set Preferred Language on Render
-  // useEffect(() => {
-  //     let preferredLanguage = localStorage.getItem('preferredBlogLang');
-  //     console.log(
-  //         '🚀 ~ file: index.jsx ~ line 97 ~ useEffect ~ preferredLanguage',
-  //         preferredLanguage
-  //     );
-  //     if (!preferredLanguage) {
-  //         localStorage.setItem('preferredBlogLang', 'en');
-  //         preferredLanguage = 'en';
-  //     } else if (preferredLanguage === 'id') {
-  //         setSelectedEnglish(false);
-  //     }
-  // }, []);
 
   // Change post state based on languange
   const initialRender = useRef(true);
@@ -136,21 +116,22 @@ export default function BlogPage({ posts }) {
             <div className='pb-4 animate-fade-in-initial fade-in-5'>
               <p className='font-medium'>Search</p>
               <input
-                className='w-full px-4 py-2 transition-colors rounded-md shadow-none border-thin dark:bg-dark focus:border-accent-200 focus:outline-none focus:ring-1 focus:ring-accent-200 '
+                className='w-full px-4 py-2 mt-2 transition-colors rounded-md shadow-none border-thin dark:bg-dark focus:border-accent-200 focus:outline-none focus:ring-1 focus:ring-accent-200 '
                 type='text'
                 placeholder='Type to search...'
                 value={searchTerm}
                 onChange={handleSearch}
               />
             </div>
+
             <AnimatePresence>
               <ul className='space-y-4 animate-fade-in-initial fade-in-6'>
                 {filteredPosts.map((post) => (
-                  <PostCard key={post.filePath} post={post} />
+                  <PostCard key={post.slug} post={post} />
                 ))}
 
                 {filteredPosts.length === 0 && (
-                  <h4>Oops, not found, try searching another one ;)</h4>
+                  <h4>Oops, not found, try searching another one {';)'}</h4>
                 )}
               </ul>
             </AnimatePresence>
@@ -162,24 +143,9 @@ export default function BlogPage({ posts }) {
   );
 }
 
-export function getStaticProps() {
-  const posts = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(BLOGS_PATH, filePath));
-    const { content, data } = matter(source);
-    const slug = filePath.replace(/\.mdx?$/, '');
-
-    return {
-      data,
-      filePath,
-      slug,
-      readingTime: readingTime(content).text,
-    };
-  });
-
-  posts.sort(
-    (postA, postB) =>
-      new Date(postB.data.publishedAt) - new Date(postA.data.publishedAt)
-  );
+export async function getStaticProps() {
+  const files = await getAllFilesFrontMatter('blog');
+  const posts = sortByDate(files);
 
   return { props: { posts } };
 }

@@ -5,18 +5,16 @@ import UnstyledLink from './UnstyledLink';
 import { checkBlogPrefix, formatDate } from '@/utils/helper';
 import useContentMeta from '@/hooks/useContentMeta';
 
-export default function PostCard({ post, index }) {
+export default function PostCard({ post }) {
   const checkedSlug = checkBlogPrefix(post.slug);
   const { isLoading, contentViews } = useContentMeta(`b_${checkedSlug}`);
-  const { data: postData } = post;
+
   return (
     <motion.li
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      // to remove layoutId from index page to blog page
-      // layoutId={index ? null : post.slug}
       className='w-full bg-white rounded-md card ring-vis-0 border-thin dark:bg-dark card-2'
     >
       <UnstyledLink
@@ -25,7 +23,7 @@ export default function PostCard({ post, index }) {
       >
         <header className='flex justify-between'>
           <h4>
-            <span>{postData.title}</span>
+            <span>{post.title}</span>
           </h4>
           <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light'>
             <span className='accent'>
@@ -34,10 +32,10 @@ export default function PostCard({ post, index }) {
           </p>
         </header>
         <p className='my-2 component text-dark dark:text-light'>
-          <span className='font-bold'>{formatDate(postData.publishedAt)}</span>{' '}
-          • <span className='accent'>{post.readingTime}</span>
+          <span className='font-bold'>{formatDate(post.publishedAt)}</span> •{' '}
+          <span className='accent'>{post.readingTime.text}</span>
         </p>
-        <p className='component'>{postData.description}</p>
+        <p className='component'>{post.description}</p>
       </UnstyledLink>
     </motion.li>
   );
