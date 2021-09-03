@@ -101,7 +101,7 @@ const footerLinks = [
   },
   {
     href: 'https://clarence.link/booknotes',
-    text: 'Booknotes',
+    text: 'Book Notes',
   },
   {
     href: 'https://pw.theodorusclarence.com',
