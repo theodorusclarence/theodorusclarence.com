@@ -62,14 +62,14 @@ The first step is done! Now, you need to do authentication to get access & refre
 
 To do authentication, we need to prepare `CLIENT_ID` and put it into this link below:
 
-```
+```text
 https://accounts.spotify.com/authorize?client_id=CLIENT_ID_HERE&response_type=code&redirect_uri=http
 %3A%2F%2Flocalhost:3000&scope=user-read-currently-playing
 ```
 
 example:
 
-```
+```text
 https://accounts.spotify.com/authorize?client_id=eaccb97f6d0e405897adf1dd80b95c01&response_type=code&redirect_uri=http
 %3A%2F%2Flocalhost:3000&scope=user-read-currently-playing
 ```
@@ -86,7 +86,7 @@ Open that link in a browser, then you will get redirected into a uri, copy the w
 
 Example of the redirect link:
 
-```
+```text
 http://localhost:3000/?code=AQBeA9SD7QbA9hUfv_TfmatYxT51CY87msMnOZmMbhf7ZaxfbvG7oKEsATOJBxDyFap0Aq6uftY0v4Hq1QSy3MgQBfAHhmrifty-62rfDRlFnd0AzXRBOMpoOSA6SNw_uTPp7AixAE5zosgiIIf7efhzf1QOJfLh1HUYi248z8jk1x2jjKG2YLvMyJuP0rjB5tP5UHjoFGBvKbULpchkF6yiJHnS
 ```
 
@@ -242,7 +242,7 @@ export default async (_, res) => {
 
 Add .env.local with authorization data that we have written (change the data below with yours)
 
-```
+```text
 SPOTIFY_CLIENT_ID=eaccb97f6d0e405897adf1dd80b95c01
 SPOTIFY_CLIENT_SECRET=a4195c2d0a4243609e697e602e70b7
 SPOTIFY_REFRESH_TOKEN=AQAtxXvnzRTt4c2-2_Av2WyJQKWxUW_hMVN6QNiqv2i8A2ZElVarmvdhqyc8Pf-Z5n827FTFxTpHq5E3kOsrlRWM3TuJWxjVQsW0icR0zo3BXRFLt2FB2Qfj-pFaZwY-qc8
