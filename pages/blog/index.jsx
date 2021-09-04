@@ -1,8 +1,17 @@
+import useSWR from 'swr';
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
 
-import { classNames } from '@/utils/helper';
-import { getAllFilesFrontMatter, sortByDate } from '@/utils/mdx';
+import {
+  checkBlogPrefix,
+  classNames,
+  getFromSessionStorage,
+} from '@/utils/helper';
+import { getAllFilesFrontMatter } from '@/utils/mdx';
+import fetcher from '@/utils/fetcher';
+import { sortByDate } from '@/utils/helper';
+import { getBlogs } from '@/utils/contentMeta';
+
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Seo from '@/components/Seo';
@@ -10,31 +19,69 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import PostCard from '@/components/PostCard';
 import CustomLink from '@/components/CustomLink';
+import SortListbox from '@/components/SortListbox';
+
+const sortOptions = [
+  {
+    id: 'date',
+    name: 'Sort by date',
+  },
+  { id: 'views', name: 'Sort by views' },
+];
 
 export default function BlogPage({ posts }) {
   const { isLoaded } = useLoadingWithPreload();
 
-  const englishPosts = [];
-  const indPosts = [];
-
-  posts.forEach((post) => {
-    // post indo
-    if (post.slug.slice(0, 3) !== 'id-') {
-      englishPosts.push(post);
-    } else {
-      indPosts.push(post);
-    }
-  });
-
   const [selectedEnglish, setSelectedEnglish] = useState(true);
-  const [selectedPosts, setSelectedPosts] = useState([...englishPosts]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState([...englishPosts]);
 
-  // sort the newest blog first.
-  selectedPosts.sort(
-    (postA, postB) => new Date(postB.publishedAt) - new Date(postA.publishedAt)
+  //#region //*====== Insert Likes to Snippets
+  const { data: contentMeta, error } = useSWR('/api/content', fetcher, {
+    revalidateOnFocus: false,
+  });
+  const isLoading = !error & !contentMeta;
+  const blogMeta = getBlogs(contentMeta);
+
+  const [populatedPosts, setPopulatedPosts] = useState([...posts]);
+
+  useEffect(() => {
+    if (blogMeta) {
+      const mapped = posts.map((post) => {
+        const views = blogMeta.find(
+          (meta) => meta.slug === checkBlogPrefix(post.slug)
+        )?.views;
+        return { ...post, views };
+      });
+
+      console.log(mapped);
+      setPopulatedPosts(mapped);
+    }
+  }, [isLoading]);
+  //#endregion ====== Insert Likes to Snippets
+
+  const [filteredPosts, setFilteredPosts] = useState([...posts]);
+
+  //#region //*====== sorting effect
+  const [sortOrder, setSortOrder] = useState(
+    () => sortOptions[getFromSessionStorage('blog-sort') || 0]
   );
+
+  useEffect(() => {
+    const sortArr = [...filteredPosts];
+
+    if (sortOrder.id === 'date') {
+      sortArr.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      sessionStorage.setItem('blog-sort', 0);
+    } else if (sortOrder.id === 'views') {
+      sortArr.sort((a, b) => a?.views < b?.views);
+      sessionStorage.setItem('blog-sort', 1);
+    }
+
+    setFilteredPosts(sortArr);
+  }, [sortOrder]);
+  //#endregion sorting effect
+
+  //#region //*====== search logic
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -43,34 +90,32 @@ export default function BlogPage({ posts }) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const results = selectedPosts.filter(
+      const results = populatedPosts.filter(
         (post) =>
           post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           post.description.toLowerCase().includes(searchTerm.toLowerCase())
       );
+
+      if (sortOrder.id === 'date') {
+        results.sort(
+          (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
+        );
+      } else if (sortOrder.id === 'views') {
+        results.sort((a, b) => a?.views < b?.views);
+      }
+
       setFilteredPosts(results);
     }, 200);
 
     return () => clearTimeout(timer);
-  }, [searchTerm]);
+  }, [searchTerm, populatedPosts]);
+  //#endregion ====== search logic
 
-  // Change post state based on languange
-  const initialRender = useRef(true);
-  useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-    } else {
-      if (selectedEnglish) {
-        setSelectedPosts(englishPosts);
-        setFilteredPosts(englishPosts);
-      } else {
-        setSelectedPosts(indPosts);
-        setFilteredPosts(indPosts);
-      }
-      // reset filter
-      setSearchTerm('');
-    }
-  }, [selectedEnglish]);
+  const langPosts = filteredPosts.filter((post) =>
+    selectedEnglish
+      ? post.slug.slice(0, 3) !== 'id-'
+      : post.slug.slice(0, 3) === 'id-'
+  );
 
   return (
     <>
@@ -104,16 +149,8 @@ export default function BlogPage({ posts }) {
                 </CustomLink>{' '}
                 if you want an update everytime I post.
               </p>
-              <div className='text-dark dark:text-light animate-fade-in-initial fade-in-4'>
-                <button
-                  className='inline-block px-4 py-2 mt-2 font-medium transition-shadow duration-100 rounded-md btn active:shadow-none hover:shadow-md border-thin ring-vis-0'
-                  onClick={() => setSelectedEnglish(!selectedEnglish)}
-                >
-                  Read in {selectedEnglish ? 'Bahasa Indonesia' : 'English'}
-                </button>
-              </div>
             </header>
-            <div className='pb-4 animate-fade-in-initial fade-in-5'>
+            <div className='animate-fade-in-initial fade-in-4'>
               <p className='font-medium'>Search</p>
               <input
                 className='w-full px-4 py-2 mt-2 transition-colors rounded-md shadow-none border-thin dark:bg-dark focus:border-accent-200 focus:outline-none focus:ring-1 focus:ring-accent-200 '
@@ -124,13 +161,27 @@ export default function BlogPage({ posts }) {
               />
             </div>
 
+            <div className='flex flex-col gap-4 !mt-8 z-10 items-start relative md:items-center text-dark dark:text-light animate-fade-in-initial fade-in-5 md:flex-row md:justify-between'>
+              <button
+                className='inline-block px-4 py-2 font-medium transition-shadow duration-100 rounded-md sm:text-sm btn active:shadow-none hover:shadow-md border-thin ring-vis-0'
+                onClick={() => setSelectedEnglish(!selectedEnglish)}
+              >
+                Read in {selectedEnglish ? 'Bahasa Indonesia' : 'English'}
+              </button>
+              <SortListbox
+                selected={sortOrder}
+                setSelected={setSortOrder}
+                options={sortOptions}
+              />
+            </div>
+
             <AnimatePresence>
               <ul className='space-y-4 animate-fade-in-initial fade-in-6'>
-                {filteredPosts.map((post) => (
+                {langPosts.map((post) => (
                   <PostCard key={post.slug} post={post} />
                 ))}
 
-                {filteredPosts.length === 0 && (
+                {langPosts.length === 0 && (
                   <h4>Oops, not found, try searching another one {';)'}</h4>
                 )}
               </ul>
