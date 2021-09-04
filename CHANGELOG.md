@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.0...v0.2.1) (2021-09-04)
+
+
+### Features
+
+* add `library-sort` to session ([13b2ab9](https://github.com/theodorusclarence/theodorusclarence.com/commit/13b2ab97dad667fdee15eb86b1436bb67cbbcec9))
+* **blog:** add sort feature ([7ba0700](https://github.com/theodorusclarence/theodorusclarence.com/commit/7ba07004b9628ede051c38cb4da4347f7b7b0c18))
+* **library:** add sort listbox ([1fba2af](https://github.com/theodorusclarence/theodorusclarence.com/commit/1fba2afd5b1b55036125f7c2fcc487656380557f))
+
+
+### Bug Fixes
+
+* **library:** remove padding on search bar ([b6a0a81](https://github.com/theodorusclarence/theodorusclarence.com/commit/b6a0a81230e834570577f64625853e3c0b31af0d))
+
 ## [0.2.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.1...v0.2.0) (2021-09-04)
 
 
