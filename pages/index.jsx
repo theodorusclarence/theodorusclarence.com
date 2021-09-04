@@ -1,3 +1,5 @@
+import useSWR from 'swr';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
@@ -10,18 +12,20 @@ import {
 
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
-import { classNames } from '@/utils/helper';
+import fetcher from '@/utils/fetcher';
+import { getBlogs, getLibrary } from '@/utils/contentMeta';
+import { checkBlogPrefix, classNames } from '@/utils/helper';
 import { getAllFilesFrontMatter, sortByDate, sortByTitle } from '@/utils/mdx';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
-import CustomLink from '@/components/CustomLink';
-import TechStack from '@/components/TechStack';
-import ProjectCard from '@/components/ProjectCard';
-import LibraryCard from '@/components/LibraryCard';
-import PostCard from '@/components/PostCard';
 import Button from '@/components/Button';
 import Footer from '@/components/Footer';
+import PostCard from '@/components/PostCard';
+import TechStack from '@/components/TechStack';
+import CustomLink from '@/components/CustomLink';
+import ProjectCard from '@/components/ProjectCard';
+import LibraryCard from '@/components/LibraryCard';
 import InViewSection from '@/components/InViewSection';
 
 export default function Home({
@@ -30,6 +34,36 @@ export default function Home({
   featuredSnippets,
 }) {
   const { isLoaded } = useLoadingWithPreload();
+
+  //#region //*====== Insert likes and views
+  const { data: contentMeta, error } = useSWR('/api/content', fetcher);
+  const isContentMetaLoading = !error & !contentMeta;
+  const blogMeta = getBlogs(contentMeta);
+  const snippetMeta = getLibrary(contentMeta);
+
+  const [populatedPosts, setPopulatedPosts] = useState([...featuredPosts]);
+  const [populatedSnippets, setPopulatedSnippets] = useState([
+    ...featuredSnippets,
+  ]);
+
+  useEffect(() => {
+    if (contentMeta) {
+      const mappedPosts = featuredPosts.map((post) => {
+        const meta = blogMeta.find(
+          (m) => m.slug === checkBlogPrefix(post.slug)
+        );
+        return { ...post, views: meta?.views };
+      });
+      setPopulatedPosts(mappedPosts);
+
+      const mappedSnippets = featuredSnippets.map((snippet) => {
+        const meta = snippetMeta.find((m) => m.slug === snippet.slug);
+        return { ...snippet, likes: meta?.likes };
+      });
+      setPopulatedSnippets(mappedSnippets);
+    }
+  }, [isContentMetaLoading]);
+  //#endregion ====== Insert Likes to Snippets
 
   return (
     <>
@@ -115,7 +149,7 @@ export default function Home({
             </p>
             <AnimatePresence>
               <ul className='mb-4 space-y-4'>
-                {featuredPosts.map((post) => (
+                {populatedPosts.map((post) => (
                   <PostCard key={post.slug} index post={post} />
                 ))}
               </ul>
@@ -138,7 +172,7 @@ export default function Home({
             </p>
             <AnimatePresence>
               <ul className='grid gap-4 md:grid-cols-2'>
-                {featuredSnippets.map((snippet) => (
+                {populatedSnippets.map((snippet) => (
                   <LibraryCard key={snippet.slug} index snippet={snippet} />
                 ))}
               </ul>
