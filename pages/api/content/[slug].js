@@ -1,3 +1,4 @@
+import { getViewsFromDevto } from '@/utils/devto';
 import { getContentMeta, upsertContentMeta } from '@/utils/Fauna';
 import { createHash } from 'crypto';
 
@@ -23,6 +24,19 @@ export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
       const data = await getContentMeta(slug);
+
+      if (slug.startsWith('b_')) {
+        const devto = await getViewsFromDevto();
+
+        const found = devto.find((i) => i.slug === slug.slice(2));
+        if (found) {
+          return res.status(200).json({
+            contentViews: data?.data?.views + found.views ?? 0,
+            contentLikes: data?.data?.likes ?? 0,
+            likesByUser: data?.data?.likesByUser?.[sessionId] ?? 0,
+          });
+        }
+      }
 
       res.status(200).json({
         contentViews: data?.data?.views ?? 0,
