@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.1...v0.2.0) (2021-09-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* use mdx-bundler
+
+### Features
+
+* add ts to `PickTech` ([ca84686](https://github.com/theodorusclarence/theodorusclarence.com/commit/ca84686dc0be934848928a943749940e5a42bfd5))
+* **blog:** add nextjs-fetch-method ([5b07681](https://github.com/theodorusclarence/theodorusclarence.com/commit/5b07681b6c7396a526c6345aab86e26a007f03ab))
+* change dark typography to lighter color ([0042b3d](https://github.com/theodorusclarence/theodorusclarence.com/commit/0042b3d3343b4fc8a4ad8b70104f854576ad65bf))
+* change og bg color ([f15ee0d](https://github.com/theodorusclarence/theodorusclarence.com/commit/f15ee0d66cc55968b03636867633bf564599896e))
+* **library:** add js & ts logo to auth-context ([03b89ea](https://github.com/theodorusclarence/theodorusclarence.com/commit/03b89eadac8c4ee13acb12f80809d221e763103c))
+* **library:** add new link for conditional-link ([4627a2b](https://github.com/theodorusclarence/theodorusclarence.com/commit/4627a2bc642c1dd4ffade64f0902bde5255cedea))
+* **library:** add swr hook for toast ([7432a51](https://github.com/theodorusclarence/theodorusclarence.com/commit/7432a5123fbfe2e27f89c290004459cf9f047a09))
+* **library:** add tailwind config to basestyle ([38585a2](https://github.com/theodorusclarence/theodorusclarence.com/commit/38585a2ac069524b44fb4001bcc1c9c641842fb3))
+* **library:** add ts version to seo ([cde9836](https://github.com/theodorusclarence/theodorusclarence.com/commit/cde9836f809f4e48abc6a0e2b7056ad932bea68a))
+* **projects:** add github link for sxceosleague ([464f0a8](https://github.com/theodorusclarence/theodorusclarence.com/commit/464f0a8ab493fdcb6156bd41aae30d0981eedfa2))
+* remove next-mdx-remote file ([e83ce80](https://github.com/theodorusclarence/theodorusclarence.com/commit/e83ce80e3e5f0d734bd669f100908f7706b2166d))
+* use mdx-bundler ([7269137](https://github.com/theodorusclarence/theodorusclarence.com/commit/72691371b7c759fa12320390df810fe491eda2d6))
+
+
+### Bug Fixes
+
+* add text lang to blank code blocks ([72e43d2](https://github.com/theodorusclarence/theodorusclarence.com/commit/72e43d2b9ceffd7f849e76e6a8ee8feb521fc8e1))
+* **blog:** typo on nextjs-fetch-method ([98ed9d6](https://github.com/theodorusclarence/theodorusclarence.com/commit/98ed9d60faae7db4d174105b23c8ed76fc0e2ebe))
+* edit on github link full width ([f5d1c16](https://github.com/theodorusclarence/theodorusclarence.com/commit/f5d1c16071d2e1fefeb72d256b69deb7f1996898))
+* tailwind css spelling ([17235ee](https://github.com/theodorusclarence/theodorusclarence.com/commit/17235eee9d10136a359fc95e24a1f24e13355a12))
+* typo on footer ([a3cd4a7](https://github.com/theodorusclarence/theodorusclarence.com/commit/a3cd4a77554ad4679c8ca44a8181eec71ee7e9bb))
+
 ### [0.1.3](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.1.2...v0.1.3) (2021-09-02)
 
 
