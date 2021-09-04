@@ -118,7 +118,7 @@ export default function LibraryPage({ snippets }) {
                 {description}
               </p>
             </header>
-            <div className='pb-4 animate-fade-in-initial fade-in-3'>
+            <div className='animate-fade-in-initial fade-in-3'>
               <p className='font-medium'>Search</p>
               <input
                 className='w-full px-4 py-2 mt-2 transition-colors rounded-md shadow-none focus:border-accent-200 border-thin dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-200'
