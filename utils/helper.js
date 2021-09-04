@@ -59,3 +59,16 @@ export const debounce = (func, wait) => {
     timeout = setTimeout(later, wait);
   };
 };
+
+export function sortByDate(contents) {
+  return contents.sort(
+    (contentA, contentB) =>
+      new Date(contentB.publishedAt) - new Date(contentA.publishedAt)
+  );
+}
+
+export function sortByTitle(contents) {
+  return contents.sort((a, b) =>
+    a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+  );
+}
