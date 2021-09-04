@@ -40,7 +40,7 @@ export default function Nav() {
     <header
       className={`${
         onTop ? '' : 'shadow-sm'
-      } transition-shadow sticky top-0 z-10`}
+      } transition-shadow sticky top-0 z-50`}
     >
       <div className='h-2 bg-gradient-to-tr from-accent-100 via-accent-200 to-accent-300'></div>
       <nav className='transition-colors bg-white dark:bg-dark'>
