@@ -1,20 +1,48 @@
+import useSWR from 'swr';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
-import { classNames } from '@/utils/helper';
-import { getAllFilesFrontMatter, sortByTitle } from '@/utils/mdx';
+import fetcher from '@/utils/fetcher';
+import { getLibrary } from '@/utils/contentMeta';
+import { getAllFilesFrontMatter } from '@/utils/mdx';
+import { classNames, sortByTitle } from '@/utils/helper';
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Seo from '@/components/Seo';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import LibraryCard from '@/components/LibraryCard';
+import SortListbox from '@/components/SortListbox';
 
 export default function LibraryPage({ snippets }) {
   const { isLoaded } = useLoadingWithPreload();
 
-  const [searchTerm, setSearchTerm] = useState('');
+  //#region ====== Insert Likes to Snippets
+  const { data: contentMeta, error } = useSWR('/api/content', fetcher, {
+    revalidateOnFocus: false,
+  });
+  const isLoading = !error & !contentMeta;
+  const library = getLibrary(contentMeta);
+
+  const [populatedSnippets, setPopulatedSnippets] = useState([...snippets]);
+
+  useEffect(() => {
+    if (library) {
+      const mapped = snippets.map((t) => {
+        const likes = library.find((l) => l.slug === t.slug)?.likes;
+        return { ...t, likes };
+      });
+
+      console.log(mapped);
+      setPopulatedSnippets(mapped);
+    }
+  }, [isLoading]);
+  //#endregion ====== Insert Likes to Snippets
+
   const [filteredSnippets, setFilteredSnippets] = useState([...snippets]);
+
+  //#region ====== Search logic
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -23,23 +51,45 @@ export default function LibraryPage({ snippets }) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const results = snippets.filter(
+      const results = populatedSnippets.filter(
         (snippet) =>
           snippet.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           snippet.techs.toLowerCase().includes(searchTerm.toLowerCase()) ||
           snippet.description.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
-      // sort by title
-      const sortedResult = results.sort((a, b) =>
-        a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-      );
+      if (sortOrder.id === 'name') {
+        results.sort((a, b) =>
+          a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+        );
+      } else if (sortOrder.id === 'popular') {
+        results.sort((a, b) => a?.likes < b?.likes);
+      }
 
-      setFilteredSnippets(sortedResult);
+      setFilteredSnippets(results);
     }, 200);
 
     return () => clearTimeout(timer);
-  }, [searchTerm]);
+  }, [searchTerm, populatedSnippets]);
+  //#endregion ====== Search logic
+
+  //#region sorting effect
+  const [sortOrder, setSortOrder] = useState(sortOptions[0]);
+
+  useEffect(() => {
+    const sortArr = [...filteredSnippets];
+
+    if (sortOrder.id === 'name') {
+      sortArr.sort((a, b) =>
+        a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+      );
+    } else if (sortOrder.id === 'popular') {
+      sortArr.sort((a, b) => a?.likes < b?.likes);
+    }
+
+    setFilteredSnippets(sortArr);
+  }, [sortOrder]);
+  //#endregion sorting effect
 
   const description =
     'Some collection of code snippets that I put for easy access, feel free to reuse!';
@@ -74,8 +124,15 @@ export default function LibraryPage({ snippets }) {
                 onChange={handleSearch}
               />
             </div>
+            <div className='flex flex-col gap-4 md:!mt-8 z-10 relative items-end text-dark dark:text-light animate-fade-in-initial fade-in-4'>
+              <SortListbox
+                selected={sortOrder}
+                setSelected={setSortOrder}
+                options={sortOptions}
+              />
+            </div>
             <AnimatePresence>
-              <ul className='grid gap-4 md:grid-cols-2 animate-fade-in-initial fade-in-4'>
+              <ul className='grid gap-4 md:grid-cols-2 animate-fade-in-initial fade-in-5'>
                 {filteredSnippets.map((snippet) => (
                   <LibraryCard key={snippet.slug} snippet={snippet} />
                 ))}
@@ -99,3 +156,11 @@ export async function getStaticProps() {
 
   return { props: { snippets } };
 }
+
+const sortOptions = [
+  {
+    id: 'name',
+    name: 'Sort by name',
+  },
+  { id: 'popular', name: 'Sort by popularity' },
+];
