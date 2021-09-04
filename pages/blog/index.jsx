@@ -35,9 +35,7 @@ export default function BlogPage({ posts }) {
   const [selectedEnglish, setSelectedEnglish] = useState(true);
 
   //#region //*====== Insert Likes to Snippets
-  const { data: contentMeta, error } = useSWR('/api/content', fetcher, {
-    revalidateOnFocus: false,
-  });
+  const { data: contentMeta, error } = useSWR('/api/content', fetcher);
   const isLoading = !error & !contentMeta;
   const blogMeta = getBlogs(contentMeta);
 

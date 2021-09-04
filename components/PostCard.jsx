@@ -2,13 +2,9 @@ import { motion } from 'framer-motion';
 
 import UnstyledLink from './UnstyledLink';
 
-import { checkBlogPrefix, formatDate } from '@/utils/helper';
-import useContentMeta from '@/hooks/useContentMeta';
+import { formatDate } from '@/utils/helper';
 
 export default function PostCard({ post }) {
-  const checkedSlug = checkBlogPrefix(post.slug);
-  const { isLoading, contentViews } = useContentMeta(`b_${checkedSlug}`);
-
   return (
     <motion.li
       initial={{ opacity: 0 }}
@@ -26,9 +22,7 @@ export default function PostCard({ post }) {
             <span>{post.title}</span>
           </h4>
           <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light'>
-            <span className='accent'>
-              {isLoading ? '–––' : contentViews} views
-            </span>
+            <span className='accent'>{post?.views ?? '–––'} views</span>
           </p>
         </header>
         <p className='my-2 component text-dark dark:text-light'>

@@ -18,9 +18,7 @@ export default function LibraryPage({ snippets }) {
   const { isLoaded } = useLoadingWithPreload();
 
   //#region ====== Insert Likes to Snippets
-  const { data: contentMeta, error } = useSWR('/api/content', fetcher, {
-    revalidateOnFocus: false,
-  });
+  const { data: contentMeta, error } = useSWR('/api/content', fetcher);
   const isLoading = !error & !contentMeta;
   const library = getLibrary(contentMeta);
 

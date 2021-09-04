@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion';
 
-import useContentMeta from '@/hooks/useContentMeta';
 import PickTech from './PickTech';
 import UnstyledLink from './UnstyledLink';
 
 export default function LibraryCard({ snippet }) {
-  const { isLoading, contentLikes } = useContentMeta(`l_${snippet.slug}`);
   const techArray = snippet.techs.split(',');
 
   return (
@@ -27,9 +25,7 @@ export default function LibraryCard({ snippet }) {
               <span>{snippet.title}</span>
             </h4>
             <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light min-w-[8ch] text-right'>
-              <span className='accent'>
-                {isLoading ? '–––' : contentLikes} likes
-              </span>
+              <span className='accent'>{snippet?.likes ?? '---'} likes</span>
             </p>
           </header>
 
