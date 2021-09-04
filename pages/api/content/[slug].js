@@ -45,6 +45,19 @@ export default async function handler(req, res) {
       });
     } else if (req.method === 'POST') {
       const { data } = await upsertContentMeta(slug);
+
+      if (slug.startsWith('b_')) {
+        const devto = await getViewsFromDevto();
+
+        const found = devto.find((i) => i.slug === slug.slice(2));
+        if (found) {
+          return res.status(201).json({
+            contentViews: data?.views + found.views ?? 0,
+            contentLikes: data?.likes ?? 0,
+          });
+        }
+      }
+
       res.status(201).json({
         contentViews: data?.views ?? 0,
         contentLikes: data?.likes ?? 0,
