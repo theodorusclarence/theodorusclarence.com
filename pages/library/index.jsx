@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import fetcher from '@/utils/fetcher';
 import { getLibrary } from '@/utils/contentMeta';
 import { getAllFilesFrontMatter } from '@/utils/mdx';
-import { classNames, sortByTitle } from '@/utils/helper';
+import { classNames, getFromSessionStorage, sortByTitle } from '@/utils/helper';
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import Seo from '@/components/Seo';
@@ -74,7 +74,9 @@ export default function LibraryPage({ snippets }) {
   //#endregion ====== Search logic
 
   //#region sorting effect
-  const [sortOrder, setSortOrder] = useState(sortOptions[0]);
+  const [sortOrder, setSortOrder] = useState(
+    () => sortOptions[getFromSessionStorage('library-sort') || 0]
+  );
 
   useEffect(() => {
     const sortArr = [...filteredSnippets];
@@ -83,8 +85,10 @@ export default function LibraryPage({ snippets }) {
       sortArr.sort((a, b) =>
         a.title > b.title ? 1 : b.title > a.title ? -1 : 0
       );
+      sessionStorage.setItem('library-sort', 0);
     } else if (sortOrder.id === 'popular') {
       sortArr.sort((a, b) => a?.likes < b?.likes);
+      sessionStorage.setItem('library-sort', 1);
     }
 
     setFilteredSnippets(sortArr);

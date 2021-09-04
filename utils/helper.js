@@ -72,3 +72,17 @@ export function sortByTitle(contents) {
     a.title > b.title ? 1 : b.title > a.title ? -1 : 0
   );
 }
+
+export function getFromLocalStorage(key) {
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem(key);
+  }
+  return null;
+}
+
+export function getFromSessionStorage(key) {
+  if (typeof sessionStorage !== 'undefined') {
+    return sessionStorage.getItem(key);
+  }
+  return null;
+}
