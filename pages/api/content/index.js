@@ -13,7 +13,11 @@ export default async function handler(req, res) {
           ? devto.find((i) => i.slug === item.data.slug.slice(2))
           : null;
 
-        return { ...item.data, views: item.data.views + (found?.views ?? 0) };
+        return {
+          ...item.data,
+          views: item.data.views + (found?.views ?? 0),
+          devtoViews: found?.views ?? null,
+        };
       });
 
       // sort by slug alphabetically

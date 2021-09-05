@@ -1,7 +1,9 @@
-import Nav from '@/components/Nav';
-import Seo from '@/components/Seo';
 import fetcher from '@/utils/fetcher';
 import useSWR from 'swr';
+
+import CustomLink from '@/components/CustomLink';
+import Nav from '@/components/Nav';
+import Seo from '@/components/Seo';
 
 export default function dashboard() {
   const { data, error } = useSWR('/api/content', fetcher);
@@ -19,9 +21,9 @@ export default function dashboard() {
     .map((item) => ({ ...item, slug: item.slug.slice(2) }));
 
   const dashboard = [
-    { label: 'Blogs', value: blogs },
-    { label: 'Library', value: library },
-    { label: 'Projects', value: projects },
+    { label: 'Blogs', value: blogs, site: '/blog/' },
+    { label: 'Library', value: library, site: '/library/' },
+    { label: 'Projects', value: projects, site: '/projects/' },
   ];
 
   return (
@@ -47,21 +49,35 @@ export default function dashboard() {
             </div>
           ) : (
             <div className='space-y-8'>
-              {dashboard.map(({ label, value }) => (
+              {dashboard.map(({ label, value, site }) => (
                 <div className='space-y-4' key={label}>
                   <h2>{label}</h2>
                   <div className='grid grid-cols-2 gap-4 md:grid-cols-4'>
-                    {value.map(({ slug, views, likes, likesByUser }) => (
-                      <div
-                        key={slug}
-                        className='flex flex-col p-2 border border-gray-600 rounded-md'
-                      >
-                        <h4 className='mb-2'>{slug}</h4>
-                        <p className='mt-auto'>views: {views}</p>
-                        <p>likes: {likes}</p>
-                        <p>userCount: {Object.keys(likesByUser).length}</p>
-                      </div>
-                    ))}
+                    {value.map(
+                      ({ slug, views, likes, likesByUser, devtoViews }) => (
+                        <div
+                          key={slug}
+                          className='flex flex-col p-2 text-gray-300 border border-gray-600 rounded-md'
+                        >
+                          <h4 className='mb-2'>
+                            <CustomLink
+                              className='!font-bold'
+                              href={`${site}${slug}`}
+                            >
+                              {slug}
+                            </CustomLink>
+                          </h4>
+                          <p className='mt-auto'>views: {views}</p>
+                          {devtoViews && (
+                            <p>
+                              S + D: {views - devtoViews} + {devtoViews}
+                            </p>
+                          )}
+                          <p>likes: {likes}</p>
+                          <p>userCount: {Object.keys(likesByUser).length}</p>
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
               ))}
