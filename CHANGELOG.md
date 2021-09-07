@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.2...v0.2.3) (2021-09-07)
+
+
+### Features
+
+* **admin:** split devto views ([19e0275](https://github.com/theodorusclarence/theodorusclarence.com/commit/19e0275cc52095f8e2621dff43b5892c3025aee2))
+
+
+### Bug Fixes
+
+* add mt to spotify card ([aa30474](https://github.com/theodorusclarence/theodorusclarence.com/commit/aa304747b63f8487bfdefbd3c866c3012d8f7617))
+* post request devto not synced ([49b8b9b](https://github.com/theodorusclarence/theodorusclarence.com/commit/49b8b9bf6dc91e94569f4b61a550ddde585266be))
+
 ### [0.2.2](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.1...v0.2.2) (2021-09-04)
 
 
