@@ -132,7 +132,7 @@ export default function BlogPage({ posts }) {
           <main className='space-y-4 layout'>
             <header className='space-y-2'>
               <h1 className='animate-fade-in-initial fade-in-1'>
-                <span className='accent'>
+                <span className='accent no-under'>
                   Blog
                   {selectedEnglish ? '' : ' Bahasa Indonesia'}
                 </span>

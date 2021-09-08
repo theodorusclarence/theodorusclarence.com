@@ -25,9 +25,11 @@ export default function About() {
       >
         <section className='py-10'>
           <article className='layout'>
-            <h1 className='animate-fade-in-initial fade-in-1'>About</h1>
+            <h1 className='text-gray-900 animate-fade-in-initial fade-in-1'>
+              About
+            </h1>
             <h1 className='mb-4 animate-fade-in-initial fade-in-2'>
-              <span className='accent'>Theodorus Clarence</span>
+              <span className=''>Theodorus Clarence</span>
             </h1>
             <figure className='float-right ml-6 w-36 md:w-52 animate-fade-in-initial fade-in-3'>
               <CloudinaryImg

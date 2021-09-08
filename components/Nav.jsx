@@ -63,15 +63,7 @@ export default function Nav() {
             {links.map(({ href, label }) => (
               <li key={`${href}${label}`}>
                 <Link href={href}>
-                  <a
-                    className={`
-                                        ${
-                                          href === baseRoute
-                                            ? 'text-transparent'
-                                            : 'text-black dark:text-white'
-                                        } 
-                                        font-medium ring-vis py-2 rounded-sm hover:text-accent-200 dark:hover:text-accent-200`}
-                  >
+                  <a className='py-2 font-medium text-black rounded-sm dark:text-white ring-vis hover:text-accent-200 dark:hover:text-accent-200'>
                     <span className={`${href === baseRoute && 'accent'}`}>
                       {label}
                     </span>

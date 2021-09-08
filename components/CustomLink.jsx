@@ -10,7 +10,9 @@ export default function CustomLink({ children, className = '', ...rest }) {
         className
       )}
     >
-      <span className='inline-block align-middle accent'>{children}</span>
+      <span className='inline-block no-under align-middle !border-b-2 border-dotted  !border-gray-400 accent dark:!border-b-0 hover:!border-transparent transition-colors'>
+        {children}
+      </span>
     </UnstyledLink>
   );
 }

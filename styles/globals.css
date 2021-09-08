@@ -114,7 +114,11 @@ input[type='email'] {
 }
 
 span.accent {
-  @apply text-transparent bg-gradient-to-tr dark:from-accent-200 dark:to-accent-300 from-accent-400 to-accent-200 bg-clip-text;
+  @apply border-b-2 dark:text-transparent dark:bg-gradient-to-tr dark:from-accent-200 dark:to-accent-300 dark:border-0 border-accent-200 dark:bg-clip-text;
+}
+
+.accent.no-under {
+  @apply border-0;
 }
 
 /* Start purging... */

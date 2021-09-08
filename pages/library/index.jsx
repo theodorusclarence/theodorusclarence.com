@@ -110,7 +110,7 @@ export default function LibraryPage({ snippets }) {
           <main className='space-y-4 layout'>
             <header className='space-y-2'>
               <h1 className='animate-fade-in-initial fade-in-1'>
-                <span className='accent'>Library</span>
+                <span className='accent no-under'>Library</span>
               </h1>
               <p className='text-dark dark:text-light animate-fade-in-initial fade-in-2'>
                 {description}
