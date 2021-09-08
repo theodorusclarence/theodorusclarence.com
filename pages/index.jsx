@@ -82,7 +82,10 @@ export default function Home({
             <article className='layout'>
               <h2 className='md:mb-2 animate-fade-in-initial fade-in-1'>Hi!</h2>
               <h1 className='mb-2 animate-fade-in-initial fade-in-2'>
-                You can call me <span className='accent'>Clarence</span>
+                You can call me{' '}
+                <span className='accent no-under bg-accent-200/50'>
+                  Clarence
+                </span>
               </h1>
               <p className='prose dark:text-light animate-fade-in-initial fade-in-3'>
                 I'm a fast learner and hardworking Informatics Student at
@@ -122,8 +125,8 @@ export default function Home({
         {/* padding top smaller to reduce gap */}
         <InViewSection id='projects' className='pt-2 pb-16'>
           <motion.main className='layout'>
-            <motion.h2 className='mb-4'>
-              <span className='accent'>Featured Projects</span>
+            <motion.h2 className='mb-4 no-under'>
+              <span className='accent no-under'>Featured Projects</span>
             </motion.h2>
             <motion.ul className='grid gap-4 mb-4 md:grid-cols-2'>
               {featuredProjects.map((project, index) => (
@@ -138,7 +141,7 @@ export default function Home({
         <InViewSection className='py-16'>
           <article className='layout'>
             <h2>
-              <span className='accent'>Featured Posts</span>
+              <span className='accent no-under'>Featured Posts</span>
             </h2>
             <p className='mb-4 component'>
               Kindly{' '}
@@ -165,7 +168,7 @@ export default function Home({
         <InViewSection className='py-16'>
           <article className='layout'>
             <h2 className=''>
-              <span className='accent'>Check out my code library</span>
+              <span className='accent no-under'>Check out my code library</span>
             </h2>
             <p className='mt-2 mb-4 component'>
               List of code snippets that I store for easy access.

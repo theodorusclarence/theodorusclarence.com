@@ -23,7 +23,7 @@ export default function ProjectsPage() {
         <article className='space-y-2 layout'>
           <header className='mb-8 space-y-2'>
             <h1 className='animate-fade-in-initial fade-in-1'>
-              <span className='accent'>My Projects</span>
+              <span className='accent no-under'>My Projects</span>
             </h1>
             <p className='prose dark:text-light animate-fade-in-initial fade-in-2'>
               Some projects that I have made.
