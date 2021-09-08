@@ -21,7 +21,7 @@ export default function LibraryCard({ snippet }) {
       >
         <div>
           <header className='flex justify-between'>
-            <h4>
+            <h4 className='text-gray-800 dark:text-gray-100'>
               <span>{snippet.title}</span>
             </h4>
             <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light min-w-[8ch] text-right'>
@@ -31,7 +31,9 @@ export default function LibraryCard({ snippet }) {
 
           <PickTech techs={techArray} />
 
-          <p className='component'>{snippet.description}</p>
+          <p className='text-gray-700 component dark:text-gray-300'>
+            {snippet.description}
+          </p>
         </div>
       </UnstyledLink>
     </motion.li>
