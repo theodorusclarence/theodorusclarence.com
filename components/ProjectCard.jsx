@@ -15,7 +15,7 @@ export default function ProjectCard({ data }) {
             href={data.page || data.link || data.youtube || data.github}
             className='z-0 after:rounded-md after:absolute after:inset-0 ring-vis-0 project-card-after'
           >
-            <h4>
+            <h4 className='text-gray-800 dark:text-gray-100'>
               <span>{data.name}</span>
             </h4>
           </UnstyledLink>
@@ -46,7 +46,9 @@ export default function ProjectCard({ data }) {
             )}
           </div>
         </header>
-        <p className='component'>{data.description}</p>
+        <p className='text-gray-700 component dark:text-gray-300'>
+          {data.description}
+        </p>
         <PickTech techs={data.techStack} />
         <div className='w-full shadow-md pointer-events-none'>
           <CloudinaryImg

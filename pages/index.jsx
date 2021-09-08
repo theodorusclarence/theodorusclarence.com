@@ -143,7 +143,7 @@ export default function Home({
             <h2>
               <span className='accent no-under'>Featured Posts</span>
             </h2>
-            <p className='mb-4 component'>
+            <p className='mb-4 text-gray-700 component dark:text-gray-300'>
               Kindly{' '}
               <CustomLink href='https://buttondown.email/theodorusclarence'>
                 subscribe to my newsletter
@@ -170,7 +170,7 @@ export default function Home({
             <h2 className=''>
               <span className='accent no-under'>Check out my code library</span>
             </h2>
-            <p className='mt-2 mb-4 component'>
+            <p className='mt-2 mb-4 text-gray-700 component dark:text-gray-300'>
               List of code snippets that I store for easy access.
             </p>
             <AnimatePresence>

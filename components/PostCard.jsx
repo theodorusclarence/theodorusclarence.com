@@ -18,7 +18,7 @@ export default function PostCard({ post }) {
         href={`/blog/${post.slug}`}
       >
         <header className='flex justify-between'>
-          <h4>
+          <h4 className='text-gray-800 dark:text-gray-100'>
             <span>{post.title}</span>
           </h4>
           <p className='self-center flex-shrink-0 font-medium component text-dark dark:text-light'>
@@ -26,10 +26,14 @@ export default function PostCard({ post }) {
           </p>
         </header>
         <p className='my-2 component text-dark dark:text-light'>
-          <span className='font-bold'>{formatDate(post.publishedAt)}</span> •{' '}
-          <span className='accent'>{post.readingTime.text}</span>
+          <span className='font-bold text-gray-800 dark:text-gray-100'>
+            {formatDate(post.publishedAt)}
+          </span>{' '}
+          • <span className='accent'>{post.readingTime.text}</span>
         </p>
-        <p className='component'>{post.description}</p>
+        <p className='text-gray-700 component dark:text-gray-300'>
+          {post.description}
+        </p>
       </UnstyledLink>
     </motion.li>
   );
