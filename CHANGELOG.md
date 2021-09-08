@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.3...v0.2.4) (2021-09-08)
+
+
+### Features
+
+* change light mode accent ([92bb3d9](https://github.com/theodorusclarence/theodorusclarence.com/commit/92bb3d9bcaba55335d8fa427931245084732de76))
+* change text & heading to lighter color ([33287c4](https://github.com/theodorusclarence/theodorusclarence.com/commit/33287c4206b8f838a6273755260cbb656496e8ce))
+
 ### [0.2.3](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.2...v0.2.3) (2021-09-07)
 
 
