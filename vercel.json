@@ -1,16 +1,8 @@
 {
   "redirects": [
     {
-      "source": "/ig",
-      "destination": "https://instagram.com/theodorusclarence"
-    },
-    {
-      "source": "/github",
-      "destination": "https://github.com/theodorusclarence"
-    },
-    {
-      "source": "/linkedin",
-      "destination": "https://www.linkedin.com/in/theodorus-clarence/"
+      "source": "/link",
+      "destination": "https://clarence.link"
     }
   ],
   "headers": [
