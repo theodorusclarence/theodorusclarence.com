@@ -159,7 +159,7 @@ export default function BlogPage({ posts }) {
               />
             </div>
 
-            <div className='flex flex-col gap-4 !mt-8 z-10 items-start relative md:items-center text-dark dark:text-light animate-fade-in-initial fade-in-5 md:flex-row md:justify-between'>
+            <div className='flex flex-col gap-4 !mt-8 z-10 items-end relative md:items-center text-dark dark:text-light animate-fade-in-initial fade-in-5 md:flex-row md:justify-between'>
               <button
                 className='inline-block px-4 py-2 font-medium transition-shadow duration-100 rounded-md sm:text-sm btn active:shadow-none hover:shadow-md border-thin ring-vis-0'
                 onClick={() => setSelectedEnglish(!selectedEnglish)}
