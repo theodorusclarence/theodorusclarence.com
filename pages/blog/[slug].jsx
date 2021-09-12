@@ -10,6 +10,7 @@ import {
   ogGenerate,
 } from '@/utils/helper.js';
 
+import useScrollSpy from '@/hooks/useScrollspy';
 import useContentMeta from '@/hooks/useContentMeta';
 
 import Seo from '@/components/Seo';
@@ -20,7 +21,6 @@ import LikeButton from '@/components/LikeButton';
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
 import MDXComponents from '@/components/blog/MDXComponents';
-import useScrollSpy from '@/hooks/useScrollspy';
 
 export default function PostPage({ code, frontMatter }) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
