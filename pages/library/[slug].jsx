@@ -77,7 +77,7 @@ export default function PostPage({ code, frontMatter }) {
             </div>
 
             <div className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
-              <article className='py-4 mx-auto prose transition-colors mdx dark:prose-dark'>
+              <article className='w-full py-4 mx-auto prose transition-colors mdx dark:prose-dark'>
                 <Component
                   components={{
                     ...MDXComponents,
