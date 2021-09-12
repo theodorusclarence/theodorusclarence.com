@@ -1,9 +1,14 @@
 import Image from 'next/image';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getMDXComponent } from 'mdx-bundler/client';
 
 import { getFiles, getFileBySlug } from '@/utils/mdx';
-import { checkBlogPrefix, formatDate, ogGenerate } from '@/utils/helper.js';
+import {
+  checkBlogPrefix,
+  classNames,
+  formatDate,
+  ogGenerate,
+} from '@/utils/helper.js';
 
 import useContentMeta from '@/hooks/useContentMeta';
 
@@ -15,6 +20,7 @@ import LikeButton from '@/components/LikeButton';
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
 import MDXComponents from '@/components/blog/MDXComponents';
+import useScrollSpy from '@/hooks/useScrollspy';
 
 export default function PostPage({ code, frontMatter }) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
@@ -38,6 +44,29 @@ export default function PostPage({ code, frontMatter }) {
     };
   }, []);
 
+  //#region  //*============== Scrollspy
+  const activeSection = useScrollSpy();
+
+  const [toc, setToc] = useState(null);
+  const minLevel =
+    toc?.reduce((min, item) => (item.level < min ? item.level : min), 10) ?? 0;
+
+  useEffect(() => {
+    const headings = document.querySelectorAll('.mdx h1, .mdx h2, .mdx h3');
+
+    const headingArr = [];
+    headings.forEach((heading) => {
+      const id = heading.id;
+      const level = +heading.tagName.replace('H', '');
+      const text = heading.textContent;
+
+      headingArr.push({ id, level, text });
+    });
+
+    setToc(headingArr);
+  }, []);
+  //#endregion  //*============== Scrollspy
+
   return (
     <>
       <Seo
@@ -48,10 +77,10 @@ export default function PostPage({ code, frontMatter }) {
         type='article'
       />
       <div className='flex flex-col min-h-screen'>
-        <Nav />
+        <Nav large />
 
         <section className='py-6 mt-4'>
-          <main className='layout'>
+          <main className='layout lg:max-w-[60rem]'>
             <div className='pb-4 border-b-thin dark:border-gray-600'>
               <h1 className='mb-2'>{frontMatter.title}</h1>
 
@@ -85,13 +114,42 @@ export default function PostPage({ code, frontMatter }) {
               </p>
             </div>
 
-            <article className='py-4 mx-auto prose transition-colors mdx dark:prose-dark'>
-              <Component
-                components={{
-                  ...MDXComponents,
-                }}
-              />
-            </article>
+            <div className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
+              <article className='py-4 mx-auto prose transition-colors mdx dark:prose-dark'>
+                <Component
+                  components={{
+                    ...MDXComponents,
+                  }}
+                />
+              </article>
+
+              <aside className='py-4 none lg:block'>
+                <div className='sticky top-36 overflow-auto max-h-[calc(100vh-9rem)] pb-4'>
+                  <h3 className='text-gray-900 dark:text-gray-100 md:text-xl'>
+                    Table of Contents
+                  </h3>
+                  <div className='flex flex-col mt-4 space-y-2 text-sm'>
+                    {toc
+                      ? toc.map(({ id, level, text }) => (
+                          <UnstyledLink
+                            href={`#${id}`}
+                            className={classNames(
+                              'font-medium hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none',
+                              'focus-visible:text-gray-700 dark:focus-visible:text-gray-200',
+                              activeSection === id
+                                ? 'text-gray-900 dark:text-gray-100'
+                                : 'text-gray-400 dark:text-gray-500'
+                            )}
+                            style={{ marginLeft: (level - minLevel) * 16 }}
+                          >
+                            {text}
+                          </UnstyledLink>
+                        ))
+                      : null}
+                  </div>
+                </div>
+              </aside>
+            </div>
 
             <div className='flex items-center justify-center py-8'>
               <LikeButton slug={`b_${checkedSlug}`} />

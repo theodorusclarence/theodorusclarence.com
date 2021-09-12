@@ -19,6 +19,7 @@
     "crypto": "^1.0.1",
     "faunadb": "^4.3.0",
     "framer-motion": "^3.10.6",
+    "lodash.throttle": "^4.1.1",
     "mdx-bundler": "^6.0.1",
     "next": "^11.1.2",
     "next-themes": "^0.0.14",

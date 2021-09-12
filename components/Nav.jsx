@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from 'next-themes';
+import { classNames } from '@/utils/helper';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -12,7 +13,7 @@ const links = [
   { href: '/about', label: 'About' },
 ];
 
-export default function Nav() {
+export default function Nav({ large = false }) {
   const [onTop, setOnTop] = useState(true);
   // sets class dark to html
   const { theme, setTheme } = useTheme();
@@ -44,7 +45,12 @@ export default function Nav() {
     >
       <div className='h-2 bg-gradient-to-tr from-accent-100 via-accent-200 to-accent-300'></div>
       <nav className='transition-colors bg-white dark:bg-dark'>
-        <ul className='flex items-center justify-between py-4 layout'>
+        <ul
+          className={classNames(
+            'flex items-center justify-between py-4 layout',
+            large && 'lg:max-w-[60rem]'
+          )}
+        >
           <ul className='flex items-center justify-between space-x-3 text-xs md:space-x-4 md:text-base'>
             {/* //* still considering for the logo
                         <li>
