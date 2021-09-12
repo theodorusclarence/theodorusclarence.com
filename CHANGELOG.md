@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.4...v0.3.0) (2021-09-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* add scrollspy to library
+* add scrollspy to blog
+
+### Features
+
+* add large footer & change photo ([8154133](https://github.com/theodorusclarence/theodorusclarence.com/commit/8154133cd6d2b847a07bfd099d4da8aebb758680))
+* add redirect for `/link` ([3536eb1](https://github.com/theodorusclarence/theodorusclarence.com/commit/3536eb117cc6af64805a35361c870f21684059c0))
+* add scrollspy to blog ([3083621](https://github.com/theodorusclarence/theodorusclarence.com/commit/308362118f82840fece49d80f0083b5f8db4b496))
+* add scrollspy to library ([fe2aa00](https://github.com/theodorusclarence/theodorusclarence.com/commit/fe2aa00a711f8f79e497d4cde2c1f5d74afa51b6))
+* **blog:** add introduction heading ([c3adbc7](https://github.com/theodorusclarence/theodorusclarence.com/commit/c3adbc7803ea74fbe56b6b19efffb3fe2e8b1d4d))
+* **blog:** make bahasa button to right align ([c5afded](https://github.com/theodorusclarence/theodorusclarence.com/commit/c5afded65de5ecf9015fcbca95ecdda4a73fc276))
+* make larger layout ([540c5f2](https://github.com/theodorusclarence/theodorusclarence.com/commit/540c5f2c1cdbdf982effc9b51dcfd2b95e7e9512))
+
+
+### Bug Fixes
+
+* about page has conflicting color ([555e4de](https://github.com/theodorusclarence/theodorusclarence.com/commit/555e4debc96d604db9f4f866f49e3006695c1462))
+* article not full width ([930ff76](https://github.com/theodorusclarence/theodorusclarence.com/commit/930ff7656733d85ea77ee842c16d045993f3db15))
+* **blog:** conflicting hash and link on heading ([e5066ad](https://github.com/theodorusclarence/theodorusclarence.com/commit/e5066addfb2440b19bb4c021d89d338983646f25))
+* code blocks overflow ([ae90c5a](https://github.com/theodorusclarence/theodorusclarence.com/commit/ae90c5aa5b9d51d1a78ba4ee219185d7c1e72cfa))
+
 ### [0.2.4](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.3...v0.2.4) (2021-09-08)
 
 
