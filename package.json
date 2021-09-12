@@ -16,6 +16,7 @@
     "@tippyjs/react": "^4.2.5",
     "autoprefixer": "^10.3.3",
     "cloudinary-build-url": "^0.2.1",
+    "clsx": "^1.1.1",
     "crypto": "^1.0.1",
     "faunadb": "^4.3.0",
     "framer-motion": "^3.10.6",

@@ -90,10 +90,10 @@ export default function PostPage({ code, frontMatter }) {
                   <div style={{ width: 25, height: 25 }}>
                     <Image
                       width={500}
-                      className='rounded-full '
+                      className='rounded-full'
                       height={500}
                       objectFit='cover'
-                      src={'/images/me.jpg'}
+                      src={'/images/me-square.jpg'}
                       alt={'photo of me'}
                     />{' '}
                   </div>
@@ -123,37 +123,39 @@ export default function PostPage({ code, frontMatter }) {
                 />
               </article>
 
-              <aside className='py-4 none lg:block'>
-                <div className='sticky top-36 overflow-auto max-h-[calc(100vh-9rem)] pb-4'>
-                  <h3 className='text-gray-900 dark:text-gray-100 md:text-xl'>
-                    Table of Contents
-                  </h3>
-                  <div className='flex flex-col mt-4 space-y-2 text-sm'>
-                    {toc
-                      ? toc.map(({ id, level, text }) => (
-                          <UnstyledLink
-                            href={`#${id}`}
-                            className={classNames(
-                              'font-medium hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none',
-                              'focus-visible:text-gray-700 dark:focus-visible:text-gray-200',
-                              activeSection === id
-                                ? 'text-gray-900 dark:text-gray-100'
-                                : 'text-gray-400 dark:text-gray-500'
-                            )}
-                            style={{ marginLeft: (level - minLevel) * 16 }}
-                          >
-                            {text}
-                          </UnstyledLink>
-                        ))
-                      : null}
+              <aside className='py-4'>
+                <div className='sticky top-36'>
+                  <div className='overflow-auto max-h-[calc(100vh-9rem-113px)] pb-4 lg:block hidden'>
+                    <h3 className='text-gray-900 dark:text-gray-100 md:text-xl'>
+                      Table of Contents
+                    </h3>
+                    <div className='flex flex-col mt-4 space-y-2 text-sm'>
+                      {toc
+                        ? toc.map(({ id, level, text }) => (
+                            <UnstyledLink
+                              href={`#${id}`}
+                              className={classNames(
+                                'font-medium hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none',
+                                'focus-visible:text-gray-700 dark:focus-visible:text-gray-200',
+                                activeSection === id
+                                  ? 'text-gray-900 dark:text-gray-100'
+                                  : 'text-gray-400 dark:text-gray-500'
+                              )}
+                              style={{ marginLeft: (level - minLevel) * 16 }}
+                            >
+                              {text}
+                            </UnstyledLink>
+                          ))
+                        : null}
+                    </div>
+                  </div>
+                  <div className='flex items-center justify-center py-8'>
+                    <LikeButton slug={`b_${checkedSlug}`} />
                   </div>
                 </div>
               </aside>
             </div>
 
-            <div className='flex items-center justify-center py-8'>
-              <LikeButton slug={`b_${checkedSlug}`} />
-            </div>
             <Comments />
 
             <div className='flex flex-col items-start gap-4 mt-4 md:flex-row-reverse md:justify-between'>
@@ -171,7 +173,7 @@ export default function PostPage({ code, frontMatter }) {
             </div>
           </main>
         </section>
-        <Footer />
+        <Footer large />
       </div>
     </>
   );
