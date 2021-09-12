@@ -66,7 +66,7 @@ export default function PostPage({ code, frontMatter }) {
         <Nav large />
 
         <section className='py-6 mt-4'>
-          <main className='layout lg:max-w-[60rem]'>
+          <main className='layout lg:max-w-[68rem]'>
             <div className='pb-4 border-b-thin dark:border-gray-600'>
               <h1 className='mb-2'>{frontMatter.title}</h1>
 

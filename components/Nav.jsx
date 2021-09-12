@@ -48,7 +48,7 @@ export default function Nav({ large = false }) {
         <ul
           className={classNames(
             'flex items-center justify-between py-4 layout',
-            large && 'lg:max-w-[60rem]'
+            large && 'lg:max-w-[68rem]'
           )}
         >
           <ul className='flex items-center justify-between space-x-3 text-xs md:space-x-4 md:text-base'>
