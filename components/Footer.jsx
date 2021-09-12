@@ -18,7 +18,7 @@ export default function Footer({ large = false }) {
         className={clsx(
           'flex flex-col items-center pt-6 border-t-thin dark:border-gray-600 layout',
           {
-            'lg:max-w-[60rem]': large,
+            'lg:max-w-[68rem]': large,
           }
         )}
       >
