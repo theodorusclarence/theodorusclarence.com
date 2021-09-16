@@ -7,7 +7,7 @@ export default function Seo(props) {
     title: "Theodorus Clarence's Portfolio – theodorusclarence.com",
     description:
       'An online portfolio and blog by Theodorus Clarence. Showcase of my projects, and some of my thoughts about website development.',
-    image: 'https://theodorusclarence.com/favicon/large-og.jpg',
+    image: 'https://theodorusclarence.com/favicon/landscape-og.jpg',
     type: 'website',
     robots: 'follow, index',
     ...props,
