@@ -121,6 +121,13 @@ export default function PostPage({ code, frontMatter }) {
                     ...MDXComponents,
                   }}
                 />
+                <blockquote>
+                  Enjoying my post? Kindly{' '}
+                  <CustomLink href='https://buttondown.email/theodorusclarence'>
+                    subscribe to my newsletter
+                  </CustomLink>{' '}
+                  if you want an update everytime I post.
+                </blockquote>
               </article>
 
               <aside className='py-4'>
