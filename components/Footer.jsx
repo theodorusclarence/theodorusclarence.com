@@ -104,8 +104,8 @@ function FooterLinks() {
 
 const footerLinks = [
   {
-    href: '/projects/side-projects',
-    text: 'Side Projects',
+    href: 'https://clarence.link/docs',
+    text: 'Docs',
   },
   {
     href: 'https://clarence.link/booknotes',
