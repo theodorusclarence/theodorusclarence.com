@@ -34,7 +34,7 @@
     "react-icons": "^4.2.0",
     "react-image-lightbox": "^5.1.4",
     "react-intersection-observer": "^8.32.1",
-    "react-lite-youtube-embed": "^2.0.7",
+    "react-lite-youtube-embed": "^2.0.12",
     "swr": "^0.4.2"
   },
   "devDependencies": {
@@ -44,7 +44,7 @@
     "gray-matter": "^4.0.3",
     "husky": "^6.0.0",
     "lint-staged": "^11.1.2",
-    "next-sitemap": "^1.6.164",
+    "next-sitemap": "^1.6.168",
     "postcss-focus-visible": "^5.0.0",
     "prettier": "^2.4.1",
     "reading-time": "^1.5.0",
