@@ -1,11 +1,10 @@
 import Tippy from '@tippyjs/react';
 import { motion } from 'framer-motion';
-import { IconContext } from 'react-icons/lib';
 import {
-  SiNextDotJs,
+  SiNextdotjs,
   SiReact,
   SiTailwindcss,
-  SiNodeDotJs,
+  SiNodedotjs,
   SiFirebase,
   SiTypescript,
 } from 'react-icons/si';
@@ -26,7 +25,7 @@ const techObject = {
       </>
     ),
     () => (
-      <SiNextDotJs className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+      <SiNextdotjs className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
     ),
   ],
   react: [
@@ -83,7 +82,7 @@ const techObject = {
       </>
     ),
     () => (
-      <SiNodeDotJs className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
+      <SiNodedotjs className='w-10 h-10 text-dark dark:text-light dark:hover:text-accent-200 hover:text-accent-200 md:w-12 md:h-12' />
     ),
   ],
   swr: [

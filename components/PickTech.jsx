@@ -1,11 +1,11 @@
 import Tippy from '@tippyjs/react';
 import {
-  SiNextDotJs,
+  SiNextdotjs,
   SiMongodb,
   SiSass,
   SiReact,
   SiTailwindcss,
-  SiNodeDotJs,
+  SiNodedotjs,
   SiMarkdown,
   SiJavascript,
   SiPrettier,
@@ -22,7 +22,7 @@ import { classNames } from '@/utils/helper';
 const techSpan = {
   nextjs: [
     'Next.js',
-    () => <SiNextDotJs className='w-6 h-6 text-dark dark:text-light' />,
+    () => <SiNextdotjs className='w-6 h-6 text-dark dark:text-light' />,
   ],
   react: [
     'Create React App',
@@ -46,7 +46,7 @@ const techSpan = {
   ],
   nodejs: [
     'Node.js',
-    () => <SiNodeDotJs className='w-6 h-6 text-dark dark:text-light' />,
+    () => <SiNodedotjs className='w-6 h-6 text-dark dark:text-light' />,
   ],
   firebase: [
     'Firebase',
