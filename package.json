@@ -14,27 +14,27 @@
     "@headlessui/react": "^1.4.1",
     "@tailwindcss/typography": "^0.4.1",
     "@tippyjs/react": "^4.2.5",
-    "autoprefixer": "^10.3.3",
+    "autoprefixer": "^10.3.6",
     "cloudinary-build-url": "^0.2.1",
     "clsx": "^1.1.1",
     "crypto": "^1.0.1",
     "faunadb": "^4.4.1",
     "framer-motion": "^3.10.6",
     "lodash.throttle": "^4.1.1",
-    "mdx-bundler": "^6.0.1",
+    "mdx-bundler": "^6.0.2",
     "next": "^11.1.2",
     "next-themes": "^0.0.14",
-    "postcss": "^8.3.6",
+    "postcss": "^8.3.8",
     "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "^17.0.2",
     "react-flashlight": "^1.0.6",
     "react-hook-form": "^6.15.8",
-    "react-icons": "^4.2.0",
+    "react-icons": "^4.3.1",
     "react-image-lightbox": "^5.1.4",
     "react-intersection-observer": "^8.32.1",
-    "react-lite-youtube-embed": "^2.0.12",
+    "react-lite-youtube-embed": "^2.0.14",
     "swr": "^0.4.2"
   },
   "devDependencies": {
@@ -55,7 +55,7 @@
     "rehype-slug": "^5.0.0",
     "remark-gfm": "^2.0.0",
     "standard-version": "^9.3.1",
-    "tailwindcss": "^2.2.9"
+    "tailwindcss": "^2.2.16"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
