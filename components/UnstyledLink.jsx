@@ -21,7 +21,7 @@ export default function UnstyledLink({ children, href, className, ...rest }) {
       rel='noopener noreferrer'
       href={href}
       {...rest}
-      className={classNames(className, 'cursor-[ne-resize]')}
+      className={classNames(className, 'cursor-newtab')}
     >
       {children}
     </a>
