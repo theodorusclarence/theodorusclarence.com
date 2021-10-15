@@ -22,6 +22,10 @@ html.smooth {
   @apply bg-accent-200 bg-opacity-40;
 }
 
+.cursor-newtab {
+  cursor: url('/images/new-tab.png') 10 10, pointer;
+}
+
 h1 {
   @apply text-3xl font-bold md:text-5xl font-primary;
 }
