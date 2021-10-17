@@ -14,7 +14,7 @@ function withOpacity(variableName) {
 module.exports = {
   mode: 'jit',
   purge: ['./src/**/*.{js,jsx,ts,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
@@ -23,6 +23,8 @@ module.exports = {
       colors: {
         primary: {
           // Customize it on globals.css :root
+          200: withOpacity('--tw-clr-primary-200'),
+          300: withOpacity('--tw-clr-primary-300'),
           400: withOpacity('--tw-clr-primary-400'),
           500: withOpacity('--tw-clr-primary-500'),
         },

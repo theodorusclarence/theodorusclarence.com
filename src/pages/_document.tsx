@@ -24,7 +24,7 @@ class MyDocument extends Document {
             crossOrigin='anonymous'
           />
         </Head>
-        <body>
+        <body className='transition-colors bg-white dark:text-white dark:bg-dark'>
           <Main />
           <NextScript />
         </body>

@@ -5,9 +5,13 @@
 :root {
   /* Customize these variable */
   /* https://github.com/adamwathan/tailwind-css-variable-text-opacity-demo */
+  --tw-clr-primary-200: 219, 255, 0;
+  --tw-clr-primary-300: 0, 232, 135;
   --tw-clr-primary-400: 0, 224, 243;
   --tw-clr-primary-500: 0, 196, 253;
 
+  --clr-primary-200: rgb(var(--tw-clr-primary-200)); /* #DBFF00 */
+  --clr-primary-300: rgb(var(--tw-clr-primary-300)); /* #00e887 */
   --clr-primary-400: rgb(var(--tw-clr-primary-400)); /* #00e0f3 */
   --clr-primary-500: rgb(var(--tw-clr-primary-500)); /* #00c4fd */
 }
@@ -51,23 +55,23 @@
   }
 
   .layout {
-    /* 750px */
-    /* max-width: 43.75rem; */
-
-    /* 1100px */
-    max-width: 68.75rem;
+    max-width: 50rem;
     @apply w-11/12 mx-auto;
   }
 
   .bg-dark a.custom-link {
     @apply border-gray-200 hover:border-gray-200/0;
   }
+
+  .min-h-main {
+    @apply min-h-[calc(100vh-82px)];
+  }
 }
 
 @layer utilities {
   .animated-underline {
     background-image: linear-gradient(#33333300, #33333300),
-      linear-gradient(to right, var(--clr-primary-400), var(--clr-primary-500));
+      linear-gradient(to right, var(--clr-primary-300), var(--clr-primary-400));
     background-size: 100% 2px, 0 2px;
     background-position: 100% 100%, 0 100%;
     background-repeat: no-repeat;

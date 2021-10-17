@@ -56,10 +56,11 @@
     "prefix": "np",
     "body": [
       "import * as React from 'react';\n",
+      "import Layout from '@/components/layout/Layout';",
       "import Seo from '@/components/Seo';\n",
       "export default function ${1:${TM_FILENAME_BASE/(^[a-zA-Z])(.*)/${1:/upcase}${2}/}}Page() {",
       "  return (",
-      "    <>",
+      "    <Layout>",
       "      <Seo templateTitle='${1:${TM_FILENAME_BASE/(^[a-zA-Z])(.*)/${1:/upcase}${2}/}}' />\n",
       "      <main>\n",
       "        <section className=''>",
@@ -68,7 +69,7 @@
       "          </div>",
       "        </section>",
       "      </main>",
-      "    </>",
+      "    </Layout>",
       "  )",
       "}"
     ]

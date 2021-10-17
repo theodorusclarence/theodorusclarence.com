@@ -1,17 +1,19 @@
 import clsx from 'clsx';
+import { useTheme } from 'next-themes';
 import * as React from 'react';
 
 import Button from '@/components/buttons/Button';
+import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
 import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 
 export default function ComponentsPage() {
-  const [mode, setMode] = React.useState('dark');
   function toggleMode() {
-    return mode === 'dark' ? setMode('light') : setMode('dark');
+    return theme === 'dark' ? setTheme('light') : setTheme('dark');
   }
+  const { theme, setTheme } = useTheme();
 
   //#region  //*=========== THEME ===========
   function randomize() {
@@ -29,17 +31,17 @@ export default function ComponentsPage() {
   }
   //#endregion  //*======== THEME ===========
 
-  const textColor = mode === 'dark' ? 'text-gray-300' : 'text-gray-600';
+  const textColor = theme === 'dark' ? 'text-gray-300' : 'text-gray-600';
   return (
-    <>
+    <Layout>
       <Seo templateTitle='Components' />
 
       <main>
-        <section className={clsx(mode === 'dark' ? 'bg-dark' : 'bg-gray-50')}>
+        <section className={clsx(theme === 'dark' ? 'bg-dark' : 'bg-gray-50')}>
           <div
             className={clsx(
               'min-h-screen py-20 layout',
-              mode === 'dark' ? 'text-white' : 'text-black'
+              theme === 'dark' ? 'text-white' : 'text-black'
             )}
           >
             <h1>Built-in Components</h1>
@@ -50,9 +52,9 @@ export default function ComponentsPage() {
             <div className='flex flex-wrap gap-2 mt-8'>
               <Button
                 onClick={toggleMode}
-                variant={mode === 'dark' ? 'light' : 'dark'}
+                variant={theme === 'dark' ? 'light' : 'dark'}
               >
-                Set to {mode === 'dark' ? 'light' : 'dark'}
+                Set to {theme === 'dark' ? 'light' : 'dark'}
               </Button>
               <Button onClick={randomize}>Randomize CSS Variable</Button>
             </div>
@@ -195,6 +197,6 @@ export default function ComponentsPage() {
           </div>
         </section>
       </main>
-    </>
+    </Layout>
   );
 }
