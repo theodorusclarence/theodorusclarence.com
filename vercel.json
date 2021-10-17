@@ -1,10 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/link",
-      "destination": "https://clarence.link"
-    }
-  ],
   "headers": [
     {
       "source": "/fonts/inter-var-latin.woff2",

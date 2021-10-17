@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Customize these variable */
+  /* https://github.com/adamwathan/tailwind-css-variable-text-opacity-demo */
+  --tw-clr-primary-400: 0, 224, 243;
+  --tw-clr-primary-500: 0, 196, 253;
+
+  --clr-primary-400: rgb(var(--tw-clr-primary-400)); /* #00e0f3 */
+  --clr-primary-500: rgb(var(--tw-clr-primary-500)); /* #00c4fd */
+}
+
+@layer base {
+  /* inter var - latin */
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: optional;
+    src: url('/fonts/inter-var-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+
+  .cursor-newtab {
+    cursor: url('/images/new-tab.png') 10 10, pointer;
+  }
+
+  /* Write your own custom base styles here */
+  h1 {
+    @apply text-2xl font-bold md:text-4xl font-primary;
+  }
+
+  h2 {
+    @apply text-xl font-bold md:text-3xl font-primary;
+  }
+
+  h3 {
+    @apply text-lg font-bold md:text-2xl font-primary;
+  }
+
+  h4 {
+    @apply text-base font-bold md:text-lg font-primary;
+  }
+
+  body {
+    @apply text-sm font-primary md:text-base;
+  }
+
+  .layout {
+    /* 750px */
+    /* max-width: 43.75rem; */
+
+    /* 1100px */
+    max-width: 68.75rem;
+    @apply w-11/12 mx-auto;
+  }
+
+  .bg-dark a.custom-link {
+    @apply border-gray-200 hover:border-gray-200/0;
+  }
+}
+
+@layer utilities {
+  .animated-underline {
+    background-image: linear-gradient(#33333300, #33333300),
+      linear-gradient(to right, var(--clr-primary-400), var(--clr-primary-500));
+    background-size: 100% 2px, 0 2px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: 0.3s ease;
+    transition-property: background-size, color, background-color, border-color;
+  }
+  .animated-underline:hover,
+  .animated-underline:focus-visible {
+    background-size: 0 2px, 100% 2px;
+  }
+}

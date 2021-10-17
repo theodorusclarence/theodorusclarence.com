@@ -1,11 +1,7 @@
 module.exports = {
-  siteUrl: 'https://theodorusclarence.com',
+  siteUrl: 'https://tsnext-tw.thcl.dev/',
   generateRobotsTxt: true,
-  exclude: ['/admin/*'],
   robotsTxtOptions: {
-    policies: [
-      { userAgent: '*', disallow: '/admin/*' },
-      { userAgent: '*', allow: '/' },
-    ],
+    policies: [{ userAgent: '*', allow: '/' }],
   },
 };
