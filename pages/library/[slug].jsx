@@ -26,7 +26,7 @@ export default function PostPage({ code, frontMatter }) {
     runEffect: true,
   });
 
-  const imageOg = ogGenerate(frontMatter.title, 'Code Snippets');
+  const imageOg = ogGenerate(frontMatter.title, 'Code Snippets', description);
 
   useEffect(() => {
     document.documentElement.classList.add('smooth');
