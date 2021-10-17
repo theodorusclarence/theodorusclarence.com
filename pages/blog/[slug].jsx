@@ -34,7 +34,7 @@ export default function PostPage({ code, frontMatter }) {
     runEffect: true,
   });
 
-  const imageOg = ogGenerate(frontMatter.title);
+  const imageOg = ogGenerate(frontMatter.title, 'Blog', description);
 
   useEffect(() => {
     document.documentElement.classList.add('smooth');
