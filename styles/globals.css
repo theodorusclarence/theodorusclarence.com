@@ -388,7 +388,3 @@ span.accent {
 .scroll-margin {
   scroll-margin-top: 100px;
 }
-
-.utterances {
-  @apply max-w-none;
-}

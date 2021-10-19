@@ -11,6 +11,7 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "@giscus/react": "^1.0.0",
     "@headlessui/react": "^1.4.1",
     "@tailwindcss/typography": "^0.4.1",
     "@tippyjs/react": "^4.2.5",
