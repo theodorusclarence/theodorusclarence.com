@@ -21,6 +21,7 @@ import LikeButton from '@/components/LikeButton';
 import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
 import MDXComponents from '@/components/blog/MDXComponents';
+import SubscribeCard from '@/components/blog/SubscribeCard';
 
 export default function PostPage({ code, frontMatter }) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
@@ -121,13 +122,6 @@ export default function PostPage({ code, frontMatter }) {
                     ...MDXComponents,
                   }}
                 />
-                <blockquote>
-                  Enjoying my post? Kindly{' '}
-                  <CustomLink href='https://buttondown.email/theodorusclarence'>
-                    subscribe to my newsletter
-                  </CustomLink>{' '}
-                  if you want an update everytime I post.
-                </blockquote>
               </article>
 
               <aside className='py-4'>
@@ -163,7 +157,11 @@ export default function PostPage({ code, frontMatter }) {
               </aside>
             </div>
 
-            <Comments />
+            <SubscribeCard className='mt-4' />
+
+            <div className='mt-4'>
+              <Comments />
+            </div>
 
             <div className='flex flex-col items-start gap-4 mt-4 md:flex-row-reverse md:justify-between'>
               <CustomLink
