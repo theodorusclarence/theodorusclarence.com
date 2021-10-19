@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.3.0...v0.3.1) (2021-10-19)
+
+
+### Features
+
+* add docs to footer link ([faf1974](https://github.com/theodorusclarence/theodorusclarence.com/commit/faf1974c250f1a4e22d8d7986b5a0ab45154341f))
+* add giscus to replace utterances ([d4b41e8](https://github.com/theodorusclarence/theodorusclarence.com/commit/d4b41e8577e07a37b8d1be6235e6dbe0f0ee8189))
+* add new tab cursor ([1c6b73e](https://github.com/theodorusclarence/theodorusclarence.com/commit/1c6b73e1f4f5fe25b3a56429c50d896765ad2da2))
+* add og from thcl ([dc30073](https://github.com/theodorusclarence/theodorusclarence.com/commit/dc300737801ddb36cff5830417687ca088513492))
+* add self-host og ([aa415c3](https://github.com/theodorusclarence/theodorusclarence.com/commit/aa415c32ba81f2e0f5ad03d131ea46d7198cd953))
+* add SubscribeCard ([a9a6d64](https://github.com/theodorusclarence/theodorusclarence.com/commit/a9a6d64833fed46417d7eb040b17ca07e961f52a))
+* **blog:** add mindful-commit-message ([c4401c4](https://github.com/theodorusclarence/theodorusclarence.com/commit/c4401c44c571cd43678e1c4eb72edd225116532f))
+* **blog:** add newsletter cta ([b89e929](https://github.com/theodorusclarence/theodorusclarence.com/commit/b89e929770ec866cea0be2d892c46273b824f4d5))
+* **blog:** add nextjs-fetch-usecase ([61eac68](https://github.com/theodorusclarence/theodorusclarence.com/commit/61eac682670b93a518c1afb17b0d2056d6a4679d))
+* change og image ([1737f8e](https://github.com/theodorusclarence/theodorusclarence.com/commit/1737f8ef8fad3748962e473521d1b41bc85b4eca))
+* remove og gradient outline ([a8a049a](https://github.com/theodorusclarence/theodorusclarence.com/commit/a8a049a8b35f16203ef751fe4662d3e09a87ce54))
+
+
+### Bug Fixes
+
+* react-icons breaking changes ([916f18b](https://github.com/theodorusclarence/theodorusclarence.com/commit/916f18bce53884fa31bb3f8f9953fc648d6bf961))
+
 ## [0.3.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.4...v0.3.0) (2021-09-12)
 
 
