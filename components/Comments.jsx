@@ -1,15 +1,16 @@
-import { useUtterances } from '@/hooks/useUtterances';
-import { classNames } from '@/utils/helper';
-
-const commentNodeId = 'comments';
+import { Giscus } from '@giscus/react';
 
 export default function Comments(props) {
-  useUtterances(commentNodeId);
   return (
-    <div
-      {...props}
-      className={classNames('md:min-h-[269px] min-h-[273px]', props.className)}
-      id={commentNodeId}
+    <Giscus
+      repo='theodorusclarence/theodorusclarence.com'
+      repoId='MDEwOlJlcG9zaXRvcnkzMzAyMTQyNDc='
+      category='General'
+      categoryId='DIC_kwDOE66rZ84B--B0'
+      mapping='pathname'
+      reactionsEnabled='0'
+      emitMetadata='0'
+      theme='dark'
     />
   );
 }
