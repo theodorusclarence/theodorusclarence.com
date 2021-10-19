@@ -1,7 +1,7 @@
 export const featuredPostsArr = [
   'mindful-commit-message',
   'nextjs-fetch-method',
-  'btb-flex-mental-model',
+  'nextjs-fetch-usecase',
 ];
 
 export const featuredProjectsArr = ['ppdbsumsel', 'sxceosleague'];
