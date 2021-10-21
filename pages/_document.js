@@ -117,6 +117,16 @@ class MyDocument extends Document {
 
           {/* Splitbee */}
           <script async data-api='/_hive' src='/bee.js'></script>
+
+          {/* Umami */}
+          {/* Testing, sorry for 3 analytics */}
+          <script
+            async
+            defer
+            data-website-id='b07f6814-9d90-4788-b5c2-20715ed1c6a4'
+            src='https://umami.thcl.dev/umami.js'
+            data-domains='theodorusclarence.com'
+          />
         </Head>
         <body className='transition-colors bg-white dark:text-white dark:bg-dark'>
           <Main />
