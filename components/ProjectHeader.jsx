@@ -1,6 +1,8 @@
 import CloudinaryImg from './CloudinaryImg';
 import CustomLink from './CustomLink';
 
+import { trackEvent } from '@/utils/analytics';
+
 export default function ProjectHeader({ data }) {
   return (
     <header className='space-y-2'>
@@ -9,13 +11,32 @@ export default function ProjectHeader({ data }) {
         Category: {data.category || 'Built Solo'}
       </p>
       <p className=''>
-        {data.github && <CustomLink href={data.github}>Repository</CustomLink>}
+        {data.github && (
+          <CustomLink
+            onClick={() => trackEvent(`Project Github: ${data.name}`, 'link')}
+            href={data.github}
+          >
+            Repository
+          </CustomLink>
+        )}
         {data.github && (data.youtube || data.link) && ' • '}
         {data.youtube && (
-          <CustomLink href={data.youtube}>Video Demo</CustomLink>
+          <CustomLink
+            href={data.youtube}
+            onClick={() => trackEvent(`Project Video: ${data.name}`, 'link')}
+          >
+            Video Demo
+          </CustomLink>
         )}
         {data.youtube && data.link && ' • '}
-        {data.link && <CustomLink href={data.link}>Visit Live</CustomLink>}
+        {data.link && (
+          <CustomLink
+            href={data.link}
+            onClick={() => trackEvent(`Project Live: ${data.name}`, 'link')}
+          >
+            Visit Live
+          </CustomLink>
+        )}
       </p>
       <figure className='overflow-hidden rounded-sm shadow-md dark:shadow-none'>
         <CloudinaryImg

@@ -13,6 +13,7 @@ import {
 import useLoadingWithPreload from '@/hooks/useLoadingWithPreload';
 
 import fetcher from '@/utils/fetcher';
+import { trackEvent } from '@/utils/analytics';
 import { getBlogs, getLibrary } from '@/utils/contentMeta';
 import { checkBlogPrefix, classNames } from '@/utils/helper';
 import { getAllFilesFrontMatter, sortByDate, sortByTitle } from '@/utils/mdx';
@@ -133,7 +134,12 @@ export default function Home({
                 <ProjectCard key={index} data={project} />
               ))}
             </motion.ul>
-            <Button href='/projects'>See More</Button>
+            <Button
+              onClick={() => trackEvent('See More Projects', 'navigate')}
+              href='/projects'
+            >
+              See More
+            </Button>
           </motion.main>
         </InViewSection>
 
@@ -158,7 +164,12 @@ export default function Home({
               </ul>
             </AnimatePresence>
             <div className='space-x-4'>
-              <Button href='/blog'>See More</Button>
+              <Button
+                onClick={() => trackEvent('See More Blog', 'navigate')}
+                href='/blog'
+              >
+                See More
+              </Button>
               <Button href='/suggest'>Suggest Topic</Button>
             </div>
           </article>
@@ -180,7 +191,11 @@ export default function Home({
                 ))}
               </ul>
             </AnimatePresence>
-            <Button className='mt-4' href='/library'>
+            <Button
+              onClick={() => trackEvent('See More Library', 'navigate')}
+              className='mt-4'
+              href='/library'
+            >
               See more
             </Button>
           </article>

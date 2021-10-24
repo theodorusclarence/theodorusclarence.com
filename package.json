@@ -42,6 +42,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@types/umami": "^0.1.0",
     "esbuild": "^0.12.29",
     "gray-matter": "^4.0.3",
     "husky": "^6.0.0",

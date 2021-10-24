@@ -559,6 +559,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/umami@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/umami/-/umami-0.1.0.tgz#bf76780c8b60183f35a910db34228627d410a655"
+  integrity sha512-nsrcnBdKXTP/koCwL3c+ywQG0lk+uqNo74oIe0FHC109aO4vZoXL0eSQqkUdWa9Hwc3ssFgJINBBCe0MZVYUwg==
+
 "@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"

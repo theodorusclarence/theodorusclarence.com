@@ -6,8 +6,9 @@ import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 import UnstyledLink from './UnstyledLink';
-import CustomLink from './CustomLink';
 import SpotifyPlaying from './SpotifyPlaying';
+
+import { trackEvent } from '@/utils/analytics';
 
 export default function Footer({ large = false }) {
   const [copyStatus, setCopyStatus] = useState('Click the mail logo to copy');
@@ -32,12 +33,10 @@ export default function Footer({ large = false }) {
             className='focus:outline-none'
             content={
               <span className='inline-flex flex-col items-center p-2 bg-white rounded-md shadow-md dark:bg-dark border-thin'>
-                {/* <button onClick={clickToCopy} className='focus:outline-none'> */}
                 {copyStatus}
                 <span className='inline-block font-medium accent ring-0'>
                   theodorusclarence@gmail.com
                 </span>
-                {/* </button> */}
               </span>
             }
           >
@@ -58,24 +57,18 @@ export default function Footer({ large = false }) {
               </CopyToClipboard>
             </div>
           </Tippy>
-          <UnstyledLink
-            className='inline-flex items-center justify-center rounded-sm ring-vis'
-            href='https://clarence.link/github'
-          >
-            <SiGithub className='w-6 h-6 my-auto align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
-          </UnstyledLink>
-          <UnstyledLink
-            className='inline-flex items-center justify-center rounded-sm ring-vis'
-            href='https://clarence.link/linkedin'
-          >
-            <SiLinkedin className='w-6 h-6 my-auto align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
-          </UnstyledLink>
-          <UnstyledLink
-            className='inline-flex items-center justify-center rounded-sm ring-vis'
-            href='https://clarence.link/twt'
-          >
-            <SiTwitter className='w-6 h-6 my-auto align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
-          </UnstyledLink>
+          {socials.map((social) => (
+            <UnstyledLink
+              key={social.text}
+              className='inline-flex items-center justify-center rounded-sm ring-vis'
+              href={social.href}
+              onClick={() => {
+                trackEvent(`Footer Link: ${social.text}`, 'link');
+              }}
+            >
+              <social.icon className='w-6 h-6 my-auto align-middle text-dark dark:text-light hover:text-accent-200 dark:hover:text-accent-200' />
+            </UnstyledLink>
+          ))}
         </div>
         <SpotifyPlaying />
         <p className='mt-8 text-xs font-dark '>
@@ -94,6 +87,9 @@ function FooterLinks() {
           key={href}
           className='text-sm font-medium rounded-sm view dark:text-gray-200 animated-underline ring-vis'
           href={href}
+          onClick={() => {
+            trackEvent(`Footer Link: ${text}`, 'link');
+          }}
         >
           {text}
         </UnstyledLink>
@@ -118,5 +114,23 @@ const footerLinks = [
   {
     href: 'https://clarence.link/starters',
     text: 'Starter Templates',
+  },
+];
+
+const socials = [
+  {
+    href: 'https://clarence.link/github',
+    icon: SiGithub,
+    text: 'Github',
+  },
+  {
+    href: 'https://clarence.link/linkedin',
+    icon: SiLinkedin,
+    text: 'Linkedin',
+  },
+  {
+    href: 'https://clarence.link/twt',
+    icon: SiTwitter,
+    text: 'Twitter',
   },
 ];
