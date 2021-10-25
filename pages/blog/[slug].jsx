@@ -22,6 +22,7 @@ import CustomLink from '@/components/CustomLink';
 import UnstyledLink from '@/components/UnstyledLink';
 import MDXComponents from '@/components/blog/MDXComponents';
 import SubscribeCard from '@/components/blog/SubscribeCard';
+import CloudinaryImg from '@/components/CloudinaryImg';
 
 export default function PostPage({ code, frontMatter }) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
@@ -83,7 +84,19 @@ export default function PostPage({ code, frontMatter }) {
         <section className='py-6 mt-4'>
           <main className='layout lg:max-w-[68rem]'>
             <div className='pb-4 border-b-thin dark:border-gray-600'>
-              <h1 className='mb-2'>{frontMatter.title}</h1>
+              <figure className='overflow-hidden rounded-md shadow-md dark:shadow-none'>
+                <CloudinaryImg
+                  publicId={`theodorusclarence/banner/${
+                    frontMatter?.banner ?? 'nextjs-vs-cra_oql54x'
+                  }`}
+                  alt='Photo taken from unsplash'
+                  width={1920}
+                  height={(1920 * 2) / 5}
+                  aspect={{ height: 2, width: 5 }}
+                />
+              </figure>
+
+              <h1 className='mt-4 mb-2 '>{frontMatter.title}</h1>
 
               <p className='component text-dark dark:text-light'>
                 Written on {formatDate(frontMatter.publishedAt)} by{' '}

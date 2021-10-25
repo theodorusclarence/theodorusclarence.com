@@ -15,6 +15,7 @@ export default function CloudinaryImg({
   title,
   className,
   preview = true,
+  aspect,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,7 +34,14 @@ export default function CloudinaryImg({
     cloud: {
       cloudName: 'theodorusclarence',
     },
+    transformations: {
+      rawTransformation: aspect
+        ? `c_fill,ar_${aspect.width}:${aspect.height}`
+        : undefined,
+    },
   });
+
+  const aspectRatio = aspect ? aspect.height / aspect.width : undefined;
 
   return (
     <>
@@ -42,7 +50,9 @@ export default function CloudinaryImg({
         style={{
           position: 'relative',
           height: 0,
-          paddingTop: `${(height / width) * 100}%`,
+          paddingTop: aspect
+            ? `${aspectRatio * 100}%`
+            : `${(height / width) * 100}%`,
           backgroundImage: `url(${urlBlurred})`,
           backgroundPosition: 'center center',
           backgroundSize: `100%`,

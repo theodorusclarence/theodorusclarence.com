@@ -13,6 +13,7 @@
   "dependencies": {
     "@giscus/react": "^1.0.0",
     "@headlessui/react": "^1.4.1",
+    "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/typography": "^0.4.1",
     "@tippyjs/react": "^4.2.5",
     "autoprefixer": "^10.3.6",
