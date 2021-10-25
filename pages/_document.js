@@ -10,11 +10,6 @@ class MyDocument extends Document {
     return (
       <Html className='dark' lang='en'>
         <Head>
-          {/* <link rel='preconnect' href='https://fonts.gstatic.com' />
-                    <link
-                        href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap'
-                        rel='stylesheet'
-                    /> */}
           <link
             rel='preload'
             href='/fonts/inter-var-latin.woff2'
@@ -99,27 +94,10 @@ class MyDocument extends Document {
           />
           <meta name='theme-color' content='#ffffff' />
 
-          {/* Google Analytics */}
-          <script
-            async
-            src='https://www.googletagmanager.com/gtag/js?id=G-W9DWSYL7DY'
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];
-                                function gtag(){dataLayer.push(arguments);}
-                                gtag('js', new Date());
-
-                                gtag('config', 'G-W9DWSYL7DY');
-                    `,
-            }}
-          />
-
           {/* Splitbee */}
           <script async data-api='/_hive' src='/bee.js'></script>
 
           {/* Umami */}
-          {/* Testing, sorry for 3 analytics */}
           <script
             async
             defer
