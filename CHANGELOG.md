@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.3.1...v0.3.2) (2021-10-25)
+
+
+### Features
+
+* add event to umami ([f43ed20](https://github.com/theodorusclarence/theodorusclarence.com/commit/f43ed20573ad387d9d4d95352a1be1e1302ac399))
+* add umami ([b1ab617](https://github.com/theodorusclarence/theodorusclarence.com/commit/b1ab61790cfa3213ec6d76e46e143de025489281))
+* add umami blocker ([f3d5ceb](https://github.com/theodorusclarence/theodorusclarence.com/commit/f3d5ceb448bb1bf5469de05edccc6b2a43d2aa2c))
+* change umami website id ([4e2ca3d](https://github.com/theodorusclarence/theodorusclarence.com/commit/4e2ca3d88c40d40b05c4a43b7dd836f8aeca4316))
+* remove google analytics ([060950a](https://github.com/theodorusclarence/theodorusclarence.com/commit/060950a680a879a09a49032f84f4941e4dc823bc))
+
+
+### Bug Fixes
+
+* **blog:** typo on nextjs-fetch-usecase ([76b683e](https://github.com/theodorusclarence/theodorusclarence.com/commit/76b683eafb8f7d7b0b858ea49a6e92ca87a72da9))
+
 ### [0.3.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.3.0...v0.3.1) (2021-10-19)
 
 
