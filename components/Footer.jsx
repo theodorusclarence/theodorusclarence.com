@@ -115,6 +115,10 @@ const footerLinks = [
     href: 'https://clarence.link/starters',
     text: 'Starter Templates',
   },
+  {
+    href: 'https://clarence.link/um',
+    text: 'Statistics',
+  },
 ];
 
 const socials = [
