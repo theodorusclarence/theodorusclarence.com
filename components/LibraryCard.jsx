@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 
+import { classNames } from '@/utils/helper';
 import PickTech from './PickTech';
 import UnstyledLink from './UnstyledLink';
 
-export default function LibraryCard({ snippet }) {
+export default function LibraryCard({ snippet, className }) {
   const techArray = snippet.techs.split(',');
 
   return (
@@ -12,7 +13,10 @@ export default function LibraryCard({ snippet }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className='h-full bg-white rounded-md card border-thin ring-vis-0 dark:bg-dark'
+      className={classNames(
+        'h-full bg-white rounded-md card border-thin ring-vis-0 dark:bg-dark',
+        className
+      )}
       style={{ minHeight: '9rem' }}
     >
       <UnstyledLink

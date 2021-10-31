@@ -134,7 +134,7 @@ export default function LibraryPage({ snippets }) {
               />
             </div>
             <AnimatePresence>
-              <ul className='grid gap-4 md:grid-cols-2 animate-fade-in-initial fade-in-5'>
+              <ul className='grid gap-4 sm:grid-cols-2 xl:grid-cols-3 animate-fade-in-initial fade-in-5'>
                 {filteredSnippets.map((snippet) => (
                   <LibraryCard key={snippet.slug} snippet={snippet} />
                 ))}

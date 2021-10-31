@@ -16,11 +16,11 @@ export default function ProjectsPage() {
         title='Projects – theodorusclarence.com'
         description='Showcase of my works on frontend development.'
       />
-      <Nav />
+      <Nav large />
       <main
         className={classNames('py-6 mt-4', isLoaded && 'animate-fade-in-start')}
       >
-        <article className='space-y-2 layout'>
+        <article className='space-y-2 layout lg:max-w-[68rem]'>
           <header className='mb-8 space-y-2'>
             <h1 className='animate-fade-in-initial fade-in-1'>
               <span className='accent no-under'>My Projects</span>
@@ -29,14 +29,14 @@ export default function ProjectsPage() {
               Some projects that I have made.
             </p>
           </header>
-          <ul className='grid gap-4 md:grid-cols-2 animate-fade-in-initial fade-in-3'>
+          <ul className='grid gap-4 sm:grid-cols-2 xl:grid-cols-3 animate-fade-in-initial fade-in-3'>
             {projects.map((project, index) => (
               <ProjectCard key={index} data={project} />
             ))}
           </ul>
         </article>
       </main>
-      <Footer />
+      <Footer large />
     </>
   );
 }

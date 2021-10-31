@@ -8,8 +8,8 @@ import CloudinaryImg from './CloudinaryImg';
 
 export default function ProjectCard({ data }) {
   return (
-    <motion.li className='max-w-md rounded-md card project-card md:w-full border-thin ring-vis-0'>
-      <div className='relative block h-full p-5 rounded-md ring-vis-0'>
+    <motion.li className='rounded-md card project-card md:w-full border-thin ring-vis-0'>
+      <div className='relative flex flex-col h-full p-5 rounded-md ring-vis-0'>
         <header className='flex justify-between'>
           <UnstyledLink
             href={data.page || data.link || data.youtube || data.github}
@@ -46,7 +46,7 @@ export default function ProjectCard({ data }) {
             )}
           </div>
         </header>
-        <p className='text-gray-700 component dark:text-gray-300'>
+        <p className='mb-auto text-gray-700 component dark:text-gray-300'>
           {data.description}
         </p>
         <PickTech techs={data.techStack} />
@@ -59,9 +59,9 @@ export default function ProjectCard({ data }) {
           />
         </div>
 
-        {data.page && (
-          <a className='inline-block mt-4 font-medium view'>View More →</a>
-        )}
+        <p className='self-start inline-block mt-4 font-medium view'>
+          View More →
+        </p>
       </div>
     </motion.li>
   );

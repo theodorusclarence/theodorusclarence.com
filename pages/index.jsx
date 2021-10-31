@@ -129,7 +129,7 @@ export default function Home({
             <motion.h2 className='mb-4 no-under'>
               <span className='accent no-under'>Featured Projects</span>
             </motion.h2>
-            <motion.ul className='grid gap-4 mb-4 md:grid-cols-2'>
+            <motion.ul className='grid gap-4 mb-4 sm:grid-cols-2 xl:grid-cols-3'>
               {featuredProjects.map((project, index) => (
                 <ProjectCard key={index} data={project} />
               ))}
@@ -157,9 +157,14 @@ export default function Home({
               if you want an update everytime I post.
             </p>
             <AnimatePresence>
-              <ul className='mb-4 space-y-4'>
-                {populatedPosts.map((post) => (
-                  <PostCard key={post.slug} index post={post} />
+              <ul className='grid gap-4 mb-4 sm:grid-cols-2 xl:grid-cols-3'>
+                {populatedPosts.map((post, index) => (
+                  <PostCard
+                    key={post.slug}
+                    index
+                    post={post}
+                    className={index > 2 && 'hidden sm:block'}
+                  />
                 ))}
               </ul>
             </AnimatePresence>
@@ -185,9 +190,14 @@ export default function Home({
               List of code snippets that I store for easy access.
             </p>
             <AnimatePresence>
-              <ul className='grid gap-4 md:grid-cols-2'>
-                {populatedSnippets.map((snippet) => (
-                  <LibraryCard key={snippet.slug} index snippet={snippet} />
+              <ul className='grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
+                {populatedSnippets.map((snippet, index) => (
+                  <LibraryCard
+                    key={snippet.slug}
+                    index
+                    snippet={snippet}
+                    className={index > 2 && 'hidden sm:block'}
+                  />
                 ))}
               </ul>
             </AnimatePresence>
