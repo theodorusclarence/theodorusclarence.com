@@ -122,14 +122,14 @@ export default function BlogPage({ posts }) {
         description='Thoughts on the frontend development and other interesting things.'
       />
       <div className='flex flex-col min-h-screen'>
-        <Nav />
+        <Nav large />
         <section
           className={classNames(
             'py-6 mt-4',
             isLoaded && 'animate-fade-in-start'
           )}
         >
-          <main className='space-y-4 layout'>
+          <main className='space-y-4 layout lg:max-w-[68rem]'>
             <header className='space-y-2'>
               <h1 className='animate-fade-in-initial fade-in-1'>
                 <span className='accent no-under'>
@@ -174,7 +174,7 @@ export default function BlogPage({ posts }) {
             </div>
 
             <AnimatePresence>
-              <ul className='space-y-4 animate-fade-in-initial fade-in-6'>
+              <ul className='grid gap-4 sm:grid-cols-2 xl:grid-cols-3 animate-fade-in-initial fade-in-6'>
                 {langPosts.map((post) => (
                   <PostCard key={post.slug} post={post} />
                 ))}
@@ -186,7 +186,7 @@ export default function BlogPage({ posts }) {
             </AnimatePresence>
           </main>
         </section>
-        <Footer />
+        <Footer large />
       </div>
     </>
   );
