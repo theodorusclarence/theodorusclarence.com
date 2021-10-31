@@ -16,7 +16,7 @@
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/typography": "^0.4.1",
     "@tippyjs/react": "^4.2.5",
-    "autoprefixer": "^10.3.6",
+    "autoprefixer": "^10.3.7",
     "axios": "^0.23.0",
     "cloudinary-build-url": "^0.2.1",
     "clsx": "^1.1.1",
@@ -27,7 +27,7 @@
     "mdx-bundler": "^6.0.2",
     "next": "^11.1.2",
     "next-themes": "^0.0.14",
-    "postcss": "^8.3.8",
+    "postcss": "^8.3.11",
     "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
@@ -58,8 +58,8 @@
     "rehype-prism-plus": "^0.0.6",
     "rehype-slug": "^5.0.0",
     "remark-gfm": "^2.0.0",
-    "standard-version": "^9.3.1",
-    "tailwindcss": "^2.2.16"
+    "standard-version": "^9.3.2",
+    "tailwindcss": "^2.2.17"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
