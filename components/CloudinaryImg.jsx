@@ -29,7 +29,7 @@ export default function CloudinaryImg({
       },
       quality: 1,
       rawTransformation: aspect
-        ? `c_fill,ar_${aspect.width}:${aspect.height}`
+        ? `c_fill,ar_${aspect.width}:${aspect.height},w_${width}`
         : undefined,
     },
   });
@@ -39,7 +39,7 @@ export default function CloudinaryImg({
     },
     transformations: {
       rawTransformation: aspect
-        ? `c_fill,ar_${aspect.width}:${aspect.height}`
+        ? `c_fill,ar_${aspect.width}:${aspect.height},w_${width}`
         : undefined,
     },
   });

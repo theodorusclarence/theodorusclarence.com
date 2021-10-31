@@ -90,8 +90,8 @@ export default function PostPage({ code, frontMatter }) {
                     frontMatter?.banner ?? 'nextjs-vs-cra_oql54x'
                   }`}
                   alt='Photo taken from unsplash'
-                  width={1920}
-                  height={(1920 * 2) / 5}
+                  width={1200}
+                  height={(1200 * 2) / 5}
                   aspect={{ height: 2, width: 5 }}
                 />
               </figure>
