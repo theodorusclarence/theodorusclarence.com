@@ -2,18 +2,21 @@ import { motion } from 'framer-motion';
 
 import UnstyledLink from './UnstyledLink';
 
-import { formatDate } from '@/utils/helper';
+import { classNames, formatDate } from '@/utils/helper';
 import CloudinaryImg from './CloudinaryImg';
 import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, className }) {
   return (
     <motion.li
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className='w-full bg-white rounded-md card ring-vis-0 border-thin dark:bg-dark card-2'
+      className={classNames(
+        'w-full bg-white rounded-md card ring-vis-0 border-thin dark:bg-dark card-2',
+        className
+      )}
     >
       <UnstyledLink
         className='block h-full rounded-md ring-vis-0'

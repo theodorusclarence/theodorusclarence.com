@@ -52,7 +52,7 @@ p.component {
 
 .layout {
   max-width: 43.75rem;
-  max-width: 50rem;
+  max-width: 68rem;
   @apply w-11/12 mx-auto;
 }
 
