@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.3.2...v0.4.0) (2021-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* change to large layout
+* add image to each blog post
+
+### Features
+
+* add image to each blog post ([7677c45](https://github.com/theodorusclarence/theodorusclarence.com/commit/7677c45dbb2f7fe624937a88e4ac679f5af6c32a))
+* add image to PostCard ([1f3c32d](https://github.com/theodorusclarence/theodorusclarence.com/commit/1f3c32deca00254d90c7d3203cb7a63ddd35d625))
+* add statistics to footer ([c7986e7](https://github.com/theodorusclarence/theodorusclarence.com/commit/c7986e7974cedf32b518318de48230143dc273ba))
+* change to large layout ([2d0cbaf](https://github.com/theodorusclarence/theodorusclarence.com/commit/2d0cbaf8f24241b77d07ff553d7ac592f8a9ca0e))
+* make width smaller for banner ([c715011](https://github.com/theodorusclarence/theodorusclarence.com/commit/c715011bbfd585f033a1fff46751bce41f199460))
+
 ### [0.3.2](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.3.1...v0.3.2) (2021-10-25)
 
 
