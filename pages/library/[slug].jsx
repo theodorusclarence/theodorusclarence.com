@@ -63,10 +63,10 @@ export default function PostPage({ code, frontMatter }) {
     <>
       <Seo title={title} description={description} image={imageOg} />
       <div className='flex flex-col min-h-screen'>
-        <Nav large />
+        <Nav />
 
         <section className='py-6 mt-4'>
-          <main className='layout lg:max-w-[68rem]'>
+          <main className='layout'>
             <div className='pb-4 border-b-thin dark:border-gray-600'>
               <h1 className='mb-2'>{frontMatter.title}</h1>
 
@@ -135,7 +135,7 @@ export default function PostPage({ code, frontMatter }) {
             </div>
           </main>
         </section>
-        <Footer large />
+        <Footer />
       </div>
     </>
   );

@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import { FiMail } from 'react-icons/fi';
@@ -10,19 +9,12 @@ import SpotifyPlaying from './SpotifyPlaying';
 
 import { trackEvent } from '@/utils/analytics';
 
-export default function Footer({ large = false }) {
+export default function Footer() {
   const [copyStatus, setCopyStatus] = useState('Click the mail logo to copy');
 
   return (
     <footer className='pb-2 mt-auto'>
-      <main
-        className={clsx(
-          'flex flex-col items-center pt-6 border-t-thin dark:border-gray-600 layout',
-          {
-            'lg:max-w-[68rem]': large,
-          }
-        )}
-      >
+      <main className='flex flex-col items-center pt-6 border-t-thin dark:border-gray-600 layout'>
         <FooterLinks />
         <p className='mt-8 font-medium'>Reach me out</p>
         <div className='flex mt-2 space-x-4'>

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from 'next-themes';
-import { classNames } from '@/utils/helper';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -13,7 +12,7 @@ const links = [
   { href: '/about', label: 'About' },
 ];
 
-export default function Nav({ large = false }) {
+export default function Nav() {
   const [onTop, setOnTop] = useState(true);
   // sets class dark to html
   const { theme, setTheme } = useTheme();
@@ -45,27 +44,8 @@ export default function Nav({ large = false }) {
     >
       <div className='h-2 bg-gradient-to-tr from-accent-100 via-accent-200 to-accent-300'></div>
       <nav className='transition-colors bg-white dark:bg-dark'>
-        <ul
-          className={classNames(
-            'flex items-center justify-between py-4 layout',
-            large && 'lg:max-w-[68rem]'
-          )}
-        >
+        <ul className='flex items-center justify-between py-4 layout'>
           <ul className='flex items-center justify-between space-x-3 text-xs md:space-x-4 md:text-base'>
-            {/* //* still considering for the logo
-                        <li>
-                            <Link href='/'>
-                                <a>
-                                    <figure className='w-9'>
-                                        <img
-                                            src={`/favicon/favicon-96x96.png`}
-                                            alt='Logo'
-                                            title='Go To Home'
-                                        />
-                                    </figure>
-                                </a>
-                            </Link>
-                        </li> */}
             {links.map(({ href, label }) => (
               <li key={`${href}${label}`}>
                 <Link href={href}>
