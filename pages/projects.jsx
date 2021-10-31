@@ -16,11 +16,11 @@ export default function ProjectsPage() {
         title='Projects – theodorusclarence.com'
         description='Showcase of my works on frontend development.'
       />
-      <Nav large />
+      <Nav />
       <main
         className={classNames('py-6 mt-4', isLoaded && 'animate-fade-in-start')}
       >
-        <article className='space-y-2 layout lg:max-w-[68rem]'>
+        <article className='space-y-2 layout'>
           <header className='mb-8 space-y-2'>
             <h1 className='animate-fade-in-initial fade-in-1'>
               <span className='accent no-under'>My Projects</span>
@@ -36,7 +36,7 @@ export default function ProjectsPage() {
           </ul>
         </article>
       </main>
-      <Footer large />
+      <Footer />
     </>
   );
 }
