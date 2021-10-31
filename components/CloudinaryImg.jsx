@@ -28,6 +28,9 @@ export default function CloudinaryImg({
         name: 'blur:1000',
       },
       quality: 1,
+      rawTransformation: aspect
+        ? `c_fill,ar_${aspect.width}:${aspect.height}`
+        : undefined,
     },
   });
   const url = buildUrl(publicId, {
@@ -72,7 +75,6 @@ export default function CloudinaryImg({
             height={height}
             src={url}
             alt={alt}
-            unoptimized={true}
             title={title || alt}
           />
         </div>
