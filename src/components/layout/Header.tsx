@@ -21,7 +21,7 @@ export default function Header({ large = false }: HeaderProps) {
   //#endregion  //*======== Route Functionality ===========
 
   //#region  //*=========== Scroll Shadow ===========
-  const [onTop, setOnTop] = React.useState(true);
+  const [onTop, setOnTop] = React.useState<boolean>(true);
   React.useEffect(() => {
     const handleScroll = () => {
       setOnTop(window.pageYOffset === 0);
