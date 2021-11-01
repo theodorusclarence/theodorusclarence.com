@@ -25,7 +25,7 @@
     "framer-motion": "^3.10.6",
     "lodash.throttle": "^4.1.1",
     "mdx-bundler": "^6.0.2",
-    "next": "^11.1.2",
+    "next": "^12.0.1",
     "next-themes": "^0.0.14",
     "postcss": "^8.3.11",
     "querystring": "^0.2.1",
