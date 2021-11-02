@@ -50,7 +50,11 @@ export default function IndexPage({
         (post) =>
           post.title.toLowerCase().includes(search.toLowerCase()) ||
           post.description.toLowerCase().includes(search.toLowerCase()) ||
-          post.tags.includes(search.toLowerCase())
+          // Check if splitted search contained in tag
+          search
+            .toLowerCase()
+            .split(' ')
+            .every((tag) => post.tags.includes(tag))
       );
 
       if (sortOrder.id === 'date') {
@@ -73,6 +77,23 @@ export default function IndexPage({
   const currentPosts = isEnglish ? englishPosts : bahasaPosts;
   //#endregion  //*======== Post Language Splitter ===========
 
+  //#region  //*=========== Tag ===========
+  const toggleTag = (tag: string) => {
+    // If tag is already there, then remove
+    if (search.includes(tag)) {
+      setSearch((s) =>
+        s
+          .split(' ')
+          .filter((t) => t !== tag)
+          ?.join(' ')
+      );
+    } else {
+      // append tag
+      setSearch((s) => (s !== '' ? `${s.trim()} ${tag}` : tag));
+    }
+  };
+  //#endregion  //*======== Tag ===========
+
   return (
     <Layout>
       <Seo templateTitle='Blog' />
@@ -90,10 +111,26 @@ export default function IndexPage({
               className='mt-4'
               placeholder='Search...'
               onChange={handleSearch}
+              value={search}
               type='text'
             />
             <p className='mt-2 text-xs text-gray-600 dark:text-gray-300'>
-              Try something like {tags.join(', ')}
+              Try something like{' '}
+              {tags.map((tag, i) => (
+                <React.Fragment key={tag}>
+                  <button
+                    onClick={() => toggleTag(tag)}
+                    className='py-0.5 px-1.5 bg-gray-100 dark:bg-gray-700 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white'
+                  >
+                    {search.toLowerCase().split(' ').includes(tag) ? (
+                      <Accent>{tag}</Accent>
+                    ) : (
+                      tag
+                    )}
+                  </button>
+                  {tags.length - 1 !== i ? ', ' : ' '}
+                </React.Fragment>
+              ))}
             </p>
             <div className='flex flex-col gap-4 !mt-8 z-10 items-end relative md:items-center text-gray-600 dark:text-gray-300 md:flex-row md:justify-between'>
               <Button
