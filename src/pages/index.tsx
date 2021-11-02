@@ -37,24 +37,29 @@ export default function IndexPage() {
               <TechStack />
             </figure>
           </div>
+          <button
+            className={clsx(
+              'absolute bottom-2 md:bottom-10 left-1/2 -translate-x-1/2',
+              'rounded-md cursor-pointer',
+              'hover:text-primary-300 focus-visible:text-primary-300'
+            )}
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollBy({
+                top: window.innerHeight - 130,
+                left: 0,
+                behavior: 'smooth',
+              });
+            }}
+          >
+            <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce' />
+          </button>
         </section>
-        <button
-          className={clsx(
-            'absolute bottom-2 md:bottom-10 left-1/2 -translate-x-1/2',
-            'rounded-md cursor-pointer',
-            'hover:text-primary-300 focus-visible:text-primary-300'
-          )}
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollBy({
-              top: window.innerHeight - 130,
-              left: 0,
-              behavior: 'smooth',
-            });
-          }}
-        >
-          <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce' />
-        </button>
+        <section className='py-20'>
+          <article className='layout min-h-main '>
+            <h1>Hi</h1>
+          </article>
+        </section>
       </main>
     </Layout>
   );

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from 'clsx';
 import { format } from 'date-fns';
 import { getMDXComponent } from 'mdx-bundler/client';
@@ -121,6 +120,7 @@ export default function SingleBlogPage({ code, frontMatter }: Content) {
                   components={
                     {
                       ...MDXComponents,
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     } as any
                   }
                 />
