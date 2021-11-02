@@ -19,20 +19,6 @@ export async function getFiles(type: ContentType) {
   return readdirSync(join(process.cwd(), 'src', 'contents', type));
 }
 
-export function sortByDate(contents: Array<FrontMatterType>) {
-  return contents.sort(
-    (contentA, contentB) =>
-      new Date(contentB.publishedAt).valueOf() -
-      new Date(contentA.publishedAt).valueOf()
-  );
-}
-
-// export function sortByTitle(contents) {
-//   return contents.sort((a, b) =>
-//     a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-//   );
-// }
-
 export async function getFileBySlug(type: ContentType, slug: string) {
   const source = slug
     ? readFileSync(

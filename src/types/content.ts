@@ -10,6 +10,7 @@ export type FrontMatterType = {
   banner: string;
   publishedAt: string;
   lastUpdated?: string;
+  tags: string;
 };
 
 export type Content = {
