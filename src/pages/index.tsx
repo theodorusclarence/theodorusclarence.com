@@ -40,7 +40,7 @@ export default function IndexPage() {
           <button
             className={clsx(
               'absolute bottom-2 md:bottom-10 left-1/2 -translate-x-1/2',
-              'rounded-md cursor-pointer',
+              'rounded-md cursor-pointer transition-colors',
               'hover:text-primary-300 focus-visible:text-primary-300'
             )}
             onClick={(e) => {

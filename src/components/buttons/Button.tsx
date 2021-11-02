@@ -6,6 +6,7 @@ enum ButtonVariant {
   'dark',
   'light',
   'primary',
+  'default',
 }
 
 type ButtonProps = {
@@ -18,7 +19,7 @@ export default function Button({
   className,
   disabled: buttonDisabled,
   isLoading,
-  variant = 'dark',
+  variant = 'default',
   ...rest
 }: ButtonProps) {
   const disabled = isLoading || buttonDisabled;
@@ -28,19 +29,18 @@ export default function Button({
       {...rest}
       disabled={disabled}
       className={clsx(
-        'py-2 px-4 rounded font-bold hover:text-primary-400',
-        'border border-gray-600 shadow-sm',
-        'focus:outline-none focus-visible:text-primary-400',
+        'py-2 px-4 rounded font-bold btn',
+        'border border-gray-300 dark:border-gray-600 shadow-sm',
+        'focus:outline-none',
         {
-          'bg-dark disabled:bg-gray-700 text-white disabled:hover:text-white':
-            variant === 'dark',
+          'bg-white disabled:bg-gray-200 text-gray-600 dark:text-gray-300 dark:bg-dark dark:disabled:bg-gray-700':
+            variant === 'default',
           'bg-white disabled:bg-gray-200 text-dark hover:bg-gray-200 hover:text-dark focus-visible:text-dark border-gray-400 disabled:hover:text-dark':
             variant === 'light',
           'bg-primary-400 text-black hover:bg-primary-400/90 hover:text-black border-primary-500 disabled:hover:bg-primary-400 disabled:brightness-75  focus-visible:text-dark':
             variant === 'primary',
         },
         'disabled:cursor-not-allowed',
-        !disabled && 'animated-underline',
         isLoading &&
           'relative text-transparent hover:!text-transparent !cursor-wait transition-none',
         className

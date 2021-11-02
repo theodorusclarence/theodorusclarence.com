@@ -93,6 +93,63 @@
   .animated-underline:focus-visible {
     background-size: 0 2px, 100% 2px;
   }
+
+  /* Buttoms & Cards */
+  .btn {
+    transform: scale(1);
+    transition: transform 100ms ease;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    transform: scale(1.03);
+  }
+
+  .btn:active {
+    transition-duration: 50ms !important;
+    transform: scale(0.97);
+  }
+
+  .card {
+    transform: scale(1);
+    transition: transform 100ms ease;
+    will-change: transform;
+  }
+
+  .card:hover,
+  .card:focus {
+    transform: scale(1.03);
+  }
+
+  .card-2:hover,
+  .card-2:focus-visible {
+    transform: scale(1.02);
+  }
+
+  .card:active {
+    transition-duration: 50ms !important;
+    transform: scale(0.97);
+  }
+
+  /** Shadows Animation */
+  .card::after,
+  .btn::after {
+    @apply rounded-md shadow-md dark:shadow-none;
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 100ms ease;
+  }
+
+  .card:hover::after,
+  .btn:hover::after {
+    opacity: 1;
+  }
 }
 /* Tippy */
 .tippy-tooltip [x-circle] {

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@giscus/react": "^1.0.0",
+    "@headlessui/react": "^1.4.1",
     "@tailwindcss/forms": "^0.3.4",
     "autoprefixer": "^10.3.7",
     "cloudinary-build-url": "^0.2.1",
