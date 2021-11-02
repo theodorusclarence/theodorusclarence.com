@@ -4,13 +4,12 @@ import { FiMail } from 'react-icons/fi';
 import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
 import { Tooltip } from 'react-tippy';
 
+import Accent from '@/components/Accent';
 import UnstyledLink from '@/components/links/UnstyledLink';
-
-import Accent from '../Accent';
 
 export default function Footer() {
   return (
-    <footer className='pb-2 mt-auto'>
+    <footer className='pb-2 mt-4'>
       <main className='flex flex-col items-center pt-6 border-t dark:border-gray-600 layout'>
         <FooterLinks />
         <p className='mt-8 font-medium'>Reach me out</p>
@@ -30,7 +29,7 @@ function FooterLinks() {
       {footerLinks.map(({ href, text }) => (
         <UnstyledLink
           key={href}
-          className='text-sm font-medium rounded-sm view dark:text-gray-200 animated-underline ring-vis'
+          className='text-sm font-medium rounded-sm dark:text-gray-200 animated-underline'
           href={href}
           onClick={() => {
             // trackEvent(`Footer Link: ${text}`, 'link');
