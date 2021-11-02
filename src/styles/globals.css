@@ -29,6 +29,10 @@
       U+2215, U+FEFF, U+FFFD;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   .cursor-newtab {
     cursor: url('/images/new-tab.png') 10 10, pointer;
   }

@@ -1,0 +1,75 @@
+.prose {
+  max-width: 50rem;
+}
+
+.prose code {
+  @apply px-1 py-1 border rounded-md dark:border-gray-600;
+}
+
+.prose a {
+  text-decoration: none;
+}
+
+.prose > ol > li > :last-child,
+.prose > ul > li > :last-child {
+  margin-bottom: 0;
+}
+.prose > ol > li > :first-child,
+.prose > ul > li > :first-child {
+  margin-top: 0;
+}
+
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+  content: '';
+}
+
+.prose blockquote,
+.dark .dark\:prose-dark blockquote {
+  border-style: solid;
+  border-width: 0 0 0 0.25rem;
+  border-image: linear-gradient(to top, #00ff94, #00e0f3, #00c4fd) 1;
+}
+
+.prose hr,
+.dark .dark\:prose-dark hr {
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-image: linear-gradient(to right, #00ff9480, #00e0f380, #00c4fd80) 1;
+}
+
+.mdx.prose :where(h1, h2, h3, 4) {
+  scroll-margin-top: 100px;
+  position: relative;
+  display: block;
+  margin-right: 0.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.mdx.prose :where(h1, h2, h3, h4) > a {
+  border-bottom: none;
+}
+
+/** HASH ANCHOR */
+.hash-anchor {
+  @apply inset-y-0 w-full;
+  position: absolute;
+  background-image: none;
+  transition: none;
+}
+
+.hash-anchor:hover {
+  background-image: linear-gradient(to right, #00ff94, #00e0f3, #00c4fd);
+  background-size: 100% 2px;
+}
+
+.hash-anchor:hover:after,
+.hash-anchor:focus:after {
+  visibility: visible;
+}
+
+.hash-anchor:after {
+  @apply absolute invisible text-lg -translate-y-1/2 -right-5 text-primary-400 dark:text-primary-300 top-1/2;
+  content: '#';
+}
