@@ -18,6 +18,14 @@ export default function SubscribeCard({
   title,
   description,
 }: SubscribeCardProps) {
+  //#region  //*=========== Count ===========
+  const { data: subscriber, mutate } = useSWR<{ count: number }>(
+    '/api/newsletter/count'
+  );
+  //#endregion  //*======== Count ===========
+
+  //#region  //*=========== Form and Status ===========
+
   const { register, handleSubmit, reset } = useForm<{ email: string }>();
   const [status, setStatus] = React.useState('idle');
   const [errMsg, setErrMsg] = React.useState(
@@ -35,6 +43,7 @@ export default function SubscribeCard({
       })
       .then(() => {
         reset();
+        if (subscriber?.count) mutate({ count: subscriber.count + 1 });
         setStatus('success');
       })
       .catch((error: Error | AxiosError) => {
@@ -51,10 +60,7 @@ export default function SubscribeCard({
         }
       });
   };
-
-  //#region  //*=========== Count ===========
-  const { data } = useSWR<{ count: number }>('/api/newsletter/count');
-  //#endregion  //*======== Count ===========
+  //#endregion  //*======== Form and Status ===========
 
   return (
     <div className={clsx('p-4 rounded border dark:border-gray-600', className)}>
@@ -114,7 +120,7 @@ export default function SubscribeCard({
           : 'I write 1-2 high quality posts about front-end development each month!'}
       </p>
       <p className='mt-2 text-xs text-gray-600 dark:text-gray-300'>
-        Join <Accent>{data?.count ?? '-'}</Accent> other subscribers
+        Join <Accent>{subscriber?.count ?? '-'}</Accent> other subscribers
       </p>
     </div>
   );
