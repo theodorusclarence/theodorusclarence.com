@@ -2,19 +2,90 @@ import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 
 import { getAllFilesFrontMatter } from '@/lib/mdx';
-import { getTags, sortByTitle } from '@/lib/mdx-client';
+import { getTags, sortByTitle, sortTitleFn } from '@/lib/mdx-client';
 
 import Accent from '@/components/Accent';
+import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
 import LibraryCard from '@/components/library/LibraryCard';
+import ContentPlaceholder from '@/components/mdx/ContentPlaceholder';
+import Tag from '@/components/mdx/Tag';
 import Seo from '@/components/Seo';
+import SortListbox, { SortOption } from '@/components/SortListbox';
+
+import { LibraryFrontmatter } from '@/types/content';
+
+const sortOptions: Array<SortOption> = [
+  {
+    id: 'name',
+    name: 'Sort by name',
+  },
+  { id: 'popular', name: 'Sort by popularity' },
+];
 
 export default function LibraryPage({
   snippets,
   tags,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  // eslint-disable-next-line no-console
-  console.log('🚀 ~ file: library.tsx ~ line 17 ~ tags', tags);
+  const [sortOrder, setSortOrder] = React.useState<SortOption>(sortOptions[0]);
+
+  //#region  //*=========== Search ===========
+  const [search, setSearch] = React.useState<string>('');
+  const [filtered, setFiltered] = React.useState<Array<LibraryFrontmatter>>(
+    () => [...snippets]
+  );
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      const results = snippets.filter(
+        (snippet) =>
+          snippet.title.toLowerCase().includes(search.toLowerCase()) ||
+          snippet.description.toLowerCase().includes(search.toLowerCase()) ||
+          // Check if splitted search contained in tag
+          search
+            .toLowerCase()
+            .split(' ')
+            .every((tag) => snippet.tags.includes(tag))
+      );
+
+      if (sortOrder.id === 'date') {
+        results.sort(sortTitleFn);
+      }
+      // } else if (sortOrder.id === 'views') {
+      //   results.sort((a, b) => a?.views < b?.views);
+      // }
+
+      setFiltered(results);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [search, snippets, sortOrder.id]);
+  //#endregion  //*======== Search ===========
+
+  //#region  //*=========== Tag ===========
+  const toggleTag = (tag: string) => {
+    // If tag is already there, then remove
+    if (search.includes(tag)) {
+      setSearch((s) =>
+        s
+          .split(' ')
+          .filter((t) => t !== tag)
+          ?.join(' ')
+      );
+    } else {
+      // append tag
+      setSearch((s) => (s !== '' ? `${s.trim()} ${tag}` : tag));
+    }
+  };
+
+  // Currently available tags based on filtered posts
+  const filteredTags = getTags(filtered);
+  //#endregion  //*======== Tag ===========
+
   return (
     <Layout>
       <Seo templateTitle='Library' />
@@ -29,14 +100,46 @@ export default function LibraryPage({
               Some collection of code snippets that I put for easy access, feel
               free to reuse!
             </p>
+            <StyledInput
+              className='mt-4'
+              placeholder='Search...'
+              onChange={handleSearch}
+              value={search}
+              type='text'
+            />
+            <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
+              Try something like{' '}
+              {tags.map((tag, i) => (
+                <React.Fragment key={tag}>
+                  <Tag
+                    onClick={() => toggleTag(tag)}
+                    disabled={!filteredTags.includes(tag)}
+                  >
+                    {search.toLowerCase().split(' ').includes(tag) ? (
+                      <Accent>{tag}</Accent>
+                    ) : (
+                      tag
+                    )}
+                  </Tag>
+                  {tags.length - 1 !== i ? ', ' : ' '}
+                </React.Fragment>
+              ))}
+            </p>
+            <div className='flex flex-col gap-4 md:!mt-8 z-10 relative items-end text-gray-600 dark:text-gray-300'>
+              <SortListbox
+                selected={sortOrder}
+                setSelected={setSortOrder}
+                options={sortOptions}
+              />
+            </div>
 
             <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
-              {snippets.length > 0 ? (
-                snippets.map((snippet) => (
+              {filtered.length > 0 ? (
+                filtered.map((snippet) => (
                   <LibraryCard key={snippet.slug} snippet={snippet} />
                 ))
               ) : (
-                <p>empty</p>
+                <ContentPlaceholder />
               )}
             </ul>
           </div>

@@ -9,16 +9,12 @@ import BlogCard from '@/components/blog/BlogCard';
 import Button from '@/components/buttons/Button';
 import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
+import ContentPlaceholder from '@/components/mdx/ContentPlaceholder';
 import Tag from '@/components/mdx/Tag';
 import Seo from '@/components/Seo';
-import SortListbox from '@/components/SortListbox';
+import SortListbox, { SortOption } from '@/components/SortListbox';
 
 import { BlogFrontmatter } from '@/types/content';
-
-export type SortOption = {
-  id: string;
-  name: string;
-};
 
 const sortOptions: Array<SortOption> = [
   {
@@ -159,21 +155,13 @@ export default function IndexPage({
                   <BlogCard key={post.slug} post={post} />
                 ))
               ) : (
-                <EmptyBlog />
+                <ContentPlaceholder />
               )}
             </ul>
           </div>
         </section>
       </main>
     </Layout>
-  );
-}
-
-function EmptyBlog() {
-  return (
-    <h2 className='mt-8 text-center sm:col-span-2 xl:col-span-3'>
-      <Accent>Sorry, not found :(</Accent>
-    </h2>
   );
 }
 

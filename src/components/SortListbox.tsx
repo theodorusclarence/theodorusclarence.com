@@ -3,7 +3,10 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { HiCheck, HiSelector } from 'react-icons/hi';
 
-import { SortOption } from '@/pages/blog';
+export type SortOption = {
+  id: string;
+  name: string;
+};
 
 type SortListboxProps = {
   selected: SortOption;

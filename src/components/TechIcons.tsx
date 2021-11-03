@@ -30,6 +30,8 @@ export default function TechIcons({ className, techs }: TechIconsProps) {
   return (
     <ul className={clsx(className, 'flex gap-2')}>
       {techs.map((tech) => {
+        if (!techList[tech]) return;
+
         const current = techList[tech];
 
         return (
@@ -70,11 +72,11 @@ const techList = {
     icon: SiSass,
     name: 'SCSS',
   },
-  js: {
+  javascript: {
     icon: SiJavascript,
     name: 'JavaScript',
   },
-  ts: {
+  typescript: {
     icon: SiTypescript,
     name: 'TypeScript',
   },
