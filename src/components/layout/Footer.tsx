@@ -5,6 +5,7 @@ import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
 import { Tooltip } from 'react-tippy';
 
 import Accent from '@/components/Accent';
+import Spotify from '@/components/layout/Spotify';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
 export default function Footer() {
@@ -12,6 +13,9 @@ export default function Footer() {
     <footer className='pb-2 mt-4'>
       <main className='flex flex-col items-center pt-6 border-t dark:border-gray-600 layout'>
         <FooterLinks />
+
+        <Spotify className='mt-8' />
+
         <p className='mt-8 font-medium'>Reach me out</p>
         <SocialLinks />
 
