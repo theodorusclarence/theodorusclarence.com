@@ -17,3 +17,15 @@ export type BlogType = {
   code: string;
   frontMatter: BlogFrontmatter;
 };
+
+export type LibraryFrontmatter = {
+  slug: string;
+  title: string;
+  description: string;
+  techs: string;
+};
+
+export type LibraryType = {
+  code: string;
+  frontMatter: LibraryFrontmatter;
+};
