@@ -60,7 +60,7 @@ export default function LibraryPage({
       // }
 
       setFiltered(results);
-    }, 200);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, [search, snippets, sortOrder.id]);
@@ -107,25 +107,30 @@ export default function LibraryPage({
               value={search}
               type='text'
             />
-            <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
+            <p className='text-sm leading-loose text-gray-600 dark:text-gray-300'>
               Try something like{' '}
               {tags.map((tag, i) => (
                 <React.Fragment key={tag}>
                   <Tag
+                    className='mt-2'
                     onClick={() => toggleTag(tag)}
                     disabled={!filteredTags.includes(tag)}
                   >
-                    {search.toLowerCase().split(' ').includes(tag) ? (
+                    {/* Show accent if not disabled, and selected */}
+                    {filteredTags.includes(tag) &&
+                    search.toLowerCase().split(' ').includes(tag) ? (
                       <Accent>{tag}</Accent>
                     ) : (
                       tag
                     )}
                   </Tag>
-                  {tags.length - 1 !== i ? ', ' : ' '}
+                  <span className='inline-block w-3'>
+                    {tags.length - 1 !== i ? ' , ' : ' '}
+                  </span>
                 </React.Fragment>
               ))}
             </p>
-            <div className='flex flex-col gap-4 md:!mt-8 z-10 relative items-end text-gray-600 dark:text-gray-300'>
+            <div className='relative z-10 flex flex-col items-end gap-4 mt-4 text-gray-600 md:mt-8 dark:text-gray-300'>
               <SortListbox
                 selected={sortOrder}
                 setSelected={setSortOrder}

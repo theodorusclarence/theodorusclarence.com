@@ -115,25 +115,30 @@ export default function IndexPage({
               value={search}
               type='text'
             />
-            <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
+            <p className='text-sm leading-loose text-gray-600 dark:text-gray-300'>
               Try something like{' '}
               {tags.map((tag, i) => (
                 <React.Fragment key={tag}>
                   <Tag
+                    className='mt-2'
                     onClick={() => toggleTag(tag)}
                     disabled={!filteredTags.includes(tag)}
                   >
-                    {search.toLowerCase().split(' ').includes(tag) ? (
+                    {/* Show accent if not disabled, and selected */}
+                    {filteredTags.includes(tag) &&
+                    search.toLowerCase().split(' ').includes(tag) ? (
                       <Accent>{tag}</Accent>
                     ) : (
                       tag
                     )}
                   </Tag>
-                  {tags.length - 1 !== i ? ', ' : ' '}
+                  <span className='inline-block w-3'>
+                    {tags.length - 1 !== i ? ' , ' : ' '}
+                  </span>
                 </React.Fragment>
               ))}
             </p>
-            <div className='flex flex-col gap-4 !mt-8 z-10 items-end relative md:items-center text-gray-600 dark:text-gray-300 md:flex-row md:justify-between'>
+            <div className='relative z-10 flex flex-col items-end gap-4 mt-4 text-gray-600 md:items-center dark:text-gray-300 md:flex-row md:justify-between'>
               <Button
                 onClick={() => {
                   setIsEnglish((b) => !b);
