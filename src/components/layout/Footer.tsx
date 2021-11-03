@@ -8,13 +8,15 @@ import Accent from '@/components/Accent';
 import Spotify from '@/components/layout/Spotify';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
+import { isProd } from '@/constants/env';
+
 export default function Footer() {
   return (
     <footer className='pb-2 mt-4'>
       <main className='flex flex-col items-center pt-6 border-t dark:border-gray-600 layout'>
         <FooterLinks />
 
-        <Spotify className='mt-8' />
+        {isProd && <Spotify className='mt-8' />}
 
         <p className='mt-8 font-medium'>Reach me out</p>
         <SocialLinks />
