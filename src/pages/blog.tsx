@@ -44,6 +44,7 @@ export default function IndexPage({
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+  const clearSearch = () => setSearch('');
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -138,7 +139,10 @@ export default function IndexPage({
             </p>
             <div className='flex flex-col gap-4 !mt-8 z-10 items-end relative md:items-center text-gray-600 dark:text-gray-300 md:flex-row md:justify-between'>
               <Button
-                onClick={() => setIsEnglish((b) => !b)}
+                onClick={() => {
+                  setIsEnglish((b) => !b);
+                  clearSearch();
+                }}
                 className='text-sm !font-medium'
               >
                 Read in {isEnglish ? 'Bahasa Indonesia' : 'English'}
