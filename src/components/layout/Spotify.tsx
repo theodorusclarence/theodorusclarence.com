@@ -17,7 +17,7 @@ export default function Spotify({
 }: Omit<UnstyledLinkProps, 'href' | 'children'>) {
   const { data } = useSWR<SpotifyData>('/api/spotify');
 
-  return data ? (
+  return data?.isPlaying ? (
     <figure className={className}>
       <Tooltip
         trigger='mouseenter'
