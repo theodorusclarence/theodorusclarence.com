@@ -6,10 +6,12 @@ import * as React from 'react';
 import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 
 import { cleanBlogPrefix } from '@/lib/helper';
-import { getFileBySlug, getFiles } from '@/lib/mdx';
+import { getFileBySlug, getFiles, getRecommendations } from '@/lib/mdx';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
+import BlogCard from '@/components/blog/BlogCard';
+import CloudinaryImg from '@/components/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
@@ -17,11 +19,19 @@ import Comment from '@/components/mdx/Comment';
 import MDXComponents from '@/components/mdx/MDXComponents';
 import Seo from '@/components/Seo';
 
-import { Content } from '@/types/content';
+import { BlogFrontmatter, BlogType } from '@/types/content';
 
 type HeadingScrollSpy = Array<{ id: string; level: number; text: string }>;
 
-export default function SingleBlogPage({ code, frontMatter }: Content) {
+type SingleBlogPageProps = {
+  recommendations: BlogFrontmatter[];
+} & BlogType;
+
+export default function SingleBlogPage({
+  code,
+  frontMatter,
+  recommendations,
+}: SingleBlogPageProps) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   //#region  //*=========== Blog Language ===========
@@ -63,17 +73,17 @@ export default function SingleBlogPage({ code, frontMatter }: Content) {
         <section className=''>
           <div className='layout'>
             <div className='pb-4 border-b-thin dark:border-gray-600'>
-              {/* <figure className='overflow-hidden rounded-md shadow-md dark:shadow-none'>
+              <figure className='overflow-hidden rounded-md shadow-md dark:shadow-none'>
                 <CloudinaryImg
                   publicId={`theodorusclarence/banner/${
                     frontMatter?.banner ?? 'nextjs-vs-cra_oql54x'
-                  }`
-                  alt='Photo taken from unsplash'
+                  }`}
+                  alt={`Photo from unsplash: ${frontMatter.banner}`}
                   width={1200}
                   height={(1200 * 2) / 5}
                   aspect={{ height: 2, width: 5 }}
                 />
-              </figure> */}
+              </figure>
 
               <h1 className='mt-4'>{frontMatter.title}</h1>
 
@@ -164,7 +174,24 @@ export default function SingleBlogPage({ code, frontMatter }: Content) {
               <Comment />
             </figure>
 
-            <div className='flex flex-col items-start gap-4 mt-4 md:flex-row-reverse md:justify-between'>
+            {recommendations.length > 0 && (
+              <div className='mt-6'>
+                <h2>
+                  <Accent>Other posts that you might like</Accent>
+                </h2>
+                <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+                  {recommendations.map((post, i) => (
+                    <BlogCard
+                      className={clsx({ 'hidden xl:block': i === 2 })}
+                      key={post.slug}
+                      post={post}
+                    />
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink
                 href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/data/blog/${frontMatter.slug}.mdx`}
               >
@@ -195,5 +222,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const post = await getFileBySlug('blog', params?.slug as string);
 
-  return { props: { ...post } };
+  const recommendations = await getRecommendations(params?.slug as string);
+
+  return {
+    props: { ...post, recommendations },
+  };
 };

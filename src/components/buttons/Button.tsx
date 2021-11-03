@@ -31,7 +31,7 @@ export default function Button({
       className={clsx(
         'py-2 px-4 rounded font-bold btn',
         'border border-gray-300 dark:border-gray-600 shadow-sm',
-        'focus:outline-none',
+        'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
         {
           'bg-white disabled:bg-gray-200 text-gray-600 dark:text-gray-300 dark:bg-dark dark:disabled:bg-gray-700':
             variant === 'default',

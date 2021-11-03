@@ -20,7 +20,7 @@ export default function SortListbox({
     <div className='max-w-[200px] w-full'>
       <Listbox value={selected} onChange={setSelected}>
         <div className='relative'>
-          <Listbox.Button className='w-full py-2 pl-3 pr-10 font-medium text-left bg-white border border-gray-300 rounded-md dark:bg-dark focus:outline-none ring-vis-0 dark:border-gray-600 sm:text-sm'>
+          <Listbox.Button className='w-full py-2 pl-3 pr-10 font-medium text-left bg-white border border-gray-300 rounded-md dark:bg-dark focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:border-gray-600 sm:text-sm'>
             <span className='block truncate'>{selected.name}</span>
             <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
               <HiSelector

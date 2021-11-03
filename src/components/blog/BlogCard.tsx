@@ -8,10 +8,10 @@ import UnstyledLink from '@/components/links/UnstyledLink';
 
 import Accent from '../Accent';
 
-import { FrontMatterType } from '@/types/content';
+import { BlogFrontmatter } from '@/types/content';
 
 type BlogCardProps = {
-  post: FrontMatterType;
+  post: BlogFrontmatter;
 } & React.ComponentPropsWithoutRef<'li'>;
 
 export default function BlogCard({ post, className }: BlogCardProps) {
@@ -23,7 +23,7 @@ export default function BlogCard({ post, className }: BlogCardProps) {
       )}
     >
       <UnstyledLink
-        className='block h-full rounded-md'
+        className='block h-full rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
         href={`/blog/${post.slug}`}
       >
         <figure className='h-full overflow-hidden pointer-events-none rounded-t-md'>

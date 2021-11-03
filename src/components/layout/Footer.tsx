@@ -29,7 +29,7 @@ function FooterLinks() {
       {footerLinks.map(({ href, text }) => (
         <UnstyledLink
           key={href}
-          className='text-sm font-medium rounded-sm dark:text-gray-200 animated-underline'
+          className='text-sm font-medium rounded-sm dark:text-gray-200 animated-underline focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
           href={href}
           onClick={() => {
             // trackEvent(`Footer Link: ${text}`, 'link');
@@ -73,7 +73,7 @@ function SocialLinks() {
               );
             }}
           >
-            <button className='align-middle rounded-sm'>
+            <button className='align-middle rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'>
               <FiMail className='text-gray-600 align-middle dark:text-gray-300 hover:text-primary-300 dark:hover:text-primary-300 w-7 h-7' />
             </button>
           </CopyToClipboard>
@@ -82,7 +82,7 @@ function SocialLinks() {
       {socials.map((social) => (
         <UnstyledLink
           key={social.text}
-          className='inline-flex items-center justify-center rounded-sm'
+          className='inline-flex items-center justify-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
           href={social.href}
           onClick={() => {
             // trackEvent(`Footer Link: ${social.text}`, 'link');

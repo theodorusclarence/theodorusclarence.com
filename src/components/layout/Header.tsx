@@ -58,7 +58,8 @@ export default function Header({ large = false }: HeaderProps) {
                   className={clsx(
                     'py-2 rounded-sm transition-colors',
                     'font-medium text-black dark:text-white',
-                    'dark:hover:text-primary-300 group'
+                    'dark:hover:text-primary-300 group',
+                    'focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
                   )}
                 >
                   <span

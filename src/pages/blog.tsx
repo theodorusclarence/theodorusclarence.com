@@ -1,19 +1,19 @@
-import clsx from 'clsx';
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 
 import { getAllFilesFrontMatter } from '@/lib/mdx';
-import { sortByDate, sortDateFn } from '@/lib/mdx-client';
+import { getTags, sortByDate, sortDateFn } from '@/lib/mdx-client';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/blog/BlogCard';
 import Button from '@/components/buttons/Button';
 import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
+import Tag from '@/components/mdx/Tag';
 import Seo from '@/components/Seo';
 import SortListbox from '@/components/SortListbox';
 
-import { FrontMatterType } from '@/types/content';
+import { BlogFrontmatter } from '@/types/content';
 
 export type SortOption = {
   id: string;
@@ -38,7 +38,7 @@ export default function IndexPage({
   //#region  //*=========== Search ===========
   const [search, setSearch] = React.useState<string>('');
   const [filteredPosts, setFilteredPosts] = React.useState<
-    Array<FrontMatterType>
+    Array<BlogFrontmatter>
   >(() => [...posts]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,11 +95,7 @@ export default function IndexPage({
   };
 
   // Currently available tags based on filtered posts
-  const _filterTags = currentPosts.reduce(
-    (accTags: string[], post) => [...accTags, ...post.tags.split(',')],
-    []
-  );
-  const filteredTags = Array.from(new Set(_filterTags));
+  const filteredTags = getTags(currentPosts);
   //#endregion  //*======== Tag ===========
 
   return (
@@ -126,14 +122,8 @@ export default function IndexPage({
               Try something like{' '}
               {tags.map((tag, i) => (
                 <React.Fragment key={tag}>
-                  <button
+                  <Tag
                     onClick={() => toggleTag(tag)}
-                    className={clsx(
-                      'py-0.5 px-1.5 rounded-md font-medium transition-colors',
-                      'bg-gray-100 text-gray-700 hover:text-black disabled:bg-gray-200 disabled:text-gray-300',
-                      'dark:bg-gray-700 dark:text-gray-200 dark:hover:text-white dark:disabled:bg-gray-600 dark:disabled:text-gray-500',
-                      'disabled:cursor-not-allowed'
-                    )}
                     disabled={!filteredTags.includes(tag)}
                   >
                     {search.toLowerCase().split(' ').includes(tag) ? (
@@ -141,7 +131,7 @@ export default function IndexPage({
                     ) : (
                       tag
                     )}
-                  </button>
+                  </Tag>
                   {tags.length - 1 !== i ? ', ' : ' '}
                 </React.Fragment>
               ))}
@@ -188,11 +178,7 @@ export async function getStaticProps() {
   const posts = sortByDate(files);
 
   // Accumulate tags and remove duplicate
-  const tags = posts.reduce(
-    (accTags: string[], post) => [...accTags, ...post.tags.split(',')],
-    []
-  );
-  const cleanTags = Array.from(new Set(tags));
+  const tags = getTags(posts);
 
-  return { props: { posts, tags: cleanTags } };
+  return { props: { posts, tags } };
 }

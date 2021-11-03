@@ -9,7 +9,7 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-import { FrontMatterType } from '@/types/content';
+import { BlogFrontmatter } from '@/types/content';
 
 // Code from https://github.com/leerob/leerob.io/blob/main/lib/mdx.js
 
@@ -64,7 +64,7 @@ export async function getFileBySlug(type: ContentType, slug: string) {
 export async function getAllFilesFrontMatter(type: ContentType) {
   const files = readdirSync(join(process.cwd(), 'src', 'contents', type));
 
-  return files.reduce((allPosts: Array<FrontMatterType>, postSlug) => {
+  return files.reduce((allPosts: Array<BlogFrontmatter>, postSlug) => {
     const source = readFileSync(
       join(process.cwd(), 'src', 'contents', type, postSlug),
       'utf8'
@@ -76,8 +76,39 @@ export async function getAllFilesFrontMatter(type: ContentType) {
         ...data,
         slug: postSlug.replace('.mdx', ''),
         readingTime: readingTime(source),
-      } as FrontMatterType,
+      } as BlogFrontmatter,
       ...allPosts,
     ];
   }, []);
+}
+
+export async function getRecommendations(currSlug: string) {
+  const frontmatters = await getAllFilesFrontMatter('blog');
+
+  // Get current frontmatter
+  const currentFm = frontmatters.find((fm) => fm.slug === currSlug);
+
+  // Remove currentFm and Bahasa Posts, then randomize order
+  const otherFms = frontmatters
+    .filter((fm) => !fm.slug.startsWith('id-') && fm.slug !== currSlug)
+    .sort(() => Math.random() - 0.5);
+
+  // Find with similar tags
+  const recommendations = otherFms.filter((op) =>
+    op.tags.split(',').some((p) => currentFm?.tags.split(',').includes(p))
+  );
+
+  // Populate with random recommendations if not enough
+  const threeRecommendations =
+    recommendations.length >= 3
+      ? recommendations
+      : [
+          ...recommendations,
+          ...otherFms.filter(
+            (fm) => !recommendations.some((r) => r.slug === fm.slug)
+          ),
+        ];
+
+  // Only return first three
+  return threeRecommendations.slice(0, 3);
 }

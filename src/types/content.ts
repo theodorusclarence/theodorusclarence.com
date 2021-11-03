@@ -1,6 +1,6 @@
 import { ReadTimeResults } from 'reading-time';
 
-export type FrontMatterType = {
+export type BlogFrontmatter = {
   wordCount: number;
   readingTime: ReadTimeResults;
   slug: string;
@@ -13,7 +13,7 @@ export type FrontMatterType = {
   tags: string;
 };
 
-export type Content = {
+export type BlogType = {
   code: string;
-  frontMatter: FrontMatterType;
+  frontMatter: BlogFrontmatter;
 };
