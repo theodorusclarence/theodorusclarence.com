@@ -13,6 +13,7 @@ import TableOfContents, {
   HeadingScrollSpy,
 } from '@/components/mdx/TableOfContents';
 import Seo from '@/components/Seo';
+import TechIcons, { TechListType } from '@/components/TechIcons';
 
 import { LibraryType } from '@/types/content';
 
@@ -57,7 +58,7 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
               <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
                 {frontMatter.description}
               </p>
-              <div className='flex items-center justify-start gap-2 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
+              <div className='flex items-center justify-start gap-3 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
                 <div className='flex items-center gap-1'>
                   <HiOutlineEye className='inline-block text-base' />
                   <Accent>
@@ -65,6 +66,10 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
                     10 views
                   </Accent>
                 </div>
+                <span>•</span>
+                <TechIcons
+                  techs={frontMatter.tags.split(',') as Array<TechListType>}
+                />
               </div>
             </div>
 

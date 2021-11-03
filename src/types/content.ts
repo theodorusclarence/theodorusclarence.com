@@ -21,11 +21,14 @@ export type BlogType = {
 export type LibraryFrontmatter = {
   slug: string;
   title: string;
+  readingTime: ReadTimeResults;
   description: string;
-  techs: string;
+  tags: string;
 };
 
 export type LibraryType = {
   code: string;
   frontMatter: LibraryFrontmatter;
 };
+
+export type Frontmatter = BlogFrontmatter | LibraryFrontmatter;

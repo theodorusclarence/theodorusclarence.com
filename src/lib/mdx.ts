@@ -9,7 +9,7 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-import { BlogFrontmatter } from '@/types/content';
+import { BlogFrontmatter, LibraryFrontmatter } from '@/types/content';
 
 // Code from https://github.com/leerob/leerob.io/blob/main/lib/mdx.js
 
@@ -61,24 +61,27 @@ export async function getFileBySlug(type: ContentType, slug: string) {
   };
 }
 
-export async function getAllFilesFrontMatter(type: ContentType) {
+export async function getAllFilesFrontMatter<T extends ContentType>(type: T) {
   const files = readdirSync(join(process.cwd(), 'src', 'contents', type));
 
-  return files.reduce((allPosts: Array<BlogFrontmatter>, postSlug) => {
+  type FrontMatter = T extends 'blog' ? BlogFrontmatter : LibraryFrontmatter;
+
+  return files.reduce((allPosts: Array<FrontMatter>, postSlug) => {
     const source = readFileSync(
       join(process.cwd(), 'src', 'contents', type, postSlug),
       'utf8'
     );
     const { data } = matter(source);
 
-    return [
+    const res = [
       {
-        ...data,
+        ...(data as FrontMatter),
         slug: postSlug.replace('.mdx', ''),
         readingTime: readingTime(source),
-      } as BlogFrontmatter,
+      },
       ...allPosts,
     ];
+    return res;
   }, []);
 }
 

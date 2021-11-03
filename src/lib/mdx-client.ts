@@ -1,4 +1,4 @@
-import { BlogFrontmatter } from '@/types/content';
+import { BlogFrontmatter, Frontmatter } from '@/types/content';
 
 export function sortDateFn(
   contentA: BlogFrontmatter,
@@ -14,19 +14,19 @@ export function sortByDate(contents: Array<BlogFrontmatter>) {
   return contents.sort(sortDateFn);
 }
 
+export function sortByTitle<T extends Array<Frontmatter>>(contents: T): T {
+  return contents.sort((a, b) =>
+    a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+  );
+}
+
 /**
  * Get tags of each post and remove duplicates
  */
-export function getTags(posts: Array<BlogFrontmatter>) {
-  const tags = posts.reduce(
-    (accTags: string[], post) => [...accTags, ...post.tags.split(',')],
+export function getTags<T extends Array<Frontmatter>>(contents: T) {
+  const tags = contents.reduce(
+    (accTags: string[], content) => [...accTags, ...content.tags.split(',')],
     []
   );
   return Array.from(new Set(tags));
 }
-
-// export function sortByTitle(contents) {
-//   return contents.sort((a, b) =>
-//     a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-//   );
-// }
