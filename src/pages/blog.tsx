@@ -6,6 +6,7 @@ import { getTags, sortByDate, sortDateFn } from '@/lib/mdx-client';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/blog/BlogCard';
+import SubscribeCard from '@/components/blog/SubscribeCard';
 import Button from '@/components/buttons/Button';
 import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
@@ -163,6 +164,7 @@ export default function IndexPage({
                 <ContentPlaceholder />
               )}
             </ul>
+            <SubscribeCard className='mt-4' />
           </div>
         </section>
       </main>

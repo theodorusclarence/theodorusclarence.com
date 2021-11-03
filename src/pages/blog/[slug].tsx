@@ -11,6 +11,7 @@ import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/blog/BlogCard';
+import SubscribeCard from '@/components/blog/SubscribeCard';
 import CloudinaryImg from '@/components/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
@@ -157,12 +158,12 @@ export default function SingleBlogPage({
               </aside>
             </section>
 
-            <figure className='mt-4'>
+            <figure className='mt-12'>
               <Comment />
             </figure>
 
             {recommendations.length > 0 && (
-              <div className='mt-6'>
+              <div className='mt-20'>
                 <h2>
                   <Accent>Other posts that you might like</Accent>
                 </h2>
@@ -177,6 +178,8 @@ export default function SingleBlogPage({
                 </ul>
               </div>
             )}
+
+            <SubscribeCard className='mt-12' title='Enjoying this post?' />
 
             <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink

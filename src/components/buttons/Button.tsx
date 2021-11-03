@@ -42,7 +42,7 @@ export default function Button({
         },
         'disabled:cursor-not-allowed',
         isLoading &&
-          'relative text-transparent hover:!text-transparent !cursor-wait transition-none',
+          'relative !text-transparent hover:!text-transparent !cursor-wait transition-none',
         className
       )}
       style={
