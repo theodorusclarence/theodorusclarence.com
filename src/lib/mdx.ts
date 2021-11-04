@@ -9,11 +9,15 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-import { BlogFrontmatter, LibraryFrontmatter } from '@/types/content';
+import {
+  BlogFrontmatter,
+  LibraryFrontmatter,
+  ProjectFrontmatter,
+} from '@/types/content';
 
 // Code from https://github.com/leerob/leerob.io/blob/main/lib/mdx.js
 
-type ContentType = 'blog' | 'library';
+type ContentType = 'blog' | 'library' | 'projects';
 
 export async function getFiles(type: ContentType) {
   return readdirSync(join(process.cwd(), 'src', 'contents', type));
@@ -64,7 +68,11 @@ export async function getFileBySlug(type: ContentType, slug: string) {
 export async function getAllFilesFrontMatter<T extends ContentType>(type: T) {
   const files = readdirSync(join(process.cwd(), 'src', 'contents', type));
 
-  type FrontMatter = T extends 'blog' ? BlogFrontmatter : LibraryFrontmatter;
+  type FrontMatter = T extends 'blog'
+    ? BlogFrontmatter
+    : T extends 'library'
+    ? LibraryFrontmatter
+    : ProjectFrontmatter;
 
   return files.reduce((allPosts: Array<FrontMatter>, postSlug) => {
     const source = readFileSync(

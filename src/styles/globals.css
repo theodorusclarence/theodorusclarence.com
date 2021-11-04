@@ -155,3 +155,8 @@
 .tippy-tooltip [x-circle] {
   background-color: transparent !important;
 }
+
+/* YT Lite */
+.yt-lite::before {
+  content: none !important;
+}

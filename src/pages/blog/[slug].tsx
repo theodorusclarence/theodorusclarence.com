@@ -183,7 +183,7 @@ export default function SingleBlogPage({
 
             <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink
-                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/data/blog/${frontMatter.slug}.mdx`}
+                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/blog/${frontMatter.slug}.mdx`}
               >
                 Edit this on GitHub
               </CustomLink>

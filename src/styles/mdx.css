@@ -51,6 +51,22 @@
   border-bottom: none;
 }
 
+/* Custom Heading Style for Projects */
+.mdx.prose.projects blockquote {
+  font-style: normal;
+}
+.mdx.prose.projects blockquote:first-of-type h2 {
+  margin-top: 1rem;
+}
+.mdx.prose.projects blockquote h2#tech-stack-used {
+  margin-bottom: 0;
+}
+
+/* Apply shadow to Youtube Embed */
+.mdx.prose .yt-lite {
+  @apply overflow-hidden rounded shadow-sm dark:shadow-none;
+}
+
 /** HASH ANCHOR */
 .hash-anchor {
   @apply inset-y-0 w-full;

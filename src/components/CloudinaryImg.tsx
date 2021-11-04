@@ -69,13 +69,23 @@ export default function CloudinaryImg({
           paddingTop: aspectRatio
             ? `${aspectRatio * 100}%`
             : `${(+height / +width) * 100}%`,
-          backgroundImage: `url(${urlBlurred})`,
-          backgroundPosition: 'center center',
-          backgroundSize: `100%`,
           cursor: preview ? 'zoom-in' : 'default',
         }}
+        className='img-blur'
         onClick={preview ? () => setIsOpen(true) : undefined}
       >
+        <style jsx>{`
+          .img-blur::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            filter: blur(2px);
+            z-index: 0;
+            background-image: url(${urlBlurred});
+            background-position: center center;
+            background-size: 100%;
+          }
+        `}</style>
         <div className='absolute top-0 left-0'>
           <Image
             width={width}

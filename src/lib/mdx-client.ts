@@ -1,4 +1,8 @@
-import { BlogFrontmatter, Frontmatter } from '@/types/content';
+import {
+  BlogFrontmatter,
+  Frontmatter,
+  FrontmatterWithTags,
+} from '@/types/content';
 
 export function sortDateFn(
   contentA: BlogFrontmatter,
@@ -27,7 +31,7 @@ export function sortByTitle<T extends Array<Frontmatter>>(contents: T): T {
 /**
  * Get tags of each post and remove duplicates
  */
-export function getTags<T extends Array<Frontmatter>>(contents: T) {
+export function getTags<T extends Array<FrontmatterWithTags>>(contents: T) {
   const tags = contents.reduce(
     (accTags: string[], content) => [...accTags, ...content.tags.split(',')],
     []

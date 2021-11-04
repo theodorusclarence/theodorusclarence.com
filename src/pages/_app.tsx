@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
 import { SWRConfig } from 'swr';
 
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import 'react-tippy/dist/tippy.css';
 import '@/styles/globals.css';
 import '@/styles/mdx.css';

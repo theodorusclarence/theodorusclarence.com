@@ -8,6 +8,7 @@ import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
 import Layout from '@/components/layout/Layout';
+import CustomLink from '@/components/links/CustomLink';
 import MDXComponents from '@/components/mdx/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
@@ -107,6 +108,15 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
                 </div>
               </aside>
             </section>
+
+            <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
+              <CustomLink
+                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/library/${frontMatter.slug}.mdx`}
+              >
+                Edit this on GitHub
+              </CustomLink>
+              <CustomLink href='/library'>← Back to library</CustomLink>
+            </div>
           </div>
         </section>
       </main>

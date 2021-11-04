@@ -31,4 +31,24 @@ export type LibraryType = {
   frontMatter: LibraryFrontmatter;
 };
 
-export type Frontmatter = BlogFrontmatter | LibraryFrontmatter;
+export type ProjectFrontmatter = {
+  slug: string;
+  title: string;
+  description: string;
+  techs: string;
+  banner: string;
+  link?: string;
+  github?: string;
+  youtube?: string;
+};
+
+export type ProjectType = {
+  code: string;
+  frontMatter: ProjectFrontmatter;
+};
+
+export type FrontmatterWithTags = BlogFrontmatter | LibraryFrontmatter;
+export type Frontmatter =
+  | ProjectFrontmatter
+  | BlogFrontmatter
+  | LibraryFrontmatter;
