@@ -67,7 +67,7 @@ export default function Header({ large = false }: HeaderProps) {
                       'transition-colors',
                       'bg-primary-300/0 group-hover:bg-primary-300/20 dark:group-hover:bg-primary-300/0',
                       href === baseRoute &&
-                        'bg-primary-300/50 dark:text-transparent dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text'
+                        '!bg-primary-300/50 dark:text-transparent dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text'
                     )}
                   >
                     {label}

@@ -16,7 +16,7 @@ export default function ProjectCard({
     <li
       className={clsx(
         'rounded-md card project-card md:w-full',
-        'border border-gray-600'
+        'border dark:border-gray-600'
       )}
     >
       <UnstyledLink
@@ -24,7 +24,7 @@ export default function ProjectCard({
         className='block h-full p-4 rounded-md group focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
       >
         <h4>{project.title}</h4>
-        <p className='mt-1 text-sm text-gray-700 dark:text-gray-300'>
+        <p className='text-sm text-gray-700 dark:text-gray-300'>
           {project.description}
         </p>
         <div className='mt-2'>
@@ -40,7 +40,9 @@ export default function ProjectCard({
           preview={false}
         />
 
-        <p className='inline-block mt-2 animated-underline'>See more →</p>
+        <p className='inline-block mt-2 font-medium animated-underline'>
+          See more →
+        </p>
       </UnstyledLink>
     </li>
   );

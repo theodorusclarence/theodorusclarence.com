@@ -20,7 +20,7 @@ export default function IndexPage() {
             <h1 className='mt-1 text-3xl md:text-5xl'>
               You can call me <Accent>Clarence</Accent>
             </h1>
-            <p className='max-w-4xl mt-2 leading-normal text-gray-700 dark:text-gray-200'>
+            <p className='max-w-4xl mt-2 leading-relaxed text-gray-600 dark:text-gray-300'>
               I'm a fast learner and hardworking Informatics Student at Institut
               Teknologi Sepuluh Nopember.
               <br />

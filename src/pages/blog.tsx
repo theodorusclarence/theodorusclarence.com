@@ -164,7 +164,7 @@ export default function IndexPage({
                 <ContentPlaceholder />
               )}
             </ul>
-            <SubscribeCard className='mt-4' />
+            <SubscribeCard className='mt-8' />
           </div>
         </section>
       </main>
