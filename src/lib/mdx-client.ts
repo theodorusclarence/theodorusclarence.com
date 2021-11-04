@@ -1,12 +1,12 @@
 import {
-  BlogFrontmatter,
   Frontmatter,
+  FrontmatterWithDate,
   FrontmatterWithTags,
 } from '@/types/content';
 
-export function sortDateFn(
-  contentA: BlogFrontmatter,
-  contentB: BlogFrontmatter
+export function sortDateFn<T extends FrontmatterWithDate>(
+  contentA: T,
+  contentB: T
 ) {
   return (
     new Date(contentB.publishedAt).valueOf() -
@@ -14,7 +14,7 @@ export function sortDateFn(
   );
 }
 
-export function sortByDate(contents: Array<BlogFrontmatter>) {
+export function sortByDate<T extends FrontmatterWithDate>(contents: Array<T>) {
   return contents.sort(sortDateFn);
 }
 

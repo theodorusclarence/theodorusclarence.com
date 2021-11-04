@@ -34,6 +34,7 @@ export type LibraryType = {
 export type ProjectFrontmatter = {
   slug: string;
   title: string;
+  publishedAt: string;
   description: string;
   techs: string;
   banner: string;
@@ -48,6 +49,7 @@ export type ProjectType = {
 };
 
 export type FrontmatterWithTags = BlogFrontmatter | LibraryFrontmatter;
+export type FrontmatterWithDate = BlogFrontmatter | ProjectFrontmatter;
 export type Frontmatter =
   | ProjectFrontmatter
   | BlogFrontmatter

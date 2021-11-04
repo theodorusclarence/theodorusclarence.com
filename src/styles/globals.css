@@ -90,7 +90,9 @@
     transition-property: background-size, color, background-color, border-color;
   }
   .animated-underline:hover,
-  .animated-underline:focus-visible {
+  .animated-underline:focus-visible,
+  .project-card:hover .animated-underline,
+  .project-card:focus-visible .animated-underline {
     background-size: 0 2px, 100% 2px;
   }
 
