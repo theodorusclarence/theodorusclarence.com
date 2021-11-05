@@ -1,7 +1,7 @@
 import { buildUrl } from 'cloudinary-build-url';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useState } from 'react';
+import * as React from 'react';
 import Lightbox from 'react-image-lightbox';
 
 import 'react-image-lightbox/style.css';
@@ -33,7 +33,8 @@ export default function CloudinaryImg({
   aspect,
   ...rest
 }: CloudinaryImgType) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
 
   const urlBlurred = buildUrl(publicId, {
     cloud: {
@@ -86,7 +87,7 @@ export default function CloudinaryImg({
             content: '';
             position: absolute;
             inset: 0;
-            filter: blur(2px);
+            filter: blur(20px);
             z-index: 0;
             background-image: url(${urlBlurred});
             background-position: center center;
@@ -95,6 +96,11 @@ export default function CloudinaryImg({
         `}</style>
         <div className='absolute top-0 left-0'>
           <Image
+            className={clsx(
+              isLoaded ? 'opacity-100' : 'opacity-0 motion-reduce:opacity-100',
+              'transition duration-500'
+            )}
+            onLoadingComplete={() => setIsLoaded(true)}
             width={width}
             height={height}
             src={url}
