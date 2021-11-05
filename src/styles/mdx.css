@@ -58,7 +58,7 @@
 .mdx.prose.projects blockquote:first-of-type h2 {
   margin-top: 1rem;
 }
-.mdx.prose.projects blockquote h2#tech-stack-used {
+.mdx.prose.projects blockquote.with-icons h2 {
   margin-bottom: 0;
 }
 
