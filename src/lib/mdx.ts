@@ -11,6 +11,7 @@ import remarkGfm from 'remark-gfm';
 
 import {
   BlogFrontmatter,
+  Frontmatter,
   LibraryFrontmatter,
   ProjectFrontmatter,
 } from '@/types/content';
@@ -122,4 +123,14 @@ export async function getRecommendations(currSlug: string) {
 
   // Only return first three
   return threeRecommendations.slice(0, 3);
+}
+
+export function getFeatured<T extends Frontmatter>(
+  contents: Array<T>,
+  features: string[]
+) {
+  // override as T because there is no typechecking on the features array
+  return features.map(
+    (feat) => contents.find((content) => content.slug === feat) as T
+  );
 }

@@ -1,14 +1,20 @@
 import clsx from 'clsx';
+import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 import { IoArrowDownOutline } from 'react-icons/io5';
 
+import { getAllFilesFrontMatter, getFeatured } from '@/lib/mdx';
+
 import Accent from '@/components/Accent';
+import BlogCard from '@/components/blog/BlogCard';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
 
-export default function IndexPage() {
+export default function IndexPage({
+  featuredPosts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
       <Seo />
@@ -56,11 +62,31 @@ export default function IndexPage() {
           </button>
         </section>
         <section className='py-20'>
-          <article className='layout min-h-main '>
-            <h1>Hi</h1>
+          <article className='layout min-h-main'>
+            <h1>
+              <Accent>Featured Projects</Accent>
+            </h1>
+            <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+              {featuredPosts.map((post) => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </ul>
           </article>
         </section>
       </main>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const blogs = await getAllFilesFrontMatter('blog');
+  const featuredPosts = getFeatured(blogs, [
+    'btb-flex-mental-model',
+    'nextjs-fetch-usecase',
+    'nextjs-fetch-method',
+  ]);
+
+  return {
+    props: { featuredPosts },
+  };
 }
