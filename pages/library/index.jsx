@@ -85,7 +85,7 @@ export default function LibraryPage({ snippets }) {
       );
       sessionStorage.setItem('library-sort', 0);
     } else if (sortOrder.id === 'popular') {
-      sortArr.sort((a, b) => a?.likes < b?.likes);
+      sortArr.sort((a, b) => b?.likes - a?.likes);
       sessionStorage.setItem('library-sort', 1);
     }
 

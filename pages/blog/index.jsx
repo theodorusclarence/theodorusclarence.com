@@ -70,7 +70,7 @@ export default function BlogPage({ posts }) {
       sortArr.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
       sessionStorage.setItem('blog-sort', 0);
     } else if (sortOrder.id === 'views') {
-      sortArr.sort((a, b) => a?.views < b?.views);
+      sortArr.sort((a, b) => b?.views - a?.views);
       sessionStorage.setItem('blog-sort', 1);
     }
 
@@ -99,7 +99,7 @@ export default function BlogPage({ posts }) {
           (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
         );
       } else if (sortOrder.id === 'views') {
-        results.sort((a, b) => a?.views < b?.views);
+        results.sort((a, b) => b?.views - a?.views);
       }
 
       setFilteredPosts(results);
