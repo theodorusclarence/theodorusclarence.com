@@ -35,6 +35,7 @@ export default function CloudinaryImg({
 }: CloudinaryImgType) {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const urlBlurred = buildUrl(publicId, {
     cloud: {
@@ -62,6 +63,18 @@ export default function CloudinaryImg({
   });
 
   const aspectRatio = aspect ? aspect.height / aspect.width : undefined;
+
+  React.useEffect(() => {
+    if (
+      (
+        ref.current?.firstChild?.firstChild?.firstChild as
+          | HTMLImageElement
+          | undefined
+      )?.complete
+    ) {
+      setIsLoaded(true);
+    }
+  }, []);
 
   return (
     <figure
@@ -94,13 +107,13 @@ export default function CloudinaryImg({
             background-size: 100%;
           }
         `}</style>
-        <div className='absolute top-0 left-0'>
+        <div ref={ref} className='absolute top-0 left-0'>
           <Image
             className={clsx(
               isLoaded ? 'opacity-100' : 'opacity-0 motion-reduce:opacity-100',
-              'transition duration-500'
+              'transition'
             )}
-            onLoadingComplete={() => setIsLoaded(true)}
+            onLoad={() => setIsLoaded(true)}
             width={width}
             height={height}
             src={url}
