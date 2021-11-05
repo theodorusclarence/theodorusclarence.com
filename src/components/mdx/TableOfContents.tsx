@@ -1,7 +1,6 @@
-import clsx from 'clsx';
 import * as React from 'react';
 
-import UnstyledLink from '@/components/links/UnstyledLink';
+import TOCLink from '@/components/links/TOCLink';
 
 export type HeadingScrollSpy = Array<{
   id: string;
@@ -20,26 +19,63 @@ export default function TableOfContents({
   activeSection,
   minLevel,
 }: TableOfContentsProps) {
+  //#region  //*=========== Scroll into view ===========
+  const lastPosition = React.useRef<number>(0);
+
+  React.useEffect(() => {
+    const container = document.getElementById('toc-container');
+    const activeLink = document.getElementById(`link-${activeSection}`);
+
+    if (container && activeLink) {
+      // Get container properties
+      const cTop = container.scrollTop;
+      const cBottom = cTop + container.clientHeight;
+
+      // Get activeLink properties
+      const lTop = activeLink.offsetTop - container.offsetTop;
+      const lBottom = lTop + activeLink.clientHeight;
+
+      // Check if in view
+      const isTotal = lTop >= cTop && lBottom <= cBottom;
+
+      const isScrollingUp = lastPosition.current > window.scrollY;
+      lastPosition.current = window.scrollY;
+
+      if (!isTotal) {
+        // Scroll by the whole clientHeight
+        const offset = 25;
+        const top = isScrollingUp
+          ? lTop - container.clientHeight + offset
+          : lTop - offset;
+
+        container.scrollTo({ top, behavior: 'smooth' });
+      }
+    }
+  }, [activeSection]);
+  //#endregion  //*======== Scroll into view ===========
+
   return (
-    <>
-      {toc
-        ? toc.map(({ id, level, text }) => (
-            <UnstyledLink
-              key={id}
-              href={`#${id}`}
-              className={clsx(
-                'font-medium hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none',
-                'focus-visible:text-gray-700 dark:focus-visible:text-gray-200',
-                activeSection === id
-                  ? 'text-gray-900 dark:text-gray-100'
-                  : 'text-gray-400 dark:text-gray-500'
-              )}
-              style={{ marginLeft: (level - minLevel) * 16 }}
-            >
-              {text}
-            </UnstyledLink>
-          ))
-        : null}
-    </>
+    <div
+      id='toc-container'
+      className='overflow-auto max-h-[calc(100vh-9rem-113px)] pb-4 lg:block hidden'
+    >
+      <h3 className='text-gray-900 dark:text-gray-100 md:text-xl'>
+        Table of Contents
+      </h3>
+      <div className='flex flex-col mt-4 space-y-2 text-sm'>
+        {toc
+          ? toc.map(({ id, level, text }) => (
+              <TOCLink
+                id={id}
+                key={id}
+                activeSection={activeSection}
+                level={level}
+                minLevel={minLevel}
+                text={text}
+              />
+            ))
+          : null}
+      </div>
+    </div>
   );
 }

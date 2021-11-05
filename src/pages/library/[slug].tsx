@@ -90,18 +90,11 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
 
               <aside className='py-4'>
                 <div className='sticky top-36'>
-                  <div className='overflow-auto max-h-[calc(100vh-9rem-113px)] pb-4 lg:block hidden'>
-                    <h3 className='text-gray-900 dark:text-gray-100 md:text-xl'>
-                      Table of Contents
-                    </h3>
-                    <div className='flex flex-col mt-4 space-y-2 text-sm'>
-                      <TableOfContents
-                        activeSection={activeSection}
-                        toc={toc}
-                        minLevel={minLevel}
-                      />
-                    </div>
-                  </div>
+                  <TableOfContents
+                    toc={toc}
+                    minLevel={minLevel}
+                    activeSection={activeSection}
+                  />
                   <div className='flex items-center justify-center py-8'>
                     {/* <LikeButton slug={`b_${checkedSlug}`} /> */}
                   </div>
