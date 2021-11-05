@@ -55,14 +55,13 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
       <main>
         <section className=''>
           <div className='layout'>
-            <figure className='overflow-hidden rounded-md shadow-md dark:shadow-none'>
-              <CloudinaryImg
-                publicId={`theodorusclarence/${frontMatter.banner}`}
-                alt={frontMatter.title}
-                width={1440}
-                height={792}
-              />
-            </figure>
+            <CloudinaryImg
+              publicId={`theodorusclarence/${frontMatter.banner}`}
+              alt={frontMatter.title}
+              width={1440}
+              height={792}
+            />
+
             <h1 className='mt-4'>{frontMatter.title}</h1>
             <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
               {frontMatter.description}

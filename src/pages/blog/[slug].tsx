@@ -74,17 +74,13 @@ export default function SingleBlogPage({
         <section className=''>
           <div className='layout'>
             <div className='pb-4 dark:border-gray-600'>
-              <figure className='overflow-hidden rounded-md shadow-md dark:shadow-none'>
-                <CloudinaryImg
-                  publicId={`theodorusclarence/banner/${
-                    frontMatter?.banner ?? 'nextjs-vs-cra_oql54x'
-                  }`}
-                  alt={`Photo from unsplash: ${frontMatter.banner}`}
-                  width={1200}
-                  height={(1200 * 2) / 5}
-                  aspect={{ height: 2, width: 5 }}
-                />
-              </figure>
+              <CloudinaryImg
+                publicId={`theodorusclarence/banner/${frontMatter.banner}`}
+                alt={`Photo from unsplash: ${frontMatter.banner}`}
+                width={1200}
+                height={(1200 * 2) / 5}
+                aspect={{ height: 2, width: 5 }}
+              />
 
               <h1 className='mt-4'>{frontMatter.title}</h1>
 

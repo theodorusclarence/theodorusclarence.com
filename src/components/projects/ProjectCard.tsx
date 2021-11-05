@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-import CloudinaryImg from '../CloudinaryImg';
-import UnstyledLink from '../links/UnstyledLink';
-import TechIcons, { TechListType } from '../TechIcons';
+import CloudinaryImg from '@/components/CloudinaryImg';
+import UnstyledLink from '@/components/links/UnstyledLink';
+import TechIcons, { TechListType } from '@/components/TechIcons';
 
 import { ProjectFrontmatter } from '@/types/content';
 
@@ -21,7 +21,7 @@ export default function ProjectCard({
     >
       <UnstyledLink
         href={`/projects/${project.slug}`}
-        className='block h-full p-4 rounded-md group focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+        className='block h-full p-4 rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
       >
         <h4>{project.title}</h4>
         <p className='text-sm text-gray-700 dark:text-gray-300'>
@@ -32,7 +32,7 @@ export default function ProjectCard({
         </div>
 
         <CloudinaryImg
-          className='mt-3 overflow-hidden shadow-md pointer-events-none dark:shadow-none'
+          className='mt-3 pointer-events-none'
           publicId={`theodorusclarence/${project.banner}`}
           alt={project.title}
           width={1440}

@@ -14,6 +14,7 @@ type CloudinaryImgType = {
   title?: string;
   className?: string;
   preview?: boolean;
+  noStyle?: boolean;
   aspect?: {
     width: number;
     height: number;
@@ -28,6 +29,7 @@ export default function CloudinaryImg({
   title,
   className,
   preview = true,
+  noStyle = false,
   aspect,
   ...rest
 }: CloudinaryImgType) {
@@ -61,7 +63,12 @@ export default function CloudinaryImg({
   const aspectRatio = aspect ? aspect.height / aspect.width : undefined;
 
   return (
-    <figure className={clsx(className)} {...rest}>
+    <figure
+      className={clsx(className, {
+        'overflow-hidden rounded shadow-sm dark:shadow-none': !noStyle,
+      })}
+      {...rest}
+    >
       <div
         style={{
           position: 'relative',
