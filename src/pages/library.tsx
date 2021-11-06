@@ -1,5 +1,7 @@
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
+import { GiTechnoHeart } from 'react-icons/gi';
+import { HiSortAscending } from 'react-icons/hi';
 
 import { getAllFilesFrontMatter } from '@/lib/mdx';
 import { getTags, sortByTitle, sortTitleFn } from '@/lib/mdx-client';
@@ -20,8 +22,9 @@ const sortOptions: Array<SortOption> = [
   {
     id: 'name',
     name: 'Sort by name',
+    icon: HiSortAscending,
   },
-  { id: 'popular', name: 'Sort by popularity' },
+  { id: 'popular', name: 'Sort by popularity', icon: GiTechnoHeart },
 ];
 
 export default function LibraryPage({

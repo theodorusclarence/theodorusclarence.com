@@ -36,3 +36,13 @@ export const cleanBlogPrefix = (slug: string) => {
     return slug;
   }
 };
+
+/**
+ * Access session storage on browser
+ */
+export function getFromSessionStorage(key: string) {
+  if (typeof sessionStorage !== 'undefined') {
+    return sessionStorage.getItem(key);
+  }
+  return null;
+}

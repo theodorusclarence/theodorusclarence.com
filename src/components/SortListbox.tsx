@@ -2,10 +2,12 @@ import { Listbox, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import * as React from 'react';
 import { HiCheck, HiSelector } from 'react-icons/hi';
+import { IconType } from 'react-icons/lib';
 
 export type SortOption = {
   id: string;
   name: string;
+  icon: IconType;
 };
 
 type SortListboxProps = {
@@ -24,7 +26,12 @@ export default function SortListbox({
       <Listbox value={selected} onChange={setSelected}>
         <div className='relative'>
           <Listbox.Button className='w-full py-2 pl-3 pr-10 font-medium text-left bg-white border border-gray-300 rounded-md dark:bg-dark focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:border-gray-600 sm:text-sm'>
-            <span className='block truncate'>{selected.name}</span>
+            <span className='block truncate'>
+              <span className='inline-flex items-center gap-2'>
+                <selected.icon />
+                {selected.name}
+              </span>
+            </span>
             <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
               <HiSelector
                 className='w-5 h-5 text-gray-400'

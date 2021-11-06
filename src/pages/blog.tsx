@@ -1,6 +1,8 @@
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
+import { HiCalendar, HiEye } from 'react-icons/hi';
 
+import { getFromSessionStorage } from '@/lib/helper';
 import { getAllFilesFrontMatter } from '@/lib/mdx';
 import { getTags, sortByDate, sortDateFn } from '@/lib/mdx-client';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
@@ -22,15 +24,22 @@ const sortOptions: Array<SortOption> = [
   {
     id: 'date',
     name: 'Sort by date',
+    icon: HiCalendar,
   },
-  { id: 'views', name: 'Sort by views' },
+  {
+    id: 'views',
+    name: 'Sort by views',
+    icon: HiEye,
+  },
 ];
 
 export default function IndexPage({
   posts,
   tags,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const [sortOrder, setSortOrder] = React.useState<SortOption>(sortOptions[0]);
+  const [sortOrder, setSortOrder] = React.useState<SortOption>(
+    () => sortOptions[Number(getFromSessionStorage('blog-sort')) || 0]
+  );
   const [isEnglish, setIsEnglish] = React.useState<boolean>(true);
 
   const populatedPosts = useInjectContentMeta('blog', posts);
@@ -61,8 +70,10 @@ export default function IndexPage({
 
       if (sortOrder.id === 'date') {
         results.sort(sortDateFn);
+        sessionStorage.setItem('blog-sort', '0');
       } else if (sortOrder.id === 'views') {
         results.sort((a, b) => (b?.views ?? 0) - (a?.views ?? 0));
+        sessionStorage.setItem('blog-sort', '1');
       }
 
       setFilteredPosts(results);
