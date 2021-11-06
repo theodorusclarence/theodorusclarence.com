@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { getAllFilesFrontMatter } from '@/lib/mdx';
 import { getTags, sortByTitle, sortTitleFn } from '@/lib/mdx-client';
+import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 
 import Accent from '@/components/Accent';
 import StyledInput from '@/components/form/StyledInput';
@@ -29,6 +30,8 @@ export default function LibraryPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [sortOrder, setSortOrder] = React.useState<SortOption>(sortOptions[0]);
 
+  const populatedPosts = useInjectContentMeta('library', snippets);
+
   //#region  //*=========== Search ===========
   const [search, setSearch] = React.useState<string>('');
   const [filtered, setFiltered] = React.useState<Array<LibraryFrontmatter>>(
@@ -41,7 +44,7 @@ export default function LibraryPage({
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      const results = snippets.filter(
+      const results = populatedPosts.filter(
         (snippet) =>
           snippet.title.toLowerCase().includes(search.toLowerCase()) ||
           snippet.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -54,16 +57,15 @@ export default function LibraryPage({
 
       if (sortOrder.id === 'date') {
         results.sort(sortTitleFn);
+      } else if (sortOrder.id === 'popular') {
+        results.sort((a, b) => (b?.likes ?? 0) - (a?.likes ?? 0));
       }
-      // } else if (sortOrder.id === 'views') {
-      //   results.sort((a, b) => a?.views < b?.views);
-      // }
 
       setFiltered(results);
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [search, snippets, sortOrder.id]);
+  }, [populatedPosts, search, sortOrder.id]);
   //#endregion  //*======== Search ===========
 
   //#region  //*=========== Tag ===========

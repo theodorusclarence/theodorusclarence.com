@@ -2,15 +2,14 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { GiTechnoHeart } from 'react-icons/gi';
 
+import Accent from '@/components/Accent';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import TechIcons, { TechListType } from '@/components/TechIcons';
 
-import Accent from '../Accent';
-
-import { LibraryFrontmatter } from '@/types/content';
+import { InjectedMeta, LibraryFrontmatter } from '@/types/content';
 
 type LibraryCardProps = {
-  snippet: LibraryFrontmatter;
+  snippet: LibraryFrontmatter & InjectedMeta;
 } & React.ComponentPropsWithoutRef<'li'>;
 
 export default function LibraryCard({ className, snippet }: LibraryCardProps) {
@@ -31,10 +30,7 @@ export default function LibraryCard({ className, snippet }: LibraryCardProps) {
           <div className='flex items-center justify-start gap-3 mt-1 text-sm font-medium text-gray-600 dark:text-gray-300'>
             <div className='flex items-center gap-1'>
               <GiTechnoHeart className='inline-block text-base' />
-              <Accent>
-                {/* {frontMatter?.views ?? '–––'}  */}
-                10 likes
-              </Accent>
+              <Accent>{snippet?.likes ?? '–––'} likes</Accent>
             </div>
             <span>•</span>
             <TechIcons techs={snippet.tags.split(',') as Array<TechListType>} />
