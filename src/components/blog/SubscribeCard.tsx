@@ -71,7 +71,7 @@ export default function SubscribeCard({
       </h3>
       <p className='mt-2 text-gray-700 dark:text-gray-300'>
         {description ??
-          "Don't miss out 😉 Get an email whenever I post, no spam."}
+          "Don't miss out 😉. Get an email whenever I post, no spam."}
       </p>
 
       <form
@@ -88,6 +88,7 @@ export default function SubscribeCard({
               'mt-2',
               'dark:bg-dark w-full rounded-md',
               'border border-gray-300 dark:border-gray-600',
+              'text-sm md:text-base',
               'focus:outline-none focus:ring-0 focus:border-primary-300 dark:focus:border-primary-300'
             )}
             type='email'
