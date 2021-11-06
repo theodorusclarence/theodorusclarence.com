@@ -10,6 +10,7 @@ import useScrollSpy from '@/hooks/useScrollspy';
 import Accent from '@/components/Accent';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
+import LikeButton from '@/components/mdx/LikeButton';
 import MDXComponents from '@/components/mdx/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
@@ -99,7 +100,7 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
                     activeSection={activeSection}
                   />
                   <div className='flex items-center justify-center py-8'>
-                    {/* <LikeButton slug={`b_${checkedSlug}`} /> */}
+                    <LikeButton slug={contentSlug} />
                   </div>
                 </div>
               </aside>

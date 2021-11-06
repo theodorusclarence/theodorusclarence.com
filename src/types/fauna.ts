@@ -1,8 +1,16 @@
-export interface ContentMeta {
+export interface FaunaContentMeta {
   slug: string;
   views: number;
   likes: number;
   likesByUser: Record<string, number>;
+}
+
+export interface ContentMeta {
+  slug: string;
+  views: number;
+  likes: number;
+  likesByUserRaw: Record<string, number>;
+  likesByUser: number;
 }
 
 export interface SingleContentMeta {
@@ -14,12 +22,12 @@ export interface SingleContentMeta {
 //#region  //*=========== Fauna Response ===========
 export interface AllContentRes {
   data: Array<{
-    data: ContentMeta;
+    data: FaunaContentMeta;
   }>;
 }
 
 export interface ContentMetaRes {
-  data: ContentMeta;
+  data: FaunaContentMeta;
 }
 //#endregion  //*======== Fauna Response ===========
 

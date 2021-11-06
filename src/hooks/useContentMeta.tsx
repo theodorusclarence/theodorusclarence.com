@@ -1,4 +1,5 @@
 import axios from 'axios';
+import debounce from 'lodash/debounce';
 import * as React from 'react';
 import useSWR from 'swr';
 
@@ -22,7 +23,7 @@ export default function useContentMeta(
     ? {
         contentLikes: _preloadMeta.likes,
         contentViews: _preloadMeta.views,
-        likesByUser: 0,
+        likesByUser: _preloadMeta.likesByUser,
       }
     : undefined;
   //#endregion  //*======== Get content cache ===========
@@ -45,11 +46,46 @@ export default function useContentMeta(
     }
   }, [mutate, runIncrement, slug]);
 
-  return { isLoading: !isError && !data, isError, views: data?.contentViews };
+  const addLike = () => {
+    // Don't run if data not populated,
+    // and if maximum likes
+    if (!data || data.likesByUser >= 5) return;
+
+    // Mutate optimistically
+    mutate(
+      {
+        contentViews: data.contentViews,
+        contentLikes: data.contentLikes + 1,
+        likesByUser: data.likesByUser + 1,
+      },
+      false
+    );
+
+    incrementLikes(slug).then(() => {
+      debounce(() => {
+        mutate();
+      }, 1000)();
+    });
+  };
+
+  return {
+    isLoading: !isError && !data,
+    isError,
+    views: data?.contentViews,
+    contentLikes: data?.contentLikes ?? 0,
+    likesByUser: data?.likesByUser ?? 0,
+    addLike,
+  };
 }
 
 async function incrementViews(slug: string) {
   const res = await axios.post<SingleContentMeta>('/api/content/' + slug);
+
+  return res.data;
+}
+
+async function incrementLikes(slug: string) {
+  const res = await axios.post<SingleContentMeta>('/api/like/' + slug);
 
   return res.data;
 }

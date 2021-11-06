@@ -17,6 +17,7 @@ import CloudinaryImg from '@/components/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Comment from '@/components/mdx/Comment';
+import LikeButton from '@/components/mdx/LikeButton';
 import MDXComponents from '@/components/mdx/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
@@ -144,7 +145,7 @@ export default function SingleBlogPage({
                     activeSection={activeSection}
                   />
                   <div className='flex items-center justify-center py-8'>
-                    {/* <LikeButton slug={`b_${checkedSlug}`} /> */}
+                    <LikeButton slug={contentSlug} />
                   </div>
                 </div>
               </aside>
