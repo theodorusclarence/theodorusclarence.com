@@ -17,7 +17,9 @@ export default function BlogCard({ post, className }: BlogCardProps) {
   return (
     <li
       className={clsx(
-        'w-full bg-white rounded-md card border transition-colors dark:border-gray-600 border-gray-300 dark:bg-dark',
+        'w-full bg-white rounded-md border dark:border-gray-600 border-gray-300 dark:bg-dark',
+        'transform-gpu scale-100 hover:scale-[1.03] active:scale-[0.97]',
+        'transition duration-100',
         className
       )}
     >

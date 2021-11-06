@@ -30,22 +30,20 @@ There are 4 values for `flex-direction` property which are:
 
 [flexbox.help](https://flexbox.help/) has a great interactive illustration if you want to check it out. These are all the output I reproduced:
 
-<figure className='mx-auto' style={{ maxWidth: 750 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/Flex_Direction_wp5tpx.png'
-    alt='Flex Direction'
-    width={750}
-    height={832}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 750 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/Flex_Direction_wp5tpx.png'
+  alt='Flex Direction'
+  width={750}
+  height={832}
+/>
 
 Looking at the property's value, it is kind of confusing, because if we assign `flex-direction: row` it is stacked to the right.
 
 But here is the mental model to understand and to remember it. I want you to remember that we are putting the `flex-direction` to the red box, not the items. According to that, we are basically telling the red box to be a single row. Think of it as an excel spreadsheet. If the red box is a single row, we can only put elements to the right, like the excel spreadsheet.
 
 <CloudinaryImg
-  className='bg-gray-500'
   publicId='theodorusclarence/blogs/btb-flex-mental-model/Spreadsheet_pljkqc.png'
   alt='Spreadsheet'
   width={1155}
@@ -64,15 +62,14 @@ Justify content is the property to move items around on the **main axis**. What 
 
 Here is a great illustration from [css-tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
-<figure className='mx-auto' style={{ maxWidth: 401 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/justify_content_uelnhn'
-    alt='justify'
-    width={401}
-    height={641}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 401 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/justify_content_uelnhn'
+  alt='justify'
+  width={401}
+  height={641}
+/>
 
 > The mental model I use to remember this is, Justify Content moves around items on the main axis.
 
@@ -82,15 +79,14 @@ I think the values of the property is very clear on the illustration.
 
 This is the opposite of `justify-content` but `align-items` do not have all property from justify-content. Align items work on the **cross axis**. Which is the opposite of our main axis.
 
-<figure className='mx-auto' style={{ maxWidth: 405 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/align-items_mnzy9w'
-    alt='align-items'
-    width={405}
-    height={535}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 405 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/align-items_mnzy9w'
+  alt='align-items'
+  width={405}
+  height={535}
+/>
 
 > Same with justify-content mental model, you only need to remember that Align Items work on the cross axis.
 
@@ -98,15 +94,14 @@ This is the opposite of `justify-content` but `align-items` do not have all prop
 
 We have a red box with 500px width, and 5 items with each 100px width.
 
-<figure className='mx-auto' style={{ maxWidth: 536 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/flexbox-divide_xupnpf'
-    alt='flexbox-divide'
-    width={536}
-    height={156}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 536 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/flexbox-divide_xupnpf'
+  alt='flexbox-divide'
+  width={536}
+  height={156}
+/>
 
 with code:
 
@@ -157,15 +152,14 @@ Because Reddy has 500px space, so Reddy gives each item the requested amount, wh
 
 Let's say that Reddy is 700px, Reddy will still only give the items the requested amount which is 100px and has some spare spaces.
 
-<figure className='mx-auto' style={{ maxWidth: 719 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/larger_jkzrud'
-    alt='larger'
-    width={719}
-    height={111}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 719 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/larger_jkzrud'
+  alt='larger'
+  width={719}
+  height={111}
+/>
 
 ### Case 2: When Reddy's width is smaller than the requested amount
 
@@ -177,25 +171,23 @@ Item1 : Item2 : Item3 : Item4 : Item5 = 1 : 1 : 1 : 1 : 1
 
 So, from the ratio, Reddy will give each items equally.
 
-<figure className='mx-auto' style={{ maxWidth: 415 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/divide_equal_nnad59'
-    alt='divide'
-    width={415}
-    height={112}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 415 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/divide_equal_nnad59'
+  alt='divide'
+  width={415}
+  height={112}
+/>
 
-<figure className='mx-auto' style={{ maxWidth: 315 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/firefox-devtools_nzmwpm'
-    alt='firefox-devtools'
-    width={315}
-    height={282}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 315 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/firefox-devtools_nzmwpm'
+  alt='firefox-devtools'
+  width={315}
+  height={282}
+/>
 
 Firefox Devtool also has a nice information on how much each elements shrinks.
 
@@ -217,15 +209,14 @@ Request List:
 2,4: 200px
 ```
 
-<figure className='mx-auto' style={{ maxWidth: 715 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/different_request_xoxazj'
-    alt='different'
-    width={715}
-    height={204}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 715 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/different_request_xoxazj'
+  alt='different'
+  width={715}
+  height={204}
+/>
 
 Let's calculate the **request ratio**:
 
@@ -248,15 +239,14 @@ You can also force the item to not shrink according to the requested width using
 
 ## Flex Grow vs Width 100%
 
-<figure className='mx-auto' style={{ maxWidth: 544 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-flex-mental-model/flex-grow-width_p8sksq'
-    alt='flex-grow-width'
-    width={544}
-    height={534}
-  />
-</figure>
+<CloudinaryImg
+  className='mx-auto'
+  style={{ maxWidth: 544 }}
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/flex-grow-width_p8sksq'
+  alt='flex-grow-width'
+  width={544}
+  height={534}
+/>
 
 Using `width: 100%` basically will translate to 100% of the container which is 500px. By doing that, this means that width: 100% **will get calculated** in the **request ratio** which is 1:5:1.
 
