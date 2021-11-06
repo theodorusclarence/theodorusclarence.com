@@ -35,9 +35,9 @@ export default async function IndividualContent(
         const found = devto?.find((i) => i.slug === slug.slice(2));
         if (found) {
           return res.status(200).json({
-            contentViews: data.views + found.views ?? 0,
-            contentLikes: data.likes ?? 0,
-            likesByUser: data.likesByUser?.[sessionId] ?? 0,
+            contentViews: data?.views + found?.views ?? 0,
+            contentLikes: data?.likes ?? 0,
+            likesByUser: data?.likesByUser?.[sessionId] ?? 0,
           });
         }
       }
@@ -56,8 +56,8 @@ export default async function IndividualContent(
         const found = devto?.find((i) => i.slug === slug.slice(2));
         if (found) {
           return res.status(201).json({
-            contentViews: data.views + found.views ?? 0,
-            contentLikes: data.likes ?? 0,
+            contentViews: data?.views + found?.views ?? 0,
+            contentLikes: data?.likes ?? 0,
           });
         }
       }
