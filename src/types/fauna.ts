@@ -4,8 +4,8 @@ export interface ContentMeta {
   likes: number;
   likesByUser: Record<string, number>;
 }
-// Fauna Response
 
+//#region  //*=========== Fauna Response ===========
 export interface AllContentRes {
   data: Array<{
     data: ContentMeta;
@@ -15,9 +15,9 @@ export interface AllContentRes {
 export interface ContentMetaRes {
   data: ContentMeta;
 }
+//#endregion  //*======== Fauna Response ===========
 
-// Next.js API Response
-
+//#region  //*=========== Next.js API Response ===========
 export type ContentIndexRes = {
   views: number;
   devtoViews: number | null;
@@ -25,3 +25,4 @@ export type ContentIndexRes = {
   likes: number;
   likesByUser: Record<string, number>[];
 }[];
+//#endregion  //*======== Next.js API Response ===========

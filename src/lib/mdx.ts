@@ -9,16 +9,7 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-import {
-  BlogFrontmatter,
-  Frontmatter,
-  LibraryFrontmatter,
-  ProjectFrontmatter,
-} from '@/types/content';
-
-// Code from https://github.com/leerob/leerob.io/blob/main/lib/mdx.js
-
-type ContentType = 'blog' | 'library' | 'projects';
+import { ContentType, Frontmatter, PickFrontmatter } from '@/types/content';
 
 export async function getFiles(type: ContentType) {
   return readdirSync(join(process.cwd(), 'src', 'contents', type));
@@ -69,13 +60,7 @@ export async function getFileBySlug(type: ContentType, slug: string) {
 export async function getAllFilesFrontMatter<T extends ContentType>(type: T) {
   const files = readdirSync(join(process.cwd(), 'src', 'contents', type));
 
-  type FrontMatter = T extends 'blog'
-    ? BlogFrontmatter
-    : T extends 'library'
-    ? LibraryFrontmatter
-    : ProjectFrontmatter;
-
-  return files.reduce((allPosts: Array<FrontMatter>, postSlug) => {
+  return files.reduce((allPosts: Array<PickFrontmatter<T>>, postSlug) => {
     const source = readFileSync(
       join(process.cwd(), 'src', 'contents', type, postSlug),
       'utf8'
@@ -84,7 +69,7 @@ export async function getAllFilesFrontMatter<T extends ContentType>(type: T) {
 
     const res = [
       {
-        ...(data as FrontMatter),
+        ...(data as PickFrontmatter<T>),
         slug: postSlug.replace('.mdx', ''),
         readingTime: readingTime(source),
       },
@@ -125,6 +110,9 @@ export async function getRecommendations(currSlug: string) {
   return threeRecommendations.slice(0, 3);
 }
 
+/**
+ * Get and order frontmatters by specified array
+ */
 export function getFeatured<T extends Frontmatter>(
   contents: Array<T>,
   features: string[]

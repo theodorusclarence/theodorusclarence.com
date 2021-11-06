@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { getAllFilesFrontMatter } from '@/lib/mdx';
 import { getTags, sortByDate, sortDateFn } from '@/lib/mdx-client';
+import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/blog/BlogCard';
@@ -15,7 +16,7 @@ import Tag from '@/components/mdx/Tag';
 import Seo from '@/components/Seo';
 import SortListbox, { SortOption } from '@/components/SortListbox';
 
-import { BlogFrontmatter } from '@/types/content';
+import { BlogFrontmatter, InjectedMeta } from '@/types/content';
 
 const sortOptions: Array<SortOption> = [
   {
@@ -32,10 +33,12 @@ export default function IndexPage({
   const [sortOrder, setSortOrder] = React.useState<SortOption>(sortOptions[0]);
   const [isEnglish, setIsEnglish] = React.useState<boolean>(true);
 
+  const populatedPosts = useInjectContentMeta('blog', posts);
+
   //#region  //*=========== Search ===========
   const [search, setSearch] = React.useState<string>('');
   const [filteredPosts, setFilteredPosts] = React.useState<
-    Array<BlogFrontmatter>
+    Array<BlogFrontmatter & InjectedMeta>
   >(() => [...posts]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +48,7 @@ export default function IndexPage({
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      const results = posts.filter(
+      const results = populatedPosts.filter(
         (post) =>
           post.title.toLowerCase().includes(search.toLowerCase()) ||
           post.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -58,16 +61,15 @@ export default function IndexPage({
 
       if (sortOrder.id === 'date') {
         results.sort(sortDateFn);
+      } else if (sortOrder.id === 'views') {
+        results.sort((a, b) => (b?.views ?? 0) - (a?.views ?? 0));
       }
-      // } else if (sortOrder.id === 'views') {
-      //   results.sort((a, b) => a?.views < b?.views);
-      // }
 
       setFilteredPosts(results);
     }, 200);
 
     return () => clearTimeout(timer);
-  }, [search, posts, sortOrder.id]);
+  }, [search, sortOrder.id, populatedPosts]);
   //#endregion  //*======== Search ===========
 
   //#region  //*=========== Post Language Splitter ===========

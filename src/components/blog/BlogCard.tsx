@@ -8,10 +8,10 @@ import UnstyledLink from '@/components/links/UnstyledLink';
 
 import Accent from '../Accent';
 
-import { BlogFrontmatter } from '@/types/content';
+import { BlogFrontmatter, InjectedMeta } from '@/types/content';
 
 type BlogCardProps = {
-  post: BlogFrontmatter;
+  post: BlogFrontmatter & InjectedMeta;
 } & React.ComponentPropsWithoutRef<'li'>;
 
 export default function BlogCard({ post, className }: BlogCardProps) {
@@ -45,10 +45,7 @@ export default function BlogCard({ post, className }: BlogCardProps) {
             </div>
             <div className='flex items-center gap-1'>
               <HiOutlineEye className='inline-block text-base' />
-              <Accent>
-                {/* {post?.views ?? '–––'}  */}
-                10 views
-              </Accent>
+              <Accent>{post?.views ?? '–––'} views</Accent>
             </div>
           </div>
           <p className='my-2 text-sm text-gray-600 dark:text-gray-300'>
