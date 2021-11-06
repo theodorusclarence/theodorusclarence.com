@@ -5,6 +5,12 @@ export interface ContentMeta {
   likesByUser: Record<string, number>;
 }
 
+export interface SingleContentMeta {
+  contentViews: number;
+  contentLikes: number;
+  likesByUser: number;
+}
+
 //#region  //*=========== Fauna Response ===========
 export interface AllContentRes {
   data: Array<{

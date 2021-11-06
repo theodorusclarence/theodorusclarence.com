@@ -7,6 +7,7 @@ import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 
 import { cleanBlogPrefix } from '@/lib/helper';
 import { getFileBySlug, getFiles, getRecommendations } from '@/lib/mdx';
+import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
@@ -36,9 +37,14 @@ export default function SingleBlogPage({
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   //#region  //*=========== Blog Language ===========
-  const checkedSlug = cleanBlogPrefix(frontMatter.slug);
-  const isEnglish = checkedSlug === frontMatter.slug;
+  const cleanSlug = cleanBlogPrefix(frontMatter.slug);
+  const isEnglish = cleanSlug === frontMatter.slug;
   //#endregion  //*======== Blog Language ===========
+
+  //#region  //*=========== Content Meta ===========
+  const contentSlug = `b_${cleanSlug}`;
+  const meta = useContentMeta(contentSlug, { runIncrement: true });
+  //#endregion  //*======== Content Meta ===========
 
   //#region  //*=========== Scrollspy ===========
   const activeSection = useScrollSpy();
@@ -103,15 +109,12 @@ export default function SingleBlogPage({
                 </div>
                 <div className='flex items-center gap-1'>
                   <HiOutlineEye className='inline-block text-base' />
-                  <Accent>
-                    {/* {frontMatter?.views ?? '–––'}  */}
-                    10 views
-                  </Accent>
+                  <Accent>{meta?.views ?? '–––'} views</Accent>
                 </div>
               </div>
               {!frontMatter?.englishOnly && (
                 <CustomLink
-                  href={clsx('/blog/', isEnglish ? 'id-' : '', checkedSlug)}
+                  href={`/blog/${isEnglish ? 'id-' : ''}${cleanSlug}`}
                   className='mt-2'
                 >
                   Read in {isEnglish ? 'Bahasa Indonesia' : 'English'}

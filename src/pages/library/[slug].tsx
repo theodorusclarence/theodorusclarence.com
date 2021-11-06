@@ -4,6 +4,7 @@ import * as React from 'react';
 import { HiOutlineEye } from 'react-icons/hi';
 
 import { getFileBySlug, getFiles } from '@/lib/mdx';
+import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
@@ -20,6 +21,11 @@ import { LibraryType } from '@/types/content';
 
 export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
+
+  //#region  //*=========== Content Meta ===========
+  const contentSlug = `l_${frontMatter.slug}`;
+  const meta = useContentMeta(contentSlug, { runIncrement: true });
+  //#endregion  //*======== Content Meta ===========
 
   //#region  //*=========== Scrollspy ===========
   const activeSection = useScrollSpy();
@@ -62,10 +68,7 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
               <div className='flex items-center justify-start gap-3 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
                 <div className='flex items-center gap-1'>
                   <HiOutlineEye className='inline-block text-base' />
-                  <Accent>
-                    {/* {frontMatter?.views ?? '–––'}  */}
-                    10 views
-                  </Accent>
+                  <Accent>{meta?.views ?? '–––'} views</Accent>
                 </div>
                 <span>•</span>
                 <TechIcons
