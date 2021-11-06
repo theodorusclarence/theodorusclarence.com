@@ -2,14 +2,21 @@ export interface ContentMeta {
   slug: string;
   views: number;
   likes: number;
-  likesByUser: Array<Record<string, number>>;
+  likesByUser: Record<string, number>;
 }
+// Fauna Response
 
 export interface AllContentRes {
   data: Array<{
     data: ContentMeta;
   }>;
 }
+
+export interface ContentMetaRes {
+  data: ContentMeta;
+}
+
+// Next.js API Response
 
 export type ContentIndexRes = {
   views: number;

@@ -25,6 +25,7 @@
     "axios": "^0.24.0",
     "cloudinary-build-url": "^0.2.1",
     "clsx": "^1.1.1",
+    "crypto": "^1.0.1",
     "date-fns": "^2.25.0",
     "faunadb": "^4.4.1",
     "lodash.throttle": "^4.1.1",
