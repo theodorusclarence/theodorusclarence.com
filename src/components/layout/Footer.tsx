@@ -18,10 +18,12 @@ export default function Footer() {
 
         {isProd && <Spotify className='mt-8' />}
 
-        <p className='mt-8 font-medium'>Reach me out</p>
+        <p className='mt-12 font-medium text-gray-600 dark:text-gray-300'>
+          Reach me out
+        </p>
         <SocialLinks />
 
-        <p className='mt-8 text-xs text-gray-600 dark:text-gray-300'>
+        <p className='mt-8 text-sm text-gray-600 dark:text-gray-300'>
           © Theodorus Clarence {new Date().getFullYear()}
         </p>
       </main>
@@ -31,7 +33,7 @@ export default function Footer() {
 
 function FooterLinks() {
   return (
-    <div className='grid justify-center w-full grid-cols-2 gap-2 sm:gap-8 justify-items-start sm:flex'>
+    <div className='flex flex-wrap justify-center gap-x-8 gap-y-4'>
       {footerLinks.map(({ href, text }) => (
         <UnstyledLink
           key={href}
