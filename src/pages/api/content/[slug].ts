@@ -58,6 +58,7 @@ export default async function IndividualContent(
           return res.status(201).json({
             contentViews: data?.views + found?.views ?? 0,
             contentLikes: data?.likes ?? 0,
+            likesByUser: data.likesByUser?.[sessionId] ?? 0,
           });
         }
       }
@@ -65,6 +66,7 @@ export default async function IndividualContent(
       res.status(201).json({
         contentViews: data.views ?? 0,
         contentLikes: data.likes ?? 0,
+        likesByUser: data.likesByUser?.[sessionId] ?? 0,
       });
     } else {
       res.status(405).json({ message: 'Method Not Allowed' });
