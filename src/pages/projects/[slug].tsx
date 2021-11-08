@@ -5,12 +5,14 @@ import { HiLink, HiOutlineEye, HiPlay } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
 
 import { getFileBySlug, getFiles } from '@/lib/mdx';
+import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import CloudinaryImg from '@/components/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Comment from '@/components/mdx/Comment';
+import LikeButton from '@/components/mdx/LikeButton';
 import MDXComponents from '@/components/mdx/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
@@ -21,6 +23,11 @@ import { ProjectType } from '@/types/content';
 
 export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
+
+  //#region  //*=========== Content Meta ===========
+  const contentSlug = `p_${frontMatter.slug}`;
+  const meta = useContentMeta(contentSlug, { runIncrement: true });
+  //#endregion  //*======== Content Meta ===========
 
   //#region  //*=========== Scrollspy ===========
   const activeSection = useScrollSpy();
@@ -69,8 +76,7 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
             <div className='flex flex-wrap items-center justify-start gap-3 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
               <div className='flex items-center gap-1'>
                 <HiOutlineEye className='inline-block text-base' />
-                {/* {frontMatter?.views ?? '–––'}  */}
-                10 views
+                {meta?.views ?? '–––'} views
               </div>
               <span>-</span>
               {frontMatter.github && (
@@ -138,7 +144,7 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
                     activeSection={activeSection}
                   />
                   <div className='flex items-center justify-center py-8'>
-                    {/* <LikeButton slug={`b_${checkedSlug}`} /> */}
+                    <LikeButton slug={contentSlug} />
                   </div>
                 </div>
               </aside>
