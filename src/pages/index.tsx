@@ -5,6 +5,7 @@ import { IoArrowDownOutline } from 'react-icons/io5';
 
 import { getAllFilesFrontMatter, getFeatured } from '@/lib/mdx';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
+import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/blog/BlogCard';
@@ -27,18 +28,30 @@ export default function IndexPage({
   const populatedProjects = useInjectContentMeta('projects', featuredProjects);
   const populatedLibrary = useInjectContentMeta('library', featuredLibrary);
 
+  const isLoaded = useLoaded();
+
   return (
     <Layout>
       <Seo />
 
       <main>
-        <section className='flex flex-col justify-center mb-20 -mt-20 min-h-main'>
+        <section
+          className={clsx(
+            'flex flex-col justify-center mb-20 -mt-20 min-h-main',
+            isLoaded && 'fade-in-start'
+          )}
+        >
           <article className='layout'>
-            <h2 className='text-2xl md:text-4xl'>Hi!</h2>
-            <h1 className='mt-1 text-3xl md:text-5xl'>
+            <h2 className='text-2xl md:text-4xl' data-fade='1'>
+              Hi!
+            </h2>
+            <h1 className='mt-1 text-3xl md:text-5xl' data-fade='2'>
               You can call me <Accent>Clarence</Accent>
             </h1>
-            <p className='max-w-4xl mt-2 leading-relaxed text-gray-600 dark:text-gray-300'>
+            <p
+              className='max-w-4xl mt-2 leading-relaxed text-gray-600 dark:text-gray-300'
+              data-fade='3'
+            >
               I'm a fast learner and hardworking Informatics Student at Institut
               Teknologi Sepuluh Nopember.
               <br />
@@ -47,13 +60,14 @@ export default function IndexPage({
               about frontend works!
             </p>
           </article>
-          <div className='mt-12 layout'>
+          <div className='mt-12 layout' data-fade='4'>
             <h3>Current Favorite Tech Stack</h3>
             <figure className='mt-2'>
               <TechStack />
             </figure>
           </div>
           <UnstyledLink
+            data-fade='5'
             className={clsx(
               'absolute bottom-2 md:bottom-10 left-1/2 -translate-x-1/2',
               'rounded-md cursor-pointer transition-colors',
@@ -188,7 +202,7 @@ export default function IndexPage({
                 />
               ))}
             </ul>
-            <ButtonLink className='mt-4' href='/librar'>
+            <ButtonLink className='mt-4' href='/library'>
               See more snippets
             </ButtonLink>
           </article>

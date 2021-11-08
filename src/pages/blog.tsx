@@ -37,6 +37,7 @@ export default function IndexPage({
   posts,
   tags,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  /** Lazy init from session storage to preserve preference on revisit */
   const [sortOrder, setSortOrder] = React.useState<SortOption>(
     () => sortOptions[Number(getFromSessionStorage('blog-sort')) || 0]
   );
