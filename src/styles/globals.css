@@ -34,6 +34,10 @@
     scroll-padding-top: 80px;
   }
 
+  ::selection {
+    background: rgba(var(--tw-clr-primary-300), 0.3);
+  }
+
   .cursor-newtab {
     cursor: url('/images/new-tab.png') 10 10, pointer;
   }
