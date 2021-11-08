@@ -60,30 +60,26 @@ export default function IndexPage({
   const clearSearch = () => setSearch('');
 
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      const results = populatedPosts.filter(
-        (post) =>
-          post.title.toLowerCase().includes(search.toLowerCase()) ||
-          post.description.toLowerCase().includes(search.toLowerCase()) ||
-          // Check if splitted search contained in tag
-          search
-            .toLowerCase()
-            .split(' ')
-            .every((tag) => post.tags.includes(tag))
-      );
+    const results = populatedPosts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(search.toLowerCase()) ||
+        post.description.toLowerCase().includes(search.toLowerCase()) ||
+        // Check if splitted search contained in tag
+        search
+          .toLowerCase()
+          .split(' ')
+          .every((tag) => post.tags.includes(tag))
+    );
 
-      if (sortOrder.id === 'date') {
-        results.sort(sortDateFn);
-        sessionStorage.setItem('blog-sort', '0');
-      } else if (sortOrder.id === 'views') {
-        results.sort((a, b) => (b?.views ?? 0) - (a?.views ?? 0));
-        sessionStorage.setItem('blog-sort', '1');
-      }
+    if (sortOrder.id === 'date') {
+      results.sort(sortDateFn);
+      sessionStorage.setItem('blog-sort', '0');
+    } else if (sortOrder.id === 'views') {
+      results.sort((a, b) => (b?.views ?? 0) - (a?.views ?? 0));
+      sessionStorage.setItem('blog-sort', '1');
+    }
 
-      setFilteredPosts(results);
-    }, 200);
-
-    return () => clearTimeout(timer);
+    setFilteredPosts(results);
   }, [search, sortOrder.id, populatedPosts]);
   //#endregion  //*======== Search ===========
 

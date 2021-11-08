@@ -49,28 +49,24 @@ export default function LibraryPage({
   };
 
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      const results = populatedPosts.filter(
-        (snippet) =>
-          snippet.title.toLowerCase().includes(search.toLowerCase()) ||
-          snippet.description.toLowerCase().includes(search.toLowerCase()) ||
-          // Check if splitted search contained in tag
-          search
-            .toLowerCase()
-            .split(' ')
-            .every((tag) => snippet.tags.includes(tag))
-      );
+    const results = populatedPosts.filter(
+      (snippet) =>
+        snippet.title.toLowerCase().includes(search.toLowerCase()) ||
+        snippet.description.toLowerCase().includes(search.toLowerCase()) ||
+        // Check if splitted search contained in tag
+        search
+          .toLowerCase()
+          .split(' ')
+          .every((tag) => snippet.tags.includes(tag))
+    );
 
-      if (sortOrder.id === 'date') {
-        results.sort(sortTitleFn);
-      } else if (sortOrder.id === 'popular') {
-        results.sort((a, b) => (b?.likes ?? 0) - (a?.likes ?? 0));
-      }
+    if (sortOrder.id === 'date') {
+      results.sort(sortTitleFn);
+    } else if (sortOrder.id === 'popular') {
+      results.sort((a, b) => (b?.likes ?? 0) - (a?.likes ?? 0));
+    }
 
-      setFiltered(results);
-    }, 100);
-
-    return () => clearTimeout(timer);
+    setFiltered(results);
   }, [populatedPosts, search, sortOrder.id]);
   //#endregion  //*======== Search ===========
 
