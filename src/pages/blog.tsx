@@ -138,7 +138,7 @@ export default function IndexPage({
                     onClick={() => toggleTag(tag)}
                     disabled={!filteredTags.includes(tag)}
                   >
-                    {/* Show accent if not disabled, and selected */}
+                    {/* Show accent if not disabled and selected */}
                     {filteredTags.includes(tag) &&
                     search.toLowerCase().split(' ').includes(tag) ? (
                       <Accent>{tag}</Accent>

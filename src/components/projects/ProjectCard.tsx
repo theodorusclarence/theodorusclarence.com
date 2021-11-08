@@ -7,16 +7,20 @@ import TechIcons, { TechListType } from '@/components/TechIcons';
 
 import { ProjectFrontmatter } from '@/types/content';
 
-export default function ProjectCard({
-  project,
-}: {
+type ProjectCardProps = {
   project: ProjectFrontmatter;
-}) {
+} & React.ComponentPropsWithoutRef<'li'>;
+
+export default function ProjectCard({ project, className }: ProjectCardProps) {
   return (
     <li
       className={clsx(
-        'rounded-md card project-card md:w-full',
-        'border dark:border-gray-600'
+        'rounded-md project-card md:w-full',
+        'border dark:border-gray-600',
+        'transform-gpu scale-100 hover:scale-[1.03] active:scale-[0.97]',
+        'transition duration-100',
+        'animate-shadow',
+        className
       )}
     >
       <UnstyledLink

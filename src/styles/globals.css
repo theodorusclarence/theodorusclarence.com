@@ -42,7 +42,7 @@
     cursor: url('/images/new-tab.png') 10 10, pointer;
   }
 
-  /* Write your own custom base styles here */
+  /* #region  /**=========== Default Typography =========== */
   h1 {
     @apply text-2xl font-bold md:text-4xl font-primary;
   }
@@ -62,6 +62,7 @@
   body {
     @apply text-sm font-primary md:text-base;
   }
+  /* #endregion  /**======== Default Typography =========== */
 
   .layout {
     max-width: 68rem;
@@ -101,62 +102,12 @@
     background-size: 0 2px, 100% 2px;
   }
 
-  /* Buttoms & Cards */
-  .btn {
-    transform: scale(1);
-    transition: transform 100ms ease;
+  /* #region  /**=========== Animate Shadow =========== */
+  .animate-shadow {
+    @apply after:absolute after:z-[-1] after:inset-0 after:opacity-0 after:transition-opacity hover:after:opacity-100;
+    @apply after:shadow-md dark:after:shadow-none;
   }
-
-  .btn:hover,
-  .btn:focus-visible {
-    transform: scale(1.03);
-  }
-
-  .btn:active {
-    transition-duration: 50ms !important;
-    transform: scale(0.97);
-  }
-
-  .card {
-    transform: scale(1);
-    transition: transform 100ms ease;
-    will-change: transform;
-  }
-
-  .card:hover,
-  .card:focus {
-    transform: scale(1.03);
-  }
-
-  .card-2:hover,
-  .card-2:focus-visible {
-    transform: scale(1.02);
-  }
-
-  .card:active {
-    transition-duration: 50ms !important;
-    transform: scale(0.97);
-  }
-
-  /** Shadows Animation */
-  .card::after,
-  .btn::after {
-    @apply rounded-md shadow-md dark:shadow-none;
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    transition: opacity 100ms ease;
-  }
-
-  .card:hover::after,
-  .btn:hover::after {
-    opacity: 1;
-  }
+  /* #endregion  /**======== Animate Shadow =========== */
 }
 /* Tippy */
 .tippy-tooltip [x-circle] {

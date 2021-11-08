@@ -25,7 +25,16 @@ export default function SortListbox({
     <div className='max-w-[200px] w-full'>
       <Listbox value={selected} onChange={setSelected}>
         <div className='relative'>
-          <Listbox.Button className='w-full py-2 pl-3 pr-10 font-medium text-left bg-white border border-gray-300 rounded-md dark:bg-dark focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:border-gray-600 sm:text-sm'>
+          <Listbox.Button
+            className={clsx(
+              'w-full py-2 pl-3 pr-10 font-medium text-left bg-white rounded-md dark:bg-dark  sm:text-sm',
+              'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
+              'border border-gray-300 dark:border-gray-600',
+              'transform-gpu scale-100 hover:scale-[1.03] active:scale-[0.97]',
+              'transition duration-100',
+              'animate-shadow'
+            )}
+          >
             <span className='block truncate'>
               <span className='inline-flex items-center gap-2'>
                 <selected.icon />
@@ -53,7 +62,7 @@ export default function SortListbox({
                     clsx(
                       'select-none relative py-2 pl-10 pr-4',
                       active
-                        ? 'dark:bg-primary-300/25 bg-primary-400/10'
+                        ? 'dark:bg-primary-300/25 bg-primary-300/10'
                         : 'text-gray-700 dark:text-gray-300'
                     )
                   }
@@ -72,7 +81,7 @@ export default function SortListbox({
                       {selected ? (
                         <span
                           className={clsx(
-                            'absolute inset-y-0 left-0 flex items-center pl-3 text-primary-400 dark:text-primary-300'
+                            'absolute inset-y-0 left-0 flex items-center pl-3 text-primary-500 dark:text-primary-300'
                           )}
                         >
                           <HiCheck className='w-5 h-5' aria-hidden='true' />
