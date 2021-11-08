@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 import { cacheOnly } from '@/lib/swr';
 
-import { isProd } from '@/constants/env';
+import { contentMetaFlag } from '@/constants/env';
 
 import { ContentMeta, SingleContentMeta } from '@/types/fauna';
 
@@ -15,7 +15,7 @@ export default function useContentMeta(
 ) {
   //#region  //*=========== Get content cache ===========
   const { data: allContentMeta } = useSWR<Array<ContentMeta>>(
-    '/api/content',
+    contentMetaFlag ? '/api/content' : null,
     cacheOnly
   );
   const _preloadMeta = allContentMeta?.find((meta) => meta.slug === slug);
@@ -32,12 +32,15 @@ export default function useContentMeta(
     data,
     error: isError,
     mutate,
-  } = useSWR<SingleContentMeta>('/api/content/' + slug, {
-    fallbackData: preloadMeta,
-  });
+  } = useSWR<SingleContentMeta>(
+    contentMetaFlag ? '/api/content/' + slug : null,
+    {
+      fallbackData: preloadMeta,
+    }
+  );
 
   React.useEffect(() => {
-    if (runIncrement && isProd) {
+    if (runIncrement && contentMetaFlag) {
       incrementViews(slug).then((fetched) => {
         mutate({
           ...fetched,

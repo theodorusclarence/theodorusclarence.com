@@ -8,7 +8,7 @@ import Accent from '@/components/Accent';
 import Spotify from '@/components/layout/Spotify';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
-import { isProd } from '@/constants/env';
+import { spotifyFlag } from '@/constants/env';
 
 export default function Footer() {
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
       <main className='flex flex-col items-center pt-6 border-t dark:border-gray-600 layout'>
         <FooterLinks />
 
-        {isProd && <Spotify className='mt-8' />}
+        {spotifyFlag && <Spotify className='mt-8' />}
 
         <p className='mt-12 font-medium text-gray-600 dark:text-gray-300'>
           Reach me out

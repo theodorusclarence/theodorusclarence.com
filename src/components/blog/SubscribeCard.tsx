@@ -8,7 +8,7 @@ import useSWR from 'swr';
 import Accent from '@/components/Accent';
 import Button from '@/components/buttons/Button';
 
-import { isProd } from '@/constants/env';
+import { newsletterFlag } from '@/constants/env';
 
 type SubscribeCardProps = {
   className?: string;
@@ -22,7 +22,7 @@ export default function SubscribeCard({
 }: SubscribeCardProps) {
   //#region  //*=========== Count ===========
   const { data: subscriber, mutate } = useSWR<{ count: number }>(
-    isProd ? '/api/newsletter/count' : null
+    newsletterFlag ? '/api/newsletter/count' : null
   );
   //#endregion  //*======== Count ===========
 
