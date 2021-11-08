@@ -131,34 +131,30 @@ export default function IndexPage({
               value={search}
               type='text'
             />
-            <p
-              className='text-sm leading-loose text-gray-600 dark:text-gray-300'
+            <div
+              className='flex flex-wrap items-baseline justify-start mt-2 text-sm text-gray-600 gap-x-2 gap-y-1 dark:text-gray-300'
               data-fade='3'
             >
-              Try something like{' '}
-              {tags.map((tag, i) => (
-                <React.Fragment key={tag}>
-                  <Tag
-                    className='mt-2'
-                    onClick={() => toggleTag(tag)}
-                    disabled={!filteredTags.includes(tag)}
-                  >
-                    {/* Show accent if not disabled and selected */}
-                    {filteredTags.includes(tag) &&
-                    search.toLowerCase().split(' ').includes(tag) ? (
-                      <Accent>{tag}</Accent>
-                    ) : (
-                      tag
-                    )}
-                  </Tag>
-                  <span className='inline-block w-3'>
-                    {tags.length - 1 !== i ? ' , ' : ' '}
-                  </span>
-                </React.Fragment>
+              <span className='font-medium'>Choose topic:</span>
+              {tags.map((tag) => (
+                <Tag
+                  key={tag}
+                  className='mt-2'
+                  onClick={() => toggleTag(tag)}
+                  disabled={!filteredTags.includes(tag)}
+                >
+                  {/* Show accent if not disabled and selected */}
+                  {filteredTags.includes(tag) &&
+                  search.toLowerCase().split(' ').includes(tag) ? (
+                    <Accent>{tag}</Accent>
+                  ) : (
+                    tag
+                  )}
+                </Tag>
               ))}
-            </p>
+            </div>
             <div
-              className='relative z-10 flex flex-col items-end gap-4 mt-4 text-gray-600 md:items-center dark:text-gray-300 md:flex-row md:justify-between'
+              className='relative z-10 flex flex-col items-end gap-4 mt-6 text-gray-600 md:items-center dark:text-gray-300 md:flex-row md:justify-between'
               data-fade='4'
             >
               <Button
