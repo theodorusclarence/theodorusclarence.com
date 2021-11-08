@@ -105,8 +105,16 @@ export default function IndexPage({
     }
   };
 
-  // Currently available tags based on filtered posts
+  /** Currently available tags based on filtered posts */
   const filteredTags = getTags(currentPosts);
+
+  /** Show accent if not disabled and selected  */
+  const checkTagged = (tag: string) => {
+    return (
+      filteredTags.includes(tag) &&
+      search.toLowerCase().split(' ').includes(tag)
+    );
+  };
   //#endregion  //*======== Tag ===========
 
   return (
@@ -132,24 +140,17 @@ export default function IndexPage({
               type='text'
             />
             <div
-              className='flex flex-wrap items-baseline justify-start mt-2 text-sm text-gray-600 gap-x-2 gap-y-1 dark:text-gray-300'
+              className='flex flex-wrap items-baseline justify-start gap-2 mt-2 text-sm text-gray-600 dark:text-gray-300'
               data-fade='3'
             >
               <span className='font-medium'>Choose topic:</span>
               {tags.map((tag) => (
                 <Tag
                   key={tag}
-                  className='mt-2'
                   onClick={() => toggleTag(tag)}
                   disabled={!filteredTags.includes(tag)}
                 >
-                  {/* Show accent if not disabled and selected */}
-                  {filteredTags.includes(tag) &&
-                  search.toLowerCase().split(' ').includes(tag) ? (
-                    <Accent>{tag}</Accent>
-                  ) : (
-                    tag
-                  )}
+                  {checkTagged(tag) ? <Accent>{tag}</Accent> : tag}
                 </Tag>
               ))}
             </div>
@@ -178,7 +179,11 @@ export default function IndexPage({
             >
               {currentPosts.length > 0 ? (
                 currentPosts.map((post) => (
-                  <BlogCard key={post.slug} post={post} />
+                  <BlogCard
+                    key={post.slug}
+                    post={post}
+                    checkTagged={checkTagged}
+                  />
                 ))
               ) : (
                 <ContentPlaceholder />

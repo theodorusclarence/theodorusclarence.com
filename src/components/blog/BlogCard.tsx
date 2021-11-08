@@ -6,14 +6,20 @@ import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 import Accent from '@/components/Accent';
 import CloudinaryImg from '@/components/CloudinaryImg';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import Tag from '@/components/mdx/Tag';
 
 import { BlogFrontmatter, InjectedMeta } from '@/types/content';
 
 type BlogCardProps = {
   post: BlogFrontmatter & InjectedMeta;
+  checkTagged?: (tag: string) => boolean;
 } & React.ComponentPropsWithoutRef<'li'>;
 
-export default function BlogCard({ post, className }: BlogCardProps) {
+export default function BlogCard({
+  post,
+  className,
+  checkTagged,
+}: BlogCardProps) {
   return (
     <li
       className={clsx(
@@ -28,16 +34,30 @@ export default function BlogCard({ post, className }: BlogCardProps) {
         className='block h-full rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
         href={`/blog/${post.slug}`}
       >
-        <CloudinaryImg
-          noStyle
-          className='overflow-hidden pointer-events-none rounded-t-md'
-          publicId={`theodorusclarence/banner/${post.banner}`}
-          alt='Photo taken from unsplash'
-          width={1200}
-          height={(1200 * 2) / 5}
-          aspect={{ height: 2, width: 5 }}
-          preview={false}
-        />
+        <div className='relative'>
+          <CloudinaryImg
+            noStyle
+            className='overflow-hidden pointer-events-none rounded-t-md'
+            publicId={`theodorusclarence/banner/${post.banner}`}
+            alt='Photo taken from unsplash'
+            width={1200}
+            height={(1200 * 2) / 5}
+            aspect={{ height: 2, width: 5 }}
+            preview={false}
+          />
+          <div
+            className={clsx(
+              'absolute bottom-0 w-full px-4 py-2',
+              'flex flex-wrap justify-end mt-2 text-sm text-black gap-x-2 gap-y-1 dark:text-gray-100'
+            )}
+          >
+            {post.tags.split(',').map((tag) => (
+              <Tag className='bg-opacity-80 dark:!bg-opacity-60' key={tag}>
+                {checkTagged?.(tag) ? <Accent>{tag}</Accent> : tag}
+              </Tag>
+            ))}
+          </div>
+        </div>
         <div className='p-4'>
           <h4 className='text-gray-800 dark:text-gray-100'>{post.title}</h4>
           <div className='flex items-center justify-start gap-2 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
