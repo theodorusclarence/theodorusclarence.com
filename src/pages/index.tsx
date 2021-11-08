@@ -9,17 +9,24 @@ import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/blog/BlogCard';
 import Layout from '@/components/layout/Layout';
+import LibraryCard from '@/components/library/LibraryCard';
 import ButtonLink from '@/components/links/ButtonLink';
 import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import ProjectCard from '@/components/projects/ProjectCard';
 import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
 import Tooltip from '@/components/Tooltip';
 
 export default function IndexPage({
   featuredPosts,
+  featuredProjects,
+  featuredLibrary,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const populatedPosts = useInjectContentMeta('blog', featuredPosts);
+  const populatedProjects = useInjectContentMeta('projects', featuredProjects);
+  const populatedLibrary = useInjectContentMeta('library', featuredLibrary);
+
   return (
     <Layout>
       <Seo />
@@ -122,15 +129,68 @@ export default function IndexPage({
         </section>
 
         <section className='py-20'>
-          <article className='layout min-h-main'>
-            <h2 id='blog'>
+          <article className='layout'>
+            <h2 className='text-2xl md:text-4xl' id='blog'>
               <Accent>Featured Posts</Accent>
             </h2>
             <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
-              {populatedPosts.map((post) => (
-                <BlogCard key={post.slug} post={post} />
+              {populatedPosts.map((post, i) => (
+                <BlogCard
+                  key={post.slug}
+                  post={post}
+                  className={clsx(i > 2 && 'hidden sm:block')}
+                />
               ))}
             </ul>
+            <ButtonLink className='mt-4' href='/blog'>
+              See more post
+            </ButtonLink>
+          </article>
+        </section>
+
+        <section className='py-20'>
+          <article className='layout'>
+            <h2 className='text-2xl md:text-4xl' id='projects'>
+              <Accent>Featured Projects</Accent>
+            </h2>
+            <p className='mt-2 text-gray-600 dark:text-gray-300'>
+              Some projects that I'm proud of
+            </p>
+            <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+              {populatedProjects.map((project, i) => (
+                <ProjectCard
+                  key={project.slug}
+                  project={project}
+                  className={clsx(i > 2 && 'hidden sm:block')}
+                />
+              ))}
+            </ul>
+            <ButtonLink className='mt-4' href='/projects'>
+              See more project
+            </ButtonLink>
+          </article>
+        </section>
+
+        <section className='py-20'>
+          <article className='layout'>
+            <h2 className='text-2xl md:text-4xl' id='library'>
+              <Accent>Library of Code Snippets</Accent>
+            </h2>
+            <p className='mt-2 text-gray-600 dark:text-gray-300'>
+              List of code snippets that I store for easy access.
+            </p>
+            <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+              {populatedLibrary.map((snippet, i) => (
+                <LibraryCard
+                  key={snippet.slug}
+                  snippet={snippet}
+                  className={clsx(i > 2 && 'hidden sm:block')}
+                />
+              ))}
+            </ul>
+            <ButtonLink className='mt-4' href='/librar'>
+              See more snippets
+            </ButtonLink>
           </article>
         </section>
       </main>
@@ -140,6 +200,9 @@ export default function IndexPage({
 
 export async function getStaticProps() {
   const blogs = await getAllFilesFrontMatter('blog');
+  const projects = await getAllFilesFrontMatter('projects');
+  const library = await getAllFilesFrontMatter('library');
+
   const featuredPosts = getFeatured(blogs, [
     'btb-flex-mental-model',
     'nextjs-fetch-usecase',
@@ -148,8 +211,21 @@ export async function getStaticProps() {
     'btb-ui-fundamental',
     'mindful-commit-message',
   ]);
+  const featuredProjects = getFeatured(projects, [
+    'ppdbsumsel',
+    'side-projects',
+    'ppdbsumsel',
+  ]);
+  const featuredLibrary = getFeatured(library, [
+    'seo',
+    'toast',
+    'youtube-embed',
+    'seo',
+    'toast',
+    'youtube-embed',
+  ]);
 
   return {
-    props: { featuredPosts },
+    props: { featuredPosts, featuredProjects, featuredLibrary },
   };
 }
