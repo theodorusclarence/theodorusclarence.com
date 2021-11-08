@@ -2,6 +2,8 @@ import * as React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { HiCheckCircle, HiClipboard } from 'react-icons/hi';
 
+import Accent from '@/components/Accent';
+
 export function Pre(props: React.ComponentPropsWithRef<'pre'>) {
   return (
     <pre {...props}>
@@ -29,7 +31,7 @@ export default function CustomCode(props: React.ComponentPropsWithRef<'code'>) {
       <span ref={textRef}>{props.children}</span>
       {language && (
         <div className='absolute top-0 px-3 py-1 border border-t-0 border-gray-600 rounded-b-md left-6'>
-          <span className='font-medium select-none accent'>{language}</span>
+          <Accent className='font-medium select-none'>{language}</Accent>
         </div>
       )}
       {language && (

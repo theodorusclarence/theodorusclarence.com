@@ -14,6 +14,7 @@ import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
+import Tooltip from '@/components/Tooltip';
 
 export default function IndexPage({
   featuredPosts,
@@ -60,14 +61,41 @@ export default function IndexPage({
         <section className='py-20'>
           <article
             id='intro'
-            className='flex flex-col-reverse items-center gap-4 md:justify-start md:flex-row layout min-h-main'
+            className={clsx(
+              'flex flex-col-reverse items-center md:justify-start md:flex-row layout',
+              'md:gap-4'
+            )}
           >
-            <div className='w-full h-full'>
+            <div className='w-full h-full mt-8 md:mt-0'>
               <h2 className='text-4xl md:text-6xl'>
-                <Accent>Rebuild your mental model</Accent>
+                <Accent className='inline leading-snug dark:leading-none decoration-clone'>
+                  Rebuild your mental model
+                </Accent>
               </h2>
               <p className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
-                Learn front-end development and see how they work fundamentally
+                <Tooltip
+                  withUnderline
+                  content={
+                    <>
+                      A mental model is an explanation of someone's{' '}
+                      <strong>thought process</strong> about how something
+                      works. You can use it as your own guide that you can test
+                      through some cases.
+                    </>
+                  }
+                >
+                  Mental model
+                </Tooltip>{' '}
+                will make front-end development more{' '}
+                <strong className='text-gray-700 dark:text-gray-200'>
+                  predictable
+                </strong>{' '}
+                by seeing how they work{' '}
+                <strong className='text-gray-700 dark:text-gray-200'>
+                  fundamentally
+                </strong>
+                . In my blog, I'm sharing how I approach something and how my
+                mental model affect my learning about a certain topic.
               </p>
               <ButtonLink className='mt-4' href='#blog'>
                 Read blogs
@@ -76,12 +104,18 @@ export default function IndexPage({
             <div className='w-full h-full'>
               <ul className='relative h-full'>
                 <BlogCard
-                  className='absolute top-1/2 translate-y-[-55%]  md:translate-y-[-50%] lg:translate-y-[-60%] left-1/2 -translate-x-1/2 lg:translate-x-[-30%] md:translate-x-[-50%] transform-gpu max-w-[350px] rotate-3 md:rotate-6 lg:rotate-12'
-                  post={populatedPosts[0]}
+                  className={clsx(
+                    'absolute transform-gpu max-w-[350px]',
+                    'top-1/2 translate-y-[-55%] md:translate-y-[-50%] lg:translate-y-[-60%]',
+                    'left-1/2 -translate-x-1/2 lg:translate-x-[-30%] md:translate-x-[-50%]',
+                    'rotate-3 md:rotate-6 lg:rotate-12',
+                    'pointer-events-none md:pointer-events-auto'
+                  )}
+                  post={populatedPosts[1]}
                 />
                 <BlogCard
                   className='mx-auto max-w-[350px]'
-                  post={populatedPosts[1]}
+                  post={populatedPosts[0]}
                 />
               </ul>
             </div>
