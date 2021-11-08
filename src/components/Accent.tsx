@@ -9,8 +9,8 @@ export default function Accent({ children, className }: AccentType) {
       className={clsx(
         className,
         'transition-colors',
-        'bg-gradient-to-tr from-primary-300/50 to-primary-400/50',
-        'dark:text-transparent  dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text'
+        'bg-gradient-to-tr from-primary-300/40 via-primary-300/40 to-primary-400/40',
+        'dark:text-transparent dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text'
       )}
     >
       {children}

@@ -58,9 +58,8 @@ export default function IndexPage({
           </UnstyledLink>
         </section>
 
-        <section className='py-20'>
+        <section id='intro' className='py-20'>
           <article
-            id='intro'
             className={clsx(
               'flex flex-col-reverse items-center md:justify-start md:flex-row layout',
               'md:gap-4'
