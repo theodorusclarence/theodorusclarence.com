@@ -166,7 +166,7 @@
 
 /* #region  /**=========== Fade In =========== */
 [data-fade] {
-  @apply transition duration-300 ease-out translate-y-10 opacity-0;
+  @apply transition duration-[400ms] ease-out translate-y-10 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100;
 }
 .fade-in-start [data-fade] {
   @apply translate-y-0 opacity-100;

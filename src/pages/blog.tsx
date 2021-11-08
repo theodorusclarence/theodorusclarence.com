@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 import { HiCalendar, HiEye } from 'react-icons/hi';
@@ -6,6 +7,7 @@ import { getFromSessionStorage } from '@/lib/helper';
 import { getAllFilesFrontMatter } from '@/lib/mdx';
 import { getTags, sortByDate, sortDateFn } from '@/lib/mdx-client';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
+import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/blog/BlogCard';
@@ -42,6 +44,7 @@ export default function IndexPage({
     () => sortOptions[Number(getFromSessionStorage('blog-sort')) || 0]
   );
   const [isEnglish, setIsEnglish] = React.useState<boolean>(true);
+  const isLoaded = useLoaded();
 
   const populatedPosts = useInjectContentMeta('blog', posts);
 
@@ -115,22 +118,27 @@ export default function IndexPage({
       <Seo templateTitle='Blog' />
 
       <main>
-        <section>
+        <section className={clsx(isLoaded && 'fade-in-start')}>
           <div className='py-12 layout'>
-            <h1>
+            <h1 className='text-3xl md:text-5xl' data-fade='0'>
               <Accent>Blog {!isEnglish && 'Bahasa Indonesia'}</Accent>
             </h1>
-            <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
-              Thoughts and tutorials about Front-end Development
+            <p className='mt-2 text-gray-600 dark:text-gray-300' data-fade='1'>
+              Thoughts, mental models, and tutorials about front-end
+              development.
             </p>
             <StyledInput
+              data-fade='2'
               className='mt-4'
               placeholder='Search...'
               onChange={handleSearch}
               value={search}
               type='text'
             />
-            <p className='text-sm leading-loose text-gray-600 dark:text-gray-300'>
+            <p
+              className='text-sm leading-loose text-gray-600 dark:text-gray-300'
+              data-fade='3'
+            >
               Try something like{' '}
               {tags.map((tag, i) => (
                 <React.Fragment key={tag}>
@@ -153,7 +161,10 @@ export default function IndexPage({
                 </React.Fragment>
               ))}
             </p>
-            <div className='relative z-10 flex flex-col items-end gap-4 mt-4 text-gray-600 md:items-center dark:text-gray-300 md:flex-row md:justify-between'>
+            <div
+              className='relative z-10 flex flex-col items-end gap-4 mt-4 text-gray-600 md:items-center dark:text-gray-300 md:flex-row md:justify-between'
+              data-fade='4'
+            >
               <Button
                 onClick={() => {
                   setIsEnglish((b) => !b);
@@ -169,7 +180,10 @@ export default function IndexPage({
                 options={sortOptions}
               />
             </div>
-            <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+            <ul
+              className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'
+              data-fade='5'
+            >
               {currentPosts.length > 0 ? (
                 currentPosts.map((post) => (
                   <BlogCard key={post.slug} post={post} />

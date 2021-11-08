@@ -1,4 +1,7 @@
+import clsx from 'clsx';
 import * as React from 'react';
+
+import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
 import CloudinaryImg from '@/components/CloudinaryImg';
@@ -7,18 +10,20 @@ import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 
 export default function AboutPage() {
+  const isLoaded = useLoaded();
+
   return (
     <Layout>
       <Seo templateTitle='About' />
 
       <main>
-        <section>
+        <section className={clsx(isLoaded && 'fade-in-start')}>
           <div className='py-20 min-h-main layout'>
-            <h2>About</h2>
-            <h1 className='mt-1'>
+            <h2 data-fade='0'>About</h2>
+            <h1 className='mt-1' data-fade='1'>
               <Accent>Theodorus Clarence</Accent>
             </h1>
-            <div className='mt-4'>
+            <div className='mt-4' data-fade='2'>
               <CloudinaryImg
                 className='float-right ml-6 w-36 md:w-72'
                 publicId='theodorusclarence/clarence_gu3cxx.jpg'
@@ -28,7 +33,7 @@ export default function AboutPage() {
                 preview={false}
               />
               <article className='prose dark:prose-dark'>
-                <p>
+                <p data-fade='3'>
                   Hello! I'm Clarence. I started learning web development in May
                   2020, which is the start of the pandemic. I have nothing much
                   to do so I decided to learn web development from a udemy
@@ -39,13 +44,13 @@ export default function AboutPage() {
                   to explore more about web development especially frontend
                   development.
                 </p>
-                <p>
+                <p data-fade='4'>
                   There are a lot of things and technologies to learn in
                   frontend development and I am motivated to learn as much as
                   possible. I enjoy learning something new and getting feedback
                   to make myself better and improve.
                 </p>
-                <p>
+                <p data-fade='5'>
                   In this website I will be writing some blogs and showcase my
                   projects. I believe that writing what I have learned is the
                   best way to remember things, and I can share my knowledge
