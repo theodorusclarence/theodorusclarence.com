@@ -40,6 +40,7 @@
     "react-hook-form": "^7.18.1",
     "react-icons": "^4.3.1",
     "react-image-lightbox": "^5.1.4",
+    "react-intersection-observer": "^8.32.2",
     "react-lite-youtube-embed": "^2.1.0",
     "react-tippy": "^1.4.0",
     "swr": "^1.0.1"
