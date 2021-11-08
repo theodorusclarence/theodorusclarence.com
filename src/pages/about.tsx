@@ -20,11 +20,10 @@ export default function AboutPage() {
             </h1>
             <div className='mt-4'>
               <CloudinaryImg
-                noStyle
-                className='float-right ml-6 w-36 md:w-52'
-                publicId='theodorusclarence/tc-me_dpzlvc.png'
-                width='596'
-                height='882'
+                className='float-right ml-6 w-36 md:w-72'
+                publicId='theodorusclarence/clarence_gu3cxx.jpg'
+                width='1345'
+                height='1511'
                 alt='Photo of me'
                 preview={false}
               />
