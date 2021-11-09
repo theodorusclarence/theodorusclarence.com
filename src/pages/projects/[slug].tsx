@@ -1,7 +1,7 @@
 import { getMDXComponent } from 'mdx-bundler/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import * as React from 'react';
-import { HiLink, HiOutlineEye, HiPlay } from 'react-icons/hi';
+import { HiLink, HiOutlineEye, HiPlay, HiUser } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
 
 import { getFileBySlug, getFiles } from '@/lib/mdx';
@@ -73,12 +73,16 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
             <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
               {frontMatter.description}
             </p>
+
             <div className='flex flex-wrap items-center justify-start gap-3 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
               <div className='flex items-center gap-1'>
                 <HiOutlineEye className='inline-block text-base' />
                 {meta?.views ?? '–––'} views
               </div>
-              <span>-</span>
+              {(frontMatter.github ||
+                frontMatter.youtube ||
+                frontMatter.link) &&
+                ' - '}
               {frontMatter.github && (
                 <CustomLink
                   // onClick={() => trackEvent(`Project Github: ${frontMatter.name}`, 'link')}
@@ -121,6 +125,13 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
                 </CustomLink>
               )}
             </div>
+
+            {frontMatter.category && (
+              <p className='flex items-center justify-start gap-2 mt-2 text-sm text-gray-600 dark:text-gray-300'>
+                <HiUser className='text-lg text-gray-800 dark:text-white' />{' '}
+                {frontMatter.category}
+              </p>
+            )}
 
             <hr className='mt-4 dark:border-gray-600' />
 

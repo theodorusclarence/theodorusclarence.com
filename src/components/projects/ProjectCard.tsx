@@ -25,10 +25,10 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
     >
       <UnstyledLink
         href={`/projects/${project.slug}`}
-        className='block h-full p-4 rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+        className='flex flex-col items-start h-full p-4 rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
       >
         <h4>{project.title}</h4>
-        <p className='text-sm text-gray-700 dark:text-gray-300'>
+        <p className='mb-auto text-sm text-gray-700 dark:text-gray-300'>
           {project.description}
         </p>
         <div className='mt-2'>
@@ -36,7 +36,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
         </div>
 
         <CloudinaryImg
-          className='mt-3 pointer-events-none'
+          className='w-full mt-3 pointer-events-none'
           publicId={`theodorusclarence/${project.banner}`}
           alt={project.title}
           width={1440}

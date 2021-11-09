@@ -46,6 +46,7 @@ export type ProjectFrontmatter = {
   title: string;
   publishedAt: string;
   description: string;
+  category?: string;
   techs: string;
   banner: string;
   link?: string;
