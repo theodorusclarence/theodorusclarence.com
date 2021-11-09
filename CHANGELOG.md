@@ -2,6 +2,97 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.3.0...v1.0.0) (2021-11-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* typescript initial commit
+
+### Features
+
+* add 20-javascript ([2a1cbb6](https://github.com/theodorusclarence/theodorusclarence.com/commit/2a1cbb69eac2808c20785a1bbc2bb1913af67a54))
+* add all blogs ([02d2b09](https://github.com/theodorusclarence/theodorusclarence.com/commit/02d2b09ad2f1cb8f85f91254a55bd12d5bde1a32))
+* add all library ([e60c15e](https://github.com/theodorusclarence/theodorusclarence.com/commit/e60c15ec1ad99c24505d8d4456c54110d6ba9f01))
+* add all projects ([f8e9aef](https://github.com/theodorusclarence/theodorusclarence.com/commit/f8e9aef3c88304e51021b2b6ca7c6ca017444d94))
+* add animation to all pages ([5729206](https://github.com/theodorusclarence/theodorusclarence.com/commit/57292068060b11cef3904307a814c0fe81fbb444))
+* add blog recommendation ([f12f1e3](https://github.com/theodorusclarence/theodorusclarence.com/commit/f12f1e35dece38491e9ac1267ec0e82476f29ac4))
+* add CloudinaryImage and about ([79a3b38](https://github.com/theodorusclarence/theodorusclarence.com/commit/79a3b3873d8a4bee932f84fe2c043e56082ee87d))
+* add CloudinaryImg mdx props ([9149a04](https://github.com/theodorusclarence/theodorusclarence.com/commit/9149a04b2f902cd20ed3d0b8b70819156f313906))
+* add content meta to projects ([7a454f7](https://github.com/theodorusclarence/theodorusclarence.com/commit/7a454f73b76974326ae52ed99e6eda2097eaf6a9))
+* add docs to footer link ([faf1974](https://github.com/theodorusclarence/theodorusclarence.com/commit/faf1974c250f1a4e22d8d7986b5a0ab45154341f))
+* add featuredPosts to home ([e222ce3](https://github.com/theodorusclarence/theodorusclarence.com/commit/e222ce3db7a6ee908f06b9517538dc1fc3c11d0a))
+* add footer ([77e9135](https://github.com/theodorusclarence/theodorusclarence.com/commit/77e91355e570768c2608590bcad119294437db8d))
+* add get all content api ([64c2360](https://github.com/theodorusclarence/theodorusclarence.com/commit/64c2360148eab9bfb80ce0895e8dfb2fac0e32ae))
+* add index animation ([fa3237b](https://github.com/theodorusclarence/theodorusclarence.com/commit/fa3237bcf6ae45ddb251a76d129c9488d5beed0b))
+* add index first section ([0b7ae35](https://github.com/theodorusclarence/theodorusclarence.com/commit/0b7ae35af414cd4aa2d55d1e9da9cac188291f3f))
+* add intro section ([3292986](https://github.com/theodorusclarence/theodorusclarence.com/commit/3292986d433f3835969a3fc7a913074b74e60dc7))
+* add isProd constant ([a409b00](https://github.com/theodorusclarence/theodorusclarence.com/commit/a409b0088e34f5dc7ba47172fc8638d9c081e78b))
+* add library ([d6b9d35](https://github.com/theodorusclarence/theodorusclarence.com/commit/d6b9d356d0b2bcdd5ae992348a15f851ab08038e))
+* add library and refactor toc ([f493d52](https://github.com/theodorusclarence/theodorusclarence.com/commit/f493d52e42028145ce0ae96f1c10e58e5eff1075))
+* add like functionality ([b08c8f1](https://github.com/theodorusclarence/theodorusclarence.com/commit/b08c8f13cc9fcea4e0377555e11e56faa33eb9db))
+* add likes to library card ([955f9a8](https://github.com/theodorusclarence/theodorusclarence.com/commit/955f9a8c087a3e35ae30d573b638d055f5ab08ac))
+* add new tab cursor ([1c6b73e](https://github.com/theodorusclarence/theodorusclarence.com/commit/1c6b73e1f4f5fe25b3a56429c50d896765ad2da2))
+* add newsletter subscribe ([b0a8f5b](https://github.com/theodorusclarence/theodorusclarence.com/commit/b0a8f5b86e4f21ea64cc43e6faf34987722646c6))
+* add og from thcl ([dc30073](https://github.com/theodorusclarence/theodorusclarence.com/commit/dc300737801ddb36cff5830417687ca088513492))
+* add project page ([b2ea6ce](https://github.com/theodorusclarence/theodorusclarence.com/commit/b2ea6ce2006a3cb83af25db81d3bcef775495f4d))
+* add projects and library to home ([1b54862](https://github.com/theodorusclarence/theodorusclarence.com/commit/1b54862d285f464137cbd82bfa0e9208fbf2aef1))
+* add search and language to blog ([303c2ac](https://github.com/theodorusclarence/theodorusclarence.com/commit/303c2ac3fc3b1d1008732079f749daa41de314cc))
+* add search and tags to library ([ad724a5](https://github.com/theodorusclarence/theodorusclarence.com/commit/ad724a596a38b76455fd5686ab1f4bb38717f8a9))
+* add selection style ([ba2127b](https://github.com/theodorusclarence/theodorusclarence.com/commit/ba2127b313f68ced263710f35010cc6dbd496668))
+* add self-host og ([aa415c3](https://github.com/theodorusclarence/theodorusclarence.com/commit/aa415c32ba81f2e0f5ad03d131ea46d7198cd953))
+* add single blog post ([5a330c4](https://github.com/theodorusclarence/theodorusclarence.com/commit/5a330c4bed62b4990609926139a37ad08e1056ac))
+* add single content meta api ([6bfe14f](https://github.com/theodorusclarence/theodorusclarence.com/commit/6bfe14f4cd96da4b5a172fe1c5d8c222dd20ba43))
+* add single project page ([5fb79ef](https://github.com/theodorusclarence/theodorusclarence.com/commit/5fb79ef784dae8452238841df52e407530f8f7e7))
+* add spotify ([91962e8](https://github.com/theodorusclarence/theodorusclarence.com/commit/91962e81dddebf6dd37cc58a2920b4aecfb75264))
+* add subscribe page ([4e9727f](https://github.com/theodorusclarence/theodorusclarence.com/commit/4e9727f92966478a3bb55ab3e5c2924ffcb177ff))
+* add tag logic ([b833a6c](https://github.com/theodorusclarence/theodorusclarence.com/commit/b833a6c2eec9badce149335249d5022743040ff5))
+* add tags on blog ([cf9274d](https://github.com/theodorusclarence/theodorusclarence.com/commit/cf9274d78cb178851f2c784302423c7f90211c85))
+* add tooltip component ([0feb852](https://github.com/theodorusclarence/theodorusclarence.com/commit/0feb8526d41c00c5745853c33a7209851f218145))
+* add transition to image blur ([88e715a](https://github.com/theodorusclarence/theodorusclarence.com/commit/88e715a7df6ffbf9cbbcef782c403bdba8bea89c))
+* add trf page and side-projects ([a298283](https://github.com/theodorusclarence/theodorusclarence.com/commit/a298283fed1e51b9c6b14afa5488849678ba4f0b))
+* add ui for sort blog ([74122a0](https://github.com/theodorusclarence/theodorusclarence.com/commit/74122a0f57ad30c2a3c8192cc2e4f05bde390aea))
+* add umami analytics ([e45e86e](https://github.com/theodorusclarence/theodorusclarence.com/commit/e45e86e7a3be4185636875ad840ebac847b9fd76))
+* add upsert like API ([5c7ec2c](https://github.com/theodorusclarence/theodorusclarence.com/commit/5c7ec2c63c82b256210464873a8e84020d86f365))
+* **blog:** add mindful-commit-message ([c4401c4](https://github.com/theodorusclarence/theodorusclarence.com/commit/c4401c44c571cd43678e1c4eb72edd225116532f))
+* **blog:** add newsletter cta ([b89e929](https://github.com/theodorusclarence/theodorusclarence.com/commit/b89e929770ec866cea0be2d892c46273b824f4d5))
+* change about photo ([6bb6f68](https://github.com/theodorusclarence/theodorusclarence.com/commit/6bb6f6852c8aa71ea9f43188b5112b50a6366f64))
+* change color and add header ([9e303fa](https://github.com/theodorusclarence/theodorusclarence.com/commit/9e303fa18a9101b1328f477d2f68577f90133c05))
+* change footer to flex-wrap ([c81034f](https://github.com/theodorusclarence/theodorusclarence.com/commit/c81034f465b4d3eb51d6316c7967d482a45e7c11))
+* change highlight color ([07c5496](https://github.com/theodorusclarence/theodorusclarence.com/commit/07c5496b351b0f16ba93811678a5baf5d9b5ca54))
+* change og image ([1737f8e](https://github.com/theodorusclarence/theodorusclarence.com/commit/1737f8ef8fad3748962e473521d1b41bc85b4eca))
+* change Seo ([a565947](https://github.com/theodorusclarence/theodorusclarence.com/commit/a5659478278963af1790e260a888df790ec34f83))
+* change tag copywrite ([0c8318d](https://github.com/theodorusclarence/theodorusclarence.com/commit/0c8318d3a141fb5520ef8ad6e0e01a5255178617))
+* dedupe tags by occurence ([5242935](https://github.com/theodorusclarence/theodorusclarence.com/commit/52429353451b394069eeabf62ec053cddb93cc82))
+* increment views on visit ([94caf38](https://github.com/theodorusclarence/theodorusclarence.com/commit/94caf381d4b8b0aa99b2ff063fff6a2230ebb47e))
+* inject views to blog ([60f8851](https://github.com/theodorusclarence/theodorusclarence.com/commit/60f88512dc926eba9162a89da9eb7a37a5ffdbdc))
+* lower scale for card with image ([ea36f15](https://github.com/theodorusclarence/theodorusclarence.com/commit/ea36f15c2be4c1474589ed87c6aaa8f15a6fc93f))
+* mutate count after subscribe ([a0e4d09](https://github.com/theodorusclarence/theodorusclarence.com/commit/a0e4d09d44e7166cba16a423c0ca69a66112644b))
+* only show available tags ([bf4d10b](https://github.com/theodorusclarence/theodorusclarence.com/commit/bf4d10bfbe85472b754d0013c8b6d755d97d2bc4))
+* polish some elements ([dcd73d9](https://github.com/theodorusclarence/theodorusclarence.com/commit/dcd73d92d4b1f5aa3e1c94d802174a87d45b8fa9))
+* remove debounce on search ([8cfe04b](https://github.com/theodorusclarence/theodorusclarence.com/commit/8cfe04bf17389dd1aadd1c12e93751fae07ea3bf))
+* remove image transition ([e3153ee](https://github.com/theodorusclarence/theodorusclarence.com/commit/e3153eefbbe2238e81a55200877e8fd5109f932d))
+* remove og gradient outline ([a8a049a](https://github.com/theodorusclarence/theodorusclarence.com/commit/a8a049a8b35f16203ef751fe4662d3e09a87ce54))
+* rename files ([2101224](https://github.com/theodorusclarence/theodorusclarence.com/commit/2101224dbad9f454b1c7d8d1e8c22fbfed3bcb2e))
+* save sort preference and add icon ([e71c92d](https://github.com/theodorusclarence/theodorusclarence.com/commit/e71c92ddbf76958636484492117b9dd3f99e9835))
+* scroll into view TOC ([530fb7a](https://github.com/theodorusclarence/theodorusclarence.com/commit/530fb7aefa944733d21f4ec07b6b481849d4668f))
+* typescript initial commit ([d6f5fdf](https://github.com/theodorusclarence/theodorusclarence.com/commit/d6f5fdf7e0940d626f17073aaa5ddc35a2d95a7b))
+* update intro section ([88a3cb4](https://github.com/theodorusclarence/theodorusclarence.com/commit/88a3cb4b13a8345a691e7d60afe6f017e022624b))
+* update og ([3d10ecc](https://github.com/theodorusclarence/theodorusclarence.com/commit/3d10eccef21999264ba6526a75e15a22cad12b19))
+* use onLoad and lower transition time ([6762728](https://github.com/theodorusclarence/theodorusclarence.com/commit/6762728084e864c6cde4666e0ac2577bdd3c447b))
+
+
+### Bug Fixes
+
+* change Cloudinary mdx props to optional ([e461281](https://github.com/theodorusclarence/theodorusclarence.com/commit/e4612812060587c3834ac5c62673ed258b514209))
+* code block copy button scrolls ([82ccc02](https://github.com/theodorusclarence/theodorusclarence.com/commit/82ccc023c8b0df48bbf843548610f607f3c9fdc0))
+* like button briefly jumps to 0 ([b1af8e4](https://github.com/theodorusclarence/theodorusclarence.com/commit/b1af8e4c94114397ad9059333751f3d00972788c))
+* react-icons breaking changes ([916f18b](https://github.com/theodorusclarence/theodorusclarence.com/commit/916f18bce53884fa31bb3f8f9953fc648d6bf961))
+* spotify error when playing podcast ([7eac807](https://github.com/theodorusclarence/theodorusclarence.com/commit/7eac807b9aee6d477afa57140699545c58e23c0e))
+* spotify still show when not playing ([7514e13](https://github.com/theodorusclarence/theodorusclarence.com/commit/7514e13230a11bb2db1aa0984b0e83f24716efd7))
+* tag spacing & still highlighted when disabled ([f76baab](https://github.com/theodorusclarence/theodorusclarence.com/commit/f76baab960d1315bc0769c7d8b4c7d66512a7a10))
+* tag still selected on lang toggle ([667827c](https://github.com/theodorusclarence/theodorusclarence.com/commit/667827c8f930a952da04b83c30e59bf7f382a7f1))
+
 ## [0.3.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.2.4...v0.3.0) (2021-09-12)
 
 
