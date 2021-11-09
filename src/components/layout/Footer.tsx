@@ -4,6 +4,8 @@ import { FiMail } from 'react-icons/fi';
 import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
 import { Tooltip } from 'react-tippy';
 
+import { trackEvent } from '@/lib/analytics';
+
 import Accent from '@/components/Accent';
 import Spotify from '@/components/layout/Spotify';
 import UnstyledLink from '@/components/links/UnstyledLink';
@@ -40,7 +42,7 @@ function FooterLinks() {
           className='text-sm font-medium rounded-sm dark:text-gray-200 animated-underline focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
           href={href}
           onClick={() => {
-            // trackEvent(`Footer Link: ${text}`, 'link');
+            trackEvent(`Footer Link: ${text}`, 'link');
           }}
         >
           {text}
@@ -93,7 +95,7 @@ function SocialLinks() {
           className='inline-flex items-center justify-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
           href={social.href}
           onClick={() => {
-            // trackEvent(`Footer Link: ${social.text}`, 'link');
+            trackEvent(`Footer Link: ${social.text}`, 'link');
           }}
         >
           <social.icon className='w-6 h-6 my-auto text-gray-600 align-middle transition-colors dark:text-gray-300 hover:text-primary-300 dark:hover:text-primary-300' />

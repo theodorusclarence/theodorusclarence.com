@@ -663,6 +663,11 @@
   resolved "https://registry.yarnpkg.com/@types/tailwindcss/-/tailwindcss-2.2.1.tgz#891349cc71b5a85208ca5796938d91dd48cc0417"
   integrity sha512-raLwtQF+uul9lsvs7+GUizeNrpxRqbnckIu/va5hzPPwZsImZunkyLFAS/1rwEHhhvFMNiMJmTiP5PPGa0oNJA==
 
+"@types/umami@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/umami/-/umami-0.1.0.tgz#bf76780c8b60183f35a910db34228627d410a655"
+  integrity sha512-nsrcnBdKXTP/koCwL3c+ywQG0lk+uqNo74oIe0FHC109aO4vZoXL0eSQqkUdWa9Hwc3ssFgJINBBCe0MZVYUwg==
+
 "@types/unist@*", "@types/unist@^2.0.0":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"

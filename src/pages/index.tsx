@@ -4,6 +4,7 @@ import * as React from 'react';
 import { IoArrowDownOutline } from 'react-icons/io5';
 import { InView } from 'react-intersection-observer';
 
+import { trackEvent } from '@/lib/analytics';
 import { getAllFilesFrontMatter, getFeatured } from '@/lib/mdx';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
@@ -125,7 +126,11 @@ export default function IndexPage({
                     . In my blog, I'm sharing how I approach something and how
                     my mental model affect my learning about a certain topic.
                   </p>
-                  <ButtonLink className='mt-4' href='#blog'>
+                  <ButtonLink
+                    className='mt-4'
+                    href='#blog'
+                    onClick={() => trackEvent('Home: Read blogs', 'navigate')}
+                  >
                     Read blogs
                   </ButtonLink>
                 </div>
@@ -171,7 +176,11 @@ export default function IndexPage({
                     />
                   ))}
                 </ul>
-                <ButtonLink className='mt-4' href='/blog'>
+                <ButtonLink
+                  className='mt-4'
+                  href='/blog'
+                  onClick={() => trackEvent('Home: See more post', 'navigate')}
+                >
                   See more post
                 </ButtonLink>
               </article>
@@ -201,7 +210,13 @@ export default function IndexPage({
                     />
                   ))}
                 </ul>
-                <ButtonLink className='mt-4' href='/projects'>
+                <ButtonLink
+                  className='mt-4'
+                  href='/projects'
+                  onClick={() =>
+                    trackEvent('Home: See more project', 'navigate')
+                  }
+                >
                   See more project
                 </ButtonLink>
               </article>
@@ -231,7 +246,13 @@ export default function IndexPage({
                     />
                   ))}
                 </ul>
-                <ButtonLink className='mt-4' href='/library'>
+                <ButtonLink
+                  className='mt-4'
+                  href='/library'
+                  onClick={() =>
+                    trackEvent('Home: See more snippets', 'navigate')
+                  }
+                >
                   See more snippets
                 </ButtonLink>
               </article>

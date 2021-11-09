@@ -53,6 +53,7 @@
     "@types/react": "^17.0.30",
     "@types/react-copy-to-clipboard": "^5.0.2",
     "@types/tailwindcss": "^2.2.1",
+    "@types/umami": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "esbuild": "^0.13.12",

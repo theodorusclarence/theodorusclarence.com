@@ -4,6 +4,8 @@ import { useTheme } from 'next-themes';
 import * as React from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 
+import { trackEvent } from '@/lib/analytics';
+
 import UnstyledLink from '@/components/links/UnstyledLink';
 
 type HeaderProps = {
@@ -61,6 +63,7 @@ export default function Header({ large = false }: HeaderProps) {
                     'dark:hover:text-primary-300 group',
                     'focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
                   )}
+                  onClick={() => trackEvent(`Header: ${label}`, 'navigate')}
                 >
                   <span
                     className={clsx(

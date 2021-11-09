@@ -4,6 +4,7 @@ import * as React from 'react';
 import { HiLink, HiOutlineEye, HiPlay, HiUser } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
 
+import { trackEvent } from '@/lib/analytics';
 import { getFileBySlug, getFiles } from '@/lib/mdx';
 import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
@@ -85,7 +86,9 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
                 ' - '}
               {frontMatter.github && (
                 <CustomLink
-                  // onClick={() => trackEvent(`Project Github: ${frontMatter.name}`, 'link')}
+                  onClick={() =>
+                    trackEvent(`Project Github: ${frontMatter.title}`, 'link')
+                  }
                   href={frontMatter.github}
                   className='mt-1'
                 >
@@ -102,7 +105,9 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
                 <CustomLink
                   href={frontMatter.youtube}
                   className='mt-1'
-                  // onClick={() => trackEvent(`Project Video: ${frontMatter.name}`, 'link')}
+                  onClick={() =>
+                    trackEvent(`Project Video: ${frontMatter.title}`, 'link')
+                  }
                 >
                   <span className='inline-flex items-center gap-2'>
                     <HiPlay className='text-xl text-gray-800 dark:text-white' />
@@ -115,8 +120,9 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
                 <CustomLink
                   href={frontMatter.link}
                   className='mt-1'
-
-                  // onClick={() => trackEvent(`Project Live: ${frontMatter.name}`, 'link')}
+                  onClick={() =>
+                    trackEvent(`Project Live: ${frontMatter.title}`, 'link')
+                  }
                 >
                   <span className='inline-flex items-center gap-2'>
                     <HiLink className='text-lg text-gray-800 dark:text-white' />
