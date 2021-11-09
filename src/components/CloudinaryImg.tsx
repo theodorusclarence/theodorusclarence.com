@@ -19,7 +19,7 @@ type CloudinaryImgType = {
     width: number;
     height: number;
   };
-  mdx: boolean;
+  mdx?: boolean;
 } & React.ComponentPropsWithoutRef<'figure'>;
 
 export default function CloudinaryImg({
