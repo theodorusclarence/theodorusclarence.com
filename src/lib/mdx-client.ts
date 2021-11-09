@@ -1,3 +1,8 @@
+import countBy from 'lodash/countBy';
+import map from 'lodash/map';
+import sortBy from 'lodash/sortBy';
+import toPairs from 'lodash/toPairs';
+
 import {
   Frontmatter,
   FrontmatterWithDate,
@@ -36,5 +41,6 @@ export function getTags<T extends Array<FrontmatterWithTags>>(contents: T) {
     (accTags: string[], content) => [...accTags, ...content.tags.split(',')],
     []
   );
-  return Array.from(new Set(tags));
+
+  return map(sortBy(toPairs(countBy(tags)), 1), 0).reverse();
 }
