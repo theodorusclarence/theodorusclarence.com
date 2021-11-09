@@ -19,6 +19,7 @@ type CloudinaryImgType = {
     width: number;
     height: number;
   };
+  mdx: boolean;
 } & React.ComponentPropsWithoutRef<'figure'>;
 
 export default function CloudinaryImg({
@@ -30,6 +31,8 @@ export default function CloudinaryImg({
   className,
   preview = true,
   noStyle = false,
+  mdx = false,
+  style,
   aspect,
   ...rest
 }: CloudinaryImgType) {
@@ -66,7 +69,12 @@ export default function CloudinaryImg({
     <figure
       className={clsx(className, {
         'overflow-hidden rounded shadow-sm dark:shadow-none': !noStyle,
+        'mx-auto': mdx && width <= 800,
       })}
+      style={{
+        ...(mdx && width <= 800 ? { maxWidth: width } : {}),
+        ...style,
+      }}
       {...rest}
     >
       <div

@@ -11,18 +11,13 @@ tags: 'git'
 
 Do you do this?
 
-<figure
-  className='mx-auto rounded-sm shadow-md dark:shadow-none'
-  style={{ maxWidth: 508 }}
->
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/mindful-commit-message/0-bad-example_lf3eop'
-    alt='0-bad-example'
-    width={508}
-    height={284}
-  />
-</figure>
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/mindful-commit-message/0-bad-example_lf3eop'
+  alt='0-bad-example'
+  width={508}
+  height={284}
+/>
 
 Stop. Even if you are working alone and nobody reads your commit, you're eventually going to forget your 3-month-old project.
 
@@ -91,30 +86,23 @@ ps: when doing a normal project, you can add more categories to the changelog if
 
 Handpicking those is grunt work, and nobody wants to do it if you have a bunch of commits. That is why we can use `standard-version` to generate the report.
 
-<figure
-  className='mx-auto rounded-sm shadow-md dark:shadow-none'
-  style={{ maxWidth: 524 }}
->
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/mindful-commit-message/1-standard-version_rhrvwc'
-    alt='1-standard-version'
-    width={524}
-    height={178}
-  />
-</figure>
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/mindful-commit-message/1-standard-version_rhrvwc'
+  alt='1-standard-version'
+  width={524}
+  height={178}
+/>
 
 We can easily run a command, and it will automatically bump the version, generate changelog, commit, and add a tag to our project.
 
-<figure className='overflow-hidden rounded-sm shadow-md dark:shadow-none'>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/mindful-commit-message/2-changelog_i5qge7'
-    alt='2-changelog'
-    width={977}
-    height={371}
-  />
-</figure>
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/mindful-commit-message/2-changelog_i5qge7'
+  alt='2-changelog'
+  width={977}
+  height={371}
+/>
 
 Here is the report that is generated only using our commit, we can also specify what categories we want to include.
 
@@ -198,18 +186,13 @@ Using that set of rules will guarantee a working changelog. But still, whether t
 
 If you are working with some new developers in your team, they might not fully know this convention. While you can give this blog to them 😉, it is a great practice to add a linter for your project, so no one can mess up the commit message.
 
-<figure
-  className='mx-auto rounded-sm shadow-md dark:shadow-none'
-  style={{ maxWidth: 752 }}
->
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/mindful-commit-message/3-commitlint_cxclqa'
-    alt='3-commitlint'
-    width={752}
-    height={300}
-  />
-</figure>
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/mindful-commit-message/3-commitlint_cxclqa'
+  alt='3-commitlint'
+  width={752}
+  height={300}
+/>
 
 This will enforce the use of conventional commit for your commit message.
 

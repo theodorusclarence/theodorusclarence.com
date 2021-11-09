@@ -29,7 +29,7 @@ Penjelasan lengkapnya akan saya jelaskan dengan ilustrasi,
 White Space berarti ruang putih kosong, dengan menambahkan whitespace yang cukup, design kita terasa lega dan tidak crowded. Kita harus memberikan 'breathing room' yang cukup pada design kita.
 
 <CloudinaryImg
-  className='bg-gray-500'
+  mdx
   publicId='theodorusclarence/blogs/btb-ui-fundamental/1_tm864u.jpg'
   alt='Ilustrasi Whitespace'
   width={953}
@@ -43,7 +43,7 @@ Berikan padding yang cukup pada design kalian, pastikan juga padding yang kalian
 Alignment berarti design kamu memiliki design yang sama rata, biasanya di kiri. Dengan menggunakan fundamental ini, design akan terasa lebih rapi.
 
 <CloudinaryImg
-  className='bg-gray-500'
+  mdx
   publicId='theodorusclarence/blogs/btb-ui-fundamental/2_fp6ayr.jpg'
   alt='Ilustrasi Alignment'
   width={953}
@@ -60,17 +60,17 @@ Contoh:
 </section>
 
 <style>
-   .container {
-  	<!-- Width bisa juga diganti dengan padding -->
-     width: 90%;
+  .container {
+    <!-- Width bisa juga diganti dengan padding -->
+    width: 90%;
 
-     max-width: 50rem;
-     margin-left: auto;
-     margin-right: auto;
-   }
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .section {
-  	<!-- tambahkan styling background color disini agar tidak terpotong -->
+  <!-- tambahkan styling background color disini agar tidak terpotong -->
   }
 </style>
 ```
@@ -82,7 +82,7 @@ Contrast adalah perbedaan warna background dengan tulisan text yang kamu miliki.
 > Fun fact: A11y berarti Accessibility, 11 diambil dari jumlah huruf accessibility di tengah huruf a dan y.
 
 <CloudinaryImg
-  className='bg-gray-500'
+  mdx
   publicId='theodorusclarence/blogs/btb-ui-fundamental/3_vrqocr.jpg'
   alt='Ilustrasi Contrast'
   width={953}
@@ -94,7 +94,7 @@ Contrast adalah perbedaan warna background dengan tulisan text yang kamu miliki.
 Scale adalah ukuran tulisan yang kalian gunakan. Gunakanlah ukuran font yang tidak terlalu besar dan tidak terlalu kecil. Untuk font tag `<p>` biasanya adalah `16px`. UI Fundamental **Contrast** dan **Scale** adalah 2 hal yang sangat mempengaruhi WCAG scale.
 
 <CloudinaryImg
-  className='bg-gray-500'
+  mdx
   publicId='theodorusclarence/blogs/btb-ui-fundamental/4_bqcx66.jpg'
   alt='Ilustrasi Scale'
   width={953}
@@ -103,10 +103,12 @@ Scale adalah ukuran tulisan yang kalian gunakan. Gunakanlah ukuran font yang tid
 
 > Jangan membuat pengguna websitemu kesulitan untuk membaca ya!
 
-<img
-  className='mx-auto'
-  src='/images/blogs/btb-ui-fundamental/squint.gif'
-  alt='Ilustrasi Squint'
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/squint_ig4wm3.gif'
+  alt='Squint'
+  width={370}
+  height={272}
 />
 
 ## 5. Typography
@@ -114,7 +116,7 @@ Scale adalah ukuran tulisan yang kalian gunakan. Gunakanlah ukuran font yang tid
 Typography adalah pilihan font yang kita gunakan. Jangan terlalu banyak menggunakan font, biasanya saya menggunakan 1-2 font, cukup menggunakan 1 font sans-serif dan 1 font serif. Gunakan juga font yang menurut kamu bisa meng-komplemen website kamu dengan baik.
 
 <CloudinaryImg
-  className='bg-gray-500'
+  mdx
   publicId='theodorusclarence/blogs/btb-ui-fundamental/5_urgogw.jpg'
   alt='Ilustrasi Typography'
   width={953}
@@ -123,15 +125,13 @@ Typography adalah pilihan font yang kita gunakan. Jangan terlalu banyak mengguna
 
 > Pro tip: Jangan pake comic sans ;)
 
-<figure className='mx-auto' style={{ maxWidth: 400 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-ui-fundamental/6_woi3j8.jpg'
-    alt='Comic Sans'
-    width={400}
-    height={400}
-  />
-</figure>
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/6_woi3j8.jpg'
+  alt='Comic Sans'
+  width={400}
+  height={400}
+/>
 
 ## 6. Color
 
@@ -140,7 +140,7 @@ Warna yang kalian gunakan pada website sangat mempengaruhi penampilan designnya.
 Gunakan website yang memberikan rekomendasi warna seperti [mycolor.space](https://mycolor.space/) dan [coolors](https://coolors.co)
 
 <CloudinaryImg
-  className='bg-gray-500'
+  mdx
   publicId='theodorusclarence/blogs/btb-ui-fundamental/7_zkafqr.jpg'
   alt='Ilustrasi Color'
   width={953}
@@ -152,7 +152,7 @@ Gunakan website yang memberikan rekomendasi warna seperti [mycolor.space](https:
 Visual Hierarchy adalah hal yang sangat penting untuk mendireksikan mata pengguna website kepada alur yang kita inginkan. Berikan font yang lebih besar jika kamu mau membuat tulisanmu menjadi pertama dibaca.
 
 <CloudinaryImg
-  className='bg-gray-500'
+  mdx
   publicId='theodorusclarence/blogs/btb-ui-fundamental/9_upyluo.jpg'
   alt='Ilustrasi Visual Hierarchy'
   width={953}
@@ -161,15 +161,13 @@ Visual Hierarchy adalah hal yang sangat penting untuk mendireksikan mata penggun
 
 Faktanya pengguna website tidak membaca kata per kata dalam website kita, tapi hanya melakukan 'skimming', yaitu melihat teks yang besar atau heading saja.
 
-<figure className='mx-auto' style={{ maxWidth: 400 }}>
-  <CloudinaryImg
-    className='bg-gray-500'
-    publicId='theodorusclarence/blogs/btb-ui-fundamental/8_uap6ow.jpg'
-    alt='Ilustrasi VS'
-    width={400}
-    height={400}
-  />
-</figure>
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/8_uap6ow.jpg'
+  alt='Ilustrasi VS'
+  width={400}
+  height={400}
+/>
 
 ## Kesimpulan
 
