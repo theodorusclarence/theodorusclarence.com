@@ -1,0 +1,105 @@
+---
+title: 'Create React App vs Next.js'
+publishedAt: '2021-01-19'
+description: "What's the difference between Next.js and Create React App?"
+banner: 'nextjs-vs-cra_oql54x'
+tags: 'nextjs,react'
+---
+
+## What is Create React App?
+
+Create React App (CRA) is the standard way that is introduced by [React](https://reactjs.org/). I started learning React using CRA.
+
+## What is Next.js?
+
+Next.js is a framework that is made for React, it has all of the features in React and some new feature that is introduced. Earlier, Next.js is known for [Server Side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) framework. But, on Next.js 10, they released a feature that supports Static Site Generation. Next.js can also use client-side rendering like CRA.
+
+---
+
+## Create React App Strengths
+
+### 1. Easier to deploy
+
+CRA is a static website that doesn't need a node server, we usually fetch the data using fetch API or axios.
+
+### 2. More Familiar
+
+CRA is the first choice when we first started learning React because CRA is simpler and easier to learn, definitely will get you to understand React patterns.
+
+## Next.js Strengths
+
+### 1. Great Performance
+
+By using Static Site Generation (SSG), our website will be significantly faster because it only ships the user the HTML, CSS, and JS files. Different from CRA that gives blank HTML and fetches the data once it loads.
+
+Other than that, in development performance, using Next.js will be so much faster because we didn't need to set up router, all of it already built-in and we only need to implement that by following the [folder structure](https://nextjs.org/docs/routing/introduction).
+
+### 2. Built In API
+
+Next.js also has a [built-in api](https://nextjs.org/docs/api-routes/introduction) in the same app, having these can simulate an express app in Node.js. This really helps because we can directly access the database or call an API directly from a single application.
+
+### 3. Better SEO
+
+SEO or Search Engine Optimization is a process on how to optimize a website so it can be easily searched on a search platform like Google.
+
+By using Next.js, the initial data that was sent is the full HTML, then it will be hydrated by JavaScript functionality so the website can be interactive. This comparison will show the difference in the page source of CRA and Next.js.
+
+### Page Source of Create React App
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-vs-cra/cra_qjy03j.png'
+  width={1552}
+  height={989}
+  alt='Create React App'
+/>
+
+### Page Source of Next.js
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-vs-cra/nextjs_jmmuep.png'
+  width={1552}
+  height={989}
+  alt='Next.js'
+/>
+
+As we can see, Next.js give so much more data in the page source, because all of the content on the website is shipped initially. Different from Create React App where it only gives blank div:
+
+```jsx
+<div id='root'></div>
+```
+
+---
+
+## Create React App Weaknesses
+
+### 1. Only Support Client Side Rendering
+
+CRA can only do one type of rendering which is Client Side Rendering, we lost some flexibility from Next.js when using CRA.
+
+### 2. Need to Setup React Router
+
+By using CRA, we need to setup React Router manually every single time. This is kind of annoying, but you can create a template so you don't need to make it each one.
+
+### 3. Bad SEO
+
+CRA only sends out blank div so it will be harder for the website crawler to get the data.
+
+## Next.js Weaknesses
+
+### 1. Opinionated
+
+Next.js work in its own way, so there are some conventions like folder structure, api route, and others that we need to follow.
+
+### 2. Medium Sized Community
+
+Next.js is a new framework and does not have so many users, so it will be hard sometimes to find resources to learn Next.js deeply.
+
+---
+
+## Do we choose Create React App or Next.js?
+
+Personally, for projects that use authentication, and all of the content lurks behind the authentication gate, I will use Create React App because we don't need the SEO. Usually, a complex website also has a backend application so we don't need to call an API or database.
+
+But, for projects other than that, I will always use Next.js. Next.js was my greatest find and I enjoy my time developing a website with it.

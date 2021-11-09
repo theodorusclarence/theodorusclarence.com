@@ -34,7 +34,7 @@ export default function TrfPage() {
               <Accent>CLARENCE</Accent>
             </h3>
             <CloudinaryImg
-              className='w-full max-w-sm mt-4 overflow-hidden rounded shadow-sm dark:shadow-none'
+              className='w-full max-w-sm mt-4'
               publicId='theodorusclarence/qr-bca_rcbkew.jpg'
               width={992}
               height={886}
