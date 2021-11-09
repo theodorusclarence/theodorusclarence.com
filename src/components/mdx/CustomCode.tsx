@@ -2,8 +2,6 @@ import * as React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { HiCheckCircle, HiClipboard } from 'react-icons/hi';
 
-import Accent from '@/components/Accent';
-
 export function Pre(props: React.ComponentPropsWithRef<'pre'>) {
   return (
     <pre {...props}>
@@ -19,7 +17,7 @@ export function Pre(props: React.ComponentPropsWithRef<'pre'>) {
 }
 
 export default function CustomCode(props: React.ComponentPropsWithRef<'code'>) {
-  const textRef = React.useRef<HTMLSpanElement>(null);
+  const textRef = React.useRef<HTMLDivElement>(null);
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
 
   const language = props.className?.includes('language')
@@ -28,10 +26,19 @@ export default function CustomCode(props: React.ComponentPropsWithRef<'code'>) {
 
   return (
     <code {...props}>
-      <span ref={textRef}>{props.children}</span>
+      {language ? (
+        <div ref={textRef} className='overflow-x-auto'>
+          {props.children}
+        </div>
+      ) : (
+        <span>{props.children}</span>
+      )}
+
       {language && (
         <div className='absolute top-0 px-3 py-1 border border-t-0 border-gray-600 rounded-b-md left-6'>
-          <Accent className='font-medium select-none'>{language}</Accent>
+          <span className='font-medium text-transparent select-none bg-gradient-to-tr from-primary-300 to-primary-400 bg-clip-text'>
+            {language}
+          </span>
         </div>
       )}
       {language && (
