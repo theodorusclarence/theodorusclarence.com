@@ -1,0 +1,80 @@
+---
+title: 'Absolute Import'
+tags: 'nextjs,react'
+description: 'Setting up Absolute Imports with jsconfig'
+---
+
+> Absolute Import is a great way to clean up your imports
+
+## Example
+
+This is the usual way of importing with `..` operator to go back 1 folder:
+
+```jsx
+import Nav from '../../components/Nav';
+```
+
+And this is the clean import using absolute import:
+
+```jsx
+import Nav from '@/components/Nav';
+```
+
+---
+
+# For Next.js
+
+## Add this to root with the filename of `jsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
+  "exclude": ["node_modules", ".next"]
+}
+```
+
+Or you can just use [my Next.js & Tailwindcss starter template](https://github.com/theodorusclarence/nextjs-tailwind-starter)
+
+---
+
+# For Create React App
+
+## Add this to root with the filename of `jsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./components/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/contexts/*": ["./contexts/*"],
+      "@/routes/*": ["./routes/*"]
+    }
+  },
+  "exclude": ["node_modules", "build"]
+}
+```
+
+## And in craco.config.js
+
+```js
+const path = require('path');
+
+module.exports = {
+  // ...existing code
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+};
+```

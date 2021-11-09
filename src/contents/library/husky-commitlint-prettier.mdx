@@ -1,0 +1,103 @@
+---
+title: 'Husky, Commitlint, and Prettier Configuration'
+tags: 'git,prettier'
+description: 'Configuration to check commit message, and run prettier pre-commit'
+---
+
+In this configuration there are 2 things that will be checked
+
+1. Checking the commit message following the [conventional commits](https://theodorusclarence.com/library/conventional-commit-readme), it will fail to commit if the commit message is not following the rule.
+2. Writing prettier changes before each commit. This is done to prevent developers that did not have prettier installed in their machine.
+
+## 1. Initialize Husky
+
+```bash
+npx husky-init && yarn
+```
+
+It will initialize all of the needed files including a sample pre-commit hook.
+
+## 2. Add Commitlint
+
+FIrst, install the dev dependencies
+
+```bash
+yarn add -D @commitlint/config-conventional @commitlint/cli
+```
+
+Then, add this to the husky hook
+
+```bash
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+
+Create commitlint.config.js, you don't need to override the rules if you don't want to
+
+```js
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    //   TODO Add Scope Enum Here
+    // 'scope-enum': [2, 'always', ['yourscope', 'yourscope']],
+    'type-enum': [
+      2,
+      'always',
+      [
+        'feat',
+        'fix',
+        'docs',
+        'chore',
+        'style',
+        'refactor',
+        'ci',
+        'test',
+        'revert',
+        'perf',
+        'vercel',
+      ],
+    ],
+  },
+};
+```
+
+Commit message will be checked before commit now. 🚀
+
+## 3. Add Lint Staged & Prettier
+
+Install dependencies
+
+```bash
+yarn add -D lint-staged prettier
+```
+
+Lint staged is used so prettier will not need to check all of the files, but only the staged files.
+
+Add this to package.json
+
+```json
+{
+  // ...existing code, you can split the html,css,json if you add eslint to configuration
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,html,css,json}": ["yarn prettier --write"]
+  }
+}
+```
+
+Then add this to .husky/pre-commit
+
+```bash
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn lint-staged
+```
+
+You can also add test command here if you want to do test before each commit
+
+## 4. Add postmerge hook
+
+Use this to add hook, so husky will run `yarn` everytime we pull changes.
+
+```bash
+npx husky add .husky/post-merge 'yarn'
+```

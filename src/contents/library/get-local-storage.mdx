@@ -1,0 +1,24 @@
+---
+title: 'getFromLocalStorage'
+tags: 'nextjs'
+description: 'Avoid error if window has not loaded'
+---
+
+> Avoid error if window has not loaded
+
+## Code
+
+```javascript
+export function getFromLocalStorage(key) {
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem(key);
+  }
+  return null;
+}
+```
+
+## Usage
+
+```jsx
+const [token, setToken] = useState(() => getFromLocalStorage('token') || null);
+```

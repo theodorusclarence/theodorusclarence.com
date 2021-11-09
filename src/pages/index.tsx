@@ -249,12 +249,12 @@ export async function getStaticProps() {
   const library = await getAllFilesFrontMatter('library');
 
   const featuredPosts = getFeatured(blogs, [
-    'btb-flex-mental-model',
     'nextjs-fetch-usecase',
     'nextjs-fetch-method',
-    'btb-rem-em',
-    'btb-ui-fundamental',
     'mindful-commit-message',
+    'btb-flex-mental-model',
+    'btb-flexbox-grid',
+    'youtube-list',
   ]);
   const featuredProjects = getFeatured(projects, [
     'ppdbsumsel',
@@ -262,12 +262,12 @@ export async function getStaticProps() {
     'ppdbsumsel',
   ]);
   const featuredLibrary = getFeatured(library, [
-    'seo',
+    'absolute-import',
+    'auth-context',
+    'conventional-commit-readme',
+    'husky-commitlint-prettier',
     'toast',
-    'youtube-embed',
-    'seo',
-    'toast',
-    'youtube-embed',
+    'tailwindcss-basestyle',
   ]);
 
   return {

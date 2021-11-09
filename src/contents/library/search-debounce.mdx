@@ -1,0 +1,46 @@
+---
+title: 'Search Debounce'
+tags: 'nextjs,react'
+description: "Debounce is used so the search input won't fire useEffect each changes"
+---
+
+> Debounce Effect will solves problem on overfetching with input
+
+## Code
+
+```jsx
+const [searchTerm, setSearchTerm] = useState('');
+const [filteredList, setFilteredList] = useState(nrpData);
+
+const handleSearch = (e) => {
+  e.preventDefault();
+  setSearchTerm(e.target.value);
+};
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    const results = nrpData.filter(
+      (data) =>
+        data.nrp.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        data.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredList(results);
+  }, 200);
+
+  return () => clearTimeout(timer);
+}, [searchTerm]);
+```
+
+The useEffect will have a gap of 200ms to fire.
+
+## Usage
+
+To use just put in on the input, and map the list
+
+```jsx
+return (
+    <input value={searchTerm} onChange={handleSearch} type='text' />
+
+    {filteredList.map((item) => (<li keys={item}>{item}</li>))}
+)
+```

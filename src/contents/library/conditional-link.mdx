@@ -1,0 +1,119 @@
+---
+title: 'Conditional Link'
+tags: 'nextjs,react,typescript'
+description: 'Component that can differentiate between internal link or new tab link'
+---
+
+## Usage
+
+This component will detect your href props, if it starts with `https://`, it will direct you to another tab. If it starts with `/` it will use Next.js / React Router Link Component.
+
+## Next.js Code:
+
+```tsx
+// components/UnstyledLink.tsx
+import clsx from 'clsx';
+import Link, { LinkProps } from 'next/link';
+
+export type UnstyledLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  openNewTab?: boolean;
+  className?: string;
+} & React.ComponentPropsWithoutRef<'a'> &
+  LinkProps;
+
+export default function UnstyledLink({
+  children,
+  href,
+  openNewTab,
+  className,
+  ...rest
+}: UnstyledLinkProps) {
+  const isNewTab =
+    openNewTab !== undefined
+      ? openNewTab
+      : href && !href.startsWith('/') && !href.startsWith('#');
+
+  if (!isNewTab) {
+    return (
+      <Link href={href}>
+        <a {...rest} className={className}>
+          {children}
+        </a>
+      </Link>
+    );
+  }
+
+  return (
+    <a
+      target='_blank'
+      rel='noopener noreferrer'
+      href={href}
+      {...rest}
+      className={clsx(className, 'cursor-newtab')}
+    >
+      {children}
+    </a>
+  );
+}
+```
+
+## Create React App Code:
+
+For Create React App with React Router, we need to use Link component from react router
+
+```jsx
+// components/UnstyledLink.jsx
+import { Link } from 'react-router-dom';
+
+export default function UnstyledLink({
+  href,
+  className = '',
+  openNewTab,
+  children,
+  ...rest
+}) {
+  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+
+  // If is internal link, and no override specified
+  if (isInternalLink && openNewTab === undefined) {
+    return (
+      <Link to={href} className={className}>
+        {children}
+      </Link>
+    );
+  }
+
+  // If no override then _blank
+  // if there is override then use the boolean
+  return (
+    <a
+      href={href}
+      className={className}
+      target={openNewTab === undefined || openNewTab ? '_blank' : undefined}
+      rel='noopener noreferrer'
+      {...rest}
+    >
+      {children}
+    </a>
+  );
+}
+```
+
+## Custom Style
+
+To add some classes, I usually make another component such as buttons, hover links, etc.
+
+```jsx
+import UnstyledLink from './UnstyledLink';
+
+export default function CustomLink({ className = '', ...rest }) {
+  return (
+    <UnstyledLink
+      {...rest}
+      className={`inline-flex items-center font-bold hover:text-primary-400 ${className}`}
+    />
+  );
+}
+```
