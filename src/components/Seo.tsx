@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { openGraph } from '@/lib/helper';
 
 const defaultMeta = {
-  title: "Theodorus Clarence's Portfolio – theodorusclarence.com",
+  title: "Theodorus Clarence's Portfolio",
   siteName: 'theodorusclarence.com',
   description:
     'An online portfolio and blog by Theodorus Clarence. Showcase of my projects, and some of my thoughts about website development.',
