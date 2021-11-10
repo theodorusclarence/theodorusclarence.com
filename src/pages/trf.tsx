@@ -3,7 +3,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 import Accent from '@/components/Accent';
 import Button from '@/components/buttons/Button';
-import CloudinaryImg from '@/components/CloudinaryImg';
+import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 

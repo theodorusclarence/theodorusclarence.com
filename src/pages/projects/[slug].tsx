@@ -9,15 +9,15 @@ import { getFileBySlug, getFiles } from '@/lib/mdx';
 import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
-import CloudinaryImg from '@/components/CloudinaryImg';
-import Layout from '@/components/layout/Layout';
-import CustomLink from '@/components/links/CustomLink';
-import Comment from '@/components/mdx/Comment';
-import LikeButton from '@/components/mdx/LikeButton';
-import MDXComponents from '@/components/mdx/MDXComponents';
+import Comment from '@/components/content/Comment';
+import LikeButton from '@/components/content/LikeButton';
+import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
-} from '@/components/mdx/TableOfContents';
+} from '@/components/content/TableOfContents';
+import CloudinaryImg from '@/components/images/CloudinaryImg';
+import Layout from '@/components/layout/Layout';
+import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 
 import { ProjectType } from '@/types/content';

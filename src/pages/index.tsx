@@ -10,13 +10,13 @@ import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
-import BlogCard from '@/components/blog/BlogCard';
+import BlogCard from '@/components/content/blog/BlogCard';
+import LibraryCard from '@/components/content/library/LibraryCard';
+import ProjectCard from '@/components/content/projects/ProjectCard';
 import Layout from '@/components/layout/Layout';
-import LibraryCard from '@/components/library/LibraryCard';
 import ButtonLink from '@/components/links/ButtonLink';
 import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
-import ProjectCard from '@/components/projects/ProjectCard';
 import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
 import Tooltip from '@/components/Tooltip';

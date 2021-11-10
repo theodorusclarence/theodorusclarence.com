@@ -10,13 +10,13 @@ import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
-import BlogCard from '@/components/blog/BlogCard';
-import SubscribeCard from '@/components/blog/SubscribeCard';
 import Button from '@/components/buttons/Button';
+import BlogCard from '@/components/content/blog/BlogCard';
+import SubscribeCard from '@/components/content/blog/SubscribeCard';
+import ContentPlaceholder from '@/components/content/ContentPlaceholder';
+import Tag from '@/components/content/Tag';
 import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
-import ContentPlaceholder from '@/components/mdx/ContentPlaceholder';
-import Tag from '@/components/mdx/Tag';
 import Seo from '@/components/Seo';
 import SortListbox, { SortOption } from '@/components/SortListbox';
 

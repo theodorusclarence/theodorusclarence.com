@@ -10,11 +10,11 @@ import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
+import ContentPlaceholder from '@/components/content/ContentPlaceholder';
+import LibraryCard from '@/components/content/library/LibraryCard';
+import Tag from '@/components/content/Tag';
 import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
-import LibraryCard from '@/components/library/LibraryCard';
-import ContentPlaceholder from '@/components/mdx/ContentPlaceholder';
-import Tag from '@/components/mdx/Tag';
 import Seo from '@/components/Seo';
 import SortListbox, { SortOption } from '@/components/SortListbox';
 
