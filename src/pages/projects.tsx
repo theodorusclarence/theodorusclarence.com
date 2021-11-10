@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 
-import { getAllFilesFrontMatter } from '@/lib/mdx';
+import { getAllFilesFrontmatter } from '@/lib/mdx';
 import { sortByDate } from '@/lib/mdx-client';
 import useLoaded from '@/hooks/useLoaded';
 
@@ -46,7 +46,7 @@ export default function ProjectsPage({
 }
 
 export async function getStaticProps() {
-  const files = await getAllFilesFrontMatter('projects');
+  const files = await getAllFilesFrontmatter('projects');
   const projects = sortByDate(files);
 
   return { props: { projects } };

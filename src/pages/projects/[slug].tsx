@@ -22,11 +22,11 @@ import Seo from '@/components/Seo';
 
 import { ProjectType } from '@/types/content';
 
-export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
+export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   //#region  //*=========== Content Meta ===========
-  const contentSlug = `p_${frontMatter.slug}`;
+  const contentSlug = `p_${frontmatter.slug}`;
   const meta = useContentMeta(contentSlug, { runIncrement: true });
   //#endregion  //*======== Content Meta ===========
 
@@ -56,23 +56,23 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
   return (
     <Layout>
       <Seo
-        templateTitle={frontMatter.title}
-        description={frontMatter.description}
+        templateTitle={frontmatter.title}
+        description={frontmatter.description}
       />
 
       <main>
         <section className=''>
           <div className='layout'>
             <CloudinaryImg
-              publicId={`theodorusclarence/${frontMatter.banner}`}
-              alt={frontMatter.title}
+              publicId={`theodorusclarence/${frontmatter.banner}`}
+              alt={frontmatter.title}
               width={1440}
               height={792}
             />
 
-            <h1 className='mt-4'>{frontMatter.title}</h1>
+            <h1 className='mt-4'>{frontmatter.title}</h1>
             <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
-              {frontMatter.description}
+              {frontmatter.description}
             </p>
 
             <div className='flex flex-wrap items-center justify-start gap-3 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
@@ -80,50 +80,50 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
                 <HiOutlineEye className='inline-block text-base' />
                 {meta?.views ?? '–––'} views
               </div>
-              {(frontMatter.github ||
-                frontMatter.youtube ||
-                frontMatter.link) &&
+              {(frontmatter.github ||
+                frontmatter.youtube ||
+                frontmatter.link) &&
                 ' - '}
-              {frontMatter.github && (
+              {frontmatter.github && (
                 <div className='inline-flex items-center gap-2'>
                   <SiGithub className='text-lg text-gray-800 dark:text-white' />
                   <CustomLink
                     onClick={() =>
-                      trackEvent(`Project Github: ${frontMatter.title}`, 'link')
+                      trackEvent(`Project Github: ${frontmatter.title}`, 'link')
                     }
-                    href={frontMatter.github}
+                    href={frontmatter.github}
                     className='mt-1'
                   >
                     Repository
                   </CustomLink>
                 </div>
               )}
-              {frontMatter.github &&
-                (frontMatter.youtube || frontMatter.link) &&
+              {frontmatter.github &&
+                (frontmatter.youtube || frontmatter.link) &&
                 ' - '}
-              {frontMatter.youtube && (
+              {frontmatter.youtube && (
                 <div className='inline-flex items-center gap-2'>
                   <HiPlay className='text-xl text-gray-800 dark:text-white' />
                   <CustomLink
-                    href={frontMatter.youtube}
+                    href={frontmatter.youtube}
                     className='mt-1'
                     onClick={() =>
-                      trackEvent(`Project Video: ${frontMatter.title}`, 'link')
+                      trackEvent(`Project Video: ${frontmatter.title}`, 'link')
                     }
                   >
                     Demo Video
                   </CustomLink>
                 </div>
               )}
-              {frontMatter.youtube && frontMatter.link && ' - '}
-              {frontMatter.link && (
+              {frontmatter.youtube && frontmatter.link && ' - '}
+              {frontmatter.link && (
                 <div className='inline-flex items-center gap-2'>
                   <HiLink className='text-lg text-gray-800 dark:text-white' />
                   <CustomLink
-                    href={frontMatter.link}
+                    href={frontmatter.link}
                     className='mt-1'
                     onClick={() =>
-                      trackEvent(`Project Live: ${frontMatter.title}`, 'link')
+                      trackEvent(`Project Live: ${frontmatter.title}`, 'link')
                     }
                   >
                     Open Live Site
@@ -132,10 +132,10 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
               )}
             </div>
 
-            {frontMatter.category && (
+            {frontmatter.category && (
               <p className='flex items-center justify-start gap-2 mt-2 text-sm text-gray-600 dark:text-gray-300'>
                 <HiUser className='text-lg text-gray-800 dark:text-white' />{' '}
-                {frontMatter.category}
+                {frontmatter.category}
               </p>
             )}
 
@@ -173,7 +173,7 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
 
             <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink
-                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/projects/${frontMatter.slug}.mdx`}
+                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/projects/${frontmatter.slug}.mdx`}
               >
                 Edit this on GitHub
               </CustomLink>

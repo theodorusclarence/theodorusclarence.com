@@ -48,7 +48,7 @@ export async function getFileBySlug(type: ContentType, slug: string) {
 
   return {
     code,
-    frontMatter: {
+    frontmatter: {
       wordCount: source.split(/\s+/gu).length,
       readingTime: readingTime(source),
       slug: slug || null,
@@ -57,7 +57,7 @@ export async function getFileBySlug(type: ContentType, slug: string) {
   };
 }
 
-export async function getAllFilesFrontMatter<T extends ContentType>(type: T) {
+export async function getAllFilesFrontmatter<T extends ContentType>(type: T) {
   const files = readdirSync(join(process.cwd(), 'src', 'contents', type));
 
   return files.reduce((allPosts: Array<PickFrontmatter<T>>, postSlug) => {
@@ -80,7 +80,7 @@ export async function getAllFilesFrontMatter<T extends ContentType>(type: T) {
 }
 
 export async function getRecommendations(currSlug: string) {
-  const frontmatters = await getAllFilesFrontMatter('blog');
+  const frontmatters = await getAllFilesFrontmatter('blog');
 
   // Get current frontmatter
   const currentFm = frontmatters.find((fm) => fm.slug === currSlug);

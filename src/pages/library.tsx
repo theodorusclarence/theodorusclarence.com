@@ -4,7 +4,7 @@ import * as React from 'react';
 import { GiTechnoHeart } from 'react-icons/gi';
 import { HiSortAscending } from 'react-icons/hi';
 
-import { getAllFilesFrontMatter } from '@/lib/mdx';
+import { getAllFilesFrontmatter } from '@/lib/mdx';
 import { getTags, sortByTitle, sortTitleFn } from '@/lib/mdx-client';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
@@ -166,7 +166,7 @@ export default function LibraryPage({
 }
 
 export async function getStaticProps() {
-  const files = await getAllFilesFrontMatter('library');
+  const files = await getAllFilesFrontmatter('library');
   const snippets = sortByTitle(files);
 
   // Accumulate tags and remove duplicate

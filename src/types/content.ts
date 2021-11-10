@@ -25,7 +25,7 @@ export type InjectedMeta = { views?: number; likes?: number };
 
 export type BlogType = {
   code: string;
-  frontMatter: BlogFrontmatter;
+  frontmatter: BlogFrontmatter;
 };
 
 export type LibraryFrontmatter = {
@@ -38,7 +38,7 @@ export type LibraryFrontmatter = {
 
 export type LibraryType = {
   code: string;
-  frontMatter: LibraryFrontmatter;
+  frontmatter: LibraryFrontmatter;
 };
 
 export type ProjectFrontmatter = {
@@ -56,7 +56,7 @@ export type ProjectFrontmatter = {
 
 export type ProjectType = {
   code: string;
-  frontMatter: ProjectFrontmatter;
+  frontmatter: ProjectFrontmatter;
 };
 
 export type FrontmatterWithTags = BlogFrontmatter | LibraryFrontmatter;

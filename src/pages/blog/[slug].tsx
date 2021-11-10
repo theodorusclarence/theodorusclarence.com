@@ -33,7 +33,7 @@ type SingleBlogPageProps = {
 
 export default function SingleBlogPage({
   code,
-  frontMatter,
+  frontmatter,
   recommendations,
 }: SingleBlogPageProps) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
@@ -44,8 +44,8 @@ export default function SingleBlogPage({
   );
 
   //#region  //*=========== Blog Language ===========
-  const cleanSlug = cleanBlogPrefix(frontMatter.slug);
-  const isEnglish = cleanSlug === frontMatter.slug;
+  const cleanSlug = cleanBlogPrefix(frontmatter.slug);
+  const isEnglish = cleanSlug === frontmatter.slug;
   //#endregion  //*======== Blog Language ===========
 
   //#region  //*=========== Content Meta ===========
@@ -79,8 +79,8 @@ export default function SingleBlogPage({
   return (
     <Layout>
       <Seo
-        templateTitle={frontMatter.title}
-        description={frontMatter.description}
+        templateTitle={frontmatter.title}
+        description={frontmatter.description}
       />
 
       <main>
@@ -88,38 +88,38 @@ export default function SingleBlogPage({
           <div className='layout'>
             <div className='pb-4 dark:border-gray-600'>
               <CloudinaryImg
-                publicId={`theodorusclarence/banner/${frontMatter.banner}`}
-                alt={`Photo from unsplash: ${frontMatter.banner}`}
+                publicId={`theodorusclarence/banner/${frontmatter.banner}`}
+                alt={`Photo from unsplash: ${frontmatter.banner}`}
                 width={1200}
                 height={(1200 * 2) / 5}
                 aspect={{ height: 2, width: 5 }}
               />
 
-              <h1 className='mt-4'>{frontMatter.title}</h1>
+              <h1 className='mt-4'>{frontmatter.title}</h1>
 
               <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
                 Written on{' '}
-                {format(new Date(frontMatter.publishedAt), 'MMMM dd, yyyy')} by
+                {format(new Date(frontmatter.publishedAt), 'MMMM dd, yyyy')} by
                 Theodorus Clarence.
-                {frontMatter.lastUpdated && (
+                {frontmatter.lastUpdated && (
                   <span className='font-medium text-gray-700 dark:text-gray-200'>
                     {' '}
                     Last updated{' '}
-                    {format(new Date(frontMatter.lastUpdated), 'MMMM dd, yyyy')}
+                    {format(new Date(frontmatter.lastUpdated), 'MMMM dd, yyyy')}
                   </span>
                 )}
               </p>
               <div className='flex items-center justify-start gap-2 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
                 <div className='flex items-center gap-1'>
                   <HiOutlineClock className='inline-block text-base' />
-                  <Accent>{frontMatter.readingTime.text}</Accent>
+                  <Accent>{frontmatter.readingTime.text}</Accent>
                 </div>
                 <div className='flex items-center gap-1'>
                   <HiOutlineEye className='inline-block text-base' />
                   <Accent>{meta?.views ?? '–––'} views</Accent>
                 </div>
               </div>
-              {!frontMatter?.englishOnly && (
+              {!frontmatter?.englishOnly && (
                 <CustomLink
                   href={`/blog/${isEnglish ? 'id-' : ''}${cleanSlug}`}
                   className='mt-2'
@@ -182,7 +182,7 @@ export default function SingleBlogPage({
 
             <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink
-                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/blog/${frontMatter.slug}.mdx`}
+                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/blog/${frontmatter.slug}.mdx`}
               >
                 Edit this on GitHub
               </CustomLink>

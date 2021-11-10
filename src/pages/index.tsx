@@ -5,7 +5,7 @@ import { IoArrowDownOutline } from 'react-icons/io5';
 import { InView } from 'react-intersection-observer';
 
 import { trackEvent } from '@/lib/analytics';
-import { getAllFilesFrontMatter, getFeatured } from '@/lib/mdx';
+import { getAllFilesFrontmatter, getFeatured } from '@/lib/mdx';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
 
@@ -265,9 +265,9 @@ export default function IndexPage({
 }
 
 export async function getStaticProps() {
-  const blogs = await getAllFilesFrontMatter('blog');
-  const projects = await getAllFilesFrontMatter('projects');
-  const library = await getAllFilesFrontMatter('library');
+  const blogs = await getAllFilesFrontmatter('blog');
+  const projects = await getAllFilesFrontmatter('projects');
+  const library = await getAllFilesFrontmatter('library');
 
   const featuredPosts = getFeatured(blogs, [
     'nextjs-fetch-usecase',

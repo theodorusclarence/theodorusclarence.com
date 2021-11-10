@@ -20,11 +20,11 @@ import TechIcons, { TechListType } from '@/components/TechIcons';
 
 import { LibraryType } from '@/types/content';
 
-export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
+export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   //#region  //*=========== Content Meta ===========
-  const contentSlug = `l_${frontMatter.slug}`;
+  const contentSlug = `l_${frontmatter.slug}`;
   const meta = useContentMeta(contentSlug, { runIncrement: true });
   //#endregion  //*======== Content Meta ===========
 
@@ -54,17 +54,17 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
   return (
     <Layout>
       <Seo
-        templateTitle={frontMatter.title}
-        description={frontMatter.description}
+        templateTitle={frontmatter.title}
+        description={frontmatter.description}
       />
 
       <main>
         <section className=''>
           <div className='layout'>
             <div className='pb-4 border-b-thin dark:border-gray-600'>
-              <h1 className='mt-4'>{frontMatter.title}</h1>
+              <h1 className='mt-4'>{frontmatter.title}</h1>
               <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
-                {frontMatter.description}
+                {frontmatter.description}
               </p>
               <div className='flex items-center justify-start gap-3 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
                 <div className='flex items-center gap-1'>
@@ -73,7 +73,7 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
                 </div>
                 <span>•</span>
                 <TechIcons
-                  techs={frontMatter.tags.split(',') as Array<TechListType>}
+                  techs={frontmatter.tags.split(',') as Array<TechListType>}
                 />
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function SingleLibraryPage({ code, frontMatter }: LibraryType) {
 
             <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink
-                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/library/${frontMatter.slug}.mdx`}
+                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/library/${frontmatter.slug}.mdx`}
               >
                 Edit this on GitHub
               </CustomLink>
