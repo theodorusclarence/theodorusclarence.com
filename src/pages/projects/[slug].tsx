@@ -85,50 +85,50 @@ export default function SingleProjectPage({ code, frontMatter }: ProjectType) {
                 frontMatter.link) &&
                 ' - '}
               {frontMatter.github && (
-                <CustomLink
-                  onClick={() =>
-                    trackEvent(`Project Github: ${frontMatter.title}`, 'link')
-                  }
-                  href={frontMatter.github}
-                  className='mt-1'
-                >
-                  <span className='inline-flex items-center gap-2'>
-                    <SiGithub className='text-lg text-gray-800 dark:text-white' />
-                    <span>Repository</span>
-                  </span>
-                </CustomLink>
+                <div className='inline-flex items-center gap-2'>
+                  <SiGithub className='text-lg text-gray-800 dark:text-white' />
+                  <CustomLink
+                    onClick={() =>
+                      trackEvent(`Project Github: ${frontMatter.title}`, 'link')
+                    }
+                    href={frontMatter.github}
+                    className='mt-1'
+                  >
+                    Repository
+                  </CustomLink>
+                </div>
               )}
               {frontMatter.github &&
                 (frontMatter.youtube || frontMatter.link) &&
                 ' - '}
               {frontMatter.youtube && (
-                <CustomLink
-                  href={frontMatter.youtube}
-                  className='mt-1'
-                  onClick={() =>
-                    trackEvent(`Project Video: ${frontMatter.title}`, 'link')
-                  }
-                >
-                  <span className='inline-flex items-center gap-2'>
-                    <HiPlay className='text-xl text-gray-800 dark:text-white' />
-                    <span>Demo Video</span>
-                  </span>
-                </CustomLink>
+                <div className='inline-flex items-center gap-2'>
+                  <HiPlay className='text-xl text-gray-800 dark:text-white' />
+                  <CustomLink
+                    href={frontMatter.youtube}
+                    className='mt-1'
+                    onClick={() =>
+                      trackEvent(`Project Video: ${frontMatter.title}`, 'link')
+                    }
+                  >
+                    Demo Video
+                  </CustomLink>
+                </div>
               )}
               {frontMatter.youtube && frontMatter.link && ' - '}
               {frontMatter.link && (
-                <CustomLink
-                  href={frontMatter.link}
-                  className='mt-1'
-                  onClick={() =>
-                    trackEvent(`Project Live: ${frontMatter.title}`, 'link')
-                  }
-                >
-                  <span className='inline-flex items-center gap-2'>
-                    <HiLink className='text-lg text-gray-800 dark:text-white' />
-                    <span>Open Live Site</span>
-                  </span>
-                </CustomLink>
+                <div className='inline-flex items-center gap-2'>
+                  <HiLink className='text-lg text-gray-800 dark:text-white' />
+                  <CustomLink
+                    href={frontMatter.link}
+                    className='mt-1'
+                    onClick={() =>
+                      trackEvent(`Project Live: ${frontMatter.title}`, 'link')
+                    }
+                  >
+                    Open Live Site
+                  </CustomLink>
+                </div>
               )}
             </div>
 

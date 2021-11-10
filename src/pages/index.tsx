@@ -280,7 +280,7 @@ export async function getStaticProps() {
   const featuredProjects = getFeatured(projects, [
     'ppdbsumsel',
     'side-projects',
-    'ppdbsumsel',
+    'love4heroes',
   ]);
   const featuredLibrary = getFeatured(library, [
     'absolute-import',
