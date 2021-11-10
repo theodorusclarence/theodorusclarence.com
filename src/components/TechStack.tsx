@@ -8,24 +8,15 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
-import { Tooltip } from 'react-tippy';
 
 import CustomLink from '@/components/links/CustomLink';
+import Tooltip from '@/components/Tooltip';
 
 export default function TechStack() {
   return (
     <div className='flex space-x-2 md:space-x-4'>
       {stacks.map((tech) => (
-        <Tooltip
-          key={tech.id}
-          trigger='mouseenter'
-          interactive
-          html={
-            <div className='inline-block p-2 text-gray-600 bg-white border rounded-md shadow-md dark:text-gray-200 dark:border-gray-600 dark:bg-dark'>
-              <p>{tech.tooltip}</p>
-            </div>
-          }
-        >
+        <Tooltip key={tech.id} content={<p>{tech.tooltip}</p>}>
           <tech.icon
             key={tech.id}
             className={clsx(

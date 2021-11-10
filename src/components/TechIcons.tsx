@@ -18,7 +18,8 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
-import { Tooltip } from 'react-tippy';
+
+import Tooltip from '@/components/Tooltip';
 
 export type TechListType = keyof typeof techList;
 
@@ -35,16 +36,7 @@ export default function TechIcons({ className, techs }: TechIconsProps) {
         const current = techList[tech];
 
         return (
-          <Tooltip
-            key={tech}
-            trigger='mouseenter'
-            interactive
-            html={
-              <div className='inline-block p-2 text-gray-600 bg-white border rounded-md shadow-md dark:text-gray-200 dark:border-gray-600 dark:bg-dark'>
-                <p>{current.name}</p>
-              </div>
-            }
-          >
+          <Tooltip key={current.name} content={<p>{current.name}</p>}>
             <li className='text-xl text-gray-700 dark:text-gray-200'>
               <current.icon />
             </li>
