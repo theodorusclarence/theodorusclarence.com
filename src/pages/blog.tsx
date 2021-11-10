@@ -4,7 +4,7 @@ import * as React from 'react';
 import { HiCalendar, HiEye } from 'react-icons/hi';
 
 import { getFromSessionStorage } from '@/lib/helper';
-import { getAllFilesFrontMatter } from '@/lib/mdx';
+import { getAllFilesFrontmatter } from '@/lib/mdx';
 import { getTags, sortByDate, sortDateFn } from '@/lib/mdx-client';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
@@ -198,7 +198,7 @@ export default function IndexPage({
 }
 
 export async function getStaticProps() {
-  const files = await getAllFilesFrontMatter('blog');
+  const files = await getAllFilesFrontmatter('blog');
   const posts = sortByDate(files);
 
   // Accumulate tags and remove duplicate
