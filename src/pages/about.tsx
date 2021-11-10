@@ -4,7 +4,7 @@ import * as React from 'react';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
-import CloudinaryImg from '@/components/CloudinaryImg';
+import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';

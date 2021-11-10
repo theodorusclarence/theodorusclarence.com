@@ -12,17 +12,17 @@ import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
-import BlogCard from '@/components/blog/BlogCard';
-import SubscribeCard from '@/components/blog/SubscribeCard';
-import CloudinaryImg from '@/components/CloudinaryImg';
-import Layout from '@/components/layout/Layout';
-import CustomLink from '@/components/links/CustomLink';
-import Comment from '@/components/mdx/Comment';
-import LikeButton from '@/components/mdx/LikeButton';
-import MDXComponents from '@/components/mdx/MDXComponents';
+import BlogCard from '@/components/content/blog/BlogCard';
+import SubscribeCard from '@/components/content/blog/SubscribeCard';
+import Comment from '@/components/content/Comment';
+import LikeButton from '@/components/content/LikeButton';
+import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
-} from '@/components/mdx/TableOfContents';
+} from '@/components/content/TableOfContents';
+import CloudinaryImg from '@/components/images/CloudinaryImg';
+import Layout from '@/components/layout/Layout';
+import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 
 import { BlogFrontmatter, BlogType } from '@/types/content';

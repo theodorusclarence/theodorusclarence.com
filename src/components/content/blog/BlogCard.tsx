@@ -4,9 +4,9 @@ import * as React from 'react';
 import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 
 import Accent from '@/components/Accent';
-import CloudinaryImg from '@/components/CloudinaryImg';
+import Tag from '@/components/content/Tag';
+import CloudinaryImg from '@/components/images/CloudinaryImg';
 import UnstyledLink from '@/components/links/UnstyledLink';
-import Tag from '@/components/mdx/Tag';
 
 import { BlogFrontmatter, InjectedMeta } from '@/types/content';
 

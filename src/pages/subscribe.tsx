@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Accent from '@/components/Accent';
-import SubscribeCard from '@/components/blog/SubscribeCard';
+import SubscribeCard from '@/components/content/blog/SubscribeCard';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 

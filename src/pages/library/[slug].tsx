@@ -8,13 +8,13 @@ import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
-import Layout from '@/components/layout/Layout';
-import CustomLink from '@/components/links/CustomLink';
-import LikeButton from '@/components/mdx/LikeButton';
-import MDXComponents from '@/components/mdx/MDXComponents';
+import LikeButton from '@/components/content/LikeButton';
+import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
-} from '@/components/mdx/TableOfContents';
+} from '@/components/content/TableOfContents';
+import Layout from '@/components/layout/Layout';
+import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import TechIcons, { TechListType } from '@/components/TechIcons';
 

@@ -4,10 +4,10 @@ import { SiSpotify } from 'react-icons/si';
 import { Tooltip } from 'react-tippy';
 import useSWR from 'swr';
 
+import NextImage from '@/components/images/NextImage';
 import UnstyledLink, {
   UnstyledLinkProps,
 } from '@/components/links/UnstyledLink';
-import NextImage from '@/components/NextImage';
 
 import { SpotifyData } from '@/types/spotify';
 

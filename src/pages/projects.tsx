@@ -7,8 +7,8 @@ import { sortByDate } from '@/lib/mdx-client';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
+import ProjectCard from '@/components/content/projects/ProjectCard';
 import Layout from '@/components/layout/Layout';
-import ProjectCard from '@/components/projects/ProjectCard';
 import Seo from '@/components/Seo';
 
 export default function ProjectsPage({
