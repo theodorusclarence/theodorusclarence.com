@@ -8,6 +8,7 @@ import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 import { cleanBlogPrefix } from '@/lib/helper';
 import { getFileBySlug, getFiles, getRecommendations } from '@/lib/mdx';
 import useContentMeta from '@/hooks/useContentMeta';
+import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
@@ -36,6 +37,11 @@ export default function SingleBlogPage({
   recommendations,
 }: SingleBlogPageProps) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
+
+  const populatedRecommendations = useInjectContentMeta(
+    'blog',
+    recommendations
+  );
 
   //#region  //*=========== Blog Language ===========
   const cleanSlug = cleanBlogPrefix(frontMatter.slug);
@@ -155,13 +161,13 @@ export default function SingleBlogPage({
               <Comment />
             </figure>
 
-            {recommendations.length > 0 && (
+            {populatedRecommendations.length > 0 && (
               <div className='mt-20'>
                 <h2>
                   <Accent>Other posts that you might like</Accent>
                 </h2>
                 <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
-                  {recommendations.map((post, i) => (
+                  {populatedRecommendations.map((post, i) => (
                     <BlogCard
                       className={clsx({ 'hidden xl:block': i === 2 })}
                       key={post.slug}
