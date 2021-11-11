@@ -14,7 +14,10 @@ export default function AboutPage() {
 
   return (
     <Layout>
-      <Seo templateTitle='About' />
+      <Seo
+        templateTitle='About'
+        description='Clarence is a front-end developer that started learning in May 2020. He write blogs about his approach and mental model on understanding topics in front-end development.'
+      />
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>

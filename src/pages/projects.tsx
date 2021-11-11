@@ -18,7 +18,10 @@ export default function ProjectsPage({
 
   return (
     <Layout>
-      <Seo templateTitle='Projects' />
+      <Seo
+        templateTitle='Projects'
+        description="Showcase of my projects on front-end development that I'm proud of."
+      />
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>
