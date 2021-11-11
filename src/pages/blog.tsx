@@ -119,7 +119,10 @@ export default function IndexPage({
 
   return (
     <Layout>
-      <Seo templateTitle='Blog' />
+      <Seo
+        templateTitle='Blog'
+        description='Thoughts, mental models, and tutorials about front-end development. Rebuild your mental model so front-end development can be predictable.'
+      />
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>

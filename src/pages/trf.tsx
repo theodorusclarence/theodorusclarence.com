@@ -18,7 +18,7 @@ export default function TrfPage() {
   return (
     <Layout>
       <Seo
-        templateTitle='Rekening Clarence - theodorusclarence.com'
+        templateTitle='Rekening Clarence'
         description='Buka untuk melihat QR Code dan Nomor Rekening Clarence'
         robots='noindex,nofollow'
       />

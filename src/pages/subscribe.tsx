@@ -8,7 +8,10 @@ import Seo from '@/components/Seo';
 export default function SubscribePage() {
   return (
     <Layout>
-      <Seo templateTitle='Subscribe' />
+      <Seo
+        templateTitle='Subscribe'
+        description='Get notified every time there is a new post through your email.'
+      />
 
       <main>
         <section className=''>

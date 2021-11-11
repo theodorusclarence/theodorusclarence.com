@@ -100,7 +100,10 @@ export default function LibraryPage({
 
   return (
     <Layout>
-      <Seo templateTitle='Library' />
+      <Seo
+        templateTitle='Library'
+        description='Some collection of code snippets that I put for easy access, feel free to reuse!'
+      />
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>
