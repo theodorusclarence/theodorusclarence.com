@@ -1,6 +1,7 @@
 ---
 title: 'How to choose between Next.js CSR, SSR, SSG, and ISR'
 publishedAt: '2021-10-19'
+lastUpdated: '2021-11-12'
 description: '4 Metrics and examples of how to choose the right fetch method for the right case.'
 englishOnly: 'true'
 banner: 'jake-oates-aWOXPkhZIIs-unsplash_rchayo'
@@ -210,6 +211,17 @@ Well, we obviously want better performance, so this is not something that you ch
 
 1. Instant: SSG & ISR
 2. Loads before/after render: CSR & SSR
+
+### Editorial
+
+Addition by [Delba de Oliveira](https://www.delbaoliveira.com/).
+
+> This expands on how rendering/data fetching (bringing together your application code and data) affects performance
+
+- **CSR**: Rendering happens on the browser, so users may see a loading spinner while the application is being rendered. The performance (initial load) depends on the **size of the application** and **how much JS is shipped** to the browser.
+- **SSR**: Rendering happens on the server before the result is sent to the browser. There may be **latency** (depending on the server's location) because the request has to go to the server and back.
+- **SSG**: Rendering happens at a built time on the server, the result is **cached** in CDNs closer to users. This helps improve performance because rendering happens once and the result is stored closer to users **(solving latency issues)**.
+- **ISR**: Rendering happens at time intervals and is cached, so it's still **performant** but using ISR ensures data **doesn't become stale**.
 
 ---
 
