@@ -1,6 +1,7 @@
 ---
 title: 'Cara Menampilkan Lagu Now Playing di Spotify dengan Next.js'
 publishedAt: '2021-01-25'
+lastUpdated: '2021-11-12'
 description: 'API Spotify memberikan kita akses untuk mengetahui lagu yang sedang dimainkan di account kamu.'
 banner: 'spotify-now-playing_n37szf'
 tags: 'nextjs'
@@ -176,6 +177,8 @@ npm i querystring
 
 Kemudian, buat api route di /pages/api/spotify.js
 
+Jika anda ingin code TypeScript, anda bisa mengecek codenya di [GitHub](https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/pages/api/spotify.ts)
+
 ```jsx
 // /pages/api/spotify.js
 import querystring from 'querystring';
@@ -219,26 +222,26 @@ export const getNowPlaying = async () => {
 export default async (_, res) => {
   const response = await getNowPlaying();
 
-  if (response.status === 204 || response.status > 400) {
+  if (
+    response.status === 204 ||
+    response.status > 400 ||
+    response.data.currently_playing_type !== 'track'
+  ) {
     return res.status(200).json({ isPlaying: false });
   }
 
-  const song = await response.json();
-  const isPlaying = song.is_playing;
-  const title = song.item.name;
-  const artist = song.item.artists.map((_artist) => _artist.name).join(', ');
-  const album = song.item.album.name;
-  const albumImageUrl = song.item.album.images[0].url;
-  const songUrl = song.item.external_urls.spotify;
+  const data = {
+    isPlaying: response.data.is_playing,
+    title: response.data.item.name,
+    album: response.data.item.album.name,
+    artist: response.data.item.album.artists
+      .map((artist) => artist.name)
+      .join(', '),
+    albumImageUrl: response.data.item.album.images[0].url,
+    songUrl: response.data.item.external_urls.spotify,
+  };
 
-  return res.status(200).json({
-    album,
-    albumImageUrl,
-    artist,
-    isPlaying,
-    songUrl,
-    title,
-  });
+  res.status(200).json(data);
 };
 ```
 
@@ -267,6 +270,8 @@ npm i swr react-icons
 ```
 
 Tambahkan SWR di pages/index.jsx seperti code dibawah:
+
+[TypeScript Version](https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/components/layout/Spotify.tsx)
 
 ```jsx
 import useSWR from 'swr';
