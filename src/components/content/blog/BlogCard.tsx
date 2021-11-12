@@ -72,7 +72,10 @@ export default function BlogCard({
           </div>
           <p className='my-2 text-sm text-gray-600 dark:text-gray-300'>
             <span className='font-bold text-gray-800 dark:text-gray-100'>
-              {format(new Date(post.publishedAt), 'MMMM dd, yyyy')}
+              {format(
+                new Date(post.lastUpdated ?? post.publishedAt),
+                'MMMM dd, yyyy'
+              )}
             </span>
           </p>
           <p className='text-sm text-gray-700 dark:text-gray-300'>
