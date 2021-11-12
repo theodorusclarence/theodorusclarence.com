@@ -18,7 +18,7 @@ import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import TechIcons, { TechListType } from '@/components/TechIcons';
 
-import { LibraryType } from '@/types/content';
+import { LibraryType } from '@/types/frontmatters';
 
 export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);

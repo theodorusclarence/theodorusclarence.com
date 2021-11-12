@@ -7,7 +7,7 @@ import {
   Frontmatter,
   FrontmatterWithDate,
   FrontmatterWithTags,
-} from '@/types/content';
+} from '@/types/frontmatters';
 
 export function sortDateFn<T extends FrontmatterWithDate>(
   contentA: T,

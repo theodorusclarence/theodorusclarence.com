@@ -25,7 +25,7 @@ import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 
-import { BlogFrontmatter, BlogType } from '@/types/content';
+import { BlogFrontmatter, BlogType } from '@/types/frontmatters';
 
 type SingleBlogPageProps = {
   recommendations: BlogFrontmatter[];

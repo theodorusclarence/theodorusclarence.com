@@ -20,7 +20,7 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import SortListbox, { SortOption } from '@/components/SortListbox';
 
-import { BlogFrontmatter, InjectedMeta } from '@/types/content';
+import { BlogFrontmatter, InjectedMeta } from '@/types/frontmatters';
 
 const sortOptions: Array<SortOption> = [
   {

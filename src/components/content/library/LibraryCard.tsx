@@ -6,7 +6,7 @@ import Accent from '@/components/Accent';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import TechIcons, { TechListType } from '@/components/TechIcons';
 
-import { InjectedMeta, LibraryFrontmatter } from '@/types/content';
+import { InjectedMeta, LibraryFrontmatter } from '@/types/frontmatters';
 
 type LibraryCardProps = {
   snippet: LibraryFrontmatter & InjectedMeta;
