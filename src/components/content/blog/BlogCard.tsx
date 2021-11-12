@@ -8,7 +8,7 @@ import Tag from '@/components/content/Tag';
 import CloudinaryImg from '@/components/images/CloudinaryImg';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
-import { BlogFrontmatter, InjectedMeta } from '@/types/content';
+import { BlogFrontmatter, InjectedMeta } from '@/types/frontmatters';
 
 type BlogCardProps = {
   post: BlogFrontmatter & InjectedMeta;

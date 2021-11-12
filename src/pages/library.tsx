@@ -18,7 +18,7 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import SortListbox, { SortOption } from '@/components/SortListbox';
 
-import { LibraryFrontmatter } from '@/types/content';
+import { LibraryFrontmatter } from '@/types/frontmatters';
 
 const sortOptions: Array<SortOption> = [
   {

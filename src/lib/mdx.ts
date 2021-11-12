@@ -9,7 +9,11 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-import { ContentType, Frontmatter, PickFrontmatter } from '@/types/content';
+import {
+  ContentType,
+  Frontmatter,
+  PickFrontmatter,
+} from '@/types/frontmatters';
 
 export async function getFiles(type: ContentType) {
   return readdirSync(join(process.cwd(), 'src', 'contents', type));
