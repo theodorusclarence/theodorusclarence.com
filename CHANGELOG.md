@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v1.0.0...v1.0.1) (2021-11-12)
+
+
+### Features
+
+* add Seo description to pages ([43e8416](https://github.com/theodorusclarence/theodorusclarence.com/commit/43e841632229e003019f35dda37e5e4d547d8eda))
+* **blog:** add editorial on nextjs-fetch-usecase ([77b3e3e](https://github.com/theodorusclarence/theodorusclarence.com/commit/77b3e3e18d799dfb7b055147f84c37d8e68fe614))
+* **blog:** update spotify-now-playing ([f21d807](https://github.com/theodorusclarence/theodorusclarence.com/commit/f21d807fc1f2c779bbb2084f403fe3843f9ea5f3))
+* order blogs by lastUpdated ([f897452](https://github.com/theodorusclarence/theodorusclarence.com/commit/f897452790564d6730f8988302973d2f4f38e8e9))
+* remove header trackEvent ([987477b](https://github.com/theodorusclarence/theodorusclarence.com/commit/987477b7341195099e626991863fe6ab51cf1fbd))
+* remove url on Seo title ([8e6c5df](https://github.com/theodorusclarence/theodorusclarence.com/commit/8e6c5dfde264804cb31a3795177d98f65ca9f70f))
+* reorder header ([a4e6b72](https://github.com/theodorusclarence/theodorusclarence.com/commit/a4e6b72c345e8535a8e0331c60bef88e5ce4685a))
+* use gradient og ([180b818](https://github.com/theodorusclarence/theodorusclarence.com/commit/180b81830bb628b39276ef41e46089f873de68fd))
+
+
+### Bug Fixes
+
+* project links not showing on ios ([29b9450](https://github.com/theodorusclarence/theodorusclarence.com/commit/29b9450f598b557c107aafd4d8015a00f096755a))
+* recommendations have no view count ([b44fa4f](https://github.com/theodorusclarence/theodorusclarence.com/commit/b44fa4fc19d7e58365e3a3a988bab1062e84b56a))
+* scrollspy not highlighted when visiting link ([29c18a2](https://github.com/theodorusclarence/theodorusclarence.com/commit/29c18a26fa1392906aa3e15f5f864bd74e3230a2))
+
 ## [1.0.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v0.3.0...v1.0.0) (2021-11-09)
 
 
