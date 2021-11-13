@@ -1,0 +1,367 @@
+---
+title: 'React Loading State Pattern using Toast & SWR'
+publishedAt: '2021-11-13'
+description: 'Easily manage react loading state with React Hot Toast and SWR custom hooks.'
+englishOnly: 'true'
+banner: 'kai-pilger-1k3vsv7iIIc-unsplash_yis9ys'
+tags: 'nextjs,react,pattern'
+---
+
+## Introduction
+
+Managing the react loading state can be a bit annoying, we need to set it to isLoading before fetching, then set it back to false after it is done. Then we also need to set it up to the button so we can show the loading state, or give some text as an indicator.
+
+Here is what it looks like with the common loading pattern:
+
+```tsx
+const [pokemon, setPokemon] = React.useState<Array<Pokemon>>();
+const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+const getData = () => {
+  setIsLoading(true);
+
+  axios
+    .get<PokemonList>('https://pokeapi.co/api/v2/pokemon?limit=20')
+    .then((res) => {
+      setPokemon(res.data.results);
+    })
+    .finally(() => setIsLoading(false));
+};
+
+return <button disabled={isLoading}>{isLoading ? 'loading' : 'fetch'}</button>;
+```
+
+it is annoying to do, and we didn't even cover error state yet.
+
+## What should we manage in a loading process?
+
+When we are fetching data, we need to do some things so the waiting experience can be more bearable. Here are some things that we can do:
+
+### Loading indicator
+
+Users need to know when their application is in a loading state. This is important so they are not blankly waiting, and get the mindset that they should wait for a bit.
+
+Loading indicator can be a spinner, normal text, some animations, or toast.
+
+### Success indicator
+
+We need to tell the user if the loading has succeeded, so they can continue with their work.
+
+### Error indicator
+
+When the data fetching goes wrong, we have to let the user know about it.
+
+### Blocking action
+
+A common example is when we are submitting a form, we don't want the user to submit twice. We can do that by disabling the button when there is a loading state going on.
+
+Another example is blocking the modal close button when loading, so the user doesn't accidentally close it.
+
+## The easy way
+
+I found that this pattern is the most hassle-free, and we can use custom hooks to grab the loading state.
+
+Here is what we are going to build:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-loading-state-pattern/normal_fetch_using_axios_uqgjxy'
+  alt='normal fetch using axios'
+  width={800}
+  height={515}
+/>
+
+**Video Description:**
+
+1. getData button is clicked, then there is a loading toast showing.
+2. When it is loading, the button is disabled and showing a loading spinner
+3. After 2 seconds, the loading toast turns into an error toast
+4. getData button is clicked again, then there is a loading toast showing
+5. After 2 seconds, the loading toast turns into a success toast, then all the data loads correctly
+
+ps: the wait cursor is kind of weird in the recording.
+
+With this pattern, we get all 4 things covered, **easily**.
+
+1. We get the loading state using toast
+2. We can show error indicator and show the error message from the API
+3. We can show success indicator
+4. Last, all buttons are disabled.
+
+We are using **React Hot Toast** for the loading, success, and error indicator. All of it are managed only using 1 wrapper function like this:
+
+```tsx
+toast.promise(
+  axios
+    .get<PokemonList>('https://pokeapi.co/api/v2/pokemon?limit=20')
+    .then((res) => {
+      setPokemon(res.data.results);
+    }),
+  {
+    loading: 'Loading...',
+    success: 'Data fetched successfully',
+    error: (err: any) =>
+      err?.response?.data?.msg ?? 'Something is wrong, please try again',
+  }
+);
+```
+
+## Configuration
+
+First, we need to install the react-hot-toast
+
+```tsx
+yarn add react-hot-toast
+```
+
+I'm using Next.js for the demo, but the config for CRA is basically the same. Add this to the `_app.tsx`
+
+```tsx
+import { AppProps } from 'next/app';
+
+import '@/styles/globals.css';
+
+import DismissableToast from '@/components/DismissableToast';
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <DismissableToast />
+      <Component {...pageProps} />
+    </>
+  );
+}
+
+export default MyApp;
+```
+
+I added a dismiss button because it doesn't have it by default, you can grab the `DismissableToast` code from [my library](https://theodorusclarence.com/library/toast#dismissabletoast).
+
+### Usage
+
+Let's say we want to fetch data on mount from an external API using Axios.
+
+We just need to wrap the axios call with the toast function.
+
+```tsx
+React.useEffect(() => {
+  toast.promise(
+    axios
+      .get<PokemonList>('https://pokeapi.co/api/v2/pokemon?limit=20')
+      .then((res) => {
+        setPokemon(res.data.results);
+      }),
+    {
+      loading: 'Loading...',
+      success: 'Data fetched successfully',
+      error: (err: any) =>
+        err?.response?.data?.msg ?? 'Something is wrong, please try again',
+    }
+  );
+}, []);
+```
+
+That's it! The toast will show status when loading, and when it is a success or an error.
+
+### Further Reusablity
+
+You can compose it even more by declaring the `defaultToastMessage`, then overriding it if you need to.
+
+```tsx
+export const defaultToastMessage = {
+  loading: 'Loading...',
+  success: 'Data fetched successfully',
+  // you can type this with axios error
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error: (err: any) =>
+    err?.response?.data?.msg ?? 'Something is wrong, please try again',
+};
+
+toast.promise(axios, {
+  ...defaultToastMessage,
+  loading: 'Override loading',
+});
+```
+
+### Accessing loading state
+
+> Now, what if we want to get that loading state to disable a button?
+
+We can do that with toast API that I wrapped in a custom hook.
+
+```tsx
+import { useToasterStore } from 'react-hot-toast';
+
+/**
+ * Hook to get information whether something is loading
+ * @returns true if there is a loading toast
+ * @example const isLoading = useLoadingToast();
+ */
+export default function useLoadingToast(): boolean {
+  const { toasts } = useToasterStore();
+  const isLoading = toasts.some((toast) => toast.type === 'loading');
+  return isLoading;
+}
+```
+
+And we can use it just like this
+
+```tsx
+const isLoading = useLoadingToast();
+
+<button disabled={isLoading}></button>;
+```
+
+With the `isLoading` state, the rest is all your creativity, you can show some skeleton, change the loading text, give loading spinners, anything you like.
+
+### Gotcha: 2 Axios Calls
+
+If you got 2 axios calls, you can chain the next axios call, and add another `then` to get the value.
+
+```tsx {10}
+toast.promise(
+  axios
+    .post('/user/login', data)
+    .then((res) => {
+      const { jwt: token } = res.data.data;
+      tempToken = token;
+      localStorage.setItem('token', token);
+
+      // chaining axios in 1 promise
+      return axios.get('/user/get-user-info');
+    })
+    .then((user) => {
+      const role = user.data.data.user_role;
+      dispatch('LOGIN', { ...user.data.data, token: tempToken });
+
+      history.replace('/');
+    }),
+  {
+    ...defaultToastMessage,
+  }
+);
+```
+
+## SWR Integration
+
+Using SWR to fetch data is even more awesome because we only need to show the loading state on the first fetch. Here is the demo:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-loading-state-pattern/toast-using-swr-fetch_vg8bno'
+  alt='Toast using SWR'
+  width={800}
+  height={514}
+/>
+
+**Video Description:**
+
+1. First time visited, a loading toast is shown then turns into success toast.
+2. When visited for the second time, there is no loading toast and the data is prefilled with cache.
+
+This is the syntax of SWR:
+
+```tsx
+const { data, error } = useSWR<PokemonList>(
+  'https://pokeapi.co/api/v2/pokemon?limit=20'
+);
+```
+
+> Hmm, this is not a promise, how do we use the toast then?
+
+We can use another custom hook ✨
+
+I made this hook so we can wrap the `useSWR` just like the `toast.promise` function.
+
+### useWithToast for SWR
+
+```tsx
+import * as React from 'react';
+import toast from 'react-hot-toast';
+import { SWRResponse } from 'swr';
+
+import { defaultToastMessage } from '@/lib/helper';
+
+import useLoadingToast from '@/hooks/useLoadingToast';
+
+type OptionType = {
+  runCondition?: boolean;
+  loading?: string;
+  success?: string;
+  error?: string;
+};
+
+export default function useWithToast<T, E>(
+  swr: SWRResponse<T, E>,
+  { runCondition = true, ...customMessages }: OptionType = {}
+) {
+  const { data, error } = swr;
+
+  const toastStatus = React.useRef<string>(data ? 'done' : 'idle');
+
+  const toastMessage = {
+    ...defaultToastMessage,
+    ...customMessages,
+  };
+
+  React.useEffect(() => {
+    if (!runCondition) return;
+
+    // if toastStatus is done,
+    // then it is not the first render or the data is already cached
+    if (toastStatus.current === 'done') return;
+
+    if (error) {
+      toast.error(toastMessage.error, { id: toastStatus.current });
+      toastStatus.current = 'done';
+    } else if (data) {
+      toast.success(toastMessage.success, { id: toastStatus.current });
+      toastStatus.current = 'done';
+    } else {
+      toastStatus.current = toast.loading(toastMessage.loading);
+    }
+
+    return () => {
+      toast.dismiss(toastStatus.current);
+    };
+  }, [
+    data,
+    error,
+    runCondition,
+    toastMessage.error,
+    toastMessage.loading,
+    toastMessage.success,
+  ]);
+
+  return { ...swr, isLoading: useLoadingToast() };
+}
+```
+
+In addition, I added the isLoading to the return so we don't need to call the `useLoadingToast` hooks anymore
+
+### Usage
+
+```tsx
+const { data: pokemonData, isLoading } = useWithToast(
+  useSWR<PokemonList>('https://pokeapi.co/api/v2/pokemon?limit=20')
+);
+```
+
+Awesome, it's looking good and clean.
+
+You can still override the toast messages just like this
+
+```tsx
+const { data: pokemonData, isLoading } = useWithToast(
+  useSWR<PokemonList>('https://pokeapi.co/api/v2/pokemon?limit=20'),
+  {
+    loading: 'Override Loading',
+  }
+);
+```
+
+## Conclusion
+
+I hope this can add to your pattern collection.
+
+You can look at the demo source code on [github](https://github.com/theodorusclarence/react-async-pattern), but keep in mind there is additional promise to delay the loading time.
