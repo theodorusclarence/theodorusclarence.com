@@ -4,13 +4,19 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default function count(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     return axios
-      .get<{ count: number }>('https://api.buttondown.email/v1/subscribers', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${process.env.BUTTONDOWN_TOKEN}`,
-        },
+      .get<Array<{ id: number }>>(
+        'https://www.getrevue.co/api/v2/subscribers',
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${process.env.REVUE_TOKEN}`,
+          },
+        }
+      )
+      .then((response) => {
+        const count = response.data.length;
+        res.status(200).json({ count });
       })
-      .then((response) => res.status(200).json({ count: response.data.count }))
       .catch(() => res.status(500).json({ error: 'Something was wrong' }));
   } else {
     return res.status(405).json({ message: 'Method Not Allowed' });

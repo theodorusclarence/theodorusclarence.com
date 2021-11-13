@@ -11,12 +11,12 @@ export default async function handler(
 
     try {
       const response = await axios.post(
-        'https://api.buttondown.email/v1/subscribers',
+        'https://www.getrevue.co/api/v2/subscribers',
         data,
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Token ${process.env.BUTTONDOWN_TOKEN}`,
+            Authorization: `Token ${process.env.REVUE_TOKEN}`,
           },
         }
       );
@@ -24,7 +24,9 @@ export default async function handler(
       return res.status(200).json({ success: response.data });
     } catch (error: unknown | AxiosError) {
       if (axios.isAxiosError(error)) {
-        return res.status(400).json({ message: error?.response?.data?.[0] });
+        return res
+          .status(400)
+          .json({ message: error?.response?.data?.error?.email?.[0] });
       } else {
         return res
           .status(500)

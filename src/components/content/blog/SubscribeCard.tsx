@@ -1,12 +1,12 @@
 import axios, { AxiosError } from 'axios';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import useSWR from 'swr';
 
 import Accent from '@/components/Accent';
 import Button from '@/components/buttons/Button';
+import CustomLink from '@/components/links/CustomLink';
 
 import { newsletterFlag } from '@/constants/env';
 
@@ -33,7 +33,6 @@ export default function SubscribeCard({
   const [errMsg, setErrMsg] = React.useState(
     'Sorry, something went wrong please try again later'
   );
-  const router = useRouter();
 
   const onSubmit = async (data: { email: string }) => {
     setStatus('loading');
@@ -41,7 +40,7 @@ export default function SubscribeCard({
     axios
       .post<{ message: string }>('/api/newsletter/add', {
         email: data.email,
-        referrer_url: router.asPath,
+        double_opt_in: false,
       })
       .then(() => {
         reset();
@@ -50,15 +49,17 @@ export default function SubscribeCard({
       })
       .catch((error: Error | AxiosError) => {
         if (axios.isAxiosError(error)) {
-          if (error.response?.data.message.includes('subscribed')) {
+          if (error.response?.data?.message?.includes('subscribed')) {
             setStatus('subscribed');
           } else {
             setStatus('error');
-            setErrMsg(error.response?.data.message);
+            setErrMsg(
+              error.response?.data.message ?? 'Something is wrong with the API.'
+            );
           }
         } else {
           setStatus('error');
-          setErrMsg('Something is wrong, please try again later');
+          setErrMsg('Something is wrong with the API.');
         }
       });
   };
@@ -108,19 +109,27 @@ export default function SubscribeCard({
             : status === 'subscribed'
             ? 'text-yellow-500'
             : status === 'error'
-            ? 'text-red-500'
+            ? 'text-red-500 dark:text-red-400'
             : 'text-gray-700 dark:text-gray-300'
         )}
       >
-        {status === 'success'
-          ? 'Thanks for subscribing. See you on the email!'
-          : status === 'subscribed'
-          ? 'You have subscribed to the newsletter, stay tuned!'
-          : status === 'error'
-          ? errMsg
-          : status === 'loading'
-          ? 'Loading...'
-          : 'I write 1-2 high quality posts about front-end development each month!'}
+        {status === 'success' ? (
+          'Thanks for subscribing. See you on the email!'
+        ) : status === 'subscribed' ? (
+          'You have subscribed to the newsletter, stay tuned!'
+        ) : status === 'error' ? (
+          <>
+            {errMsg} Sorry! You can subscribe from the{' '}
+            <CustomLink href='https://www.getrevue.co/profile/clarence'>
+              revue website
+            </CustomLink>{' '}
+            instead.
+          </>
+        ) : status === 'loading' ? (
+          'Loading...'
+        ) : (
+          'I write 1-2 high quality posts about front-end development each month!'
+        )}
       </p>
       <p className='mt-2 text-xs text-gray-600 dark:text-gray-300'>
         Join <Accent>{subscriber?.count ?? '-'}</Accent> other subscribers
