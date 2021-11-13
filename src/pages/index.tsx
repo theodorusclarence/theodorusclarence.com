@@ -25,8 +25,10 @@ export default function IndexPage({
   featuredPosts,
   featuredProjects,
   featuredLibrary,
+  introPosts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const populatedPosts = useInjectContentMeta('blog', featuredPosts);
+  const populatedIntro = useInjectContentMeta('blog', introPosts);
   const populatedProjects = useInjectContentMeta('projects', featuredProjects);
   const populatedLibrary = useInjectContentMeta('library', featuredLibrary);
 
@@ -144,11 +146,11 @@ export default function IndexPage({
                         'rotate-3 md:rotate-6 lg:rotate-12',
                         'pointer-events-none md:pointer-events-auto'
                       )}
-                      post={populatedPosts[1]}
+                      post={populatedIntro[1]}
                     />
                     <BlogCard
                       className='mx-auto max-w-[350px]'
-                      post={populatedPosts[0]}
+                      post={populatedIntro[0]}
                     />
                   </ul>
                 </div>
@@ -291,7 +293,12 @@ export async function getStaticProps() {
     'tailwindcss-basestyle',
   ]);
 
+  const introPosts = getFeatured(blogs, [
+    'btb-flex-mental-model',
+    'nextjs-fetch-method',
+  ]);
+
   return {
-    props: { featuredPosts, featuredProjects, featuredLibrary },
+    props: { featuredPosts, featuredProjects, featuredLibrary, introPosts },
   };
 }
