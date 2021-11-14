@@ -1,6 +1,7 @@
 enum EventType {
   'link',
   'navigate',
+  'recommend',
 }
 
 type TrackEvent = (

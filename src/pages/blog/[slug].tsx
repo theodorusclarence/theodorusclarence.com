@@ -5,6 +5,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import * as React from 'react';
 import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 
+import { trackEvent } from '@/lib/analytics';
 import { cleanBlogPrefix } from '@/lib/helper';
 import { getFileBySlug, getFiles, getRecommendations } from '@/lib/mdx';
 import useContentMeta from '@/hooks/useContentMeta';
@@ -169,6 +170,9 @@ export default function SingleBlogPage({
                 <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedRecommendations.map((post, i) => (
                     <BlogCard
+                      onClick={() => {
+                        trackEvent(post.slug, 'recommend');
+                      }}
                       className={clsx({ 'hidden xl:block': i === 2 })}
                       key={post.slug}
                       post={post}
