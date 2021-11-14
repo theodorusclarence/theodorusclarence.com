@@ -46,3 +46,10 @@ export function getFromSessionStorage(key: string) {
   }
   return null;
 }
+
+export function getFromLocalStorage(key: string) {
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem(key);
+  }
+  return null;
+}
