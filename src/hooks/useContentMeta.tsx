@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 import { cacheOnly } from '@/lib/swr';
 
-import { contentMetaFlag } from '@/constants/env';
+import { contentMetaFlag, incrementMetaFlag } from '@/constants/env';
 
 import { ContentMeta, SingleContentMeta } from '@/types/fauna';
 
@@ -40,7 +40,7 @@ export default function useContentMeta(
   );
 
   React.useEffect(() => {
-    if (runIncrement && contentMetaFlag) {
+    if (runIncrement && incrementMetaFlag) {
       incrementViews(slug).then((fetched) => {
         mutate({
           ...fetched,
