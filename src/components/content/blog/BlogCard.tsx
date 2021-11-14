@@ -19,6 +19,7 @@ export default function BlogCard({
   post,
   className,
   checkTagged,
+  onClick,
 }: BlogCardProps) {
   return (
     <li
@@ -29,6 +30,7 @@ export default function BlogCard({
         'animate-shadow',
         className
       )}
+      onClick={onClick}
     >
       <UnstyledLink
         className='block h-full rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
