@@ -18,6 +18,7 @@ import ButtonLink from '@/components/links/ButtonLink';
 import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
+import TC from '@/components/TC';
 import TechStack from '@/components/TechStack';
 import Tooltip from '@/components/Tooltip';
 
@@ -46,14 +47,17 @@ export default function IndexPage({
           )}
         >
           <article className='layout'>
-            <h2 className='text-2xl md:text-4xl' data-fade='1'>
+            <h2 className='text-2xl md:text-4xl 2xl:text-5xl' data-fade='1'>
               Hi!
             </h2>
-            <h1 className='mt-1 text-3xl md:text-5xl' data-fade='2'>
+            <h1
+              className='mt-1 text-3xl md:text-5xl 2xl:text-6xl'
+              data-fade='2'
+            >
               You can call me <Accent>Clarence</Accent>
             </h1>
             <p
-              className='max-w-4xl mt-2 leading-relaxed text-gray-600 dark:text-gray-300'
+              className='max-w-4xl mt-2 leading-relaxed text-gray-600 2xl:text-lg dark:text-gray-300'
               data-fade='3'
             >
               I'm a fast learner and hardworking Informatics Student at Institut
@@ -65,7 +69,9 @@ export default function IndexPage({
             </p>
           </article>
           <div className='mt-12 layout'>
-            <h3 data-fade='4'>Current Favorite Tech Stack</h3>
+            <h3 className='text-xl md:text-3xl 2xl:text-4xl' data-fade='4'>
+              Current Favorite Tech Stack
+            </h3>
             <figure className='mt-2' data-fade='5'>
               <TechStack />
             </figure>
@@ -81,6 +87,14 @@ export default function IndexPage({
           >
             <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce' />
           </UnstyledLink>
+          <TC
+            className={clsx(
+              'absolute right-6 bottom-0',
+              'transform-gpu translate-y-[37%]',
+              'w-[calc(100%-3rem)] md:w-[600px] 2xl:w-[900px]',
+              'z-[-1] opacity-70 dark:opacity-30'
+            )}
+          />
         </section>
 
         <InView triggerOnce rootMargin='-40% 0px'>
