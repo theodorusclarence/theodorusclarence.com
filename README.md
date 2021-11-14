@@ -1,4 +1,4 @@
-![theodorusclarence.com](https://socialify.git.ci/theodorusclarence/theodorusclarence.com/image?description=1&descriptionEditable=A%20personal%20website%20and%20a%20blog%20by%20Theodorus%20Clarence.%20Made%20using%20Next.js%2C%20Tailwind%20CSS%2C%20MDX%2C%20and%20FaunaDB.&font=Inter&logo=https%3A%2F%2Ftheodorusclarence.com%2Ffavicon%2Flarge-og.jpg&owner=1&pattern=Charlie%20Brown&stargazers=1&theme=Dark)
+![theodorusclarence.com](https://socialify.git.ci/theodorusclarence/theodorusclarence.com/image?description=1&logo=https%3A%2F%2Ftheodorusclarence.com%2Ffavicon%2Flarge-og.jpg&owner=1&pattern=Charlie%20Brown&stargazers=1&theme=Dark)
 
 ## Tech Stack
 
