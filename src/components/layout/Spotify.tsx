@@ -18,7 +18,7 @@ export default function Spotify({
   const { data } = useSWR<SpotifyData>('/api/spotify');
 
   return data?.isPlaying ? (
-    <figure className={className}>
+    <figure className={className} data-cy='spotify'>
       <Tooltip
         trigger='mouseenter'
         interactive

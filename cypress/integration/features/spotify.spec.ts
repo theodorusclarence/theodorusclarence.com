@@ -1,0 +1,23 @@
+import { cy, describe, it } from 'local-cypress';
+
+describe('Spotify feature works as expected', () => {
+  it('should not show anything when nothing is playing', () => {
+    cy.intercept('/api/spotify', {
+      fixture: 'spotify/not-playing.json',
+    }).as('spotify');
+    cy.visit('/about');
+    cy.wait('@spotify');
+
+    cy.get('[data-cy=spotify]').should('not.exist');
+  });
+
+  it('should show card when something is playing', () => {
+    cy.intercept('/api/spotify', {
+      fixture: 'spotify/playing.json',
+    }).as('spotify');
+    cy.visit('/about');
+    cy.wait('@spotify');
+
+    cy.get('[data-cy=spotify]').should('exist');
+  });
+});
