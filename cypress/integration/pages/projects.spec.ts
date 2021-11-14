@@ -2,6 +2,9 @@ import { beforeEach, cy, describe, it } from 'local-cypress';
 
 describe('Projects Page', () => {
   beforeEach(() => {
+    cy.window().then((win) =>
+      win.localStorage.setItem('umami.disabled', 'true')
+    );
     cy.visit('/projects');
   });
 
