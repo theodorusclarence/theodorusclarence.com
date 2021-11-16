@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
+import * as React from 'react';
+import { hotjar } from 'react-hotjar';
 import { SWRConfig } from 'swr';
 
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
@@ -10,6 +12,10 @@ import '@/styles/mdx.css';
 import '@/styles/dracula.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  React.useEffect(() => {
+    hotjar.initialize(2702988, 6);
+  }, []);
+
   return (
     <ThemeProvider attribute='class' defaultTheme='dark' enableSystem={false}>
       <SWRConfig
