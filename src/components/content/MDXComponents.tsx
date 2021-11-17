@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 
+import Quiz from '@/components/content/blog/Quiz';
 import CustomCode, { Pre } from '@/components/content/CustomCode';
 import SplitImage, { Split } from '@/components/content/SplitImage';
 import CloudinaryImg from '@/components/images/CloudinaryImg';
@@ -17,6 +18,7 @@ const MDXComponents = {
   SplitImage,
   Split,
   TechIcons,
+  Quiz,
 };
 
 export default MDXComponents;

@@ -18,6 +18,7 @@ import SubscribeCard from '@/components/content/blog/SubscribeCard';
 import Comment from '@/components/content/Comment';
 import LikeButton from '@/components/content/LikeButton';
 import MDXComponents from '@/components/content/MDXComponents';
+import ReloadDevtool from '@/components/content/ReloadDevtool';
 import TableOfContents, {
   HeadingScrollSpy,
 } from '@/components/content/TableOfContents';
@@ -85,6 +86,7 @@ export default function SingleBlogPage({
       />
 
       <main>
+        <ReloadDevtool />
         <section className=''>
           <div className='layout'>
             <div className='pb-4 dark:border-gray-600'>
