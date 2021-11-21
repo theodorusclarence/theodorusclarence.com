@@ -309,10 +309,10 @@
   resolved "https://registry.yarnpkg.com/@fal-works/esbuild-plugin-global-externals/-/esbuild-plugin-global-externals-2.1.2.tgz#c05ed35ad82df8e6ac616c68b92c2282bd083ba4"
   integrity sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==
 
-"@giscus/react@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@giscus/react/-/react-1.0.0.tgz#1c77347372af2d54bdd711dd5445a338f45bfcaa"
-  integrity sha512-KPTGG106meUCRH18IXCZbu4Fdwz3NDnNoesCItIkcYv6wu1ZiWbfeSkuiC8z6sEw+I+JSlXqseRXtjygBy7GJA==
+"@giscus/react@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@giscus/react/-/react-1.0.1.tgz#3fae2b5e00912a76cb136679f6229d3d6ea28898"
+  integrity sha512-vViRGjfmDy9xvRIx+6+hocL3iAipbKx4gxtSpQBzOksDwnZS0QbB+r19bYQ08vw8CfHRwE6ws8AOO9yEUrzUyQ==
   dependencies:
     iframe-resizer-react "^1.1.0"
 
@@ -336,10 +336,10 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.0.tgz#f3933a44e365864f4dad5db94158106d511e8131"
   integrity sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==
 
-"@headlessui/react@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.4.1.tgz#0a8dbb20e1d63dcea55bfc3ab1b87637aaac7777"
-  integrity sha512-gL6Ns5xQM57cZBzX6IVv6L7nsam8rDEpRhs5fg28SN64ikfmuuMgunc+Rw5C1cMScnvFM+cz32ueVrlSFEVlSg==
+"@headlessui/react@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.4.2.tgz#87e264f190dbebbf8dfdd900530da973dad24576"
+  integrity sha512-N8tv7kLhg9qGKBkVdtg572BvKvWhmiudmeEpOCyNwzOsZHCXBtl8AazGikIfUS+vBoub20Fse3BjawXDVPPdug==
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
