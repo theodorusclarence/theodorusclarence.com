@@ -286,11 +286,11 @@ export async function getStaticProps() {
   const library = await getAllFilesFrontmatter('library');
 
   const featuredPosts = getFeatured(blogs, [
+    'react-core-concept-rendering-state',
     'react-loading-state-pattern',
     'nextjs-fetch-method',
     'nextjs-fetch-usecase',
     'btb-flex-mental-model',
-    'btb-flexbox-grid',
     'youtube-list',
   ]);
   const featuredProjects = getFeatured(projects, [
