@@ -1,10 +1,26 @@
+/* eslint-disable no-irregular-whitespace */
 /* eslint-disable no-console */
+
 export default function sayHello() {
   console.log(
-    '%cHello developers!',
-    'font-size: 4rem; color: cyan; font-family: inter; font-weight: 700; background: linear-gradient(to top right, #00e887, #00e0f3); background-clip:text; color: transparent;'
+    '%c██   ██ ███████ ██      ██       ██████      ██████  ███████ ██    ██ ███████ ██       ██████  ██████  ███████ ██████  ██\n' +
+      '%c██   ██ ██      ██      ██      ██    ██     ██   ██ ██      ██    ██ ██      ██      ██    ██ ██   ██ ██      ██   ██ ██\n' +
+      '%c███████ █████   ██      ██      ██    ██     ██   ██ █████   ██    ██ █████   ██      ██    ██ ██████  █████   ██████  ██\n' +
+      '%c██   ██ ██      ██      ██      ██    ██     ██   ██ ██       ██  ██  ██      ██      ██    ██ ██      ██      ██   ██   \n' +
+      '%c██   ██ ███████ ███████ ███████  ██████      ██████  ███████   ████   ███████ ███████  ██████  ██      ███████ ██   ██ ██',
+    'color: #4ee5ae;',
+    'color: #4ee6a8;',
+    'color: #4ee5ac;',
+    'color: #4ee5b4;',
+    'color: #4ee2d9;'
   );
+
   console.log(
-    "Looks like you are interested in the code 👀\nHere is the repo to fulfill your curiosity https://github.com/theodorusclarence/theodorusclarence.com\n\nDon't forget to give it a star! 🌟"
+    '%cLooks like you are interested in the code 👀\nHere is the repo to fulfill your curiosity ' +
+      '%chttps://github.com/theodorusclarence/theodorusclarence.com\n\n' +
+      "%cDon't forget to give it a star! 🌟",
+    'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500;',
+    'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500; color: #4ee5ae;',
+    'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500;'
   );
 }
