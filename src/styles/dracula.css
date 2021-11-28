@@ -447,5 +447,8 @@ pre[class*='language-'] {
 .code-line.highlight-line {
   background-color: rgba(139, 233, 253, 0.14);
   border-left: 2px solid rgb(139, 233, 253);
-  padding-left: 0.1rem;
+}
+
+.code-line {
+  display: block;
 }
