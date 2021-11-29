@@ -126,6 +126,10 @@ const footerLinks = [
     href: 'https://clarence.link/um',
     text: 'Statistics',
   },
+  {
+    href: '/guestbook',
+    text: 'Guestbook',
+  },
 ];
 
 const socials = [
