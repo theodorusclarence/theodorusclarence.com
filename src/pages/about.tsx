@@ -8,6 +8,7 @@ import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
+import TechStack from '@/components/TechStack';
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
@@ -61,13 +62,17 @@ export default function AboutPage() {
                   help!
                 </p>
               </article>
+              <h3 className='mt-12'>Current Favorite Tech Stack</h3>
+              <figure className='mt-2'>
+                <TechStack />
+              </figure>
             </div>
           </div>
         </section>
 
         <section>
-          <div className='layout'>
-            <h2 className='animate-fade-in-initial fade-in-7'>Contact</h2>
+          <div className='py-6 layout'>
+            <h2>Contact</h2>
             <article className='mt-4 prose dark:prose-dark'>
               <p>
                 Do contact me if you need my opinion about web development,

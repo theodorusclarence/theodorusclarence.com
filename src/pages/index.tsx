@@ -19,7 +19,6 @@ import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import TC from '@/components/TC';
-import TechStack from '@/components/TechStack';
 import Tooltip from '@/components/Tooltip';
 
 export default function IndexPage({
@@ -57,28 +56,42 @@ export default function IndexPage({
               You can call me <Accent>Clarence</Accent>
             </h1>
             <p
-              className='max-w-4xl mt-2 leading-relaxed text-gray-600 2xl:text-lg dark:text-gray-300'
+              className={clsx(
+                'max-w-4xl mt-4 text-gray-700 md:mt-6 dark:text-gray-200',
+                'md:text-lg 2xl:text-xl'
+              )}
               data-fade='3'
             >
-              I'm a fast learner and hardworking Informatics Student at Institut
-              Teknologi Sepuluh Nopember.
-              <br />
-              I'm currently really interested in Frontend Development.{' '}
-              <CustomLink href='/about'>Reach me out</CustomLink> to talk more
-              about frontend works!
+              I work with React Ecosystem, and write to teach people how to
+              rebuild and redefine fundamental concepts through mental models.
             </p>
+            <p
+              className='max-w-4xl mt-3 leading-relaxed text-gray-700 md:mt-4 md:text-lg 2xl:text-xl dark:text-gray-200'
+              data-fade='4'
+            >
+              Don't forget to sign my{' '}
+              <CustomLink href='/guestbook'>guestbook</CustomLink>!
+            </p>
+            <div
+              data-fade='5'
+              className='flex flex-wrap gap-4 mt-8 md:!text-lg'
+            >
+              <div className='relative group'>
+                <div
+                  className={clsx(
+                    'absolute -inset-0.5 rounded blur animate-tilt',
+                    'bg-gradient-to-r from-primary-300 to-primary-400',
+                    'dark:from-primary-200 dark:via-primary-300',
+                    'opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200'
+                  )}
+                />
+                <ButtonLink href='#intro'>Read the blog</ButtonLink>
+              </div>
+              <ButtonLink href='/about'>Learn more about me</ButtonLink>
+            </div>
           </article>
-          <div className='mt-12 layout'>
-            <h3 className='text-xl md:text-3xl 2xl:text-4xl' data-fade='4'>
-              Current Favorite Tech Stack
-            </h3>
-            <figure className='mt-2' data-fade='5'>
-              <TechStack />
-            </figure>
-          </div>
           <UnstyledLink
             href='#intro'
-            data-fade='6'
             className={clsx(
               'absolute bottom-2 md:bottom-10 left-1/2 -translate-x-1/2',
               'rounded-md cursor-pointer transition-colors',
@@ -142,13 +155,6 @@ export default function IndexPage({
                     . In my blog, I'm sharing how I approach something and how
                     my mental model affect my learning about a certain topic.
                   </p>
-                  <ButtonLink
-                    className='mt-4'
-                    href='#blog'
-                    onClick={() => trackEvent('Home: Read blogs', 'navigate')}
-                  >
-                    Read blogs
-                  </ButtonLink>
                 </div>
                 <div className='w-full h-full'>
                   <ul className='relative h-full'>
