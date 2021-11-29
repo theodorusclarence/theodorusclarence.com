@@ -27,7 +27,7 @@ export default function ButtonLink({
         'transition duration-100',
         'animate-shadow',
         {
-          'bg-white disabled:bg-gray-200 text-gray-600 dark:text-gray-300 dark:bg-dark dark:disabled:bg-gray-700':
+          'bg-white disabled:bg-gray-200 text-gray-800 dark:text-gray-100 dark:bg-dark dark:disabled:bg-gray-700':
             variant === 'default',
         },
         className
