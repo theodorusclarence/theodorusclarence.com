@@ -8,3 +8,4 @@ export const incrementMetaFlag =
   isProd && getFromLocalStorage('incrementMetaFlag') !== 'false';
 export const spotifyFlag = isProd;
 export const newsletterFlag = isProd;
+export const sayHelloFlag = isProd;
