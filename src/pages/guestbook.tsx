@@ -8,7 +8,10 @@ import Seo from '@/components/Seo';
 export default function GuestbookPage() {
   return (
     <Layout>
-      <Seo templateTitle='Guestbook' />
+      <Seo
+        templateTitle='Guestbook'
+        description='Leave whatever you like to say—message, appreciation, suggestions.'
+      />
 
       <main>
         <section className=''>
