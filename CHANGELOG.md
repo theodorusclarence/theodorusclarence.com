@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v1.0.1...v1.1.0) (2021-11-29)
+
+
+### Features
+
+* add description to guestbook Seo ([b548172](https://github.com/theodorusclarence/theodorusclarence.com/commit/b548172df293f216e4143f8373bdd64dde8b8fae))
+* add gradient illustration ([b7ca2a9](https://github.com/theodorusclarence/theodorusclarence.com/commit/b7ca2a9cf361e88d0899d86b35062b9f10a41cb2))
+* add gradient to sayHello ([fbac61e](https://github.com/theodorusclarence/theodorusclarence.com/commit/fbac61ea64e7a056012bdbb8d81bb2111f0a82bc))
+* add guestbook ([946425a](https://github.com/theodorusclarence/theodorusclarence.com/commit/946425a9e64961cf1788a1e6b3e8e84d3669966a))
+* add incrementMetaFlag ([886345e](https://github.com/theodorusclarence/theodorusclarence.com/commit/886345ebd533fe3aa152358c9e475b7a006286a5))
+* add initial sayHello ([1390fa3](https://github.com/theodorusclarence/theodorusclarence.com/commit/1390fa33e1a1b3d66204aa2ce5087fd8a674c5bc))
+* add Quiz component ([72b42d2](https://github.com/theodorusclarence/theodorusclarence.com/commit/72b42d27ed356d0d357dc2a6d0b1c8c8a042bec8))
+* add ReloadDevtool ([e326768](https://github.com/theodorusclarence/theodorusclarence.com/commit/e326768627503da2ee7c04ed7e47730b94b350c8))
+* add sayHelloFlag ([ae97fbd](https://github.com/theodorusclarence/theodorusclarence.com/commit/ae97fbdd7085a9e9515008d8a4adc8d6fb26eacf))
+* **blog:** add react-core-concept-I ([27651e9](https://github.com/theodorusclarence/theodorusclarence.com/commit/27651e99d3362923033879a5efe052d5325d6020))
+* **blog:** add react-loading-state-pattern ([3caacc9](https://github.com/theodorusclarence/theodorusclarence.com/commit/3caacc98961429af0eda1e83c6a9a5884f5f3d4b))
+* **lib:** add component and hooks to toast ([b7101c5](https://github.com/theodorusclarence/theodorusclarence.com/commit/b7101c51b11eae1c25275a7b5b4986395865d8d3))
+* make highlight full block ([5f12164](https://github.com/theodorusclarence/theodorusclarence.com/commit/5f121642b4022f9e3a1928083f3774d0fe559c73))
+* revamp landing and about page ([2990d17](https://github.com/theodorusclarence/theodorusclarence.com/commit/2990d179539151311863bbc771046669d818b788))
+* track recommendation click rate ([dec2e06](https://github.com/theodorusclarence/theodorusclarence.com/commit/dec2e06fcd2d5447236d9d1a8640665d3869ccbe))
+* use separate variable for intro post ([e73c95d](https://github.com/theodorusclarence/theodorusclarence.com/commit/e73c95d53cf5f1f492c382592dc600d33eb9ef67))
+
 ### [1.0.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v1.0.0...v1.0.1) (2021-11-12)
 
 
