@@ -6134,6 +6134,11 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
+prettier-plugin-sort-class-names@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-sort-class-names/-/prettier-plugin-sort-class-names-3.0.1.tgz#b5a0d96241914a21136846d93400d86573594830"
+  integrity sha512-fJ22RqVrSAfWbY9+VZSbs6Th1Ww98uPC7zYMbo13W4mz/Sn69hERaGBX6/wIvB6QtRjBBnualQmgue5zjpfxJg==
+
 prettier@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
