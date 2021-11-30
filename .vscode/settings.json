@@ -2,6 +2,7 @@
   "css.validate": false,
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "headwind.runOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   }
