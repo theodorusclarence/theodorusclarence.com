@@ -50,7 +50,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
     });
 
     setToc(headingArr);
-  }, []);
+  }, [frontmatter.slug]);
   //#endregion  //*======== Scrollspy ===========
 
   return (
@@ -71,12 +71,12 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
             />
 
             <h1 className='mt-4'>{frontmatter.title}</h1>
-            <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
+            <p className='dark:text-gray-300 mt-2 text-gray-600 text-sm'>
               {frontmatter.description}
             </p>
 
-            <div className='flex flex-wrap items-center justify-start gap-3 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
-              <div className='flex items-center gap-1'>
+            <div className='dark:text-gray-300 flex flex-wrap font-medium gap-3 items-center justify-start mt-2 text-gray-600 text-sm'>
+              <div className='flex gap-1 items-center'>
                 <HiOutlineEye className='inline-block text-base' />
                 {meta?.views ?? '–––'} views
               </div>
@@ -85,8 +85,8 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                 frontmatter.link) &&
                 ' - '}
               {frontmatter.github && (
-                <div className='inline-flex items-center gap-2'>
-                  <SiGithub className='text-lg text-gray-800 dark:text-white' />
+                <div className='gap-2 inline-flex items-center'>
+                  <SiGithub className='dark:text-white text-gray-800 text-lg' />
                   <CustomLink
                     onClick={() =>
                       trackEvent(`Project Github: ${frontmatter.title}`, 'link')
@@ -102,8 +102,8 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                 (frontmatter.youtube || frontmatter.link) &&
                 ' - '}
               {frontmatter.youtube && (
-                <div className='inline-flex items-center gap-2'>
-                  <HiPlay className='text-xl text-gray-800 dark:text-white' />
+                <div className='gap-2 inline-flex items-center'>
+                  <HiPlay className='dark:text-white text-gray-800 text-xl' />
                   <CustomLink
                     href={frontmatter.youtube}
                     className='mt-1'
@@ -117,8 +117,8 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
               )}
               {frontmatter.youtube && frontmatter.link && ' - '}
               {frontmatter.link && (
-                <div className='inline-flex items-center gap-2'>
-                  <HiLink className='text-lg text-gray-800 dark:text-white' />
+                <div className='gap-2 inline-flex items-center'>
+                  <HiLink className='dark:text-white text-gray-800 text-lg' />
                   <CustomLink
                     href={frontmatter.link}
                     className='mt-1'
@@ -133,16 +133,16 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
             </div>
 
             {frontmatter.category && (
-              <p className='flex items-center justify-start gap-2 mt-2 text-sm text-gray-600 dark:text-gray-300'>
-                <HiUser className='text-lg text-gray-800 dark:text-white' />{' '}
+              <p className='dark:text-gray-300 flex gap-2 items-center justify-start mt-2 text-gray-600 text-sm'>
+                <HiUser className='dark:text-white text-gray-800 text-lg' />{' '}
                 {frontmatter.category}
               </p>
             )}
 
-            <hr className='mt-4 dark:border-gray-600' />
+            <hr className='dark:border-gray-600 mt-4' />
 
-            <section className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
-              <article className='w-full mx-auto prose transition-colors projects mdx dark:prose-dark'>
+            <section className='lg:gap-8 lg:grid lg:grid-cols-[auto,250px]'>
+              <article className='dark:prose-dark mdx mx-auto projects prose transition-colors w-full'>
                 <Component
                   components={
                     {
@@ -171,7 +171,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
               <Comment />
             </figure>
 
-            <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
+            <div className='flex flex-col gap-4 items-start mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink
                 href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/projects/${frontmatter.slug}.mdx`}
               >

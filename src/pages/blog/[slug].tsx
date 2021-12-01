@@ -75,7 +75,7 @@ export default function SingleBlogPage({
     });
 
     setToc(headingArr);
-  }, []);
+  }, [frontmatter.slug]);
   //#endregion  //*======== Scrollspy ===========
 
   return (
@@ -89,7 +89,7 @@ export default function SingleBlogPage({
         <ReloadDevtool />
         <section className=''>
           <div className='layout'>
-            <div className='pb-4 dark:border-gray-600'>
+            <div className='dark:border-gray-600 pb-4'>
               <CloudinaryImg
                 publicId={`theodorusclarence/banner/${frontmatter.banner}`}
                 alt={`Photo from unsplash: ${frontmatter.banner}`}
@@ -100,24 +100,24 @@ export default function SingleBlogPage({
 
               <h1 className='mt-4'>{frontmatter.title}</h1>
 
-              <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
+              <p className='dark:text-gray-300 mt-2 text-gray-600 text-sm'>
                 Written on{' '}
                 {format(new Date(frontmatter.publishedAt), 'MMMM dd, yyyy')} by
                 Theodorus Clarence.
                 {frontmatter.lastUpdated && (
-                  <span className='font-medium text-gray-700 dark:text-gray-200'>
+                  <span className='dark:text-gray-200 font-medium text-gray-700'>
                     {' '}
                     Last updated{' '}
                     {format(new Date(frontmatter.lastUpdated), 'MMMM dd, yyyy')}
                   </span>
                 )}
               </p>
-              <div className='flex items-center justify-start gap-2 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
-                <div className='flex items-center gap-1'>
+              <div className='dark:text-gray-300 flex font-medium gap-2 items-center justify-start mt-2 text-gray-600 text-sm'>
+                <div className='flex gap-1 items-center'>
                   <HiOutlineClock className='inline-block text-base' />
                   <Accent>{frontmatter.readingTime.text}</Accent>
                 </div>
-                <div className='flex items-center gap-1'>
+                <div className='flex gap-1 items-center'>
                   <HiOutlineEye className='inline-block text-base' />
                   <Accent>{meta?.views ?? '–––'} views</Accent>
                 </div>
@@ -134,8 +134,8 @@ export default function SingleBlogPage({
 
             <hr className='dark:border-gray-600' />
 
-            <section className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
-              <article className='w-full mx-auto mt-4 prose transition-colors mdx dark:prose-dark'>
+            <section className='lg:gap-8 lg:grid lg:grid-cols-[auto,250px]'>
+              <article className='dark:prose-dark mdx mt-4 mx-auto prose transition-colors w-full'>
                 <Component
                   components={
                     {
@@ -169,7 +169,7 @@ export default function SingleBlogPage({
                 <h2>
                   <Accent>Other posts that you might like</Accent>
                 </h2>
-                <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+                <ul className='gap-4 grid mt-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedRecommendations.map((post, i) => (
                     <BlogCard
                       onClick={() => {
@@ -186,7 +186,7 @@ export default function SingleBlogPage({
 
             <SubscribeCard className='mt-12' title='Enjoying this post?' />
 
-            <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
+            <div className='flex flex-col gap-4 items-start mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink
                 href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/blog/${frontmatter.slug}.mdx`}
               >

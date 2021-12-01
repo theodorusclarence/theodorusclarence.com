@@ -48,7 +48,7 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
     });
 
     setToc(headingArr);
-  }, []);
+  }, [frontmatter.slug]);
   //#endregion  //*======== Scrollspy ===========
 
   return (
@@ -61,13 +61,13 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
       <main>
         <section className=''>
           <div className='layout'>
-            <div className='pb-4 border-b-thin dark:border-gray-600'>
+            <div className='border-b-thin dark:border-gray-600 pb-4'>
               <h1 className='mt-4'>{frontmatter.title}</h1>
-              <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
+              <p className='dark:text-gray-300 mt-2 text-gray-600 text-sm'>
                 {frontmatter.description}
               </p>
-              <div className='flex items-center justify-start gap-3 mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
-                <div className='flex items-center gap-1'>
+              <div className='dark:text-gray-300 flex font-medium gap-3 items-center justify-start mt-2 text-gray-600 text-sm'>
+                <div className='flex gap-1 items-center'>
                   <HiOutlineEye className='inline-block text-base' />
                   <Accent>{meta?.views ?? '–––'} views</Accent>
                 </div>
@@ -80,8 +80,8 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
 
             <hr className='dark:border-gray-600' />
 
-            <section className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
-              <article className='w-full mx-auto mt-4 prose transition-colors mdx dark:prose-dark'>
+            <section className='lg:gap-8 lg:grid lg:grid-cols-[auto,250px]'>
+              <article className='dark:prose-dark mdx mt-4 mx-auto prose transition-colors w-full'>
                 <Component
                   components={
                     {
@@ -106,7 +106,7 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
               </aside>
             </section>
 
-            <div className='flex flex-col items-start gap-4 mt-8 md:flex-row-reverse md:justify-between'>
+            <div className='flex flex-col gap-4 items-start mt-8 md:flex-row-reverse md:justify-between'>
               <CustomLink
                 href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/library/${frontmatter.slug}.mdx`}
               >
