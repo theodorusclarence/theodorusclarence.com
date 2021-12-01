@@ -1,6 +1,7 @@
 ---
 title: 'Styling Best Practices untuk Tailwind CSS'
 publishedAt: '2021-05-15'
+lastUpdated: '2021-12-1'
 description: 'Tailwind CSS sangat membantu saat kita ingin develop website yang memiliki design konsisten dan dalam jangka waktu yang cepat.'
 banner: 'mitchell-luo-j0r6nURLcAg-unsplash_u51v7i'
 tags: 'tailwindcss'
@@ -65,7 +66,25 @@ Dibawah ini adalah demo untuk layout class, kamu juga bisa [check codepennya](ht
   height={489}
 />
 
-## 2. Tambahkan base style
+## 2. Jangan menggunakan padding horizontal untuk layouting
+
+Ini adalah **preferensi**, tapi saya tidak menggunakan padding horizontal untuk layouting, contohnya:
+
+```html
+<section class="px-8">
+  <h1>Heading</h1>
+</section>
+
+<section class="px-8">
+  <h1>Heading</h1>
+</section>
+```
+
+Saya menghindari karena kita memaksakan sebuah convention baru pada code kita, kita harus mengingat berapa paddingnya. Misalnya, kita memiliki navbar, content, dan footer, di dalam 3 konten tersebut kita harus menggunakan padding yang sama untuk membuat tampilan menjadi konsisten.
+
+Saya menyarankan penggunaan `.layout` sehingga anda tidak perlu memantain sebuah convention baru.
+
+## 3. Tambahkan base style
 
 Tailwincss memiliki feature yang bernama [Preflight](https://tailwindcss.com/docs/preflight), dimana merupakan set of base styles untuk project yang didesign untuk menyamaratakan antar cross-browser dan membuat lebih mudah dengan menambahkan base style.
 
@@ -78,30 +97,30 @@ Saya memiliki preconfigured base style yang biasanya saya tambahkan ke seluruh p
 ```css
 @layer base {
   h1 {
-    @apply text-3xl font-bold md:text-5xl font-primary;
+    @apply font-bold font-primary text-3xl md:text-5xl;
   }
 
   h2 {
-    @apply text-2xl font-bold md:text-4xl font-primary;
+    @apply font-bold font-primary text-2xl md:text-4xl;
   }
 
   h3 {
-    @apply text-xl font-bold md:text-3xl font-primary;
+    @apply font-bold font-primary text-xl md:text-3xl;
   }
 
   h4 {
-    @apply text-lg font-bold font-primary;
+    @apply font-bold font-primary text-lg;
   }
 
   body {
-    @apply text-sm font-primary md:text-base;
+    @apply font-primary text-sm md:text-base;
   }
 }
 ```
 
 Style ini akan menambahkan responsive font-size, dan menambahkan font-family yang kamu gunakan. **Jangan lupa untuk mengconfigure `font-primary` di tailwind config, atau gunakan font-sans**
 
-## 3. Whitespace
+## 4. Whitespace
 
 Sama seperti sebelumnya, karena preflight, default margin dihilangkan dari base style. Maka kita harus menambahkan margin sendiri. Biasanya saya `mb-2` dam `mb-4` cukup.
 
@@ -137,7 +156,23 @@ Tailwind CSS Space Between kurang lebih melakukan yang sama, tapi menggunakan `r
 </div>
 ```
 
-## 4. Gunakan component dan map function
+### Update
+
+Dengan support `gap` dari [Safari](https://caniuse.com/flexbox-gap), kita bisa menggunakan `gap` dengan `flex` sekarang, saya lebih suka menggunakan `gap` karena tidak terbatas hanya pada 1 arah.
+
+**IE** masih belum disupport, jadi hati-hati untuk penggunaan.
+
+```html
+<!-- Using Flex & Gap -->
+<div class="flex flex-col gap-2">
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+</div>
+```
+
+## 5. Gunakan component dan map function
 
 Saya biasanya menggunakan React, maka DRY code dapat lebih mudahdicapai dengan mapping value, dan menggunakan components. Contohnya adalah button component
 
@@ -180,7 +215,7 @@ export default function Nav() {
           {links.map(({ href, label }) => (
             <li key={`${href}${label}`}>
               <Link href={href}>
-                <a className='text-white hover:text-green-400'>{label}</a>
+                <a className='hover:text-green-400 text-white'>{label}</a>
               </Link>
             </li>
           ))}
@@ -192,6 +227,43 @@ export default function Nav() {
 ```
 
 Notice penggunaan space between untuk mereduce class yang digunakan. Code ini saya ambil dari website ini, codenya dapat [diakses di github](https://github.com/theodorusclarence/theodorusclarence.com). Kindly star kalo membantu!
+
+## 6. Gunakan clsx untuk merge class
+
+Ketika kita mengabstraksi code ke dalam component, akan lebih mudah jika kita menggabungkan class dari component dengan panggilan JSXnya.
+
+Saya biasanya menghindari penggunaan spacing class di dalam component, saya lebih suka menggabungkannya dengan props. Dengan demikian, kita tidak perlu mengganti spacing class setiap saat dan kita bisa menggunakan spacing class yang berbeda.
+
+```tsx
+import clsx from 'clsx';
+import * as React from 'react';
+
+export default function Tag({
+  children,
+  className,
+  ...rest
+}: React.ComponentPropsWithoutRef<'button'>) {
+  return (
+    <button
+      className={clsx(
+        className,
+        'font-medium inline-block px-1.5 py-0.5 rounded-md transition-colors',
+        'bg-gray-100 disabled:bg-gray-200 disabled:text-gray-300 hover:text-black text-gray-700',
+        'disabled:cursor-not-allowed focus-visible:ring focus-visible:ring-primary-300 focus:outline-none'
+      )}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+```tsx
+<Tag className='mt-4'>Tag</Tag>
+```
+
+Dengan clsx, kita juga bisa menggabung-gabungkan class berdasarkan variant. Di component yang lebih complex, class bisa sangat panjang, dan kita dapat memisahkannya supaya lebih mudah dibaca.
 
 ## Install Tailwind CSS Injector Addons
 
