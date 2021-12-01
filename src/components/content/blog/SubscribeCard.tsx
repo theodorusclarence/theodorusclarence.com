@@ -76,7 +76,7 @@ export default function SubscribeCard({
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='flex items-end gap-2 mt-2'
+        className='flex gap-2 items-end mt-2'
       >
         <div className='flex-grow'>
           <label className='text-sm font-medium' htmlFor='email'>
@@ -86,10 +86,10 @@ export default function SubscribeCard({
             {...register('email')}
             className={clsx(
               'mt-2',
-              'dark:bg-dark w-full rounded-md',
+              'w-full rounded-md dark:bg-dark',
               'border border-gray-300 dark:border-gray-600',
               'text-sm md:text-base',
-              'focus:outline-none focus:ring-0 focus:border-primary-300 dark:focus:border-primary-300'
+              'dark:focus:border-primary-300 focus:border-primary-300 focus:ring-0 focus:outline-none'
             )}
             type='email'
             placeholder='Email'

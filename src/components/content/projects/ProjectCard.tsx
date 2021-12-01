@@ -15,7 +15,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
   return (
     <li
       className={clsx(
-        'rounded-md project-card md:w-full',
+        'project-card rounded-md md:w-full',
         'border dark:border-gray-600',
         'transform-gpu scale-100 hover:scale-[1.02] active:scale-[0.97]',
         'transition duration-100',
@@ -25,7 +25,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
     >
       <UnstyledLink
         href={`/projects/${project.slug}`}
-        className='flex flex-col items-start h-full p-4 rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+        className='flex flex-col items-start p-4 h-full rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
       >
         <h4>{project.title}</h4>
         <p className='mb-auto text-sm text-gray-700 dark:text-gray-300'>
@@ -36,7 +36,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
         </div>
 
         <CloudinaryImg
-          className='w-full mt-3 pointer-events-none'
+          className='mt-3 w-full pointer-events-none'
           publicId={`theodorusclarence/${project.banner}`}
           alt={project.title}
           width={1440}
@@ -44,7 +44,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
           preview={false}
         />
 
-        <p className='inline-block mt-2 font-medium animated-underline'>
+        <p className='animated-underline inline-block mt-2 font-medium'>
           See more →
         </p>
       </UnstyledLink>

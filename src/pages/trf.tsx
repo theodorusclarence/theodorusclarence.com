@@ -25,7 +25,7 @@ export default function TrfPage() {
 
       <main>
         <section className=''>
-          <div className='flex flex-col items-center py-12 text-center layout'>
+          <div className='layout flex flex-col items-center py-12 text-center'>
             <h1>Rekening BCA</h1>
             <p className='mt-4 text-sm font-bold text-gray-500 uppercase dark:text-gray-400'>
               Atas Nama
@@ -34,7 +34,7 @@ export default function TrfPage() {
               <Accent>CLARENCE</Accent>
             </h3>
             <CloudinaryImg
-              className='w-full max-w-sm mt-4'
+              className='mt-4 w-full max-w-sm'
               publicId='theodorusclarence/qr-bca_rcbkew.jpg'
               width={992}
               height={886}

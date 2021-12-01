@@ -22,7 +22,7 @@ export default function AboutPage() {
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>
-          <div className='py-20 min-h-main layout'>
+          <div className='layout min-h-main py-20'>
             <h2 data-fade='0'>About</h2>
             <h1 className='mt-1' data-fade='1'>
               <Accent>Theodorus Clarence</Accent>
@@ -71,9 +71,9 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <div className='py-6 layout'>
+          <div className='layout py-6'>
             <h2>Contact</h2>
-            <article className='mt-4 prose dark:prose-dark'>
+            <article className='prose mt-4 dark:prose-dark'>
               <p>
                 Do contact me if you need my opinion about web development,
                 especially frontend works. I’ll be happy to help! (find my email

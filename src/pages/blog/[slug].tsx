@@ -89,7 +89,7 @@ export default function SingleBlogPage({
         <ReloadDevtool />
         <section className=''>
           <div className='layout'>
-            <div className='dark:border-gray-600 pb-4'>
+            <div className='pb-4 dark:border-gray-600'>
               <CloudinaryImg
                 publicId={`theodorusclarence/banner/${frontmatter.banner}`}
                 alt={`Photo from unsplash: ${frontmatter.banner}`}
@@ -100,19 +100,19 @@ export default function SingleBlogPage({
 
               <h1 className='mt-4'>{frontmatter.title}</h1>
 
-              <p className='dark:text-gray-300 mt-2 text-gray-600 text-sm'>
+              <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
                 Written on{' '}
                 {format(new Date(frontmatter.publishedAt), 'MMMM dd, yyyy')} by
                 Theodorus Clarence.
                 {frontmatter.lastUpdated && (
-                  <span className='dark:text-gray-200 font-medium text-gray-700'>
+                  <span className='font-medium text-gray-700 dark:text-gray-200'>
                     {' '}
                     Last updated{' '}
                     {format(new Date(frontmatter.lastUpdated), 'MMMM dd, yyyy')}
                   </span>
                 )}
               </p>
-              <div className='dark:text-gray-300 flex font-medium gap-2 items-center justify-start mt-2 text-gray-600 text-sm'>
+              <div className='flex gap-2 justify-start items-center mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
                 <div className='flex gap-1 items-center'>
                   <HiOutlineClock className='inline-block text-base' />
                   <Accent>{frontmatter.readingTime.text}</Accent>
@@ -134,8 +134,8 @@ export default function SingleBlogPage({
 
             <hr className='dark:border-gray-600' />
 
-            <section className='lg:gap-8 lg:grid lg:grid-cols-[auto,250px]'>
-              <article className='dark:prose-dark mdx mt-4 mx-auto prose transition-colors w-full'>
+            <section className='lg:grid-cols-[auto,250px] lg:grid lg:gap-8'>
+              <article className='mdx prose mx-auto mt-4 w-full transition-colors dark:prose-dark'>
                 <Component
                   components={
                     {
@@ -153,7 +153,7 @@ export default function SingleBlogPage({
                     minLevel={minLevel}
                     activeSection={activeSection}
                   />
-                  <div className='flex items-center justify-center py-8'>
+                  <div className='flex justify-center items-center py-8'>
                     <LikeButton slug={contentSlug} />
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function SingleBlogPage({
                 <h2>
                   <Accent>Other posts that you might like</Accent>
                 </h2>
-                <ul className='gap-4 grid mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+                <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedRecommendations.map((post, i) => (
                     <BlogCard
                       onClick={() => {

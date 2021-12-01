@@ -41,7 +41,7 @@ export default function IndexPage({
       <main>
         <section
           className={clsx(
-            'flex flex-col justify-center mb-20 -mt-20 min-h-main',
+            'min-h-main flex flex-col justify-center -mt-20 mb-20',
             isLoaded && 'fade-in-start'
           )}
         >
@@ -57,7 +57,7 @@ export default function IndexPage({
             </h1>
             <p
               className={clsx(
-                'max-w-4xl mt-4 text-gray-700 md:mt-6 dark:text-gray-200',
+                'mt-4 max-w-4xl text-gray-700 md:mt-6 dark:text-gray-200',
                 'md:text-lg 2xl:text-xl'
               )}
               data-fade='3'
@@ -66,7 +66,7 @@ export default function IndexPage({
               rebuild and redefine fundamental concepts through mental models.
             </p>
             <p
-              className='max-w-4xl mt-3 leading-relaxed text-gray-700 md:mt-4 md:text-lg 2xl:text-xl dark:text-gray-200'
+              className='mt-3 max-w-4xl leading-relaxed text-gray-700 md:mt-4 md:text-lg 2xl:text-xl dark:text-gray-200'
               data-fade='4'
             >
               Don't forget to sign my{' '}
@@ -76,13 +76,13 @@ export default function IndexPage({
               data-fade='5'
               className='flex flex-wrap gap-4 mt-8 md:!text-lg'
             >
-              <div className='relative group'>
+              <div className='group relative'>
                 <div
                   className={clsx(
-                    'absolute -inset-0.5 rounded blur animate-tilt',
+                    'animate-tilt absolute -inset-0.5 rounded blur',
                     'bg-gradient-to-r from-primary-300 to-primary-400',
                     'dark:from-primary-200 dark:via-primary-300',
-                    'opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200'
+                    'opacity-75 transition duration-1000 group-hover:opacity-100 group-hover:duration-200'
                   )}
                 />
                 <ButtonLink href='#intro'>Read the blog</ButtonLink>
@@ -93,17 +93,17 @@ export default function IndexPage({
           <UnstyledLink
             href='#intro'
             className={clsx(
-              'absolute bottom-2 md:bottom-10 left-1/2 -translate-x-1/2',
-              'rounded-md cursor-pointer transition-colors',
+              'absolute bottom-2 left-1/2 -translate-x-1/2 md:bottom-10',
+              'rounded-md transition-colors cursor-pointer',
               'hover:text-primary-300 focus-visible:text-primary-300'
             )}
           >
-            <IoArrowDownOutline className='w-8 h-8 md:w-10 md:h-10 animate-bounce' />
+            <IoArrowDownOutline className='w-8 h-8 animate-bounce md:w-10 md:h-10' />
           </UnstyledLink>
           <TC
             className={clsx(
-              'absolute right-6 bottom-0',
-              'transform-gpu translate-y-[37%]',
+              'absolute bottom-0 right-6',
+              'translate-y-[37%] transform-gpu',
               'w-[calc(100%-3rem)] md:w-[600px] 2xl:w-[900px]',
               'z-[-1] opacity-70 dark:opacity-30'
             )}
@@ -119,18 +119,18 @@ export default function IndexPage({
             >
               <article
                 className={clsx(
-                  'flex flex-col-reverse items-center md:justify-start md:flex-row layout',
+                  'layout flex flex-col-reverse items-center md:flex-row md:justify-start',
                   'md:gap-4'
                 )}
                 data-fade='0'
               >
-                <div className='w-full h-full mt-8 md:mt-0'>
+                <div className='mt-8 w-full h-full md:mt-0'>
                   <h2 className='text-4xl md:text-6xl'>
-                    <Accent className='inline leading-snug dark:leading-none decoration-clone'>
+                    <Accent className='decoration-clone inline leading-snug dark:leading-none'>
                       Rebuild your mental model
                     </Accent>
                   </h2>
-                  <p className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
+                  <p className='mt-4 text-base text-gray-600 md:text-lg dark:text-gray-300'>
                     <Tooltip
                       withUnderline
                       content={
@@ -160,16 +160,16 @@ export default function IndexPage({
                   <ul className='relative h-full'>
                     <BlogCard
                       className={clsx(
-                        'absolute transform-gpu max-w-[350px]',
-                        'top-1/2 translate-y-[-55%] md:translate-y-[-50%] lg:translate-y-[-60%]',
-                        'left-1/2 -translate-x-1/2 lg:translate-x-[-30%] md:translate-x-[-50%]',
+                        'max-w-[350px] absolute transform-gpu',
+                        'translate-y-[-55%] top-1/2 md:translate-y-[-50%] lg:translate-y-[-60%]',
+                        'left-1/2 -translate-x-1/2 md:translate-x-[-50%] lg:translate-x-[-30%]',
                         'rotate-3 md:rotate-6 lg:rotate-12',
                         'pointer-events-none md:pointer-events-auto'
                       )}
                       post={populatedIntro[1]}
                     />
                     <BlogCard
-                      className='mx-auto max-w-[350px]'
+                      className='max-w-[350px] mx-auto'
                       post={populatedIntro[0]}
                     />
                   </ul>

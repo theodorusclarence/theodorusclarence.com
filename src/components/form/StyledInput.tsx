@@ -9,9 +9,9 @@ export default function StyledInput({
     <input
       className={clsx(
         className,
-        'dark:bg-dark w-full rounded-md',
+        'w-full rounded-md dark:bg-dark',
         'border border-gray-300 dark:border-gray-600',
-        'focus:outline-none focus:ring-0 focus:border-primary-300 dark:focus:border-primary-300'
+        'dark:focus:border-primary-300 focus:border-primary-300 focus:ring-0 focus:outline-none'
       )}
       {...rest}
     />

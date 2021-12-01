@@ -3,7 +3,7 @@
 }
 
 .prose code {
-  @apply px-1 py-1 border rounded-md dark:border-gray-600;
+  @apply px-1 py-1 rounded-md border dark:border-gray-600;
 }
 
 .prose a {
@@ -86,6 +86,6 @@
 }
 
 .hash-anchor:after {
-  @apply absolute invisible text-lg -translate-y-1/2 -right-5 text-primary-400 dark:text-primary-300 top-1/2;
+  @apply absolute -right-5 top-1/2 invisible text-lg text-primary-400 -translate-y-1/2 dark:text-primary-300;
   content: '#';
 }

@@ -71,11 +71,11 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
             />
 
             <h1 className='mt-4'>{frontmatter.title}</h1>
-            <p className='dark:text-gray-300 mt-2 text-gray-600 text-sm'>
+            <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
               {frontmatter.description}
             </p>
 
-            <div className='dark:text-gray-300 flex flex-wrap font-medium gap-3 items-center justify-start mt-2 text-gray-600 text-sm'>
+            <div className='flex flex-wrap gap-3 justify-start items-center mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
               <div className='flex gap-1 items-center'>
                 <HiOutlineEye className='inline-block text-base' />
                 {meta?.views ?? '–––'} views
@@ -85,8 +85,8 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                 frontmatter.link) &&
                 ' - '}
               {frontmatter.github && (
-                <div className='gap-2 inline-flex items-center'>
-                  <SiGithub className='dark:text-white text-gray-800 text-lg' />
+                <div className='inline-flex gap-2 items-center'>
+                  <SiGithub className='text-lg text-gray-800 dark:text-white' />
                   <CustomLink
                     onClick={() =>
                       trackEvent(`Project Github: ${frontmatter.title}`, 'link')
@@ -102,8 +102,8 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                 (frontmatter.youtube || frontmatter.link) &&
                 ' - '}
               {frontmatter.youtube && (
-                <div className='gap-2 inline-flex items-center'>
-                  <HiPlay className='dark:text-white text-gray-800 text-xl' />
+                <div className='inline-flex gap-2 items-center'>
+                  <HiPlay className='text-xl text-gray-800 dark:text-white' />
                   <CustomLink
                     href={frontmatter.youtube}
                     className='mt-1'
@@ -117,8 +117,8 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
               )}
               {frontmatter.youtube && frontmatter.link && ' - '}
               {frontmatter.link && (
-                <div className='gap-2 inline-flex items-center'>
-                  <HiLink className='dark:text-white text-gray-800 text-lg' />
+                <div className='inline-flex gap-2 items-center'>
+                  <HiLink className='text-lg text-gray-800 dark:text-white' />
                   <CustomLink
                     href={frontmatter.link}
                     className='mt-1'
@@ -133,16 +133,16 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
             </div>
 
             {frontmatter.category && (
-              <p className='dark:text-gray-300 flex gap-2 items-center justify-start mt-2 text-gray-600 text-sm'>
-                <HiUser className='dark:text-white text-gray-800 text-lg' />{' '}
+              <p className='flex gap-2 justify-start items-center mt-2 text-sm text-gray-600 dark:text-gray-300'>
+                <HiUser className='text-lg text-gray-800 dark:text-white' />{' '}
                 {frontmatter.category}
               </p>
             )}
 
-            <hr className='dark:border-gray-600 mt-4' />
+            <hr className='mt-4 dark:border-gray-600' />
 
-            <section className='lg:gap-8 lg:grid lg:grid-cols-[auto,250px]'>
-              <article className='dark:prose-dark mdx mx-auto projects prose transition-colors w-full'>
+            <section className='lg:grid-cols-[auto,250px] lg:grid lg:gap-8'>
+              <article className='mdx projects prose mx-auto w-full transition-colors dark:prose-dark'>
                 <Component
                   components={
                     {
@@ -160,7 +160,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                     minLevel={minLevel}
                     activeSection={activeSection}
                   />
-                  <div className='flex items-center justify-center py-8'>
+                  <div className='flex justify-center items-center py-8'>
                     <LikeButton slug={contentSlug} />
                   </div>
                 </div>

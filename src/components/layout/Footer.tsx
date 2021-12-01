@@ -15,7 +15,7 @@ import { spotifyFlag } from '@/constants/env';
 export default function Footer() {
   return (
     <footer className='pb-2 mt-4'>
-      <main className='flex flex-col items-center pt-6 border-t dark:border-gray-600 layout'>
+      <main className='layout flex flex-col items-center pt-6 border-t dark:border-gray-600'>
         <FooterLinks />
 
         {spotifyFlag && <Spotify className='mt-8' />}
@@ -35,11 +35,11 @@ export default function Footer() {
 
 function FooterLinks() {
   return (
-    <div className='flex flex-wrap justify-center gap-x-8 gap-y-4'>
+    <div className='flex flex-wrap gap-y-4 gap-x-8 justify-center'>
       {footerLinks.map(({ href, text }) => (
         <UnstyledLink
           key={href}
-          className='text-sm font-medium rounded-sm dark:text-gray-200 animated-underline focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+          className='animated-underline text-sm font-medium rounded-sm dark:text-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
           href={href}
           onClick={() => {
             trackEvent(`Footer Link: ${text}`, 'link');
@@ -59,13 +59,13 @@ function SocialLinks() {
 
   return (
     <div className='flex mt-2 space-x-4'>
-      <div className='flex items-center justify-center'>
+      <div className='flex justify-center items-center'>
         <Tooltip
           trigger='mouseenter'
           hideOnClick={false}
           interactive
           html={
-            <div className='inline-block p-2 text-gray-600 bg-white border rounded-md shadow-md dark:text-gray-200 dark:border-gray-600 dark:bg-dark'>
+            <div className='inline-block p-2 text-gray-600 bg-white rounded-md border shadow-md dark:bg-dark dark:text-gray-200 dark:border-gray-600'>
               {copyStatus}
               <Accent className='inline-block font-medium'>
                 theodorusclarence@gmail.com
@@ -84,7 +84,7 @@ function SocialLinks() {
             }}
           >
             <button className='align-middle rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'>
-              <FiMail className='text-gray-600 align-middle dark:text-gray-300 hover:text-primary-300 dark:hover:text-primary-300 w-7 h-7' />
+              <FiMail className='w-7 h-7 text-gray-600 align-middle dark:hover:text-primary-300 dark:text-gray-300 hover:text-primary-300' />
             </button>
           </CopyToClipboard>
         </Tooltip>
@@ -92,13 +92,13 @@ function SocialLinks() {
       {socials.map((social) => (
         <UnstyledLink
           key={social.text}
-          className='inline-flex items-center justify-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+          className='inline-flex justify-center items-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
           href={social.href}
           onClick={() => {
             trackEvent(`Footer Link: ${social.text}`, 'link');
           }}
         >
-          <social.icon className='w-6 h-6 my-auto text-gray-600 align-middle transition-colors dark:text-gray-300 hover:text-primary-300 dark:hover:text-primary-300' />
+          <social.icon className='my-auto w-6 h-6 text-gray-600 align-middle transition-colors dark:hover:text-primary-300 dark:text-gray-300 hover:text-primary-300' />
         </UnstyledLink>
       ))}
     </div>

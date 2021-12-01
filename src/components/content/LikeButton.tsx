@@ -24,7 +24,7 @@ export default function LikeButton({ slug }: { slug: string }) {
         </div>
       ) : (
         <button
-          className='rounded-md focus:outline-none heart-button'
+          className='heart-button rounded-md focus:outline-none'
           onClick={addLike}
         >
           <LikeButtonHeart likes={likesByUser} />
@@ -34,7 +34,7 @@ export default function LikeButton({ slug }: { slug: string }) {
       {/* Like counter text */}
       <div
         className={clsx(
-          'mt-1 font-medium text-lg',
+          'mt-1 text-lg font-medium',
           likesByUser === 0
             ? 'text-gray-400 dark:text-gray-500'
             : 'bg-primary-300/50 transition-colors dark:text-transparent dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text'
@@ -68,7 +68,7 @@ function LikeButtonHeart({ likes }: { likes: number }) {
       {/* Heart SVG */}
       <svg
         viewBox='0 0 20 20'
-        className='w-12 heart-animate'
+        className='heart-animate w-12'
         // Grow heart from center
         style={{ transformOrigin: '50% 50%' }}
       >
