@@ -11,7 +11,7 @@
     "lint:strict": "eslint --max-warnings=0 src",
     "tsc": "tsc",
     "format": "prettier -w .",
-    "prettier:check": "prettier -c .",
+    "format:check": "prettier -c .",
     "cy": "cypress open",
     "cy:headless": "cypress run",
     "release": "standard-version",
