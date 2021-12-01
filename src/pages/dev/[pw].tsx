@@ -40,12 +40,12 @@ export default function UmamiPage() {
 
       <main>
         <section className=''>
-          <div className='py-20 text-center layout'>
+          <div className='layout py-20 text-center'>
             <h1>Dev tools</h1>
             <p className='mt-2 text-gray-600 dark:text-gray-300'>
               This is to block tracking.
             </p>
-            <div className='flex flex-col items-center gap-4 mt-8'>
+            <div className='flex flex-col gap-4 items-center mt-8'>
               <Button onClick={addUmami}>add umami.disabled</Button>
               <Button onClick={removeUmami}>remove umami.disabled</Button>
               <Button onClick={addIncrement}>add incrementMetaFlag</Button>

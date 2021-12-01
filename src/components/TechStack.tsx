@@ -21,7 +21,7 @@ export default function TechStack() {
             key={tech.id}
             className={clsx(
               'w-8 h-8 md:w-10 md:h-10',
-              'text-gray-600 dark:text-gray-200 dark:hover:text-primary-300 hover:text-primary-300',
+              'text-gray-600 dark:hover:text-primary-300 dark:text-gray-200 hover:text-primary-300',
               'transition-colors'
             )}
           />

@@ -15,7 +15,7 @@ export default function GuestbookPage() {
 
       <main>
         <section className=''>
-          <div className='py-20 layout'>
+          <div className='layout py-20'>
             <h1>
               <Accent>Guestbook</Accent>
             </h1>

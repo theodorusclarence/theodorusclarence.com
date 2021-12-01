@@ -39,7 +39,7 @@ import { FiSun, FiMoon } from 'react-icons/fi';
 export default function Nav() {
   const { theme, setTheme } = useTheme();
   <button
-    className='p-2.5 focus:outline-none rounded-md border-thin hover:border-accent-200 dark:hover:border-accent-200 hover:text-accent-200 dark:hover:text-accent-200'
+    className='border-thin p-2.5 rounded-md dark:hover:border-accent-200 dark:hover:text-accent-200 hover:border-accent-200 hover:text-accent-200 focus:outline-none'
     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
   >
     {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}

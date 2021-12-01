@@ -61,12 +61,12 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
       <main>
         <section className=''>
           <div className='layout'>
-            <div className='border-b-thin dark:border-gray-600 pb-4'>
+            <div className='border-b-thin pb-4 dark:border-gray-600'>
               <h1 className='mt-4'>{frontmatter.title}</h1>
-              <p className='dark:text-gray-300 mt-2 text-gray-600 text-sm'>
+              <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
                 {frontmatter.description}
               </p>
-              <div className='dark:text-gray-300 flex font-medium gap-3 items-center justify-start mt-2 text-gray-600 text-sm'>
+              <div className='flex gap-3 justify-start items-center mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
                 <div className='flex gap-1 items-center'>
                   <HiOutlineEye className='inline-block text-base' />
                   <Accent>{meta?.views ?? '–––'} views</Accent>
@@ -80,8 +80,8 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
 
             <hr className='dark:border-gray-600' />
 
-            <section className='lg:gap-8 lg:grid lg:grid-cols-[auto,250px]'>
-              <article className='dark:prose-dark mdx mt-4 mx-auto prose transition-colors w-full'>
+            <section className='lg:grid-cols-[auto,250px] lg:grid lg:gap-8'>
+              <article className='mdx prose mx-auto mt-4 w-full transition-colors dark:prose-dark'>
                 <Component
                   components={
                     {
@@ -99,7 +99,7 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
                     minLevel={minLevel}
                     activeSection={activeSection}
                   />
-                  <div className='flex items-center justify-center py-8'>
+                  <div className='flex justify-center items-center py-8'>
                     <LikeButton slug={contentSlug} />
                   </div>
                 </div>

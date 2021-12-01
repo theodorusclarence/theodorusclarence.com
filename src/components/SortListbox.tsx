@@ -27,7 +27,7 @@ export default function SortListbox({
         <div className='relative'>
           <Listbox.Button
             className={clsx(
-              'w-full py-2 pl-3 pr-10 font-medium text-left bg-white rounded-md dark:bg-dark  sm:text-sm',
+              'py-2 pr-10 pl-3 w-full font-medium text-left bg-white rounded-md sm:text-sm dark:bg-dark',
               'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
               'border border-gray-300 dark:border-gray-600',
               'transform-gpu scale-100 hover:scale-[1.03] active:scale-[0.97]',
@@ -36,12 +36,12 @@ export default function SortListbox({
             )}
           >
             <span className='block truncate'>
-              <span className='inline-flex items-center gap-2'>
+              <span className='inline-flex gap-2 items-center'>
                 <selected.icon />
                 {selected.name}
               </span>
             </span>
-            <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
+            <span className='flex absolute inset-y-0 right-0 items-center pr-2 pointer-events-none'>
               <HiSelector
                 className='w-5 h-5 text-gray-400'
                 aria-hidden='true'
@@ -54,13 +54,13 @@ export default function SortListbox({
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
-            <Listbox.Options className='absolute w-full py-1 mt-1 overflow-auto text-base bg-white border border-gray-300 rounded-md shadow-lg dark:shadow-none dark:border-gray-600 dark:bg-dark max-h-60 focus:outline-none sm:text-sm'>
+            <Listbox.Options className='overflow-auto absolute py-1 mt-1 w-full max-h-60 text-base bg-white rounded-md border border-gray-300 shadow-lg sm:text-sm dark:bg-dark dark:border-gray-600 dark:shadow-none focus:outline-none'>
               {options.map((opt) => (
                 <Listbox.Option
                   key={opt.id}
                   className={({ active }) =>
                     clsx(
-                      'select-none relative py-2 pl-10 pr-4',
+                      'relative py-2 pr-4 pl-10 select-none',
                       active
                         ? 'dark:bg-primary-300/25 bg-primary-300/10'
                         : 'text-gray-700 dark:text-gray-300'
@@ -81,7 +81,7 @@ export default function SortListbox({
                       {selected ? (
                         <span
                           className={clsx(
-                            'absolute inset-y-0 left-0 flex items-center pl-3 text-primary-500 dark:text-primary-300'
+                            'flex absolute inset-y-0 left-0 items-center pl-3 text-primary-500 dark:text-primary-300'
                           )}
                         >
                           <HiCheck className='w-5 h-5' aria-hidden='true' />

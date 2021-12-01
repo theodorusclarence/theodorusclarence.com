@@ -126,7 +126,7 @@ export default function IndexPage({
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>
-          <div className='py-12 layout'>
+          <div className='layout py-12'>
             <h1 className='text-3xl md:text-5xl' data-fade='0'>
               <Accent>Blog {!isEnglish && 'Bahasa Indonesia'}</Accent>
             </h1>
@@ -143,7 +143,7 @@ export default function IndexPage({
               type='text'
             />
             <div
-              className='flex flex-wrap items-baseline justify-start gap-2 mt-2 text-sm text-gray-600 dark:text-gray-300'
+              className='flex flex-wrap gap-2 justify-start items-baseline mt-2 text-sm text-gray-600 dark:text-gray-300'
               data-fade='3'
             >
               <span className='font-medium'>Choose topic:</span>
@@ -158,7 +158,7 @@ export default function IndexPage({
               ))}
             </div>
             <div
-              className='relative z-10 flex flex-col items-end gap-4 mt-6 text-gray-600 md:items-center dark:text-gray-300 md:flex-row md:justify-between'
+              className='flex relative z-10 flex-col gap-4 items-end mt-6 text-gray-600 md:flex-row md:justify-between md:items-center dark:text-gray-300'
               data-fade='4'
             >
               <Button

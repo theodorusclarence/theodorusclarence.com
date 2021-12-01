@@ -23,7 +23,7 @@ export default function Spotify({
         trigger='mouseenter'
         interactive
         html={
-          <div className='inline-block p-2 text-gray-600 bg-white border rounded-md shadow-md dark:text-gray-200 dark:border-gray-600 dark:bg-dark'>
+          <div className='inline-block p-2 text-gray-600 bg-white rounded-md border shadow-md dark:bg-dark dark:text-gray-200 dark:border-gray-600'>
             <p>Currently playing on my Spotify</p>
           </div>
         }
@@ -32,9 +32,9 @@ export default function Spotify({
           {...rest}
           href={data.songUrl}
           className={clsx(
-            'relative flex items-center p-3 gap-4',
+            'flex relative gap-4 items-center p-3',
             'border dark:border-gray-600',
-            'rounded-md border-thin w-72',
+            'border-thin w-72 rounded-md',
             'shadow-sm dark:shadow-none',
             'focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
           )}
@@ -53,7 +53,7 @@ export default function Spotify({
               {data.artist}
             </p>
           </div>
-          <div className='absolute bottom-1.5 right-1.5'>
+          <div className='absolute right-1.5 bottom-1.5'>
             <SiSpotify size={20} color='#1ED760' />
           </div>
         </UnstyledLink>

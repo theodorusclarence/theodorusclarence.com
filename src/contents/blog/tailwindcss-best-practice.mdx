@@ -97,19 +97,19 @@ I have a preconfigured base style that I usually add in my projects, it is alrea
 ```css
 @layer base {
   h1 {
-    @apply font-bold font-primary text-3xl md:text-5xl;
+    @apply font-primary text-3xl font-bold md:text-5xl;
   }
 
   h2 {
-    @apply font-bold font-primary text-2xl md:text-4xl;
+    @apply font-primary text-2xl font-bold md:text-4xl;
   }
 
   h3 {
-    @apply font-bold font-primary text-xl md:text-3xl;
+    @apply font-primary text-xl font-bold md:text-3xl;
   }
 
   h4 {
-    @apply font-bold font-primary text-lg;
+    @apply font-primary text-lg font-bold;
   }
 
   body {
@@ -207,17 +207,17 @@ const links = [
 export default function Nav() {
   return (
     <nav className='bg-gray-700'>
-      <ul className='flex items-center justify-between px-8 py-4'>
+      <ul className='flex justify-between items-center px-8 py-4'>
         <li>
           <Link href='/'>
             <a className='font-bold text-green-400'>Home</a>
           </Link>
         </li>
-        <ul className='flex items-center justify-between space-x-4'>
+        <ul className='flex justify-between items-center space-x-4'>
           {links.map(({ href, label }) => (
             <li key={`${href}${label}`}>
               <Link href={href}>
-                <a className='hover:text-green-400 text-white'>{label}</a>
+                <a className='text-white hover:text-green-400'>{label}</a>
               </Link>
             </li>
           ))}
@@ -249,9 +249,9 @@ export default function Tag({
     <button
       className={clsx(
         className,
-        'font-medium inline-block px-1.5 py-0.5 rounded-md transition-colors',
-        'bg-gray-100 disabled:bg-gray-200 disabled:text-gray-300 hover:text-black text-gray-700',
-        'disabled:cursor-not-allowed focus-visible:ring focus-visible:ring-primary-300 focus:outline-none'
+        'inline-block px-1.5 py-0.5 font-medium rounded-md transition-colors',
+        'text-gray-700 bg-gray-100 hover:text-black disabled:text-gray-300 disabled:bg-gray-200',
+        'focus:outline-none focus-visible:ring focus-visible:ring-primary-300 disabled:cursor-not-allowed'
       )}
       {...rest}
     >

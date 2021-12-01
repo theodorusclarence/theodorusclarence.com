@@ -20,8 +20,8 @@ export default function ButtonLink({
     <UnstyledLink
       {...rest}
       className={clsx(
-        'inline-flex py-2 px-4 rounded font-bold',
-        'border border-gray-300 dark:border-gray-600 shadow-sm',
+        'inline-flex px-4 py-2 font-bold rounded',
+        'border border-gray-300 shadow-sm dark:border-gray-600',
         'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
         'transform-gpu scale-100 hover:scale-[1.03] active:scale-[0.97]',
         'transition duration-100',

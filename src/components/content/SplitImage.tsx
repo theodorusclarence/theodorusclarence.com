@@ -5,7 +5,7 @@ export default function SplitImage({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className='grid items-start grid-cols-2 gap-4'>{children}</div>;
+  return <div className='grid grid-cols-2 gap-4 items-start'>{children}</div>;
 }
 
 export function Split({ children }: { children: React.ReactNode }) {
