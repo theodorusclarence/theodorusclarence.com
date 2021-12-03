@@ -7,12 +7,16 @@ type OpenGraphType = {
   description: string;
   templateTitle?: string;
   logo?: string;
+  banner?: string;
+  isBlog?: boolean;
 };
 export function openGraph({
   siteName,
   templateTitle,
   description,
+  banner,
   logo = 'https://og.thcl.dev/images/logo.jpg',
+  isBlog = false,
 }: OpenGraphType): string {
   const ogLogo = encodeURIComponent(logo);
   const ogSiteName = encodeURIComponent(siteName.trim());
@@ -20,6 +24,12 @@ export function openGraph({
     ? encodeURIComponent(templateTitle.trim())
     : undefined;
   const ogDesc = encodeURIComponent(description.trim());
+
+  if (isBlog) {
+    const ogBanner = banner ? encodeURIComponent(banner.trim()) : undefined;
+
+    return `https://og.thcl.dev/api/blog?templateTitle=${ogTemplateTitle}&banner=${ogBanner}`;
+  }
 
   return `https://og.thcl.dev/api/gradient?siteName=${ogSiteName}&description=${ogDesc}&logo=${ogLogo}${
     ogTemplateTitle ? `&templateTitle=${ogTemplateTitle}` : ''

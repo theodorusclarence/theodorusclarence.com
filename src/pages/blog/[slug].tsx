@@ -83,6 +83,8 @@ export default function SingleBlogPage({
       <Seo
         templateTitle={frontmatter.title}
         description={frontmatter.description}
+        isBlog
+        banner={`https://res.cloudinary.com/theodorusclarence/image/upload/f_auto,c_fill,ar_4:5,w_1200/theodorusclarence/banner/${frontmatter.banner}`}
       />
 
       <main>
