@@ -68,13 +68,13 @@ function SocialLinks() {
             <div className='inline-block p-2 text-gray-600 bg-white rounded-md border shadow-md dark:bg-dark dark:text-gray-200 dark:border-gray-600'>
               {copyStatus}
               <Accent className='inline-block font-medium'>
-                theodorusclarence@gmail.com
+                me@theodorusclarence.com
               </Accent>
             </div>
           }
         >
           <CopyToClipboard
-            text='theodorusclarence@gmail.com'
+            text='me@theodorusclarence.com'
             onCopy={() => {
               setCopyStatus('Copied to clipboard 🥳');
               setTimeout(
