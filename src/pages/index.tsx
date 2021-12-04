@@ -300,9 +300,9 @@ export async function getStaticProps() {
     'youtube-list',
   ]);
   const featuredProjects = getFeatured(projects, [
+    'seasforus',
     'ppdbsumsel',
     'side-projects',
-    'love4heroes',
   ]);
   const featuredLibrary = getFeatured(library, [
     'absolute-import',

@@ -69,7 +69,7 @@ export default function CloudinaryImg({
     <figure
       className={clsx(className, {
         'overflow-hidden rounded shadow-sm dark:shadow-none': !noStyle,
-        'mx-auto': mdx && width <= 800,
+        'mx-auto w-full': mdx && width <= 800,
       })}
       style={{
         ...(mdx && width <= 800 ? { maxWidth: width } : {}),
