@@ -19,7 +19,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <PreloadProvider>{children}</PreloadProvider>
+      <PreloadProvider>
+        <div id='skip-nav'>{children}</div>
+      </PreloadProvider>
       <Footer />
     </>
   );
