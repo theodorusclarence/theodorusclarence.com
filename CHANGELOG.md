@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v1.1.0...v1.1.1) (2021-12-23)
+
+
+### Features
+
+* add custom blog og ([0831dec](https://github.com/theodorusclarence/theodorusclarence.com/commit/0831dec9103970ea1d2bcdff0a1f206b04c6313b))
+* add whitespace to cards ([865b243](https://github.com/theodorusclarence/theodorusclarence.com/commit/865b2433cbbf5cc336aa4a6319e73c50741ddecc))
+* **blog:** add complex use of clsx for tailwind ([70dff74](https://github.com/theodorusclarence/theodorusclarence.com/commit/70dff74ef7bf9d505657c644f6a52f372981df9b))
+* **blog:** update tailwindcss-best-practice ([46b4d3d](https://github.com/theodorusclarence/theodorusclarence.com/commit/46b4d3d1318e36bfb377f13ed8918e1c21c2cfa8))
+* change email to domain alias ([1dce872](https://github.com/theodorusclarence/theodorusclarence.com/commit/1dce872b990b483b81155b9bc141231844ac1d04))
+* **proj:** add seasforus ([af19d8b](https://github.com/theodorusclarence/theodorusclarence.com/commit/af19d8b6e04d8ef726debd7ac7ac2cfe59d1f345))
+
+
+### Bug Fixes
+
+* mdx date broke safari ([4187191](https://github.com/theodorusclarence/theodorusclarence.com/commit/41871916e7cfd7a67f263b8283e733fd463f4a63))
+* table of contents not updating ([854d813](https://github.com/theodorusclarence/theodorusclarence.com/commit/854d8133a4b9e1427cce67d1f92756df52e9872d))
+
 ## [1.1.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v1.0.1...v1.1.0) (2021-11-29)
 
 
