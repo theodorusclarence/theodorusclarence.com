@@ -47,10 +47,11 @@ export default function Header({ large = false }: HeaderProps) {
         className={clsx(
           'p-2 rounded-sm transition',
           'font-medium text-black dark:text-white',
+          'bg-white dark:bg-dark',
           'group dark:hover:text-primary-300',
-          'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
+          'focus:ring focus:ring-primary-300 focus:outline-none',
           'absolute top-4 left-4',
-          '-translate-y-12 focus:translate-y-0'
+          '-translate-y-16 focus:translate-y-0'
         )}
       >
         <Accent>Skip to main content</Accent>
