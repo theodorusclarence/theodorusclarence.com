@@ -14,7 +14,7 @@ import Button from '@/components/buttons/Button';
 import BlogCard from '@/components/content/blog/BlogCard';
 import SubscribeCard from '@/components/content/blog/SubscribeCard';
 import ContentPlaceholder from '@/components/content/ContentPlaceholder';
-import Tag from '@/components/content/Tag';
+import Tag, { SkipNavTag } from '@/components/content/Tag';
 import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -147,15 +147,17 @@ export default function IndexPage({
               data-fade='3'
             >
               <span className='font-medium'>Choose topic:</span>
-              {tags.map((tag) => (
-                <Tag
-                  key={tag}
-                  onClick={() => toggleTag(tag)}
-                  disabled={!filteredTags.includes(tag)}
-                >
-                  {checkTagged(tag) ? <Accent>{tag}</Accent> : tag}
-                </Tag>
-              ))}
+              <SkipNavTag>
+                {tags.map((tag) => (
+                  <Tag
+                    key={tag}
+                    onClick={() => toggleTag(tag)}
+                    disabled={!filteredTags.includes(tag)}
+                  >
+                    {checkTagged(tag) ? <Accent>{tag}</Accent> : tag}
+                  </Tag>
+                ))}
+              </SkipNavTag>
             </div>
             <div
               className='flex relative z-10 flex-col gap-4 items-end mt-6 text-gray-600 md:flex-row md:justify-between md:items-center dark:text-gray-300'
