@@ -12,9 +12,8 @@ function withOpacity(variableName) {
 
 /** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
 module.exports = {
-  mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
-  darkMode: 'class', // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -122,9 +121,6 @@ module.exports = {
         },
       }),
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
