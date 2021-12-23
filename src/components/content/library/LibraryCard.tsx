@@ -39,7 +39,7 @@ export default function LibraryCard({ className, snippet }: LibraryCardProps) {
             <TechIcons techs={snippet.tags.split(',') as Array<TechListType>} />
           </div>
 
-          <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
+          <p className='mt-4 text-sm text-gray-600 dark:text-gray-300'>
             {snippet.description}
           </p>
         </div>

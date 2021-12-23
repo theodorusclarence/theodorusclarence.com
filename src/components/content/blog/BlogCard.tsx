@@ -72,7 +72,7 @@ export default function BlogCard({
               <Accent>{post?.views ?? '–––'} views</Accent>
             </div>
           </div>
-          <p className='my-2 text-sm text-gray-600 dark:text-gray-300'>
+          <p className='mt-4 mb-2 text-sm text-gray-600 dark:text-gray-300'>
             <span className='font-bold text-gray-800 dark:text-gray-100'>
               {format(
                 new Date(post.lastUpdated ?? post.publishedAt),
