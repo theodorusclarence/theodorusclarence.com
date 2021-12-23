@@ -81,7 +81,7 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
             <hr className='dark:border-gray-600' />
 
             <section className='lg:grid-cols-[auto,250px] lg:grid lg:gap-8'>
-              <article className='mdx prose mx-auto mt-4 w-full transition-colors dark:prose-dark'>
+              <article className='mdx prose mx-auto mt-4 w-full transition-colors dark:prose-invert'>
                 <Component
                   components={
                     {

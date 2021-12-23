@@ -14,7 +14,7 @@ export default function Quiz(props: QuizType) {
   };
 
   return (
-    <div className='prose relative p-4 pt-8 mt-8 w-full rounded border !max-w-none dark:prose-dark dark:border-gray-600'>
+    <div className='prose relative p-4 pt-8 mt-8 w-full rounded border !max-w-none dark:prose-invert dark:border-gray-600'>
       <div className='text-center'>
         <h4 className='text-lg md:text-xl'>{props.question}</h4>
         {props.description && (

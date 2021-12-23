@@ -36,7 +36,7 @@ export default function AboutPage() {
                 alt='Photo of me'
                 preview={false}
               />
-              <article className='prose dark:prose-dark'>
+              <article className='prose dark:prose-invert'>
                 <p data-fade='3'>
                   Hello! I'm Clarence. I started learning web development in May
                   2020, which is the start of the pandemic. I have nothing much
@@ -73,7 +73,7 @@ export default function AboutPage() {
         <section>
           <div className='layout py-6'>
             <h2>Contact</h2>
-            <article className='prose mt-4 dark:prose-dark'>
+            <article className='prose mt-4 dark:prose-invert'>
               <p>
                 Do contact me if you need my opinion about web development,
                 especially frontend works. I’ll be happy to help! (find my email
