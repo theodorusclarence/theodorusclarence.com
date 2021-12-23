@@ -2,7 +2,7 @@
   max-width: 50rem;
 }
 
-.prose code {
+.prose code:not(:where([data-code-type='code-block'])) {
   @apply px-1 py-1 rounded-md border dark:border-gray-600;
 }
 
@@ -24,15 +24,13 @@
   content: '';
 }
 
-.prose blockquote,
-.dark .dark\:prose-dark blockquote {
+.prose blockquote {
   border-style: solid;
   border-width: 0 0 0 0.25rem;
   border-image: linear-gradient(to top, #00ff94, #00e0f3, #00c4fd) 1;
 }
 
-.prose hr,
-.dark .dark\:prose-dark hr {
+.prose hr {
   border-style: solid;
   border-width: 0 0 1px 0;
   border-image: linear-gradient(to right, #00ff9480, #00e0f380, #00c4fd80) 1;
