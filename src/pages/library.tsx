@@ -12,7 +12,7 @@ import useLoaded from '@/hooks/useLoaded';
 import Accent from '@/components/Accent';
 import ContentPlaceholder from '@/components/content/ContentPlaceholder';
 import LibraryCard from '@/components/content/library/LibraryCard';
-import Tag from '@/components/content/Tag';
+import Tag, { SkipNavTag } from '@/components/content/Tag';
 import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -128,15 +128,17 @@ export default function LibraryPage({
               data-fade='3'
             >
               <span className='font-medium'>Choose topic:</span>
-              {tags.map((tag) => (
-                <Tag
-                  key={tag}
-                  onClick={() => toggleTag(tag)}
-                  disabled={!filteredTags.includes(tag)}
-                >
-                  {checkTagged(tag) ? <Accent>{tag}</Accent> : tag}
-                </Tag>
-              ))}
+              <SkipNavTag>
+                {tags.map((tag) => (
+                  <Tag
+                    key={tag}
+                    onClick={() => toggleTag(tag)}
+                    disabled={!filteredTags.includes(tag)}
+                  >
+                    {checkTagged(tag) ? <Accent>{tag}</Accent> : tag}
+                  </Tag>
+                ))}
+              </SkipNavTag>
             </div>
             <div
               className='flex relative z-10 flex-col gap-4 items-end mt-4 text-gray-600 md:mt-8 dark:text-gray-300'

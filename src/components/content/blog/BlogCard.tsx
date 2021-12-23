@@ -54,7 +54,11 @@ export default function BlogCard({
             )}
           >
             {post.tags.split(',').map((tag) => (
-              <Tag className='bg-opacity-80 dark:!bg-opacity-60' key={tag}>
+              <Tag
+                tabIndex={-1}
+                className='bg-opacity-80 dark:!bg-opacity-60'
+                key={tag}
+              >
                 {checkTagged?.(tag) ? <Accent>{tag}</Accent> : tag}
               </Tag>
             ))}
