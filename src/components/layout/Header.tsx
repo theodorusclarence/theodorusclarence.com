@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 import * as React from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 
+import Accent from '@/components/Accent';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
 type HeaderProps = {
@@ -40,6 +41,21 @@ export default function Header({ large = false }: HeaderProps) {
         !onTop && 'shadow-sm'
       )}
     >
+      {/* Skip Navigation */}
+      <a
+        href='#skip-nav'
+        className={clsx(
+          'p-2 rounded-sm transition',
+          'font-medium text-black dark:text-white',
+          'group dark:hover:text-primary-300',
+          'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
+          'absolute top-4 left-4',
+          '-translate-y-12 focus:translate-y-0'
+        )}
+      >
+        <Accent>Skip to main content</Accent>
+      </a>
+
       {/* Gradient List */}
       <div className='h-2 bg-gradient-to-tr from-primary-200 via-primary-300 to-primary-400' />
 
