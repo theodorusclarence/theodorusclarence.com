@@ -115,10 +115,6 @@ const footerLinks = [
     text: 'Book Notes',
   },
   {
-    href: 'https://pw.theodorusclarence.com',
-    text: 'Polywork',
-  },
-  {
     href: 'https://clarence.link/starters',
     text: 'Starter Templates',
   },
@@ -129,6 +125,10 @@ const footerLinks = [
   {
     href: '/guestbook',
     text: 'Guestbook',
+  },
+  {
+    href: '/subscribe',
+    text: 'Subscribe',
   },
 ];
 
