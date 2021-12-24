@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { AppProps } from 'next/app';
+import Router from 'next/router';
 import { ThemeProvider } from 'next-themes';
+import nProgress from 'nprogress';
 import * as React from 'react';
 import { hotjar } from 'react-hotjar';
 import { SWRConfig } from 'swr';
@@ -10,6 +12,11 @@ import 'react-tippy/dist/tippy.css';
 import '@/styles/globals.css';
 import '@/styles/mdx.css';
 import '@/styles/dracula.css';
+import '@/styles/nprogress.css';
+
+Router.events.on('routeChangeStart', nProgress.start);
+Router.events.on('routeChangeError', nProgress.done);
+Router.events.on('routeChangeComplete', nProgress.done);
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
