@@ -1,10 +1,13 @@
 import clsx from 'clsx';
+import debounce from 'lodash/debounce';
 import * as React from 'react';
 import { GoTriangleDown, GoTriangleUp } from 'react-icons/go';
+import { HiSearch } from 'react-icons/hi';
 import {
   Column,
   PluginHook,
   TableOptions,
+  useGlobalFilter,
   useSortBy,
   useTable,
 } from 'react-table';
@@ -26,12 +29,56 @@ export default function ReactTable<T extends object>({
   plugins = [],
   className,
 }: Props<T>) {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable<T>({ ...options, data, columns }, useSortBy, ...plugins);
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state,
+    setGlobalFilter,
+  } = useTable<T>(
+    { ...options, data, columns },
+    useGlobalFilter,
+    useSortBy,
+    ...plugins
+  );
+
+  //#region  //*=========== Global Filter ===========
+  const [value, setValue] = React.useState(state.globalFilter);
+  const onChange = debounce((value) => {
+    setGlobalFilter(value || undefined);
+  }, 200);
+  //#endregion  //*======== Global Filter ===========
 
   return (
     <div className={clsx('flex flex-col w-full', className)}>
-      <div className='overflow-x-auto -my-2'>
+      <div>
+        <label className='text-gray-500 sr-only'>Filter</label>
+        <div className='relative'>
+          <input
+            placeholder='Find...'
+            value={value || ''}
+            onChange={(e) => {
+              setValue(e.target.value);
+              onChange(e.target.value);
+            }}
+            className={clsx(
+              'w-full rounded-md sm:max-w-xs dark:bg-dark',
+              'px-4 py-2 pl-9',
+              'placeholder-gray-400',
+              'text-sm md:text-base',
+              'border border-gray-300 dark:border-gray-600',
+              'dark:focus:border-primary-300 focus:border-primary-300 focus:outline-none'
+            )}
+          />
+          <div className='flex absolute inset-y-0 left-0 items-center pl-2 pointer-events-none'>
+            <HiSearch className='text-xl text-gray-400' />
+          </div>
+        </div>
+      </div>
+
+      <div className='overflow-x-auto -my-2 mt-2'>
         <div className='inline-block py-2 min-w-full align-middle'>
           <div className='overflow-hidden border-b border-gray-200 shadow-sm sm:rounded-lg dark:border-gray-800'>
             <table
