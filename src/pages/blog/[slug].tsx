@@ -26,6 +26,7 @@ import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
+import Tooltip from '@/components/Tooltip';
 
 import { BlogFrontmatter, BlogType } from '@/types/frontmatters';
 
@@ -119,10 +120,29 @@ export default function SingleBlogPage({
                   <HiOutlineClock className='inline-block text-base' />
                   <Accent>{frontmatter.readingTime.text}</Accent>
                 </div>
-                <div className='flex gap-1 items-center'>
-                  <HiOutlineEye className='inline-block text-base' />
-                  <Accent>{meta?.views ?? '–––'} views</Accent>
-                </div>
+                {meta?.devtoViews ? (
+                  <Tooltip
+                    content={
+                      <>
+                        {meta.devtoViews} views on{' '}
+                        <CustomLink href='https://dev.to/theodorusclarence'>
+                          dev.to
+                        </CustomLink>
+                      </>
+                    }
+                    position='bottom'
+                  >
+                    <div className='flex gap-1 items-center'>
+                      <HiOutlineEye className='inline-block text-base' />
+                      <Accent>{meta?.views ?? '–––'} views</Accent>
+                    </div>
+                  </Tooltip>
+                ) : (
+                  <div className='flex gap-1 items-center'>
+                    <HiOutlineEye className='inline-block text-base' />
+                    <Accent>{meta?.views ?? '–––'} views</Accent>
+                  </div>
+                )}
               </div>
               {!frontmatter?.englishOnly && (
                 <CustomLink

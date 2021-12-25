@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { Tooltip as TippyTooltip } from 'react-tippy';
+import { Tooltip as TippyTooltip, TooltipProps } from 'react-tippy';
 
 type TooltipTextProps = {
   content?: React.ReactNode;
@@ -8,7 +8,7 @@ type TooltipTextProps = {
   className?: string;
   spanClassName?: string;
   withUnderline?: boolean;
-};
+} & TooltipProps;
 
 export default function Tooltip({
   content,
@@ -16,6 +16,7 @@ export default function Tooltip({
   className,
   spanClassName,
   withUnderline = false,
+  ...rest
 }: TooltipTextProps) {
   return (
     <TippyTooltip
@@ -32,6 +33,7 @@ export default function Tooltip({
           {content}
         </div>
       }
+      {...rest}
     >
       {withUnderline ? (
         <span

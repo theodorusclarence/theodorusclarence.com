@@ -8,6 +8,7 @@ export interface FaunaContentMeta {
 export interface ContentMeta {
   slug: string;
   views: number;
+  devtoViews?: number | null;
   likes: number;
   likesByUserRaw: Record<string, number>;
   likesByUser: number;
@@ -17,6 +18,7 @@ export interface SingleContentMeta {
   contentViews: number;
   contentLikes: number;
   likesByUser: number;
+  devtoViews?: number | null;
 }
 
 //#region  //*=========== Fauna Response ===========

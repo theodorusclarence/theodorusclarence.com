@@ -24,6 +24,7 @@ export default function useContentMeta(
         contentLikes: _preloadMeta.likes,
         contentViews: _preloadMeta.views,
         likesByUser: _preloadMeta.likesByUser,
+        devtoViews: _preloadMeta.devtoViews,
       }
     : undefined;
   //#endregion  //*======== Get content cache ===========
@@ -60,6 +61,7 @@ export default function useContentMeta(
         contentViews: data.contentViews,
         contentLikes: data.contentLikes + 1,
         likesByUser: data.likesByUser + 1,
+        devtoViews: data.devtoViews,
       },
       false
     );
@@ -76,6 +78,7 @@ export default function useContentMeta(
     isError,
     views: data?.contentViews,
     contentLikes: data?.contentLikes ?? 0,
+    devtoViews: data?.devtoViews,
     likesByUser: data?.likesByUser ?? 0,
     addLike,
   };
