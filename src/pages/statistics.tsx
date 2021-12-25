@@ -17,41 +17,42 @@ export default function StatisticsPage() {
     contentMetaFlag ? '/api/content' : null
   );
 
-  const blogs = pickContentMeta(contentMeta, 'blog');
-  const libraries = pickContentMeta(contentMeta, 'library');
-  const projects = pickContentMeta(contentMeta, 'projects');
-
   //#region  //*=========== BlogColumns ===========
-  const blogColumns: readonly Column<ContentMeta>[] = React.useMemo(
+  const rawBlogs = pickContentMeta(contentMeta, 'blog');
+  const blogs = rawBlogs.map((blog) => ({
+    ...blog,
+    webViews: blog.views - (blog?.devtoViews || 0),
+  }));
+  const blogColumns = React.useMemo<Column<typeof blogs[number]>[]>(
     () => [
       {
         Header: 'Blog Slug',
-        accessor: 'slug' as const,
+        accessor: 'slug',
         sortDescFirst: true,
       },
       {
         Header: 'Total Views',
-        accessor: (d) => d.views.toLocaleString(),
+        accessor: 'views',
+        Cell: ({ value }) => value.toLocaleString(),
         sortDescFirst: true,
-        sortType: 'number',
       },
       {
         Header: 'Web Views',
-        accessor: (d) => (d.views - (d?.devtoViews || 0)).toLocaleString(),
+        accessor: 'webViews',
+        Cell: ({ value }) => value.toLocaleString(),
         sortDescFirst: true,
-        sortType: 'number',
       },
       {
         Header: 'Dev.to',
-        accessor: (d) => d.devtoViews?.toLocaleString() || '-',
+        accessor: 'devtoViews',
+        Cell: ({ value }) => value?.toLocaleString() || '-',
         sortDescFirst: true,
-        sortType: 'number',
       },
       {
         Header: 'Likes',
-        accessor: (d) => d.likes.toLocaleString(),
+        accessor: 'likes',
+        Cell: ({ value }) => value.toLocaleString(),
         sortDescFirst: true,
-        sortType: 'number',
       },
     ],
     []
@@ -59,24 +60,25 @@ export default function StatisticsPage() {
   //#endregion  //*======== BlogColumns ===========
 
   //#region  //*=========== ProjectColumns ===========
-  const projectColumns: readonly Column<ContentMeta>[] = React.useMemo(
+  const projects = pickContentMeta(contentMeta, 'projects');
+  const projectColumns = React.useMemo<Column<ContentMeta>[]>(
     () => [
       {
         Header: 'Project Slug',
-        accessor: 'slug' as const,
+        accessor: 'slug',
         sortDescFirst: true,
       },
       {
         Header: 'Total Views',
-        accessor: (d) => d.views.toLocaleString(),
+        accessor: 'views',
+        Cell: ({ value }) => value.toLocaleString(),
         sortDescFirst: true,
-        sortType: 'number',
       },
       {
         Header: 'Likes',
-        accessor: (d) => d.likes.toLocaleString(),
+        accessor: 'likes',
+        Cell: ({ value }) => value.toLocaleString(),
         sortDescFirst: true,
-        sortType: 'number',
       },
     ],
     []
@@ -84,24 +86,25 @@ export default function StatisticsPage() {
   //#endregion  //*======== ProjectColumns ===========
 
   //#region  //*=========== LibraryColumns ===========
-  const libraryColumns: readonly Column<ContentMeta>[] = React.useMemo(
+  const libraries = pickContentMeta(contentMeta, 'library');
+  const libraryColumns = React.useMemo<Column<ContentMeta>[]>(
     () => [
       {
         Header: 'Library Slug',
-        accessor: 'slug' as const,
+        accessor: 'slug',
         sortDescFirst: true,
       },
       {
         Header: 'Total Views',
-        accessor: (d) => d.views.toLocaleString(),
+        accessor: 'views',
+        Cell: ({ value }) => value.toLocaleString(),
         sortDescFirst: true,
-        sortType: 'number',
       },
       {
         Header: 'Likes',
-        accessor: (d) => d.likes.toLocaleString(),
+        accessor: 'likes',
+        Cell: ({ value }) => value.toLocaleString(),
         sortDescFirst: true,
-        sortType: 'number',
       },
     ],
     []
@@ -119,7 +122,12 @@ export default function StatisticsPage() {
 
             <h2 className='h3 mt-8'>Blog</h2>
             {blogs && (
-              <ReactTable className='mt-4' data={blogs} columns={blogColumns} />
+              <ReactTable
+                className='mt-4'
+                data={blogs}
+                columns={blogColumns}
+                options={{ autoResetSortBy: false }}
+              />
             )}
 
             <h2 className='h3 mt-8'>Projects</h2>
@@ -128,6 +136,7 @@ export default function StatisticsPage() {
                 className='mt-4'
                 data={projects}
                 columns={projectColumns}
+                options={{ autoResetSortBy: false }}
               />
             )}
 
@@ -137,6 +146,7 @@ export default function StatisticsPage() {
                 className='mt-4'
                 data={libraries}
                 columns={libraryColumns}
+                options={{ autoResetSortBy: false }}
               />
             )}
           </div>
