@@ -120,6 +120,10 @@ const footerLinks = [
   },
   {
     href: 'https://clarence.link/um',
+    text: 'Analytics',
+  },
+  {
+    href: '/statistics',
     text: 'Statistics',
   },
   {
