@@ -126,7 +126,10 @@ export default function StatisticsPage() {
                 className='mt-4'
                 data={blogs}
                 columns={blogColumns}
-                options={{ autoResetSortBy: false }}
+                options={{
+                  autoResetSortBy: false,
+                  autoResetGlobalFilter: false,
+                }}
               />
             )}
 
@@ -136,7 +139,10 @@ export default function StatisticsPage() {
                 className='mt-4'
                 data={projects}
                 columns={projectColumns}
-                options={{ autoResetSortBy: false }}
+                options={{
+                  autoResetSortBy: false,
+                  autoResetGlobalFilter: false,
+                }}
               />
             )}
 
@@ -146,7 +152,10 @@ export default function StatisticsPage() {
                 className='mt-4'
                 data={libraries}
                 columns={libraryColumns}
-                options={{ autoResetSortBy: false }}
+                options={{
+                  autoResetSortBy: false,
+                  autoResetGlobalFilter: false,
+                }}
               />
             )}
           </div>
