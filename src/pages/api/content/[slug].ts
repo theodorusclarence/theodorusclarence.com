@@ -37,6 +37,7 @@ export default async function IndividualContent(
           return res.status(200).json({
             contentViews: data?.views + found?.views ?? 0,
             contentLikes: data?.likes ?? 0,
+            devtoViews: found?.views ?? null,
             likesByUser: data?.likesByUser?.[sessionId] ?? 0,
           });
         }
