@@ -27,6 +27,7 @@ export default function StatisticsPage() {
     () => [
       {
         Header: 'Blog Slug',
+        Footer: 'Total',
         accessor: 'slug',
         sortDescFirst: true,
       },
@@ -34,24 +35,48 @@ export default function StatisticsPage() {
         Header: 'Total Views',
         accessor: 'views',
         Cell: ({ value }) => value.toLocaleString(),
+        Footer: ({ rows }) =>
+          React.useMemo(
+            () => rows.reduce((sum, row) => sum + row.original.views, 0),
+            [rows]
+          ).toLocaleString(),
         sortDescFirst: true,
       },
       {
         Header: 'Web Views',
         accessor: 'webViews',
         Cell: ({ value }) => value.toLocaleString(),
+        Footer: ({ rows }) =>
+          React.useMemo(
+            () => rows.reduce((sum, row) => sum + row.original.webViews, 0),
+            [rows]
+          ).toLocaleString(),
         sortDescFirst: true,
       },
       {
         Header: 'Dev.to',
         accessor: 'devtoViews',
         Cell: ({ value }) => value?.toLocaleString() || '-',
+        Footer: ({ rows }) =>
+          React.useMemo(
+            () =>
+              rows.reduce(
+                (sum, row) => sum + (row.original?.devtoViews ?? 0),
+                0
+              ),
+            [rows]
+          ).toLocaleString(),
         sortDescFirst: true,
       },
       {
         Header: 'Likes',
         accessor: 'likes',
         Cell: ({ value }) => value.toLocaleString(),
+        Footer: ({ rows }) =>
+          React.useMemo(
+            () => rows.reduce((sum, row) => sum + row.original.likes, 0),
+            [rows]
+          ).toLocaleString(),
         sortDescFirst: true,
       },
     ],
@@ -66,18 +91,29 @@ export default function StatisticsPage() {
       {
         Header: 'Project Slug',
         accessor: 'slug',
+        Footer: 'Total',
         sortDescFirst: true,
       },
       {
         Header: 'Total Views',
         accessor: 'views',
         Cell: ({ value }) => value.toLocaleString(),
+        Footer: ({ rows }) =>
+          React.useMemo(
+            () => rows.reduce((sum, row) => sum + row.original.views, 0),
+            [rows]
+          ).toLocaleString(),
         sortDescFirst: true,
       },
       {
         Header: 'Likes',
         accessor: 'likes',
         Cell: ({ value }) => value.toLocaleString(),
+        Footer: ({ rows }) =>
+          React.useMemo(
+            () => rows.reduce((sum, row) => sum + row.original.likes, 0),
+            [rows]
+          ).toLocaleString(),
         sortDescFirst: true,
       },
     ],
@@ -92,18 +128,29 @@ export default function StatisticsPage() {
       {
         Header: 'Library Slug',
         accessor: 'slug',
+        Footer: 'Total',
         sortDescFirst: true,
       },
       {
         Header: 'Total Views',
         accessor: 'views',
         Cell: ({ value }) => value.toLocaleString(),
+        Footer: ({ rows }) =>
+          React.useMemo(
+            () => rows.reduce((sum, row) => sum + row.original.views, 0),
+            [rows]
+          ).toLocaleString(),
         sortDescFirst: true,
       },
       {
         Header: 'Likes',
         accessor: 'likes',
         Cell: ({ value }) => value.toLocaleString(),
+        Footer: ({ rows }) =>
+          React.useMemo(
+            () => rows.reduce((sum, row) => sum + row.original.likes, 0),
+            [rows]
+          ).toLocaleString(),
         sortDescFirst: true,
       },
     ],
@@ -113,7 +160,10 @@ export default function StatisticsPage() {
 
   return (
     <Layout>
-      <Seo templateTitle='Statistics' />
+      <Seo
+        templateTitle='Statistics'
+        description='Metadata statistics of theodorusclarence.com blogs, projects and libraries.'
+      />
 
       <main>
         <section className=''>
