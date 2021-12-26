@@ -19,6 +19,7 @@ type Props<T extends object = {}> = {
   options?: Omit<TableOptions<T>, 'data' | 'columns'>;
   plugins?: PluginHook<T>[];
   className?: string;
+  withFooter?: boolean;
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -28,6 +29,7 @@ export default function ReactTable<T extends object>({
   options,
   plugins = [],
   className,
+  withFooter = true,
 }: Props<T>) {
   const {
     getTableProps,
@@ -37,6 +39,7 @@ export default function ReactTable<T extends object>({
     prepareRow,
     state,
     setGlobalFilter,
+    footerGroups,
   } = useTable<T>(
     { ...options, data, columns },
     useGlobalFilter,
@@ -166,6 +169,29 @@ export default function ReactTable<T extends object>({
                   );
                 })}
               </tbody>
+              {withFooter && (
+                <tfoot className='bg-gray-50 dark:bg-gray-700'>
+                  {footerGroups.map((footerGroup, index) => (
+                    <tr
+                      {...footerGroup.getFooterGroupProps()}
+                      key={index}
+                      className='group px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-200'
+                    >
+                      {footerGroup.headers.map((column) => (
+                        <td
+                          {...column.getFooterProps()}
+                          className={clsx(
+                            'px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-200'
+                          )}
+                          key={column.id}
+                        >
+                          {column.render('Footer')}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tfoot>
+              )}
             </table>
           </div>
         </div>
