@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import * as React from 'react';
 import { Column } from 'react-table';
 import useSWR from 'swr';
@@ -158,6 +159,37 @@ export default function StatisticsPage() {
   );
   //#endregion  //*======== LibraryColumns ===========
 
+  //#region  //*=========== Statistic Cards ===========
+  const statCards = [
+    {
+      title: 'Blog',
+      count: blogs.length,
+      views: blogs.reduce((sum, blog) => sum + blog.views, 0).toLocaleString(),
+      likes: blogs.reduce((sum, blog) => sum + blog.likes, 0).toLocaleString(),
+    },
+    {
+      title: 'Projects',
+      count: projects.length,
+      views: projects
+        .reduce((sum, project) => sum + project.views, 0)
+        .toLocaleString(),
+      likes: projects
+        .reduce((sum, project) => sum + project.likes, 0)
+        .toLocaleString(),
+    },
+    {
+      title: 'Library',
+      count: libraries.length,
+      views: libraries
+        .reduce((sum, library) => sum + library.views, 0)
+        .toLocaleString(),
+      likes: libraries
+        .reduce((sum, library) => sum + library.likes, 0)
+        .toLocaleString(),
+    },
+  ];
+  //#endregion  //*======== Statistic Cards ===========
+
   return (
     <Layout>
       <Seo
@@ -169,6 +201,40 @@ export default function StatisticsPage() {
         <section className=''>
           <div className='layout py-12'>
             <h1>Statistics</h1>
+
+            <div className='grid gap-6 mt-4 sm:grid-cols-2 md:grid-cols-3'>
+              {statCards.map((stat) => (
+                <div
+                  key={stat.title}
+                  className={clsx(
+                    'space-y-2 text-center',
+                    'p-6 bg-gray-50 rounded-md shadow-sm dark:bg-gray-800',
+                    'border border-gray-300 dark:border-gray-600'
+                  )}
+                >
+                  <h3>
+                    {stat.title}{' '}
+                    <span className='h4 text-gray-800 dark:text-gray-200'>
+                      ({stat.count ?? 0})
+                    </span>
+                  </h3>
+                  <div className='space-y-1'>
+                    <p className='text-gray-800 dark:text-gray-200'>
+                      <span className='h4 font-semibold'>{stat.views}</span>{' '}
+                      <span className='text-xs font-medium uppercase'>
+                        views
+                      </span>
+                    </p>
+                    <p className='text-gray-800 dark:text-gray-200'>
+                      <span className='h4 font-semibold'>{stat.likes}</span>{' '}
+                      <span className='text-xs font-medium uppercase'>
+                        likes
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
 
             <h2 className='h3 mt-8'>Blog</h2>
             {blogs && (
