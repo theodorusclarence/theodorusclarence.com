@@ -86,6 +86,9 @@ export default function SingleBlogPage({
         description={frontmatter.description}
         isBlog
         banner={`https://res.cloudinary.com/theodorusclarence/image/upload/f_auto,c_fill,ar_4:5,w_1200/theodorusclarence/banner/${frontmatter.banner}`}
+        date={new Date(
+          frontmatter.lastUpdated ?? frontmatter.publishedAt
+        ).toISOString()}
       />
 
       <main>

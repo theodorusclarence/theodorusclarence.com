@@ -58,6 +58,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
       <Seo
         templateTitle={frontmatter.title}
         description={frontmatter.description}
+        date={new Date(frontmatter.publishedAt).toISOString()}
       />
 
       <main>
