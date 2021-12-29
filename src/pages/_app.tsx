@@ -14,6 +14,8 @@ import '@/styles/mdx.css';
 import '@/styles/dracula.css';
 import '@/styles/nprogress.css';
 
+import { blockDomainMeta } from '@/constants/env';
+
 Router.events.on('routeChangeStart', nProgress.start);
 Router.events.on('routeChangeError', nProgress.done);
 Router.events.on('routeChangeComplete', nProgress.done);
@@ -21,6 +23,11 @@ Router.events.on('routeChangeComplete', nProgress.done);
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     hotjar.initialize(2702988, 6);
+
+    // Don't increment views if not on main domain
+    if (window.location.host !== 'theodorusclarence.com' && blockDomainMeta) {
+      localStorage.setItem('incrementMetaFlag', 'false');
+    }
   }, []);
 
   return (
