@@ -186,7 +186,7 @@ export default function SingleBlogPage({
             </section>
 
             <figure className='mt-12'>
-              <Comment />
+              <Comment key={frontmatter.slug} />
             </figure>
 
             {populatedRecommendations.length > 0 && (
