@@ -6,7 +6,7 @@ enum ButtonVariant {
   'default',
 }
 
-type ButtonLinkProps = {
+export type ButtonLinkProps = {
   variant?: keyof typeof ButtonVariant;
 } & UnstyledLinkProps;
 

@@ -25,6 +25,7 @@ import TableOfContents, {
 import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
+import ShareTweetButton from '@/components/links/ShareTweetButton';
 import Seo from '@/components/Seo';
 import Tooltip from '@/components/Tooltip';
 
@@ -184,6 +185,12 @@ export default function SingleBlogPage({
                 </div>
               </aside>
             </section>
+
+            <ShareTweetButton
+              className='mt-6'
+              url={`https://theodorusclarence.com/blog/${frontmatter.slug}`}
+              title={frontmatter.title}
+            />
 
             <figure className='mt-12'>
               <Comment key={frontmatter.slug} />
