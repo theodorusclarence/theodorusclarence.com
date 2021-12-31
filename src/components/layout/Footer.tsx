@@ -2,13 +2,14 @@ import * as React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { FiMail } from 'react-icons/fi';
 import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
-import { Tooltip } from 'react-tippy';
+import { Tooltip as TooltipTippy } from 'react-tippy';
 
 import { trackEvent } from '@/lib/analytics';
 
 import Accent from '@/components/Accent';
 import Spotify from '@/components/layout/Spotify';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import Tooltip from '@/components/Tooltip';
 
 import { spotifyFlag } from '@/constants/env';
 
@@ -60,7 +61,7 @@ function SocialLinks() {
   return (
     <div className='flex mt-2 space-x-4'>
       <div className='flex justify-center items-center'>
-        <Tooltip
+        <TooltipTippy
           trigger='mouseenter'
           hideOnClick={false}
           interactive
@@ -87,19 +88,25 @@ function SocialLinks() {
               <FiMail className='w-7 h-7 text-gray-600 align-middle dark:hover:text-primary-300 dark:text-gray-300 hover:text-primary-300' />
             </button>
           </CopyToClipboard>
-        </Tooltip>
+        </TooltipTippy>
       </div>
       {socials.map((social) => (
-        <UnstyledLink
-          key={social.text}
-          className='inline-flex justify-center items-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
-          href={social.href}
-          onClick={() => {
-            trackEvent(`Footer Link: ${social.text}`, 'link');
-          }}
+        <Tooltip
+          interactive={false}
+          key={social.href}
+          withUnderline
+          content={social.text}
         >
-          <social.icon className='my-auto w-6 h-6 text-gray-600 align-middle transition-colors dark:hover:text-primary-300 dark:text-gray-300 hover:text-primary-300' />
-        </UnstyledLink>
+          <UnstyledLink
+            className='inline-flex justify-center items-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+            href={social.href}
+            onClick={() => {
+              trackEvent(`Footer Link: ${social.text}`, 'link');
+            }}
+          >
+            <social.icon className='my-auto w-6 h-6 text-gray-600 align-middle transition-colors dark:hover:text-primary-300 dark:text-gray-300 hover:text-primary-300' />
+          </UnstyledLink>
+        </Tooltip>
       ))}
     </div>
   );
@@ -134,22 +141,39 @@ const footerLinks = [
     href: '/subscribe',
     text: 'Subscribe',
   },
+  {
+    href: 'https://theodorusclarence.com/rss.xml',
+    text: 'RSS',
+  },
 ];
 
 const socials = [
   {
     href: 'https://clarence.link/github',
     icon: SiGithub,
-    text: 'Github',
+    text: (
+      <>
+        See my projects on <Accent>Github</Accent>
+      </>
+    ),
   },
   {
     href: 'https://clarence.link/linkedin',
     icon: SiLinkedin,
-    text: 'Linkedin',
+    text: (
+      <>
+        Find me on <Accent>Linkedin</Accent>
+      </>
+    ),
   },
   {
     href: 'https://clarence.link/twt',
     icon: SiTwitter,
-    text: 'Twitter',
+    text: (
+      <>
+        I post updates, tips, insight, and sometimes do some talk. Follow me on{' '}
+        <Accent>Twitter</Accent>!
+      </>
+    ),
   },
 ];

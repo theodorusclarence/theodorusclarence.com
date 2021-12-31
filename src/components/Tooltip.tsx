@@ -8,7 +8,8 @@ type TooltipTextProps = {
   className?: string;
   spanClassName?: string;
   withUnderline?: boolean;
-} & TooltipProps;
+} & TooltipProps &
+  Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'className'>;
 
 export default function Tooltip({
   content,
