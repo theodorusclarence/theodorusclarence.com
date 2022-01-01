@@ -19,7 +19,7 @@ export async function getRssXml() {
       <guid>${blogUrl}/${slug}</guid>
       <pubDate>${format(
         new Date(lastUpdated ?? publishedAt),
-        'yyyy-MM-ii'
+        'yyyy-MM-dd'
       )}</pubDate>
     </item>
     `.trim()
