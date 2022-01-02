@@ -37,17 +37,18 @@ export default function Footer() {
 function FooterLinks() {
   return (
     <div className='flex flex-wrap gap-y-4 gap-x-8 justify-center'>
-      {footerLinks.map(({ href, text }) => (
-        <UnstyledLink
-          key={href}
-          className='animated-underline text-sm font-medium rounded-sm dark:text-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
-          href={href}
-          onClick={() => {
-            trackEvent(`Footer Link: ${text}`, 'link');
-          }}
-        >
-          {text}
-        </UnstyledLink>
+      {footerLinks.map(({ href, text, tooltip }) => (
+        <Tooltip interactive={false} key={href} content={tooltip}>
+          <UnstyledLink
+            className='animated-underline text-sm font-medium rounded-sm dark:text-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+            href={href}
+            onClick={() => {
+              trackEvent(`Footer Link: ${text}`, 'link');
+            }}
+          >
+            {text}
+          </UnstyledLink>
+        </Tooltip>
       ))}
     </div>
   );
@@ -91,17 +92,12 @@ function SocialLinks() {
         </TooltipTippy>
       </div>
       {socials.map((social) => (
-        <Tooltip
-          interactive={false}
-          key={social.href}
-          withUnderline
-          content={social.text}
-        >
+        <Tooltip interactive={false} key={social.href} content={social.text}>
           <UnstyledLink
             className='inline-flex justify-center items-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
             href={social.href}
             onClick={() => {
-              trackEvent(`Footer Link: ${social.text}`, 'link');
+              trackEvent(`Footer Link: ${social.id}`, 'link');
             }}
           >
             <social.icon className='my-auto w-6 h-6 text-gray-600 align-middle transition-colors dark:hover:text-primary-300 dark:text-gray-300 hover:text-primary-300' />
@@ -116,34 +112,43 @@ const footerLinks = [
   {
     href: 'https://clarence.link/docs',
     text: 'Docs',
+    tooltip: 'Personal documentation about my best practices on development',
   },
   {
     href: 'https://clarence.link/booknotes',
     text: 'Book Notes',
+    tooltip: 'Note collection of books that I read',
   },
   {
     href: 'https://clarence.link/starters',
     text: 'Starter Templates',
+    tooltip: 'Starter that I build and use throughout my projects',
   },
   {
     href: 'https://clarence.link/um',
     text: 'Analytics',
+    tooltip: 'theodorusclarence.com views and visitors analytics',
   },
   {
     href: '/statistics',
     text: 'Statistics',
+    tooltip: 'Blog, Projects, and Library Statistics',
   },
   {
     href: '/guestbook',
     text: 'Guestbook',
+    tooltip:
+      'Leave whatever you like to say—message, appreciation, suggestions',
   },
   {
     href: '/subscribe',
     text: 'Subscribe',
+    tooltip: 'Get an email whenever I post, no spam',
   },
   {
     href: 'https://theodorusclarence.com/rss.xml',
     text: 'RSS',
+    tooltip: 'Add theodorusclarence.com blog to your feeds',
   },
 ];
 
@@ -151,28 +156,31 @@ const socials = [
   {
     href: 'https://clarence.link/github',
     icon: SiGithub,
+    id: 'Github',
     text: (
       <>
-        See my projects on <Accent>Github</Accent>
+        See my projects on <Accent className='font-medium'>Github</Accent>
       </>
     ),
   },
   {
     href: 'https://clarence.link/linkedin',
     icon: SiLinkedin,
+    id: 'Linkedin',
     text: (
       <>
-        Find me on <Accent>Linkedin</Accent>
+        Find me on <Accent className='font-medium'>Linkedin</Accent>
       </>
     ),
   },
   {
     href: 'https://clarence.link/twt',
     icon: SiTwitter,
+    id: 'Twitter',
     text: (
       <>
         I post updates, tips, insight, and sometimes do some talk. Follow me on{' '}
-        <Accent>Twitter</Accent>!
+        <Accent className='font-medium'>Twitter</Accent>!
       </>
     ),
   },
