@@ -141,6 +141,17 @@
       "  noCookie={true}",
       "/>"
     ]
-  }
+  },
   //#endregion  //*======== MDX ===========
+
+  //#region  //*=========== Snippet Wrap ===========
+  "Wrap with Fragment": {
+    "prefix": "ff",
+    "body": ["<>", "\t${TM_SELECTED_TEXT}", "</>"]
+  },
+  "Wrap with clsx": {
+    "prefix": "cx",
+    "body": ["{clsx(${TM_SELECTED_TEXT})}"]
+  }
+  //#endregion  //*======== Snippet Wrap ===========
 }

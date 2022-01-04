@@ -187,7 +187,7 @@ export default function SingleBlogPage({
             </section>
 
             <ShareTweetButton
-              className='mt-6'
+              className='mt-12'
               url={`https://theodorusclarence.com/blog/${frontmatter.slug}`}
               title={frontmatter.title}
             />
