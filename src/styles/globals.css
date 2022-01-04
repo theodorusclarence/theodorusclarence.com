@@ -128,6 +128,21 @@
   content: none !important;
 }
 
+/* #region  /**=========== Twitter Embed =========== */
+.twitter-tweet.twitter-tweet-rendered {
+  margin: 0 auto !important;
+}
+.tweet-custom-border {
+  @apply rounded-xl border-r border-gray-300 dark:border-gray-700;
+}
+@media (min-width: 595px) {
+  .tweet-custom-border {
+    @apply !border-0;
+  }
+}
+
+/* #endregion  /**======== Twitter Embed =========== */
+
 /* #region /**=========== Like Button Animation =========== */
 .heart-animate {
   transition: transform 80ms cubic-bezier(0.64, 0.57, 0.67, 1.53);
