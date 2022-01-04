@@ -127,6 +127,20 @@
   "Import Next Image": {
     "prefix": "imimg",
     "body": ["import Image from 'next/image';"]
-  }
+  },
   //#endregion  //*======== Nextjs ===========
+
+  //#region  //*=========== MDX ===========
+  "Youtube Embed": {
+    "prefix": "yte",
+    "body": [
+      "<LiteYouTubeEmbed",
+      "  id='$1'",
+      "  poster='maxresdefault'",
+      "  title='$2'",
+      "  noCookie={true}",
+      "/>"
+    ]
+  }
+  //#endregion  //*======== MDX ===========
 }
