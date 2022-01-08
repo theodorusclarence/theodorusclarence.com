@@ -36,7 +36,7 @@
   border-image: linear-gradient(to right, #00ff9480, #00e0f380, #00c4fd80) 1;
 }
 
-.mdx.prose :where(h1, h2, h3, 4) {
+.mdx.prose :where(h1, h2, h3, h4) {
   scroll-margin-top: 100px;
   position: relative;
   display: block;
