@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 import { IoArrowDownOutline } from 'react-icons/io5';
+import { IoNewspaperSharp } from 'react-icons/io5';
+import { SiGithub, SiTwitter } from 'react-icons/si';
 import { InView } from 'react-intersection-observer';
 
 import { trackEvent } from '@/lib/analytics';
@@ -89,6 +91,56 @@ export default function IndexPage({
                 <ButtonLink href='#intro'>Read the blog</ButtonLink>
               </div>
               <ButtonLink href='/about'>Learn more about me</ButtonLink>
+            </div>
+            <div
+              data-fade='6'
+              className='flex flex-wrap gap-y-2 gap-4 mt-4 md:mt-8'
+            >
+              <UnstyledLink
+                href='https://clarence.link/cv'
+                className={clsx(
+                  'inline-flex gap-1 items-center text-sm font-medium md:text-base',
+                  'text-gray-600 dark:hover:text-white dark:text-gray-400 hover:text-black',
+                  'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
+                  'transition-colors'
+                )}
+                onClick={() => {
+                  trackEvent('Social Link: Resume', 'link');
+                }}
+              >
+                <IoNewspaperSharp className='shrink-0' />
+                <span>Resume</span>
+              </UnstyledLink>
+              <UnstyledLink
+                href='https://twitter.com/th_clarence'
+                className={clsx(
+                  'inline-flex gap-1 items-center text-sm font-medium md:text-base',
+                  'group text-gray-600 dark:hover:text-white dark:text-gray-400 hover:text-black',
+                  'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
+                  'transition-colors'
+                )}
+                onClick={() => {
+                  trackEvent('Social Link: Twitter', 'link');
+                }}
+              >
+                <SiTwitter className='shrink-0 transition-colors group-hover:text-[#1da1f2]' />
+                <span>@th_clarence</span>
+              </UnstyledLink>
+              <UnstyledLink
+                href='https://github.com/theodorusclarence'
+                className={clsx(
+                  'inline-flex gap-1 items-center text-sm font-medium md:text-base',
+                  'text-gray-600 dark:hover:text-white dark:text-gray-400 hover:text-black',
+                  'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
+                  'transition-colors'
+                )}
+                onClick={() => {
+                  trackEvent('Social Link: Github', 'link');
+                }}
+              >
+                <SiGithub className='shrink-0' />
+                <span>theodorusclarence</span>
+              </UnstyledLink>
             </div>
           </article>
           <UnstyledLink
