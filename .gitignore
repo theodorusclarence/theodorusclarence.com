@@ -43,3 +43,6 @@ cypress/screenshots
 
 # rss
 rss.xml
+
+# scripts
+scripts/out

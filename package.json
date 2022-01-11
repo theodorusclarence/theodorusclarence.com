@@ -17,6 +17,7 @@
     "release": "standard-version",
     "push-release": "git push --follow-tags origin main",
     "postbuild": "next-sitemap",
+    "mdgen": "node scripts/cross-post.js",
     "prepare": "husky install"
   },
   "dependencies": {
