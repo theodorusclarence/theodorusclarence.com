@@ -4,6 +4,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import * as React from 'react';
 import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
+import { MdHistory } from 'react-icons/md';
 
 import { trackEvent } from '@/lib/analytics';
 import { cleanBlogPrefix } from '@/lib/helper';
@@ -26,6 +27,7 @@ import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import ShareTweetButton from '@/components/links/ShareTweetButton';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import Tooltip from '@/components/Tooltip';
 
@@ -46,6 +48,8 @@ export default function SingleBlogPage({
     'blog',
     recommendations
   );
+
+  const COMMIT_HISTORY_LINK = `https://github.com/theodorusclarence/theodorusclarence.com/commits/main/src/contents/blog/${frontmatter.slug}.mdx`;
 
   //#region  //*=========== Blog Language ===========
   const cleanSlug = cleanBlogPrefix(frontmatter.slug);
@@ -111,15 +115,28 @@ export default function SingleBlogPage({
                 Written on{' '}
                 {format(new Date(frontmatter.publishedAt), 'MMMM dd, yyyy')} by
                 Theodorus Clarence.
-                {frontmatter.lastUpdated && (
-                  <span className='font-medium text-gray-700 dark:text-gray-200'>
-                    {' '}
+              </p>
+              {frontmatter.lastUpdated && (
+                <div className='flex flex-wrap gap-2 mt-2 text-sm text-gray-700 dark:text-gray-200'>
+                  <p>
                     Last updated{' '}
                     {format(new Date(frontmatter.lastUpdated), 'MMMM dd, yyyy')}
-                  </span>
-                )}
-              </p>
-              <div className='flex gap-2 justify-start items-center mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
+                    .
+                  </p>
+                  <UnstyledLink
+                    href={COMMIT_HISTORY_LINK}
+                    className={clsx(
+                      'inline-flex gap-1 items-center font-medium rounded-sm',
+                      'text-gray-600 dark:hover:text-primary-300 dark:text-gray-300 hover:text-gray-900',
+                      'focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+                    )}
+                  >
+                    <MdHistory className='text-lg' />
+                    <span>See changes</span>
+                  </UnstyledLink>
+                </div>
+              )}
+              <div className='flex gap-2 justify-start items-center mt-6 text-sm font-medium text-gray-600 dark:text-gray-300'>
                 <div className='flex gap-1 items-center'>
                   <HiOutlineClock className='inline-block text-base' />
                   <Accent>{frontmatter.readingTime.text}</Accent>
@@ -151,7 +168,7 @@ export default function SingleBlogPage({
               {!frontmatter?.englishOnly && (
                 <CustomLink
                   href={`/blog/${isEnglish ? 'id-' : ''}${cleanSlug}`}
-                  className='mt-2'
+                  className='mt-4'
                 >
                   Read in {isEnglish ? 'Bahasa Indonesia' : 'English'}
                 </CustomLink>
