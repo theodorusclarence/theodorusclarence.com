@@ -49,7 +49,11 @@ export default function SingleBlogPage({
     recommendations
   );
 
+  //#region  //*=========== Link Constants ===========
   const COMMIT_HISTORY_LINK = `https://github.com/theodorusclarence/theodorusclarence.com/commits/main/src/contents/blog/${frontmatter.slug}.mdx`;
+  const GITHUB_EDIT_LINK = `https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/blog/${frontmatter.slug}.mdx`;
+  const OG_BANNER_LINK = `https://res.cloudinary.com/theodorusclarence/image/upload/f_auto,c_fill,ar_4:5,w_1200/theodorusclarence/banner/${frontmatter.banner}`;
+  //#endregion  //*======== Link Constants ===========
 
   //#region  //*=========== Blog Language ===========
   const cleanSlug = cleanBlogPrefix(frontmatter.slug);
@@ -90,7 +94,7 @@ export default function SingleBlogPage({
         templateTitle={frontmatter.title}
         description={frontmatter.description}
         isBlog
-        banner={`https://res.cloudinary.com/theodorusclarence/image/upload/f_auto,c_fill,ar_4:5,w_1200/theodorusclarence/banner/${frontmatter.banner}`}
+        banner={OG_BANNER_LINK}
         date={new Date(
           frontmatter.lastUpdated ?? frontmatter.publishedAt
         ).toISOString()}
@@ -236,9 +240,7 @@ export default function SingleBlogPage({
             <SubscribeCard className='mt-12' title='Enjoying this post?' />
 
             <div className='flex flex-col gap-4 items-start mt-8 md:flex-row-reverse md:justify-between'>
-              <CustomLink
-                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/blog/${frontmatter.slug}.mdx`}
-              >
+              <CustomLink href={GITHUB_EDIT_LINK}>
                 Edit this on GitHub
               </CustomLink>
               <CustomLink href='/blog'>← Back to blog</CustomLink>
