@@ -1,7 +1,7 @@
 ---
 title: 'Styling Best Practices I Use With Tailwind CSS'
 publishedAt: '2021-05-15'
-lastUpdated: '2021-12-19'
+lastUpdated: '2022-01-12'
 description: 'Tailwind CSS helped a lot when developing a consistent design cleanly and rapidly.'
 banner: 'mitchell-luo-j0r6nURLcAg-unsplash_u51v7i'
 tags: 'tailwindcss'
@@ -95,32 +95,53 @@ It is a good thing because we didn't need to do all of the chore like removing b
 I have a preconfigured base style that I usually add in my projects, it is already added to my [starter](https://clarence.link/starters) which I use in every project.
 
 ```css
-@layer base {
-  h1 {
-    @apply font-primary text-3xl font-bold md:text-5xl;
-  }
-
-  h2 {
-    @apply font-primary text-2xl font-bold md:text-4xl;
-  }
-
-  h3 {
-    @apply font-primary text-xl font-bold md:text-3xl;
-  }
-
-  h4 {
-    @apply font-primary text-lg font-bold;
-  }
-
-  body {
-    @apply font-primary text-sm md:text-base;
-  }
+.h0 {
+  @apply font-primary text-3xl font-bold md:text-5xl;
 }
 
-// Whoops, I think the syntax highlight broke because it didn't recognize @layer and @apply
+h1,
+.h1 {
+  @apply font-primary text-2xl font-bold md:text-4xl;
+}
+
+h2,
+.h2 {
+  @apply font-primary text-xl font-bold md:text-3xl;
+}
+
+h3,
+.h3 {
+  @apply font-primary text-lg font-bold md:text-2xl;
+}
+
+h4,
+.h4 {
+  @apply font-primary text-base font-bold md:text-lg;
+}
+
+body,
+.p {
+  @apply font-primary text-sm md:text-base;
+}
 ```
 
 This will add responsive font-size, and apply the font you are using. **Don't forget to configure the `font-primary` in tailwind config, or just use font-sans.**
+
+### Disclaimer
+
+This default sizes are added merely for the sake of convenience.
+
+However, **you shouldn't choose heading levels because of the font size**. You still have to check the content hierarchy.
+
+For example, if you need larger font size for a normal paragraph, you can't use `h3` because **it is not a heading**, but you can use `p` tag with the `.h3` class to get the same result.
+
+```tsx
+// ❌
+<h3>Not a content heading</h3>
+
+// ✅
+<p className='h3'>Not a content heading</p>
+```
 
 ## 4. Whitespace
 
