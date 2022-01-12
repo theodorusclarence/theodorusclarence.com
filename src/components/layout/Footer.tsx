@@ -1,3 +1,4 @@
+import { FeedbackFish } from '@feedback-fish/react';
 import * as React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { FiMail } from 'react-icons/fi';
@@ -27,7 +28,12 @@ export default function Footer() {
         <SocialLinks />
 
         <p className='mt-8 text-sm text-gray-600 dark:text-gray-300'>
-          © Theodorus Clarence {new Date().getFullYear()}
+          © Theodorus Clarence {new Date().getFullYear()} •{' '}
+          <FeedbackFish projectId='59a0c0e0d549a7'>
+            <button className='dark:hover:text-gray-100 hover:text-gray-800'>
+              Got any feedback?
+            </button>
+          </FeedbackFish>
         </p>
       </main>
     </footer>
