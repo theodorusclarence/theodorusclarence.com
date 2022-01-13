@@ -1,6 +1,7 @@
 ---
 title: 'How to set up Storybook with Next.js and Tailwind CSS'
 publishedAt: '2021-12-23'
+lastUpdated: '2022-01-13'
 description: 'Complete configuration and setup for Storybook with Next.js and Tailwind CSS'
 englishOnly: 'true'
 banner: 'arif-riyanto-UD9nADGj2mc-unsplash_d5tm3w'
@@ -17,7 +18,7 @@ This step-by-step tutorial is written with **Storybook v6.4.9 & TypeScript**, if
 
 ## Initializing Storybook
 
-This command will install the storybook to your Next.js repository, there will be a prompt asking if you want to additionally install an eslint plugin, I suggest you accept.
+This command will install the storybook to your Next.js repository, there will be a prompt asking if you want to additionally install an eslint plugin, I suggest you to accept.
 
 ```bash
 npx -y sb init --builder webpack5
@@ -47,7 +48,7 @@ Append this to your package.json
 
 Then install the webpack resolutions with
 
-```json
+```bash
 yarn
 ```
 
@@ -55,20 +56,21 @@ yarn
 
 Here is the custom main.js config that you can use
 
-```jsx
+```js
 // .storybook/main.js
 
 const path = require('path');
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  /** Expose public folder to storybook as static */
   staticDirs: ['../public'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     {
       /**
-       * NOTE: fix Storybook issue with PostCSS@8
+       * Fix Storybook issue with PostCSS@8
        * @see https://github.com/storybookjs/storybook/issues/12668#issuecomment-773958085
        */
       name: '@storybook/addon-postcss',
@@ -112,7 +114,7 @@ Confirm the `stories` and `staticDirs` if they match up with your folder structu
 
 ## Replace `.storybook/preview.js`
 
-```jsx
+```js
 // .storybook/preview.js
 
 import '../src/styles/globals.css';
