@@ -17,6 +17,7 @@ module.exports = {
     'no-console': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/no-unescaped-entities': 'off',
+    'react/display-name': 'off',
 
     // Sort
     'simple-import-sort/exports': 'warn',

@@ -35,7 +35,10 @@ export default function StatisticsPage() {
       {
         Header: 'Total Views',
         accessor: 'views',
-        Cell: ({ value }) => value.toLocaleString(),
+        align: 'right',
+        Cell: ({ value }) => (
+          <p className='text-right'>{value.toLocaleString()}</p>
+        ),
         Footer: ({ rows }) =>
           React.useMemo(
             () => rows.reduce((sum, row) => sum + row.original.views, 0),
@@ -46,7 +49,10 @@ export default function StatisticsPage() {
       {
         Header: 'Web Views',
         accessor: 'webViews',
-        Cell: ({ value }) => value.toLocaleString(),
+        align: 'right',
+        Cell: ({ value }) => (
+          <p className='text-right'>{value.toLocaleString()}</p>
+        ),
         Footer: ({ rows }) =>
           React.useMemo(
             () => rows.reduce((sum, row) => sum + row.original.webViews, 0),
@@ -57,7 +63,10 @@ export default function StatisticsPage() {
       {
         Header: 'Dev.to',
         accessor: 'devtoViews',
-        Cell: ({ value }) => value?.toLocaleString() || '-',
+        align: 'right',
+        Cell: ({ value }) => (
+          <p className='text-right'>{value?.toLocaleString() || '-'}</p>
+        ),
         Footer: ({ rows }) =>
           React.useMemo(
             () =>
@@ -72,7 +81,10 @@ export default function StatisticsPage() {
       {
         Header: 'Likes',
         accessor: 'likes',
-        Cell: ({ value }) => value.toLocaleString(),
+        align: 'right',
+        Cell: ({ value }) => (
+          <p className='text-right'>{value.toLocaleString()}</p>
+        ),
         Footer: ({ rows }) =>
           React.useMemo(
             () => rows.reduce((sum, row) => sum + row.original.likes, 0),
@@ -98,7 +110,10 @@ export default function StatisticsPage() {
       {
         Header: 'Total Views',
         accessor: 'views',
-        Cell: ({ value }) => value.toLocaleString(),
+        align: 'right',
+        Cell: ({ value }) => (
+          <p className='text-right'>{value.toLocaleString()}</p>
+        ),
         Footer: ({ rows }) =>
           React.useMemo(
             () => rows.reduce((sum, row) => sum + row.original.views, 0),
@@ -109,7 +124,10 @@ export default function StatisticsPage() {
       {
         Header: 'Likes',
         accessor: 'likes',
-        Cell: ({ value }) => value.toLocaleString(),
+        align: 'right',
+        Cell: ({ value }) => (
+          <p className='text-right'>{value.toLocaleString()}</p>
+        ),
         Footer: ({ rows }) =>
           React.useMemo(
             () => rows.reduce((sum, row) => sum + row.original.likes, 0),
@@ -135,7 +153,10 @@ export default function StatisticsPage() {
       {
         Header: 'Total Views',
         accessor: 'views',
-        Cell: ({ value }) => value.toLocaleString(),
+        align: 'right',
+        Cell: ({ value }) => (
+          <p className='text-right'>{value.toLocaleString()}</p>
+        ),
         Footer: ({ rows }) =>
           React.useMemo(
             () => rows.reduce((sum, row) => sum + row.original.views, 0),
@@ -146,7 +167,10 @@ export default function StatisticsPage() {
       {
         Header: 'Likes',
         accessor: 'likes',
-        Cell: ({ value }) => value.toLocaleString(),
+        align: 'right',
+        Cell: ({ value }) => (
+          <p className='text-right'>{value.toLocaleString()}</p>
+        ),
         Footer: ({ rows }) =>
           React.useMemo(
             () => rows.reduce((sum, row) => sum + row.original.likes, 0),
