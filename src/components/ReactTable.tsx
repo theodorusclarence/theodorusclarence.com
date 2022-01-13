@@ -100,7 +100,16 @@ export default function ReactTable<T extends object>({
                         scope='col'
                         className='group px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-200'
                       >
-                        <div className='flex relative gap-4 items-center py-1'>
+                        <div
+                          className={clsx(
+                            'flex relative gap-4 items-center py-1',
+                            // Align Additional
+                            {
+                              'justify-center': column.align === 'center',
+                              'flex-row-reverse': column.align === 'right',
+                            }
+                          )}
+                        >
                           <p>{column.render('Header')}</p>
                           <span className='flex flex-col justify-center items-center'>
                             <GoTriangleUp
@@ -113,7 +122,9 @@ export default function ReactTable<T extends object>({
                                     : // sorted asc
                                       'text-gray-700 dark:text-gray-200'
                                   : // not sorted
-                                    'group-hover:text-gray-400 text-transparent'
+                                  column.disableSortBy
+                                  ? 'text-transparent'
+                                  : 'group-hover:text-gray-400 text-transparent'
                               )}
                             />
                             <GoTriangleDown
@@ -126,7 +137,9 @@ export default function ReactTable<T extends object>({
                                     : // sorted asc
                                       'text-gray-400 dark:text-gray-500'
                                   : // not sorted
-                                    'group-hover:text-gray-400 text-transparent'
+                                  column.disableSortBy
+                                  ? 'text-transparent'
+                                  : 'group-hover:text-gray-400 text-transparent'
                               )}
                             />
                           </span>
@@ -181,7 +194,12 @@ export default function ReactTable<T extends object>({
                         <td
                           {...column.getFooterProps()}
                           className={clsx(
-                            'px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-200'
+                            'px-6 py-3 text-sm font-medium tracking-wider text-gray-500 uppercase dark:text-gray-200',
+                            {
+                              'text-left': column.align === 'left',
+                              'text-center': column.align === 'center',
+                              'text-right': column.align === 'right',
+                            }
                           )}
                           key={column.id}
                         >
