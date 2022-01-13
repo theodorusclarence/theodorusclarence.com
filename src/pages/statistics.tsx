@@ -236,22 +236,25 @@ export default function StatisticsPage() {
                     'border border-gray-300 dark:border-gray-600'
                   )}
                 >
-                  <h3>
-                    {stat.title}{' '}
-                    <span className='h4 text-gray-800 dark:text-gray-200'>
-                      ({stat.count ?? 0})
-                    </span>
-                  </h3>
+                  <h3>{stat.title}</h3>
                   <div className='space-y-1'>
                     <p className='text-gray-800 dark:text-gray-200'>
+                      <span className='h4 font-semibold'>
+                        {stat.count ?? 0}
+                      </span>{' '}
+                      <span className='text-xs font-medium tracking-wider uppercase'>
+                        posts
+                      </span>
+                    </p>
+                    <p className='text-gray-800 dark:text-gray-200'>
                       <span className='h4 font-semibold'>{stat.views}</span>{' '}
-                      <span className='text-xs font-medium uppercase'>
+                      <span className='text-xs font-medium tracking-wider uppercase'>
                         views
                       </span>
                     </p>
                     <p className='text-gray-800 dark:text-gray-200'>
                       <span className='h4 font-semibold'>{stat.likes}</span>{' '}
-                      <span className='text-xs font-medium uppercase'>
+                      <span className='text-xs font-medium tracking-wider uppercase'>
                         likes
                       </span>
                     </p>
