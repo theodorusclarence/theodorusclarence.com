@@ -30,7 +30,7 @@ export default function Footer() {
         <p className='mt-8 text-sm text-gray-600 dark:text-gray-300'>
           © Theodorus Clarence {new Date().getFullYear()} •{' '}
           <FeedbackFish projectId='59a0c0e0d549a7'>
-            <button className='dark:hover:text-gray-100 hover:text-gray-800'>
+            <button className='rounded-sm dark:hover:text-gray-100 hover:text-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-primary-300'>
               Got any feedback?
             </button>
           </FeedbackFish>
@@ -115,6 +115,15 @@ function SocialLinks() {
 }
 
 const footerLinks = [
+  {
+    href: 'https://github.com/theodorusclarence/theodorusclarence.com',
+    text: 'Source Code',
+    tooltip: (
+      <>
+        This website is <strong>open source</strong>!
+      </>
+    ),
+  },
   {
     href: 'https://clarence.link/docs',
     text: 'Docs',
