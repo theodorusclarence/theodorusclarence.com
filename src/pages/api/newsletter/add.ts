@@ -12,7 +12,7 @@ export default async function handler(
     try {
       const response = await axios.post(
         'https://www.getrevue.co/api/v2/subscribers',
-        data,
+        { ...data, double_opt_in: true },
         {
           headers: {
             'Content-Type': 'application/json',

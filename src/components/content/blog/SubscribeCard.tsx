@@ -40,7 +40,6 @@ export default function SubscribeCard({
     axios
       .post<{ message: string }>('/api/newsletter/add', {
         email: data.email,
-        double_opt_in: false,
       })
       .then(() => {
         reset();
@@ -114,7 +113,7 @@ export default function SubscribeCard({
         )}
       >
         {status === 'success' ? (
-          'Thanks for subscribing. See you on the email!'
+          'Thanks, please confirm subscription on your email (check promotions or spam tab too)'
         ) : status === 'subscribed' ? (
           'You have subscribed to the newsletter, stay tuned!'
         ) : status === 'error' ? (
