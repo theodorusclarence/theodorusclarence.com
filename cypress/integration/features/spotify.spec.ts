@@ -12,6 +12,7 @@ describe('Spotify feature works as expected', () => {
       fixture: 'spotify/not-playing.json',
     }).as('spotify');
     cy.visit('/about');
+    cy.wait(2000);
     cy.wait('@spotify');
 
     cy.get('[data-cy=spotify]').should('not.exist');
@@ -22,6 +23,7 @@ describe('Spotify feature works as expected', () => {
       fixture: 'spotify/playing.json',
     }).as('spotify');
     cy.visit('/about');
+    cy.wait(2000);
     cy.wait('@spotify');
 
     cy.get('[data-cy=spotify]').should('exist');
