@@ -31,7 +31,7 @@
     "date-fns": "^2.28.0",
     "faunadb": "^4.4.1",
     "lodash": "^4.17.21",
-    "next": "^12.0.9",
+    "next": "^12.0.10",
     "next-themes": "^0.0.15",
     "nprogress": "^0.2.0",
     "preact": "^10.5.15",
@@ -39,7 +39,7 @@
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.22.5",
+    "react-hook-form": "^7.26.0",
     "react-hotjar": "^4.0.0",
     "react-icons": "^4.3.1",
     "react-image-lightbox": "^5.1.4",
@@ -48,13 +48,13 @@
     "react-table": "^7.7.0",
     "react-tippy": "^1.4.0",
     "react-twitter-widgets": "^1.10.0",
-    "swr": "^1.1.2"
+    "swr": "^1.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
     "@tailwindcss/forms": "^0.4.0",
-    "@tailwindcss/typography": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.1",
     "@types/lodash": "^4.14.178",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.38",
