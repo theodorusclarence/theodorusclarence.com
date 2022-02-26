@@ -25,8 +25,9 @@ export default function BlogCard({
     <li
       className={clsx(
         'w-full bg-white rounded-md border border-gray-300 dark:bg-dark dark:border-gray-600',
-        'transform-gpu scale-100 hover:scale-[1.02] active:scale-[0.97]',
+        'scale-100 motion-safe:transform-gpu hover:scale-[1.02] active:scale-[0.97]',
         'transition duration-100',
+        'motion-reduce:hover:scale-100',
         'animate-shadow',
         className
       )}

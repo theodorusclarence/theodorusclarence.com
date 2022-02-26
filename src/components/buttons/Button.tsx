@@ -29,7 +29,8 @@ export default function Button({
         'px-4 py-2 font-bold rounded',
         'border border-gray-300 shadow-sm dark:border-gray-600',
         'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
-        'transform-gpu scale-100 hover:scale-[1.03] active:scale-[0.97]',
+        'scale-100 motion-safe:transform-gpu hover:scale-[1.03] active:scale-[0.97]',
+        'motion-reduce:hover:scale-100',
         'transition duration-100',
         'animate-shadow',
         {
