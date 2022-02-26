@@ -34,6 +34,12 @@
     scroll-padding-top: 80px;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   ::selection {
     background: rgba(var(--tw-clr-primary-300), 0.3);
   }
@@ -99,6 +105,11 @@
     background-repeat: no-repeat;
     transition: 0.3s ease;
     transition-property: background-size, color, background-color, border-color;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animated-underline {
+      transition: none;
+    }
   }
   .animated-underline:hover,
   .animated-underline:focus-visible,

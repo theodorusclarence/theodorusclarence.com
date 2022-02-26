@@ -17,8 +17,9 @@ export default function LibraryCard({ className, snippet }: LibraryCardProps) {
     <li
       className={clsx(
         'ring-vis-0 h-full bg-white rounded-md border dark:bg-dark dark:border-gray-600',
-        'transform-gpu scale-100 hover:scale-[1.04] active:scale-[0.97]',
+        'scale-100 motion-safe:transform-gpu hover:scale-[1.04] active:scale-[0.97]',
         'transition duration-100',
+        'motion-reduce:hover:scale-100',
         'animate-shadow',
         className
       )}
