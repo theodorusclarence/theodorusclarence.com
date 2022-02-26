@@ -66,8 +66,8 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
               <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
                 {frontmatter.description}
               </p>
-              <div className='flex gap-3 justify-start items-center mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
-                <div className='flex gap-1 items-center'>
+              <div className='mt-2 flex items-center justify-start gap-3 text-sm font-medium text-gray-600 dark:text-gray-300'>
+                <div className='flex items-center gap-1'>
                   <HiOutlineEye className='inline-block text-base' />
                   <Accent>{meta?.views ?? '–––'} views</Accent>
                 </div>
@@ -80,7 +80,7 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
 
             <hr className='dark:border-gray-600' />
 
-            <section className='lg:grid-cols-[auto,250px] lg:grid lg:gap-8'>
+            <section className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
               <article className='mdx prose mx-auto mt-4 w-full transition-colors dark:prose-invert'>
                 <Component
                   components={
@@ -99,14 +99,14 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
                     minLevel={minLevel}
                     activeSection={activeSection}
                   />
-                  <div className='flex justify-center items-center py-8'>
+                  <div className='flex items-center justify-center py-8'>
                     <LikeButton slug={contentSlug} />
                   </div>
                 </div>
               </aside>
             </section>
 
-            <div className='flex flex-col gap-4 items-start mt-8 md:flex-row-reverse md:justify-between'>
+            <div className='mt-8 flex flex-col items-start gap-4 md:flex-row-reverse md:justify-between'>
               <CustomLink
                 href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/library/${frontmatter.slug}.mdx`}
               >

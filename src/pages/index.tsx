@@ -44,7 +44,7 @@ export default function IndexPage({
       <main>
         <section
           className={clsx(
-            'min-h-main flex flex-col justify-center -mt-20 mb-20',
+            'min-h-main -mt-20 mb-20 flex flex-col justify-center',
             isLoaded && 'fade-in-start'
           )}
         >
@@ -60,7 +60,7 @@ export default function IndexPage({
             </h1>
             <p
               className={clsx(
-                'mt-4 max-w-4xl text-gray-700 md:mt-6 dark:text-gray-200',
+                'mt-4 max-w-4xl text-gray-700 dark:text-gray-200 md:mt-6',
                 'md:text-lg 2xl:text-xl'
               )}
               data-fade='3'
@@ -69,7 +69,7 @@ export default function IndexPage({
               rebuild and redefine fundamental concepts through mental models.
             </p>
             <p
-              className='mt-3 max-w-4xl leading-relaxed text-gray-700 md:mt-4 md:text-lg 2xl:text-xl dark:text-gray-200'
+              className='mt-3 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-4 md:text-lg 2xl:text-xl'
               data-fade='4'
             >
               Don't forget to sign my{' '}
@@ -77,12 +77,12 @@ export default function IndexPage({
             </p>
             <div
               data-fade='5'
-              className='flex flex-wrap gap-4 mt-8 md:!text-lg'
+              className='mt-8 flex flex-wrap gap-4 md:!text-lg'
             >
               <div className='group relative'>
                 <div
                   className={clsx(
-                    'animate-tilt absolute -inset-0.5 rounded blur',
+                    'absolute -inset-0.5 animate-tilt rounded blur',
                     'bg-gradient-to-r from-primary-300 to-primary-400',
                     'dark:from-primary-200 dark:via-primary-300',
                     'opacity-75 transition duration-1000 group-hover:opacity-100 group-hover:duration-200'
@@ -94,13 +94,13 @@ export default function IndexPage({
             </div>
             <div
               data-fade='6'
-              className='flex flex-wrap gap-y-2 gap-4 mt-4 md:mt-8'
+              className='mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-8'
             >
               <UnstyledLink
                 href='https://clarence.link/cv'
                 className={clsx(
-                  'inline-flex gap-1 items-center text-sm font-medium md:text-base',
-                  'text-gray-600 dark:hover:text-white dark:text-gray-400 hover:text-black',
+                  'inline-flex items-center gap-1 text-sm font-medium md:text-base',
+                  'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
                   'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
                   'transition-colors'
                 )}
@@ -114,8 +114,8 @@ export default function IndexPage({
               <UnstyledLink
                 href='https://twitter.com/th_clarence'
                 className={clsx(
-                  'inline-flex gap-1 items-center text-sm font-medium md:text-base',
-                  'group text-gray-600 dark:hover:text-white dark:text-gray-400 hover:text-black',
+                  'inline-flex items-center gap-1 text-sm font-medium md:text-base',
+                  'group text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
                   'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
                   'transition-colors'
                 )}
@@ -129,8 +129,8 @@ export default function IndexPage({
               <UnstyledLink
                 href='https://github.com/theodorusclarence'
                 className={clsx(
-                  'inline-flex gap-1 items-center text-sm font-medium md:text-base',
-                  'text-gray-600 dark:hover:text-white dark:text-gray-400 hover:text-black',
+                  'inline-flex items-center gap-1 text-sm font-medium md:text-base',
+                  'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
                   'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
                   'transition-colors'
                 )}
@@ -147,11 +147,11 @@ export default function IndexPage({
             href='#intro'
             className={clsx(
               'absolute bottom-2 left-1/2 -translate-x-1/2 md:bottom-10',
-              'rounded-md transition-colors cursor-pointer',
+              'cursor-pointer rounded-md transition-colors',
               'hover:text-primary-300 focus-visible:text-primary-300'
             )}
           >
-            <IoArrowDownOutline className='w-8 h-8 animate-bounce md:w-10 md:h-10' />
+            <IoArrowDownOutline className='h-8 w-8 animate-bounce md:h-10 md:w-10' />
           </UnstyledLink>
           <TC
             className={clsx(
@@ -177,13 +177,13 @@ export default function IndexPage({
                 )}
                 data-fade='0'
               >
-                <div className='mt-8 w-full h-full md:mt-0'>
+                <div className='mt-8 h-full w-full md:mt-0'>
                   <h2 className='text-4xl md:text-6xl'>
-                    <Accent className='decoration-clone inline leading-snug dark:leading-none'>
+                    <Accent className='inline decoration-clone leading-snug dark:leading-none'>
                       Rebuild your mental model
                     </Accent>
                   </h2>
-                  <p className='mt-4 text-base text-gray-600 md:text-lg dark:text-gray-300'>
+                  <p className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
                     <Tooltip
                       withUnderline
                       content={
@@ -209,12 +209,12 @@ export default function IndexPage({
                     my mental model affect my learning about a certain topic.
                   </p>
                 </div>
-                <div className='w-full h-full'>
+                <div className='h-full w-full'>
                   <ul className='relative h-full'>
                     <BlogCard
                       className={clsx(
-                        'max-w-[350px] absolute transform-gpu',
-                        'translate-y-[-55%] top-1/2 md:translate-y-[-50%] lg:translate-y-[-60%]',
+                        'absolute max-w-[350px] transform-gpu',
+                        'top-1/2 translate-y-[-55%] md:translate-y-[-50%] lg:translate-y-[-60%]',
                         'left-1/2 -translate-x-1/2 md:translate-x-[-50%] lg:translate-x-[-30%]',
                         'rotate-3 md:rotate-6 lg:rotate-12',
                         'pointer-events-none md:pointer-events-auto'
@@ -222,7 +222,7 @@ export default function IndexPage({
                       post={populatedIntro[1]}
                     />
                     <BlogCard
-                      className='max-w-[350px] mx-auto'
+                      className='mx-auto max-w-[350px]'
                       post={populatedIntro[0]}
                     />
                   </ul>
@@ -242,7 +242,7 @@ export default function IndexPage({
                 <h2 className='text-2xl md:text-4xl' id='blog'>
                   <Accent>Featured Posts</Accent>
                 </h2>
-                <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+                <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedPosts.map((post, i) => (
                     <BlogCard
                       key={post.slug}
@@ -276,7 +276,7 @@ export default function IndexPage({
                 <p className='mt-2 text-gray-600 dark:text-gray-300'>
                   Some projects that I'm proud of
                 </p>
-                <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+                <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedProjects.map((project, i) => (
                     <ProjectCard
                       key={project.slug}
@@ -312,7 +312,7 @@ export default function IndexPage({
                 <p className='mt-2 text-gray-600 dark:text-gray-300'>
                   List of code snippets that I store for easy access.
                 </p>
-                <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+                <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedLibrary.map((snippet, i) => (
                     <LibraryCard
                       key={snippet.slug}

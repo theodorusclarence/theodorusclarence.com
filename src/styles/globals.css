@@ -88,11 +88,11 @@
     @apply min-h-[calc(100vh-82px)];
   }
   .accent {
-    @apply dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400;
+    @apply dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent;
   }
 
   .accent-highlight {
-    @apply bg-primary-300/50 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400;
+    @apply bg-primary-300/50 dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent;
   }
 }
 
@@ -120,7 +120,7 @@
 
   /* #region  /**=========== Animate Shadow =========== */
   .animate-shadow {
-    @apply after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:z-[-1] hover:after:opacity-100;
+    @apply after:absolute after:inset-0 after:z-[-1] after:opacity-0 after:transition-opacity hover:after:opacity-100;
     @apply after:shadow-md dark:after:shadow-none;
   }
   /* #endregion  /**======== Animate Shadow =========== */
@@ -201,10 +201,10 @@
 
 /* #region  /**=========== Fade In =========== */
 [data-fade] {
-  @apply duration-[400ms] opacity-0 transition ease-out translate-y-10 motion-reduce:opacity-100 motion-reduce:translate-y-0;
+  @apply translate-y-10 opacity-0 transition duration-[400ms] ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100;
 }
 .fade-in-start [data-fade] {
-  @apply opacity-100 translate-y-0;
+  @apply translate-y-0 opacity-100;
 }
 .fade-in-start [data-fade='1'] {
   transition-delay: 100ms;

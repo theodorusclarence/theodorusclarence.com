@@ -24,9 +24,9 @@ export default function ShareTweetButton({
     <ButtonLink
       {...rest}
       href={intentUrl}
-      className={clsx('gap-2 items-center', className)}
+      className={clsx('items-center gap-2', className)}
     >
-      <SiTwitter className='text-[#1da1f2] text-[1.2em]' />
+      <SiTwitter className='text-[1.2em] text-[#1da1f2]' />
       Tweet this article
     </ButtonLink>
   );

@@ -282,7 +282,7 @@ export default function Home() {
   return (
     <>
       <section className='bg-gray-600'>
-        <main className='flex justify-center items-center'>
+        <main className='flex items-center justify-center'>
           {console.log(data)}
         </main>
       </section>
@@ -325,7 +325,7 @@ Maka, kita bisa membuat component conditional untuk merender data tersebut, disi
       ? data.songUrl
       : 'https://open.spotify.com/user/erence21?si=yTsrZT5JSHOp7tn3ist7Ig'
   }
-  className='flex relative items-center p-5 space-x-4 w-72 rounded-md border transition-shadow hover:shadow-md'
+  className='relative flex w-72 items-center space-x-4 rounded-md border p-5 transition-shadow hover:shadow-md'
 >
   <div className='w-16'>
     {data?.isPlaying ? (

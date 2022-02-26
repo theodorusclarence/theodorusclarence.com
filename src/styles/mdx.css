@@ -3,7 +3,7 @@
 }
 
 .prose code:not(:where([data-code-type='code-block'])) {
-  @apply px-1 py-1 rounded-md border dark:border-gray-600;
+  @apply rounded-md border px-1 py-1 dark:border-gray-600;
 }
 
 .prose a {
@@ -84,6 +84,6 @@
 }
 
 .hash-anchor:after {
-  @apply absolute -right-5 top-1/2 invisible text-lg text-primary-400 -translate-y-1/2 dark:text-primary-300;
+  @apply invisible absolute -right-5 top-1/2 -translate-y-1/2 text-lg text-primary-400 dark:text-primary-300;
   content: '#';
 }

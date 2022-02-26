@@ -27,7 +27,7 @@ export default function TrfPage() {
         <section className=''>
           <div className='layout flex flex-col items-center py-12 text-center'>
             <h1>Rekening BCA</h1>
-            <p className='mt-4 text-sm font-bold text-gray-500 uppercase dark:text-gray-400'>
+            <p className='mt-4 text-sm font-bold uppercase text-gray-500 dark:text-gray-400'>
               Atas Nama
             </p>
             <h3 className='mt-1'>
@@ -40,7 +40,7 @@ export default function TrfPage() {
               height={886}
               alt='QR BCA'
             />
-            <div className='flex flex-col items-center mt-8 space-y-4'>
+            <div className='mt-8 flex flex-col items-center space-y-4'>
               <code className='px-4 py-2 font-bold'>
                 <Accent>7630055037</Accent>
               </code>

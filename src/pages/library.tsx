@@ -124,7 +124,7 @@ export default function LibraryPage({
               type='text'
             />
             <div
-              className='flex flex-wrap gap-2 justify-start items-baseline mt-2 text-sm text-gray-600 dark:text-gray-300'
+              className='mt-2 flex flex-wrap items-baseline justify-start gap-2 text-sm text-gray-600 dark:text-gray-300'
               data-fade='3'
             >
               <span className='font-medium'>Choose topic:</span>
@@ -141,7 +141,7 @@ export default function LibraryPage({
               </SkipNavTag>
             </div>
             <div
-              className='flex relative z-10 flex-col gap-4 items-end mt-4 text-gray-600 md:mt-8 dark:text-gray-300'
+              className='relative z-10 mt-4 flex flex-col items-end gap-4 text-gray-600 dark:text-gray-300 md:mt-8'
               data-fade='4'
             >
               <SortListbox
@@ -152,7 +152,7 @@ export default function LibraryPage({
             </div>
 
             <ul
-              className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'
+              className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'
               data-fade='5'
             >
               {filtered.length > 0 ? (

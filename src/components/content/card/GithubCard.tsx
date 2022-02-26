@@ -35,30 +35,30 @@ export default function GithubCard({ repo, className }: GithubCardProps) {
       <UnstyledLink
         href={repository.html_url}
         className={clsx(
-          'max-w-xl !block',
+          '!block max-w-xl',
           'not-prose px-4 py-3',
           'rounded-lg border border-gray-300 dark:border-gray-600',
-          'transform-gpu scale-100 hover:scale-[1.02] active:scale-[0.97]',
+          'scale-100 transform-gpu hover:scale-[1.02] active:scale-[0.97]',
           'transition duration-100',
           'animate-shadow',
           className
         )}
       >
-        <div className='flex gap-2 items-center text-sm md:text-base'>
-          <SiGithub className='shrink-0 text-[1.2em] ml-0.5' />
-          <Accent className={clsx('font-semibold truncate overflow-ellipsis')}>
+        <div className='flex items-center gap-2 text-sm md:text-base'>
+          <SiGithub className='ml-0.5 shrink-0 text-[1.2em]' />
+          <Accent className={clsx('truncate overflow-ellipsis font-semibold')}>
             {repository.full_name}
           </Accent>
         </div>
         <p className={clsx('mt-2 text-sm text-gray-700 dark:text-gray-200')}>
           {repository.description}
         </p>
-        <div className='flex gap-3 mt-2'>
-          <div className='flex gap-1 items-center text-xs'>
+        <div className='mt-2 flex gap-3'>
+          <div className='flex items-center gap-1 text-xs'>
             <HiOutlineStar className='shrink-0 text-[1.2em]' />
             <span>{repository.stargazers_count}</span>
           </div>
-          <div className='flex gap-1 items-center text-xs'>
+          <div className='flex items-center gap-1 text-xs'>
             <BiGitRepoForked className='shrink-0 text-[1.2em]' />
             <span>{repository.forks}</span>
           </div>
@@ -68,10 +68,10 @@ export default function GithubCard({ repo, className }: GithubCardProps) {
   ) : (
     <div
       className={clsx(
-        'mx-auto max-w-xl !block',
+        'mx-auto !block max-w-xl',
         'not-prose px-4 py-3',
         'rounded-lg border border-gray-300 dark:border-gray-600',
-        'bg-gray-300 animate-pulse dark:bg-gray-600',
+        'animate-pulse bg-gray-300 dark:bg-gray-600',
         'h-[111px] animate-pulse'
       )}
     />
