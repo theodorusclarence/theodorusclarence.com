@@ -11,7 +11,7 @@ export default function StyledInput({
         className,
         'w-full rounded-md dark:bg-dark',
         'border border-gray-300 dark:border-gray-600',
-        'dark:focus:border-primary-300 focus:border-primary-300 focus:ring-0 focus:outline-none'
+        'focus:border-primary-300 focus:outline-none focus:ring-0 dark:focus:border-primary-300'
       )}
       {...rest}
     />

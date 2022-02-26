@@ -75,7 +75,7 @@ export default function UmamiPage() {
                 </Accent>
               </p>
             </div>
-            <div className='flex flex-col gap-4 items-center mt-8'>
+            <div className='mt-8 flex flex-col items-center gap-4'>
               <Button onClick={removeUmami}>allow track umami</Button>
               <Button onClick={addUmami}>don't track umami</Button>
               <Button onClick={removeIncrement}>

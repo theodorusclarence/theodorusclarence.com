@@ -14,7 +14,7 @@ export default function Quiz(props: QuizType) {
   };
 
   return (
-    <div className='prose relative p-4 pt-8 mt-8 w-full rounded border !max-w-none dark:prose-invert dark:border-gray-600'>
+    <div className='prose relative mt-8 w-full !max-w-none rounded border p-4 pt-8 dark:prose-invert dark:border-gray-600'>
       <div className='text-center'>
         <h4 className='text-lg md:text-xl'>{props.question}</h4>
         {props.description && (
@@ -22,7 +22,7 @@ export default function Quiz(props: QuizType) {
         )}
         {/* <button onClick={() => setSelected(undefined)}>reset</button> */}
       </div>
-      <div className='grid gap-2 mt-4 md:grid-cols-2 md:gap-4'>
+      <div className='mt-4 grid gap-2 md:grid-cols-2 md:gap-4'>
         {props.answers.map((answer, i) => {
           const answerIndex = i + 1;
 
@@ -35,24 +35,24 @@ export default function Quiz(props: QuizType) {
               disabled={Boolean(selectedOption)}
               onClick={() => handleAnswer(answerIndex)}
               className={clsx(
-                'relative p-2 rounded-md',
+                'relative rounded-md p-2',
                 'border dark:border-gray-600',
                 'transition-colors',
                 'disabled:cursor-not-allowed',
                 {
                   'hover:bg-gray-50 dark:hover:bg-gray-900': !selectedOption,
-                  'bg-green-300 dark:bg-green-400 text-gray-800':
+                  'bg-green-300 text-gray-800 dark:bg-green-400':
                     selectedOption && optionStatus === 'correct',
-                  'bg-red-300 dark:bg-red-400 text-gray-800':
+                  'bg-red-300 text-gray-800 dark:bg-red-400':
                     selectedOption === answerIndex && optionStatus === 'wrong',
                 }
               )}
             >
               <>{answer.option}</>
               {selectedOption && optionStatus === 'correct' ? (
-                <HiOutlineCheckCircle className='block absolute right-4 top-1/2 text-xl text-white -translate-y-1/2' />
+                <HiOutlineCheckCircle className='absolute right-4 top-1/2 block -translate-y-1/2 text-xl text-white' />
               ) : selectedOption === answerIndex ? (
-                <HiOutlineXCircle className='block absolute right-4 top-1/2 text-xl text-white -translate-y-1/2' />
+                <HiOutlineXCircle className='absolute right-4 top-1/2 block -translate-y-1/2 text-xl text-white' />
               ) : null}
             </button>
           );
@@ -68,7 +68,7 @@ export default function Quiz(props: QuizType) {
       )}
       <div
         className={clsx(
-          'absolute top-0 left-4 px-2 py-1 rounded-b-md',
+          'absolute top-0 left-4 rounded-b-md px-2 py-1',
           'border border-t-0 dark:border-gray-600'
         )}
       >

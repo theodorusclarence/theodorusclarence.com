@@ -76,8 +76,8 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
               {frontmatter.description}
             </p>
 
-            <div className='flex flex-wrap gap-3 justify-start items-center mt-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
-              <div className='flex gap-1 items-center'>
+            <div className='mt-2 flex flex-wrap items-center justify-start gap-3 text-sm font-medium text-gray-600 dark:text-gray-300'>
+              <div className='flex items-center gap-1'>
                 <HiOutlineEye className='inline-block text-base' />
                 {meta?.views ?? '–––'} views
               </div>
@@ -86,7 +86,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                 frontmatter.link) &&
                 ' - '}
               {frontmatter.github && (
-                <div className='inline-flex gap-2 items-center'>
+                <div className='inline-flex items-center gap-2'>
                   <SiGithub className='text-lg text-gray-800 dark:text-white' />
                   <CustomLink
                     onClick={() =>
@@ -103,7 +103,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                 (frontmatter.youtube || frontmatter.link) &&
                 ' - '}
               {frontmatter.youtube && (
-                <div className='inline-flex gap-2 items-center'>
+                <div className='inline-flex items-center gap-2'>
                   <HiPlay className='text-xl text-gray-800 dark:text-white' />
                   <CustomLink
                     href={frontmatter.youtube}
@@ -118,7 +118,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
               )}
               {frontmatter.youtube && frontmatter.link && ' - '}
               {frontmatter.link && (
-                <div className='inline-flex gap-2 items-center'>
+                <div className='inline-flex items-center gap-2'>
                   <HiLink className='text-lg text-gray-800 dark:text-white' />
                   <CustomLink
                     href={frontmatter.link}
@@ -134,7 +134,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
             </div>
 
             {frontmatter.category && (
-              <p className='flex gap-2 justify-start items-center mt-2 text-sm text-gray-600 dark:text-gray-300'>
+              <p className='mt-2 flex items-center justify-start gap-2 text-sm text-gray-600 dark:text-gray-300'>
                 <HiUser className='text-lg text-gray-800 dark:text-white' />{' '}
                 {frontmatter.category}
               </p>
@@ -142,7 +142,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
 
             <hr className='mt-4 dark:border-gray-600' />
 
-            <section className='lg:grid-cols-[auto,250px] lg:grid lg:gap-8'>
+            <section className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
               <article className='mdx projects prose mx-auto w-full transition-colors dark:prose-invert'>
                 <Component
                   components={
@@ -161,7 +161,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                     minLevel={minLevel}
                     activeSection={activeSection}
                   />
-                  <div className='flex justify-center items-center py-8'>
+                  <div className='flex items-center justify-center py-8'>
                     <LikeButton slug={contentSlug} />
                   </div>
                 </div>
@@ -172,7 +172,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
               <Comment />
             </figure>
 
-            <div className='flex flex-col gap-4 items-start mt-8 md:flex-row-reverse md:justify-between'>
+            <div className='mt-8 flex flex-col items-start gap-4 md:flex-row-reverse md:justify-between'>
               <CustomLink
                 href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/projects/${frontmatter.slug}.mdx`}
               >

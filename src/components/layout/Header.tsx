@@ -45,11 +45,11 @@ export default function Header({ large = false }: HeaderProps) {
       <a
         href='#skip-nav'
         className={clsx(
-          'p-2 rounded-sm transition',
+          'rounded-sm p-2 transition',
           'font-medium text-black dark:text-white',
           'bg-white dark:bg-dark',
           'group dark:hover:text-primary-300',
-          'focus:ring focus:ring-primary-300 focus:outline-none',
+          'focus:outline-none focus:ring focus:ring-primary-300',
           'absolute top-4 left-4',
           '-translate-y-16 focus:translate-y-0'
         )}
@@ -63,17 +63,17 @@ export default function Header({ large = false }: HeaderProps) {
       <div className='bg-white transition-colors dark:bg-dark dark:text-white'>
         <nav
           className={clsx(
-            'layout flex justify-between items-center py-4',
+            'layout flex items-center justify-between py-4',
             large && 'lg:max-w-[68rem]'
           )}
         >
-          <ul className='flex justify-between items-center space-x-3 text-xs md:space-x-4 md:text-base'>
+          <ul className='flex items-center justify-between space-x-3 text-xs md:space-x-4 md:text-base'>
             {links.map(({ href, label }) => (
               <li key={`${href}${label}`}>
                 <UnstyledLink
                   href={href}
                   className={clsx(
-                    'py-2 rounded-sm transition-colors',
+                    'rounded-sm py-2 transition-colors',
                     'font-medium text-black dark:text-white',
                     'group dark:hover:text-primary-300',
                     'focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
@@ -82,9 +82,9 @@ export default function Header({ large = false }: HeaderProps) {
                   <span
                     className={clsx(
                       'transition-colors',
-                      'bg-primary-300/0 dark:group-hover:bg-primary-300/0 group-hover:bg-primary-300/20',
+                      'bg-primary-300/0 group-hover:bg-primary-300/20 dark:group-hover:bg-primary-300/0',
                       href === baseRoute &&
-                        '!bg-primary-300/50 dark:text-transparent dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text'
+                        '!bg-primary-300/50 dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent'
                     )}
                   >
                     {label}
@@ -95,10 +95,10 @@ export default function Header({ large = false }: HeaderProps) {
           </ul>
           <button
             className={clsx(
-              'p-2.5 rounded-md focus:outline-none',
+              'rounded-md p-2.5 focus:outline-none',
               'border dark:border-gray-600',
-              'dark:hover:border-primary-300 dark:hover:text-primary-300 hover:text-primary-300 hover:border-primary-300',
-              'dark:focus-visible:border-primary-300 dark:focus-visible:text-primary-300 focus-visible:text-primary-300 focus-visible:border-primary-300'
+              'hover:border-primary-300 hover:text-primary-300 dark:hover:border-primary-300 dark:hover:text-primary-300',
+              'focus-visible:border-primary-300 focus-visible:text-primary-300 dark:focus-visible:border-primary-300 dark:focus-visible:text-primary-300'
             )}
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
           >

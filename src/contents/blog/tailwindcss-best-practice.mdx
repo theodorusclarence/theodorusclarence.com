@@ -228,13 +228,13 @@ const links = [
 export default function Nav() {
   return (
     <nav className='bg-gray-700'>
-      <ul className='flex justify-between items-center px-8 py-4'>
+      <ul className='flex items-center justify-between px-8 py-4'>
         <li>
           <Link href='/'>
             <a className='font-bold text-green-400'>Home</a>
           </Link>
         </li>
-        <ul className='flex justify-between items-center space-x-4'>
+        <ul className='flex items-center justify-between space-x-4'>
           {links.map(({ href, label }) => (
             <li key={`${href}${label}`}>
               <Link href={href}>
@@ -270,8 +270,8 @@ export default function Tag({
     <button
       className={clsx(
         className,
-        'inline-block px-1.5 py-0.5 font-medium rounded-md transition-colors',
-        'text-gray-700 bg-gray-100 hover:text-black disabled:text-gray-300 disabled:bg-gray-200',
+        'inline-block rounded-md px-1.5 py-0.5 font-medium transition-colors',
+        'bg-gray-100 text-gray-700 hover:text-black disabled:bg-gray-200 disabled:text-gray-300',
         'focus:outline-none focus-visible:ring focus-visible:ring-primary-300 disabled:cursor-not-allowed'
       )}
       {...rest}
@@ -298,7 +298,7 @@ Here is one example with more complex use of clsx:
   disabled={disabled}
   className={clsx(
     className,
-    'inline-flex px-4 py-2 font-semibold rounded',
+    'inline-flex rounded px-4 py-2 font-semibold',
     'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
     'shadow-sm',
     'transition-colors duration-75',
@@ -327,7 +327,7 @@ Here is one example with more complex use of clsx:
       variant === 'light' && [
         'bg-white text-dark ',
         'border border-gray-300',
-        'hover:text-dark hover:bg-gray-100',
+        'hover:bg-gray-100 hover:text-dark',
         'active:bg-white/80 disabled:bg-gray-200',
       ],
       variant === 'dark' && [
@@ -338,7 +338,7 @@ Here is one example with more complex use of clsx:
     ],
     'disabled:cursor-not-allowed',
     isLoading &&
-      'relative !text-transparent hover:!text-transparent !cursor-wait !transition-none'
+      'relative !cursor-wait !text-transparent !transition-none hover:!text-transparent'
   )}
 >
   {isLoading && (

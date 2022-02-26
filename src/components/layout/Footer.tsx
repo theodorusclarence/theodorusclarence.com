@@ -16,8 +16,8 @@ import { spotifyFlag } from '@/constants/env';
 
 export default function Footer() {
   return (
-    <footer className='pb-2 mt-4'>
-      <main className='layout flex flex-col items-center pt-6 border-t dark:border-gray-600'>
+    <footer className='mt-4 pb-2'>
+      <main className='layout flex flex-col items-center border-t pt-6 dark:border-gray-600'>
         <FooterLinks />
 
         {spotifyFlag && <Spotify className='mt-8' />}
@@ -30,7 +30,7 @@ export default function Footer() {
         <p className='mt-8 text-sm text-gray-600 dark:text-gray-300'>
           © Theodorus Clarence {new Date().getFullYear()} •{' '}
           <FeedbackFish projectId='59a0c0e0d549a7'>
-            <button className='rounded-sm dark:hover:text-gray-100 hover:text-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-primary-300'>
+            <button className='rounded-sm hover:text-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:hover:text-gray-100'>
               Got any feedback?
             </button>
           </FeedbackFish>
@@ -42,11 +42,11 @@ export default function Footer() {
 
 function FooterLinks() {
   return (
-    <div className='flex flex-wrap gap-y-4 gap-x-8 justify-center'>
+    <div className='flex flex-wrap justify-center gap-y-4 gap-x-8'>
       {footerLinks.map(({ href, text, tooltip }) => (
         <Tooltip interactive={false} key={href} content={tooltip}>
           <UnstyledLink
-            className='animated-underline text-sm font-medium rounded-sm dark:text-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+            className='animated-underline rounded-sm text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:text-gray-200'
             href={href}
             onClick={() => {
               trackEvent(`Footer Link: ${text}`, 'link');
@@ -66,14 +66,14 @@ function SocialLinks() {
   );
 
   return (
-    <div className='flex mt-2 space-x-4'>
-      <div className='flex justify-center items-center'>
+    <div className='mt-2 flex space-x-4'>
+      <div className='flex items-center justify-center'>
         <TooltipTippy
           trigger='mouseenter'
           hideOnClick={false}
           interactive
           html={
-            <div className='inline-block p-2 text-gray-600 bg-white rounded-md border shadow-md dark:bg-dark dark:text-gray-200 dark:border-gray-600'>
+            <div className='inline-block rounded-md border bg-white p-2 text-gray-600 shadow-md dark:border-gray-600 dark:bg-dark dark:text-gray-200'>
               {copyStatus}
               <Accent className='inline-block font-medium'>
                 me@theodorusclarence.com
@@ -91,8 +91,8 @@ function SocialLinks() {
               );
             }}
           >
-            <button className='align-middle rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'>
-              <FiMail className='w-7 h-7 text-gray-600 align-middle dark:hover:text-primary-300 dark:text-gray-300 hover:text-primary-300' />
+            <button className='rounded-sm align-middle focus:outline-none focus-visible:ring focus-visible:ring-primary-300'>
+              <FiMail className='h-7 w-7 align-middle text-gray-600 hover:text-primary-300 dark:text-gray-300 dark:hover:text-primary-300' />
             </button>
           </CopyToClipboard>
         </TooltipTippy>
@@ -100,13 +100,13 @@ function SocialLinks() {
       {socials.map((social) => (
         <Tooltip interactive={false} key={social.href} content={social.text}>
           <UnstyledLink
-            className='inline-flex justify-center items-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
+            className='inline-flex items-center justify-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
             href={social.href}
             onClick={() => {
               trackEvent(`Footer Link: ${social.id}`, 'link');
             }}
           >
-            <social.icon className='my-auto w-6 h-6 text-gray-600 align-middle transition-colors dark:hover:text-primary-300 dark:text-gray-300 hover:text-primary-300' />
+            <social.icon className='my-auto h-6 w-6 align-middle text-gray-600 transition-colors hover:text-primary-300 dark:text-gray-300 dark:hover:text-primary-300' />
           </UnstyledLink>
         </Tooltip>
       ))}

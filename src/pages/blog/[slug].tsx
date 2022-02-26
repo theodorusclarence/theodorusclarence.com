@@ -121,7 +121,7 @@ export default function SingleBlogPage({
                 Theodorus Clarence.
               </p>
               {frontmatter.lastUpdated && (
-                <div className='flex flex-wrap gap-2 mt-2 text-sm text-gray-700 dark:text-gray-200'>
+                <div className='mt-2 flex flex-wrap gap-2 text-sm text-gray-700 dark:text-gray-200'>
                   <p>
                     Last updated{' '}
                     {format(new Date(frontmatter.lastUpdated), 'MMMM dd, yyyy')}
@@ -130,8 +130,8 @@ export default function SingleBlogPage({
                   <UnstyledLink
                     href={COMMIT_HISTORY_LINK}
                     className={clsx(
-                      'inline-flex gap-1 items-center font-medium rounded-sm',
-                      'text-gray-600 dark:hover:text-primary-300 dark:text-gray-300 hover:text-gray-900',
+                      'inline-flex items-center gap-1 rounded-sm font-medium',
+                      'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-primary-300',
                       'focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
                     )}
                   >
@@ -140,8 +140,8 @@ export default function SingleBlogPage({
                   </UnstyledLink>
                 </div>
               )}
-              <div className='flex gap-2 justify-start items-center mt-6 text-sm font-medium text-gray-600 dark:text-gray-300'>
-                <div className='flex gap-1 items-center'>
+              <div className='mt-6 flex items-center justify-start gap-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
+                <div className='flex items-center gap-1'>
                   <HiOutlineClock className='inline-block text-base' />
                   <Accent>{frontmatter.readingTime.text}</Accent>
                 </div>
@@ -157,13 +157,13 @@ export default function SingleBlogPage({
                     }
                     position='bottom'
                   >
-                    <div className='flex gap-1 items-center'>
+                    <div className='flex items-center gap-1'>
                       <HiOutlineEye className='inline-block text-base' />
                       <Accent>{meta?.views ?? '–––'} views</Accent>
                     </div>
                   </Tooltip>
                 ) : (
-                  <div className='flex gap-1 items-center'>
+                  <div className='flex items-center gap-1'>
                     <HiOutlineEye className='inline-block text-base' />
                     <Accent>{meta?.views ?? '–––'} views</Accent>
                   </div>
@@ -181,7 +181,7 @@ export default function SingleBlogPage({
 
             <hr className='dark:border-gray-600' />
 
-            <section className='lg:grid-cols-[auto,250px] lg:grid lg:gap-8'>
+            <section className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
               <article className='mdx prose mx-auto mt-4 w-full transition-colors dark:prose-invert'>
                 <Component
                   components={
@@ -200,7 +200,7 @@ export default function SingleBlogPage({
                     minLevel={minLevel}
                     activeSection={activeSection}
                   />
-                  <div className='flex justify-center items-center py-8'>
+                  <div className='flex items-center justify-center py-8'>
                     <LikeButton slug={contentSlug} />
                   </div>
                 </div>
@@ -222,7 +222,7 @@ export default function SingleBlogPage({
                 <h2>
                   <Accent>Other posts that you might like</Accent>
                 </h2>
-                <ul className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'>
+                <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedRecommendations.map((post, i) => (
                     <BlogCard
                       onClick={() => {
@@ -239,7 +239,7 @@ export default function SingleBlogPage({
 
             <SubscribeCard className='mt-12' title='Enjoying this post?' />
 
-            <div className='flex flex-col gap-4 items-start mt-8 md:flex-row-reverse md:justify-between'>
+            <div className='mt-8 flex flex-col items-start gap-4 md:flex-row-reverse md:justify-between'>
               <CustomLink href={GITHUB_EDIT_LINK}>
                 Edit this on GitHub
               </CustomLink>

@@ -16,8 +16,8 @@ export default function LibraryCard({ className, snippet }: LibraryCardProps) {
   return (
     <li
       className={clsx(
-        'ring-vis-0 h-full bg-white rounded-md border dark:bg-dark dark:border-gray-600',
-        'scale-100 motion-safe:transform-gpu hover:scale-[1.04] active:scale-[0.97]',
+        'ring-vis-0 h-full rounded-md border bg-white dark:border-gray-600 dark:bg-dark',
+        'scale-100 hover:scale-[1.04] active:scale-[0.97] motion-safe:transform-gpu',
         'transition duration-100',
         'motion-reduce:hover:scale-100',
         'animate-shadow',
@@ -31,8 +31,8 @@ export default function LibraryCard({ className, snippet }: LibraryCardProps) {
         <div className='p-4'>
           <h4 className='text-gray-800 dark:text-gray-100'>{snippet.title}</h4>
 
-          <div className='flex gap-3 justify-start items-center mt-1 text-sm font-medium text-gray-600 dark:text-gray-300'>
-            <div className='flex gap-1 items-center'>
+          <div className='mt-1 flex items-center justify-start gap-3 text-sm font-medium text-gray-600 dark:text-gray-300'>
+            <div className='flex items-center gap-1'>
               <GiTechnoHeart className='inline-block text-base' />
               <Accent>{snippet?.likes ?? '–––'} likes</Accent>
             </div>

@@ -57,12 +57,12 @@ export default function TableOfContents({
   return (
     <div
       id='toc-container'
-      className='max-h-[calc(100vh-9rem-113px)] hidden overflow-auto pb-4 lg:block'
+      className='hidden max-h-[calc(100vh-9rem-113px)] overflow-auto pb-4 lg:block'
     >
-      <h3 className='text-gray-900 md:text-xl dark:text-gray-100'>
+      <h3 className='text-gray-900 dark:text-gray-100 md:text-xl'>
         Table of Contents
       </h3>
-      <div className='flex flex-col mt-4 space-y-2 text-sm'>
+      <div className='mt-4 flex flex-col space-y-2 text-sm'>
         {toc
           ? toc.map(({ id, level, text }) => (
               <TOCLink

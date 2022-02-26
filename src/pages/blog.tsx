@@ -143,7 +143,7 @@ export default function IndexPage({
               type='text'
             />
             <div
-              className='flex flex-wrap gap-2 justify-start items-baseline mt-2 text-sm text-gray-600 dark:text-gray-300'
+              className='mt-2 flex flex-wrap items-baseline justify-start gap-2 text-sm text-gray-600 dark:text-gray-300'
               data-fade='3'
             >
               <span className='font-medium'>Choose topic:</span>
@@ -160,7 +160,7 @@ export default function IndexPage({
               </SkipNavTag>
             </div>
             <div
-              className='flex relative z-10 flex-col gap-4 items-end mt-6 text-gray-600 md:flex-row md:justify-between md:items-center dark:text-gray-300'
+              className='relative z-10 mt-6 flex flex-col items-end gap-4 text-gray-600 dark:text-gray-300 md:flex-row md:items-center md:justify-between'
               data-fade='4'
             >
               <Button
@@ -179,7 +179,7 @@ export default function IndexPage({
               />
             </div>
             <ul
-              className='grid gap-4 mt-4 sm:grid-cols-2 xl:grid-cols-3'
+              className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'
               data-fade='5'
             >
               {currentPosts.length > 0 ? (

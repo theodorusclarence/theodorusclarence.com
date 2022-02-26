@@ -65,7 +65,7 @@ export default function SubscribeCard({
   //#endregion  //*======== Form and Status ===========
 
   return (
-    <div className={clsx('p-4 rounded border dark:border-gray-600', className)}>
+    <div className={clsx('rounded border p-4 dark:border-gray-600', className)}>
       <h3>
         <Accent>{title ?? 'Join to the newsletter list'}</Accent>
       </h3>
@@ -76,7 +76,7 @@ export default function SubscribeCard({
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='flex gap-2 items-end mt-2'
+        className='mt-2 flex items-end gap-2'
       >
         <div className='flex-grow'>
           <label className='text-sm font-medium' htmlFor='email'>
@@ -89,7 +89,7 @@ export default function SubscribeCard({
               'w-full rounded-md dark:bg-dark',
               'border border-gray-300 dark:border-gray-600',
               'text-sm md:text-base',
-              'dark:focus:border-primary-300 focus:border-primary-300 focus:ring-0 focus:outline-none'
+              'focus:border-primary-300 focus:outline-none focus:ring-0 dark:focus:border-primary-300'
             )}
             type='email'
             placeholder='Email'

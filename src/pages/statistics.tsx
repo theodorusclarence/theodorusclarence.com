@@ -226,13 +226,13 @@ export default function StatisticsPage() {
           <div className='layout py-12'>
             <h1>Statistics</h1>
 
-            <div className='grid gap-6 mt-4 sm:grid-cols-2 md:grid-cols-3'>
+            <div className='mt-4 grid gap-6 sm:grid-cols-2 md:grid-cols-3'>
               {statCards.map((stat) => (
                 <div
                   key={stat.title}
                   className={clsx(
                     'space-y-2 text-center',
-                    'p-6 bg-gray-50 rounded-md shadow-sm dark:bg-gray-800',
+                    'rounded-md bg-gray-50 p-6 shadow-sm dark:bg-gray-800',
                     'border border-gray-300 dark:border-gray-600'
                   )}
                 >
@@ -242,19 +242,19 @@ export default function StatisticsPage() {
                       <span className='h4 font-semibold'>
                         {stat.count ?? 0}
                       </span>{' '}
-                      <span className='text-xs font-medium tracking-wider uppercase'>
+                      <span className='text-xs font-medium uppercase tracking-wider'>
                         posts
                       </span>
                     </p>
                     <p className='text-gray-800 dark:text-gray-200'>
                       <span className='h4 font-semibold'>{stat.views}</span>{' '}
-                      <span className='text-xs font-medium tracking-wider uppercase'>
+                      <span className='text-xs font-medium uppercase tracking-wider'>
                         views
                       </span>
                     </p>
                     <p className='text-gray-800 dark:text-gray-200'>
                       <span className='h4 font-semibold'>{stat.likes}</span>{' '}
-                      <span className='text-xs font-medium tracking-wider uppercase'>
+                      <span className='text-xs font-medium uppercase tracking-wider'>
                         likes
                       </span>
                     </p>

@@ -17,8 +17,8 @@ export function PreloadProvider({ children }: { children: React.ReactNode }) {
     <PreloadContext.Provider value={preloaded}>
       <div
         className={clsx(
-          'flex fixed inset-0 justify-center items-center bg-white transition-opacity dark:bg-dark',
-          preloaded && 'opacity-0 pointer-events-none'
+          'fixed inset-0 flex items-center justify-center bg-white transition-opacity dark:bg-dark',
+          preloaded && 'pointer-events-none opacity-0'
         )}
       />
       {children}
