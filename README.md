@@ -5,11 +5,11 @@
 
 ## Contributing & Project Setup
 
-If you are interested in contributing or running this project in your local machine, please check the [contributing guide](CONTRIBUTING.md)
+If you are interested in contributing or running this project on your local machine, please check the [contributing guide](CONTRIBUTING.md)
 
 ## Notable Features
 
-These website was first initialized in January 2021, went through numerous changes and refactors, resulted to some notable features
+This website was first initialized in January 2021, went through numerous changes and refactors, resulted to some notable features
 
 ### Dedicated Project Page
 
