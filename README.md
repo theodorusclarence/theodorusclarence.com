@@ -3,11 +3,11 @@
 ## Tech Stack
 
 - Next.js
+- TypeScript
 - Tailwind CSS
 - MDX Bundler
 - FaunaDB
 - SWR
-- Framer Motion
 
 ## Notable Features
 
