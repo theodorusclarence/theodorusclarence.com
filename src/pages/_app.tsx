@@ -4,7 +4,6 @@ import Router from 'next/router';
 import { ThemeProvider } from 'next-themes';
 import nProgress from 'nprogress';
 import * as React from 'react';
-import { hotjar } from 'react-hotjar';
 import { SWRConfig } from 'swr';
 
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
@@ -22,8 +21,6 @@ Router.events.on('routeChangeComplete', nProgress.done);
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
-    hotjar.initialize(2702988, 6);
-
     // Don't increment views if not on main domain
     if (window.location.host !== 'theodorusclarence.com' && blockDomainMeta) {
       localStorage.setItem('incrementMetaFlag', 'false');
