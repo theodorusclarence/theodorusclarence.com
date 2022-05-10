@@ -207,6 +207,33 @@ Key Point: **It will share a single copy**
   height={659}
 />
 
+### Effect of Sharing A Single Copy
+
+I believe you already guessed correctly how it will behave. If we **mutate** one variable, **both will be affected**.
+
+```swift {8,9,11,12}
+class Animal {
+    var legs = 4
+}
+
+var sheep = Animal()
+var cow = sheep
+
+// mutating cow's property
+cow.legs = 3
+
+print(sheep.legs) // 3
+print(cow.legs) // 3
+```
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/swift-value-reference/reference-copy-effect_khsni9'
+  alt='reference-copy-effect'
+  width={824}
+  height={444}
+/>
+
 ### Proof
 
 To prove that it is sharing a single copy, we can use `===` ([identity equality](https://developer.apple.com/documentation/swift/1538988)). It will return true if two reference point to the same object instance.
@@ -239,33 +266,6 @@ print(sheep === newSheep) // false
 ```
 
 When in doubt, draw the wire analogy to help you. I'm using [excalidraw](https://excalidraw.com/) for the illustration
-
-### Effect of Sharing A Single Copy
-
-I believe you already guessed correctly how it will behave. If we **mutate** one variable, **both will be affected**.
-
-```swift {8,9,11,12}
-class Animal {
-    var legs = 4
-}
-
-var sheep = Animal()
-var cow = sheep
-
-// mutating cow's property
-cow.legs = 3
-
-print(sheep.legs) // 3
-print(cow.legs) // 3
-```
-
-<CloudinaryImg
-  mdx
-  publicId='theodorusclarence/blogs/swift-value-reference/reference-copy-effect_khsni9'
-  alt='reference-copy-effect'
-  width={824}
-  height={444}
-/>
 
 ## Additional Emphasize
 
