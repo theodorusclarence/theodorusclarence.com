@@ -262,12 +262,46 @@ Then we can compare them using identity equality
 
 ```swift
 print(sheep === cow) // true
-print(sheep === newSheep) // false
+print(sheep === pig) // false
 ```
 
 When in doubt, draw the wire analogy to help you. I'm using [excalidraw](https://excalidraw.com/) for the illustration
 
-## Additional Emphasize
+## Reference Types Inside of Value Types
+
+Important thing to note is: If you are referencing a class inside of a struct, then **that variable will still behave like the reference type**
+
+```swift
+class Leg {
+    var count = 4
+}
+
+struct Animal {
+    var name: String
+    var legs = Leg()
+}
+
+var sheep = Animal(name: "Sheep")
+var cow = sheep
+
+sheep.legs.count = 3
+
+print(sheep.legs.count) // 3
+print(cow.legs.count) // 3
+
+// referencing the same class
+print("\(sheep.legs === sheep.legs)") // true
+```
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/swift-value-reference/reference-inside-value_fg6n91'
+  alt='reference-inside-value'
+  width={766}
+  height={662}
+/>
+
+## Additional Emphasis
 
 I need to emphasize this in case you're coming from **a JavaScript** background.
 
