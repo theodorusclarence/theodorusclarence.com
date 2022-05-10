@@ -347,12 +347,12 @@ export async function getStaticProps() {
   const library = await getAllFilesFrontmatter('library');
 
   const featuredPosts = getFeatured(blogs, [
-    'one-stop-starter',
-    '2021-retrospective',
+    'swift-value-reference',
     'nextjs-storybook-tailwind',
     'react-core-concept-rendering-state',
     'nextjs-fetch-method',
-    'youtube-list',
+    'one-stop-starter',
+    '2021-retrospective',
   ]);
   const featuredProjects = getFeatured(projects, [
     'seasforus',
