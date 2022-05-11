@@ -69,7 +69,9 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
               <div className='mt-2 flex items-center justify-start gap-3 text-sm font-medium text-gray-600 dark:text-gray-300'>
                 <div className='flex items-center gap-1'>
                   <HiOutlineEye className='inline-block text-base' />
-                  <Accent>{meta?.views ?? '–––'} views</Accent>
+                  <Accent>
+                    {meta?.views?.toLocaleString() ?? '–––'} views
+                  </Accent>
                 </div>
                 <span>•</span>
                 <TechIcons

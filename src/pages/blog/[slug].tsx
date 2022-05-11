@@ -149,7 +149,7 @@ export default function SingleBlogPage({
                   <Tooltip
                     content={
                       <>
-                        {meta.devtoViews} views on{' '}
+                        {meta.devtoViews.toLocaleString()} views on{' '}
                         <CustomLink href='https://dev.to/theodorusclarence'>
                           dev.to
                         </CustomLink>
@@ -159,13 +159,17 @@ export default function SingleBlogPage({
                   >
                     <div className='flex items-center gap-1'>
                       <HiOutlineEye className='inline-block text-base' />
-                      <Accent>{meta?.views ?? '–––'} views</Accent>
+                      <Accent>
+                        {meta?.views?.toLocaleString() ?? '–––'} views
+                      </Accent>
                     </div>
                   </Tooltip>
                 ) : (
                   <div className='flex items-center gap-1'>
                     <HiOutlineEye className='inline-block text-base' />
-                    <Accent>{meta?.views ?? '–––'} views</Accent>
+                    <Accent>
+                      {meta?.views?.toLocaleString() ?? '–––'} views
+                    </Accent>
                   </div>
                 )}
               </div>
