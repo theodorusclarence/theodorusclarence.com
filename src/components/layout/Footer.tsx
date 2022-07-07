@@ -130,6 +130,11 @@ const footerLinks = [
     ),
   },
   {
+    href: '/design',
+    text: 'Design',
+    tooltip: 'theodorusclarence.com color palette',
+  },
+  {
     href: 'https://clarence.link/docs',
     text: 'Docs',
     tooltip: 'Personal documentation about my best practices on development',
