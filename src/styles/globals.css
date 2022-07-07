@@ -5,10 +5,10 @@
 :root {
   /* Customize these variable */
   /* https://github.com/adamwathan/tailwind-css-variable-text-opacity-demo */
-  --tw-clr-primary-200: 219, 255, 0;
-  --tw-clr-primary-300: 0, 232, 135;
-  --tw-clr-primary-400: 0, 224, 243;
-  --tw-clr-primary-500: 0, 196, 253;
+  --tw-clr-primary-200: 219 255 0;
+  --tw-clr-primary-300: 0 232 135;
+  --tw-clr-primary-400: 0 224 243;
+  --tw-clr-primary-500: 0 196 253;
 
   --clr-primary-200: rgb(var(--tw-clr-primary-200)); /* #DBFF00 */
   --clr-primary-300: rgb(var(--tw-clr-primary-300)); /* #00e887 */
@@ -41,7 +41,7 @@
   }
 
   ::selection {
-    background: rgba(var(--tw-clr-primary-300), 0.3);
+    background: rgba(var(--tw-clr-primary-300) / 0.3);
   }
 
   .cursor-newtab {
