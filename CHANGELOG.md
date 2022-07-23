@@ -2,6 +2,73 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v1.1.1...v2.0.0) (2022-07-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* use revue for newsletter
+
+### Features
+
+* add AMA link on guestbook ([d400e63](https://github.com/theodorusclarence/theodorusclarence.com/commit/d400e63acf9e3fc42c56d4217f1838f03c31287e))
+* add copywrite and status for dev ([713105e](https://github.com/theodorusclarence/theodorusclarence.com/commit/713105ecc2e27359c1af3b2876be2a2f73661c88))
+* add date to Seo for blog and projects ([7f3e9d5](https://github.com/theodorusclarence/theodorusclarence.com/commit/7f3e9d5210e986646fda145122440390b77e837b))
+* add design page ([a36aec5](https://github.com/theodorusclarence/theodorusclarence.com/commit/a36aec5cf196cd639cf3ccc556fd18fbef78dfc1))
+* add devtoViews tooltip ([26c721b](https://github.com/theodorusclarence/theodorusclarence.com/commit/26c721bd8f7581fec4ac7a116a5010e7934491f7))
+* add feedback widget ([605128b](https://github.com/theodorusclarence/theodorusclarence.com/commit/605128b9fd9bb635ce1df477d4cb5c166c9b6406))
+* add filter to statistics ([1033941](https://github.com/theodorusclarence/theodorusclarence.com/commit/103394154624d127b8070e912c039edac940e597))
+* add footer total to statistics ([1137e5e](https://github.com/theodorusclarence/theodorusclarence.com/commit/1137e5e78944e21dfb5021e1e9b1e8c4f87c105b))
+* add github card ([48a7961](https://github.com/theodorusclarence/theodorusclarence.com/commit/48a7961f6ae2c6cb684fd2d4a095a25b8e95ae2d))
+* add localeString to view count ([dde26fa](https://github.com/theodorusclarence/theodorusclarence.com/commit/dde26fa9a3cbee707357d5c463b478b6d523fa2d))
+* add motion safe animation ([0c32b09](https://github.com/theodorusclarence/theodorusclarence.com/commit/0c32b09a58c746e6b4e9e4d1aff5a9296849c1fa))
+* add nprogress ([ae46104](https://github.com/theodorusclarence/theodorusclarence.com/commit/ae4610460abaa9aba65c195393985e6d0bf8b256))
+* add right align to the statistics table ([47e6322](https://github.com/theodorusclarence/theodorusclarence.com/commit/47e6322f41acda702631da0b50ae969958345e36))
+* add rss ([d9bab3c](https://github.com/theodorusclarence/theodorusclarence.com/commit/d9bab3cedbb75c34599acc6f3d4892ddaf02902b))
+* add script to generate markdown ([d626e91](https://github.com/theodorusclarence/theodorusclarence.com/commit/d626e91cc6d2fa7aa20a59acc8d78b6148671173))
+* add share tweet button to blog ([10ff4cf](https://github.com/theodorusclarence/theodorusclarence.com/commit/10ff4cf7510c80f7c12f384c4173d0f4793f388b))
+* add skip nav ([578f3dd](https://github.com/theodorusclarence/theodorusclarence.com/commit/578f3ddf51f9f990f237f117684daa264e1cce0a))
+* add skip tags ([7373bfe](https://github.com/theodorusclarence/theodorusclarence.com/commit/7373bfe916ad2b0f691df25f9a40d7962ae84541))
+* add social link on hero ([9fd11e2](https://github.com/theodorusclarence/theodorusclarence.com/commit/9fd11e24ab05d7f9dcd45d4a78f811a9fc39d5dd))
+* add source code to footer ([d642167](https://github.com/theodorusclarence/theodorusclarence.com/commit/d642167a812b7a88fc415061f45e86656d6a4bf1))
+* add stat card count ([2cc5a66](https://github.com/theodorusclarence/theodorusclarence.com/commit/2cc5a6696aa68dcb8f4b5f8856fc03f72bdc8c74))
+* add statistic cards ([f80cbf1](https://github.com/theodorusclarence/theodorusclarence.com/commit/f80cbf1a1265af225a1fbc2243f8abcc89498df2))
+* add statistics ([6667826](https://github.com/theodorusclarence/theodorusclarence.com/commit/66678265558c4befe58da7e7acfafd3b3399710c))
+* add subscribe to footer and remove polywork ([867d943](https://github.com/theodorusclarence/theodorusclarence.com/commit/867d943dbf1384339df32cc8e78195981473dd34))
+* add tooltip to footer links ([221c178](https://github.com/theodorusclarence/theodorusclarence.com/commit/221c178ca36e0b53587b3d9fb1182e7c99b783da))
+* add TwitterCard embed ([f8b01bc](https://github.com/theodorusclarence/theodorusclarence.com/commit/f8b01bc4ba142518b9bc16519c600b9cc32aec43))
+* block increment views except on main domain ([76982eb](https://github.com/theodorusclarence/theodorusclarence.com/commit/76982eb3684056fc2fa458f0339c4d531d2ac961))
+* **blog:** add 2021-retrospective ([68bac6d](https://github.com/theodorusclarence/theodorusclarence.com/commit/68bac6dfb978e869b165337feb8c8fa89182ec80))
+* **blog:** add a disclaimer to tw-best-practice ([854ef38](https://github.com/theodorusclarence/theodorusclarence.com/commit/854ef38fcc2ee0180c71e173c9aa6f51164e8fbf))
+* **blog:** add nextjs-storybook-tailwind ([d7ae7dc](https://github.com/theodorusclarence/theodorusclarence.com/commit/d7ae7dc246f9934634e0b066598fad5e7726dce1))
+* **blog:** add one-stop-starter ([338ea26](https://github.com/theodorusclarence/theodorusclarence.com/commit/338ea26e5030e7ebf01804f302f9df5d06882d10))
+* **blog:** add see changes button ([bdf1c5b](https://github.com/theodorusclarence/theodorusclarence.com/commit/bdf1c5b5b14ccbad818e1919385a0164453e4fe8))
+* **blog:** add swift-value-reference ([9454631](https://github.com/theodorusclarence/theodorusclarence.com/commit/9454631cabf2b1d5fd8b7bb1f8a5318a9709518f))
+* **blog:** move proof order in reference value ([e193fab](https://github.com/theodorusclarence/theodorusclarence.com/commit/e193fabf4be3f87f5f9d92c62d2358a122d1d5fb))
+* **blog:** update swift-value-reference ([3f87ffb](https://github.com/theodorusclarence/theodorusclarence.com/commit/3f87ffb23b9a31e8f3e86af98a2343676bb7a596))
+* **proj:** add notiolink ([d1e2063](https://github.com/theodorusclarence/theodorusclarence.com/commit/d1e20639f917d36287becc2e892a3c8b57233772))
+* remove hotjar ([0255faa](https://github.com/theodorusclarence/theodorusclarence.com/commit/0255faa01966a405f43930a6527cb98f9d1c60da))
+* remove portfolio from site title ([83ed445](https://github.com/theodorusclarence/theodorusclarence.com/commit/83ed445d74af30a8c23a35cf7e8e2582c61b88ad))
+* remove seasforus link and change demo to hash ([293f9dc](https://github.com/theodorusclarence/theodorusclarence.com/commit/293f9dcf6b4b2c7e61ca64629227182410b14b6a))
+* turn on double opt in ([65edae9](https://github.com/theodorusclarence/theodorusclarence.com/commit/65edae9b9c7707e3eb7e4f4772cb30bb13385fa2))
+* use revue for newsletter ([4157510](https://github.com/theodorusclarence/theodorusclarence.com/commit/41575104b57440384b4216c4f460968b69499dbb))
+
+
+### Bug Fixes
+
+* **blog:** typo on nextjs-storybook-tailwing ([3d14180](https://github.com/theodorusclarence/theodorusclarence.com/commit/3d14180be2114640547a9ec83d0894ad6cb36f7b))
+* broken link on rhf post ([2596298](https://github.com/theodorusclarence/theodorusclarence.com/commit/25962980fd3a06082f5a7b0ce87286b9c28c5fb2))
+* bullet list on side-projects ([8c78bbc](https://github.com/theodorusclarence/theodorusclarence.com/commit/8c78bbcc0b8367d270a7a3f3130dce078e9b98c3))
+* false image and link not working ([e3fac94](https://github.com/theodorusclarence/theodorusclarence.com/commit/e3fac9475c41ebb4d19dd6247e8d86ed199c3f1b))
+* giscus not rerendering when changing route ([44c0f32](https://github.com/theodorusclarence/theodorusclarence.com/commit/44c0f32e41d4b43fe20cafe86995ffe092766ab9))
+* **lib:** sticky-nav demo won't load ([c3ec889](https://github.com/theodorusclarence/theodorusclarence.com/commit/c3ec8897e7be6d7c35300fdb92c87ebcda038bcc))
+* mdx h4 don't have scroll margin ([605d920](https://github.com/theodorusclarence/theodorusclarence.com/commit/605d920eadad969bd992bd39b187bee7a1ee1349))
+* preview still increment meta on first visit ([b499a75](https://github.com/theodorusclarence/theodorusclarence.com/commit/b499a75a30fff05ce32c05f5844f4942e61ad948))
+* projects can't be opened on ios ([f4da26b](https://github.com/theodorusclarence/theodorusclarence.com/commit/f4da26bfe7e7372e53b203df716ce649147c38f4))
+* rss publish date wrong format ([c71cac9](https://github.com/theodorusclarence/theodorusclarence.com/commit/c71cac90498a3d25114b3fa30a7eff7a7d80a724))
+* skip to content button is transparent ([bd74911](https://github.com/theodorusclarence/theodorusclarence.com/commit/bd749115f9ac35ba0ec55db9ab8181c93e4d143f))
+* tech icons on project have discs ([e3e5512](https://github.com/theodorusclarence/theodorusclarence.com/commit/e3e55125ab346bebbc2b9fafee9f0d3fb5f01dcd))
+
 ### [1.1.1](https://github.com/theodorusclarence/theodorusclarence.com/compare/v1.1.0...v1.1.1) (2021-12-23)
 
 
