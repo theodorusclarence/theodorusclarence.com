@@ -355,7 +355,7 @@ export async function getStaticProps() {
     '2021-retrospective',
   ]);
   const featuredProjects = getFeatured(projects, [
-    'seasforus',
+    'notiolink',
     'ppdbsumsel',
     'side-projects',
   ]);
