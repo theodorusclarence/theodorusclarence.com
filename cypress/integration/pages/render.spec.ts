@@ -9,36 +9,36 @@ describe('All Page', () => {
 
   it('should display index page', () => {
     cy.visit('/');
-    cy.get('h1').should('contain', 'You can call me Clarence');
+    cy.get('h1').contains('You can call me Clarence');
   });
 
   it('should display about page', () => {
     cy.visit('/about');
-    cy.get('h1').should('contain', 'Theodorus Clarence');
+    cy.get('h1').contains('Theodorus Clarence');
   });
 
   it('should display blog page', () => {
     cy.visit('/blog');
-    cy.get('h1').should('contain', 'Blog');
+    cy.get('h1').contains('Blog');
   });
 
   it('should display library page', () => {
     cy.visit('/library');
-    cy.get('h1').should('contain', 'Library');
+    cy.get('h1').contains('Library');
   });
 
   it('should display projects page', () => {
     cy.visit('/projects');
-    cy.get('h1').should('contain', 'Projects');
+    cy.get('h1').contains('Projects');
   });
 
   it('should display subscribe page', () => {
     cy.visit('/subscribe');
-    cy.get('h1').should('contain', 'Subscribe to theodorusclarence.com');
+    cy.get('h1').contains('Subscribe to theodorusclarence.com');
   });
 
   it('should display trf page', () => {
     cy.visit('/trf');
-    cy.get('h1').should('contain', 'Rekening BCA');
+    cy.get('h1').contains('Rekening BCA');
   });
 });
