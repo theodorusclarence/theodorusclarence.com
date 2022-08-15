@@ -12,7 +12,7 @@ import Spotify from '@/components/layout/Spotify';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Tooltip from '@/components/Tooltip';
 
-import { spotifyFlag } from '@/constants/env';
+import { feedbackFlag, spotifyFlag } from '@/constants/env';
 
 export default function Footer() {
   return (
@@ -28,12 +28,17 @@ export default function Footer() {
         <SocialLinks />
 
         <p className='mt-8 text-sm text-gray-600 dark:text-gray-300'>
-          © Theodorus Clarence {new Date().getFullYear()} •{' '}
-          <FeedbackFish projectId='59a0c0e0d549a7'>
-            <button className='rounded-sm hover:text-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:hover:text-gray-100'>
-              Got any feedback?
-            </button>
-          </FeedbackFish>
+          © Theodorus Clarence {new Date().getFullYear()}
+          {feedbackFlag && (
+            <>
+              {' • '}
+              <FeedbackFish projectId='59a0c0e0d549a7'>
+                <button className='rounded-sm hover:text-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:hover:text-gray-100'>
+                  Got any feedback?
+                </button>
+              </FeedbackFish>
+            </>
+          )}
         </p>
       </main>
     </footer>
@@ -123,6 +128,11 @@ const footerLinks = [
         This website is <strong>open source</strong>!
       </>
     ),
+  },
+  {
+    href: '/design',
+    text: 'Design',
+    tooltip: 'theodorusclarence.com color palette',
   },
   {
     href: 'https://clarence.link/docs',

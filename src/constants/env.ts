@@ -40,6 +40,12 @@ export const newsletterFlag = isProd;
 export const sayHelloFlag = isProd;
 
 /**
+ * Console to the browser greeting message
+ * @see Footer.tsx
+ */
+export const feedbackFlag = isProd;
+
+/**
  * Only increase count when in specified domain meta
  * @see _app.tsx
  */
