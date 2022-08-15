@@ -6,7 +6,7 @@ import useLoaded from '@/hooks/useLoaded';
 import Accent from '@/components/Accent';
 import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Layout from '@/components/layout/Layout';
-import CustomLink from '@/components/links/CustomLink';
+// import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
 
@@ -25,42 +25,34 @@ export default function AboutPage() {
           <div className='layout min-h-main py-20'>
             <h2 data-fade='0'>About</h2>
             <h1 className='mt-1' data-fade='1'>
-              <Accent>Theodorus Clarence</Accent>
+              <Accent>Jeff Fan</Accent>
             </h1>
             <div className='mt-4' data-fade='2'>
               <CloudinaryImg
                 className='float-right ml-6 w-36 md:w-72'
-                publicId='theodorusclarence/clarence_gu3cxx.jpg'
-                width='1345'
-                height='1511'
-                alt='Photo of me'
-                preview={false}
+                publicId='v1660493139/personal-site/profile6.png'
+                width='976'
+                height='976'
+                alt='Jeff Fan'
+                preview={true}
               />
               <article className='prose dark:prose-invert'>
-                <p data-fade='3'>
-                  Hello! I'm Clarence. I started learning web development in May
-                  2020, which is the start of the pandemic. I have nothing much
-                  to do so I decided to learn web development from a udemy
-                  course, then started watching a bunch of{' '}
-                  <CustomLink href='/blog/youtube-list'>
-                    youtube videos
-                  </CustomLink>{' '}
-                  to explore more about web development especially frontend
-                  development.
-                </p>
+                <p data-fade='3'>Hey there, I'm Jeff Fan!</p>
                 <p data-fade='4'>
-                  There are a lot of things and technologies to learn in
-                  frontend development and I am motivated to learn as much as
-                  possible. I enjoy learning something new and getting feedback
-                  to make myself better and improve.
+                  I advocate cloud computing and keep building ideas on the
+                  Internet. Currently, I am a SaaS solution engineer based in
+                  Munich. Before that, I was a DevOps engineer focused on AWS
+                  and Kubernetes.
                 </p>
                 <p data-fade='5'>
-                  In this website I will be writing some blogs and showcase my
-                  projects. I believe that writing what I have learned is the
-                  best way to remember things, and I can share my knowledge
-                  along the way. So do contact me and I will be very happy to
-                  help!
+                  We live in a world where technologies surround our day. I
+                  believe tech should not look cold but comes from human nature.
+                  And a proper analogy could help us to understand tech's
+                  nature. Feel free to reach out to me if you would like to
+                  understand any cloud computing concepts like you are only five
+                  years old.
                 </p>
+                <p data-fade='6'>We are only one email away :)</p>
               </article>
               <h3 className='mt-12'>Current Favorite Tech Stack</h3>
               <figure className='mt-2'>

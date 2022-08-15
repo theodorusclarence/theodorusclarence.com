@@ -40,7 +40,7 @@ export default function CloudinaryImg({
 
   const urlBlurred = buildUrl(publicId, {
     cloud: {
-      cloudName: 'theodorusclarence',
+      cloudName: 'iambigmomma',
     },
     transformations: {
       effect: {
