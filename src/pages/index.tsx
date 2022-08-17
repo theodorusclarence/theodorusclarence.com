@@ -18,7 +18,6 @@ import LibraryCard from '@/components/content/library/LibraryCard';
 import ProjectCard from '@/components/content/projects/ProjectCard';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
-import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import TC from '@/components/TC';
@@ -70,13 +69,13 @@ export default function IndexPage({
               on helping customers to build products with digital confidence at
               Sauce Labs.
             </p>
-            <p
+            {/* <p
               className='mt-3 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-4 md:text-lg 2xl:text-xl'
               data-fade='4'
             >
               Don't forget to sign my{' '}
               <CustomLink href='/guestbook'>guestbook</CustomLink>!
-            </p>
+            </p> */}
             <div
               data-fade='5'
               className='mt-8 flex flex-wrap gap-4 md:!text-lg'
@@ -182,7 +181,7 @@ export default function IndexPage({
                 <div className='mt-8 h-full w-full md:mt-0'>
                   <h2 className='text-4xl md:text-6xl'>
                     <Accent className='inline decoration-clone leading-snug dark:leading-none'>
-                      Rebuild your mental model
+                      Understand cloud with analogy
                     </Accent>
                   </h2>
                   <p className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
@@ -242,7 +241,7 @@ export default function IndexPage({
             >
               <article className='layout' data-fade='0'>
                 <h2 className='text-2xl md:text-4xl' id='blog'>
-                  <Accent>Featured Posts</Accent>
+                  <Accent>Popular Cloud Concept</Accent>
                 </h2>
                 <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedPosts.map((post, i) => (
@@ -258,7 +257,7 @@ export default function IndexPage({
                   href='/blog'
                   onClick={() => trackEvent('Home: See more post', 'navigate')}
                 >
-                  See more post
+                  See more analogy
                 </ButtonLink>
               </article>
             </section>
@@ -273,10 +272,10 @@ export default function IndexPage({
             >
               <article className='layout' data-fade='0'>
                 <h2 className='text-2xl md:text-4xl' id='projects'>
-                  <Accent>Featured Projects</Accent>
+                  <Accent>Conference Notes</Accent>
                 </h2>
                 <p className='mt-2 text-gray-600 dark:text-gray-300'>
-                  Some projects that I'm proud of
+                  My learning from impactful conferences around the globe
                 </p>
                 <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedProjects.map((project, i) => (
@@ -294,7 +293,7 @@ export default function IndexPage({
                     trackEvent('Home: See more project', 'navigate')
                   }
                 >
-                  See more project
+                  See more conference posts
                 </ButtonLink>
               </article>
             </section>
@@ -309,10 +308,11 @@ export default function IndexPage({
             >
               <article className='layout' data-fade='0'>
                 <h2 className='text-2xl md:text-4xl' id='library'>
-                  <Accent>Library of Code Snippets</Accent>
+                  <Accent>Cloud Projects</Accent>
                 </h2>
                 <p className='mt-2 text-gray-600 dark:text-gray-300'>
-                  List of code snippets that I store for easy access.
+                  List of demo code that enable you to quickstart an amazing
+                  journey!
                 </p>
                 <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedLibrary.map((snippet, i) => (
