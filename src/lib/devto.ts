@@ -25,6 +25,18 @@ export async function getViewsFromDevto() {
   }
 }
 
+export async function getArticleViewsFromDevto(blogSlug: string) {
+  try {
+    const _devto = await getViewsFromDevto();
+    const devto = _devto?.find((i) => i.slug === blogSlug.replace('b_', ''));
+
+    return devto?.views;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  }
+}
+
 interface DevtoArticle {
   canonical_url: string;
   page_views_count: number;
