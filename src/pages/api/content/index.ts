@@ -1,54 +1,53 @@
-import { createHash } from 'crypto';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { getViewsFromDevto } from '@/lib/devto';
-import { getAllContent } from '@/lib/fauna';
+import { prismaClient } from '@/lib/prisma';
 
-export default async function index(req: NextApiRequest, res: NextApiResponse) {
-  const ipAddress =
-    req.headers['x-forwarded-for'] ||
-    // Fallback for localhost or non Vercel deployments
-    '0.0.0.0';
-
-  // Since a users IP address is part of the sessionId in our database, we
-  // hash it to protect their privacy. By combining it with a salt, we get
-  // get a unique id we can refer to, but we won't know what their ip
-  // address was.
-  const currentUserId = createHash('md5')
-    .update(ipAddress + (process.env.IP_ADDRESS_SALT as string), 'utf8')
-    .digest('hex');
-  const sessionId = currentUserId;
-
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   try {
     if (req.method === 'GET') {
-      const content = await getAllContent();
+      const _content = await prismaClient.contentMeta.findMany({
+        include: {
+          _count: {
+            select: {
+              views: true,
+              likes: true,
+            },
+          },
+        },
+      });
       const devto = await getViewsFromDevto();
 
-      const mappedData = content.map((meta) => {
-        const found = meta.slug.startsWith('b_')
-          ? devto?.find((i) => i.slug === meta.slug.slice(2))
-          : null;
+      const content = _content.map((meta) => {
+        const devtoViews = meta.slug.startsWith('b_')
+          ? devto?.find((i) => i.slug === meta.slug.replace('b_', ''))?.views
+          : undefined;
 
         return {
-          ...meta,
-          views: meta.views + (found?.views ?? 0),
-          devtoViews: found?.views ?? null,
-          likesByUser: meta?.likesByUser?.[sessionId] ?? 0,
+          slug: meta.slug,
+          views: meta._count.views + (devtoViews ?? 0),
+          likes: meta._count.likes,
+          devtoViews,
         };
       });
 
       // Sort alphabetically
-      mappedData.sort((a, b) => a.slug.localeCompare(b.slug));
+      content.sort((a, b) => a.slug.localeCompare(b.slug));
 
-      // res.status(200).json({ data: content });
-      res.status(200).json(mappedData);
+      res.status(200).json(content);
     } else {
       res.status(405).json({ message: 'Method Not Allowed' });
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
+  } catch (err: unknown) {
     // eslint-disable-next-line no-console
-    console.error(error);
-    res.status(500).json({ message: error.message ?? 'Internal Server Error' });
+    console.error(err);
+    if (err instanceof Error) {
+      res.status(500).json({ message: err.message ?? 'Internal Server Error' });
+    } else {
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
   }
 }

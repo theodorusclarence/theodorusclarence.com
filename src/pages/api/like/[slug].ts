@@ -13,47 +13,25 @@ export default async function handler(
   const sessionId = getSessionId(req);
 
   try {
-    if (req.method === 'GET') {
-      const content = await prismaClient.contentMeta.findFirst({
-        where: {
-          slug,
-        },
-        include: {
-          _count: {
-            select: {
-              views: true,
-              likes: true,
-            },
-          },
-        },
-      });
+    if (req.method === 'POST') {
+      const likeCount = await getUserLikeCount({ sessionId, slug });
 
-      let devtoViews: number | undefined;
-      if (slug.startsWith('b_')) {
-        devtoViews = await getArticleViewsFromDevto(slug);
-      }
+      if (likeCount >= 5) throw new Error('Max like count is 5');
 
-      return res.status(200).json({
-        contentViews: (content?._count.views ?? 0) + (devtoViews ?? 0),
-        contentLikes: content?._count.likes ?? 0,
-        devtoViews: devtoViews,
-        likesByUser: await getUserLikeCount({ sessionId, slug }),
-      });
-    } else if (req.method === 'POST') {
       const content = await prismaClient.contentMeta.upsert({
         where: {
           slug: slug,
         },
         create: {
           slug,
-          views: {
+          likes: {
             create: {
               sessionId,
             },
           },
         },
         update: {
-          views: {
+          likes: {
             create: {
               sessionId,
             },
@@ -78,7 +56,7 @@ export default async function handler(
         contentViews: (content?._count.views ?? 0) + (devtoViews ?? 0),
         contentLikes: content?._count.likes ?? 0,
         devtoViews: devtoViews,
-        likesByUser: await getUserLikeCount({ sessionId, slug }),
+        likesByUser: likeCount + 1,
       });
     } else {
       res.status(405).json({ message: 'Method Not Allowed' });
