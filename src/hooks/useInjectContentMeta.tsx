@@ -6,12 +6,12 @@ import { cleanBlogPrefix } from '@/lib/helper';
 
 import { contentMetaFlag } from '@/constants/env';
 
-import { ContentMeta } from '@/types/fauna';
 import {
   ContentType,
   InjectedMeta,
   PickFrontmatter,
 } from '@/types/frontmatters';
+import { ContentMeta } from '@/types/meta';
 
 export default function useInjectContentMeta<T extends ContentType>(
   type: T,
