@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v2.0.0...v3.0.0) (2022-09-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* add prisma as counter
+
+### Features
+
+* add prisma as counter ([3ba27d8](https://github.com/theodorusclarence/theodorusclarence.com/commit/3ba27d8a4702fac5fa65790e67d1814d244912d9))
+* change image shadow from sm to default ([a1b4b53](https://github.com/theodorusclarence/theodorusclarence.com/commit/a1b4b533b32c69c1e5fdddd5315fcf113a3aaeda))
+* remove fauna ([46be220](https://github.com/theodorusclarence/theodorusclarence.com/commit/46be2200de52e7966570b96c48a83fe8fca196e3))
+
+
+### Bug Fixes
+
+* mdx class isn't using className syntax ([ead648d](https://github.com/theodorusclarence/theodorusclarence.com/commit/ead648daa68cc260b345bdfc5941b9252bf1335e))
+* typo in conventional-commit english part ([490276f](https://github.com/theodorusclarence/theodorusclarence.com/commit/490276fcdc183ccdc38c51290a5eaef6bc12b578))
+
 ## [2.0.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v1.1.1...v2.0.0) (2022-07-23)
 
 
