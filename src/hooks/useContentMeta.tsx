@@ -7,7 +7,7 @@ import { cacheOnly } from '@/lib/swr';
 
 import { contentMetaFlag, incrementMetaFlag } from '@/constants/env';
 
-import { ContentMeta, SingleContentMeta } from '@/types/fauna';
+import { ContentMeta, SingleContentMeta } from '@/types/meta';
 
 export default function useContentMeta(
   slug: string,

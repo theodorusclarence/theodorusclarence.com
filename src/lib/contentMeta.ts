@@ -1,5 +1,5 @@
-import { ContentMeta } from '@/types/fauna';
 import { ContentType } from '@/types/frontmatters';
+import { ContentMeta } from '@/types/meta';
 
 export function pickContentMeta<T extends ContentType>(
   data: Array<ContentMeta> | undefined,

@@ -11,7 +11,7 @@ import Seo from '@/components/Seo';
 
 import { contentMetaFlag } from '@/constants/env';
 
-import { ContentMeta } from '@/types/fauna';
+import { ContentMeta } from '@/types/meta';
 
 export default function StatisticsPage() {
   const { data: contentMeta } = useSWR<Array<ContentMeta>>(
