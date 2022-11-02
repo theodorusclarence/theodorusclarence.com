@@ -1,0 +1,285 @@
+---
+title: 'React Core Concept II: useEffect'
+publishedAt: '2022-11-02'
+description: 'An in-depth look at the useEffect hook in React with a mental model'
+englishOnly: 'true'
+banner: 'genessa-panainte-sBvK15KlpYk-unsplash_v5yhfy'
+tags: 'react,core-concept'
+---
+
+## Introduction
+
+The useEffect hook is something that is quite hard to grasp for me at first, but it turns out it is not that complicated. With this post, I'm going to introduce you to a simple mental model that might help you to understand the basic concept.
+
+## Quick Recap
+
+Before you continue to read this post, **it is best to read my [first React Core Concept article](https://theodorusclarence.com/blog/react-core-concept-rendering-state) about useState because I'm going to reference some mental models used in the last post.**
+
+In the last post, this is something that you need to remember:
+
+> React does a **re-render** by calling the component function.
+>
+> React will trigger the render function when
+>
+> 1. The useState value changes (using setState)
+> 2. The parent component re-renders
+> 3. The props that are being passed changes
+
+## Looking at useEffect
+
+If you used useEffect before, you must've known that it would run the arrow function inside the useEffect. It is written like this.
+
+```jsx
+React.useEffect(() => {
+  console.log('hello');
+});
+```
+
+When we see the structure of the useEffect hook, it resembles a cloak that wraps one function. Now, we need to know what that cloak does to our function.
+
+## Controlling Functions with useEffect
+
+With useEffect, we can control when would we like to run the function.
+
+Let's see an example:
+
+```jsx
+export default function Test() {
+  fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then((res) => res.json())
+    .then((data) => console.log(data);
+
+	return (
+		<Component />
+	)
+}
+```
+
+Do you notice what's wrong with the example? Yes. The fetch will be run every single re-render, and we probably don't want that.
+
+We can fix that problem by controlling **when should the function run** using useEffect. We can control it with the `deps` parameter
+
+---
+
+## Types of Dependencies
+
+Here are the usual types of dependencies that are often used with useEffect
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/types-of-dependency_zdawjr'
+  alt='types-of-dependency'
+  width={849}
+  height={332}
+/>
+
+Before we break it one by one, there is **a mental model that you need to remember.**
+
+> The useEffect hook will always **run once** on the **initial render**. There is no exception.
+
+### Without Dependency
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/without-deps_hbahzd'
+  alt='without-deps'
+  width={1137}
+  height={528}
+/>
+
+Without the dependency parameter, it is practically the same as calling a function on the top level. The useEffect will run on **the initial render and every re-render**
+
+There is a slight difference in using useEffect, I'll cover this at the end of the article because it is insignificant for now.
+
+### With Dependency
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/with-deps_j6y1wd'
+  alt='with-deps'
+  width={1174}
+  height={344}
+/>
+
+When we introduce the dependency parameter, the mental model becomes like this:
+
+> When the dependency changes, I'll run
+
+They will run on **the initial render and whenever specified dependencies changed.** We can specify the dependencies inside the array.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/specified-deps_zhgxsp'
+  alt='specified-deps'
+  width={2016}
+  height={774}
+/>
+
+Emphasize the **OR.** So when we put `foo` into the array, the useEffect will run every time the `foo` variable changes.
+
+### Specifying Empty Array
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/empty-deps_cdra64'
+  alt='empty-deps'
+  width={1091}
+  height={468}
+/>
+
+When you specifically put an empty array to the dependency, it is like saying “When nothing changes, I'll run”, and we can paraphrase it to this mental model
+
+> I will never run on any changes
+
+However, it will always run on the initial render, so using an **empty array will cause the useEffect to run once on the initial render.**
+
+This is super useful when you need to fetch data from another API. You'll run it only at the initial render and show it to the user.
+
+### Difference between Empty Parameter and Empty Array
+
+This is something that you also need to note:
+
+> Not giving any parameter is different than specifying an empty array
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/empty-parameter-vs-array_drudqp'
+  alt='empty-parameter-vs-array'
+  width={1057}
+  height={535}
+/>
+
+---
+
+## How does React decide if the dependency changes?
+
+React is going to compare them using **shallow comparison**. Here are some cases
+
+### 1. Primitive dependency
+
+Primitive including boolean, string, numbers, etc.
+
+```jsx
+export default function TogglePage() {
+  const [toggle, setToggle] = React.useState(false);
+
+  console.log('🔥 Rerender');
+
+  React.useEffect(() => {
+    console.log('🔵 Effect');
+  }, [toggle]);
+
+  return (
+    <div>
+      <Button onClick={() => setToggle((t) => !t)}>Toggle</Button>
+    </div>
+  );
+}
+```
+
+Here's a really simple example, if you follow the tutorials correctly you're now able to infer that **every time the button is clicked, it will log the Re-render and Effect log.**
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/primitive-example_qnn7qi'
+  alt='primitive-example'
+  width={800}
+  height={592}
+/>
+
+Easy right? The useEffect will run if it sees that the toggle value changes from `true` to `false` or vice versa.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/primitive-deps_kt5dkx'
+  alt='primitive-deps'
+  width={884}
+  height={463}
+/>
+
+### 2. Object dependency
+
+Before we jump into the example, I want to clarify this first.
+
+```jsx
+const obj = {
+  toggle: false,
+};
+
+React.useEffect(() => {
+  console.log('🔵 Effect');
+}, [obj.toggle]);
+```
+
+If you're assigning the object's property, it's going to follow that property value. So in this example, it's going to follow the **primitive dependency** mental model.
+
+Let's get to the real example
+
+```jsx
+export default function ChangePage() {
+  const [toggle, setToggle] = React.useState(false);
+  const [falseToggle, setFalseToggle] = React.useState(false);
+
+  console.log('🔥 Rerender');
+
+  const obj = {
+    toggle,
+  };
+
+  React.useEffect(() => {
+    console.log('🔵 Effect');
+  }, [obj]);
+
+  return (
+    <div>
+      {/* Clicking button will change falseToggle value */}
+      <Button onClick={() => setFalseToggle((t) => !t)}>Toggle</Button>
+    </div>
+  );
+}
+```
+
+Following the last mental model, you might conclude that the `Effect` log won't run because the **toggle value doesn't even change** right??
+
+The answer is **it will run the effect function.**
+
+That behavior is because, in every re-render, we're creating a **new object**. React is going to treat the object as a different value even though it is identical.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/object-deps_yaxn5a'
+  alt='object-deps'
+  width={1121}
+  height={556}
+/>
+
+If you're using ESLint, they actually will warn you to fix it using `useMemo` hook
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-useeffect/eslint-memo_m9s7qk'
+  alt='eslint-memo'
+  width={884}
+  height={210}
+/>
+
+```jsx
+const obj = React.useMemo(() => {
+  return { toggle: toggle };
+}, [toggle]);
+```
+
+useMemo will use the existing object if the dependency doesn't change. Thus not creating a brand new object each time.
+
+Notice something similar in the useMemo hook? Yes! it follows the same mental model for dependency. Learn something once, and you can use it for more than one concept.
+
+## Conclusion
+
+The useEffect hooks work with 2 types of dependencies:
+
+- Without Dependencies
+- With Dependencies
+  - Empty Array
+  - Specified Array
+
+When using specified dependencies it will compare them using shallow comparison with 2 mental models that you can remember which are primitive and object dependency.

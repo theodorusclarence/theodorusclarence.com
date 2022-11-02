@@ -347,9 +347,9 @@ export async function getStaticProps() {
   const library = await getAllFilesFrontmatter('library');
 
   const featuredPosts = getFeatured(blogs, [
-    'swift-value-reference',
     'nextjs-storybook-tailwind',
     'react-core-concept-rendering-state',
+    'react-core-concept-useeffect',
     'nextjs-fetch-method',
     'one-stop-starter',
     '2021-retrospective',
