@@ -68,6 +68,11 @@ export default async function spotify(
       response.status > 400 ||
       response.data.currently_playing_type !== 'track'
     ) {
+      //? s-maxage=180 because song usually lasts 3 minutes
+      res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=180, stale-while-revalidate=90'
+      );
       return res.status(200).json({ isPlaying: false });
     }
 
@@ -82,6 +87,10 @@ export default async function spotify(
       songUrl: response.data.item.external_urls.spotify,
     };
 
-    res.status(200).json(data);
+    res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=180, stale-while-revalidate=90'
+    );
+    return res.status(200).json(data);
   }
 }
