@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { z } from 'zod';
 
 import { getUserLikeCount } from '@/lib/api.server';
 import { getArticleViewsFromDevto } from '@/lib/devto';
@@ -9,7 +10,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const slug = req.query.slug as string;
+  const slug = z.string().parse(req.query.slug);
   const sessionId = getSessionId(req);
 
   try {
