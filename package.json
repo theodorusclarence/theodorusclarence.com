@@ -44,7 +44,8 @@
     "react-table": "^7.8.0",
     "react-tippy": "^1.4.0",
     "react-twitter-widgets": "^1.11.0",
-    "swr": "^1.3.0"
+    "swr": "^1.3.0",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
