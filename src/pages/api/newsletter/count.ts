@@ -15,7 +15,13 @@ export default function count(req: NextApiRequest, res: NextApiResponse) {
       )
       .then((response) => {
         const count = response.data.length;
-        res.status(200).json({ count });
+
+        // Cache for an hour
+        res.setHeader(
+          'Cache-Control',
+          'public, s-maxage=3600, stale-while-revalidate=60'
+        );
+        return res.status(200).json({ count });
       })
       .catch(() => res.status(500).json({ error: 'Something was wrong' }));
   } else {
