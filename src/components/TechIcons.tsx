@@ -15,6 +15,7 @@ import {
   SiReact,
   SiRedux,
   SiSass,
+  SiSwift,
   SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
@@ -111,5 +112,9 @@ const techList = {
   notion: {
     icon: SiNotion,
     name: 'Notion API',
+  },
+  swift: {
+    icon: SiSwift,
+    name: 'Swift',
   },
 };
