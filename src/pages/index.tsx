@@ -355,9 +355,9 @@ export async function getStaticProps() {
     '2021-retrospective',
   ]);
   const featuredProjects = getFeatured(projects, [
+    'hexcape',
     'notiolink',
     'ppdbsumsel',
-    'side-projects',
   ]);
   const featuredLibrary = getFeatured(library, [
     'absolute-import',
