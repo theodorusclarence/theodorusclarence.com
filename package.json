@@ -21,7 +21,7 @@
   "dependencies": {
     "@feedback-fish/react": "^1.2.1",
     "@giscus/react": "^1.1.2",
-    "@headlessui/react": "^1.7.4",
+    "@headlessui/react": "^1.7.7",
     "@prisma/client": "^4.7.1",
     "axios": "^0.24.0",
     "cloudinary-build-url": "^0.2.4",
@@ -77,7 +77,7 @@
     "next-remote-watch": "^1.0.0",
     "next-sitemap": "^1.9.12",
     "postcss": "^8.4.20",
-    "prettier": "^2.8.0",
+    "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "prisma": "^4.7.1",
     "reading-time": "^1.5.0",
