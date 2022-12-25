@@ -293,10 +293,10 @@
   resolved "https://registry.yarnpkg.com/@giscus/react/-/react-1.1.2.tgz#c97f06aab1272c0fbe567c69ebffe3bad7206e7a"
   integrity sha512-htSAAiTtoHTRE8GqSSkWmT+Iq7LJhtqSmr+HjEC1cXlNd1WeLVZXjnuiIj7+L8DOUnAdfh+1FClN304FVxIcsQ==
 
-"@headlessui/react@^1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.4.tgz#ba7f50fda20667276ee84fcd4c2a459aa26187e3"
-  integrity sha512-D8n5yGCF3WIkPsjEYeM8knn9jQ70bigGGb5aUvN6y4BGxcT3OcOQOKcM3zRGllRCZCFxCZyQvYJF6ZE7bQUOyQ==
+"@headlessui/react@^1.7.7":
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.7.tgz#d6f8708d8943ae8ebb1a6929108234e4515ac7e8"
+  integrity sha512-BqDOd/tB9u2tA0T3Z0fn18ktw+KbVwMnkxxsGPIH2hzssrQhKB5n/6StZOyvLYP/FsYtvuXfi9I0YowKPv2c1w==
   dependencies:
     client-only "^0.0.1"
 
@@ -5119,10 +5119,10 @@ prettier-plugin-tailwindcss@^0.1.13:
   resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.1.13.tgz#ca1071361dc7e2ed5d95a2ee36825ce45f814942"
   integrity sha512-/EKQURUrxLu66CMUg4+1LwGdxnz8of7IDvrSLqEtDqhLH61SAlNNUSr90UTvZaemujgl3OH/VHg+fyGltrNixw==
 
-prettier@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.0.tgz#c7df58393c9ba77d6fba3921ae01faf994fb9dc9"
-  integrity sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==
+prettier@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.1.tgz#4e1fd11c34e2421bc1da9aea9bd8127cd0a35efc"
+  integrity sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==
 
 pretty-bytes@^5.6.0:
   version "5.6.0"
