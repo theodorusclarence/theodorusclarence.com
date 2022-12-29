@@ -37,8 +37,13 @@ describe('All Page', () => {
     cy.get('h1').should('contain', 'Subscribe to theodorusclarence.com');
   });
 
-  it('should display trf page', () => {
-    cy.visit('/trf');
+  it('should display trf bca page', () => {
+    cy.visit('/trf/bca');
     cy.get('h1').should('contain', 'Rekening BCA');
+  });
+
+  it('should display trf mandiri page', () => {
+    cy.visit('/trf/mandiri');
+    cy.get('h1').should('contain', 'Rekening Mandiri');
   });
 });
