@@ -1,4 +1,4 @@
-import { Giscus, Theme } from '@giscus/react';
+import Giscus, { Repo, Theme } from '@giscus/react';
 import { useTheme } from 'next-themes';
 
 import { commentFlag } from '@/constants/env';
@@ -9,8 +9,8 @@ export default function Comment() {
   return commentFlag ? (
     <Giscus
       key={theme}
-      repo='theodorusclarence/theodorusclarence.com'
-      repoId='MDEwOlJlcG9zaXRvcnkzMzAyMTQyNDc='
+      repo={(process.env.NEXT_PUBLIC_GISCUS_REPO as Repo) || ''}
+      repoId={process.env.NEXT_PUBLIC_GISCUS_REPO_ID || ''}
       category='General'
       categoryId='DIC_kwDOE66rZ84B--B0'
       mapping='pathname'
