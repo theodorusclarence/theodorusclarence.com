@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v3.0.0...v3.1.0) (2023-01-01)
+
+
+### Features
+
+* add cache header to spotify and newsletter ([292dc43](https://github.com/theodorusclarence/theodorusclarence.com/commit/292dc436fd6188e32aa630760d2bced1f5ba24e5))
+* add zod validation for api param ([2f26272](https://github.com/theodorusclarence/theodorusclarence.com/commit/2f26272f82fdbc8dac51f8e2f0aac194583adf8c))
+* always use light mode for TweetCard ([4cde5f4](https://github.com/theodorusclarence/theodorusclarence.com/commit/4cde5f438adf6e7ff661bc557b6c1c55a1acbf45))
+* **blog:** add 2022-retrospective ([ada9dd5](https://github.com/theodorusclarence/theodorusclarence.com/commit/ada9dd5ac6d8d14687e92f18c64ac4077632b7fa))
+* **blog:** add react-core-concept-useeffect ([fd3221f](https://github.com/theodorusclarence/theodorusclarence.com/commit/fd3221fc35c64dd7564d6968d901739d2844b79d))
+* change about picture ([040a039](https://github.com/theodorusclarence/theodorusclarence.com/commit/040a039863f0da27bde6d3eda153d90e5d5e3b02))
+* move public id to env ([15af1af](https://github.com/theodorusclarence/theodorusclarence.com/commit/15af1af836a9d85d459b910722b26b2026c0b4b7))
+* **proj:** add hexcape ([00997a1](https://github.com/theodorusclarence/theodorusclarence.com/commit/00997a10c436815c1c9b77a54c7b0c3402c75c2b))
+* **proj:** add media coverage to hexcape ([2d5b022](https://github.com/theodorusclarence/theodorusclarence.com/commit/2d5b022a973e2517f588c6d9de31ce26aa32a8fa))
+* update trf bca and add mandiri ([f56ae81](https://github.com/theodorusclarence/theodorusclarence.com/commit/f56ae81af92f8c4fb964799504f772a8a85b17bd))
+
 ## [3.0.0](https://github.com/theodorusclarence/theodorusclarence.com/compare/v2.0.0...v3.0.0) (2022-09-02)
 
 
