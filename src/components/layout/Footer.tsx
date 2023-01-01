@@ -32,7 +32,9 @@ export default function Footer() {
           {feedbackFlag && (
             <>
               {' • '}
-              <FeedbackFish projectId='59a0c0e0d549a7'>
+              <FeedbackFish
+                projectId={process.env.NEXT_PUBLIC_FEEDBACK_FISH_ID || ''}
+              >
                 <button className='rounded-sm hover:text-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:hover:text-gray-100'>
                   Got any feedback?
                 </button>
