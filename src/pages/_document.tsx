@@ -26,7 +26,7 @@ class MyDocument extends Document {
           <script
             async
             defer
-            data-website-id='a422e5d6-8fc9-4bea-ac25-1effc08a67f0'
+            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || ''}
             src='https://umami.thcl.dev/umami.js'
             data-domains='theodorusclarence.com'
           />
