@@ -24,7 +24,7 @@ export default function StatisticsPage() {
     ...blog,
     webViews: blog.views - (blog?.devtoViews || 0),
   }));
-  const blogColumns = React.useMemo<Column<typeof blogs[number]>[]>(
+  const blogColumns = React.useMemo<Column<(typeof blogs)[number]>[]>(
     () => [
       {
         Header: 'Blog Slug',
