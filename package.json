@@ -22,7 +22,7 @@
     "@feedback-fish/react": "^1.2.1",
     "@giscus/react": "^2.2.6",
     "@headlessui/react": "^1.7.7",
-    "@prisma/client": "^4.8.0",
+    "@prisma/client": "^4.9.0",
     "axios": "^0.24.0",
     "cloudinary-build-url": "^0.2.4",
     "clsx": "^1.2.1",
