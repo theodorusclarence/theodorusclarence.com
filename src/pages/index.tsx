@@ -64,10 +64,10 @@ export default function IndexPage({
               )}
               data-fade='3'
             >
-              I’m a solution engineer specializing in advocating cloud computing
+              I’m a senior solutions engineer specializing in advocating cloud computing
               concept in this great computer science era. Currently, I’m focused
-              on helping customers to build products with digital confidence at
-              Sauce Labs.
+              on helping customers to build successful products with simplicity at
+              DigitalOcean.
             </p>
             {/* <p
               className='mt-3 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-4 md:text-lg 2xl:text-xl'
