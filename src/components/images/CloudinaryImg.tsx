@@ -54,7 +54,7 @@ export default function CloudinaryImg({
   });
   const url = buildUrl(publicId, {
     cloud: {
-      cloudName: 'theodorusclarence',
+      cloudName: 'iambigmomma',
     },
     transformations: {
       rawTransformation: aspect

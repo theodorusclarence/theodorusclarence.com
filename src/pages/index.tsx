@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 import { IoArrowDownOutline } from 'react-icons/io5';
-import { IoNewspaperSharp } from 'react-icons/io5';
-import { SiGithub, SiTwitter } from 'react-icons/si';
+// import { IoNewspaperSharp } from 'react-icons/io5';
+// import { SiGithub, SiTwitter } from 'react-icons/si';
 import { InView } from 'react-intersection-observer';
 
 import { trackEvent } from '@/lib/analytics';
@@ -49,13 +49,13 @@ export default function IndexPage({
         >
           <article className='layout'>
             <h2 className='text-2xl md:text-4xl 2xl:text-5xl' data-fade='1'>
-              Hi!
+              Welcome! 👋
             </h2>
             <h1
               className='mt-1 text-3xl md:text-5xl 2xl:text-6xl'
               data-fade='2'
             >
-              You can call me <Accent>Jeff</Accent>
+              <Accent>Solution Engineering</Accent> with Jeff Fan
             </h1>
             <p
               className={clsx(
@@ -64,10 +64,10 @@ export default function IndexPage({
               )}
               data-fade='3'
             >
-              I’m a senior solutions engineer specializing in advocating cloud computing
-              concept in this great computer science era. Currently, I’m focused
-              on helping customers to build successful products with simplicity at
-              DigitalOcean.
+              I’m a Senior Solutions Engineer specializing in advocating cloud
+              computing and building interesting ideas with cloud. Currently,
+              I’m focused on helping customers to build successful products with
+              simplicity at DigitalOcean.
             </p>
             {/* <p
               className='mt-3 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-4 md:text-lg 2xl:text-xl'
@@ -91,13 +91,13 @@ export default function IndexPage({
                 />
                 <ButtonLink href='#intro'>Read the blog</ButtonLink>
               </div>
-              <ButtonLink href='/about'>Learn more about me</ButtonLink>
+              <ButtonLink href='/about'>Who am I?</ButtonLink>
             </div>
             <div
               data-fade='6'
               className='mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-8'
             >
-              <UnstyledLink
+              {/* <UnstyledLink
                 href='https://clarence.link/cv'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
@@ -111,8 +111,8 @@ export default function IndexPage({
               >
                 <IoNewspaperSharp className='shrink-0' />
                 <span>Resume</span>
-              </UnstyledLink>
-              <UnstyledLink
+              </UnstyledLink> */}
+              {/* <UnstyledLink
                 href='https://twitter.com/th_clarence'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
@@ -126,8 +126,8 @@ export default function IndexPage({
               >
                 <SiTwitter className='shrink-0 transition-colors group-hover:text-[#1da1f2]' />
                 <span>@th_clarence</span>
-              </UnstyledLink>
-              <UnstyledLink
+              </UnstyledLink> */}
+              {/* <UnstyledLink
                 href='https://github.com/theodorusclarence'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
@@ -141,7 +141,7 @@ export default function IndexPage({
               >
                 <SiGithub className='shrink-0' />
                 <span>theodorusclarence</span>
-              </UnstyledLink>
+              </UnstyledLink> */}
             </div>
           </article>
           <UnstyledLink
@@ -181,7 +181,7 @@ export default function IndexPage({
                 <div className='mt-8 h-full w-full md:mt-0'>
                   <h2 className='text-4xl md:text-6xl'>
                     <Accent className='inline decoration-clone leading-snug dark:leading-none'>
-                      Understand cloud with analogy
+                      Simplify cloud complexity
                     </Accent>
                   </h2>
                   <p className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
@@ -189,25 +189,24 @@ export default function IndexPage({
                       withUnderline
                       content={
                         <>
-                          A mental model is an explanation of someone's{' '}
-                          <strong>thought process</strong> about how something
-                          works. You can use it as your own guide that you can
-                          test through some cases.
+                          Jargon is the specialized terminology associated with
+                          a particular field or area of activity.Jargon is
+                          normally employed in a particular communicative
+                          context and may not be well understood outside that
+                          context.
                         </>
                       }
                     >
-                      Mental model
+                      Cloud jargons
                     </Tooltip>{' '}
-                    will make front-end development more{' '}
+                    like{' '}
                     <strong className='text-gray-700 dark:text-gray-200'>
-                      predictable
+                      microservices, CDN, and Kubernetes
                     </strong>{' '}
-                    by seeing how they work{' '}
-                    <strong className='text-gray-700 dark:text-gray-200'>
-                      fundamentally
-                    </strong>
-                    . In my blog, I'm sharing how I approach something and how
-                    my mental model affect my learning about a certain topic.
+                    are hard to understand for non-tech people. In this series,
+                    I want to simplify the most popular cloud jargon with a
+                    proper analogy so that you can engage in more tech-related
+                    conversations!
                   </p>
                 </div>
                 <div className='h-full w-full'>
@@ -241,7 +240,7 @@ export default function IndexPage({
             >
               <article className='layout' data-fade='0'>
                 <h2 className='text-2xl md:text-4xl' id='blog'>
-                  <Accent>Popular Cloud Concept</Accent>
+                  <Accent>SE Thoughts & Reflection</Accent>
                 </h2>
                 <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedPosts.map((post, i) => (
@@ -257,7 +256,7 @@ export default function IndexPage({
                   href='/blog'
                   onClick={() => trackEvent('Home: See more post', 'navigate')}
                 >
-                  See more analogy
+                  See more thoughts
                 </ButtonLink>
               </article>
             </section>
@@ -275,7 +274,7 @@ export default function IndexPage({
                   <Accent>Conference Notes</Accent>
                 </h2>
                 <p className='mt-2 text-gray-600 dark:text-gray-300'>
-                  My learning from impactful conferences around the globe
+                  My learning from impactful conferences
                 </p>
                 <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedProjects.map((project, i) => (
@@ -293,7 +292,7 @@ export default function IndexPage({
                     trackEvent('Home: See more project', 'navigate')
                   }
                 >
-                  See more conference posts
+                  See more conference notes
                 </ButtonLink>
               </article>
             </section>
@@ -330,7 +329,7 @@ export default function IndexPage({
                     trackEvent('Home: See more snippets', 'navigate')
                   }
                 >
-                  See more snippets
+                  See more projects
                 </ButtonLink>
               </article>
             </section>

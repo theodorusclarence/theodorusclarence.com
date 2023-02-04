@@ -16,8 +16,10 @@ export default function AboutPage() {
   return (
     <Layout>
       <Seo
-        templateTitle='About'
-        description='Clarence is a front-end developer that started learning in May 2020. He write blogs about his approach and mental model on understanding topics in front-end development.'
+        templateTitle='About Jeff Fan'
+        description='Jeff Fan is a Senior Solutions Engineer specializing in advocating cloud computing
+        and building interesting ideas with cloud. Currently, he is focusing son helping customers to build successful products with simplicity at
+        DigitalOcean.'
       />
 
       <main>
@@ -37,22 +39,36 @@ export default function AboutPage() {
                 preview={true}
               />
               <article className='prose dark:prose-invert'>
-                <p data-fade='3'>Hey there, I'm Jeff Fan!</p>
+                <p data-fade='3'>Hey there👋</p>
                 <p data-fade='4'>
                   I advocate cloud computing and keep building ideas on the
-                  Internet. Currently, I am a SaaS solution engineer based in
+                  cloud. Currently, I am a Senior Solutions Engineer based in
                   Munich. Before that, I was a DevOps engineer focused on AWS
                   and Kubernetes.
                 </p>
                 <p data-fade='5'>
+                  With a background in business administration and computer
+                  science, I know how overwhelming when you are fresh to the
+                  cloud industry. As a solution engineer, I aim to bridge the
+                  gap with a solution and establish a long-term trust
+                  relationship. Being a solution engineer is one of the best
+                  decisions in my career so far.
+                </p>
+                <p data-fade='6'>
+                  If you don't have a tech background but want to know more
+                  about the cloud industry or some SaaS companies, feel free to
+                  send me a virtual coffee invite! Happy to help!
+                </p>
+
+                {/* <p data-fade='6'>
                   We live in a world where technologies surround our day. I
                   believe tech should not look cold but comes from human nature.
                   And a proper analogy could help us to understand tech's
                   nature. Feel free to reach out to me if you would like to
                   understand any cloud computing concepts like you are only five
                   years old.
-                </p>
-                <p data-fade='6'>We are only one email away :)</p>
+                </p> */}
+                <p data-fade='7'>We are only one email away 🚀</p>
               </article>
               <h3 className='mt-12'>Current Favorite Tech Stack</h3>
               <figure className='mt-2'>
@@ -67,9 +83,10 @@ export default function AboutPage() {
             <h2>Contact</h2>
             <article className='prose mt-4 dark:prose-invert'>
               <p>
-                Do contact me if you need my opinion about web development,
-                especially frontend works. I’ll be happy to help! (find my email
-                in the footer)
+                Do contact me if you need my opinion about solution engineering
+                and cloud computing especially topics like value-selling and
+                Kubernetes a. I’ll be happy to help! (find my email in the
+                footer)
               </p>
             </article>
           </div>

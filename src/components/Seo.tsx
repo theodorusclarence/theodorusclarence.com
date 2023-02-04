@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 import { openGraph } from '@/lib/helper';
 
 const defaultMeta = {
-  title: 'Theodorus Clarence',
-  siteName: 'theodorusclarence.com',
+  title: 'Solution Engineering by Jeff Fan',
+  siteName: 'se.isfusion.cloud',
   description:
-    'An online portfolio and blog by Theodorus Clarence. Showcase of my projects, and some of my thoughts about website development.',
-  url: 'https://theodorusclarence.com',
+    'A website provides solution engineering thoughts and insights in the cloud computing area. Additionally, I want to help more non-tech background people to understand the cloud better and have a glimpse of top tech conferences.',
+  url: 'https://se.isfusion.cloud',
   image: 'https://theodorusclarence.com/favicon/large-og.jpg',
   type: 'website',
   robots: 'follow, index',
