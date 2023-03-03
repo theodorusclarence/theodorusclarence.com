@@ -66,7 +66,7 @@ const THEME_COLORS = [
   },
   {
     title: 'Dark Background',
-    subTitle: '#222222',
+    subTitle: '#0e1111',
     colorClassName: 'bg-dark',
   },
   {
