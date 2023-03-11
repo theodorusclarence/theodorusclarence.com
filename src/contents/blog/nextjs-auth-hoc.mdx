@@ -206,23 +206,24 @@ export interface WithAuthProps {
 const HOME_ROUTE = '/';
 const LOGIN_ROUTE = '/login';
 
-enum RouteRole {
+const ROUTE_ROLES = [
   /**
    * For authentication pages
    * @example /login /register
    */
-  auth,
+  'auth',
   /**
    * Optional authentication
    * It doesn't push to login page if user is not authenticated
    */
-  optional,
+  'optional',
   /**
    * For all authenticated user
    * will push to login if user is not authenticated
    */
-  all,
-}
+  'all',
+] as const;
+type RouteRole = (typeof ROUTE_ROLES)[number];
 
 /**
  * Add role-based access control to a component
@@ -232,7 +233,7 @@ enum RouteRole {
  */
 export default function withAuth<T extends WithAuthProps = WithAuthProps>(
   Component: React.ComponentType<T>,
-  routeRole: keyof typeof RouteRole
+  routeRole: RouteRole
 ) {
   const ComponentWithAuth = (props: Omit<T, keyof WithAuthProps>) => {
     const router = useRouter();
