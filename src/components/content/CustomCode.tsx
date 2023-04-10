@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { HiCheckCircle, HiClipboard } from 'react-icons/hi';
+
+import useCopyToClipboard from '@/hooks/useCopyToClipboard';
 
 export function Pre(props: React.ComponentPropsWithRef<'pre'>) {
   return (
@@ -19,6 +20,7 @@ export function Pre(props: React.ComponentPropsWithRef<'pre'>) {
 export default function CustomCode(props: React.ComponentPropsWithRef<'code'>) {
   const textRef = React.useRef<HTMLDivElement>(null);
   const [isCopied, setIsCopied] = React.useState<boolean>(false);
+  const [copy] = useCopyToClipboard();
 
   const language = props.className?.includes('language')
     ? props.className.replace('language-', '').replace(' code-highlight', '')
@@ -42,21 +44,21 @@ export default function CustomCode(props: React.ComponentPropsWithRef<'code'>) {
         </div>
       )}
       {language && (
-        <CopyToClipboard
-          text={textRef?.current?.textContent ?? ''}
-          onCopy={() => {
-            setIsCopied(true);
-            setTimeout(() => setIsCopied(false), 1500);
+        <button
+          onClick={() => {
+            copy(textRef?.current?.textContent ?? '').then(() => {
+              setIsCopied(true);
+              setTimeout(() => setIsCopied(false), 1500);
+            });
           }}
+          className='absolute top-2 right-2 hidden rounded border border-gray-600 p-2 text-lg transition-colors hover:bg-gray-700 md:block'
         >
-          <button className='absolute top-2 right-2 hidden rounded border border-gray-600 p-2 text-lg transition-colors hover:bg-gray-700 md:block'>
-            {isCopied ? (
-              <HiCheckCircle className='text-green-400' />
-            ) : (
-              <HiClipboard />
-            )}
-          </button>
-        </CopyToClipboard>
+          {isCopied ? (
+            <HiCheckCircle className='text-green-400' />
+          ) : (
+            <HiClipboard />
+          )}
+        </button>
       )}
     </code>
   );
