@@ -98,6 +98,7 @@ export default function SingleBlogPage({
         date={new Date(
           frontmatter.lastUpdated ?? frontmatter.publishedAt
         ).toISOString()}
+        canonical={frontmatter.repost}
       />
 
       <main>
