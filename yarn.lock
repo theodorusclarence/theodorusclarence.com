@@ -825,7 +825,7 @@
   resolved "https://registry.yarnpkg.com/@types/trusted-types/-/trusted-types-2.0.3.tgz#a136f83b0758698df454e328759dbd3d44555311"
   integrity sha512-NfQ4gyz38SL8sDNrSixxU2Os1a5xcdFxipAFxYEuLUlvU2uDwS4NUpsImcf1//SlWItCVMMLiylsxbmNMToV/g==
 
-"@types/umami@^0.1.0":
+"@types/umami@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@types/umami/-/umami-0.1.1.tgz#6c9d0d97457af93efebc922c61d3134b9c4ab933"
   integrity sha512-00BsPEKZ8ASEyJDFJ1WwnXSdYkJYgQ4fltX9TP/UHX3o3KdUfPocc0jy5wHR3tBXV4LdJldjkZUjmGe/T4zspQ==

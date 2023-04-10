@@ -56,7 +56,7 @@ function FooterLinks() {
             className='animated-underline rounded-sm text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:text-gray-200'
             href={href}
             onClick={() => {
-              trackEvent(`Footer Link: ${text}`, 'link');
+              trackEvent(`Footer Link: ${text}`, { type: 'link' });
             }}
           >
             {text}
@@ -113,7 +113,7 @@ function SocialLinks() {
             className='inline-flex items-center justify-center rounded-sm focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
             href={social.href}
             onClick={() => {
-              trackEvent(`Footer Link: ${social.id}`, 'link');
+              trackEvent(`Footer Link: ${social.id}`, { type: 'link' });
             }}
           >
             <social.icon className='my-auto h-6 w-6 align-middle text-gray-600 transition-colors hover:text-primary-300 dark:text-gray-300 dark:hover:text-primary-300' />
