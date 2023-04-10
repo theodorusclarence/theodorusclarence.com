@@ -183,7 +183,7 @@ export default function IndexPage({
                       Rebuild your mental model
                     </Accent>
                   </h2>
-                  <p className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
+                  <div className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
                     <Tooltip
                       withUnderline
                       tipChildren={
@@ -207,7 +207,7 @@ export default function IndexPage({
                     </strong>
                     . In my blog, I'm sharing how I approach something and how
                     my mental model affect my learning about a certain topic.
-                  </p>
+                  </div>
                 </div>
                 <div className='h-full w-full'>
                   <ul className='relative h-full'>
