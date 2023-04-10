@@ -186,7 +186,7 @@ export default function IndexPage({
                   <p className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
                     <Tooltip
                       withUnderline
-                      content={
+                      tipChildren={
                         <>
                           A mental model is an explanation of someone's{' '}
                           <strong>thought process</strong> about how something
@@ -195,7 +195,7 @@ export default function IndexPage({
                         </>
                       }
                     >
-                      Mental model
+                      <span>Mental model</span>
                     </Tooltip>{' '}
                     will make front-end development more{' '}
                     <strong className='text-gray-700 dark:text-gray-200'>

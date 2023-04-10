@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Tooltip as TippyTooltip, TooltipProps } from 'react-tippy';
 
 type TooltipTextProps = {
-  content?: React.ReactNode;
+  tipChildren?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
   spanClassName?: string;
@@ -12,7 +12,7 @@ type TooltipTextProps = {
   Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'className'>;
 
 export default function Tooltip({
-  content,
+  tipChildren,
   children,
   className,
   spanClassName,
@@ -31,7 +31,7 @@ export default function Tooltip({
             'border dark:border-gray-600 '
           )}
         >
-          {content}
+          {tipChildren}
         </div>
       }
       {...rest}
