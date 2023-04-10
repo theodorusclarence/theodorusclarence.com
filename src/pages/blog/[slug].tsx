@@ -231,7 +231,7 @@ export default function SingleBlogPage({
                   {populatedRecommendations.map((post, i) => (
                     <BlogCard
                       onClick={() => {
-                        trackEvent(post.slug, 'recommend');
+                        trackEvent(post.slug, { type: 'recommend' });
                       }}
                       className={clsx({ 'hidden xl:block': i === 2 })}
                       key={post.slug}

@@ -6,7 +6,9 @@ enum EventType {
 
 type TrackEvent = (
   event_value: string,
-  event_type: keyof typeof EventType,
+  event_type?: { [key: string]: string | number } & {
+    type: keyof typeof EventType;
+  },
   url?: string | undefined,
   website_id?: string | undefined
 ) => void;

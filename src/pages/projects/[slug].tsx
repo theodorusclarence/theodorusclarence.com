@@ -90,7 +90,9 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                   <SiGithub className='text-lg text-gray-800 dark:text-white' />
                   <CustomLink
                     onClick={() =>
-                      trackEvent(`Project Github: ${frontmatter.title}`, 'link')
+                      trackEvent(`Project Github: ${frontmatter.title}`, {
+                        type: 'link',
+                      })
                     }
                     href={frontmatter.github}
                     className='mt-1'
@@ -109,7 +111,9 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                     href={frontmatter.youtube}
                     className='mt-1'
                     onClick={() =>
-                      trackEvent(`Project Video: ${frontmatter.title}`, 'link')
+                      trackEvent(`Project Video: ${frontmatter.title}`, {
+                        type: 'link',
+                      })
                     }
                   >
                     Demo Video
@@ -124,7 +128,9 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
                     href={frontmatter.link}
                     className='mt-1'
                     onClick={() =>
-                      trackEvent(`Project Live: ${frontmatter.title}`, 'link')
+                      trackEvent(`Project Live: ${frontmatter.title}`, {
+                        type: 'link',
+                      })
                     }
                   >
                     Open Live Site

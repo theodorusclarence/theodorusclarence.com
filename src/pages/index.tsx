@@ -105,7 +105,7 @@ export default function IndexPage({
                   'transition-colors'
                 )}
                 onClick={() => {
-                  trackEvent('Social Link: Resume', 'link');
+                  trackEvent('Social Link: Resume', { type: 'link' });
                 }}
               >
                 <IoNewspaperSharp className='shrink-0' />
@@ -120,7 +120,7 @@ export default function IndexPage({
                   'transition-colors'
                 )}
                 onClick={() => {
-                  trackEvent('Social Link: Twitter', 'link');
+                  trackEvent('Social Link: Twitter', { type: 'link' });
                 }}
               >
                 <SiTwitter className='shrink-0 transition-colors group-hover:text-[#1da1f2]' />
@@ -135,7 +135,7 @@ export default function IndexPage({
                   'transition-colors'
                 )}
                 onClick={() => {
-                  trackEvent('Social Link: Github', 'link');
+                  trackEvent('Social Link: Github', { type: 'link' });
                 }}
               >
                 <SiGithub className='shrink-0' />
@@ -254,7 +254,9 @@ export default function IndexPage({
                 <ButtonLink
                   className='mt-4'
                   href='/blog'
-                  onClick={() => trackEvent('Home: See more post', 'navigate')}
+                  onClick={() =>
+                    trackEvent('Home: See more post', { type: 'navigate' })
+                  }
                 >
                   See more post
                 </ButtonLink>
@@ -289,7 +291,7 @@ export default function IndexPage({
                   className='mt-4'
                   href='/projects'
                   onClick={() =>
-                    trackEvent('Home: See more project', 'navigate')
+                    trackEvent('Home: See more project', { type: 'navigate' })
                   }
                 >
                   See more project
@@ -325,7 +327,7 @@ export default function IndexPage({
                   className='mt-4'
                   href='/library'
                   onClick={() =>
-                    trackEvent('Home: See more snippets', 'navigate')
+                    trackEvent('Home: See more snippets', { type: 'navigate' })
                   }
                 >
                   See more snippets
