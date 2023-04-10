@@ -56,11 +56,11 @@ export default function GithubCard({ repo, className }: GithubCardProps) {
         <div className='mt-2 flex gap-3'>
           <div className='flex items-center gap-1 text-xs'>
             <HiOutlineStar className='shrink-0 text-[1.2em]' />
-            <span>{repository.stargazers_count}</span>
+            <span>{repository.stargazers_count.toLocaleString()}</span>
           </div>
           <div className='flex items-center gap-1 text-xs'>
             <BiGitRepoForked className='shrink-0 text-[1.2em]' />
-            <span>{repository.forks}</span>
+            <span>{repository.forks.toLocaleString()}</span>
           </div>
         </div>
       </UnstyledLink>
