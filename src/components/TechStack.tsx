@@ -16,7 +16,7 @@ export default function TechStack() {
   return (
     <div className='flex space-x-2 md:space-x-4'>
       {stacks.map((tech) => (
-        <Tooltip key={tech.id} content={<p>{tech.tooltip}</p>}>
+        <Tooltip key={tech.id} tipChildren={<p>{tech.tooltip}</p>}>
           <tech.icon
             key={tech.id}
             className={clsx(

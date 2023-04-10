@@ -148,7 +148,7 @@ export default function SingleBlogPage({
                 </div>
                 {meta?.devtoViews ? (
                   <Tooltip
-                    content={
+                    tipChildren={
                       <>
                         {meta.devtoViews.toLocaleString()} views on{' '}
                         <CustomLink href='https://dev.to/theodorusclarence'>
