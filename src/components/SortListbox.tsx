@@ -27,7 +27,7 @@ export default function SortListbox({
         <div className='relative'>
           <Listbox.Button
             className={clsx(
-              'w-full rounded-md bg-white py-2 pr-10 pl-3 text-left font-medium dark:bg-dark sm:text-sm',
+              'w-full rounded-md bg-white py-2 pl-3 pr-10 text-left font-medium dark:bg-dark sm:text-sm',
               'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
               'border border-gray-300 dark:border-gray-600',
               'scale-100 transform-gpu hover:scale-[1.03] active:scale-[0.97]',
@@ -60,7 +60,7 @@ export default function SortListbox({
                   key={opt.id}
                   className={({ active }) =>
                     clsx(
-                      'relative select-none py-2 pr-4 pl-10',
+                      'relative select-none py-2 pl-10 pr-4',
                       active
                         ? 'bg-primary-300/10 dark:bg-primary-300/25'
                         : 'text-gray-700 dark:text-gray-300'
