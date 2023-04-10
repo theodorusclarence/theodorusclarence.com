@@ -7,6 +7,10 @@ type ThemeButtonProps = React.ComponentPropsWithoutRef<'button'>;
 
 export default function ThemeButton({ className, ...rest }: ThemeButtonProps) {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => setMounted(true), []);
+
   return (
     <button
       className={clsx(
@@ -20,7 +24,7 @@ export default function ThemeButton({ className, ...rest }: ThemeButtonProps) {
       {...rest}
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
-      {theme === 'light' ? <FiMoon /> : <FiSun />}
+      {mounted ? <>{theme === 'light' ? <FiMoon /> : <FiSun />}</> : <FiSun />}
     </button>
   );
 }
