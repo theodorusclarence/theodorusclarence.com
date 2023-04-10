@@ -1,13 +1,14 @@
+import { ColumnDef } from '@tanstack/react-table';
 import clsx from 'clsx';
 import * as React from 'react';
-import { Column } from 'react-table';
 import useSWR from 'swr';
 
 import { pickContentMeta } from '@/lib/contentMeta';
 
 import Layout from '@/components/layout/Layout';
-import ReactTable from '@/components/ReactTable';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
+import Table from '@/components/table/Table';
 
 import { contentMetaFlag } from '@/constants/env';
 
@@ -24,163 +25,172 @@ export default function StatisticsPage() {
     ...blog,
     webViews: blog.views - (blog?.devtoViews || 0),
   }));
-  const blogColumns = React.useMemo<Column<(typeof blogs)[number]>[]>(
-    () => [
-      {
-        Header: 'Blog Slug',
-        Footer: 'Total',
-        accessor: 'slug',
-        sortDescFirst: true,
-      },
-      {
-        Header: 'Total Views',
-        accessor: 'views',
+  const blogColumns: ColumnDef<(typeof blogs)[number]>[] = [
+    {
+      accessorKey: 'slug',
+      header: 'Slug',
+      cell: ({ row }) => (
+        <UnstyledLink
+          className='font-medium'
+          openNewTab
+          href={`/blog/${row.original.slug}?ref=statistics`}
+        >
+          {row.original.slug}
+        </UnstyledLink>
+      ),
+      footer: 'Total',
+      sortDescFirst: true,
+    },
+    {
+      accessorKey: 'views',
+      header: 'Total Views',
+      cell: ({ row }) => row.original.views.toLocaleString(),
+      footer: ({ table }) =>
+        table
+          .getFilteredRowModel()
+          .rows.reduce((sum, row) => sum + row.original.views, 0)
+          .toLocaleString(),
+      meta: {
         align: 'right',
-        Cell: ({ value }) => (
-          <p className='text-right'>{value.toLocaleString()}</p>
-        ),
-        Footer: ({ rows }) =>
-          React.useMemo(
-            () => rows.reduce((sum, row) => sum + row.original.views, 0),
-            [rows]
-          ).toLocaleString(),
-        sortDescFirst: true,
       },
-      {
-        Header: 'Web Views',
-        accessor: 'webViews',
+    },
+    {
+      accessorKey: 'webViews',
+      header: 'Web Views',
+      cell: ({ row }) => row.original.webViews.toLocaleString(),
+      footer: ({ table }) =>
+        table
+          .getFilteredRowModel()
+          .rows.reduce((sum, row) => sum + row.original.webViews, 0)
+          .toLocaleString(),
+      meta: {
         align: 'right',
-        Cell: ({ value }) => (
-          <p className='text-right'>{value.toLocaleString()}</p>
-        ),
-        Footer: ({ rows }) =>
-          React.useMemo(
-            () => rows.reduce((sum, row) => sum + row.original.webViews, 0),
-            [rows]
-          ).toLocaleString(),
-        sortDescFirst: true,
       },
-      {
-        Header: 'Dev.to',
-        accessor: 'devtoViews',
+    },
+    {
+      accessorKey: 'devtoViews',
+      header: 'dev.to',
+      cell: ({ row }) =>
+        row.original.devtoViews
+          ? row.original.devtoViews.toLocaleString()
+          : '-',
+      footer: ({ table }) =>
+        table
+          .getFilteredRowModel()
+          .rows.reduce((sum, row) => sum + (row.original.devtoViews ?? 0), 0)
+          .toLocaleString(),
+      meta: {
         align: 'right',
-        Cell: ({ value }) => (
-          <p className='text-right'>{value?.toLocaleString() || '-'}</p>
-        ),
-        Footer: ({ rows }) =>
-          React.useMemo(
-            () =>
-              rows.reduce(
-                (sum, row) => sum + (row.original?.devtoViews ?? 0),
-                0
-              ),
-            [rows]
-          ).toLocaleString(),
-        sortDescFirst: true,
       },
-      {
-        Header: 'Likes',
-        accessor: 'likes',
+    },
+    {
+      accessorKey: 'likes',
+      header: 'Likes',
+      cell: ({ row }) => row.original.likes.toLocaleString(),
+      footer: ({ table }) =>
+        table
+          .getFilteredRowModel()
+          .rows.reduce((sum, row) => sum + row.original.likes, 0)
+          .toLocaleString(),
+      meta: {
         align: 'right',
-        Cell: ({ value }) => (
-          <p className='text-right'>{value.toLocaleString()}</p>
-        ),
-        Footer: ({ rows }) =>
-          React.useMemo(
-            () => rows.reduce((sum, row) => sum + row.original.likes, 0),
-            [rows]
-          ).toLocaleString(),
-        sortDescFirst: true,
       },
-    ],
-    []
-  );
+    },
+  ];
   //#endregion  //*======== BlogColumns ===========
 
   //#region  //*=========== ProjectColumns ===========
   const projects = pickContentMeta(contentMeta, 'projects');
-  const projectColumns = React.useMemo<Column<ContentMeta>[]>(
-    () => [
-      {
-        Header: 'Project Slug',
-        accessor: 'slug',
-        Footer: 'Total',
-        sortDescFirst: true,
-      },
-      {
-        Header: 'Total Views',
-        accessor: 'views',
+  const projectColumns: ColumnDef<(typeof projects)[number]>[] = [
+    {
+      accessorKey: 'slug',
+      header: 'Slug',
+      cell: ({ row }) => (
+        <UnstyledLink
+          className='font-medium'
+          openNewTab
+          href={`/projects/${row.original.slug}?ref=statistics`}
+        >
+          {row.original.slug}
+        </UnstyledLink>
+      ),
+      footer: 'Total',
+      sortDescFirst: true,
+    },
+    {
+      accessorKey: 'views',
+      header: 'Total Views',
+      cell: ({ row }) => row.original.views.toLocaleString(),
+      footer: ({ table }) =>
+        table
+          .getFilteredRowModel()
+          .rows.reduce((sum, row) => sum + row.original.views, 0)
+          .toLocaleString(),
+      meta: {
         align: 'right',
-        Cell: ({ value }) => (
-          <p className='text-right'>{value.toLocaleString()}</p>
-        ),
-        Footer: ({ rows }) =>
-          React.useMemo(
-            () => rows.reduce((sum, row) => sum + row.original.views, 0),
-            [rows]
-          ).toLocaleString(),
-        sortDescFirst: true,
       },
-      {
-        Header: 'Likes',
-        accessor: 'likes',
+    },
+    {
+      accessorKey: 'likes',
+      header: 'Likes',
+      cell: ({ row }) => row.original.likes.toLocaleString(),
+      footer: ({ table }) =>
+        table
+          .getFilteredRowModel()
+          .rows.reduce((sum, row) => sum + row.original.likes, 0)
+          .toLocaleString(),
+      meta: {
         align: 'right',
-        Cell: ({ value }) => (
-          <p className='text-right'>{value.toLocaleString()}</p>
-        ),
-        Footer: ({ rows }) =>
-          React.useMemo(
-            () => rows.reduce((sum, row) => sum + row.original.likes, 0),
-            [rows]
-          ).toLocaleString(),
-        sortDescFirst: true,
       },
-    ],
-    []
-  );
+    },
+  ];
   //#endregion  //*======== ProjectColumns ===========
 
   //#region  //*=========== LibraryColumns ===========
   const libraries = pickContentMeta(contentMeta, 'library');
-  const libraryColumns = React.useMemo<Column<ContentMeta>[]>(
-    () => [
-      {
-        Header: 'Library Slug',
-        accessor: 'slug',
-        Footer: 'Total',
-        sortDescFirst: true,
-      },
-      {
-        Header: 'Total Views',
-        accessor: 'views',
+  const libraryColumns: ColumnDef<(typeof libraries)[number]>[] = [
+    {
+      accessorKey: 'slug',
+      header: 'Slug',
+      cell: ({ row }) => (
+        <UnstyledLink
+          className='font-medium'
+          openNewTab
+          href={`/library/${row.original.slug}?ref=statistics`}
+        >
+          {row.original.slug}
+        </UnstyledLink>
+      ),
+      footer: 'Total',
+      sortDescFirst: true,
+    },
+    {
+      accessorKey: 'views',
+      header: 'Total Views',
+      cell: ({ row }) => row.original.views.toLocaleString(),
+      footer: ({ table }) =>
+        table
+          .getFilteredRowModel()
+          .rows.reduce((sum, row) => sum + row.original.views, 0)
+          .toLocaleString(),
+      meta: {
         align: 'right',
-        Cell: ({ value }) => (
-          <p className='text-right'>{value.toLocaleString()}</p>
-        ),
-        Footer: ({ rows }) =>
-          React.useMemo(
-            () => rows.reduce((sum, row) => sum + row.original.views, 0),
-            [rows]
-          ).toLocaleString(),
-        sortDescFirst: true,
       },
-      {
-        Header: 'Likes',
-        accessor: 'likes',
+    },
+    {
+      accessorKey: 'likes',
+      header: 'Likes',
+      cell: ({ row }) => row.original.likes.toLocaleString(),
+      footer: ({ table }) =>
+        table
+          .getFilteredRowModel()
+          .rows.reduce((sum, row) => sum + row.original.likes, 0)
+          .toLocaleString(),
+      meta: {
         align: 'right',
-        Cell: ({ value }) => (
-          <p className='text-right'>{value.toLocaleString()}</p>
-        ),
-        Footer: ({ rows }) =>
-          React.useMemo(
-            () => rows.reduce((sum, row) => sum + row.original.likes, 0),
-            [rows]
-          ).toLocaleString(),
-        sortDescFirst: true,
       },
-    ],
-    []
-  );
+    },
+  ];
   //#endregion  //*======== LibraryColumns ===========
 
   //#region  //*=========== Statistic Cards ===========
@@ -265,40 +275,34 @@ export default function StatisticsPage() {
 
             <h2 className='h3 mt-8'>Blog</h2>
             {blogs && (
-              <ReactTable
+              <Table
+                withFilter
+                withFooter
                 className='mt-4'
                 data={blogs}
                 columns={blogColumns}
-                options={{
-                  autoResetSortBy: false,
-                  autoResetGlobalFilter: false,
-                }}
               />
             )}
 
             <h2 className='h3 mt-8'>Projects</h2>
             {projects && (
-              <ReactTable
+              <Table
+                withFilter
+                withFooter
                 className='mt-4'
                 data={projects}
                 columns={projectColumns}
-                options={{
-                  autoResetSortBy: false,
-                  autoResetGlobalFilter: false,
-                }}
               />
             )}
 
             <h2 className='h3 mt-8'>Libraries</h2>
             {libraries && (
-              <ReactTable
+              <Table
+                withFilter
+                withFooter
                 className='mt-4'
                 data={libraries}
                 columns={libraryColumns}
-                options={{
-                  autoResetSortBy: false,
-                  autoResetGlobalFilter: false,
-                }}
               />
             )}
           </div>

@@ -12,7 +12,8 @@ export const commentFlag = isProd;
  * Get content meta from the database
  * @see useContentMeta.tsx
  */
-export const contentMetaFlag = isProd;
+// export const contentMetaFlag = isProd;
+export const contentMetaFlag = true;
 
 /**
  * Increment content views
