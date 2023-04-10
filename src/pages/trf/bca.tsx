@@ -1,18 +1,15 @@
 import * as React from 'react';
-import CopyToClipboard from 'react-copy-to-clipboard';
+
+import useCopyToClipboard from '@/hooks/useCopyToClipboard';
 
 import Accent from '@/components/Accent';
 import Button from '@/components/buttons/Button';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 
-const copyText = {
-  idle: 'Copy Nomor Rekening',
-  success: 'Copied to clipboard 🥳',
-};
-
 export default function TrfPage() {
-  const [copyStatus, setCopyStatus] = React.useState<string>(copyText.idle);
+  const [copyStatus, setCopyStatus] = React.useState<'idle' | 'copied'>('idle');
+  const [copy] = useCopyToClipboard();
 
   return (
     <Layout>
@@ -36,15 +33,18 @@ export default function TrfPage() {
               <code className='px-4 py-2 text-lg font-semibold'>
                 <Accent>7630055037</Accent>
               </code>
-              <CopyToClipboard
-                text='7630055037'
-                onCopy={() => {
-                  setCopyStatus(copyText.success);
-                  setTimeout(() => setCopyStatus(copyText.idle), 1500);
+              <Button
+                onClick={() => {
+                  copy('7630055037').then(() => {
+                    setCopyStatus('copied');
+                    setTimeout(() => setCopyStatus('idle'), 1500);
+                  });
                 }}
               >
-                <Button>{copyStatus}</Button>
-              </CopyToClipboard>
+                {copyStatus === 'idle'
+                  ? 'Copy Nomor Rekening'
+                  : 'Copied to clipboard 🥳'}
+              </Button>
             </div>
           </div>
         </section>
