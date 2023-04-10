@@ -47,7 +47,7 @@ export default function Header({ large = false }: HeaderProps) {
           'bg-white dark:bg-dark',
           'group dark:hover:text-primary-300',
           'focus:outline-none focus:ring focus:ring-primary-300',
-          'absolute top-4 left-4',
+          'absolute left-4 top-4',
           '-translate-y-16 focus:translate-y-0'
         )}
       >

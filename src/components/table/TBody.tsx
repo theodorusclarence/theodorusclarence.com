@@ -61,7 +61,7 @@ export default function TBody<T extends RowData>({
                 className={clsx([
                   'whitespace-nowrap',
                   'truncate',
-                  'py-4 px-6 pl-[34px]',
+                  'px-6 py-4 pl-[34px]',
                   'text-sm text-gray-600 dark:text-gray-200',
                   {
                     'text-left': cell.column.columnDef.meta?.align === 'left',

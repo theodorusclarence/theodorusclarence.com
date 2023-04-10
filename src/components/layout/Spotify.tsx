@@ -53,7 +53,7 @@ export default function Spotify({
               {data.artist}
             </p>
           </div>
-          <div className='absolute right-1.5 bottom-1.5'>
+          <div className='absolute bottom-1.5 right-1.5'>
             <SiSpotify size={20} color='#1ED760' />
           </div>
         </UnstyledLink>

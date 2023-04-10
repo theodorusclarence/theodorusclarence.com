@@ -68,7 +68,7 @@ export default function Quiz(props: QuizType) {
       )}
       <div
         className={clsx(
-          'absolute top-0 left-4 rounded-b-md px-2 py-1',
+          'absolute left-4 top-0 rounded-b-md px-2 py-1',
           'border border-t-0 dark:border-gray-600'
         )}
       >

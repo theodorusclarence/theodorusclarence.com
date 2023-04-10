@@ -49,7 +49,7 @@ export default function Footer() {
 
 function FooterLinks() {
   return (
-    <div className='flex flex-wrap justify-center gap-y-4 gap-x-8'>
+    <div className='flex flex-wrap justify-center gap-x-8 gap-y-4'>
       {footerLinks.map(({ href, text, tooltip }) => (
         <Tooltip interactive={false} key={href} tipChildren={tooltip}>
           <UnstyledLink
