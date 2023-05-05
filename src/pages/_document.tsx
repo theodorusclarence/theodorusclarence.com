@@ -27,7 +27,7 @@ class MyDocument extends Document {
             async
             defer
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || ''}
-            src='https://umami-clarence.vercel.app/umami.js'
+            src='https://umami.thcl.dev/umami.js'
             data-domains='theodorusclarence.com'
           />
         </Head>
