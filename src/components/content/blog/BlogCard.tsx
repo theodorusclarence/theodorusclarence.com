@@ -41,7 +41,7 @@ export default function BlogCard({
           <CloudinaryImg
             noStyle
             className='pointer-events-none overflow-hidden rounded-t-md'
-            publicId={`theodorusclarence/banner/${post.banner}`}
+            publicId={`v1684217694/banner/${post.banner}`}
             alt='Photo taken from unsplash'
             width={1200}
             height={(1200 * 2) / 5}

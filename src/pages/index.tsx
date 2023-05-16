@@ -14,25 +14,22 @@ import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/content/blog/BlogCard';
-import LibraryCard from '@/components/content/library/LibraryCard';
-import ProjectCard from '@/components/content/projects/ProjectCard';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import TC from '@/components/TC';
-import Tooltip from '@/components/Tooltip';
 
 export default function IndexPage({
   featuredPosts,
-  featuredProjects,
-  featuredLibrary,
-  introPosts,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: // featuredProjects,
+// featuredLibrary,
+// introPosts,
+InferGetStaticPropsType<typeof getStaticProps>) {
   const populatedPosts = useInjectContentMeta('blog', featuredPosts);
-  const populatedIntro = useInjectContentMeta('blog', introPosts);
-  const populatedProjects = useInjectContentMeta('projects', featuredProjects);
-  const populatedLibrary = useInjectContentMeta('library', featuredLibrary);
+  // const populatedIntro = useInjectContentMeta('blog', introPosts);
+  // const populatedProjects = useInjectContentMeta('projects', featuredProjects);
+  // const populatedLibrary = useInjectContentMeta('library', featuredLibrary);
 
   const isLoaded = useLoaded();
 
@@ -164,7 +161,7 @@ export default function IndexPage({
           />
         </section>
 
-        <InView triggerOnce rootMargin='-40% 0px'>
+        {/* <InView triggerOnce rootMargin='-40% 0px'>
           {({ ref, inView }) => (
             <section
               ref={ref}
@@ -230,7 +227,7 @@ export default function IndexPage({
               </article>
             </section>
           )}
-        </InView>
+        </InView> */}
 
         <InView triggerOnce rootMargin='-40% 0px'>
           {({ ref, inView }) => (
@@ -263,7 +260,7 @@ export default function IndexPage({
           )}
         </InView>
 
-        <InView triggerOnce rootMargin='-40% 0px'>
+        {/* <InView triggerOnce rootMargin='-40% 0px'>
           {({ ref, inView }) => (
             <section
               ref={ref}
@@ -334,7 +331,7 @@ export default function IndexPage({
               </article>
             </section>
           )}
-        </InView>
+        </InView> */}
       </main>
     </Layout>
   );
@@ -347,32 +344,11 @@ export async function getStaticProps() {
   const projects = await getAllFilesFrontmatter('projects');
   const library = await getAllFilesFrontmatter('library');
 
-  const featuredPosts = getFeatured(blogs, [
-    'swift-value-reference',
-    'nextjs-storybook-tailwind',
-    'react-core-concept-rendering-state',
-    'nextjs-fetch-method',
-    'one-stop-starter',
-    '2021-retrospective',
-  ]);
-  const featuredProjects = getFeatured(projects, [
-    'notiolink',
-    'ppdbsumsel',
-    'side-projects',
-  ]);
-  const featuredLibrary = getFeatured(library, [
-    'absolute-import',
-    'auth-context',
-    'conventional-commit-readme',
-    'husky-commitlint-prettier',
-    'toast',
-    'tailwindcss-basestyle',
-  ]);
+  const featuredPosts = getFeatured(blogs, ['cloud-expo-2023']);
+  const featuredProjects = getFeatured(projects, []);
+  const featuredLibrary = getFeatured(library, []);
 
-  const introPosts = getFeatured(blogs, [
-    'btb-flex-mental-model',
-    'nextjs-fetch-method',
-  ]);
+  const introPosts = getFeatured(blogs, ['cloud-expo-2023']);
 
   return {
     props: { featuredPosts, featuredProjects, featuredLibrary, introPosts },
