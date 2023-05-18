@@ -37,10 +37,10 @@ export function openGraph({
 }
 
 /**
- * Remove `id-` prefix
+ * Remove `zh-` prefix
  */
 export const cleanBlogPrefix = (slug: string) => {
-  if (slug.slice(0, 3) === 'id-') {
+  if (slug.slice(0, 3) === 'zh-') {
     return slug.slice(3);
   } else {
     return slug;

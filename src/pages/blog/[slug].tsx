@@ -118,7 +118,7 @@ export default function SingleBlogPage({
               <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
                 Written on{' '}
                 {format(new Date(frontmatter.publishedAt), 'MMMM dd, yyyy')} by
-                Theodorus Clarence.
+                Jeff Fan.
               </p>
               {frontmatter.lastUpdated && (
                 <div className='mt-2 flex flex-wrap gap-2 text-sm text-gray-700 dark:text-gray-200'>
@@ -175,10 +175,10 @@ export default function SingleBlogPage({
               </div>
               {!frontmatter?.englishOnly && (
                 <CustomLink
-                  href={`/blog/${isEnglish ? 'id-' : ''}${cleanSlug}`}
+                  href={`/blog/${isEnglish ? 'zh-' : ''}${cleanSlug}`}
                   className='mt-4'
                 >
-                  Read in {isEnglish ? 'Bahasa Indonesia' : 'English'}
+                  Read in {isEnglish ? 'Chinese' : 'English'}
                 </CustomLink>
               )}
             </div>

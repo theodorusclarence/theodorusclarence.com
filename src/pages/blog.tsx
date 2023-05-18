@@ -84,9 +84,9 @@ export default function IndexPage({
   //#endregion  //*======== Search ===========
 
   //#region  //*=========== Post Language Splitter ===========
-  const englishPosts = filteredPosts.filter((p) => !p.slug.startsWith('id-'));
-  const bahasaPosts = filteredPosts.filter((p) => p.slug.startsWith('id-'));
-  const currentPosts = isEnglish ? englishPosts : bahasaPosts;
+  const englishPosts = filteredPosts.filter((p) => !p.slug.startsWith('zh-'));
+  const chinesePosts = filteredPosts.filter((p) => p.slug.startsWith('zh-'));
+  const currentPosts = isEnglish ? englishPosts : chinesePosts;
   //#endregion  //*======== Post Language Splitter ===========
 
   //#region  //*=========== Tag ===========
@@ -128,7 +128,7 @@ export default function IndexPage({
         <section className={clsx(isLoaded && 'fade-in-start')}>
           <div className='layout py-12'>
             <h1 className='text-3xl md:text-5xl' data-fade='0'>
-              <Accent>Blog {!isEnglish && 'Bahasa Indonesia'}</Accent>
+              <Accent>Blog {!isEnglish && 'Traditional Chinese'}</Accent>
             </h1>
             <p className='mt-2 text-gray-600 dark:text-gray-300' data-fade='1'>
               Thoughts, mental models, and tutorials about front-end
@@ -170,7 +170,7 @@ export default function IndexPage({
                 }}
                 className='text-sm !font-medium'
               >
-                Read in {isEnglish ? 'Bahasa Indonesia' : 'English'}
+                Read in {isEnglish ? 'Chinese' : 'English'}
               </Button>
               <SortListbox
                 selected={sortOrder}
