@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: 'https://theodorusclarence.com/',
+  siteUrl: 'https://se.isfusion.cloud/',
   generateRobotsTxt: true,
   robotsTxtOptions: {
     policies: [{ userAgent: '*', allow: '/' }],

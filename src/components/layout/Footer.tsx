@@ -2,7 +2,7 @@ import { FeedbackFish } from '@feedback-fish/react';
 import * as React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { FiMail } from 'react-icons/fi';
-import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { Tooltip as TooltipTippy } from 'react-tippy';
 
 import { trackEvent } from '@/lib/analytics';
@@ -18,7 +18,7 @@ export default function Footer() {
   return (
     <footer className='mt-4 pb-2'>
       <main className='layout flex flex-col items-center border-t pt-6 dark:border-gray-600'>
-        <FooterLinks />
+        {/* <FooterLinks /> */}
 
         {spotifyFlag && <Spotify className='mt-8' />}
 
@@ -45,29 +45,29 @@ export default function Footer() {
   );
 }
 
-function FooterLinks() {
-  return (
-    <div className='flex flex-wrap justify-center gap-y-4 gap-x-8'>
-      {footerLinks.map(({ href, text, tooltip }) => (
-        <Tooltip interactive={false} key={href} content={tooltip}>
-          <UnstyledLink
-            className='animated-underline rounded-sm text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:text-gray-200'
-            href={href}
-            onClick={() => {
-              trackEvent(`Footer Link: ${text}`, 'link');
-            }}
-          >
-            {text}
-          </UnstyledLink>
-        </Tooltip>
-      ))}
-    </div>
-  );
-}
+// function FooterLinks() {
+//   return (
+//     <div className='flex flex-wrap justify-center gap-y-4 gap-x-8'>
+//       {footerLinks.map(({ href, text, tooltip }) => (
+//         <Tooltip interactive={false} key={href} content={tooltip}>
+//           <UnstyledLink
+//             className='animated-underline rounded-sm text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:text-gray-200'
+//             href={href}
+//             onClick={() => {
+//               trackEvent(`Footer Link: ${text}`, 'link');
+//             }}
+//           >
+//             {text}
+//           </UnstyledLink>
+//         </Tooltip>
+//       ))}
+//     </div>
+//   );
+// }
 
 function SocialLinks() {
   const [copyStatus, setCopyStatus] = React.useState(
-    'Click the mail logo to copy'
+    'Click the mail logo to copy '
   );
 
   return (
@@ -81,13 +81,13 @@ function SocialLinks() {
             <div className='inline-block rounded-md border bg-white p-2 text-gray-600 shadow-md dark:border-gray-600 dark:bg-dark dark:text-gray-200'>
               {copyStatus}
               <Accent className='inline-block font-medium'>
-                me@theodorusclarence.com
+                jeff.fan@tumtics.com
               </Accent>
             </div>
           }
         >
           <CopyToClipboard
-            text='me@theodorusclarence.com'
+            text='jeff.fan@tumtics.com'
             onCopy={() => {
               setCopyStatus('Copied to clipboard 🥳');
               setTimeout(
@@ -119,67 +119,67 @@ function SocialLinks() {
   );
 }
 
-const footerLinks = [
-  {
-    href: 'https://github.com/theodorusclarence/theodorusclarence.com',
-    text: 'Source Code',
-    tooltip: (
-      <>
-        This website is <strong>open source</strong>!
-      </>
-    ),
-  },
-  {
-    href: '/design',
-    text: 'Design',
-    tooltip: 'theodorusclarence.com color palette',
-  },
-  {
-    href: 'https://clarence.link/docs',
-    text: 'Docs',
-    tooltip: 'Personal documentation about my best practices on development',
-  },
-  {
-    href: 'https://clarence.link/booknotes',
-    text: 'Book Notes',
-    tooltip: 'Note collection of books that I read',
-  },
-  {
-    href: 'https://clarence.link/starters',
-    text: 'Starter Templates',
-    tooltip: 'Starter that I build and use throughout my projects',
-  },
-  {
-    href: 'https://clarence.link/um',
-    text: 'Analytics',
-    tooltip: 'theodorusclarence.com views and visitors analytics',
-  },
-  {
-    href: '/statistics',
-    text: 'Statistics',
-    tooltip: 'Blog, Projects, and Library Statistics',
-  },
-  {
-    href: '/guestbook',
-    text: 'Guestbook',
-    tooltip:
-      'Leave whatever you like to say—message, appreciation, suggestions',
-  },
-  {
-    href: '/subscribe',
-    text: 'Subscribe',
-    tooltip: 'Get an email whenever I post, no spam',
-  },
-  {
-    href: 'https://theodorusclarence.com/rss.xml',
-    text: 'RSS',
-    tooltip: 'Add theodorusclarence.com blog to your feeds',
-  },
-];
+// const footerLinks = [
+// {
+//   href: 'https://github.com/iambigmomma/se.isfusion.cloud',
+//   text: 'Source Code',
+//   tooltip: (
+//     <>
+//       This website is <strong>open source</strong>!
+//     </>
+//   ),
+// },
+// {
+//   href: '/design',
+//   text: 'Design',
+//   tooltip: 'se.isfusion.cloud color palette',
+// },
+// {
+//   href: 'https://clarence.link/docs',
+//   text: 'Docs',
+//   tooltip: 'Personal documentation about my best practices on development',
+// },
+// {
+//   href: 'https://clarence.link/booknotes',
+//   text: 'Book Notes',
+//   tooltip: 'Note collection of books that I read',
+// },
+// {
+//   href: 'https://clarence.link/starters',
+//   text: 'Starter Templates',
+//   tooltip: 'Starter that I build and use throughout my projects',
+// },
+// {
+//   href: 'https://clarence.link/um',
+//   text: 'Analytics',
+//   tooltip: 'se.isfusion.cloud views and visitors analytics',
+// },
+// {
+//   href: '/statistics',
+//   text: 'Statistics',
+//   tooltip: 'Website Statistics',
+// },
+// {
+//   href: '/guestbook',
+//   text: 'Guestbook',
+//   tooltip:
+//     'Leave whatever you like to say—message, appreciation, suggestions',
+// },
+// {
+//   href: '/subscribe',
+//   text: 'Subscribe',
+//   tooltip: 'Get an email whenever I post, no spam',
+// },
+// {
+//   href: 'https://se.isfusion.cloud/rss.xml',
+//   text: 'RSS',
+//   tooltip: 'Add se.isfusion.cloud blog to your feeds',
+// },
+// ];
 
 const socials = [
   {
-    href: 'https://clarence.link/github',
+    href: 'https://github.com/iambigmomma',
     icon: SiGithub,
     id: 'Github',
     text: (
@@ -189,7 +189,7 @@ const socials = [
     ),
   },
   {
-    href: 'https://clarence.link/linkedin',
+    href: 'https://linkedin.com/in/jefffan27',
     icon: SiLinkedin,
     id: 'Linkedin',
     text: (
@@ -198,15 +198,15 @@ const socials = [
       </>
     ),
   },
-  {
-    href: 'https://clarence.link/twt',
-    icon: SiTwitter,
-    id: 'Twitter',
-    text: (
-      <>
-        I post updates, tips, insight, and sometimes do some talk. Follow me on{' '}
-        <Accent className='font-medium'>Twitter</Accent>!
-      </>
-    ),
-  },
+  // {
+  //   href: 'https://clarence.link/twt',
+  //   icon: SiTwitter,
+  //   id: 'Twitter',
+  //   text: (
+  //     <>
+  //       I post updates, tips, insight, and sometimes do some talk. Follow me on{' '}
+  //       <Accent className='font-medium'>Twitter</Accent>!
+  //     </>
+  //   ),
+  // },
 ];

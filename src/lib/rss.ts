@@ -6,7 +6,7 @@ import { getAllFilesFrontmatter } from '@/lib/mdx';
 export async function getRssXml() {
   const frontmatters = await getAllFilesFrontmatter('blog');
 
-  const blogUrl = 'https://theodorusclarence.com/blog';
+  const blogUrl = 'https://se.isfusion.cloud/blog';
 
   const itemXml = frontmatters
     .filter((fm) => !fm.slug.startsWith('id-'))
@@ -28,9 +28,10 @@ export async function getRssXml() {
   return `
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:blogChannel="${blogUrl}">
       <channel>
-        <title>Theodorus Clarence Blog</title>
+        <title>Jeff Fan's Solution Engineering Blog</title>
         <link>${blogUrl}</link>
-        <description>The Theodorus Clarence Blog, thoughts, mental models, and tutorials about front-end development.</description>
+        <description>
+The Jeff Fan blog, sales engineering thoughts & reflections, and insights on cloud industry at tech conferences, including some cloud computing jagron 101.</description>
         <language>en</language>
         <ttl>40</ttl>
         ${itemXml.join('\n')}

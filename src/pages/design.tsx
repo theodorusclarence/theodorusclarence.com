@@ -26,7 +26,7 @@ export default function DesignPage() {
             </h1>
 
             <p data-fade='1' className='mt-2 text-gray-600 dark:text-gray-300'>
-              theodorusclarence.com color palette
+              se.isfusion.cloud color palette
             </p>
 
             <div

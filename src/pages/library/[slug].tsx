@@ -110,7 +110,7 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
 
             <div className='mt-8 flex flex-col items-start gap-4 md:flex-row-reverse md:justify-between'>
               <CustomLink
-                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/library/${frontmatter.slug}.mdx`}
+                href={`https://github.com/iambigmomma/se.isfusion.cloud/blob/main/src/contents/library/${frontmatter.slug}.mdx`}
               >
                 Edit this on GitHub
               </CustomLink>

@@ -24,7 +24,7 @@ Router.events.on('routeChangeComplete', nProgress.done);
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     // Don't increment views if not on main domain
-    if (window.location.host !== 'theodorusclarence.com' && blockDomainMeta) {
+    if (window.location.host !== 'se.isfusion.cloud' && blockDomainMeta) {
       if (getFromLocalStorage('incrementMetaFlag') !== 'false') {
         localStorage.setItem('incrementMetaFlag', 'false');
         // reload page to make changes

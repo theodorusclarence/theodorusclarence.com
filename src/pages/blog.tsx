@@ -128,7 +128,7 @@ export default function IndexPage({
         <section className={clsx(isLoaded && 'fade-in-start')}>
           <div className='layout py-12'>
             <h1 className='text-3xl md:text-5xl' data-fade='0'>
-              <Accent>Blog {!isEnglish && 'Traditional Chinese'}</Accent>
+              <Accent>Blog {!isEnglish && 'in Chinese'}</Accent>
             </h1>
             <p className='mt-2 text-gray-600 dark:text-gray-300' data-fade='1'>
               Thoughts, mental models, and tutorials about front-end

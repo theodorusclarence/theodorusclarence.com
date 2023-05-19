@@ -35,7 +35,7 @@ export default function TrfPage() {
             </h3>
             <CloudinaryImg
               className='mt-4 w-full max-w-sm'
-              publicId='theodorusclarence/qr-bca_rcbkew.jpg'
+              publicId='iambigmomma/qr-bca_rcbkew.jpg'
               width={992}
               height={886}
               alt='QR BCA'

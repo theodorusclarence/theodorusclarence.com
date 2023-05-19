@@ -20,7 +20,7 @@ const CLOUDINARY_REGEXP = new RegExp(
 );
 
 /**
- * @argument $1 user/reponame e.g. theodorusclarence/ts-nextjs-tailwind-starter
+ * @argument $1 user/reponame e.g. clarence/ts-nextjs-tailwind-starter
  */
 const GITHUB_REGEXP = new RegExp(
   `<GithubCard${dotAll}repo=${quote}${select}${quote}${dotAll}/>`,
@@ -48,16 +48,16 @@ const TWEET_REGEXP = new RegExp(
 const devtoFooter = `
 ---
 
-> Originally posted on [my personal site](https://theodorusclarence.com/?ref=devto), find more [blog posts](https://theodorusclarence.com/blog?ref=devto) and [code snippets library](https://theodorusclarence.com/library?ref=devto) I put up for easy access on my site 🚀
+> Originally posted on [my personal site](https://se.isfusion.cloud/?ref=devto), find more [blog posts](https://se.isfusion.cloud/blog?ref=devto) and [code snippets library](https://se.isfusion.cloud/library?ref=devto) I put up for easy access on my site 🚀
 
-Like this post? [Subscribe to my newsletter](https://theodorusclarence.com/subscribe?ref=devto) to get notified every time a new post is out!`;
+Like this post? [Subscribe to my newsletter](https://se.isfusion.cloud/subscribe?ref=devto) to get notified every time a new post is out!`;
 
 const hashnodeFooter = `
 ---
 
-> Originally posted on [my personal site](https://theodorusclarence.com/?ref=hashnode), find more [blog posts](https://theodorusclarence.com/blog?ref=hashnode) and [code snippets library](https://theodorusclarence.com/library?ref=hashnode) I put up for easy access on my site 🚀
+> Originally posted on [my personal site](https://se.isfusion.cloud/?ref=hashnode), find more [blog posts](https://se.isfusion.cloud/blog?ref=hashnode) and [code snippets library](https://se.isfusion.cloud/library?ref=hashnode) I put up for easy access on my site 🚀
 
-Like this post? [Subscribe to my newsletter](https://theodorusclarence.com/subscribe?ref=hashnode) to get notified every time a new post is out!`;
+Like this post? [Subscribe to my newsletter](https://se.isfusion.cloud/subscribe?ref=hashnode) to get notified every time a new post is out!`;
 //#endregion  //*======== Footers ===========
 
 const slug = process.argv[2];
@@ -87,7 +87,7 @@ const devto = () => {
     parsedContent = content;
     parsedContent = parsedContent.replace(
       CLOUDINARY_REGEXP,
-      '![$2](https://res.cloudinary.com/theodorusclarence/image/upload/q_auto,f_auto/$1)'
+      '![$2](https://res.cloudinary.com/iambigmomma/image/upload/q_auto,f_auto/$1)'
     );
     parsedContent = parsedContent.replace(
       GITHUB_REGEXP,
@@ -122,7 +122,7 @@ const hashnode = () => {
 
     parsedContent = parsedContent.replace(
       CLOUDINARY_REGEXP,
-      '![$2](https://res.cloudinary.com/theodorusclarence/image/upload/q_auto,f_auto/$1)'
+      '![$2](https://res.cloudinary.com/iambigmommaimage/upload/q_auto,f_auto/$1)'
     );
     parsedContent = parsedContent.replace(
       GITHUB_REGEXP,
@@ -184,5 +184,5 @@ const getOgImage = () => {
     );
   });
 };
-getOgImage();
+// getOgImage();
 //#endregion  //*======== Download OG Image ===========

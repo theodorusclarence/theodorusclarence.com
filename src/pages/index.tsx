@@ -125,7 +125,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
                 <span>@th_clarence</span>
               </UnstyledLink> */}
               {/* <UnstyledLink
-                href='https://github.com/theodorusclarence'
+                href='https://github.com/iambigmomma'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
                   'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
@@ -137,7 +137,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
                 }}
               >
                 <SiGithub className='shrink-0' />
-                <span>theodorusclarence</span>
+                <span>iambigmomma</span>
               </UnstyledLink> */}
             </div>
           </article>
@@ -237,7 +237,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
             >
               <article className='layout' data-fade='0'>
                 <h2 className='text-2xl md:text-4xl' id='blog'>
-                  <Accent>SE Thoughts & Reflection</Accent>
+                  <Accent>Thoughts</Accent>
                 </h2>
                 <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
                   {populatedPosts.map((post, i) => (

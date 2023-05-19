@@ -17,7 +17,7 @@ export default function SubscribePage() {
         <section className=''>
           <div className='layout flex flex-col items-center py-20 text-center'>
             <h1>
-              Subscribe to <Accent>theodorusclarence.com</Accent>
+              Subscribe to <Accent>se.isfusion.cloud</Accent>
             </h1>
             <SubscribeCard className='mt-8 text-left' />
           </div>

@@ -50,8 +50,8 @@ export default function SingleBlogPage({
   );
 
   //#region  //*=========== Link Constants ===========
-  const COMMIT_HISTORY_LINK = `https://github.com/theodorusclarence/theodorusclarence.com/commits/main/src/contents/blog/${frontmatter.slug}.mdx`;
-  const GITHUB_EDIT_LINK = `https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/blog/${frontmatter.slug}.mdx`;
+  const COMMIT_HISTORY_LINK = `https://github.com/iambigmomma/se.isfusion.cloud/commits/main/src/contents/blog/${frontmatter.slug}.mdx`;
+  const GITHUB_EDIT_LINK = `https://github.com/iambigmomma/se.isfusion.cloud/blob/main/src/contents/blog/${frontmatter.slug}.mdx`;
   const OG_BANNER_LINK = `https://res.cloudinary.com/iambigmomma/image/upload/f_auto,c_fill,ar_4:5,w_1200/v1684218054/banner/${frontmatter.banner}`;
   //#endregion  //*======== Link Constants ===========
 
@@ -213,7 +213,7 @@ export default function SingleBlogPage({
 
             <ShareTweetButton
               className='mt-12'
-              url={`https://theodorusclarence.com/blog/${frontmatter.slug}`}
+              url={`https://se.isfusion.cloud/blog/${frontmatter.slug}`}
               title={frontmatter.title}
             />
 

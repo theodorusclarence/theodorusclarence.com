@@ -99,7 +99,7 @@ export default function Header({ large = false }: HeaderProps) {
 
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Thoughts' },
+  { href: '/blog', label: 'Blog' },
   // { href: '/jagron', label: 'Jargon' },
   // { href: '/library', label: 'Conference' },
   // { href: '/projects', label: 'Projects' },

@@ -12,9 +12,7 @@ export async function getViewsFromDevto() {
     );
 
     return res.data
-      .filter((d) =>
-        d.canonical_url.includes('https://theodorusclarence.com/blog')
-      )
+      .filter((d) => d.canonical_url.includes('https://se.isfusion.cloud/blog'))
       .map((d) => ({
         slug: d.canonical_url.slice(35),
         views: d.page_views_count,
