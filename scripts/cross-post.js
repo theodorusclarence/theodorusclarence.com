@@ -163,7 +163,7 @@ const getOgImage = () => {
 
     const { data: frontmatter } = matter(content);
     const bannerLink = `https://res.cloudinary.com/iambigmomma/image/upload/f_auto,c_fill,ar_4:5,w_1200/theodorusclarence/banner/${frontmatter.banner}`;
-    const ogLink = `https://og.clarence.link/api/blog?templateTitle=${encodeURIComponent(
+    const ogLink = `https://og.isfusion.cloud/api/blog?templateTitle=${encodeURIComponent(
       frontmatter.title
     )}&banner=${encodeURIComponent(bannerLink)}`;
     const image_path = join(outPath, 'og_image.png');
@@ -184,5 +184,5 @@ const getOgImage = () => {
     );
   });
 };
-// getOgImage();
+getOgImage();
 //#endregion  //*======== Download OG Image ===========

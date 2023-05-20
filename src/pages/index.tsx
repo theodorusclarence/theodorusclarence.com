@@ -18,7 +18,7 @@ import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
-import TC from '@/components/TC';
+// import TC from '@/components/TC';
 
 export default function IndexPage({
   featuredPosts,
@@ -151,14 +151,14 @@ InferGetStaticPropsType<typeof getStaticProps>) {
           >
             <IoArrowDownOutline className='h-8 w-8 animate-bounce md:h-10 md:w-10' />
           </UnstyledLink>
-          <TC
+          {/* <TC
             className={clsx(
               'absolute bottom-0 right-6',
               'translate-y-[37%] transform-gpu',
               'w-[calc(100%-3rem)] md:w-[600px] 2xl:w-[900px]',
               'z-[-1] opacity-70 dark:opacity-30'
             )}
-          />
+          /> */}
         </section>
 
         {/* <InView triggerOnce rootMargin='-40% 0px'>

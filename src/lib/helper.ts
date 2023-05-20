@@ -15,7 +15,7 @@ export function openGraph({
   templateTitle,
   description,
   banner,
-  logo = 'https://og.clarence.link/images/logo.jpg',
+  logo = 'https://og.isfusion.cloud/images/logo.jpg',
   isBlog = false,
 }: OpenGraphType): string {
   const ogLogo = encodeURIComponent(logo);
@@ -28,10 +28,10 @@ export function openGraph({
   if (isBlog) {
     const ogBanner = banner ? encodeURIComponent(banner.trim()) : undefined;
 
-    return `https://og.clarence.link/api/blog?templateTitle=${ogTemplateTitle}&banner=${ogBanner}`;
+    return `https://og.isfusion.cloud/api/blog?templateTitle=${ogTemplateTitle}&banner=${ogBanner}`;
   }
 
-  return `https://og.clarence.link/api/gradient?siteName=${ogSiteName}&description=${ogDesc}&logo=${ogLogo}${
+  return `https://og.isfusion.cloud/api/gradient?siteName=${ogSiteName}&description=${ogDesc}&logo=${ogLogo}${
     ogTemplateTitle ? `&templateTitle=${ogTemplateTitle}` : ''
   }`;
 }
