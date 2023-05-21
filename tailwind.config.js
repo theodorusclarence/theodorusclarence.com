@@ -18,7 +18,7 @@ module.exports = {
           400: 'rgb(var(--tw-clr-primary-400) / <alpha-value>)',
           500: 'rgb(var(--tw-clr-primary-500) / <alpha-value>)',
         },
-        dark: '#222222',
+        dark: '#1f2040',
       },
       keyframes: {
         flicker: {

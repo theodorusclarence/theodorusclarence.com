@@ -66,32 +66,32 @@ const THEME_COLORS = [
   },
   {
     title: 'Dark Background',
-    subTitle: '#222222',
+    subTitle: '#1f2040',
     colorClassName: 'bg-dark',
   },
   {
     title: 'Primary 200',
-    subTitle: '#dbff00',
+    subTitle: '#FEBA07',
     colorClassName: 'bg-primary-200',
   },
   {
     title: 'Primary 300',
-    subTitle: '#00e887',
+    subTitle: '#B06AB3',
     colorClassName: 'bg-primary-300',
   },
   {
     title: 'Primary 400',
-    subTitle: '#00e0f3',
+    subTitle: '#4568DC',
     colorClassName: 'bg-primary-400',
   },
   {
     title: 'Primary 500',
-    subTitle: '#00bfff',
+    subTitle: '#20894D',
     colorClassName: 'bg-primary-500',
   },
   {
     title: 'Gradient',
-    subTitle: '#00e0f3 to #00bfff',
+    subTitle: '#B06AB3 to #20894D',
     colorClassName: 'bg-gradient-to-tr from-primary-300 to-primary-500',
   },
 ];
