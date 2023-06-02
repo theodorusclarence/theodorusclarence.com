@@ -86,7 +86,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
                     'opacity-75 transition duration-1000 group-hover:opacity-100 group-hover:duration-200'
                   )}
                 />
-                <ButtonLink href='#intro'>Read the blog</ButtonLink>
+                <ButtonLink href='#blog'>Read the blog</ButtonLink>
               </div>
               <ButtonLink href='/about'>Who am I?</ButtonLink>
             </div>
@@ -142,7 +142,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
             </div>
           </article>
           <UnstyledLink
-            href='#intro'
+            href='#blog'
             className={clsx(
               'absolute bottom-2 left-1/2 -translate-x-1/2 md:bottom-10',
               'cursor-pointer rounded-md transition-colors',
