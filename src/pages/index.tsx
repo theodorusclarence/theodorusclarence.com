@@ -344,11 +344,17 @@ export async function getStaticProps() {
   const projects = await getAllFilesFrontmatter('projects');
   const library = await getAllFilesFrontmatter('library');
 
-  const featuredPosts = getFeatured(blogs, ['cloud-expo-2023']);
+  const featuredPosts = getFeatured(blogs, [
+    'era-solo-unicorns',
+    'cloud-expo-2023',
+  ]);
   const featuredProjects = getFeatured(projects, []);
   const featuredLibrary = getFeatured(library, []);
 
-  const introPosts = getFeatured(blogs, ['cloud-expo-2023']);
+  const introPosts = getFeatured(blogs, [
+    'era-solo-unicorns',
+    'cloud-expo-2023',
+  ]);
 
   return {
     props: { featuredPosts, featuredProjects, featuredLibrary, introPosts },

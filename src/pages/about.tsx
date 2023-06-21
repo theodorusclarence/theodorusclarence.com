@@ -30,11 +30,19 @@ export default function AboutPage() {
               <Accent>Jeff Fan</Accent>
             </h1>
             <div className='mt-4' data-fade='2'>
+              {/* <CloudinaryImg
+                className='float-right ml-6 w-36 md:w-72'
+                publicId='v1660493139/personal-site/jeff-amsterdam'
+                width='2745'
+                height='2745'
+                alt='Jeff Fan'
+                preview={true}
+              /> */}
               <CloudinaryImg
                 className='float-right ml-6 w-36 md:w-72'
-                publicId='v1660493139/personal-site/jeff-the-louvre'
-                width='1280'
-                height='963'
+                publicId='v1660493139/personal-site/jeff-amsterdam2'
+                width='3072'
+                height='3071'
                 alt='Jeff Fan'
                 preview={true}
               />

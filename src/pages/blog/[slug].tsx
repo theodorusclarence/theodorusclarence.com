@@ -16,7 +16,6 @@ import useScrollSpy from '@/hooks/useScrollspy';
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/content/blog/BlogCard';
 import SubscribeCard from '@/components/content/blog/SubscribeCard';
-import Comment from '@/components/content/Comment';
 import LikeButton from '@/components/content/LikeButton';
 import MDXComponents from '@/components/content/MDXComponents';
 import ReloadDevtool from '@/components/content/ReloadDevtool';
@@ -217,9 +216,9 @@ export default function SingleBlogPage({
               title={frontmatter.title}
             />
 
-            <figure className='mt-12'>
+            {/* <figure className='mt-12'>
               <Comment key={frontmatter.slug} />
-            </figure>
+            </figure> */}
 
             {populatedRecommendations.length > 0 && (
               <div className='mt-20'>
