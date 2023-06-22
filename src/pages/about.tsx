@@ -32,9 +32,9 @@ export default function AboutPage() {
             <div className='mt-4' data-fade='2'>
               {/* <CloudinaryImg
                 className='float-right ml-6 w-36 md:w-72'
-                publicId='v1660493139/personal-site/jeff-amsterdam'
-                width='2745'
-                height='2745'
+                publicId='v1660493139/personal-site/jeff-dim-sum'
+                width='2890'
+                height='2890'
                 alt='Jeff Fan'
                 preview={true}
               /> */}
