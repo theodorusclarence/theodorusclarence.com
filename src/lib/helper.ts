@@ -15,7 +15,7 @@ export function openGraph({
   templateTitle,
   description,
   banner,
-  logo = 'https://og.isfusion.cloud/images/logo.jpg',
+  logo = 'https://og.isfusion.cloud/images/logo.png',
   isBlog = false,
 }: OpenGraphType): string {
   const ogLogo = encodeURIComponent(logo);
