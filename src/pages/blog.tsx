@@ -121,7 +121,7 @@ export default function IndexPage({
     <Layout>
       <Seo
         templateTitle='Blog'
-        description='Thoughts, mental models, and tutorials about front-end development. Rebuild your mental model so front-end development can be predictable.'
+        description='Thoughts on solution engineering, insights of conference , and industry analysis about SaaS, PaaS and cloud.'
       />
 
       <main>

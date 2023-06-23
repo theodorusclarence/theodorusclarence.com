@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <Layout>
       <Seo
-        templateTitle='About Jeff Fan'
+        templateTitle='About'
         description='Jeff Fan is a Senior Solutions Engineer specializing in advocating cloud computing
         and building interesting ideas with cloud. Currently, he is focusing son helping customers to build successful products with simplicity at
         DigitalOcean.'
