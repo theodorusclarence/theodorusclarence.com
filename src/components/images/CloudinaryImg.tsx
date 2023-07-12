@@ -65,14 +65,17 @@ export default function CloudinaryImg({
 
   const aspectRatio = aspect ? aspect.height / aspect.width : undefined;
 
+  const RESIZE_MAX_WIDTH = 1000;
+  const resizedToMaxWidth = mdx && +width >= RESIZE_MAX_WIDTH;
+
   return (
     <figure
       className={clsx(className, {
         'overflow-hidden rounded shadow dark:shadow-none': !noStyle,
-        'mx-auto w-full': mdx && width <= 800,
+        'mx-auto w-full': mdx && +width <= 800,
       })}
       style={{
-        ...(mdx && width <= 800 ? { maxWidth: width } : {}),
+        ...(mdx && +width <= 800 ? { maxWidth: width } : {}),
         ...style,
       }}
       {...rest}
@@ -103,8 +106,12 @@ export default function CloudinaryImg({
         `}</style>
         <div className='absolute left-0 top-0'>
           <Image
-            width={width}
-            height={height}
+            width={
+              resizedToMaxWidth ? Math.min(+width, RESIZE_MAX_WIDTH) : width
+            }
+            height={
+              resizedToMaxWidth ? (RESIZE_MAX_WIDTH * +height) / +width : height
+            }
             src={url}
             alt={alt}
             title={title || alt}
