@@ -46,6 +46,7 @@ export default function Spotify({
             alt={data.album}
             width={640}
             height={640}
+            unoptimized
           />
           <div className='flex-1'>
             <p className='text-sm font-medium'>{data.title}</p>
