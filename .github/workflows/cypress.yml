@@ -1,10 +1,14 @@
 name: Cypress End to End
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 on: [deployment_status]
+
+concurrency:
+  group: ${{ github.job }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  e2e:
-    # only runs this job on successful deploy
-    if: github.event.deployment_status.state == 'success'
+  cypress-run:
+    if: ${{ github.event.deployment_status.state == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Print URL 🖨
@@ -13,45 +17,19 @@ jobs:
       - name: Print GitHub env variables 🖨
         run: npx @bahmutov/print-env GITHUB
 
-      - name: Checkout 🛎
-        uses: actions/checkout@v1
-
-      - name: Run Cypress 🌲
-        uses: cypress-io/github-action@v2
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
         with:
           record: true
+          spec: |
+            cypress/e2e/ta
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
-      # if you are NOT using Cypress GitHub Integration App, then set commit status manually
-      # https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions
-      - name: Cypress tests ✅
-        if: ${{ success() }}
-        # set the merge commit status check
-        # using GitHub REST API
-        # see https://docs.github.com/en/rest/reference/repos#create-a-commit-status
-        run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "context": "e2e",
-            "state": "success",
-            "description": "Cypress tests passed",
-            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          }'
-      - name: Cypress tests 🚨
-        if: ${{ failure() }}
-        run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "context": "e2e",
-            "state": "failure",
-            "description": "Cypress tests failed",
-            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          }'
+#
+# Required Config
+# Add CYPRESS_RECORD_KEY to github secrets
