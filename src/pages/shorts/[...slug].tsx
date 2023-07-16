@@ -25,7 +25,7 @@ export default function SingleShortPage({ code, frontmatter }: LibraryType) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   //#region  //*=========== Content Meta ===========
-  const contentSlug = `l_${frontmatter.slug}`;
+  const contentSlug = `l_${frontmatter.slug.replace('/', '-')}`;
   const meta = useContentMeta(contentSlug, { runIncrement: true });
   //#endregion  //*======== Content Meta ===========
 
