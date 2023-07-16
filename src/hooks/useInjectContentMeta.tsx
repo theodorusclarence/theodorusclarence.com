@@ -37,10 +37,10 @@ export default function useInjectContentMeta<T extends ContentType>(
     if (meta) {
       const mapped = frontmatter.map((fm) => {
         const views = meta.find(
-          (meta) => meta.slug === cleanBlogPrefix(fm.slug)
+          (meta) => meta.slug.replace('|', '/') === cleanBlogPrefix(fm.slug)
         )?.views;
         const likes = meta.find(
-          (meta) => meta.slug === cleanBlogPrefix(fm.slug)
+          (meta) => meta.slug.replace('|', '/') === cleanBlogPrefix(fm.slug)
         )?.likes;
         return { ...fm, views, likes };
       });
