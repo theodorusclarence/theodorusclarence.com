@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { readdirSync, readFileSync } from 'fs';
+import { promises, readFileSync } from 'fs';
 import matter from 'gray-matter';
 import { bundleMDX } from 'mdx-bundler';
 import { join } from 'path';
@@ -15,8 +15,16 @@ import {
   PickFrontmatter,
 } from '@/types/frontmatters';
 
-export async function getFiles(type: ContentType) {
-  return readdirSync(join(process.cwd(), 'src', 'contents', type));
+export async function getFileSlugArray(type: ContentType) {
+  return getFileList(join(process.cwd(), 'src', 'contents', type)).then(
+    (paths) =>
+      paths.map((path) =>
+        path
+          .replace(join(process.cwd(), 'src', 'contents', type) + '/', '')
+          .replace('.mdx', '')
+          .split('/')
+      )
+  );
 }
 
 export async function getFileBySlug(type: ContentType, slug: string) {
@@ -63,20 +71,34 @@ export async function getFileBySlug(type: ContentType, slug: string) {
   };
 }
 
-export async function getAllFilesFrontmatter<T extends ContentType>(type: T) {
-  const files = readdirSync(join(process.cwd(), 'src', 'contents', type));
+const getFileList = async (dirName: string) => {
+  let files: string[] = [];
+  const items = await promises.readdir(dirName, { withFileTypes: true });
 
-  return files.reduce((allPosts: Array<PickFrontmatter<T>>, postSlug) => {
-    const source = readFileSync(
-      join(process.cwd(), 'src', 'contents', type, postSlug),
-      'utf8'
-    );
+  for (const item of items) {
+    if (item.isDirectory()) {
+      files = [...files, ...(await getFileList(`${dirName}/${item.name}`))];
+    } else {
+      files.push(`${dirName}/${item.name}`);
+    }
+  }
+
+  return files;
+};
+
+export async function getAllFilesFrontmatter<T extends ContentType>(type: T) {
+  const files = await getFileList(join(process.cwd(), 'src', 'contents', type));
+
+  return files.reduce((allPosts: Array<PickFrontmatter<T>>, absolutePath) => {
+    const source = readFileSync(absolutePath, 'utf8');
     const { data } = matter(source);
 
     const res = [
       {
         ...(data as PickFrontmatter<T>),
-        slug: postSlug.replace('.mdx', ''),
+        slug: absolutePath
+          .replace(join(process.cwd(), 'src', 'contents', type) + '/', '')
+          .replace('.mdx', ''),
         readingTime: readingTime(source),
       },
       ...allPosts,

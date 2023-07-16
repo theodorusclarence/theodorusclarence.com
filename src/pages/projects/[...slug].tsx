@@ -1,11 +1,12 @@
 import { getMDXComponent } from 'mdx-bundler/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 import * as React from 'react';
 import { HiLink, HiOutlineEye, HiPlay, HiUser } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
 
 import { trackEvent } from '@/lib/analytics';
-import { getFileBySlug, getFiles } from '@/lib/mdx';
+import { getFileBySlug, getFileSlugArray } from '@/lib/mdx';
 import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
@@ -194,21 +195,24 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getFiles('projects');
+  const posts = await getFileSlugArray('projects');
 
   return {
-    paths: posts.map((p) => ({
+    paths: posts.map((slug) => ({
       params: {
-        slug: p.replace(/\.mdx/, ''),
+        slug: slug,
       },
     })),
     fallback: false,
   };
 };
 
+interface Params extends ParsedUrlQuery {
+  slug: string[];
+}
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const post = await getFileBySlug('projects', params?.slug as string);
+  const { slug } = params as Params;
+  const post = await getFileBySlug('projects', slug.join('/'));
 
   return {
     props: { ...post },

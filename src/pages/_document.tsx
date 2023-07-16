@@ -31,7 +31,7 @@ class MyDocument extends Document {
             data-domains='theodorusclarence.com'
           />
         </Head>
-        <body className='bg-white transition-colors dark:bg-dark dark:text-white'>
+        <body className='bg-white antialiased transition-colors dark:bg-dark dark:text-white'>
           <Main />
           <NextScript />
         </body>

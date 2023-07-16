@@ -2,13 +2,14 @@ import clsx from 'clsx';
 import { format } from 'date-fns';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 import * as React from 'react';
 import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 import { MdHistory } from 'react-icons/md';
 
 import { trackEvent } from '@/lib/analytics';
 import { cleanBlogPrefix } from '@/lib/helper';
-import { getFileBySlug, getFiles, getRecommendations } from '@/lib/mdx';
+import { getFileBySlug, getFileSlugArray, getRecommendations } from '@/lib/mdx';
 import useContentMeta from '@/hooks/useContentMeta';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
@@ -257,23 +258,26 @@ export default function SingleBlogPage({
   );
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getFiles('blog');
+  const posts = await getFileSlugArray('blog');
 
   return {
-    paths: posts.map((p) => ({
+    paths: posts.map((slug) => ({
       params: {
-        slug: p.replace(/\.mdx/, ''),
+        slug,
       },
     })),
     fallback: false,
   };
 };
 
+interface Params extends ParsedUrlQuery {
+  slug: string[];
+}
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const post = await getFileBySlug('blog', params?.slug as string);
+  const { slug } = params as Params;
 
-  const recommendations = await getRecommendations(params?.slug as string);
+  const post = await getFileBySlug('blog', params?.slug as string);
+  const recommendations = await getRecommendations(slug.join('/'));
 
   return {
     props: { ...post, recommendations },
