@@ -57,6 +57,7 @@ export default function SingleBlogPage({
   //#endregion  //*======== Link Constants ===========
 
   //#region  //*=========== Blog Language ===========
+  // TODO: add implementation, should be bugged if folder/id-slug.mdx
   const cleanSlug = cleanBlogPrefix(frontmatter.slug);
   const isEnglish = cleanSlug === frontmatter.slug;
   //#endregion  //*======== Blog Language ===========
