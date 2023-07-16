@@ -14,7 +14,7 @@ import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/content/blog/BlogCard';
-import LibraryCard from '@/components/content/library/LibraryCard';
+import ShortsCard from '@/components/content/card/ShortsCard';
 import ProjectCard from '@/components/content/projects/ProjectCard';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
@@ -27,13 +27,13 @@ import Tooltip from '@/components/Tooltip';
 export default function IndexPage({
   featuredPosts,
   featuredProjects,
-  featuredLibrary,
+  featuredShorts,
   introPosts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const populatedPosts = useInjectContentMeta('blog', featuredPosts);
   const populatedIntro = useInjectContentMeta('blog', introPosts);
   const populatedProjects = useInjectContentMeta('projects', featuredProjects);
-  const populatedLibrary = useInjectContentMeta('library', featuredLibrary);
+  const populatedShorts = useInjectContentMeta('library', featuredShorts);
 
   const isLoaded = useLoaded();
 
@@ -309,28 +309,29 @@ export default function IndexPage({
             >
               <article className='layout' data-fade='0'>
                 <h2 className='text-2xl md:text-4xl' id='library'>
-                  <Accent>Library of Code Snippets</Accent>
+                  <Accent>Shorts</Accent>
                 </h2>
                 <p className='mt-2 text-gray-600 dark:text-gray-300'>
-                  List of code snippets that I store for easy access.
+                  Short article that's not long enough to be a blog post,
+                  usually comes from my personal notes.
                 </p>
                 <ul className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
-                  {populatedLibrary.map((snippet, i) => (
-                    <LibraryCard
-                      key={snippet.slug}
-                      snippet={snippet}
+                  {populatedShorts.map((short, i) => (
+                    <ShortsCard
+                      key={short.slug}
+                      short={short}
                       className={clsx(i > 2 && 'hidden sm:block')}
                     />
                   ))}
                 </ul>
                 <ButtonLink
                   className='mt-4'
-                  href='/library'
+                  href='/shorts'
                   onClick={() =>
-                    trackEvent('Home: See more snippets', { type: 'navigate' })
+                    trackEvent('Home: See more shorts', { type: 'navigate' })
                   }
                 >
-                  See more snippets
+                  See more shorts
                 </ButtonLink>
               </article>
             </section>
@@ -346,7 +347,7 @@ export async function getStaticProps() {
 
   const blogs = await getAllFilesFrontmatter('blog');
   const projects = await getAllFilesFrontmatter('projects');
-  const library = await getAllFilesFrontmatter('library');
+  const shorts = await getAllFilesFrontmatter('library');
 
   const featuredPosts = getFeatured(blogs, [
     'nextjs-boilerplate-2023',
@@ -361,7 +362,7 @@ export async function getStaticProps() {
     'notiolink',
     'ppdbsumsel',
   ]);
-  const featuredLibrary = getFeatured(library, [
+  const featuredShorts = getFeatured(shorts, [
     'absolute-import',
     'auth-context',
     'conventional-commit-readme',
@@ -376,6 +377,11 @@ export async function getStaticProps() {
   ]);
 
   return {
-    props: { featuredPosts, featuredProjects, featuredLibrary, introPosts },
+    props: {
+      featuredPosts,
+      featuredProjects,
+      featuredShorts,
+      introPosts,
+    },
   };
 }

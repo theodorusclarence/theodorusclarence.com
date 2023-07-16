@@ -147,8 +147,8 @@ export default function StatisticsPage() {
   //#endregion  //*======== ProjectColumns ===========
 
   //#region  //*=========== LibraryColumns ===========
-  const libraries = pickContentMeta(contentMeta, 'library');
-  const libraryColumns: ColumnDef<(typeof libraries)[number]>[] = [
+  const shorts = pickContentMeta(contentMeta, 'library');
+  const shortsColumns: ColumnDef<(typeof shorts)[number]>[] = [
     {
       accessorKey: 'slug',
       header: 'Slug',
@@ -156,7 +156,7 @@ export default function StatisticsPage() {
         <UnstyledLink
           className='font-medium'
           openNewTab
-          href={`/library/${row.original.slug}?ref=statistics`}
+          href={`/shorts/${row.original.slug}?ref=statistics`}
         >
           {row.original.slug}
         </UnstyledLink>
@@ -212,13 +212,13 @@ export default function StatisticsPage() {
         .toLocaleString(),
     },
     {
-      title: 'Library',
-      count: libraries.length,
-      views: libraries
-        .reduce((sum, library) => sum + library.views, 0)
+      title: 'Shorts',
+      count: shorts.length,
+      views: shorts
+        .reduce((sum, short) => sum + short.views, 0)
         .toLocaleString(),
-      likes: libraries
-        .reduce((sum, library) => sum + library.likes, 0)
+      likes: shorts
+        .reduce((sum, short) => sum + short.likes, 0)
         .toLocaleString(),
     },
   ];
@@ -295,14 +295,14 @@ export default function StatisticsPage() {
               />
             )}
 
-            <h2 className='h3 mt-8'>Libraries</h2>
-            {libraries && (
+            <h2 className='h3 mt-8'>Shorts</h2>
+            {shorts && (
               <Table
                 withFilter
                 withFooter
                 className='mt-4'
-                data={libraries}
-                columns={libraryColumns}
+                data={shorts}
+                columns={shortsColumns}
               />
             )}
           </div>
