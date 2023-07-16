@@ -363,12 +363,12 @@ export async function getStaticProps() {
     'ppdbsumsel',
   ]);
   const featuredShorts = getFeatured(shorts, [
-    'absolute-import',
+    'react/absolute-import',
     'auth-context',
-    'conventional-commit-readme',
-    'husky-commitlint-prettier',
-    'toast',
-    'tailwindcss-basestyle',
+    'mac/zsh',
+    'react/jsx-one-parent',
+    'styling/margin-usage',
+    'uncategorized/search-removal',
   ]);
 
   const introPosts = getFeatured(blogs, [
