@@ -13,4 +13,11 @@ module.exports = {
       'i.scdn.co',
     ],
   },
+  redirects: async () => [
+    {
+      source: '/library/:slug',
+      destination: '/shorts/:slug',
+      permanent: true,
+    },
+  ],
 };
