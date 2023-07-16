@@ -27,7 +27,7 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   //#region  //*=========== Content Meta ===========
-  const contentSlug = `p_${frontmatter.slug.replace('/', '-')}`;
+  const contentSlug = `p_${frontmatter.slug.replace('|', '-')}`;
   const meta = useContentMeta(contentSlug, { runIncrement: true });
   //#endregion  //*======== Content Meta ===========
 
