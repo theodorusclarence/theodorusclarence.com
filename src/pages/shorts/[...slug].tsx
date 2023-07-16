@@ -1,9 +1,10 @@
 import { getMDXComponent } from 'mdx-bundler/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 import * as React from 'react';
 import { HiOutlineEye } from 'react-icons/hi';
 
-import { getFileBySlug, getFiles } from '@/lib/mdx';
+import { getFileBySlug, getFileSlugArray } from '@/lib/mdx';
 import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
@@ -13,10 +14,10 @@ import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
 } from '@/components/content/TableOfContents';
+import Tag from '@/components/content/Tag';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
-import TechIcons, { TechListType } from '@/components/TechIcons';
 
 import { LibraryType } from '@/types/frontmatters';
 
@@ -73,10 +74,17 @@ export default function SingleShortPage({ code, frontmatter }: LibraryType) {
                     {meta?.views?.toLocaleString() ?? '–––'} views
                   </Accent>
                 </div>
-                <span>•</span>
-                <TechIcons
-                  techs={frontmatter.tags.split(',') as Array<TechListType>}
-                />
+              </div>
+              <div className='mt-2 flex flex-wrap gap-x-1 gap-y-1 text-sm text-black dark:text-gray-100'>
+                {frontmatter.tags.split(',').map((tag) => (
+                  <Tag
+                    tabIndex={-1}
+                    className='bg-opacity-80 dark:!bg-opacity-60'
+                    key={tag}
+                  >
+                    {tag}
+                  </Tag>
+                ))}
               </div>
             </div>
 
@@ -124,21 +132,24 @@ export default function SingleShortPage({ code, frontmatter }: LibraryType) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getFiles('library');
+  const posts = await getFileSlugArray('library');
 
   return {
-    paths: posts.map((p) => ({
+    paths: posts.map((slug) => ({
       params: {
-        slug: p.replace(/\.mdx/, ''),
+        slug,
       },
     })),
     fallback: false,
   };
 };
 
+interface Params extends ParsedUrlQuery {
+  slug: string[];
+}
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const post = await getFileBySlug('library', params?.slug as string);
+  const { slug } = params as Params;
+  const post = await getFileBySlug('library', slug.join('/'));
 
   return {
     props: { ...post },
