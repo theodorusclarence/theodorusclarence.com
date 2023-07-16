@@ -20,7 +20,7 @@ import TechIcons, { TechListType } from '@/components/TechIcons';
 
 import { LibraryType } from '@/types/frontmatters';
 
-export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
+export default function SingleShortPage({ code, frontmatter }: LibraryType) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   //#region  //*=========== Content Meta ===========
@@ -110,11 +110,11 @@ export default function SingleLibraryPage({ code, frontmatter }: LibraryType) {
 
             <div className='mt-8 flex flex-col items-start gap-4 md:flex-row-reverse md:justify-between'>
               <CustomLink
-                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/library/${frontmatter.slug}.mdx`}
+                href={`https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/shorts/${frontmatter.slug}.mdx`}
               >
                 Edit this on GitHub
               </CustomLink>
-              <CustomLink href='/library'>← Back to library</CustomLink>
+              <CustomLink href='/shorts'>← Back to shorts</CustomLink>
             </div>
           </div>
         </section>

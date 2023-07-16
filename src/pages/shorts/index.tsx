@@ -10,8 +10,8 @@ import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
+import ShortsCard from '@/components/content/card/ShortsCard';
 import ContentPlaceholder from '@/components/content/ContentPlaceholder';
-import LibraryCard from '@/components/content/library/LibraryCard';
 import Tag, { SkipNavTag } from '@/components/content/Tag';
 import StyledInput from '@/components/form/StyledInput';
 import Layout from '@/components/layout/Layout';
@@ -29,7 +29,7 @@ const sortOptions: Array<SortOption> = [
   { id: 'popular', name: 'Sort by popularity', icon: GiTechnoHeart },
 ];
 
-export default function LibraryPage({
+export default function ShortsPage({
   snippets,
   tags,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -101,19 +101,20 @@ export default function LibraryPage({
   return (
     <Layout>
       <Seo
-        templateTitle='Library'
-        description='Some collection of code snippets that I put for easy access, feel free to reuse!'
+        templateTitle='Shorts'
+        description="Short article that's not long enough to be a blog post, 
+        usually comes from my personal notes."
       />
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>
           <div className='layout py-12'>
             <h1 className='text-3xl md:text-5xl' data-fade='0'>
-              <Accent>Library</Accent>
+              <Accent>Shorts</Accent>
             </h1>
             <p className='mt-2 text-gray-600 dark:text-gray-300' data-fade='1'>
-              Some collection of code snippets that I put for easy access, feel
-              free to reuse!
+              Short article that's not long enough to be a blog post, usually
+              comes from my personal notes.
             </p>
             <StyledInput
               data-fade='2'
@@ -157,7 +158,11 @@ export default function LibraryPage({
             >
               {filtered.length > 0 ? (
                 filtered.map((snippet) => (
-                  <LibraryCard key={snippet.slug} snippet={snippet} />
+                  <ShortsCard
+                    key={snippet.slug}
+                    short={snippet}
+                    checkTagged={checkTagged}
+                  />
                 ))
               ) : (
                 <ContentPlaceholder />
