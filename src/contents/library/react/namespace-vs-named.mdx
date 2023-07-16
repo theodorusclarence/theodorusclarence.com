@@ -1,0 +1,83 @@
+---
+title: 'Namespace vs Named Imports'
+tags: 'react'
+description: ''
+---
+
+What’s the difference between these two imports?
+
+```jsx
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+```
+
+Does it mean by using `import *`, it will import all of them, even the unused one to the production?
+
+Turns out, it won’t.
+
+## Let’s see a simpler example
+
+### Exported
+
+We have these components exported from components.js
+
+```jsx
+// src/components.js
+export const A = () => 'A Component';
+export const B = () => 'B Component';
+export const C = () => 'C Component';
+```
+
+### Namespace Import
+
+Imports all of the exported variables from a file under one name.
+
+```jsx
+import * as Component from './components'
+
+<Component.A />
+<Component.B />
+```
+
+### Named Import
+
+Import specific variables from a file while using the original variable name
+
+```jsx
+import { A, B } from './components'
+
+<A />
+<B />
+```
+
+## Tree-Shaking
+
+Both can be tree-shaken, if we look at the production build, only ‘A Component’ and ‘B Component’ will be there, and ‘C Component’ will not shipped to production.
+
+### Namespace Import Production Build
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/namespace-vs-named/CleanShot_2023-03-23_at_23.42.33'
+  alt='Namespace Import Production Build'
+  width={919}
+  height={233}
+/>
+
+### Named Import Production Build
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/namespace-vs-named/CleanShot_2023-03-24_at_12.48.40'
+  alt='Named Import Production Build'
+  width={902}
+  height={223}
+/>
+
+No difference, just use the one you like!
+
+## Reference
+
+[dev.to/mapleleaf](https://dev.to/mapleleaf/es6-modules-and-default-imports-p0)
+
+[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#namespace_import)

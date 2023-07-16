@@ -1,0 +1,71 @@
+---
+title: 'React Snippets'
+tags: 'react'
+description: ''
+---
+
+Here are some snippets I usually use for React Applications. You can copy and paste the snippets [from here](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/blob/main/.vscode/typescriptreact.code-snippets).
+
+### Import React
+
+Snippets: `ir`
+
+```tsx
+import * as React from 'react';
+```
+
+### useState Hook
+
+Snippets: `us`
+
+```tsx
+const [state, setState] = React.useState(initialState);
+```
+
+### useEffect Hook
+
+Snippets: `uf`
+
+```tsx
+React.useEffect(() => {}, []);
+```
+
+### useReducer Hook
+
+Snippets: `ur`
+
+```tsx
+const [state, dispatch] = React.useReducer(someReducer, {});
+```
+
+### useRef Hook
+
+Snippets: `urf`
+
+```tsx
+const someRef = React.useRef();
+```
+
+### React Functional Components
+
+To make a new component, I like to use `export default function`. Because when we need to rename it, we only need to do it once.
+
+Snippets: `rc`
+
+```tsx
+import * as React from 'react';
+export default function Component() {
+  return <div></div>;
+}
+```
+
+### Region Comment
+
+This is not a React-specific snippet, but it is really useful when we need to group code. It is also collapsible in VSCode
+
+Snippets: `reg`
+
+```tsx
+//#region  //*============== FORM SUBMIT
+//#endregion  //*============== FORM SUBMIT
+```

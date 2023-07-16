@@ -1,0 +1,77 @@
+---
+title: 'Margin Usage'
+tags: 'styling'
+description: ''
+---
+
+When using margins, try to only make an effect on the element that you put the margin to. It will be so much easier to maintain.
+
+## The Ways
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/styling/margin-usage/margin-usage-1'
+  alt='margin-usage-1'
+  width={1848}
+  height={544}
+/>
+
+Practically, there are 3 ways that you can use to add some spacing to your elements.
+
+## Top and Bottom
+
+It's not a good practice, because the margin will collapse.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/styling/margin-usage/margin-usage-2'
+  alt='margin-usage-2'
+  width={979}
+  height={629}
+/>
+
+It's something that you don't want to have in your CSS. It will cause unexpected behavior.
+
+Find more about margin collapse in [Josh's Article](https://www.joshwcomeau.com/css/rules-of-margin-collapse/)
+
+## Top or Bottom
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/styling/margin-usage/margin-usage-3'
+  alt='margin-usage-3'
+  width={1302}
+  height={904}
+/>
+
+Nice, both work. But, why prefer one over the other?
+
+## Margin Bottom Side Effect
+
+When using **margin-bottom,** this problem will appear
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/styling/margin-usage/margin-usage-4'
+  alt='margin-usage-4'
+  width={1816}
+  height={1006}
+/>
+
+When you remove an element, a side effect requires you to adjust the top element margins.
+
+It is a nightmare to maintain because you need to find that other element, even though we change the other.
+
+## Eliminating Side Effects
+
+Instead, just use **margin-top**
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/styling/margin-usage/margin-usage-5'
+  alt='margin-usage-5'
+  width={1100}
+  height={850}
+/>
+
+It just works.

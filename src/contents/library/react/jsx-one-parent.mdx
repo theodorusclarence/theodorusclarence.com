@@ -1,0 +1,89 @@
+---
+title: 'Why JSX Can Only Have One Parent Element'
+tags: 'react'
+description: ''
+---
+
+[Go to Twitter Post](https://twitter.com/th_clarence/status/1625719727418114048?s=20&t=tpMVOc6twUSJ_JMjH2UuuA)
+
+## The Error
+
+When you try to return multiple elements from a component, you will get an error message like this:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/jsx-one-parent/jsx-transform-1'
+  alt='jsx-transform-1'
+  width={1200}
+  height={675}
+/>
+
+## How JSX Works
+
+JSX is a syntactic sugar for `React.createElement{:tsx}`, which is a function that takes three arguments: the tag, the props, and the children.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/jsx-one-parent/jsx-transform-2'
+  alt='jsx-transform-2'
+  width={1200}
+  height={675}
+/>
+
+### Nested Example
+
+If you have a nested element, the children will be an array of `React.createElement{:tsx}`
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/jsx-one-parent/jsx-transform-3'
+  alt='jsx-transform-3'
+  width={1200}
+  height={675}
+/>
+
+## Why can't we return multiple elements?
+
+If you see the example, it actually makes sense
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/jsx-one-parent/jsx-transform-4'
+  alt='jsx-transform-4'
+  width={1200}
+  height={675}
+/>
+
+As we know, we can't return 2 elements from a function, so returning 2 parent elements in a component/map function is not possible.
+
+## Solutions
+
+There are two solutions to this problem:
+
+### Wrap the elements in one parent element
+
+By wrapping the elements in one parent element, we can solve the problem.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/jsx-one-parent/jsx-transform-5'
+  alt='jsx-transform-5'
+  width={1200}
+  height={675}
+/>
+
+However, you are ending up with an extra element in the DOM tree. This might be your desired result, and mostly it is. Use this if you want to.
+
+### Use React.Fragment
+
+`React.Fragment` is a component that doesn't render anything in the DOM tree.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/jsx-one-parent/jsx-transform-6'
+  alt='jsx-transform-6'
+  width={1200}
+  height={675}
+/>
+
+If you want to return multiple elements without adding an extra element in the DOM tree, use `React.Fragment`.

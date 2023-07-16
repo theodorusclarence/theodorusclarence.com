@@ -33,6 +33,36 @@ http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascr
   --purple: #bd93f9;
   --red: #ff5555;
   --yellow: #f1fa8c;
+
+  /* Transparency */
+
+  /** 30% of transparency **/
+  --background-30: #282a3633;
+  --comment-30: #6272a433;
+  --foreground-30: #f8f8f233;
+  --selection-30: #44475a33;
+
+  --cyan-30: #8be9fd33;
+  --green-30: #50fa7b33;
+  --orange-30: #ffb86c33;
+  --pink-30: #ff79c633;
+  --purple-30: #bd93f933;
+  --red-30: #ff555533;
+  --yellow-30: #f1fa8c33;
+
+  /** 40% of transparency **/
+  --background-40: #282a3666;
+  --comment-40: #6272a466;
+  --foreground-40: #f8f8f266;
+  --selection-40: #44475a66;
+
+  --cyan-40: #8be9fd66;
+  --green-40: #50fa7b66;
+  --orange-40: #ffb86c66;
+  --pink-40: #ff79c666;
+  --purple-40: #bd93f966;
+  --red-40: #ff555566;
+  --yellow-40: #f1fa8c66;
 }
 
 pre::-webkit-scrollbar {
@@ -233,7 +263,7 @@ pre[class*='language-'] {
   height: 300px !important;
 }
 
-.limit-400 {
+.limit-300 {
   height: 400px !important;
 }
 
@@ -263,10 +293,6 @@ pre[class*='language-'] {
 
 .language-css .token {
   color: var(--pink);
-}
-
-.token.maybe-class-name {
-  color: var(--cyan);
 }
 
 .token.script {
@@ -368,7 +394,7 @@ pre[class*='language-'] {
 }
 
 .token.punctuation {
-  color: var(--foreground);
+  color: var(--pink);
 }
 
 .language-css .token.punctuation {
@@ -440,15 +466,42 @@ pre[class*='language-'] {
   color: #e2777a;
 }
 
-.token.dom {
+/* Line Highlighter */
+
+.highlight-line {
+  color: inherit;
+  display: inline-block;
+  text-decoration: none;
+
+  border-radius: 4px;
+  padding: 2px 10px;
+}
+
+.highlight-line:empty:before {
+  content: ' ';
+}
+
+.highlight-line:not(:last-child) {
+  min-width: 100%;
+}
+
+.highlight-line .highlight-line:not(:last-child) {
+  min-width: 0;
+}
+
+.highlight-line-isdir {
   color: var(--foreground);
+  background-color: var(--selection-30);
 }
 
-.code-line.highlight-line {
-  background-color: rgba(139, 233, 253, 0.14);
-  border-left: 2px solid rgb(139, 233, 253);
+.highlight-line-active {
+  background-color: var(--comment-30);
 }
 
-.code-line {
-  display: block;
+.highlight-line-add {
+  background-color: var(--green-30);
+}
+
+.highlight-line-remove {
+  background-color: var(--red-30);
 }

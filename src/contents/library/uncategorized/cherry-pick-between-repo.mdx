@@ -1,0 +1,136 @@
+---
+title: 'Take Commits Between Repositories'
+tags: 'uncategorized'
+description: ''
+---
+
+## Source
+
+Copy the commit hash
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/uncategorized/cherry-pick-between-repo/CleanShot_2023-02-28_at_22.19.472x'
+  alt='Source Image Hash'
+  width={2778}
+  height={1046}
+/>
+
+For example, I want to take this commit: `eccde65`
+
+## Replica
+
+> I’ll use term **replica** for other repositories that might use the same starter/components.
+
+1. Add the **source** remote to the **replica** repository
+
+   ```bash
+   git remote add source https://github.com/theodorusclarence/aether-design-system.git
+   #              ^you can name it whatever you like
+   ```
+
+2. Fetch remote
+
+   ```bash
+   git fetch source
+   #         ^or your remote name
+
+   git fetch --all
+   # ^if you're feeling lazy (fetch all available repo)
+   ```
+
+3. Cherry pick
+
+   ```bash
+   git cherry-pick eccde65
+   ```
+
+   If you have multiple commits to pick from, for example these 3:
+
+   <CloudinaryImg
+     mdx
+     publicId='theodorusclarence/shorts/uncategorized/cherry-pick-between-repo/Untitled'
+     alt='multiple commit images'
+     width={1782}
+     height={370}
+   />
+
+   put the oldest commit first, the order matters
+
+   ex: `git cherry-pick 8cfc164 dee8c34 eccde65`
+
+4. Done
+
+   <CloudinaryImg
+     mdx
+     publicId='theodorusclarence/shorts/uncategorized/cherry-pick-between-repo/Untitled_1'
+     alt='cherry pick applied'
+     width={746}
+     height={144}
+   />
+
+   it works even if you have other commits that are different from the **source**
+
+## Common Case: Conflict
+
+It’s quite common, don’t panic
+
+For example, you have a commit in the **replica** that changed PaginatedTable
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/uncategorized/cherry-pick-between-repo/Untitled_2'
+  alt='replica changes'
+  width={1702}
+  height={196}
+/>
+
+And you also have a different change on the **source’s** commit `eccde65`
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/uncategorized/cherry-pick-between-repo/Untitled_3'
+  alt="source's commit"
+  width={1810}
+  height={570}
+/>
+
+It will create a conflict like this
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/uncategorized/cherry-pick-between-repo/Untitled_4'
+  alt='conflict in terminal'
+  width={956}
+  height={304}
+/>
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/uncategorized/cherry-pick-between-repo/Untitled_5'
+  alt='conflict in vscode'
+  width={1506}
+  height={838}
+/>
+
+Solve them, add to staging, then continue the cherrypick
+
+```bash
+git cherry-pick --continue
+```
+
+### Demo Video
+
+Here's a demo
+
+<iframe
+  style={{
+    aspectRatio: '16/9',
+  }}
+  width='100%'
+  src='https://www.youtube.com/embed/585eNahJYeQ'
+  title='YouTube video player'
+  frameborder='0'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+  allowFullScreen
+/>
