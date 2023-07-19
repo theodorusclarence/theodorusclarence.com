@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 
-import { getAllFilesFrontmatter } from '@/lib/mdx';
-import { sortByDate } from '@/lib/mdx-client';
+import { sortByDate } from '@/lib/mdx.client';
+import { getAllFilesFrontmatter } from '@/lib/mdx.server';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';

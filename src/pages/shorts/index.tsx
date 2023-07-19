@@ -4,8 +4,8 @@ import * as React from 'react';
 import { GiTechnoHeart } from 'react-icons/gi';
 import { HiSortAscending } from 'react-icons/hi';
 
-import { getAllFilesFrontmatter } from '@/lib/mdx';
-import { getTags, sortByTitle, sortTitleFn } from '@/lib/mdx-client';
+import { getTags, sortByTitle, sortTitleFn } from '@/lib/mdx.client';
+import { getAllFilesFrontmatter } from '@/lib/mdx.server';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
 

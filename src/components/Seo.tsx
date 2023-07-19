@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { openGraph } from '@/lib/helper';
+import { openGraph } from '@/lib/helper.client';
 
 const defaultMeta = {
   title: 'Theodorus Clarence',

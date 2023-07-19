@@ -12,7 +12,7 @@ import '@/styles/globals.css';
 import '@/styles/mdx.css';
 import '@/styles/nprogress.css';
 
-import { getFromLocalStorage } from '@/lib/helper';
+import { getFromLocalStorage } from '@/lib/helper.client';
 
 import { blockDomainMeta } from '@/constants/env';
 

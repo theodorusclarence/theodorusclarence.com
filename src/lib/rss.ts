@@ -1,7 +1,7 @@
 import format from 'date-fns/format';
 import fs from 'fs';
 
-import { getAllFilesFrontmatter } from '@/lib/mdx';
+import { getAllFilesFrontmatter } from '@/lib/mdx.server';
 
 export async function getRssXml() {
   const frontmatters = await getAllFilesFrontmatter('blog');
