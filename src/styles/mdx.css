@@ -110,7 +110,7 @@ html.light pre {
 }
 [data-highlighted-chars] {
   box-shadow: 0 0 0 4px var(--tw-shadow-color);
-  @apply rounded bg-sky-200/50 shadow-sky-200/50 dark:bg-zinc-600/50 dark:shadow-zinc-600/50;
+  @apply rounded bg-blue-500/[14%] shadow-blue-500/[14%] dark:bg-zinc-500/50 dark:shadow-zinc-500/50;
 }
 [data-chars-id] {
   @apply border-b-2 p-1 shadow-none;
