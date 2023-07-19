@@ -1,7 +1,14 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+
+const withRemoteRefresh = require('next-remote-refresh')({
+  paths: [path.resolve(__dirname, 'src', 'contents')],
+});
+
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
+const nextConfig = {
   eslint: {
     dirs: ['src'],
   },
@@ -21,3 +28,5 @@ module.exports = {
     },
   ],
 };
+
+module.exports = withRemoteRefresh(nextConfig);
