@@ -6,6 +6,12 @@ description: ''
 
 To make Next.js blog page hot reloads while editing the .mdx file
 
+## The Problem
+
+If you have a blog created with Next.js and MDX either using [mdx-bundler](https://www.npmjs.com/package/mdx-bundler) or [next-mdx-remote](https://www.npmjs.com/package/next-mdx-remote) (maybe there's more libs with the same issue), you must've experienced the dreaded manual refresh every time you want to see some changes. The hot reload or fast refresh doesn't work because we are not directly changing a JavaScript or TypeScript files.
+
+With this short article, I'll show you how to enable hot-reload for your blog page by listening to mdx file changes.
+
 ## Install next-remote-refresh
 
 This [library](https://github.com/souporserious/next-remote-refresh) enables hot reload by utilizing websocket by listening to folder changes.
@@ -16,7 +22,7 @@ yarn add next-remote-refresh
 
 ## Update next.config.js
 
-```tsx title="next.config.js" {4}
+```tsx title="next.config.js" {4} caption="Don't forget to restart your server."
 const path = require('path');
 
 const withRemoteRefresh = require('next-remote-refresh')({
@@ -49,3 +55,5 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 export default MyApp;
 ```
+
+It should work now!
