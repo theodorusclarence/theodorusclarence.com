@@ -19,13 +19,25 @@ const nextConfig = {
       'i.scdn.co',
     ],
   },
-  redirects: async () => [
-    {
-      source: '/library/:slug',
-      destination: '/shorts/:slug',
-      permanent: true,
-    },
-  ],
+  async redirects() {
+    return [
+      {
+        source: '/library/absolute-import',
+        destination: '/shorts/react/absolute-import',
+        permanent: true,
+      },
+      {
+        source: '/library',
+        destination: '/shorts',
+        permanent: true,
+      },
+      {
+        source: '/library/:slug',
+        destination: '/shorts/:slug',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = withRemoteRefresh(nextConfig);
