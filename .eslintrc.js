@@ -23,6 +23,7 @@ module.exports = {
       'warn',
       { props: 'never', children: 'never' },
     ],
+    '@typescript-eslint/no-var-requires': 'off',
 
     //#region  //*=========== Unused Import ===========
     '@typescript-eslint/no-unused-vars': 'off',
