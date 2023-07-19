@@ -2,10 +2,6 @@
   max-width: 50rem;
 }
 
-.prose code:not(:where([data-code-type='code-block'])) {
-  @apply rounded-md border px-1 py-1 dark:border-gray-600;
-}
-
 .prose a {
   text-decoration: none;
 }
@@ -65,7 +61,7 @@
   @apply overflow-hidden rounded shadow-sm dark:shadow-none;
 }
 
-/** HASH ANCHOR */
+/* #region  /**=========== Hash Anchor =========== */
 .hash-anchor {
   @apply inset-y-0 w-full;
   position: absolute;
@@ -87,3 +83,93 @@
   @apply invisible absolute -right-5 top-1/2 -translate-y-1/2 text-lg text-primary-400 dark:text-primary-300;
   content: '#';
 }
+/* #endregion  /**======== Hash Anchor =========== */
+
+/* #region  /**=========== Shiki =========== */
+.prose pre {
+  @apply rounded-none !px-0;
+}
+html.light pre {
+  @apply !bg-[#f2f7fc];
+}
+
+.prose pre > code {
+  @apply grid;
+  counter-reset: line;
+}
+
+[data-line] {
+  @apply border-l-2 border-l-transparent px-6;
+}
+[data-highlighted-line] {
+  @apply border-l-primary-300 bg-primary-300/10;
+}
+[data-highlighted-chars] {
+  box-shadow: 0 0 0 4px var(--tw-shadow-color);
+  @apply rounded bg-sky-200/50 shadow-sky-200/50 dark:bg-zinc-600/50 dark:shadow-zinc-600/50;
+}
+[data-chars-id] {
+  @apply border-b-2 p-1 shadow-none;
+}
+[data-chars-id] span {
+  @apply !text-inherit;
+}
+
+[data-chars-id='v'] {
+  @apply border-b-pink-600 bg-rose-400/50 font-bold !text-pink-700 dark:bg-rose-800/50 dark:!text-pink-300;
+}
+[data-chars-id='s'] {
+  @apply border-b-yellow-600 bg-yellow-400/50 font-bold !text-yellow-700 dark:bg-yellow-800/50 dark:!text-yellow-300;
+}
+[data-chars-id='i'] {
+  @apply border-b-purple-600 bg-purple-400/50 font-bold !text-purple-700 dark:bg-purple-800/50 dark:!text-purple-200;
+}
+
+code {
+  counter-reset: line;
+}
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  display: inline-block;
+  width: 1rem;
+  padding-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+html.light .prose [data-theme='dark'] {
+  display: none;
+}
+html.dark .prose [data-theme='light'] {
+  display: none;
+}
+
+[data-rehype-pretty-code-fragment] {
+  @apply overflow-hidden rounded-lg;
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+[data-rehype-pretty-code-fragment] code {
+  overflow: auto;
+}
+
+[data-rehype-pretty-code-fragment] > pre {
+  @apply m-0;
+}
+[data-rehype-pretty-code-title],
+[data-rehype-pretty-code-caption] {
+  @apply bg-[#e6eff9] px-6 py-2 text-xs font-medium dark:bg-gray-700;
+}
+
+/* Word Wrap */
+[data-word-wrap='true'] [data-line] {
+  @apply whitespace-pre-wrap break-words;
+}
+[data-word-wrap='true'] [data-line]::before {
+  @apply whitespace-pre;
+}
+
+/* #endregion  /**======== Shiki =========== */

@@ -10,7 +10,7 @@ Bash scripts I use to make my life easier.
 
 Open Vercel deploy page with the current git repo as the source.
 
-```bash filename="vc.sh"
+```bash title="vc.sh"
 #!/bin/bash
 
 REMOTE=`git remote show -n origin | grep Push | cut -d: -f2- | rev | cut -c 5- | rev `
@@ -29,7 +29,7 @@ fi
 
 Checkout to the main branch and delete the previous branch.
 
-```bash filename="main-and-delete-branch.sh"
+```bash title="main-and-delete-branch.sh"
 #!/bin/bash
 
 # Checkout to main branch
