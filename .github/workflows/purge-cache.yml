@@ -6,10 +6,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  printing:
-    runs-on: ubuntu-latest
-    steps:
-
   purge-everything:
     if: ${{ github.event.deployment_status.state == 'success' && github.event.deployment_status.environment == 'Production' }}
     runs-on: ubuntu-latest
