@@ -6,7 +6,7 @@ import { HiLink, HiOutlineEye, HiPlay, HiUser } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
 
 import { trackEvent } from '@/lib/analytics';
-import { getFileBySlug, getFileSlugArray } from '@/lib/mdx';
+import { getFileBySlug, getFileSlugArray } from '@/lib/mdx.server';
 import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 

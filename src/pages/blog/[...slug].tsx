@@ -8,8 +8,12 @@ import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 import { MdHistory } from 'react-icons/md';
 
 import { trackEvent } from '@/lib/analytics';
-import { cleanBlogPrefix } from '@/lib/helper';
-import { getFileBySlug, getFileSlugArray, getRecommendations } from '@/lib/mdx';
+import { cleanBlogPrefix } from '@/lib/helper.client';
+import {
+  getFileBySlug,
+  getFileSlugArray,
+  getRecommendations,
+} from '@/lib/mdx.server';
 import useContentMeta from '@/hooks/useContentMeta';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';

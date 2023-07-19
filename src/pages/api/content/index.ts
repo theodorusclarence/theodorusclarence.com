@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { getViewsFromDevto } from '@/lib/devto';
-import { prismaClient } from '@/lib/prisma';
+import { prismaClient } from '@/lib/prisma.client';
 
 export default async function handler(
   req: NextApiRequest,

@@ -4,7 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import * as React from 'react';
 import { HiOutlineEye } from 'react-icons/hi';
 
-import { getFileBySlug, getFileSlugArray } from '@/lib/mdx';
+import { getFileBySlug, getFileSlugArray } from '@/lib/mdx.server';
 import useContentMeta from '@/hooks/useContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 

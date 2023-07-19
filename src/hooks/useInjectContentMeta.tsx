@@ -2,7 +2,7 @@ import * as React from 'react';
 import useSWR from 'swr';
 
 import { pickContentMeta } from '@/lib/contentMeta';
-import { cleanBlogPrefix } from '@/lib/helper';
+import { cleanBlogPrefix } from '@/lib/helper.client';
 
 import { contentMetaFlag } from '@/constants/env';
 

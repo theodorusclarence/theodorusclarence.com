@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import * as React from 'react';
 
-import { getFromLocalStorage } from '@/lib/helper';
+import { getFromLocalStorage } from '@/lib/helper.client';
 
 import Accent from '@/components/Accent';
 import Button from '@/components/buttons/Button';

@@ -1,4 +1,4 @@
-import { getFromLocalStorage } from '@/lib/helper';
+import { getFromLocalStorage } from '@/lib/helper.client';
 
 export const isProd = process.env.NODE_ENV === 'production';
 

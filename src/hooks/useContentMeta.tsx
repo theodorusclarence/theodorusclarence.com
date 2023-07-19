@@ -3,9 +3,8 @@ import debounce from 'lodash/debounce';
 import * as React from 'react';
 import useSWR from 'swr';
 
-import { cacheOnly } from '@/lib/swr';
-
 import { contentMetaFlag, incrementMetaFlag } from '@/constants/env';
+import { cacheOnly } from '@/constants/swr';
 
 import { ContentMeta, SingleContentMeta } from '@/types/meta';
 

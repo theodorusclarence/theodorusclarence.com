@@ -7,7 +7,7 @@ import { SiGithub, SiTwitter } from 'react-icons/si';
 import { InView } from 'react-intersection-observer';
 
 import { trackEvent } from '@/lib/analytics';
-import { getAllFilesFrontmatter, getFeatured } from '@/lib/mdx';
+import { getAllFilesFrontmatter, getFeatured } from '@/lib/mdx.server';
 import { generateRss } from '@/lib/rss';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';

@@ -3,9 +3,9 @@ import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 import { HiCalendar, HiEye } from 'react-icons/hi';
 
-import { getFromSessionStorage } from '@/lib/helper';
-import { getAllFilesFrontmatter } from '@/lib/mdx';
-import { getTags, sortByDate, sortDateFn } from '@/lib/mdx-client';
+import { getFromSessionStorage } from '@/lib/helper.client';
+import { getTags, sortByDate, sortDateFn } from '@/lib/mdx.client';
+import { getAllFilesFrontmatter } from '@/lib/mdx.server';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useLoaded from '@/hooks/useLoaded';
 
