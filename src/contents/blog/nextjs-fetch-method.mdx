@@ -1,6 +1,7 @@
 ---
 title: 'Understanding Next.js Data Fetching (CSR, SSR, SSG, ISR)'
 publishedAt: '2021-09-02'
+lastUpdated: '2023-07-20'
 description: 'Thorough explanation on Next.js data fetching method such as CSR, SSR, SSG, and ISR.'
 englishOnly: 'true'
 banner: 'bernd-dittrich-W1NsOMhU8hI-unsplash_ugoyld'
@@ -11,14 +12,15 @@ tags: 'nextjs'
 
 When I started to learn Next.js, I got overwhelmed with the list of abbreviations that looks similar, I didn't know what it is and what is the difference. It is quite confusing because when using Create React App, we usually only use 1 strategy to fetch data from API which is using `useEffect`.
 
-Next.js has many data fetching strategies. Although initially Next.js was well known to be a Server-Side Rendering Framework, it turns out that Next.js has 4 methods of Data Fetching. Here is the short explanation each so you get familiar with the abbreviation of CSR, SSR, SSG, ISR.
+Next.js has many data fetching strategies. Although initially Next.js was well known to be a Server-Side Rendering Framework, it turns out that Next.js has 4 methods of Data Fetching. Here is a short explanation of each so you get familiar with the abbreviation of CSR, SSR, SSG, ISR.
 
 - CSR - Client-Side Rendering, this is the usual kind of data fetching using `useEffect`, it will fetch the data from the API every single page request on the **client-side** (after the page is rendered, then the function will run).
 - SSR - Server-Side Rendering, will run a **special function** to fetch data from API every page request on the **server-side** (before the page is loaded, that special function will run first, creating a delay, then after that, it will serve the page)**.**
 - SSG - Static Site Generation, will run a **special function** to fetch data **once** when that page builds.
-- ISR – Incremental Static Regeneration, this is a new thing, shortly put, a combination of SSG, and SSR, where it served statically, but at a **certain time and certain condition** that page will rebuild and fetch the data from the API again.
+- ISR - Incremental Static Regeneration, this is a new thing, shortly put, a combination of SSG, and SSR, where it served statically, but at a **certain time and certain condition** that page will rebuild and fetch the data from the API again.
+  - On-Demand Revalidation - This is **not a data fetching method**, but **a way to trigger page rebuild for SSG and ISR**. Starting from Next.js v12.2, you can have an API route that can trigger revalidate function.
 
-Don't worry if you didn't get that, because I will be explaining it thoroughly, just familiarize the words first.
+Don't worry if you didn't get that, because I will be explaining it thoroughly, just get familiar with the words first.
 
 ---
 
@@ -30,11 +32,11 @@ This code example will fetch a date-time from an API using axios, then render it
 
 Special Function: `useEffect`
 
-[Demo Site](https://next-render.theodorusclarence.com/render/csr)
+[Demo Site](https://next-render.thcl.dev/render/csr)
 
 ### Code Example
 
-```tsx
+```tsx /React.useEffect/
 export default function CSRPage() {
   const [dateTime, setDateTime] = React.useState<string>();
 
@@ -95,11 +97,11 @@ Video Description:
 
 Special Function: `getServerSideProps`
 
-[Demo Site](https://next-render.theodorusclarence.com/render/ssr)
+[Demo Site](https://next-render.thcl.dev/render/ssr)
 
 ### Code Example
 
-```tsx
+```tsx /getServerSideProps/
 export default function SSRPage({ dateTime }: SSRPageProps) {
   return (
     <main>
@@ -189,11 +191,11 @@ But, for the SSR, although it creates a delay, data that was fetched is injected
 
 Special function: `getStaticProps`
 
-[Demo Site](https://next-render.theodorusclarence.com/render/ssg)
+[Demo Site](https://next-render.thcl.dev/render/ssg)
 
 ### Code Example
 
-```tsx
+```tsx /getStaticProps/
 export default function SSGPage({ dateTime }: SSGPageProps) {
   return (
     <main>
@@ -229,7 +231,7 @@ Video Description:
 ### Keys to Emphasize
 
 1. **getStaticProps function**, this function is the key indicator that a page is using Static Site Generation.
-2. **Fetched when running** `yarn build`, the API will be hit **ONLY** when the application is building. This is why the time is at 13:39, while the real-time is 16:17.
+2. **Fetched when running** `yarn build{:bash}`, the API will be hit **ONLY** when the application is building. This is why the time is at 13:39, while the real-time is 16:17.
 3. **Data will not change because no further fetch**, which is why the time shown is the same for each reloads.
 
 <CloudinaryImg
@@ -246,11 +248,11 @@ Video Description:
 
 Special function: `getStaticProps` + `revalidate`
 
-[Demo Site](https://next-render.theodorusclarence.com/render/isr-20)
+[Demo Site](https://next-render.thcl.dev/render/isr-20)
 
 ### Code Example
 
-```tsx
+```tsx /getStaticProps/ /revalidate/
 export default function ISR20Page({ dateTime }: ISR20PageProps) {
   return (
     <main>
@@ -324,7 +326,7 @@ Now, this is might be confusing for you, but here is the key I want you to look 
 Terms:
 
 1. Revisiting pages → navigating using next/link (going back to home, then to that page again)
-2. Full reload → doing reload at a website (command+r)
+2. Full reload → doing reload at a website (⌘ + R)
 
 Video Description:
 
@@ -353,6 +355,34 @@ But, the **first** person that visits when the **cooldown state is off**, is goi
   width={1259}
   height={390}
 />
+
+## On-Demand Revalidation
+
+There is actually a way to manually trigger page rebuild for SSG and ISR. Starting from Next.js v12.2, you can have an API route that can trigger revalidate function.
+
+Special function: `res.revalidate(){:ts}`
+
+```ts title="pages/api/revalidate.ts" /res.revalidate/
+export default async function handler(req, res) {
+  try {
+    await res.revalidate('/path-to-revalidate');
+    return res.json({ revalidated: true });
+  } catch (err) {
+    return res.status(500).send('Error revalidating');
+  }
+}
+```
+
+To revalidate, you can just hit the API that you've created like `https://yoursite.com/api/revalidate`, then the page will be rebuilt.
+
+On-demand Revalidation pairs well with webhook. If you're using CMS, you can setup a webhook to hit the revalidate API route every time you change your content.
+
+Note:
+
+1. When you're using On-Demand Revalidation, **`revalidate` is optional**. If you don't use it then it is SSG by default, if you add `revalidate` it becomes ISR.
+2. The only difference is that you now have an **API that you can call anytime** to rebuild the page.
+
+Check out [Lee Robinson's Demo](https://on-demand-isr.vercel.app/) using GitHub Issues
 
 ## Conclusion
 
