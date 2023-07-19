@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { fontFamily } = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -47,6 +48,30 @@ module.exports = {
       animation: {
         flicker: 'flicker 3s linear infinite',
         tilt: 'tilt 10s infinite linear',
+      },
+      typography: {
+        DEFAULT: {
+          // code: {
+          //   color: '#86e1fc',
+          //   '&::before': { content: `"" !important` },
+          //   '&::after': { content: `"" !important` },
+          //   fontWeight: 'normal',
+          // },
+          // '[data-rehype-pretty-code-fragment]:nth-of-type(2) pre': {
+          //   '[data-line]::before': {
+          //     content: 'counter(line)',
+          //     counterIncrement: 'line',
+          //     display: 'inline-block',
+          //     width: '1rem',
+          //     marginRight: '1rem',
+          //     textAlign: 'right',
+          //     color: colors.slate[600],
+          //   },
+          //   '[data-highlighted-line]::before': {
+          //     color: colors.slate[400],
+          //   },
+          // },
+        },
       },
     },
   },

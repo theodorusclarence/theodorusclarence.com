@@ -10,7 +10,6 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import 'react-tippy/dist/tippy.css';
 import '@/styles/globals.css';
 import '@/styles/mdx.css';
-import '@/styles/dracula.css';
 import '@/styles/nprogress.css';
 
 import { getFromLocalStorage } from '@/lib/helper';
