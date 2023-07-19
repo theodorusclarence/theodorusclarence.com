@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { AppProps } from 'next/app';
 import Router from 'next/router';
+import { useRemoteRefresh } from 'next-remote-refresh/hook';
 import { ThemeProvider } from 'next-themes';
 import nProgress from 'nprogress';
 import * as React from 'react';
@@ -36,6 +37,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
     }
   }, []);
+
+  useRemoteRefresh();
 
   return (
     <ThemeProvider attribute='class' defaultTheme='dark' enableSystem={false}>
