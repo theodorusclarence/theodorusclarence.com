@@ -89,6 +89,10 @@
 .prose pre {
   @apply rounded-none !px-0;
 }
+
+html.dark pre {
+  @apply !bg-[#24292e];
+}
 html.light pre {
   @apply !bg-[#f2f7fc];
 }
@@ -171,5 +175,34 @@ html.dark .prose [data-theme='light'] {
 [data-word-wrap='true'] [data-line]::before {
   @apply whitespace-pre;
 }
-
 /* #endregion  /**======== Shiki =========== */
+
+html.dark {
+  --shiki-color-text: #e1e4e8;
+  --shiki-color-background: #0e1111;
+
+  --shiki-token-constant: #79b8ff;
+  --shiki-token-string: #9ecbff;
+  --shiki-token-comment: #6a737d;
+  --shiki-token-keyword: #f97583;
+  --shiki-token-parameter: #e1e4e8;
+  --shiki-token-function: #e1e4e8;
+  --shiki-token-string-expression: #85e89d;
+  --shiki-token-punctuation: #e1e4e8;
+  --shiki-token-link: #e1e4e8;
+}
+
+html.light {
+  --shiki-color-text: #24292e;
+  --shiki-color-background: #fff;
+
+  --shiki-token-constant: #005cc5;
+  --shiki-token-string: #032f62;
+  --shiki-token-comment: #6a737d;
+  --shiki-token-keyword: #d73a49;
+  --shiki-token-parameter: #24292e;
+  --shiki-token-function: #24292e;
+  --shiki-token-string-expression: #22863a;
+  --shiki-token-punctuation: #24292e;
+  --shiki-token-link: #24292e;
+}
