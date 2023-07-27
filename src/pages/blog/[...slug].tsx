@@ -281,7 +281,7 @@ interface Params extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as Params;
 
-  const post = await getFileBySlug('blog', params?.slug as string);
+  const post = await getFileBySlug('blog', slug.join('/'));
   const recommendations = await getRecommendations(slug.join('/'));
 
   return {
