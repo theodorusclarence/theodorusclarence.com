@@ -19,6 +19,7 @@ import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
+import CarbonAds from '@/components/CarbonAds';
 import BlogCard from '@/components/content/blog/BlogCard';
 import SubscribeCard from '@/components/content/blog/SubscribeCard';
 import Comment from '@/components/content/Comment';
@@ -223,6 +224,8 @@ export default function SingleBlogPage({
               url={`https://theodorusclarence.com/blog/${frontmatter.slug}`}
               title={frontmatter.title}
             />
+
+            <CarbonAds className='mt-8' />
 
             <figure className='mt-12'>
               <Comment key={frontmatter.slug} />
