@@ -24,6 +24,7 @@
     "@headlessui/react": "^1.7.12",
     "@prisma/client": "^4.11.0",
     "@tanstack/react-table": "^8.8.5",
+    "@tremor/react": "^3.5.0",
     "axios": "^0.24.0",
     "cloudinary-build-url": "^0.2.4",
     "clsx": "^1.2.1",

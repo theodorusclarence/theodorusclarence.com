@@ -90,10 +90,10 @@
   @apply rounded-none !px-0;
 }
 
-html.dark pre {
+html.dark .prose pre {
   @apply !bg-[#24292e];
 }
-html.light pre {
+html.light .prose pre {
   @apply !bg-[#f2f7fc];
 }
 
