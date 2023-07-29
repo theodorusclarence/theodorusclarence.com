@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 
+import { trackEvent } from '@/lib/analytics';
 import clsxm from '@/lib/clsxm';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
@@ -45,6 +46,7 @@ export default function CarbonAds({ className }: { className?: string }) {
           This ad helps me with the server cost. You can also{' '}
           <UnstyledLink
             className='underline hover:text-primary-500 dark:hover:text-primary-400'
+            onClick={() => trackEvent('Sponsor Click', { type: 'link' })}
             href='https://github.com/sponsors/theodorusclarence'
           >
             sponsor
