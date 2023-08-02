@@ -58,7 +58,7 @@
     "@types/node": "^18.13.0",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^18.0.34",
-    "@types/umami": "^0.1.1",
+    "@types/umami": "^0.1.2",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "autoprefixer": "^10.4.14",
