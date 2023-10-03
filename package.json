@@ -77,7 +77,7 @@
     "next-remote-refresh": "^0.10.0",
     "next-remote-watch": "^1.0.0",
     "next-sitemap": "^1.9.12",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.31",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "prisma": "^4.11.0",
