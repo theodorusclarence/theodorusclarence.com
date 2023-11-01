@@ -156,6 +156,9 @@
   .fade-in-start [data-fade='8'] {
     transition-delay: 800ms;
   }
+  .fade-in-start [data-fade='9'] {
+    transition-delay: 900ms;
+  }
   /* #endregion  /**======== Fade In =========== */
 }
 /* Tippy */

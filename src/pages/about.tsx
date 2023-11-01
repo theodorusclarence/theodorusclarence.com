@@ -9,6 +9,7 @@ import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
+import Tooltip from '@/components/Tooltip';
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
@@ -22,7 +23,7 @@ export default function AboutPage() {
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>
-          <div className='layout min-h-main py-20'>
+          <div className='layout pt-20'>
             <h2 data-fade='0'>About</h2>
             <h1 className='mt-1' data-fade='1'>
               <Accent>Theodorus Clarence</Accent>
@@ -62,8 +63,46 @@ export default function AboutPage() {
                   help!
                 </p>
               </article>
-              <h3 className='mt-12'>Current Favorite Tech Stack</h3>
-              <figure className='mt-2'>
+              <h3 className='h4 mt-4' data-fade='6'>
+                What I'm up to?
+              </h3>
+              <article className='prose mt-2 dark:prose-invert' data-fade='7'>
+                <ul>
+                  <li>
+                    I'm a full-stack engineer at{' '}
+                    <CustomLink href='https://dimension.dev?ref=theodorusclarence.com'>
+                      Dimension
+                    </CustomLink>{' '}
+                    while working remotely from Jakarta, Indonesia
+                  </li>
+                  <li>
+                    I'm a technical writer for{' '}
+                    <CustomLink href='https://blog.logrocket.com/author/theodorusclarence/'>
+                      LogRocket
+                    </CustomLink>
+                  </li>
+                  <li>
+                    I'm a mentor! I do revision-style mentorship (
+                    <Tooltip
+                      tipChildren={
+                        <p className='italic'>
+                          *Try translating them to english
+                        </p>
+                      }
+                    >
+                      <CustomLink href='https://x.com/th_clarence/status/1713454750090534948?s=20'>
+                        thread
+                      </CustomLink>
+                    </Tooltip>
+                    )
+                  </li>
+                </ul>
+              </article>
+
+              <h3 className='mt-12' data-fade='8'>
+                Tech Stack
+              </h3>
+              <figure className='mt-2' data-fade='9'>
                 <TechStack />
               </figure>
             </div>
@@ -71,7 +110,7 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <div className='layout py-6'>
+          <div className='layout mt-16'>
             <h2>Contact</h2>
             <article className='prose mt-4 dark:prose-invert'>
               <p>
@@ -79,6 +118,22 @@ export default function AboutPage() {
                 especially frontend works. I’ll be happy to help! (find my email
                 in the footer)
               </p>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div className='layout mt-16'>
+            <h2>Uses</h2>
+            <article className='prose mt-4 dark:prose-invert'>
+              <ul>
+                <li>MacBook Pro (13" M1 2020, 16GB, 1TB)</li>
+                <li>LG UltraFine™ 4K 32 Inch LG (32UN880-B)</li>
+                <li>Keychron K2v2</li>
+                <li>Logitech M590</li>
+                <li>Pexio Jervis Ergonomic Chair</li>
+                <li>Kindle Paperwhite (10th Generation)</li>
+              </ul>
             </article>
           </div>
         </section>
