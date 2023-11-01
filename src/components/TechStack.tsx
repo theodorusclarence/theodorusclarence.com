@@ -39,7 +39,7 @@ const stacks = [
       <>
         <CustomLink href='https://nextjs.org'>Next.js</CustomLink>, currently my
         go-to framework because of the static generation, dynamic paths, and
-        built-in api.
+        built-in API. <em>ps: I like pages folder better than the new one.</em>
       </>
     ),
   },
@@ -89,12 +89,9 @@ const stacks = [
     icon: SiReactquery,
     tooltip: (
       <>
-        <CustomLink href='https://swr.vercel.app/'>SWR by Vercel</CustomLink>,
-        great react hooks for data fetching and caching, the{' '}
-        <CustomLink href='https://swr.vercel.app/docs/revalidation#revalidate-on-focus'>
-          revalidate on focus
-        </CustomLink>{' '}
-        is unreal. react-query is also a great alternative to this.
+        <CustomLink href='https://tanstack.com/'>TanStack Query</CustomLink>,
+        great react hooks for data fetching and caching. I maintain most of my
+        API fetch (get, post, put, delete) in this library.
       </>
     ),
   },
