@@ -16,6 +16,7 @@
     "cy:headless": "cypress run",
     "postbuild": "next-sitemap",
     "mdgen": "node scripts/cross-post.js",
+    "postinstall": "prisma generate",
     "prepare": "husky install"
   },
   "dependencies": {
