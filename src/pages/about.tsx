@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
+import { trackEvent } from '@/lib/analytics';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
@@ -70,14 +71,24 @@ export default function AboutPage() {
                 <ul>
                   <li>
                     I'm a full-stack engineer at{' '}
-                    <CustomLink href='https://dimension.dev?ref=theodorusclarence.com'>
+                    <CustomLink
+                      onClick={() =>
+                        trackEvent('Now: Dimension', { type: 'link' })
+                      }
+                      href='https://dimension.dev?ref=theodorusclarence.com'
+                    >
                       Dimension
                     </CustomLink>{' '}
                     while working remotely from Jakarta, Indonesia
                   </li>
                   <li>
                     I'm a technical writer for{' '}
-                    <CustomLink href='https://blog.logrocket.com/author/theodorusclarence/'>
+                    <CustomLink
+                      onClick={() =>
+                        trackEvent('Now: LogRocket', { type: 'link' })
+                      }
+                      href='https://blog.logrocket.com/author/theodorusclarence/'
+                    >
                       LogRocket
                     </CustomLink>
                   </li>
@@ -90,7 +101,12 @@ export default function AboutPage() {
                         </p>
                       }
                     >
-                      <CustomLink href='https://x.com/th_clarence/status/1713454750090534948?s=20'>
+                      <CustomLink
+                        onClick={() =>
+                          trackEvent('Now: Mentor Thread', { type: 'link' })
+                        }
+                        href='https://x.com/th_clarence/status/1713454750090534948?s=20'
+                      >
                         thread
                       </CustomLink>
                     </Tooltip>
