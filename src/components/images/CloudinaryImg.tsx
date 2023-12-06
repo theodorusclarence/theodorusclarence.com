@@ -112,6 +112,7 @@ export default function CloudinaryImg({
             height={
               resizedToMaxWidth ? (RESIZE_MAX_WIDTH * +height) / +width : height
             }
+            unoptimized
             src={url}
             alt={alt}
             title={title || alt}
