@@ -35,8 +35,9 @@ export default function AboutPage() {
                 publicId='theodorusclarence/about/self-3-cropped_cyfuvn.jpg'
                 width='1500'
                 height='1695'
-                alt='Photo of me'
+                alt='Photo of me looking really professional and definitely can impress your boss'
                 preview={false}
+                title=' '
               />
               <article className='prose dark:prose-invert'>
                 <p data-fade='3'>
@@ -138,17 +139,27 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section>
+        <section id='uses'>
           <div className='layout mt-16'>
             <h2>Uses</h2>
+            <CloudinaryImg
+              className='mt-8 aspect-video'
+              publicId='theodorusclarence/about/setup.jpg'
+              width='2000'
+              height='1500'
+              alt='Photo of my desk setup'
+            />
             <article className='prose mt-4 dark:prose-invert'>
               <ul>
                 <li>MacBook Pro (13" M1 2020, 16GB, 1TB)</li>
                 <li>LG UltraFine™ 4K 32 Inch LG (32UN880-B)</li>
                 <li>Keychron K2v2</li>
                 <li>Logitech M590</li>
-                <li>Pexio Jervis Ergonomic Chair</li>
                 <li>Kindle Paperwhite (10th Generation)</li>
+                <li>Stramm Bruno Standing Desk 160x80</li>
+                <li>Pexio Jervis Ergonomic Chair</li>
+                <li>Press Play Desk Shelf</li>
+                <li>Mi Computer Monitor Light Bar</li>
               </ul>
             </article>
           </div>
