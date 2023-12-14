@@ -4,7 +4,7 @@ publishedAt: '2023-12-14'
 description: 'Creating a component is fairly easy, but doing them correctly is a different story.'
 englishOnly: 'true'
 banner: 'jeremy-bishop-QUwLZNchflk-unsplash'
-tags: 'nextjs,react'
+tags: 'nextjs,react,tailwindcss'
 ---
 
 ## Introduction
@@ -95,12 +95,12 @@ Here’s how it went haywire.
   height={400}
 />
 
-Then your lovely designer has requests:
+One day your lovely designer has requests:
 
 - Make the first card span over 2 columns (it’s for featured products)
 - When we click a product with a title containing ‘yay’, I want them to shoot out confetti by calling `confetti()`.
 
-Well, you could create two brand new components called `FeatureCard` and `ConfettiCard`, but it’s **counter-productive.** Everything inside is totally the same, except that one uses two columns, and one shoots confetti.
+Well, you could create two brand new components called `FeatureCard` and `ConfettiCard`, but it’s **counter-productive.** Everything inside is totally the same, except one uses two columns, and one shoots confetti.
 
 Usually, when have this kind of situation, we rely upon custom props for each condition. But it goes downhill pretty quickly as the requirements grow.
 
@@ -137,15 +137,15 @@ function Card({ product, ...props }: CardProps) {
 }
 ```
 
-I agree that using custom props sometimes be the best solution, but we can totally this problem if we can directly pass `classNames` and `onClick` directly into the component.
+I agree that using custom props sometimes is the best solution, but we can totally solve this problem if we can directly pass `className` and `onClick` directly into the component.
 
 ## Fully Reusable Component as A Solution
 
-So what we basically need, is to add all of the props that are in a div to the component, that concludes `className`, `onClick`, `onHover`, `title`, `aria-label`, `style`, `about`, `id`, `onMouseEnter`, `onMouseLeave`. Yeah, you got my point.
+So what we basically need is to have all props that are in a div, that concludes `className`, `onClick`, `onHover`, `title`, `aria-label`, `style`, `about`, `id`, `onMouseEnter`, `onMouseLeave`—yeah, you got my point.
 
 It’s A LOT.
 
-Don’t worry we have a type for that, may I introduce `React.ComponentPropsWithoutRef<'div'>`. So instead of adding each and every component props, we can use this helpful type.
+Don’t worry. We have a type for that, may I introduce `React.ComponentPropsWithoutRef<'div'>`. So instead of adding each and every component props, we can use this helpful type.
 
 ```tsx /React.ComponentPropsWithoutRef<'div'>/ /...rest/
 type CardProps = {
@@ -192,7 +192,7 @@ export default function ProductListPage() {
 }
 ```
 
-We can add the two-columns feature by adding a custom className, and the confetti feature by adding an onClick directly in the `Card` component.
+We can add the two-columns feature by adding a custom `className`, and the confetti feature by adding an `onClick` directly in the `Card` component.
 
 ## Common Pitfalls & Solutions
 
@@ -200,7 +200,7 @@ By using fully reusable components, there are some pitfalls that you might encou
 
 ### Class Name Conflict
 
-If you’re using Tailwind CSS, sometimes merging classes will cause a conflict
+If you’re using Tailwind CSS, sometimes merging classes will cause a conflict.
 
 ```tsx /clsx(['mt-4', className])/
 function Card({
@@ -229,13 +229,13 @@ However, in the rendered code we will have two different margin-top classes.
 
 Which is not good. We can use [tailwind-merge](https://www.npmjs.com/package/tailwind-merge) library to solve that.
 
-tailwind-merge function will return the latest value in the parameter. So it will prioritize our `mt-12` over the `mt-4`. Basically what we need.
+tailwind-merge's function will return the latest value in the parameter. So it will prioritize our `mt-12` over the `mt-4`. Basically what we need.
 
 ```tsx
 import { twMerge } from 'tailwind-merge';
 
 twMerge('mt-4 bg-red hover:bg-dark-red', 'mt-12 bg-[#B91C1C]');
-// → 'hover:bg-dark-red mt-12 bg-[#B91C1C]'
+// → 'mt-12 bg-[#B91C1C] hover:bg-dark-red'
 ```
 
 I usually create a wrapper with `clsx` like this
@@ -268,11 +268,11 @@ function Card({ product, className, ...rest }: CardProps) {
 }
 ```
 
-### Multiple Class Name
+### Multiple Class Names
 
 When you start to have more items inside the component, it can be quite confusing as to how to pass a `className` to a specific element.
 
-Let’s say our `Card` component has a title, description, and images. We already use `className` props for the wrapper div. How can we customize the title class?
+Let’s say our `Card` component has a title, description, and image. We already use `className` props for the wrapper div. How can we customize the title class?
 
 ```tsx
 type CardProps = {
@@ -292,7 +292,7 @@ function Card({ product, className, ...rest }: CardProps) {
 <Card className='' />;
 ```
 
-Usually, for the normal `className` props, I always use it for the outermost element (wrapper). The solution is to create another object for a specific element that I might need.
+In my experience, I always use the normal `className` for the outermost element (wrapper). The solution is to create another object for a specific element that I might need.
 
 ```tsx {3-7}
 type CardProps = {
@@ -320,7 +320,7 @@ Here I created a `classNames` object with `title`, `description`, and `image` pr
 
 ### Components With Ref
 
-You might notice that the type name is `ComponentPropsWithoutRef`, yes there is another type called `ComponentPropsWithRef`.
+You might notice that the type name is `ComponentProps_Without_Ref`, yes there is another type called `ComponentProps_With_Ref`.
 
 This is a needed case if you’re also forwarding ref to your component. I won’t explain in detail about ref forwarding, maybe in the next post (comment if you’d like me to write about it).
 
