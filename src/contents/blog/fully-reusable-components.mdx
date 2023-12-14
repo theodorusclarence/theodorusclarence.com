@@ -31,8 +31,6 @@ If you look at the Card component that I created above, it has one **crucial** f
 
 Well yes, you can use them multiple times in different files.
 
-?EDITORNOTES: set filename to order-page
-
 ```tsx
 // order page
 <Card />
@@ -61,7 +59,7 @@ We can easily achieve them using this code:
 
 \*I use Tailwind CSS for this demo, but the concept applies to all solutions.
 
-```tsx
+```tsx /grid-cols-3/
 export default function ProductListPage() {
   return (
     <div className='grid-cols-3'>
@@ -100,7 +98,7 @@ Well, you could create two brand new components called `FeatureCard` and `Confet
 
 Usually, when have this kind of situation, we rely upon custom props for each condition. But it goes downhill pretty quickly as the requirements grow.
 
-```tsx
+```tsx {3-4,6-7,17-19,22}
 type CardProps = {
   product: Product;
   isFeatured?: boolean;
@@ -143,7 +141,7 @@ It’s A LOT.
 
 Don’t worry we have a type for that, may I introduce `React.ComponentPropsWithoutRef<'div'>`. So instead of adding each and every component props, we can use this helpful type.
 
-```tsx
+```tsx /React.ComponentPropsWithoutRef<'div'>/ /...rest/
 type CardProps = {
   product: Product;
 } & React.ComponentPropsWithoutRef<'div'>;
@@ -169,7 +167,7 @@ The best thing is we now get autocomplete! Woohoo!
 
 With the updated component, we can finally make our designer happy with this implementation
 
-```tsx
+```tsx {8,9-11}
 export default function ProductListPage() {
   return (
     <div className='grid-cols-3'>
@@ -198,7 +196,7 @@ By using fully reusable components, there are some pitfalls that you might encou
 
 If you’re using Tailwind CSS, sometimes merging classes will cause a conflict
 
-```tsx
+```tsx /clsx(['mt-4', className])/
 function Card({
   product,
   // Don't forget to take className out of the rest parameter
@@ -236,9 +234,7 @@ twMerge('mt-4 bg-red hover:bg-dark-red', 'mt-12 bg-[#B91C1C]');
 
 I usually create a wrapper with `clsx` like this
 
-\*EDITORNOTES: /src/lib/utils.ts
-
-```tsx
+```tsx title="/src/lib/utils.ts"
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -252,7 +248,7 @@ So we now can merge conflicts and compose classes neatly.
 
 You can safely customize your component now!
 
-```tsx
+```tsx /cn/
 type CardProps = {
   product: Product;
 } & React.ComponentPropsWithoutRef<'div'>;
@@ -292,7 +288,7 @@ function Card({ product, className, ...rest }: CardProps) {
 
 Usually, for the normal `className` props, I always use it for the outermost element (wrapper). The solution is to create another object for a specific element that I might need.
 
-```tsx
+```tsx {3-7}
 type CardProps = {
   product: Product;
   classNames?: {
@@ -322,11 +318,11 @@ You might notice that the type name is `ComponentPropsWithoutRef`, yes there is 
 
 This is a needed case if you’re also forwarding ref to your component. I won’t explain in detail about ref forwarding, maybe in the next post (comment if you’d like me to write about it).
 
-Simply, ref forwarding is needed when you want to access the ref value of your component. Usually external library like [radix](https://www.radix-ui.com/primitives) does.
+Simply, ref forwarding is needed when you want to access the ref value of your component. Usually external library like [Radix](https://www.radix-ui.com/primitives) does.
 
 You can add the type like this.
 
-```tsx
+```tsx /React.ComponentPropsWithRef/ /React.forwardRef/
 type ButtonProps = React.ComponentPropsWithRef<'button'>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -344,7 +340,7 @@ export default Button;
 
 Only then you can access the ref.
 
-```tsx
+```tsx /ref={buttonRef}/ {5}
 function Page() {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
