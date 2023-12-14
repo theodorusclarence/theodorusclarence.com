@@ -323,6 +323,14 @@ function Card({ product, className, classNames, ...rest }: CardProps) {
 
 Here I created a `classNames` object with `title`, `description`, and `image` property. Then we can use them to merge the class in the respective element.
 
+If you're using [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss), another pro tip is to add this t your VSCode settings.
+
+```json title=".vscode/settings.json"
+{ "tailwindCSS.classAttributes": ["class", "className", "classNames"] }
+```
+
+Adding this will enable Tailwind CSS IntelliSense to autocomplete in the `classNames` object.
+
 ### Components With Ref
 
 You might notice that the type name is `ComponentProps_Without_Ref`, yes there is another type called `ComponentProps_With_Ref`.
