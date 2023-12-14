@@ -9,7 +9,7 @@ tags: 'nextjs,react'
 
 ## Introduction
 
-Creating a React component is fairly easy, just a function like this, and it’s done.
+Creating a React component is fairly easy, just a function like this.
 
 ```tsx
 export default function Card() {
@@ -17,7 +17,7 @@ export default function Card() {
 }
 ```
 
-then you can call them using JSX like `<Card />`.
+Then you can call them using JSX like `<Card />`, and it’s done.
 
 However, **to do them correctly** is the reason that I write this blog. I’ve been wanting to write this for quite some time.
 
@@ -25,27 +25,33 @@ Doing them correctly may come naturally to developers who have been writing Reac
 
 ## The Common Flaw
 
-If you look at the Card component that I created above, it has one **crucial** flaw: it’s not fully reusable.
+If you look at the Card component that I created above, it has one **crucial** flaw: **it’s not fully reusable.**
 
-> But wait, it is reusable?!
+> But wait, it is reusable?! I can use them multiple times in different files.
 
-Well yes, you can use them multiple times in different files.
+Well yes, you can.
 
 ```tsx
 // order page
-<Card />
+<Card />;
 
 // product list page
-{[...].map((product) => <Card />)}
+<div>
+  {products.map((product) => (
+    <Card />
+  ))}
+</div>;
 ```
 
-But they are not **fully reusable**
+But they are not **fully reusable**.
 
-A fully reusable component is what I call a component that is enjoyable to use. It’s not something that frustrates you, every time you need to customize the component. It’s something that actually helps you code quickly by being reusable.
+A fully reusable component is what I call a component that is enjoyable to use. While the flawed ones frustrate you every time you need to customize them. It’s something that actually helps you code quickly by being fully reusable.
+
+First, let's see how the flawed component looks like.
 
 ## Flawed Component in Action
 
-Let’s say you have a layout like this
+Let’s say we have a layout like this
 
 <CloudinaryImg
   mdx
@@ -57,7 +63,7 @@ Let’s say you have a layout like this
 
 We can easily achieve them using this code:
 
-\*I use Tailwind CSS for this demo, but the concept applies to all solutions.
+_I use Tailwind CSS for this demo, but the concept applies to all solutions._
 
 ```tsx /grid-cols-3/
 export default function ProductListPage() {
