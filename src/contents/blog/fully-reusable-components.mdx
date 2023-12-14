@@ -199,6 +199,39 @@ export default function ProductListPage() {
 
 We can add the two-columns feature by adding a custom `className`, and the confetti feature by adding an `onClick` directly in the `Card` component.
 
+### Important Note about Fully Reusable Component
+
+While it is a good practice to spread all of the props, do note that **not all component needs to be fully reusable**.
+
+For example, a `ProductList` component that renders a list of products, probably only needs to be customizable in the `className` props. You can use `Pick` for that, and take only the `className` props.
+
+```tsx /Pick/
+type ProductListProps = Pick<
+  React.ComponentPropsWithoutRef<'div'>,
+  'className'
+>;
+
+// No need to spread since we only need className
+export default function ProductList({ className }: ProductListProps) {
+  return (
+    <div className={cn(['grid-cols-3', className])}>
+      {products.map((product, i) => (
+        <Card key={product.id} product={product} />
+      ))}
+    </div>
+  );
+}
+```
+
+We can just pick what we need from `React.ComponentPropsWithoutRef<'div'>` and use them in our component.
+
+Some components that might need to be fully reusable are:
+
+- Reusable basic components like `Button`, `Input`, `Select`, `Textarea`, etc.
+- Reusable UI components like `Modal`, `Popover`, `Tooltip`, etc.
+
+Do emphasize on the word **reusable** here. Make sure you're using this '_fully reusable component_' concept to a reusable component.
+
 ## Common Pitfalls & Solutions
 
 By using fully reusable components, there are some pitfalls that you might encounter. I compiled some of them along with the solutions that I came up with.
