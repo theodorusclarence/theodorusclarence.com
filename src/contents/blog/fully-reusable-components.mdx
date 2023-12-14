@@ -154,16 +154,16 @@ type CardProps = {
   product: Product;
 } & React.ComponentPropsWithoutRef<'div'>;
 
+// first we grab the rest of the props using rest parameter,
 function Card({ product, ...rest }: CardProps) {
-  // {...rest} is grabbing all of the props,
-  // then spreading them back to our div
+  // then spread them back to our div
   return <div {...rest}>{product.title}</div>;
 }
 ```
 
 For those of you who are not familiar with `...`, it actually represents 2 distinct operators: Rest Parameters & Spread Operators
 
-1. [Rest Parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters) (line 5) is used to get all of the properties from objects when [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+1. [Rest Parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters) (line 6) is used to get all of the properties from objects when [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 2. [Spread Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) (line 8) is used to spread all of the properties back to the object.
 
 The best thing is we now get autocomplete! Woohoo!
