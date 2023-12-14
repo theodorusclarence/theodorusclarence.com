@@ -1,0 +1,369 @@
+---
+title: 'How to Create Fully Reusable React Components'
+publishedAt: '2023-12-14'
+description: 'Creating a component is fairly easy, but doing them correctly is a different story.'
+englishOnly: 'true'
+banner: 'jeremy-bishop-QUwLZNchflk-unsplash'
+tags: 'nextjs,react'
+---
+
+## Introduction
+
+Creating a React component is fairly easy, just a function like this, and it’s done.
+
+```tsx
+export default function Card() {
+  return <div>card</div>;
+}
+```
+
+then you can call them using JSX like `<Card />`.
+
+However, **to do them correctly** is the reason that I write this blog. I’ve been wanting to write this for quite some time.
+
+Doing them correctly may come naturally to developers who have been writing React for quite a while, but not for beginners. This is something that I learned the hard way over experience, nobody really taught me this. I want you who are currently reading to get them quickly.
+
+## The Common Flaw
+
+If you look at the Card component that I created above, it has one **crucial** flaw: it’s not fully reusable.
+
+> But wait, it is reusable?!
+
+Well yes, you can use them multiple times in different files.
+
+?EDITORNOTES: set filename to order-page
+
+```tsx
+// order page
+<Card />
+
+// product list page
+{[...].map((product) => <Card />)}
+```
+
+But they are not **fully reusable**
+
+A fully reusable component is what I call a component that is enjoyable to use. It’s not something that frustrates you, every time you need to customize the component. It’s something that actually helps you code quickly by being reusable.
+
+## Flawed Component in Action
+
+Let’s say you have a layout like this
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/fully-reusable-component/normal-layout-three'
+  alt='normal-layout-three'
+  width={600}
+  height={396}
+/>
+
+We can easily achieve them using this code:
+
+\*I use Tailwind CSS for this demo, but the concept applies to all solutions.
+
+```tsx
+export default function ProductListPage() {
+  return (
+    <div className='grid-cols-3'>
+      {products.map((product) => (
+        <Card key={product.id} product={product} />
+      ))}
+    </div>
+  );
+}
+
+function Card({ product }: { product: Product }) {
+  return <div className='border p-1'>{product.title}</div>;
+}
+```
+
+So we have a three-column grid, and we map all of the cards inside that grid. Inside the card we have a product props that renders the title. Pretty simple right?
+
+Here’s how it went haywire.
+
+## Customization in Flawed Components
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/fully-reusable-component/layout-with-featured'
+  alt='layout-with-featured'
+  width={600}
+  height={400}
+/>
+
+Then your lovely designer has requests:
+
+- Make the first card span over 2 columns (it’s for featured products)
+- When we click a product with a title containing ‘yay’, I want them to shoot out confetti by calling `confetti()`.
+
+Well, you could create two brand new components called `FeatureCard` and `ConfettiCard`, but it’s **counter-productive.** Everything inside is totally the same, except that one uses two columns, and one shoots confetti.
+
+Usually, when have this kind of situation, we rely upon custom props for each condition. But it goes downhill pretty quickly as the requirements grow.
+
+```tsx
+type CardProps = {
+  product: Product;
+  isFeatured?: boolean;
+  shootsConfetti?: boolean;
+
+  isFeaturedThreeColumns?: boolean;
+  isFeaturedButMakeItPop?: boolean;
+  // 20 other props that your designer needs
+};
+
+function Card({ product, ...props }: CardProps) {
+  return (
+    <div
+      // clsx is a simple library to combine string together
+      className={clsx([
+        'border p-1',
+        props.isFeatured && 'col-span-2',
+        props.isFeaturedThreeColumns && 'col-span-3',
+        props.isFeaturedButMakeItPop && 'bg-pink-500',
+      ])}
+      onClick={() => {
+        if (props.shootsConfetti) {
+          confetti();
+        }
+      }}
+    >
+      {product.title}
+    </div>
+  );
+}
+```
+
+I agree that using custom props sometimes be the best solution, but we can totally this problem if we can directly pass `classNames` and `onClick` directly into the component.
+
+## Fully Reusable Component as A Solution
+
+So what we basically need, is to add all of the props that are in a div to the component, that concludes `className`, `onClick`, `onHover`, `title`, `aria-label`, `style`, `about`, `id`, `onMouseEnter`, `onMouseLeave`. Yeah, you got my point.
+
+It’s A LOT.
+
+Don’t worry we have a type for that, may I introduce `React.ComponentPropsWithoutRef<'div'>`. So instead of adding each and every component props, we can use this helpful type.
+
+```tsx
+type CardProps = {
+  product: Product;
+} & React.ComponentPropsWithoutRef<'div'>;
+
+function Card({ product, ...rest }: CardProps) {
+  // {...rest} is grabbing all of the props,
+  // then spreading them back to our div
+  return <div {...rest}>{product.title}</div>;
+}
+```
+
+This also applies to any element you’re using: `<'input'>`, `<'button'>`, anything!
+
+The best thing is we now get autocomplete! Woohoo!
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/fully-reusable-component/autocomplete'
+  alt='autocomplete'
+  width={400}
+  height={360}
+/>
+
+With the updated component, we can finally make our designer happy with this implementation
+
+```tsx
+export default function ProductListPage() {
+  return (
+    <div className='grid-cols-3'>
+      {products.map((product, i) => (
+        <Card
+          key={product.id}
+          product={product}
+          className={clsx([i === 0 && 'col-span-2'])}
+          onClick={() => {
+            if (product.title.contains('yay')) confetti();
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+We can add the two-columns feature by adding a custom className, and the confetti feature by adding an onClick directly in the `Card` component.
+
+## Common Pitfalls & Solutions
+
+By using fully reusable components, there are some pitfalls that you might encounter. I compiled some of them along with the solutions that I came up with.
+
+### Class Name Conflict
+
+If you’re using Tailwind CSS, sometimes merging classes will cause a conflict
+
+```tsx
+function Card({
+  product,
+  // Don't forget to take className out of the rest parameter
+  className,
+  ...rest
+}: CardProps) {
+  return (
+    <div className={clsx(['mt-4', className])} {...rest}>
+      {product.title}
+    </div>
+  );
+}
+
+<Card className='mt-12' />;
+```
+
+We merge the `className` using `clsx` function, so any class that we pass outside of the component will be reflected in the final code.
+
+However, in the rendered code we will have two different margin-top classes.
+
+```tsx
+<div class='mt-12 mt-4'>...</div>
+```
+
+Which is not good. We can use [tailwind-merge](https://www.npmjs.com/package/tailwind-merge) library to solve that.
+
+tailwind-merge function will return the latest value in the parameter. So it will prioritize our `mt-12` over the `mt-4`. Basically what we need.
+
+```tsx
+import { twMerge } from 'tailwind-merge';
+
+twMerge('mt-4 bg-red hover:bg-dark-red', 'mt-12 bg-[#B91C1C]');
+// → 'hover:bg-dark-red mt-12 bg-[#B91C1C]'
+```
+
+I usually create a wrapper with `clsx` like this
+
+\*EDITORNOTES: /src/lib/utils.ts
+
+```tsx
+import clsx, { ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+/** Merge classes with tailwind-merge with clsx full feature */
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+So we now can merge conflicts and compose classes neatly.
+
+You can safely customize your component now!
+
+```tsx
+type CardProps = {
+  product: Product;
+} & React.ComponentPropsWithoutRef<'div'>;
+
+function Card({ product, className, ...rest }: CardProps) {
+  return (
+    <div className={cn(['mt-4', className])} {...rest}>
+      {product.title}
+    </div>
+  );
+}
+```
+
+### Multiple Class Name
+
+When you start to have more items inside the component, it can be quite confusing as to how to pass a `className` to a specific element.
+
+Let’s say our `Card` component has a title, description, and images. We already use `className` props for the wrapper div. How can we customize the title class?
+
+```tsx
+type CardProps = {
+  product: Product;
+} & React.ComponentPropsWithoutRef<'div'>;
+function Card({ product, className, ...rest }: CardProps) {
+  return (
+    <div className={cn('mt-4', className)} {...rest}>
+      <h1>{product.title}</h1>
+      <p>{product.description}</p>
+      <img src={product.image} />
+    </div>
+  );
+}
+
+// How to access h1, p, and img?
+<Card className='' />;
+```
+
+Usually, for the normal `className` props, I always use it for the outermost element (wrapper). The solution is to create another object for a specific element that I might need.
+
+```tsx
+type CardProps = {
+  product: Product;
+  classNames?: {
+    title?: string;
+    description?: string;
+    image?: string;
+  };
+} & React.ComponentPropsWithoutRef<'div'>;
+function Card({ product, className, classNames, ...rest }: CardProps) {
+  return (
+    <div className={clsx('mt-4', className)} {...rest}>
+      <h1 className={cn(classNames?.title)}>{product.title}</h1>
+      <p className={cn(classNames?.description)}>{product.description}</p>
+      <img className={cn(classNames?.image)} src={product.image} />
+    </div>
+  );
+}
+
+<Card classNames={{ title: 'text-red-500', image: 'aspect-square' }} />;
+```
+
+Here I created a `classNames` object with `title`, `description`, and `image` property. Then we can use them to merge the class in the respective element.
+
+### Components With Ref
+
+You might notice that the type name is `ComponentPropsWithoutRef`, yes there is another type called `ComponentPropsWithRef`.
+
+This is a needed case if you’re also forwarding ref to your component. I won’t explain in detail about ref forwarding, maybe in the next post (comment if you’d like me to write about it).
+
+Simply, ref forwarding is needed when you want to access the ref value of your component. Usually external library like [radix](https://www.radix-ui.com/primitives) does.
+
+You can add the type like this.
+
+```tsx
+type ButtonProps = React.ComponentPropsWithRef<'button'>;
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, children, ...rest }, ref) => {
+    return (
+      <button ref={ref} className={cn(className)} {...rest}>
+        {children}
+      </button>
+    );
+  }
+);
+
+export default Button;
+```
+
+Only then you can access the ref.
+
+```tsx
+function Page() {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    buttonRef.current?.focus();
+  }, []);
+
+  return (
+    <div>
+      <Button type='submit' disabled ref={buttonRef}>
+        Submit
+      </Button>
+    </div>
+  );
+}
+```
+
+_See how I easily add type and disabled props because we’re using a fully reusable component? \*chef’s kiss\*_
+
+## Conclusion
+
+Please use fully reusable components. Your teammates and your future-self will thank you.
