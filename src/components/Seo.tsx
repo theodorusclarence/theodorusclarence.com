@@ -20,6 +20,7 @@ type SeoProps = {
   isBlog?: boolean;
   banner?: string;
   canonical?: string;
+  tags?: string;
 } & Partial<typeof defaultMeta>;
 
 export default function Seo(props: SeoProps) {
@@ -40,6 +41,7 @@ export default function Seo(props: SeoProps) {
     templateTitle: props.templateTitle,
     banner: props.banner,
     isBlog: props.isBlog,
+    tags: props.tags,
   });
 
   return (

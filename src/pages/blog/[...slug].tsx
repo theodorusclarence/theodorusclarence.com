@@ -106,6 +106,7 @@ export default function SingleBlogPage({
           frontmatter.lastUpdated ?? frontmatter.publishedAt
         ).toISOString()}
         canonical={frontmatter.repost}
+        tags={frontmatter.tags}
       />
 
       <main>

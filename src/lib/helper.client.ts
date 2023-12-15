@@ -9,6 +9,7 @@ type OpenGraphType = {
   logo?: string;
   banner?: string;
   isBlog?: boolean;
+  tags?: string;
 };
 export function openGraph({
   siteName,
@@ -17,6 +18,7 @@ export function openGraph({
   banner,
   logo = 'https://og.clarence.link/images/logo.jpg',
   isBlog = false,
+  tags,
 }: OpenGraphType): string {
   const ogLogo = encodeURIComponent(logo);
   const ogSiteName = encodeURIComponent(siteName.trim());
@@ -26,9 +28,10 @@ export function openGraph({
   const ogDesc = encodeURIComponent(description.trim());
 
   if (isBlog) {
+    const ogTags = tags ? encodeURIComponent(tags.trim()) : undefined;
     const ogBanner = banner ? encodeURIComponent(banner.trim()) : undefined;
 
-    return `https://og.clarence.link/api/blog?templateTitle=${ogTemplateTitle}&banner=${ogBanner}`;
+    return `https://og.clarence.link/api/blog?templateTitle=${ogTemplateTitle}&banner=${ogBanner}&tags=${ogTags}`;
   }
 
   return `https://og.clarence.link/api/gradient?siteName=${ogSiteName}&description=${ogDesc}&logo=${ogLogo}${
