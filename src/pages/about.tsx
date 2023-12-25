@@ -144,7 +144,7 @@ export default function AboutPage() {
             <h2>Uses</h2>
             <CloudinaryImg
               className='mt-8 aspect-video'
-              publicId='theodorusclarence/about/setup.jpg'
+              publicId='theodorusclarence/about/setup_2.jpg'
               width='2000'
               height='1500'
               alt='Photo of my desk setup'
@@ -160,6 +160,7 @@ export default function AboutPage() {
                 <li>Pexio Jervis Ergonomic Chair</li>
                 <li>Press Play Desk Shelf</li>
                 <li>Mi Computer Monitor Light Bar</li>
+                <li>Creative Pebble V3</li>
               </ul>
             </article>
           </div>
