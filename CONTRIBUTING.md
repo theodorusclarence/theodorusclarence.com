@@ -30,10 +30,10 @@ cd ./theodorusclarence.com
 cp .env.example .env.local
 
 # Install the dependencies
-yarn
+pnpm
 
 # Run the development server
-yarn dev
+pnpm dev
 ```
 
 You can now open up `http://localhost:3000` and start writing code!
@@ -58,11 +58,11 @@ you can change the `isProd` into `true` to turn the feature on, but expect some 
 
 When writing your code, please try to follow the existing code style.
 
-Your code will be automatically linted and formatted before each commit. However, if you want to manually lint and format, use the provided yarn scripts.
+Your code will be automatically linted and formatted before each commit. However, if you want to manually lint and format, use the provided pnpm scripts.
 
 ```sh
-yarn lint:fix
-yarn format
+pnpm lint:fix
+pnpm format
 ```
 
 You also have to follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for the commit message.
