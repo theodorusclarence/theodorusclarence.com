@@ -59,6 +59,18 @@ export default function IndexPage({
               You can call me <Accent>Clarence</Accent>
             </h1>
             <p
+              className='mt-2 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-3 text-sm md:text-base 2xl:text-lg'
+              data-fade='2'
+              onClick={() => {
+                trackEvent('Social Link: Dimension', { type: 'link' });
+              }}
+            >
+              Front-end Engineer at{' '}
+              <CustomLink href='https://dimension.dev/?ref=theodorusclarence.com'>
+                Dimension
+              </CustomLink>
+            </p>
+            <p
               className={clsx(
                 'mt-4 max-w-4xl text-gray-700 dark:text-gray-200 md:mt-6',
                 'md:text-lg 2xl:text-xl'
@@ -68,6 +80,7 @@ export default function IndexPage({
               I work with React Ecosystem, and write to teach people how to
               rebuild and redefine fundamental concepts through mental models.
             </p>
+
             <p
               className='mt-3 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-4 md:text-lg 2xl:text-xl'
               data-fade='4'
