@@ -79,7 +79,7 @@ export default async function handler(
         contentViews: (content?._count.views ?? 0) + (devtoViews ?? 0),
         contentLikes: content?._count.likes ?? 0,
         devtoViews: devtoViews,
-        likesByUser: await getUserLikeCount({ sessionId, slug }),
+        likesByUser: (await getUserLikeCount({ sessionId, slug })) ?? 0,
       });
     } else {
       res.status(405).json({ message: 'Method Not Allowed' });

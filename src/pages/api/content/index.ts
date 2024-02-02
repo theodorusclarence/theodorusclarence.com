@@ -19,6 +19,7 @@ export default async function handler(
           },
         },
       });
+
       const devto = await getViewsFromDevto();
 
       const content = _content.map((meta) => {

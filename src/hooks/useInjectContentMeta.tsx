@@ -1,8 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
 import * as React from 'react';
-import useSWR from 'swr';
 
 import { pickContentMeta } from '@/lib/contentMeta';
 import { cleanBlogPrefix } from '@/lib/helper.client';
+import { getContentMeta } from '@/lib/requests/content-meta';
 
 import { contentMetaFlag } from '@/constants/env';
 
@@ -11,15 +12,16 @@ import {
   InjectedMeta,
   PickFrontmatter,
 } from '@/types/frontmatters';
-import { ContentMeta } from '@/types/meta';
 
 export default function useInjectContentMeta<T extends ContentType>(
   type: T,
   frontmatter: Array<PickFrontmatter<T>>
 ) {
-  const { data: contentMeta, error } = useSWR<Array<ContentMeta>>(
-    contentMetaFlag ? '/api/content' : null
-  );
+  const { data: contentMeta, error } = useQuery({
+    queryKey: ['contents'],
+    queryFn: getContentMeta,
+    enabled: contentMetaFlag,
+  });
   const isLoading = !error && !contentMeta;
   const meta = React.useMemo(
     () => pickContentMeta(contentMeta, type),

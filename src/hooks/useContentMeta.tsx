@@ -1,10 +1,13 @@
-import axios from 'axios';
-import debounce from 'lodash/debounce';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import * as React from 'react';
-import useSWR from 'swr';
+
+import {
+  getSingleContentMeta,
+  incrementLikeCount,
+  incrementViewCount,
+} from '@/lib/requests/content-meta';
 
 import { contentMetaFlag, incrementMetaFlag } from '@/constants/env';
-import { cacheOnly } from '@/constants/swr';
 
 import { ContentMeta, SingleContentMeta } from '@/types/meta';
 
@@ -12,85 +15,162 @@ export default function useContentMeta(
   slug: string,
   { runIncrement = false }: { runIncrement?: boolean } = {}
 ) {
-  //#region  //*=========== Get content cache ===========
-  const { data: allContentMeta } = useSWR<Array<ContentMeta>>(
-    contentMetaFlag ? '/api/content' : null,
-    cacheOnly
-  );
+  //#region  //*=========== Get Content Cache ===========
+  const queryClient = useQueryClient();
+  const allContentMeta = queryClient.getQueryData<Array<ContentMeta>>([
+    'contents',
+  ]);
   const _preloadMeta = allContentMeta?.find((meta) => meta.slug === slug);
   const preloadMeta: SingleContentMeta | undefined = _preloadMeta
     ? {
         contentLikes: _preloadMeta.likes,
         contentViews: _preloadMeta.views,
-        likesByUser: _preloadMeta.likesByUser,
+        likesByUser: _preloadMeta.likesByUser ?? null,
         devtoViews: _preloadMeta.devtoViews,
       }
     : undefined;
-  //#endregion  //*======== Get content cache ===========
+  //#endregion  //*======== Get Content Cache ===========
 
   const {
-    data,
+    data: contentMeta,
+    isLoading,
     error: isError,
-    mutate,
-  } = useSWR<SingleContentMeta>(
-    contentMetaFlag ? '/api/content/' + slug : null,
-    {
-      fallbackData: preloadMeta,
-    }
-  );
+  } = useQuery({
+    queryKey: ['contents', slug],
+    queryFn: () => getSingleContentMeta({ slug }),
+    initialData: preloadMeta,
+    enabled: contentMetaFlag,
+  });
+
+  //#region  //*=========== Increment Views ===========
+  const { mutate: mutateIncrementViews } = useMutation({
+    mutationFn: () => incrementViewCount({ slug }),
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['contents'] });
+      const previousSingleMeta = queryClient.getQueryData<SingleContentMeta>([
+        'contents',
+        slug,
+      ]);
+      queryClient.setQueryData<SingleContentMeta>(['contents', slug], (prev) =>
+        prev
+          ? {
+              ...prev,
+              contentViews: prev.contentViews + 1,
+            }
+          : undefined
+      );
+      const previousAllMeta = queryClient.getQueryData<Array<ContentMeta>>([
+        'contents',
+      ]);
+      queryClient.setQueryData<Array<ContentMeta>>(['contents'], (prev) =>
+        prev
+          ? prev.map((meta) =>
+              meta.slug === slug
+                ? {
+                    ...meta,
+                    views: meta.views + 1,
+                  }
+                : meta
+            )
+          : undefined
+      );
+      return { previousSingleMeta, previousAllMeta };
+    },
+    onError: (_err, _variables, context) => {
+      queryClient.setQueryData<SingleContentMeta>(
+        ['contents', slug],
+        context?.previousSingleMeta
+      );
+      queryClient.setQueryData<Array<ContentMeta>>(
+        ['contents'],
+        context?.previousAllMeta
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['contents', slug],
+        exact: true,
+      });
+      queryClient.invalidateQueries({ queryKey: ['contents'], exact: true });
+    },
+  });
+  //#endregion  //*======== Increment Views ===========
+
+  //#region  //*=========== Increment Like ===========
+  const { mutate: mutateIncrementLikes } = useMutation({
+    mutationFn: () => incrementLikeCount({ slug }),
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['contents'] });
+      const previousSingleMeta = queryClient.getQueryData<SingleContentMeta>([
+        'contents',
+        slug,
+      ]);
+      queryClient.setQueryData<SingleContentMeta>(['contents', slug], (prev) =>
+        prev
+          ? {
+              ...prev,
+              contentLikes: prev.contentLikes + 1,
+              likesByUser: (prev.likesByUser || 0) + 1,
+            }
+          : undefined
+      );
+      const previousAllMeta = queryClient.getQueryData<Array<ContentMeta>>([
+        'contents',
+      ]);
+      queryClient.setQueryData<Array<ContentMeta>>(['contents'], (prev) =>
+        prev
+          ? prev.map((meta) =>
+              meta.slug === slug
+                ? {
+                    ...meta,
+                    likes: meta.likes + 1,
+                  }
+                : meta
+            )
+          : undefined
+      );
+      return { previousSingleMeta, previousAllMeta };
+    },
+    onError: (_err, _variables, context) => {
+      queryClient.setQueryData<SingleContentMeta>(
+        ['contents', slug],
+        context?.previousSingleMeta
+      );
+      queryClient.setQueryData<Array<ContentMeta>>(
+        ['contents'],
+        context?.previousAllMeta
+      );
+    },
+  });
+  //#endregion  //*======== Increment Like ===========
 
   React.useEffect(() => {
     if (runIncrement && incrementMetaFlag) {
-      incrementViews(slug).then((fetched) => {
-        mutate({
-          ...fetched,
-        });
-      });
+      mutateIncrementViews();
     }
-  }, [mutate, runIncrement, slug]);
+  }, [mutateIncrementViews, runIncrement, slug]);
 
   const addLike = () => {
     // Don't run if data not populated,
     // and if maximum likes
-    if (!data || data.likesByUser >= 5) return;
+    if (
+      !contentMeta ||
+      contentMeta?.likesByUser === null ||
+      contentMeta.likesByUser >= 5
+    )
+      return;
 
     // Mutate optimistically
-    mutate(
-      {
-        contentViews: data.contentViews,
-        contentLikes: data.contentLikes + 1,
-        likesByUser: data.likesByUser + 1,
-        devtoViews: data.devtoViews,
-      },
-      false
-    );
-
-    incrementLikes(slug).then(() => {
-      debounce(() => {
-        mutate();
-      }, 1000)();
-    });
+    mutateIncrementLikes();
   };
 
   return {
-    isLoading: !isError && !data,
+    isLoading,
     isError,
-    views: data?.contentViews,
-    contentLikes: data?.contentLikes ?? 0,
-    devtoViews: data?.devtoViews,
-    likesByUser: data?.likesByUser ?? 0,
+    views: contentMeta?.contentViews,
+    contentLikes: contentMeta?.contentLikes ?? 0,
+    devtoViews: contentMeta?.devtoViews,
+    likesByUser: contentMeta?.likesByUser ?? 0,
     addLike,
   };
-}
-
-async function incrementViews(slug: string) {
-  const res = await axios.post<SingleContentMeta>('/api/content/' + slug);
-
-  return res.data;
-}
-
-async function incrementLikes(slug: string) {
-  const res = await axios.post<SingleContentMeta>('/api/like/' + slug);
-
-  return res.data;
 }

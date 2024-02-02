@@ -1,23 +1,26 @@
+import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import * as React from 'react';
 import { SiSpotify } from 'react-icons/si';
 import { Tooltip } from 'react-tippy';
-import useSWR from 'swr';
+
+import { getSpotifyNowPlaying } from '@/lib/requests/spotify';
 
 import NextImage from '@/components/images/NextImage';
 import UnstyledLink, {
   UnstyledLinkProps,
 } from '@/components/links/UnstyledLink';
 
-import { SpotifyData } from '@/types/spotify';
-
 export default function Spotify({
   className,
   ...rest
 }: Omit<UnstyledLinkProps, 'href' | 'children'>) {
-  const { data } = useSWR<SpotifyData>('/api/spotify');
+  const { data: spotify } = useQuery({
+    queryKey: ['spotify'],
+    queryFn: getSpotifyNowPlaying,
+  });
 
-  return data?.isPlaying ? (
+  return spotify?.isPlaying ? (
     <figure className={className} data-cy='spotify'>
       <Tooltip
         trigger='mouseenter'
@@ -30,7 +33,7 @@ export default function Spotify({
       >
         <UnstyledLink
           {...rest}
-          href={data.songUrl}
+          href={spotify.songUrl}
           className={clsx(
             'relative flex items-center gap-4 p-3',
             'border dark:border-gray-600',
@@ -42,16 +45,16 @@ export default function Spotify({
           <NextImage
             useSkeleton
             className='w-16 shadow-sm dark:shadow-none'
-            src={data.albumImageUrl}
-            alt={data.album}
+            src={spotify.albumImageUrl}
+            alt={spotify.album}
             width={640}
             height={640}
             unoptimized
           />
           <div className='flex-1'>
-            <p className='text-sm font-medium'>{data.title}</p>
+            <p className='text-sm font-medium'>{spotify.title}</p>
             <p className='mt-1 text-xs text-gray-600 dark:text-gray-300'>
-              {data.artist}
+              {spotify.artist}
             </p>
           </div>
           <div className='absolute bottom-1.5 right-1.5'>
