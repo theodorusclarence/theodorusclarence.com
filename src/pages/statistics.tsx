@@ -1,9 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import clsx from 'clsx';
 import * as React from 'react';
-import useSWR from 'swr';
 
 import { pickContentMeta } from '@/lib/contentMeta';
+import { getContentMeta } from '@/lib/requests/content-meta';
 
 import Layout from '@/components/layout/Layout';
 import UnstyledLink from '@/components/links/UnstyledLink';
@@ -12,12 +13,12 @@ import Table from '@/components/table/Table';
 
 import { contentMetaFlag } from '@/constants/env';
 
-import { ContentMeta } from '@/types/meta';
-
 export default function StatisticsPage() {
-  const { data: contentMeta } = useSWR<Array<ContentMeta>>(
-    contentMetaFlag ? '/api/content' : null
-  );
+  const { data: contentMeta } = useQuery({
+    queryKey: ['contents'],
+    queryFn: getContentMeta,
+    enabled: contentMetaFlag,
+  });
 
   //#region  //*=========== BlogColumns ===========
   const rawBlogs = pickContentMeta(contentMeta, 'blog');

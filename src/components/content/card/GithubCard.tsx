@@ -1,34 +1,24 @@
+import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import * as React from 'react';
 import { BiGitRepoForked } from 'react-icons/bi';
 import { HiOutlineStar } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
-import useSWR from 'swr';
+
+import { getGithubRepo } from '@/lib/requests/github';
 
 import Accent from '@/components/Accent';
 import UnstyledLink from '@/components/links/UnstyledLink';
-
-interface GithubRepo {
-  full_name: string;
-  description: string;
-  forks: number;
-  stargazers_count: number;
-  html_url: string;
-  owner: {
-    avatar_url: string;
-    login: string;
-    html_url: string;
-  };
-}
 
 type GithubCardProps = {
   repo: string;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export default function GithubCard({ repo, className }: GithubCardProps) {
-  const { data: repository, error } = useSWR<GithubRepo>(
-    `https://api.github.com/repos/${repo}`
-  );
+  const { data: repository, error } = useQuery({
+    queryKey: ['github', repo],
+    queryFn: () => getGithubRepo({ repo }),
+  });
 
   return !error && repository ? (
     <div className='not-prose'>

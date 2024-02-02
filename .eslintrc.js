@@ -10,6 +10,7 @@ module.exports = {
     'next',
     'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
     'prettier',
   ],
   rules: {
