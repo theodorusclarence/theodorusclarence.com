@@ -141,6 +141,13 @@ export default function useContentMeta(
         context?.previousAllMeta
       );
     },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['contents', slug],
+        exact: true,
+      });
+      queryClient.invalidateQueries({ queryKey: ['contents'], exact: true });
+    },
   });
   //#endregion  //*======== Increment Like ===========
 
@@ -170,7 +177,7 @@ export default function useContentMeta(
     views: contentMeta?.contentViews,
     contentLikes: contentMeta?.contentLikes ?? 0,
     devtoViews: contentMeta?.devtoViews,
-    likesByUser: contentMeta?.likesByUser ?? 0,
+    likesByUser: contentMeta?.likesByUser ?? null,
     addLike,
   };
 }

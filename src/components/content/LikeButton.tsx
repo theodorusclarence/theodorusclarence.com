@@ -10,7 +10,7 @@ export default function LikeButton({ slug }: { slug: string }) {
 
   return (
     <div className='flex items-center space-x-4'>
-      {isLoading ? (
+      {isLoading || likesByUser === null ? (
         <div className='animate-pulse text-gray-500'>
           <svg
             stroke='currentColor'
@@ -35,7 +35,7 @@ export default function LikeButton({ slug }: { slug: string }) {
       <div
         className={clsx(
           'mt-1 text-lg font-medium',
-          likesByUser === 0
+          likesByUser === null || likesByUser === 0
             ? 'text-gray-400 dark:text-gray-500'
             : 'bg-primary-300/50 transition-colors dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent'
         )}
