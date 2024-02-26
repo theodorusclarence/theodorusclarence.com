@@ -1,0 +1,79 @@
+---
+title: 'Derived State'
+tags: 'react'
+description: ''
+---
+
+[Go to Twitter Post](https://x.com/th_clarence/status/1762114199579464130?s=20)
+
+## useState Might Be Overused
+
+useState sometimes is overused, there will be a case where you can just use Derived State
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/derived-state/Derived_State_-_1'
+  alt='Derived'
+  width={1200}
+  height={675}
+/>
+
+### The wrong way
+
+Say that we're building this simple component
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/derived-state/Derived_State_-_2'
+  alt='Derived'
+  width={1200}
+  height={675}
+/>
+
+Natural way is to create another state for filtered since it's a data that can change
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/derived-state/Derived_State_-_3'
+  alt='Derived'
+  width={1200}
+  height={675}
+/>
+
+## React Re-renders
+
+However, react re-renders! Every time the search & data state changes, it's going to call the whole function again.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/derived-state/Derived_State_-_4'
+  alt='Derived'
+  width={1200}
+  height={675}
+/>
+
+## Derived State
+
+Every re-render, if you have a computation, it's going to be re-run again and again. So we can derive the filtered from the data & search state itself.
+
+This concept is called derived state.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/derived-state/Derived_State_-_5'
+  alt='Derived'
+  width={1200}
+  height={675}
+/>
+
+### Performance improvement
+
+If you're concerned with performance, you can utilize useMemo hook, so every re-render it can check the dependency array and decide if it should recompute
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/shorts/react/derived-state/Derived_State_-_6'
+  alt='Derived'
+  width={1200}
+  height={675}
+/>
