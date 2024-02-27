@@ -143,19 +143,23 @@ export default function AboutPage() {
           <div className='layout mt-16'>
             <h2>Uses</h2>
             <CloudinaryImg
-              className='mt-8 aspect-video'
-              publicId='theodorusclarence/about/setup_2.jpg'
-              width='2000'
-              height='1500'
+              className='mt-8'
+              publicId='theodorusclarence/about/setup_3_cropped'
+              width={2000}
+              height={1125}
               alt='Photo of my desk setup'
             />
             <article className='prose mt-4 dark:prose-invert'>
               <ul>
+                <li>
+                  MacBook Pro (14" M3 Pro 2023, 36GB, 1TB) <b>primary</b>
+                </li>
                 <li>MacBook Pro (13" M1 2020, 16GB, 1TB)</li>
                 <li>LG UltraFine™ 4K 32 Inch LG (32UN880-B)</li>
                 <li>Keychron K2v2</li>
-                <li>Logitech M590</li>
+                <li>Logitech MX Master 3s</li>
                 <li>Kindle Paperwhite (10th Generation)</li>
+                <li>Nintendo Switch OLED</li>
                 <li>Stramm Bruno Standing Desk 160x80</li>
                 <li>Pexio Jervis Ergonomic Chair</li>
                 <li>Press Play Desk Shelf</li>
