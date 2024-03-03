@@ -1,0 +1,501 @@
+---
+title: 'Advanced React Patterns'
+publishedAt: '2024-03-03'
+description: 'List of react advanced patterns complete with examples.'
+englishOnly: 'true'
+banner: 'robert-horvick-1R4uPYipCFM-unsplash'
+tags: 'nextjs,react'
+---
+
+## Introduction
+
+Honestly speaking, react patterns are kinda **weird**. The pattern that we use in React doesn't come as naturally. Which is why I created this article. My main goal is to let you know that **this pattern exists**.
+
+I can't give you an exact answer of when to use these patterns, because it differs case by case. Or as we might say: **It depends**. After you know that this pattern exists, my hope is when you get the specific use case you'll remember this article, and use it as one of the solutions. So bookmarking this article might be a great idea.
+
+Before you read this article, I want you to know that the example that I provided might be solved with another pattern. You can treat the examples as my way of showing you the syntaxes. At the end of the day, all roads lead to Rome.
+
+There are 4 patterns that I'll cover, you can skip ahead if you like:
+
+- [Component with Context](#component-with-context-pattern)
+- [Function as Child](#function-as-child-pattern)
+- [Forward Ref](#forward-ref-pattern)
+- [Higher-Order Components](#higher-order-components-pattern)
+
+## Component with Context Pattern
+
+Components that share some UI states could benefit from react context.
+
+### Demo App
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/advanced-react-patterns/component-with-context-demo'
+  alt='component-with-context-demo'
+  width={800}
+  height={331}
+/>
+
+Video description:
+
+- When the eye button is toggled, both the card title and subtitle change to bullets
+
+This is a pretty simple component, we have a `hidden` state that we need to share between the title and subtitle components. The first thing that comes to mind is to simply pass the props, but it might not be the best when the component grows. This is where component with context shines.
+
+### Creating a Context
+
+First, we need to create the context. Here's the basic boilerplate that you can use.
+
+```tsx title="hidable-card/context.tsx" showLineNumbers
+import * as React from 'react';
+
+type HidableCardContextType = {
+  hidden: boolean;
+  toggle: () => void;
+};
+const HidableCardContext = React.createContext<HidableCardContextType | null>(
+  null
+);
+
+export function HidableCardContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [hidden, setHidden] = React.useState(false);
+
+  function toggle() {
+    setHidden((prev) => !prev);
+  }
+
+  return (
+    <HidableCardContext.Provider value={{ hidden, toggle }}>
+      {children}
+    </HidableCardContext.Provider>
+  );
+}
+export const useHidableCardContext = () => {
+  const context = React.useContext(HidableCardContext);
+
+  if (!context) {
+    throw new Error(
+      'useHidableCardContext must be used inside the HidableCardContextProvider'
+    );
+  }
+
+  return context;
+};
+```
+
+Note:
+
+- I like separating context declaration to another file since multiple child components might share it
+- (line 11) Create a context provider for cleaner usage, and for declaring the states we are going to share
+- (line 28) Lastly, create a custom hook for using the context. This is where you can add a checker if the component is inside the provider or not.
+
+### Composing the Context into a Component
+
+When creating the base component, we can directly integrate the context provider right inside it.
+
+```tsx title="hidable-card/index.tsx" /HidableCardContextProvider/
+export function HidableCard({
+  className,
+  ...rest
+}: Pick<React.ComponentPropsWithoutRef<'div'>, 'className' | 'children'>) {
+  return (
+    <HidableCardContextProvider>
+      <div
+        className={cn([
+          'p-4',
+          'rounded-lg border border-gray-200 shadow-sm',
+          className,
+        ])}
+        {...rest}
+      />
+    </HidableCardContextProvider>
+  );
+}
+```
+
+Then you can create the child components by utilizing the hook that we created
+
+```tsx title="hidable-card/index.tsx" /useHidableCardContext()/
+//#region  //*=========== Title ===========
+export function HidableCardTitle({
+  className,
+  children,
+}: Pick<React.ComponentPropsWithoutRef<'h3'>, 'className' | 'children'>) {
+  const { hidden } = useHidableCardContext();
+
+  return (
+    <h3 className={cn(['text-gray-800 tracking-tighter', className])}>
+      {hidden ? <span className='tracking-wide'>••••••••</span> : children}
+    </h3>
+  );
+}
+//#endregion  //*======== Title ===========
+
+//#region  //*=========== Subtitle ===========
+export function HidableCardSubtitle({
+  className,
+  children,
+}: Pick<React.ComponentPropsWithoutRef<'p'>, 'className' | 'children'>) {
+  const { hidden } = useHidableCardContext();
+
+  return (
+    <p className={cn(['text-gray-500 text-sm', className])}>
+      {hidden ? <span className='tracking-wide'>••••••••</span> : children}
+    </p>
+  );
+}
+//#endregion  //*======== Subtitle ===========
+
+//#region  //*=========== Hide Button ===========
+export function HidableCardHideButton({ className }: { className?: string }) {
+  const { hidden, toggle } = useHidableCardContext();
+
+  return (
+    <IconButton
+      variant='light'
+      icon={hidden ? EyeOff : Eye}
+      className={className}
+      classNames={{ icon: 'text-xs' }}
+      onClick={toggle}
+    />
+  );
+}
+//#endregion  //*======== Hide Button ===========
+```
+
+What's nice about this is when you use `HidableCardTitle` outside of the base component, it will throw out an error since you don't have access to the context. Providing a safe developer experience.
+
+### Example Usage
+
+```tsx
+<HidableCard className='flex justify-between items-start'>
+  <div className='space-y-1'>
+    <HidableCardTitle>Card Title</HidableCardTitle>
+    <HidableCardSubtitle>Card Subtitle</HidableCardSubtitle>
+  </div>
+  <HidableCardHideButton />
+</HidableCard>
+```
+
+Pretty nice right? Make sure to prefix the child component with the base name so it is distinguishable.
+
+Here's the full [source code](https://react-patterns.thcl.dev/component-with-context)
+
+### Bonus: Compound Components
+
+At the end of the file, you can export it this way to make it into a compound component.
+
+```tsx
+export const HidableCard = Object.assign(HidableCard, {
+  Title: HidableCardTitle,
+  Subtitle: HidableCardSubtitle,
+  HideButton: HidableCardHideButton,
+});
+```
+
+Then you can call it like so
+
+```tsx
+<HidableCard className='flex justify-between items-start'>
+  <div className='space-y-1'>
+    <HidableCard.Title>Card Title</HidableCard.Title>
+    <HidableCard.Subtitle>Card Subtitle</HidableCard.Subtitle>
+  </div>
+  <HidableCard.HideButton />
+</HidableCard>
+```
+
+ps: this won't work in react server components.
+
+Compound components pattern is used by [Headless UI](https://headlessui.com/react/dialog). It's nice since we only need to import one component and get access to all the child components. However, it's not tree-shakeable. It's fine for Headless UI's case since you'll use all of the components anyway.
+
+---
+
+## Function as Child Pattern
+
+This pattern exposes props and allows you to render custom UI to the component. A bit hard to explain in words, let's just see the example.
+
+### Demo App
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/advanced-react-patterns/function-as-child-demo'
+  alt='function-as-child-demo'
+  width={800}
+  height={395}
+/>
+
+Video description
+
+- A dialog boolean state which is shown in the text (”Dialog is closed/open”)
+- A button that when clicked will set the boolean to true and opens a dialog.
+
+### Example Usage
+
+```tsx {4}
+export function GreetingDialogDemo() {
+  return (
+    <GreetingDialog>
+      {({ isOpen, openDialog }) => (
+        <div>
+          <div>
+            Dialog is{' '}
+            {isOpen ? (
+              <span className='text-green-500'>opened</span>
+            ) : (
+              <span className='text-red-500'>closed</span>
+            )}
+          </div>
+
+          <Button className='mt-4' variant='dark' onClick={openDialog}>
+            click me!
+          </Button>
+        </div>
+      )}
+    </GreetingDialog>
+  );
+}
+```
+
+As you can see on line 4, the states inside are exposed to the children—where you can render anything you like based on the state.
+
+When dealing with this kind of behavior, it's natural to put the state outside of the component like so:
+
+```tsx {2}
+export function UsualWayDemo() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <GreetingDialog isOpen={isOpen} setIsOpen={setIsOpen}>
+      {isOpen && ...custom ui here}
+    </GreetingDialog>
+  )
+}
+```
+
+Well this works, but you now have something I like to call a **hidden convention**.
+
+A hidden convention is when you have to fulfill a requirement to use a component. Which in this case is declaring the `isOpen` state and passing it to the component.
+
+With function as a child pattern, the state lives inside the component itself, and can be accessed by the children. Amazing.
+
+### Implementation
+
+```tsx showLineNumbers {28}
+'use client';
+
+import * as React from 'react';
+import { PiHandWaving } from 'react-icons/pi';
+
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+
+type ReturnProps = {
+  isOpen: boolean;
+  openDialog: () => void;
+};
+
+export default function GreetingDialog({
+  children,
+}: {
+  children: (props: ReturnProps) => React.ReactNode;
+}) {
+  const [open, setOpen] = React.useState(false);
+
+  function openDialog() {
+    setOpen(true);
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      {/* If you're using radix primitives, you could actually just use <DialogTrigger asChild>{children}</DialogTrigger> */}
+      {/* However, this pattern is useful if the children need to access states inside the component e.g. isOpen */}
+      {children({ openDialog, isOpen: open })}
+
+      <DialogContent>
+        <div className='flex items-center gap-2'>
+          <PiHandWaving className='text-yellow-500 animate-waving' size={30} />
+          <DialogTitle>Hello from a dialog! </DialogTitle>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+ps: incompatible with react server components, you need to create a client wrapper
+
+Note:
+
+- The only special thing in the code is in line 28. Where instead of only returning `{children}`, we now return `children({props})`
+- For the children type, you need to change it into a function that returns `ReactNode`
+
+Here's the full [source code](https://react-patterns.thcl.dev/function-as-child)
+
+---
+
+## Forward Ref Pattern
+
+React components **do not expose ref by default**. While it is a bummer, it kinda makes sense since it's quite rare that we need to access the ref of a component.
+
+When you need to access them, we need to do ref forwarding. This does not completely fit to be categorized as a pattern since it is a feature of React, but I want to include this because it's uncommon.
+
+### Demo App
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/advanced-react-patterns/forward-ref-demo'
+  alt='forward-ref-demo'
+  width={1340}
+  height={594}
+/>
+
+Description:
+
+Logs showing two different results of accessing ref between components:
+
+- SimpleButton is not forwarded, hence resulting null
+- The button with forwardRef has the ref value
+
+### Why bother forwarding?
+
+I can't fully cover the use of ref in this article, usually, it's used when you are building a basic design system element like buttons or links.
+
+As I said, it's rare that you directly access the ref yourself. However, **component libraries like Radix and Headless UI do access them**. If you don't forward your ref, the tooltip from Radix UI won't work because they rely on the [trigger ref](https://github.com/radix-ui/primitives/blob/7d884d2bddf9501187be77ae1ba406b8ea15ce24/packages/react/popover/src/Popover.tsx#L271).
+
+```tsx
+<TooltipTrigger asChild>
+  {/* Does not pass ref */}
+  <SimpleButton />
+</TooltipTrigger>
+```
+
+This is why if you are creating a button for the design system, forwarding the ref is mandatory.
+
+### Implementation
+
+```tsx
+import * as React from 'react';
+
+import { cn } from '@/lib/utils';
+
+/** Notice the use of ComponentProps_With_Ref */
+type ButtonWithRefProps = React.ComponentPropsWithRef<'button'>;
+
+// forward ref
+export const ButtonWithRef = React.forwardRef<
+  HTMLButtonElement,
+  ButtonWithRefProps
+>(({ className, ...rest }, ref) => (
+  <button
+    ref={ref}
+    className={cn(['underline active:no-underline', className])}
+    {...rest}
+  />
+));
+```
+
+To forward a ref, you can just use `React.forwardRef` function, and follow the syntax above
+
+Here's the full [source code](https://react-patterns.thcl.dev/forward-ref)
+
+---
+
+## Higher-Order Components Pattern
+
+A higher-order component (HOC) allows us to inject props or do side effects to a component.
+
+### Demo App
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/advanced-react-patterns/hoc-demo'
+  alt='hoc-demo'
+  width={1310}
+  height={382}
+/>
+
+Description:
+
+A DummyComponent uses `withLogger` HOC, which will automatically log the props passed to the component.
+
+### Implementation
+
+Higher-order components usually start with `withFunctionality` naming convention.
+
+```tsx
+import * as React from 'react';
+
+import logger from '@/lib/logger';
+
+type WithLoggerProps = object;
+
+/**
+ * For more TypeScript syntax check out the cheatsheet:
+ * @see https://react-typescript-cheatsheet.netlify.app/docs/hoc/full_example/ */
+export function withLogger<T extends WithLoggerProps = WithLoggerProps>(
+  WrappedComponent: React.ComponentType<T>
+) {
+  const displayName =
+    WrappedComponent.displayName || WrappedComponent.name || 'Component';
+
+  const Component = (props: Omit<T, keyof WithLoggerProps>) => {
+    React.useEffect(() => {
+      logger(props, `Component Props: ${displayName}`);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return <WrappedComponent {...(props as T)} />;
+  };
+
+  Component.displayName = `withLogger(${displayName})`;
+
+  return Component;
+}
+```
+
+Note:
+
+- This HOC will automatically log the props for every initial render using useEffect
+- `logger` function is a simple wrapper that nicely console.log
+
+### Example Usage
+
+```tsx /withLogger/
+function DummyComponent({
+  content,
+  number,
+}: {
+  content: string;
+  number: number;
+}) {
+  return (
+    <p className='font-mono text-sm'>
+      {`<DummyComponent content={'${content}'} number={${number}} />`}
+    </p>
+  );
+}
+export default withLogger(DummyComponent);
+```
+
+Fairly simple and clean usage. With HOC, your logs don't even need to be inside the component. It will be injected automatically using the HOC.
+
+Here's the full [source code](https://react-patterns.thcl.dev/higher-order-component)
+
+If you're interested in seeing more intricate examples, I have an [article](https://theodorusclarence.com/blog/nextjs-auth-hoc) about Next.js Authentication using Higher-Order Components.
+
+## Conclusion
+
+Learn anything new?
+
+There are a lot of react patterns out there, and you don't need to memorize all of them. My best advice is to **at least remember they exist**. Trust me, when you see the perfect use case for it, you'll know how to use it with some syntax guidance.
+
+Here are some more patterns that you can check out:
+
+- Prop getters
+- Render props
+
+I don't cover them because I haven't found a good example for it. I'll update this article when I do. You can [subscribe](https://theodorusclarence.substack.com/) to get notified.
