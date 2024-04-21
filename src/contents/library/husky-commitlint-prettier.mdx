@@ -12,23 +12,25 @@ In this configuration there are 2 things that will be checked
 ## 1. Initialize Husky
 
 ```bash
-npx husky-init && yarn
+yarn add --dev husky
+
+npx husky init
 ```
 
 It will initialize all of the needed files including a sample pre-commit hook.
 
 ## 2. Add Commitlint
 
-FIrst, install the dev dependencies
+First, install the dev dependencies
 
 ```bash
 yarn add -D @commitlint/config-conventional @commitlint/cli
 ```
 
-Then, add this to the husky hook
+Then, create a new file in the husky folder
 
-```bash
-npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```bash title=".husky/commit-msg"
+npx --no-install commitlint --edit "$1"
 ```
 
 Create commitlint.config.js, you don't need to override the rules if you don't want to
@@ -70,34 +72,38 @@ Install dependencies
 yarn add -D lint-staged prettier
 ```
 
-Lint staged is used so prettier will not need to check all of the files, but only the staged files.
+We're using lint-staged so prettier doesn't have to run on all files, but only the staged files.
 
-Add this to package.json
+Add this to package.json, or save it as a `.lintstagedrc` file
 
 ```json
 {
   // ...existing code, you can split the html,css,json if you add eslint to configuration
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,html,css,json}": ["yarn prettier --write"]
+    "**/*.{js,jsx,ts,tsx}": [
+      // If you have eslint configured, this is a great place to include it
+      "eslint --max-warnings=0",
+      "prettier --write"
+    ],
+    "**/*.{html,json,css,scss,md,mdx}": ["prettier -w"]
   }
 }
 ```
 
 Then add this to .husky/pre-commit
 
-```bash
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-yarn lint-staged
+```bash title=".husky/pre-commit"
+npx lint-staged
 ```
 
-You can also add test command here if you want to do test before each commit
+You can also add test command or eslint check here if you want to do test before each commit
 
 ## 4. Add postmerge hook
 
 Use this to add hook, so husky will run `yarn` everytime we pull changes.
 
-```bash
-npx husky add .husky/post-merge 'yarn'
+```bash title=".husky/post-merge"
+yarn
 ```
+
+You can also replace `yarn` with `pnpm install` `npm install` or whatever you're using
