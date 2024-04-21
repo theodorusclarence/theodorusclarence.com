@@ -1,6 +1,7 @@
 ---
 title: 'How to Create Fully Reusable React Components'
 publishedAt: '2023-12-14'
+lastUpdated: '2024-04-21'
 description: 'Creating a component is fairly easy, but doing them correctly is a different story.'
 englishOnly: 'true'
 banner: 'jeremy-bishop-QUwLZNchflk-unsplash'
@@ -105,7 +106,7 @@ Well, you could create two brand new components called `FeatureCard` and `Confet
 Usually, when have this kind of situation, we rely upon custom props for each condition. But it goes downhill pretty quickly as the requirements grow.
 
 ```tsx {3-4,6-7,17-19,22}
-type CardProps = {
+interface CardProps {
   product: Product;
   isFeatured?: boolean;
   shootsConfetti?: boolean;
@@ -113,7 +114,7 @@ type CardProps = {
   isFeaturedThreeColumns?: boolean;
   isFeaturedButMakeItPop?: boolean;
   // 20 other props that your designer needs
-};
+}
 
 function Card({ product, ...props }: CardProps) {
   return (
@@ -150,9 +151,9 @@ Don’t worry. We have a type for that, may I introduce `React.ComponentPropsWit
 `React.ComponentPropsWithoutRef` also applies to any element you’re using: `<'input'>`, `<'button'>`, anything!
 
 ```tsx showLineNumbers /React.ComponentPropsWithoutRef<'div'>/ /...rest/
-type CardProps = {
+interface CardProps extends React.ComponentPropsWithoutRef<'div'> {
   product: Product;
-} & React.ComponentPropsWithoutRef<'div'>;
+}
 
 // first we grab the rest of the props using rest parameter,
 function Card({ product, ...rest }: CardProps) {
@@ -206,13 +207,13 @@ While it is a good practice to spread all of the props, do note that **not all c
 For example, a `ProductList` component that renders a list of products, probably only needs to be customizable in the `className` props. You can use `Pick` for that, and take only the `className` props.
 
 ```tsx /Pick/
-type ProductListProps = Pick<
-  React.ComponentPropsWithoutRef<'div'>,
-  'className'
->;
+interface ProductListProps
+  extends Pick<React.ComponentPropsWithoutRef<'div'>, 'className'> {
+  product: Product;
+}
 
 // No need to spread since we only need className
-export default function ProductList({ className }: ProductListProps) {
+export default function ProductList({ className, products }: ProductListProps) {
   return (
     <div className={cn(['grid-cols-3', className])}>
       {products.map((product, i) => (
@@ -231,6 +232,12 @@ Some components that might need to be fully reusable are:
 - Reusable UI components like `Modal`, `Popover`, `Tooltip`, etc.
 
 Do emphasize on the word **reusable** here. Make sure you're using this '_fully reusable component_' concept to a reusable component.
+
+### Using Interface vs Type
+
+Based on [Matt Pocock's blog](https://www.totaltypescript.com/react-apps-ts-performance?ref=theodorusclarence.com), `interface Props extends .. {}{:ts}` is slightly faster than `type Props = .. & {}{:ts}`.
+
+Use `interface extends{:ts}`.
 
 ## Common Pitfalls & Solutions
 
@@ -293,9 +300,9 @@ So we now can merge conflicts and compose classes neatly.
 You can safely customize your component now!
 
 ```tsx /cn/
-type CardProps = {
+interface CardProps extends React.ComponentPropsWithoutRef<'div'> {
   product: Product;
-} & React.ComponentPropsWithoutRef<'div'>;
+}
 
 function Card({ product, className, ...rest }: CardProps) {
   return (
@@ -313,9 +320,9 @@ When you start to have more items inside the component, it can be quite confusin
 Let’s say our `Card` component has a title, description, and image. We already use `className` props for the wrapper div. How can we customize the title class?
 
 ```tsx
-type CardProps = {
+interface CardProps extends React.ComponentPropsWithoutRef<'div'> {
   product: Product;
-} & React.ComponentPropsWithoutRef<'div'>;
+}
 function Card({ product, className, ...rest }: CardProps) {
   return (
     <div className={cn('mt-4', className)} {...rest}>
@@ -333,14 +340,14 @@ function Card({ product, className, ...rest }: CardProps) {
 In my experience, I always use the normal `className` for the outermost element (wrapper). The solution is to create another object for a specific element that I might need.
 
 ```tsx {3-7}
-type CardProps = {
+interface CardProps extends React.ComponentPropsWithoutRef<'div'> {
   product: Product;
   classNames?: {
     title?: string;
     description?: string;
     image?: string;
   };
-} & React.ComponentPropsWithoutRef<'div'>;
+}
 function Card({ product, className, classNames, ...rest }: CardProps) {
   return (
     <div className={clsx('mt-4', className)} {...rest}>
