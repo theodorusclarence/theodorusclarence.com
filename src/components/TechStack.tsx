@@ -100,8 +100,11 @@ const stacks = [
     icon: SiPrisma,
     tooltip: (
       <>
-        <CustomLink href='https://www.prisma.io/'>Prisma</CustomLink>, great and
-        simple ORM. A little bit of documentation and you're good to go.
+        <CustomLink href='https://www.prisma.io/?via=clarence'>
+          Prisma
+        </CustomLink>
+        , great and simple ORM. A little bit of documentation and you're good to
+        go.
       </>
     ),
   },
