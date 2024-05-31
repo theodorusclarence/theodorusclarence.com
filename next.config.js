@@ -19,7 +19,6 @@ const nextConfig = {
       'i.scdn.co',
     ],
   },
-  output: 'export', // <=== enables static exports
   reactStrictMode: true,
   basePath: '/folio-v2',
   async redirects() {
