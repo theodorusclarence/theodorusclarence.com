@@ -19,6 +19,7 @@ const nextConfig = {
       'i.scdn.co',
     ],
   },
+  unoptimized: true,
   reactStrictMode: true,
   basePath: '/folio-v2',
   async redirects() {
