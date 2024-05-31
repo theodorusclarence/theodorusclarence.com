@@ -50,7 +50,6 @@ jobs:
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
-
       - name: Build with Next.js 🏗️
         run: npx next build
 
