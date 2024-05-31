@@ -43,7 +43,8 @@ export default function CarbonAds({ className }: { className?: string }) {
             'rounded bg-gray-500 bg-opacity-10 px-2 py-0.5 text-[.7rem] text-gray-500 dark:bg-opacity-20'
           )}
         >
-          This ad helps me with the server cost. You can also{' '}
+          By clicking this ad, you help me with the domain and deployment cost.
+          You can also{' '}
           <UnstyledLink
             className='underline hover:text-primary-500 dark:hover:text-primary-400'
             onClick={() => trackEvent('Sponsor Click', { type: 'link' })}
