@@ -59,7 +59,7 @@ export default function IndexPage({
               You can call me <Accent>Clarence</Accent>
             </h1>
             <p
-              className='mt-2 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-3 text-sm md:text-base 2xl:text-lg'
+              className='mt-2 max-w-4xl text-sm leading-relaxed text-gray-700 dark:text-gray-200 md:mt-3 md:text-base 2xl:text-lg'
               data-fade='2'
               onClick={() => {
                 trackEvent('Social Link: Dimension', { type: 'link' });

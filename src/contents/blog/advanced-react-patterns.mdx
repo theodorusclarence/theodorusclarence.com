@@ -128,7 +128,7 @@ export function HidableCardTitle({
   const { hidden } = useHidableCardContext();
 
   return (
-    <h3 className={cn(['text-gray-800 tracking-tighter', className])}>
+    <h3 className={cn(['tracking-tighter text-gray-800', className])}>
       {hidden ? <span className='tracking-wide'>••••••••</span> : children}
     </h3>
   );
@@ -143,7 +143,7 @@ export function HidableCardSubtitle({
   const { hidden } = useHidableCardContext();
 
   return (
-    <p className={cn(['text-gray-500 text-sm', className])}>
+    <p className={cn(['text-sm text-gray-500', className])}>
       {hidden ? <span className='tracking-wide'>••••••••</span> : children}
     </p>
   );
@@ -172,7 +172,7 @@ What's nice about this is when you use `HidableCardTitle` outside of the base co
 ### Example Usage
 
 ```tsx
-<HidableCard className='flex justify-between items-start'>
+<HidableCard className='flex items-start justify-between'>
   <div className='space-y-1'>
     <HidableCardTitle>Card Title</HidableCardTitle>
     <HidableCardSubtitle>Card Subtitle</HidableCardSubtitle>
@@ -200,7 +200,7 @@ export const HidableCard = Object.assign(HidableCard, {
 Then you can call it like so
 
 ```tsx
-<HidableCard className='flex justify-between items-start'>
+<HidableCard className='flex items-start justify-between'>
   <div className='space-y-1'>
     <HidableCard.Title>Card Title</HidableCard.Title>
     <HidableCard.Subtitle>Card Subtitle</HidableCard.Subtitle>
@@ -317,7 +317,7 @@ export default function GreetingDialog({
 
       <DialogContent>
         <div className='flex items-center gap-2'>
-          <PiHandWaving className='text-yellow-500 animate-waving' size={30} />
+          <PiHandWaving className='animate-waving text-yellow-500' size={30} />
           <DialogTitle>Hello from a dialog! </DialogTitle>
         </div>
       </DialogContent>
