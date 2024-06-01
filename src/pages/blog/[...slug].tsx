@@ -64,7 +64,7 @@ export default function SingleBlogPage({
   //#region  //*=========== Blog Language ===========
   // TODO: add implementation, should be bugged if folder/id-slug.mdx
   const cleanSlug = cleanBlogPrefix(frontmatter.slug);
-  const isEnglish = cleanSlug === frontmatter.slug;
+  // const isEnglish = cleanSlug === frontmatter.slug;
   //#endregion  //*======== Blog Language ===========
 
   //#region  //*=========== Content Meta ===========
@@ -182,14 +182,14 @@ export default function SingleBlogPage({
                   </div>
                 )}
               </div>
-              {!frontmatter?.englishOnly && (
+              {/* {!frontmatter?.englishOnly && (
                 <CustomLink
                   href={`/blog/${isEnglish ? 'id-' : ''}${cleanSlug}`}
                   className='mt-4'
                 >
                   Read in {isEnglish ? 'Bahasa Indonesia' : 'English'}
                 </CustomLink>
-              )}
+              )} */}
             </div>
 
             <hr className='dark:border-gray-600' />

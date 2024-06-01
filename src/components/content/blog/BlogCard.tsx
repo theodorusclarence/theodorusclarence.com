@@ -33,8 +33,8 @@ export default function BlogCard({
         publicId={post.banner}
         alt='Photo taken by me'
         width={1200}
-        height={(1200 * 2) / 5}
-        aspect={{ height: 2, width: 5 }}
+        height={(1200 * 2) / 3.4}
+        aspect={{ height: 2.5, width: 5 }}
         preview={false}
       />
     );
@@ -46,8 +46,8 @@ export default function BlogCard({
         publicId={`theodorusclarence/banner/${post.banner}`}
         alt='Photo taken from unsplash'
         width={1200}
-        height={(1200 * 2) / 5}
-        aspect={{ height: 2, width: 5 }}
+        height={(1300 * 2) / 5}
+        aspect={{ height: 3, width: 5 }}
         preview={false}
       />
     );
