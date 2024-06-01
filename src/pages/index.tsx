@@ -372,7 +372,7 @@ export async function getStaticProps() {
     'uncategorized/search-removal',
   ]);
 
-  const introPosts = getFeatured(blogs, ['photography', 'photography']);
+  const introPosts = getFeatured(blogs, ['carnivorous', 'photography']);
 
   return {
     props: {
