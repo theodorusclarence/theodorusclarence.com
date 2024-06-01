@@ -3,7 +3,7 @@ import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 import { IoArrowDownOutline } from 'react-icons/io5';
 import { IoNewspaperSharp } from 'react-icons/io5';
-import { SiGithub, SiTwitter } from 'react-icons/si';
+import { SiGithub, SiInstagram } from 'react-icons/si';
 import { InView } from 'react-intersection-observer';
 
 import { trackEvent } from '@/lib/analytics';
@@ -49,15 +49,16 @@ export default function IndexPage({
           )}
         >
           <article className='layout'>
-            <h2 className='text-2xl md:text-4xl 2xl:text-5xl' data-fade='1'>
-              Hi!
-            </h2>
             <h1
               className='mt-1 text-3xl md:text-5xl 2xl:text-6xl'
               data-fade='2'
             >
-              You can call me <Accent>Clarence</Accent>
+              With great power comes a huge <Accent>electric bill</Accent>.
             </h1>
+            <br />
+            <h2 className='text-2xl md:text-4xl 2xl:text-5xl' data-fade='1'>
+              Elliot Mackinnon
+            </h2>
             <p
               className='mt-2 max-w-4xl text-sm leading-relaxed text-gray-700 dark:text-gray-200 md:mt-3 md:text-base 2xl:text-lg'
               data-fade='2'
@@ -65,28 +66,22 @@ export default function IndexPage({
                 trackEvent('Social Link: Dimension', { type: 'link' });
               }}
             >
-              Front-end Engineer at{' '}
-              <CustomLink href='https://dimension.dev/?ref=theodorusclarence.com'>
+              Full-time Fullstack Engineer | The-Rest-Of-The-Time Tinkerer
+              {/* <CustomLink href='https://dimension.dev/?ref=theodorusclarence.com'>
                 Dimension
-              </CustomLink>
+              </CustomLink> */}
             </p>
-            <p
-              className={clsx(
-                'mt-4 max-w-4xl text-gray-700 dark:text-gray-200 md:mt-6',
-                'md:text-lg 2xl:text-xl'
-              )}
-              data-fade='3'
-            >
-              I work with React Ecosystem, and write to teach people how to
-              rebuild and redefine fundamental concepts through mental models.
+            <p>
+              I am a full stack engineer, comfortable from starting at the
+              design of an application or system and carrying it all the way to
+              testing and implementation and efficient execution
             </p>
-
             <p
               className='mt-3 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-4 md:text-lg 2xl:text-xl'
               data-fade='4'
             >
-              Don't forget to sign my{' '}
-              <CustomLink href='/guestbook'>guestbook</CustomLink>!
+              Don't forget to check out my{' '}
+              <CustomLink href='/projects'>projects</CustomLink>!
             </p>
             <div
               data-fade='5'
@@ -110,7 +105,7 @@ export default function IndexPage({
               className='mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-8'
             >
               <UnstyledLink
-                href='https://clarence.link/cv'
+                href='https://apricot-gilbertina-76.tiiny.site/'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
                   'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
@@ -125,7 +120,7 @@ export default function IndexPage({
                 <span>Resume</span>
               </UnstyledLink>
               <UnstyledLink
-                href='https://twitter.com/th_clarence'
+                href='https://www.instagram.com/emackinnon1/'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
                   'group text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
@@ -133,14 +128,14 @@ export default function IndexPage({
                   'transition-colors'
                 )}
                 onClick={() => {
-                  trackEvent('Social Link: Twitter', { type: 'link' });
+                  trackEvent('Social Link: Instagram', { type: 'link' });
                 }}
               >
-                <SiTwitter className='shrink-0 transition-colors group-hover:text-[#1da1f2]' />
-                <span>@th_clarence</span>
+                <SiInstagram className='shrink-0 transition-colors group-hover:text-[#1da1f2]' />
+                <span>@emackinnon1</span>
               </UnstyledLink>
               <UnstyledLink
-                href='https://github.com/theodorusclarence'
+                href='https://github.com/emackinnon1'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
                   'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
@@ -152,7 +147,7 @@ export default function IndexPage({
                 }}
               >
                 <SiGithub className='shrink-0' />
-                <span>theodorusclarence</span>
+                <span>emackinnon1</span>
               </UnstyledLink>
             </div>
           </article>
