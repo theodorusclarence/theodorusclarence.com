@@ -119,10 +119,7 @@ export default function IndexPage({
 
   return (
     <Layout>
-      <Seo
-        templateTitle='Blog'
-        description='Thoughts, mental models, and tutorials about front-end development. Rebuild your mental model so front-end development can be predictable.'
-      />
+      <Seo templateTitle='Blog' description='Thoughts, musings and ' />
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>
@@ -131,8 +128,7 @@ export default function IndexPage({
               {/* <Accent>Blog {!isEnglish && 'Bahasa Indonesia'}</Accent> */}
             </h1>
             <p className='mt-2 text-gray-600 dark:text-gray-300' data-fade='1'>
-              Thoughts, mental models, and tutorials about front-end
-              development.
+              Thoughts, musings and cogitations.
             </p>
             <StyledInput
               data-fade='2'
