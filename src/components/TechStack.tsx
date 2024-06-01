@@ -1,10 +1,15 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import {
+  SiAmazonaws,
+  SiGit,
+  SiGithub,
+  SiGraphql,
+  SiJavascript,
   SiNextdotjs,
-  SiPrisma,
+  SiPostgresql,
+  SiPython,
   SiReact,
-  SiReactquery,
   SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
@@ -30,8 +35,19 @@ export default function TechStack() {
     </div>
   );
 }
-
+// TODO: change out links and tooltips
 const stacks = [
+  {
+    id: 'javascript',
+    icon: SiJavascript,
+    tooltip: (
+      <>
+        <CustomLink href='https://nextjs.org'>Next.js</CustomLink>, currently my
+        go-to framework because of the static generation, dynamic paths, and
+        built-in API. <em>ps: I like pages folder better than the new one.</em>
+      </>
+    ),
+  },
   {
     id: 'nextjs',
     icon: SiNextdotjs,
@@ -85,23 +101,77 @@ const stacks = [
     ),
   },
   {
-    id: 'react-query',
-    icon: SiReactquery,
+    id: 'python',
+    icon: SiPython,
     tooltip: (
       <>
-        <CustomLink href='https://tanstack.com/'>TanStack Query</CustomLink>,
-        great react hooks for data fetching and caching. I maintain most of my
-        API fetch (get, post, put, delete) in this library.
+        <CustomLink href='https://www.prisma.io/?via=clarence'>
+          Python
+        </CustomLink>
+        , great and simple ORM. A little bit of documentation and you're good to
+        go.
       </>
     ),
   },
   {
-    id: 'prisma',
-    icon: SiPrisma,
+    id: 'aws',
+    icon: SiAmazonaws,
     tooltip: (
       <>
         <CustomLink href='https://www.prisma.io/?via=clarence'>
-          Prisma
+          Python
+        </CustomLink>
+        , great and simple ORM. A little bit of documentation and you're good to
+        go.
+      </>
+    ),
+  },
+  {
+    id: 'graphql',
+    icon: SiGraphql,
+    tooltip: (
+      <>
+        <CustomLink href='https://www.prisma.io/?via=clarence'>
+          Python
+        </CustomLink>
+        , great and simple ORM. A little bit of documentation and you're good to
+        go.
+      </>
+    ),
+  },
+  {
+    id: 'postgresql',
+    icon: SiPostgresql,
+    tooltip: (
+      <>
+        <CustomLink href='https://www.prisma.io/?via=clarence'>
+          Python
+        </CustomLink>
+        , great and simple ORM. A little bit of documentation and you're good to
+        go.
+      </>
+    ),
+  },
+  {
+    id: 'git',
+    icon: SiGit,
+    tooltip: (
+      <>
+        <CustomLink href='https://www.prisma.io/?via=clarence'>
+          Python
+        </CustomLink>
+        , great and simple ORM. A little bit of documentation and you're good to
+        go.
+      </>
+    ),
+  },
+  {
+    id: 'github',
+    icon: SiGithub,
+    tooltip: (
+      <>
+        <CustomLink href='https://www.prisma.io/?via=clarence'>
+          Python
         </CustomLink>
         , great and simple ORM. A little bit of documentation and you're good to
         go.

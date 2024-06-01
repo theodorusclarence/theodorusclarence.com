@@ -19,4 +19,5 @@ runs:
     - name: Install dependencies 🔧
       shell: bash
       if: steps.cache_dependencies.outputs.cache-hit != 'true'
-      run: npm ci --legacy-peer-deps
+      run: pnpm install --frozen-lockfile
+      # run: npm ci --legacy-peer-deps
