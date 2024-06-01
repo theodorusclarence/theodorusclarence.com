@@ -5,13 +5,14 @@ import { openGraph } from '@/lib/helper.client';
 
 const defaultMeta = {
   title: 'Elliot Mackinnon',
-  siteName: 'theodorusclarence.com',
+  siteName: 'https://emackinnon1.github.io/folio-v2',
   description:
     'An online portfolio and blog by Elliot Mackinnon. Showcase of my projects, and some of my thoughts about website development.',
-  url: 'https://theodorusclarence.com',
-  image: 'https://theodorusclarence.com/favicon/large-og.jpg',
+  url: 'https://emackinnon1.github.io/folio-v2',
+  // image: 'https://theodorusclarence.com/favicon/large-og.jpg',
   type: 'website',
   robots: 'follow, index',
+  image: '',
 };
 
 type SeoProps = {
@@ -77,7 +78,7 @@ export default function Seo(props: SeoProps) {
           <meta
             name='author'
             property='article:author'
-            content='Theodorus Clarence'
+            content='Elliot Mackinnon'
           />
         </>
       )}
@@ -94,7 +95,7 @@ export default function Seo(props: SeoProps) {
               author: [
                 {
                   '@type': 'Person',
-                  name: 'Theodorus Clarence',
+                  name: 'Elliot Mackinnon',
                 },
               ],
               image: meta.image,
