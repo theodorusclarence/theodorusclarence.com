@@ -160,12 +160,11 @@ export default function AboutPage() {
 
         <section>
           <div className='layout mt-16'>
-            <h2>Contact</h2>
+            <h2>What I am working on learning these days:</h2>
             <article className='prose mt-4 dark:prose-invert'>
               <p>
-                Do contact me if you need my opinion about web development,
-                especially frontend works. I’ll be happy to help! (find my email
-                in the footer)
+                Currently I am learning firmware and working on mastering
+                microcontrollers in C++!
               </p>
             </article>
           </div>
