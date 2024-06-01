@@ -29,7 +29,7 @@ import ReloadDevtool from '@/components/content/ReloadDevtool';
 import TableOfContents, {
   HeadingScrollSpy,
 } from '@/components/content/TableOfContents';
-import CloudinaryImg from '@/components/images/CloudinaryImg';
+import Img from '@/components/images/Img';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import ShareTweetButton from '@/components/links/ShareTweetButton';
@@ -114,8 +114,8 @@ export default function SingleBlogPage({
         <section className=''>
           <div className='layout'>
             <div className='pb-4 dark:border-gray-600'>
-              <CloudinaryImg
-                publicId={`theodorusclarence/banner/${frontmatter.banner}`}
+              <Img
+                publicId={frontmatter.banner}
                 alt={`Photo from unsplash: ${frontmatter.banner}`}
                 width={1200}
                 height={(1200 * 2) / 5}
