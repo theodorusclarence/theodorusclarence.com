@@ -1,11 +1,12 @@
 import clsx from 'clsx';
+import moment from 'moment';
 import * as React from 'react';
 
 import { trackEvent } from '@/lib/analytics';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
-import CloudinaryImg from '@/components/images/CloudinaryImg';
+import Img from '@/components/images/Img';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
@@ -14,55 +15,86 @@ import Tooltip from '@/components/Tooltip';
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
+  const today = moment();
+  const birthday = moment([1990, 10, 3]);
+  const age = today.diff(birthday, 'years');
 
   return (
     <Layout>
       <Seo
         templateTitle='About'
-        description='Clarence is a front-end developer that started learning in May 2020. He write blogs about his approach and mental model on understanding topics in front-end development.'
+        description='Elliot is a full stack developer that started his career in 2020.'
       />
 
       <main>
         <section className={clsx(isLoaded && 'fade-in-start')}>
           <div className='layout pt-20'>
-            <h2 data-fade='0'>About</h2>
             <h1 className='mt-1' data-fade='1'>
-              <Accent>Theodorus Clarence</Accent>
+              <Accent>Elliot Mackinnon</Accent>
             </h1>
+            <h2 data-fade='0'>Who am I?</h2>
             <div className='mt-4' data-fade='2'>
-              <CloudinaryImg
-                className='float-right ml-6 w-40 md:w-72'
-                publicId='theodorusclarence/about/self-3-cropped_cyfuvn.jpg'
+              <Img
+                className='float-right ml-7 w-40 md:w-72'
+                publicId='/folio-v2/images/portrait.jpg'
                 width='1500'
-                height='1695'
-                alt='Photo of me looking really professional and definitely can impress your boss'
+                height='1195'
+                alt='Portrait under greenhouse grow lights.'
                 preview={false}
+                aspect={{ width: 1, height: 2 }}
                 title=' '
               />
               <article className='prose dark:prose-invert'>
                 <p data-fade='3'>
-                  Hello! I'm Clarence. I started learning web development in May
-                  2020, which is the start of the pandemic. I have nothing much
-                  to do so I decided to learn web development from a udemy
-                  course, then started watching a bunch of{' '}
-                  <CustomLink href='/blog/youtube-list'>
-                    youtube videos
-                  </CustomLink>{' '}
-                  to explore more about web development especially frontend
-                  development.
+                  Like most people my age, I am {age}. (That was a joke).
                 </p>
                 <p data-fade='4'>
-                  There are a lot of things and technologies to learn in
-                  frontend development and I am motivated to learn as much as
-                  possible. I enjoy learning something new and getting feedback
-                  to make myself better and improve.
+                  But seriously, how do you sum yourself up? How are you
+                  supposed to enumerate the set of all qualities and facets, all
+                  surfaces, themselves initiates of functions of situation and
+                  circumstance, every infinite layer upon infinite layer of time
+                  and being and experience that make you, you? How do you
+                  describe yourself with finite, restrictive, meer words? Hell
+                  if I know, but here’s my best shot:
                 </p>
-                <p data-fade='5'>
-                  In this website I will be writing some blogs and showcase my
-                  projects. I believe that writing what I have learned is the
-                  best way to remember things, and I can share my knowledge
-                  along the way. So do contact me and I will be very happy to
-                  help!
+                <p data-date='5'>
+                  I am chiefly in wonder. The universe is eternally wide and
+                  enthralling. There are too many things to learn, people to
+                  meet, philosophies to mull, natural beauties to behold,
+                  experiences to relish, books to read and information to
+                  gather, and phenomena of the world to enrapture with their
+                  sheer, utter elegance. There is not enough time in the day to
+                  learn all I want to know and see all I want to see; senescence
+                  has relegated me to a life unfulfilled in that regard. I know
+                  that, were I to live to 1000 years old, I would remain
+                  desiccated, a husk. Not from the parched and dried bones that
+                  come with a body in its twilight, but from the hole I cannot
+                  patch, the void I cannot fill, the things I’ll never know. It
+                  is truly invigorating to take notice of the world and the
+                  mysteries in it!
+                </p>
+                <p data-fade='6'>
+                  The series of events leading up to this point in my life have
+                  been meandering. I am from Atlanta, GA and lived there until
+                  my late twenties (with a brief stint in the gorgeous deserts
+                  of west Texas). I went to college at Georgia State University,
+                  where I studied what you might call "neuropsych" these days (a
+                  mix of psychology and neuroscience curriculum). I worked
+                  aimlessly at a few sales jobs afterwards but, tired of the
+                  life I knew, I packed my bags and moved to Munich, Germany
+                  where I was stumbling distance from the festival grounds of
+                  Oktoberfest for a few years. I taught English to
+                  kindergarten-aged children over there, realizing that I am no
+                  different from them: I too hate my vegetables and refuse to
+                  wear socks and shoes idoors. While being a shephard to a
+                  roving heard of small humans and in between solo online German
+                  lessons before and after work, I taught myself how to code.
+                  Wanting to learn faster, I came back to the States and did a
+                  frontend program at Turing School in Denver, CO and got a job
+                  soon after doing full stack work. Since then, I have been
+                  fiddling with firmware, puttering around with raspberry pi's
+                  and getting my hands into everything software-related.
+                  Tinkering and building has become a career and a hobby.
                 </p>
               </article>
               <h3 className='h4 mt-4' data-fade='6'>
@@ -135,37 +167,6 @@ export default function AboutPage() {
                 especially frontend works. I’ll be happy to help! (find my email
                 in the footer)
               </p>
-            </article>
-          </div>
-        </section>
-
-        <section id='uses'>
-          <div className='layout mt-16'>
-            <h2>Uses</h2>
-            <CloudinaryImg
-              className='mt-8'
-              publicId='theodorusclarence/about/setup_3_cropped'
-              width={2000}
-              height={1125}
-              alt='Photo of my desk setup'
-            />
-            <article className='prose mt-4 dark:prose-invert'>
-              <ul>
-                <li>
-                  MacBook Pro (14" M3 Pro 2023, 36GB, 1TB) <b>primary</b>
-                </li>
-                <li>MacBook Pro (13" M1 2020, 16GB, 1TB)</li>
-                <li>LG UltraFine™ 4K 32 Inch LG (32UN880-B)</li>
-                <li>Keychron K2v2</li>
-                <li>Logitech MX Master 3s</li>
-                <li>Kindle Paperwhite (10th Generation)</li>
-                <li>Nintendo Switch OLED</li>
-                <li>Stramm Bruno Standing Desk 160x80</li>
-                <li>Pexio Jervis Ergonomic Chair</li>
-                <li>Press Play Desk Shelf</li>
-                <li>Mi Computer Monitor Light Bar</li>
-                <li>Creative Pebble V3</li>
-              </ul>
             </article>
           </div>
         </section>
