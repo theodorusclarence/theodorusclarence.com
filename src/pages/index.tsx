@@ -66,7 +66,7 @@ export default function IndexPage({
                 trackEvent('Social Link: Dimension', { type: 'link' });
               }}
             >
-              Full-time Fullstack Engineer | The-Rest-Of-The-Time Tinkerer
+              Full-time Engineer | The-Rest-Of-The-Time Tinkerer
               {/* <CustomLink href='https://dimension.dev/?ref=theodorusclarence.com'>
                 Dimension
               </CustomLink> */}
