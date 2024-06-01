@@ -53,7 +53,7 @@ export default function IndexPage({
               className='mt-1 text-3xl md:text-5xl 2xl:text-6xl'
               data-fade='2'
             >
-              With great power comes a huge <Accent>electric bill</Accent>.
+              With great power comes a <Accent>huge electric bill</Accent>.
             </h1>
             <br />
             <h2 className='text-2xl md:text-4xl 2xl:text-5xl' data-fade='1'>
@@ -66,7 +66,7 @@ export default function IndexPage({
                 trackEvent('Social Link: Dimension', { type: 'link' });
               }}
             >
-              Full-time Fullstack Engineer | The-Rest-Of-The-Time Tinkerer
+              Full-time Engineer | The-Rest-Of-The-Time Tinkerer
               {/* <CustomLink href='https://dimension.dev/?ref=theodorusclarence.com'>
                 Dimension
               </CustomLink> */}
