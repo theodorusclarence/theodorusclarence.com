@@ -357,14 +357,7 @@ export async function getStaticProps() {
   const projects = await getAllFilesFrontmatter('projects');
   const shorts = await getAllFilesFrontmatter('library');
 
-  const featuredPosts = getFeatured(blogs, [
-    'advanced-react-patterns',
-    '2023-retrospective',
-    'fully-reusable-components',
-    'react-core-concept-rendering-state',
-    'nextjs-auth-hoc',
-    'nextjs-fetch-method',
-  ]);
+  const featuredPosts = getFeatured(blogs, ['photography']);
   const featuredProjects = getFeatured(projects, [
     'hexcape',
     'notiolink',
@@ -379,10 +372,7 @@ export async function getStaticProps() {
     'uncategorized/search-removal',
   ]);
 
-  const introPosts = getFeatured(blogs, [
-    'btb-flex-mental-model',
-    'nextjs-fetch-method',
-  ]);
+  const introPosts = getFeatured(blogs, ['photography', 'photography']);
 
   return {
     props: {
