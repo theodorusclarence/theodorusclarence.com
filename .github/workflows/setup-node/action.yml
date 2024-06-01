@@ -9,6 +9,11 @@ runs:
       with:
         node-version: 20
 
+    - name: 🤌 Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
     - name: Cache dependencies ⚡
       id: cache_dependencies
       uses: actions/cache@v3
