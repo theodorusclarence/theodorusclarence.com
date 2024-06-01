@@ -1,0 +1,110 @@
+---
+title: 'Back to Basic: Perbedaan Rem, Em, dan Px'
+publishedAt: '2021-03-11'
+description: 'Perbedaan menggunakan Rem, Em, dan Px Unit, serta use casenya'
+banner: 'btb-rem-em_jt4lce'
+tags: 'css'
+---
+
+## Introduction
+
+> Menggunakan Rem dan Em lebih baik daripada menggunakan px.
+
+Pada saat kita menggunakan px, berarti kita melakukan hardcode untuk semua user. Sehingga user tidak bisa mengubah value tersebut dengan cara apapun. Hal ini kadang menyulitkan user yang memiliki disabilitas dan yang memilih untuk menggunakan font-size yang lebih besar dari default `16px`.
+
+## Bagaimana Cara Kerja Rem ?
+
+Rem dan Em adalah unit relative yang sekarang banyak digunakan oleh developer karena accesibilitynya.
+
+> Rem (root em) mengarah kepada "root element's font-size"
+
+Biasanya, font-size root yang default adalah `16px`. Maka, jika kita melihat pada codingan ada tertulis misalnya `font-size: 1rem`, berarti itu sama saja kita memberikan font-size sebesar 16 pixel.
+
+Karena Rem berarti root element's font-size, maka kita bisa mengoverride value default tersebut dengan menggunakan css seperti berikut
+
+```css
+:root {
+  font-size: 20px;
+}
+```
+
+Dengan mengubah root font-size, maka `1rem = 20px`.
+
+### Bagaimana jika kita ingin menggunakan value yang bukan 16px?
+
+Hal ini bisa ditulis dengan membagi value yang kita inginkan dengan 16px, misalnya jika kita ingin menggunakan font-size sebesar 20px, maka kita bisa menuliskan `font-size: 1.25rem`. 1.25 didapat dari 20/16.
+
+### Tapi ribet banget?!
+
+Memang, menggunakan rem mengharuskan kita untuk berpikir lebih lama karena harus selalu mengconvert dari px ke rem. Tetapi, kita memberikan keleluasaan kepada user, sehingga bisa mengubah root font sizenya.
+
+Perubahannya seperti berikut:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-rem-em/resize-rem_nr7a33.gif'
+  alt='Resize Rem'
+  width={1118}
+  height={718}
+/>
+
+## Bagaiman Cara Kerja Em?
+
+> Em mengarah kepada "parent element's font-size"
+
+Karena CSS bersifat [cascading dan inheritable](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance), em akan meng-inherit value font-size dari parent elementnya. Misalnya kita memiliki parent div, dan p element di dalamnya
+
+```html
+<div>
+  <p>hi</p>
+</div>
+
+<style>
+  div {
+    font-size: 0.5rem; // 8px
+  }
+
+  p {
+    font-size: 1em; // ??px
+  }
+</style>
+```
+
+Karena `p` menginherit parent element's font-size, maka `1em = 8px`. Berarti, element p akan memiliki `font-size: 8px`.
+
+Hal tersebut tentunya membingungkan kan, makanya **penggunaan em tidak disarankan untuk font-size.**
+
+> Selalu gunakan REM untuk font-size sehingga konsisten.
+
+### Dimana kita bisa menggunakan em unit?
+
+Karena sifatnya yang mengambil parent element, maka akan sangat cocok jika kita menggunakan em untuk **padding** dan **margin**. Menggunakan em unit pada padding akan membuat \*\*\*\*padding yang terbuat selalu proporsional dengan font-size.
+
+Misalnya, kita membuat button. Button tersebut bisa memiliki font-size yang berbeda ketika di mobile dan di desktop. Maka kita bisa melihat perbedaan penggunaan **rem** dan **em** pada codepen berikut:
+
+<iframe
+  height='588'
+  style={{ width: '100%' }}
+  scrolling='no'
+  title='REM, EM Difference'
+  src='https://codepen.io/theodorus/embed/OJbwPow?height=588&theme-id=dark&default-tab=result'
+  frameborder='no'
+  loading='lazy'
+  allowtransparency='true'
+  allowfullscreen='true'
+>
+  See the Pen{' '}
+  <a href='https://codepen.io/theodorus/pen/OJbwPow'>REM, EM Difference</a> by
+  theodorus (<a href='https://codepen.io/theodorus'>@theodorus</a>) on{' '}
+  <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+Dapat kita lihat, bahwa penggunaan **em** akan membuat padding yang dihasilkan tetap proporsional dengan adanya pembesaran font-size. Sedangkan menggunakan **rem,** padding yang dihasilkan akan selalu konsisten.
+
+## Apakah kita benar" tidak boleh menggunakan px?
+
+Menurut saya, penggunaan rem dan em akan sangat berguna untuk elemen" yang krusial seperti font-size, padding, margin. Oleh karena itu, biasanya untuk memberikan border, saya masih sering menggunakan pixel karena valuenya yang relatif kecil. Misalnya, `border: 1px solid white` akan lebih simple dan enak dilihat dibanding `border: 0.0625rem solid white`. Karena nilainya juga sangat kecil, perubahan root font-size juga tidak akan terlalu relevan.
+
+## Kesimpulan
+
+Sekian penjelasan penggunaan rem dan em. Cobalah untuk selalu menggunakan rem untuk font-size. Sedangkan untuk padding / margin, kita bisa melihat situasi apakah kita ingin padding berubah secara proporsional atau tidak. Jika ya, kita bisa memanfaatkan fitur em yang bisa membuat responsive lebih mudah.

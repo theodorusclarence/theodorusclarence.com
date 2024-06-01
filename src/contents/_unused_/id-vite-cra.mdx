@@ -1,0 +1,102 @@
+---
+title: 'Vite, Build Tool Lebih Cepat dari Create React App'
+publishedAt: '2021-05-02'
+description: 'Sejauh ini, Create React App selalu menjadi default untuk membuat aplikasi React, apakah ada yang lebih baik?'
+banner: 'ansgar-scheffold-_fP6zNOrbZI-unsplash_ixywvw'
+tags: 'vite,react'
+---
+
+## Introduction
+
+> Vite meningkatkan developer experience secara signifikan dan memungkinkan untuk install time, build time awal, dan hot reload yang sangat cepat
+
+Dalam kurun waktu yang cukup lama, kita selalu menggunakan Webpack untuk bundler di React yang terdapat dalam Create React App. Bahkan, sampai sekarang CRA masih menggunakan Webpack sebagai pilihan bundlernya. Walaupun tidak dapat dipungkiri Webpack sangat baik sebagai bundler, dan banyak javascript application yang menggunakannya, kadang butuh waktu yang cukup lama untuk boot up dev server pertama kali. Kadang bisa 1 sampai 2 menit untuk project yang sudah cukup besar, hot reload pada CRA juga terasa lemot saat project sudah cukup besar.
+
+## What is Vite?
+
+Vite (Kata dari bahasa perancis dengan arti "cepat", penyebutannya /vit/) adalah sebuah build tool yang melakukan pre-bundling debendencies menggunakan esbuild. Esbuild ditulis dalam bahasa Go dan dapat melakukan pre-bundling dependencies 10-100x lebih cepat daripada kebanyakan JavaScript-based bundler.
+
+Vite memiliki 2 fitur besar:
+
+- Dev server yang menyediakan [rich feature enhancements](https://vitejs.dev/guide/features.html) di atas [native ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), contohnya [Hot Module Replacement (HMR)](https://vitejs.dev/guide/features.html#hot-module-replacement) yang sangat cepat.
+- Build command yang membundle code kita dengan [Rollup](https://rollupjs.org/) yang sudah di pre-configure untuk memberikan output static assets sangat teroptimasi untuk production.
+
+Aplikasi Vite bekerja sama persis seperti normalnya aplikasi React, kita bisa menggunakan semua fitur yang ada sama dengan Create React App, dengan developer experience yang lebih cepat.
+
+## How fast is Vite?
+
+Saya mencoba untuk membandingkan installation time, dan build time sampai server berjalan, dan ini hasilnya:
+
+### Installation Time
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/vite-cra/ss-1_ly7ujv.png'
+  alt='Compare Installation'
+  width={1296}
+  height={387}
+/>
+
+Ini adalah command yang saya gunakan untuk menginstall Vite dan CRA. Saya menjalankan yarn command pada Vite karena Vite hanya melakukan scaffolding saja pada saat instalasi dan kita harus menginstall dependenciesnya sendiri
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/vite-cra/ss-2_wafn2f.png'
+  alt='Compare Installation'
+  width={1286}
+  height={379}
+/>
+
+Instalasi menggunakan CRA memakan waktu yang sangat signifikan daripada Vite. Vite selesai hanya dalam kurun waktu **26 detik**, dan Create React App memakan waktu **1 menit 12 detik**. Vite sangat cepat dalam waktu instalasi.
+
+### Build Time
+
+Instalasi hanya dijalankan sekali pada saat awal kita membuat project, tetapi build time akan berjalan setiap kali kita mau develop project yang ktia miliki! Ini jauh lebih penting dan bisa menujadi turning point untuk pindah dari CRA ke Vite.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/vite-cra/ss-3_daoqv0.png'
+  alt='Compare Build Time'
+  width={1312}
+  height={421}
+/>
+
+Hasilnya adalah, Vite hanya membutuhkan waktu sekitar **300ms**, bahkan iTerm saya tidak menghitung waktu karena sangking cepatnya. Sedangkan Create React App memakan waktu sebanyak **22 detik** sampai server berjalan.
+
+Dan ini adalah project kosong, building time akan meningkat seiring dengan project kita yang semakin besar.
+
+## Try it out!
+
+Saya menyarankan anda untuk mencoba sendiri dan merasakan kecepatannya, untuk mempersingkat, saya memiliki sebuah vite-react-tailwind starter template, dapat [dicek di github saya](https://github.com/theodorusclarence/vite-react-tailwind-starter). Kemudian buka terminal dan jalankan code berikut:
+
+```bash
+npx degit https://github.com/theodorusclarence/vite-react-tailwind-starter project-name
+```
+
+kemudian, install dependencies menggunakan
+
+```bash
+yarn
+atau
+npm install
+```
+
+To start the server run the code
+
+```bash
+yarn dev
+atau
+npm run dev
+```
+
+Bagaimana?
+
+Hot reload dari Vite juga sangat cepat, coba ubah" codingan pada Landing Page di `/pages/Home.jsx`
+
+## Summary
+
+### Use the starter as a bonus!
+
+Anda boleh menggunakan starter tersebut untuk project anda! Saya membuat starter tersebut untuk menghindari melakukan setup react-router, react helmet, absolute import, dan tailwindcss setiap kali saya membuat sebuah project. Coba gunakan starter itu untuk mempermudah dan kindly **[give it a star](https://github.com/theodorusclarence/vite-react-tailwind-starter)!**
+
+Dengan adanya Vite ditambah Next.js, sepertinya saya tidak akan menggunakan CRA lagi. Saya sudah pasti akan memilih Vite daripada CRA ketika harus membuat sebuah aplikasi yang ada authenticationnya, dan menggunakan Next.js ketika membuat static site.

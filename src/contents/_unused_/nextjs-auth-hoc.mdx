@@ -1,0 +1,343 @@
+---
+title: 'Next.js Authentication using Higher-Order Components'
+publishedAt: '2023-03-10'
+description: 'Solve problems such as colocation, and error-prone code'
+banner: 'gabor-kozmon-u04ZPsnxeb4-unsplash_in1fe4'
+tags: 'nextjs'
+englishOnly: 'true'
+---
+
+## Introduction
+
+Managing authentication in Next.js is quite tricky, with problems such as content flashing. In this blog, I won't address the problems and explain how to solve it in detail, because I've written a blog about that in [Next.js Redirect Without Flashing Content](https://theodorusclarence.com/blog/nextjs-redirect-no-flashing).
+
+In this blog, I'll cover how to handle them cleanly using Higher Order Components.
+
+## The Usual Way & The Problem
+
+Usually for the authentication in Next.js, we define routes that need to be blocked like so:
+
+```tsx
+const protectedRoutes = ['/block-component', '/profile'];
+```
+
+Then we have a component that checks the route like this:
+
+```jsx
+export default function PrivateRoute({ protectedRoutes, children }) {
+  const router = useRouter();
+  const { isAuthenticated, isLoading } = useAuth();
+
+  const pathIsProtected = protectedRoutes.indexOf(router.pathname) !== -1;
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated && pathIsProtected) {
+      // Redirect route, you can point this to /login
+      router.push('/');
+    }
+  }, [isLoading, isAuthenticated, pathIsProtected]);
+
+  if ((isLoading || !isAuthenticated) && pathIsProtected) {
+    return <FullPageLoader />;
+  }
+
+  return children;
+}
+```
+
+This works, but there are several problems:
+
+1. It's **not colocated**, the placement of authentication is not located in the page itself, instead in another component such as `PrivateRoute`
+2. **Error Prone**, when you're doing route changes, for example: if you're moving the `pages/blocked-component.tsx` file to `pages/blocked/component.tsx`, you will have to change the `protectedRoutes` variable into the new route.
+
+   This is quite dangerous because with the `protectedRoutes` variable, there are no type checking because there is no way for TypeScript to know if that's the right path. ([maybe soon](https://nextjs.org/blog/next-13-2#statically-typed-links))
+
+## Higher-Order Component
+
+My friend and I built a higher-order component that we can put inside the page like so:
+
+```tsx
+export default withAuth(ProtectedPage);
+function ProtectedPage() {
+  /* react component here */
+}
+```
+
+With this implementation, it's now colocated within the page and it won't be a problem if you change the file name.
+
+## Adding Several Types of Pages
+
+In my experience of building simple authenticated apps, there are 3 type of authenticated pages that we need to support
+
+> For the demo, you can try it yourself on the [demo page](https://auth-hoc.thcl.dev/)
+
+### 1. Simple Protected Pages
+
+It's for pages that need protection, such as dashboard, edit profile page, etc.
+
+**Behavior**
+
+- **Unauthenticated users** will be redirected to `LOGIN_ROUTE` (default: `/login`), without any content flashing
+- **Authenticated users** will see this page in this following scenario:
+  - **Direct visit using link** → user will see a loading page while the `withAuth` component checks the token, then this page will be shown
+  - **Visit from other pages** (`router.push`) → user will see this page immediately
+
+### 2. Authentication Pages (Login)
+
+It's for pages such as Login and Register or any other page that suits with the behavior.
+
+**Behavior:**
+
+- **Unauthenticated users** can access this page without any loading indicator
+- **Authenticated users** will be redirected to `HOME_ROUTE` (default: `/`).
+  - We're assuming that authenticated users won't need to see login anymore. Instead, they should be redirected to the `HOME_ROUTE`.
+  - It's also best to hide all links back to the login page when the users is already authenticated.
+
+### 3. Optional Page
+
+This is a more specific use case, but sometimes there are pages that you don't need to be authenticated to visit, but you still need to show the users details if they are authenticated.
+
+**Behavior:**
+
+- This page is accessible to all users
+- You can get the user from `useAuthStore.useUser()`
+
+## Page Focus Synchronization
+
+<LiteYouTubeEmbed
+  id='RyUgDondT6A'
+  poster='sddefault'
+  title='Auth Synchronization Demo'
+  noCookie={true}
+/>
+
+We also added a page focus listener. When you open several tabs, the authentication will be synced across tabs.
+
+```tsx
+React.useEffect(() => {
+  // run checkAuth every page visit
+  checkAuth();
+
+  // run checkAuth every focus changes
+  window.addEventListener('focus', checkAuth);
+  return () => {
+    window.removeEventListener('focus', checkAuth);
+  };
+}, [checkAuth]);
+```
+
+## Source Codes
+
+We use Zustand to store authentication data globally
+
+### Zustand Store
+
+```tsx
+import { createSelectorHooks } from 'auto-zustand-selectors-hook';
+import produce from 'immer';
+import create from 'zustand';
+
+import { User } from '@/types/auth';
+
+type AuthStoreType = {
+  user: User | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  login: (user: User) => void;
+  logout: () => void;
+  stopLoading: () => void;
+};
+
+const useAuthStoreBase = create<AuthStoreType>((set) => ({
+  user: null,
+  isAuthenticated: false,
+  isLoading: true,
+  login: (user) => {
+    localStorage.setItem('token', user.token);
+    set(
+      produce<AuthStoreType>((state) => {
+        state.isAuthenticated = true;
+        state.user = user;
+      })
+    );
+  },
+  logout: () => {
+    localStorage.removeItem('token');
+    set(
+      produce<AuthStoreType>((state) => {
+        state.isAuthenticated = false;
+        state.user = null;
+      })
+    );
+  },
+  stopLoading: () => {
+    set(
+      produce<AuthStoreType>((state) => {
+        state.isLoading = false;
+      })
+    );
+  },
+}));
+
+const useAuthStore = createSelectorHooks(useAuthStoreBase);
+
+export default useAuthStore;
+```
+
+### withAuth HOC Component
+
+```tsx
+import { useRouter } from 'next/router';
+import * as React from 'react';
+import { ImSpinner8 } from 'react-icons/im';
+
+import apiMock from '@/lib/axios-mock';
+import { getFromLocalStorage } from '@/lib/helper';
+
+import useAuthStore from '@/store/useAuthStore';
+
+import { ApiReturn } from '@/types/api';
+import { User } from '@/types/auth';
+
+export interface WithAuthProps {
+  user: User;
+}
+
+const HOME_ROUTE = '/';
+const LOGIN_ROUTE = '/login';
+
+const ROUTE_ROLES = [
+  /**
+   * For authentication pages
+   * @example /login /register
+   */
+  'auth',
+  /**
+   * Optional authentication
+   * It doesn't push to login page if user is not authenticated
+   */
+  'optional',
+  /**
+   * For all authenticated user
+   * will push to login if user is not authenticated
+   */
+  'all',
+] as const;
+type RouteRole = (typeof ROUTE_ROLES)[number];
+
+/**
+ * Add role-based access control to a component
+ *
+ * @see https://react-typescript-cheatsheet.netlify.app/docs/hoc/full_example/
+ * @see https://github.com/mxthevs/nextjs-auth/blob/main/src/components/withAuth.tsx
+ */
+export default function withAuth<T extends WithAuthProps = WithAuthProps>(
+  Component: React.ComponentType<T>,
+  routeRole: RouteRole
+) {
+  const ComponentWithAuth = (props: Omit<T, keyof WithAuthProps>) => {
+    const router = useRouter();
+    const { query } = router;
+
+    //#region  //*=========== STORE ===========
+    const isAuthenticated = useAuthStore.useIsAuthenticated();
+    const isLoading = useAuthStore.useIsLoading();
+    const login = useAuthStore.useLogin();
+    const logout = useAuthStore.useLogout();
+    const stopLoading = useAuthStore.useStopLoading();
+    const user = useAuthStore.useUser();
+    //#endregion  //*======== STORE ===========
+
+    const checkAuth = React.useCallback(() => {
+      const token = getFromLocalStorage('token');
+      if (!token) {
+        isAuthenticated && logout();
+        stopLoading();
+        return;
+      }
+      const loadUser = async () => {
+        try {
+          const res = await apiMock.get<ApiReturn<User>>('/me');
+
+          login({
+            ...res.data.data,
+            token: token + '',
+          });
+        } catch (err) {
+          localStorage.removeItem('token');
+        } finally {
+          stopLoading();
+        }
+      };
+
+      if (!isAuthenticated) {
+        loadUser();
+      }
+    }, [isAuthenticated, login, logout, stopLoading]);
+
+    React.useEffect(() => {
+      // run checkAuth every page visit
+      checkAuth();
+
+      // run checkAuth every focus changes
+      window.addEventListener('focus', checkAuth);
+      return () => {
+        window.removeEventListener('focus', checkAuth);
+      };
+    }, [checkAuth]);
+
+    React.useEffect(() => {
+      if (!isLoading) {
+        if (isAuthenticated) {
+          // Prevent authenticated user from accessing auth or other role pages
+          if (routeRole === 'auth') {
+            if (query?.redirect) {
+              router.replace(query.redirect as string);
+            } else {
+              router.replace(HOME_ROUTE);
+            }
+          }
+        } else {
+          // Prevent unauthenticated user from accessing protected pages
+          if (routeRole !== 'auth' && routeRole !== 'optional') {
+            router.replace(
+              `${LOGIN_ROUTE}?redirect=${router.asPath}`,
+              `${LOGIN_ROUTE}`
+            );
+          }
+        }
+      }
+    }, [isAuthenticated, isLoading, query, router, user]);
+
+    if (
+      // If unauthenticated user want to access protected pages
+      (isLoading || !isAuthenticated) &&
+      // auth pages and optional pages are allowed to access without login
+      routeRole !== 'auth' &&
+      routeRole !== 'optional'
+    ) {
+      return (
+        <div className='flex min-h-screen flex-col items-center justify-center text-gray-800'>
+          <ImSpinner8 className='mb-4 animate-spin text-4xl' />
+          <p>Loading...</p>
+        </div>
+      );
+    }
+
+    return <Component {...(props as T)} user={user} />;
+  };
+
+  return ComponentWithAuth;
+}
+```
+
+For more code and implementation examples check out the code on [GitHub](https://github.com/theodorusclarence/nextjs-with-auth-hoc)
+
+## Attribution
+
+- [Rizqi Tsani](https://rizqitsani.com), co-creator of this code.
+- [Next Auth](https://next-auth.js.org/), for the inspiration and the idea of using HOC to handle authentication.
+
+## Conclusion
+
+This will be a great addition to your code, making it cleaner and more efficient. You should colocate your code as much as possible, and this will be a step to do that.

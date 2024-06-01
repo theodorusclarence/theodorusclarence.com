@@ -1,0 +1,322 @@
+---
+title: 'Back to Basic: Flexbox atau Grid?'
+publishedAt: '2021-01-29'
+description: 'Implementasi kapan harus menggunakan flexbox atau grid'
+banner: 'btb-flexbox-grid_gtwzk3'
+tags: 'css,flexbox,grid'
+---
+
+## Introduction
+
+Back to Basic akan menjawab pertanyaan yang pernah saya bingungkan saat pertama kali belajar CSS. Menurut saya, mempelajari css di awal-awal cukup sulit karena css memiliki [520 property](https://css-tricks.com/how-many-css-properties-are-there/) yang bisa digunakan. Tentunya gabakal digunakan semuanya, tapi cukup banyak yang harus dihafal untuk bisa dianggap 'jago' css. Blog ini tidak akan membahas cara menggunakan dari yang sangat basic, tetapi lebih ke implementasi yang saya temukan dari pengalaman saya.
+
+> Jika anda belum pernah menggunakan flexbox atau grid, bisa mengecek [artikel flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) dan [artikel grid](https://css-tricks.com/snippets/css/complete-guide-grid/) dari css-tricks.
+
+---
+
+## Pertanyaan
+
+> Kapan harus pake flex, dan kapan harus pake grid?
+
+Saat pertama kali saya belajar css dan mengenali flexbox dan grid, saya memiliki pertanyaan yang cukup membingungkan waktu itu, _pilih flex atau grid?_ Pada blog ini saya akan memberikan pemahaman dan approach saya dalam memilih flex dan grid.
+
+---
+
+## Case Menggunakan Flexbox
+
+Saya paling sering menggunakan flex untuk memberikan layouting pada design yang memiliki 1 dimensi saja. Saya akan memberikan beberapa contoh ketika menggunakan flex dengan beberapa project yang telah saya buat.
+
+### 1. Container yang memiliki item di tengah
+
+Case ini biasanya sering dijumpai di landing page.
+
+Contoh:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/1_aa0dum.png'
+  alt='Contoh item tengah'
+  width={1440}
+  height={767}
+/>
+
+Untuk mencapai layout ini hanya dibutuhkan 3 baris css saja, saya sarankan hafalkan kombinasi ini, karena akan sering banget digunakan jika kamu ingin membuat item berada di tengah.
+
+```css
+.container {
+  /* pastikan parent memiliki height */
+  min-height: 100vh;
+  /* css untuk align center */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Jika ingin membuat untuk 1 halaman seperti diatas, 
+pastikan container memiliki height yang full */
+```
+
+### 2. Membuat layout menyamping (item sejajar di kanan kiri)
+
+Layout seperti ini juga sering dilakukan, biasanya membagi container menjadi 2 bagian yang sama besarnya, atau bisa 3 4 5 secukupnya.
+
+[Codepen](https://codepen.io/theodorus/pen/xxRxVeo)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/2_spnrcs.png'
+  alt='Contoh bagi dua'
+  width={1440}
+  height={702}
+/>
+
+Layout seperti ini bisa dicapai dengan mudah menggunakan flex, pertama kita lihat dulu htmlnya
+
+```html
+<div class="container">
+  <div class="content">
+    <h1>Hello Bambang</h1>
+    <p>welcome to my page</p>
+    <button>click me</button>
+  </div>
+  <img class="content" src="https://unsplash.it/700/600" alt="unsplash" />
+</div>
+```
+
+Bisa kita lihat, bahwa `div.container` memiliki 2 item yaitu `div.content` dan `img.content`, maka kita bisa membuat layout menyamping dengan pembagian 50% 50%
+
+```css
+.container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.content {
+  /* ini yang membuat bisa terbagi 2 secara konsisten */
+  width: 100%;
+}
+
+div.content {
+  /* menggunakan case flexbox pertama */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img.content {
+  object-fit: cover;
+}
+```
+
+dengan menggunakan `width: 100%` itu seperti kita memberi tahu ke item yang di dalam flex untuk ambil ruang sebanyak"nya, karena 2"nya sama" membutuhkan 100%, maka flex akan membuat keduanya sama rata yaitu 50%.
+
+> Jika kita ingin membuat responsive dengan layout seperti ini, kita bisa menggunakan `flex-direction`
+
+```css
+.container {
+  min-height: 100vh;
+  display: flex;
+  /* tambahkan ini untuk mereset flex */
+  flex-direction: column;
+}
+
+@media (min-width: 700px) {
+  .container {
+    flex-direction: row;
+  }
+}
+```
+
+Jadi, saat kita di tampilan mobile, flex akan menumpuk ke bawah (seperti normal), dan saat kita ke tampilan yang lebih besar, flex akan membuat item bersebelahan (cek codepen untuk demo).
+
+### 3. Membuat Navbar (menggunakan space-between)
+
+[Codepen](https://codepen.io/theodorus/pen/KKNKMzx)
+
+Membuat navbar simple akan sangat sering dilakukan dan biasanya layoutnya adalah di kiri nama web / logo web, dan yang di kanan adalah pages yang bisa dikunjungi. (atau kebalikannya)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/3_xefqrr.png'
+  alt='Contoh item tengah'
+  width={1440}
+  height={50}
+/>
+
+```html
+<nav>
+  <h3>Home</h3>
+  <ul>
+    <li>Route</li>
+    <li>Route</li>
+  </ul>
+</nav>
+```
+
+`nav` memiliki 2 children yaitu `h3`, dan `ul`. Selanjutnya kita tinggal mereset style bawaan, dan memisahkan 2 children dengan space-between
+
+```css
+nav {
+  background-color: lightblue;
+  display: flex;
+  align-items: center;
+
+  /* property ini akan membuat 2 item berjauhan */
+  justify-content: space-between;
+}
+
+ul {
+  /* menghilangkan bullet bawaan dari ul */
+  list-style: none;
+  display: flex;
+}
+
+ul > li + li {
+  /* memberikan spasi antar tulisan 'route' */
+  margin-left: 2em;
+}
+```
+
+Untuk menggunakan flexbox maka bisa dilihat kita bisa menggunakan `justify-content: space-between` untuk membuat kedua item berjauhan
+
+Seluruh yang dilakukan diatas, sebenarnya juga bisa dilakukan menggunakan grid. Tetapi, menggunakan grid mengharuskan kita menulis lebih banyak css daripada flex untuk hal" yang sangat simple.
+
+---
+
+## Case Menggunakan Grid
+
+[Codepen](https://codepen.io/theodorus/pen/QWGWEQJ)
+
+Penggunaan grid biasanya dilakukan untuk layouting yang lebih complex. Ketika saya memutuskan antara menggunakan flex atau grid, patokan saya adalah: _Kalau pake flex sudah terlalu repot, berarti pake grid._
+
+> Layouting menggunakan flex sebenarnya juga bisa diimplementasikan untuk layout yang complex, tetapi layout complex akan jauh lebih mudah jika menggunakan grid.
+
+### 1. Membuat layout kanan kiri yang bisa lebih dari 2 item
+
+Biasanya, untuk mencapai layout ini, saya akan menggunakan grid, karena ada fitur `gap` yang bisa kita gunakan. Membuat jarak antar elemen dengan flexbox akan sangat repot jika layout yang kita buat responsive.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/4_t3tnuj.png'
+  alt='Layout kanan kiri'
+  width={1425}
+  height={675}
+/>
+
+Layout seperti ini akan sangat mudah jika menggunakan grid, karena kita hanya tinggal membuat menjadi 2 kolom saja.
+
+```html
+<div class="container">
+  <div class="item">item1</div>
+  <div class="item">item2</div>
+  <div class="item">item3</div>
+</div>
+```
+
+Layout di atas bisa kita sederhanakan menjadi `div.container` dengan 3 `div.item`
+
+```css
+.container {
+  /* base layout container */
+  max-width: 700px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+.item {
+  border: 0.2px solid white;
+  height: 15em;
+}
+```
+
+Dengan menggunakan `grid-template-columns: repeat(2, 1fr)`kita mengeset grid untuk membagi kolomnya menjadi 2 bagian, dan `item` akan dengan sendirinya mengikuti layout gridnya. Terakhir kita menambahkan `gap: 1em` untuk memberikan whitespace.
+
+> Grid cukup mudah jika ingin dibuat responsive, kita hanya cukup membuat `grid-template-columns` menjadi 1 kolom saat pada tampilan yang lebih kecil, dan menjadi 2 kolom saat tampilan lebih besar
+
+```css
+.container {
+  /* base layout container */
+  max-width: 700px;
+  margin: 0 auto;
+
+  display: grid;
+  /* tidak perlu menambahkan grid template, karena defaultnya adalah 1 kolom */
+  gap: 1em;
+}
+
+@media (min-width: 700px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+```
+
+### 2. Membuat layout yang besarnya berbeda"
+
+[Codepen](https://codepen.io/theodorus/pen/GRNRjjY)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/5_i0mfuw.png'
+  alt='Layout kanan kiri'
+  width={1425}
+  height={712}
+/>
+
+Ilustrasi grid column menggunakan Firefox Dev Tools, sangat recommended karena cukup membantu saat debug.
+
+Approach yang dilakukan adalah dengan membuat 4 kolom dan 2 baris, kemudian melakukan row & col assignment pada elementnya. Contoh gambar pertama mengambil 2 kolom dan 2 baris. [Aturan penomoran pada grid dapat dilihat lengkap pada web ini](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Line-based_Placement_with_CSS_Grid).
+
+```html
+<div class="container">
+  <div class="item item1">item1</div>
+  <div class="item item2">item2</div>
+  <div class="item item3">item3</div>
+  <div class="item item4">item4</div>
+</div>
+```
+
+Layout di atas bisa kita sederhanakan, dengan `.container` sebagai parent gridnya
+
+```css
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+
+  display: grid;
+  /* membuat layout 4 kolom, 2 baris */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.item {
+  border: 1px solid white;
+  min-height: 10rem;
+}
+
+.item1 {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.item2 {
+  grid-column: 3 / 5;
+}
+
+/* item 3 dan 4 juga bisa di hardcode grid-columnnya, 
+tapi karena layout sudah sesuai tidak saya lanjutkan */
+```
+
+> Untuk responsive kurang lebih sama seperti contoh sebelumnya, kita tinggal menulis ulang `grid-column` dan `grid-row` yang sesuai, dan menyesuaikan banyak column dan row
+
+---
+
+## Kesimpulan
+
+Jika disimpulkan, jawaban yang saya temukan adalah:
+
+**Gunakan grid kalau approach dengan flexbox terlalu ribet**

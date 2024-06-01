@@ -1,0 +1,391 @@
+---
+title: 'Understanding Next.js Data Fetching (CSR, SSR, SSG, ISR)'
+publishedAt: '2021-09-02'
+lastUpdated: '2023-07-20'
+description: 'Thorough explanation on Next.js data fetching method such as CSR, SSR, SSG, and ISR.'
+englishOnly: 'true'
+banner: 'bernd-dittrich-W1NsOMhU8hI-unsplash_ugoyld'
+tags: 'nextjs'
+---
+
+## Introduction
+
+When I started to learn Next.js, I got overwhelmed with the list of abbreviations that looks similar, I didn't know what it is and what is the difference. It is quite confusing because when using Create React App, we usually only use 1 strategy to fetch data from API which is using `useEffect`.
+
+Next.js has many data fetching strategies. Although initially Next.js was well known to be a Server-Side Rendering Framework, it turns out that Next.js has 4 methods of Data Fetching. Here is a short explanation of each so you get familiar with the abbreviation of CSR, SSR, SSG, ISR.
+
+- CSR - Client-Side Rendering, this is the usual kind of data fetching using `useEffect`, it will fetch the data from the API every single page request on the **client-side** (after the page is rendered, then the function will run).
+- SSR - Server-Side Rendering, will run a **special function** to fetch data from API every page request on the **server-side** (before the page is loaded, that special function will run first, creating a delay, then after that, it will serve the page)**.**
+- SSG - Static Site Generation, will run a **special function** to fetch data **once** when that page builds.
+- ISR - Incremental Static Regeneration, this is a new thing, shortly put, a combination of SSG, and SSR, where it served statically, but at a **certain time and certain condition** that page will rebuild and fetch the data from the API again.
+  - On-Demand Revalidation - This is **not a data fetching method**, but **a way to trigger page rebuild for SSG and ISR**. Starting from Next.js v12.2, you can have an API route that can trigger revalidate function.
+
+Don't worry if you didn't get that, because I will be explaining it thoroughly, just get familiar with the words first.
+
+---
+
+I mentioned before that there is a special function that will run when using a specific data fetching method. Keep that in mind as I will show you what is that special function.
+
+This code example will fetch a date-time from an API using axios, then render it on the page. It is useful to see the date-time so we can truly know when the API is hit.
+
+## Client-Side Rendering (CSR)
+
+Special Function: `useEffect`
+
+[Demo Site](https://next-render.thcl.dev/render/csr)
+
+### Code Example
+
+```tsx /React.useEffect/
+export default function CSRPage() {
+  const [dateTime, setDateTime] = React.useState<string>();
+
+  React.useEffect(() => {
+    axios
+      .get('https://worldtimeapi.org/api/ip')
+      .then((res) => {
+        setDateTime(res.data.datetime);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  return (
+    <main>
+      <TimeSection dateTime={dateTime} />
+    </main>
+  );
+}
+```
+
+### Demo
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/CSR_x4o5as'
+  alt='CSR'
+  width={1438}
+  height={824}
+/>
+
+Terms:
+
+- PT → Preview Time, the time shown when the API is hit. Can be seen in the middle.
+- RT → Real-Time, the real ticking time updating every second, can be seen on the right bottom corner
+
+Video Description:
+
+1. Page reloads on 15:46:03 Real-Time (RT), then a LOADING indicator is shown
+2. After about 1s, Preview Time is showing 15:46:04(PT)
+
+### Keys to Emphasize
+
+1. **useEffect function**, this function is the key indicator that a page is using Client-Side Rendering.
+2. **LOADING indicator**, because the data fetching runs after the page is rendered, the data is not fetched instantly, therefore showing a loading state.
+3. **Data is fetched on every page request**, which is why the time shown is different for each reloads.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/0-csr-illustration_aoxeou'
+  alt='0-csr-illustration'
+  width={937}
+  height={544}
+/>
+
+---
+
+## Server Side Rendering (SSR)
+
+Special Function: `getServerSideProps`
+
+[Demo Site](https://next-render.thcl.dev/render/ssr)
+
+### Code Example
+
+```tsx /getServerSideProps/
+export default function SSRPage({ dateTime }: SSRPageProps) {
+  return (
+    <main>
+      <TimeSection dateTime={dateTime} />
+    </main>
+  );
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await axios.get('https://worldtimeapi.org/api/ip');
+
+  return {
+    props: { dateTime: res.data.datetime },
+  };
+};
+```
+
+### Demo
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/SSR_ififit'
+  alt='SSR'
+  width={1432}
+  height={763}
+/>
+
+Video Description:
+
+1. Clicked the link on 16:02:38(RT), a slight pause for 2s, then page loads showing 16:02:40(PT)
+
+### Keys to Emphasize
+
+1. **getServerSideProps function**, this function is the key indicator that a page is using Server-Side Rendering.
+2. **DELAY before render, and no LOADING indicator**, the data is fetched before the page is rendered, so there will be a slight **delay** where the **API is being hit** at the moment, then it will show the page without loading indicator
+3. **Data is fetched on every page request**, which is why the time shown is different for each reloads.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/1-ssr-illustration_gnjcbe'
+  alt='1-ssr-illustration'
+  width={857}
+  height={437}
+/>
+
+---
+
+## CSR vs SSR
+
+Here is the difference between CSR vs SSR, keep an eye on **delay** and **loading** indicators.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/CSRvsSSR_fkzhia'
+  alt='CSRvsSSR'
+  width={1432}
+  height={763}
+/>
+
+Video Description:
+
+1. When clicking CSR, with no delay a LOADING text is visible for a second, then the Preview Time loads.
+2. When clicking SSR, a slight delay happened, then the page loads.
+
+### Keys to Emphasize
+
+1. **CSR hit the API after the page loads.**
+2. **SSR hit the API before the page loads.**
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/2-csr-vs-ssr_seegng'
+  alt='2-csr-vs-ssr'
+  width={1117}
+  height={501}
+/>
+
+### Short addition
+
+I will probably create a new post about the pros and cons of each method, but when using **CSR** the SEO is not really great because the data is only fetched after the page renders. This is useful and convenient when we are creating a page with a gated authentication, as you don't really need SEO for pages like the dashboard, edit profile page, etc.
+
+But, for the SSR, although it creates a delay, data that was fetched is injected and helps SEO. This is quite useful for a thread or post that we need to get traffic into, like Reddit or some sort.
+
+---
+
+## Static Site Generation (SSG)
+
+Special function: `getStaticProps`
+
+[Demo Site](https://next-render.thcl.dev/render/ssg)
+
+### Code Example
+
+```tsx /getStaticProps/
+export default function SSGPage({ dateTime }: SSGPageProps) {
+  return (
+    <main>
+      <TimeSection dateTime={dateTime} />
+    </main>
+  );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await axios.get('https://worldtimeapi.org/api/ip');
+
+  return {
+    props: { dateTime: res.data.datetime },
+  };
+};
+```
+
+### Demo
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/SSG_v1uyiy'
+  alt='SSG'
+  width={1432}
+  height={763}
+/>
+
+Video Description:
+
+1. Preview Time is showing 13:39:36(PT). But the real-time is 16:16:59(RT), about 3 hours late.
+2. Reloading and going back and forth to the home page did not change anything.
+
+### Keys to Emphasize
+
+1. **getStaticProps function**, this function is the key indicator that a page is using Static Site Generation.
+2. **Fetched when running** `yarn build{:bash}`, the API will be hit **ONLY** when the application is building. This is why the time is at 13:39, while the real-time is 16:17.
+3. **Data will not change because no further fetch**, which is why the time shown is the same for each reloads.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/3-ssg-illustration_bzfog3'
+  alt='3-ssg-illustration'
+  width={1272}
+  height={473}
+/>
+
+---
+
+## Incremental Static Regeneration
+
+Special function: `getStaticProps` + `revalidate`
+
+[Demo Site](https://next-render.thcl.dev/render/isr-20)
+
+### Code Example
+
+```tsx /getStaticProps/ /revalidate/
+export default function ISR20Page({ dateTime }: ISR20PageProps) {
+  return (
+    <main>
+      <TimeSection dateTime={dateTime} />
+    </main>
+  );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await axios.get('https://worldtimeapi.org/api/ip');
+
+  return {
+    props: { dateTime: res.data.datetime },
+    revalidate: 20,
+  };
+};
+```
+
+### Demo
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/ISR_nhhlaa'
+  alt='ISR'
+  width={1432}
+  height={763}
+/>
+
+Disclaimer: Revalidate time is set to 20 seconds.
+
+Video Description:
+
+1. At first, it was 16:40:12(PT), and real-time when reloading is 16:40:25(RT) and 16:40:29(RT). In those 2 reload, Preview Time (PT) did not change.
+2. Then, when 16:40:32(RT) (20s after initial), reload is done twice, the first time on 16:40:36(RT) and 16:40:40(RT). The Preview Time change to 16:40:37(PT) after the **second reload.**
+
+### Keys to Emphasize
+
+Now, this is might be confusing for you, but here is the key I want you to look at.
+
+1. **When in a 20-second cooldown span–16:40:12(RT) - 16:40:32(RT),** reloading doesn't trigger changes. This is because the page is in a **cooldown** state, as we set on the `revalidate` key.
+2. **After the 20-second cooldown–16:40:32(RT),** we did 2 reloads.
+   1. First Reload at 16:40:36(RT), we know that it is not on the cooldown state anymore. The first visit after the cooldown state is **off,** is going to trigger **page rebuild**. Page rebuild meaning, only this certain page is going to be rebuild. Not the whole application. The fetch API will run in the background, but there will be **no changes** on the Preview Time
+   2. Second Full Reload at 16:40:40(RT), the Preview Time change to 16:40:37(PT). Exactly a second after the page rebuild (which means the rebuild takes about 1s). This second reload is going to serve that rebuilt page from the previous reload.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/4-cooldown-on-isr_uvkhlm'
+  alt='4-cooldown-on-isr'
+  width={1038}
+  height={469}
+/>
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/5-cooldown-off-isr_ximpem'
+  alt='5-cooldown-off-isr'
+  width={1269}
+  height={536}
+/>
+
+### Revisiting Page vs Full Reload
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/isr-revisit-reload_oi7buw'
+  alt='isr-revisit-reload'
+  width={1432}
+  height={763}
+/>
+
+Terms:
+
+1. Revisiting pages → navigating using next/link (going back to home, then to that page again)
+2. Full reload → doing reload at a website (⌘ + R)
+
+Video Description:
+
+1. Revisiting pages at the first time 18:38:45(RT), will **trigger rebuild,** but after the **second** revisit, the Preview Time **did not change**.
+2. After a **full reload,** then Preview Time is changed to 18:38:45(PT)
+
+Note:
+
+1. **The first reload does not have to be a full reload**, we can go back to the home page, then to that page again (revisit), it will trigger the rebuild as long as we are not in the cooldown state.
+2. **But, the second reload must be a full reload.** Going back to the home page, then to the page again won't change the new Preview Time.
+
+Now, this is a case where we are assuming that only 1 person is accessing the website. But, that reloads will happen **every person** visit while still respecting the cooldown state.
+
+### Is it going to be rebuilt every 20s then?
+
+**Nope.**
+
+When the cooldown is off, if no one visits the page, then that page **will not rebuild**, even after long past the 20s.
+
+But, the **first** person that visits when the **cooldown state is off**, is going to **trigger a rebuild.** That person won't be seeing changes. But, the changes will be served for **the next full reload**.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-method/6-cooldown-illustration_kdwbe5'
+  alt='6-cooldown-illustration'
+  width={1259}
+  height={390}
+/>
+
+## On-Demand Revalidation
+
+There is actually a way to manually trigger page rebuild for SSG and ISR. Starting from Next.js v12.2, you can have an API route that can trigger revalidate function.
+
+Special function: `res.revalidate(){:ts}`
+
+```ts title="pages/api/revalidate.ts" /res.revalidate/
+export default async function handler(req, res) {
+  try {
+    await res.revalidate('/path-to-revalidate');
+    return res.json({ revalidated: true });
+  } catch (err) {
+    return res.status(500).send('Error revalidating');
+  }
+}
+```
+
+To revalidate, you can just hit the API that you've created like `https://yoursite.com/api/revalidate`, then the page will be rebuilt.
+
+On-demand Revalidation pairs well with webhook. If you're using CMS, you can setup a webhook to hit the revalidate API route every time you change your content.
+
+Note:
+
+1. When you're using On-Demand Revalidation, **`revalidate` is optional**. If you don't use it then it is SSG by default, if you add `revalidate` it becomes ISR.
+2. The only difference is that you now have an **API that you can call anytime** to rebuild the page.
+
+Check out [Lee Robinson's Demo](https://on-demand-isr.vercel.app/) using GitHub Issues
+
+## Conclusion
+
+That's all, folks!
+
+If you have understood this material, I suggest you to read more about [How to choose between them](/blog/nextjs-fetch-usecase). I provide 4 metrics for you to consider and some example!

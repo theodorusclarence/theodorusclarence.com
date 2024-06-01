@@ -1,0 +1,203 @@
+---
+title: 'Mindfully Commit with a Descriptive Message'
+publishedAt: '2021-09-18'
+description: 'These guides and set of rules can help us to understand what is going on just by looking at the git log.'
+englishOnly: 'true'
+banner: 'alexandros-giannakakis-yFlbtsp7U8k-unsplash_mwmkhx'
+tags: 'git'
+---
+
+## Introduction
+
+Do you do this?
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/mindful-commit-message/0-bad-example_lf3eop'
+  alt='0-bad-example'
+  width={508}
+  height={284}
+/>
+
+Stop. Even if you are working alone and nobody reads your commit, you're eventually going to forget your 3-month-old project.
+
+> "Was the X feature added?", "Did I fixed the hamburger menu bug?".
+
+You can't really know what feature you are adding, or what bug you are fixing not until you jump into the code to check what changed. Imagine you work as a team, and you have to review 10 commits that are not descriptive, so you need to read the code and the logic on that PR.
+
+## Step 1: Descriptive Commit Message
+
+The guideline of a descriptive commit message is you should at least know what were you working with just by reading the commit message. The convention is usually using imperative sentences, and present tense.
+
+For example:
+
+- change aspect ratio for company profile video
+- add hamburger menu for mobile
+- remove unused imports
+- fix hamburger menu not opening on mobile
+- add test for helper functions
+- refactor remove todo logic
+- add documentation on hamburger menu
+- install react-icons
+
+Even without looking at the code changes, you can generally know what is going on.
+
+By spending 10 seconds to decide what descriptive commit message that we should use, we can save up minutes of looking up code changes in the future.
+
+---
+
+## Step 2: Grouping
+
+We've learned that using a descriptive commit message helps a lot during code review or revisiting old projects.
+
+At the first step, we can infer what is going on by looking at the commit message. But, we have to read the full sentence to know if it was a feature that is added or removed, a bug that was fixed, or a package that was installed. Isn't it nicer if we can recognize the function of the commit just by the first word? Also, there are some people that like to use emojis to differentiate. You can if you like, but I'm trying to minimize mental mapping.
+
+> There are a lot of conventions out there, and I usually use Conventional Commit. I will spare you the details—should we use capital or not, should we use past tense or present tense, should we add a full stop—on the later step. But this grouping step roughly follows Conventional Commit
+
+Let's say that we have these categories—only a small example, you can add more categories if you need to:
+
+- **feat**, for addition or removal of a feature.
+- **fix**, for squashing bugs
+- **chore**, for installing npm packages
+- **test**, for adding test suites
+- **refactor**, for refactoring code flow but not changing the feature itself
+- **style**, for styling code structure like spacing, reorder or remove unused imports, etc.
+
+Our last commit can improve into this:
+
+- **feat** change aspect ratio for company profile video
+- **feat** add hamburger menu for mobile
+- **style** remove unused imports
+- **fix** hamburger menu not opening on mobile
+- **test** add test for helper functions
+- **refactor** remove todo logic
+- **docs** add documentation on hamburger menu
+- **chore** install react-icons
+
+In this step, we can be more effective when differentiating commit. We can skim commits and find what category we are looking for.
+
+---
+
+## Step 3: Generating Changelog
+
+Let's say you are creating an NPM package, and you need to generate a Changelog for your users so they are aware of the changes. For instance, you can look up your git log, and copy all commit message that is in **feat** and **fix** category. This 2 category is the most used when creating a changelog because your user doesn't really need to know that you remove unused import, or adding a semicolon to code because you forgot.
+
+ps: when doing a normal project, you can add more categories to the changelog if you want.
+
+Handpicking those is grunt work, and nobody wants to do it if you have a bunch of commits. That is why we can use `standard-version` to generate the report.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/mindful-commit-message/1-standard-version_rhrvwc'
+  alt='1-standard-version'
+  width={524}
+  height={178}
+/>
+
+We can easily run a command, and it will automatically bump the version, generate changelog, commit, and add a tag to our project.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/mindful-commit-message/2-changelog_i5qge7'
+  alt='2-changelog'
+  width={977}
+  height={371}
+/>
+
+Here is the report that is generated only using our commit, we can also specify what categories we want to include.
+
+But, there is a catch when we are using an auto-generate package like `standard-version`. We need to follow certain rules so the `standard-version` program is not confused. Let's proceed to step 4.
+
+---
+
+## Step 4: Conventional Commits
+
+Conventional Commits is a specification for adding human and machine-readable meaning to commit messages.
+
+Do read up the guide on [their website.](https://www.conventionalcommits.org/en/v1.0.0/)
+
+This set of rules will help us create a good commit message that we can easily read, and can be auto-generated into a changelog. I usually put up this markdown in the readme file, so others can follow it too. Feel free to read up my summary and copy it to your projects.
+
+> Still, read the [guide](https://www.conventionalcommits.org/en/v1.0.0/) on their website, it is more comprehensive there.
+
+### Commit Message Convention Readme
+
+````markdown
+## Commit Message Convention
+
+This website follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+Commit message will be checked using [husky and commit lint](https://theodorusclarence.com/library/husky-commitlint-prettier), you can't commit if not using the proper convention below.
+
+### Format
+
+```text
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Example: `feat(pre-event): add speakers section`
+
+### 1. Type
+
+Available types are:
+
+- feat → Changes about addition or removal of a feature. Ex: `feat: add table on landing page`, `feat: remove table from landing page`
+- fix → Bug fixing, followed by the issue (not what you do to fix that bug). Ex: `fix: illustration overflows in mobile view`
+- chore → Installing new dependencies, or bumping deps
+- docs → Update documentation (README.md)
+- style → Updating style, and not changing any logic in the code (reorder imports, fix whitespace, remove comments)
+- refactor → Changes in code, same output, but different approach
+- ci → Update github workflows, husky
+- test → Update testing suite, cypress files
+- revert → when reverting commits
+- perf → Fixing something regarding performance (deriving state, using memo, callback)
+- vercel → Blank commit to trigger vercel deployment. Ex: `vercel: trigger deployment`
+
+For breaking change, add (!) after the types. Ex: `feat!: drop support for internet explorer`
+
+### 2. Optional Scope
+
+Labels per page Ex: `feat(pre-event): add date label`
+
+\*If there is no scope needed, you don't need to write it
+
+### 3. Description
+
+Description must fully explain what is being done.
+
+### Important Rules
+
+**If there are multiple changes, then commit one by one**
+
+- After colon, there is a single space. Ex: `feat: add something`
+- When using `fix` type, state the issue. Ex: `fix: file size limiter not working`
+- Use imperative, and present tense: "change" not "changed" or "changes"
+- Don't use capitals in front of the sentence
+- Don't add full stop (.) at the end of the sentence
+````
+
+Using that set of rules will guarantee a working changelog. But still, whether the commit message is going to be meaningful, it is on you.
+
+## Step 5: Add Commitlint
+
+If you are working with some new developers in your team, they might not fully know this convention. While you can give this blog to them 😉, it is a great practice to add a linter for your project, so no one can mess up the commit message.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/mindful-commit-message/3-commitlint_cxclqa'
+  alt='3-commitlint'
+  width={752}
+  height={300}
+/>
+
+This will enforce the use of conventional commit for your commit message.
+
+Check out this [post](https://theodorusclarence.com/library/husky-commitlint-prettier#2-add-commitlint) to add Commitlint using Husky
+
+## Summary
+
+We learn that we should use a more descriptive commit message, add some category to it, use Conventional Commits rules as a guide so we can generate changelog, and add Commitlint so we can't mess it up.

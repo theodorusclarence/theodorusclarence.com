@@ -1,0 +1,661 @@
+---
+title: 'React Core Concept I: Rendering & useState'
+publishedAt: '2021-11-29'
+description: 'Do you wonder why do we use hook instead of normal variable? This will help you redefine some concepts.'
+englishOnly: 'true'
+banner: 'sebastien-gabriel-TG-Ea4dvDm0-unsplash_uw6hgi'
+tags: 'react,core-concept'
+---
+
+## Introduction
+
+Nowadays, we are still using the useState hook to set a variable in a React component. The useState, is introduced as 'hooks', is written like this
+
+```tsx
+const [count, setCount] = React.useState<number>(0);
+```
+
+> But what really is this? Why do we have to use this hook just to set a variable that holds a number and get incremented?
+
+Why don't we just use something like this?
+
+```tsx
+let count = 0;
+
+count++;
+```
+
+Well, it always works in our first counter app with Vanilla JavaScript. Why don't we use it on React then?
+
+### TLDR;
+
+React does a re-render by calling the component function, and with every function calls, your variable will get reset every single time.
+
+---
+
+## Stepping Back
+
+Before we jump into the React Core Concept, let's step back to Vanilla JavaScript. For this demo, we are going to build a simple counter app.
+
+```jsx
+let count = 0;
+
+function add() {
+  count++;
+  document.getElementById('count').textContent = count;
+}
+```
+
+Simple right? When the button—that has `add()` as a click listener—triggers, we add the count and update the text by accessing the documents.
+
+If we look closely, we can see that it is doing 3 actions. Let's break it down into its own functions.
+
+```jsx
+// Declare
+let count = 0;
+
+function mutate() {
+  count++;
+}
+
+function render() {
+  document.getElementById("count").textContent = count;
+}
+
+// event listener pseudocode
+when button is clicked:
+  mutate()
+  render()
+```
+
+And we get something like this:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/javascript-demo-codepen_mr6iip'
+  alt='javascript-demo-codepen'
+  width={800}
+  height={422}
+/>
+
+**Video Alt:**
+
+1. On the left side, it is shown that the button element has an onclick attribute that run `mutate()` and `render()`.
+2. Whenever a user clicks the button, the number will increase by one
+
+---
+
+## 3 Actions
+
+Before we continue, we have these 3 actions that we break down earlier:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/3-actions-js_uwzw7v'
+  alt='3-actions-js'
+  width={952}
+  height={762}
+/>
+
+- **Declare** → initialize variable using let
+- **Mutate** → change the count variable
+- **Render** → update **changes** to the screen
+
+Let's split the button into its own functions, so you can see it clearly.
+
+```html {3-4}
+<h1>Counter</h1>
+<p id="count">0</p>
+<button onclick="mutate()">Mutate</button>
+<button onclick="render()">Render</button>
+
+<script>
+  let count = 0;
+
+  function mutate() {
+    count++;
+    logTime();
+    console.log('clicking, count: ', count);
+  }
+
+  function render() {
+    document.getElementById('count').textContent = count;
+  }
+</script>
+```
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/button-split-mutate-render_pixdof'
+  alt='button-split-mutate-render'
+  width={630}
+  height={738}
+/>
+
+**Video Alt:**
+
+1. When the mutate button is clicked, the console shows the count is **increasing**. However, the number on the screen **doesn't change** at all.
+2. After the render button is clicked, the number on the screen **changes** to the **last count value**.
+
+---
+
+## Looking at React
+
+By **bluntly** translating the JavaScript code, this is what we have now.
+
+```tsx
+function Component() {
+  let count = 0;
+
+  function mutate() {
+    count = count + 1;
+    console.log(count);
+  }
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={mutate}>Mutate</button>
+    </div>
+  );
+}
+```
+
+Do you see something odd?
+
+<br />
+
+found it?
+
+<br />
+
+Yes, there is no **render** function.
+
+We can, of course, use the same render function by accessing `document`, but it's not a good practice to access them manually on React, our purpose of using React is not to manage them manually.
+
+### Render Function
+
+> What is the equivalent of render function in React then?
+
+It is actually the `function Component()` itself.
+
+Whenever we want to update the screen, React are calling `Component()` function to do that.
+
+By calling the function, the `count` is declared again, the `mutate` function is also re-declared, and at last, will return a new JSX.
+
+Here is the demo:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/render-function_eyhzo4'
+  alt='render-function'
+  width={800}
+  height={496}
+/>
+
+**Video Description:**
+
+1. We can see that there are 2 console log in the line 13 and 15
+2. When the page is reloaded, the console logs are running. (this is normal behavior as the initial render)
+3. Every time the Re-render button is clicked, the logs are called. This proves that the Component() is called every render.
+
+### What triggers render function?
+
+If we run the code with let on React, there will be no changes. That's because the **render** function **doesn't get** called.
+
+React will trigger render function:
+
+1. When the useState value changes (using setState)
+2. When the parent component re-renders
+3. When the props that are being passed changes
+
+The second and the third are basically triggered because of setState too but in the parent element.
+
+At this point, we know that every time the useState value changes, it will call the render function which is the Component function itself.
+
+---
+
+## Simulating the render function
+
+Before we convert the `count` variable to state, I want to demonstrate by creating a render function simulation, which uses setToggle. We can trigger re-render with `render` now.
+
+```tsx {3-6, 20}
+function Component() {
+  //#region  //*=========== Render Fn Simulation ===========
+  const [toggle, setToggle] = React.useState<boolean>(false);
+  function render() {
+    setToggle((t) => !t);
+  }
+  //#endregion  //*======== Render Fn Simulation ===========
+
+  let count = 0;
+
+  const mutate = () => {
+    count = count + 1;
+    console.log(`${getTime()}| count: ${count}`);
+  };
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <Button onClick={mutate}>Mutate</Button>
+      <Button onClick={render}>Render</Button>
+    </div>
+  );
+}
+```
+
+Let's see it in action
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/simulating-render-function_x0em6n'
+  alt='simulating-render-function'
+  width={796}
+  height={744}
+/>
+
+**Video Alt:**
+
+1. Mutate button is clicked, and the count is incremented to 4
+2. Render button is clicked, but **the number on screen doesn't change**, while the console log is 4.
+3. Render function is clicked again, **the number on screen is still 0,** while the console log change to 0
+4. After mutate is clicked, it increments, **but not from 4,** it increments starting from 0 again.
+
+### 🤯 Why is it not working?
+
+This is actually because we are re-declaring the count variable.
+
+```tsx {10}
+function Component() {
+  //#region  //*=========== Render Fn Simulation ===========
+  const [toggle, setToggle] = React.useState<boolean>(false);
+  function render() {
+    setToggle((t) => !t);
+    console.log(`${getTime()} | Render function called at count: ${count}`);
+  }
+  //#endregion  //*======== Render Fn Simulation ===========
+
+  let count = 0;
+
+  const mutate = () => {
+    count = count + 1;
+    console.log(`${getTime()}| count: ${count}`);
+  };
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <Button onClick={mutate}>Mutate</Button>
+      <Button onClick={render}>Render</Button>
+    </div>
+  );
+}
+```
+
+Every time react calls the Component function, we are **re-declaring** the count to be 0. The render function **still works**, and react **updated** the screen, but it updated to the **re-declared count** which is still **0**.
+
+> **Now that is why we can't use a normal variable in a React component.**
+
+---
+
+## Declaring Outside of Component
+
+You might also ask:
+
+> Why don't we move the declaration outside the Component function?
+
+Well, it makes sense, by moving the declaration we are avoiding the `count` being re-declared to 0. Let's try it to be sure.
+
+```tsx {1}
+let count = 0;
+
+function Component() {
+  //#region  //*=========== Render Fn Simulation ===========
+  const [toggle, setToggle] = React.useState<boolean>(false);
+  function render() {
+    setToggle((t) => !t);
+    console.log(`${getTime()} | Render function called at count: ${count}`);
+  }
+  //#endregion  //*======== Render Fn Simulation ===========
+
+  const mutate = () => {
+    count = count + 1;
+    console.log(`${getTime()}| count: ${count}`);
+  };
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <Button onClick={mutate}>Mutate</Button>
+      <Button onClick={render}>Render</Button>
+    </div>
+  );
+}
+```
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/declaring_outside_component_zaadd7'
+  alt='declaring outside component'
+  width={700}
+  height={724}
+/>
+
+**Video Alt:**
+
+1. Mutate button is clicked 3 times, and the `count` is incremented to 3
+2. Render button is clicked, and the **number on the screen updated to 3**
+3. When the mutate button is clicked again, the increment continues from 3 to 5
+4. When the render button is clicked again, it is updated to the **correct count**.
+
+**IT WORKS!** or is it?
+
+It did just work, that was not a fluke. But there is something you need to see.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/does-it-work_l5glbn'
+  alt='does-it-work'
+  width={644}
+  height={800}
+/>
+
+**Video Alt:**
+
+1. Current count is = 5, it is proven by clicking the render button, it's still 5.
+2. Then, we move to another page
+3. Back to the counter page, but the **count is still 5**
+4. Clicking the mutate button will **increment from 5**
+
+Yes, the **variable doesn't get cleared.**
+
+This is not great behavior, because we have to manually clean it or it will mess up our app.
+
+> **Now that is why we can't use a normal variable outside a React component.**
+
+---
+
+## Using useState
+
+This is the code if we are using useState
+
+```tsx {2,5}
+function Component() {
+  const [count, setCount] = React.useState<number>(0);
+
+  const mutateAndRender = () => {
+    setCount((count) => count + 1);
+    console.log(`${getTime()} | count: ${count}`);
+  };
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <div className='mt-4 space-x-2'>
+        <Button onClick={mutateAndRender} variant='light'>
+          Add
+        </Button>
+      </div>
+    </div>
+  );
+}
+```
+
+And this is the demo
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/using-usestate_fbrjod'
+  alt='using-usestate'
+  width={595}
+  height={800}
+/>
+
+**Video Alt:**
+
+You may notice that the console.log count is **late** by 1, ignore it for now.
+
+1. Add button is clicked, then the count is added, and simultaneously updated on screen
+2. When moving to another page and back, the count is reset back to 0.
+
+So in recap, useState does 4 things:
+
+1. **Declaration,** by declaring using this syntax
+
+   ```tsx
+   const [count, setCount] = React.useState<number>(0);
+   ```
+
+2. **Mutate and Render,** changing the value and automatically render the changes using `setCount`
+3. **Persist the data in each re-render** → when the render function is called, useState won't re-declare the count value.
+4. **Reset** the value when we move to another page, or usually called: when the component unmounts.
+
+### Why the count is late
+
+```tsx
+const mutateAndRender = () => {
+  setCount((count) => count + 1);
+  console.log(`${getTime()} | count: ${count}`);
+};
+```
+
+This is because the `setCount` function is **asynchronous**.
+
+After we call the function, it needs time to update the count value. So when we call the console.log immediately, it will still return the old value.
+
+You can move the console.log outside of the function so it will run on re-render (`Component()`)
+
+```tsx {5}
+function Component() {
+	...
+
+	const mutateAndRender = () => {
+	  setCount((count) => count + 1);
+	};
+
+	console.log(`${getTime()} | count: ${count}`);
+
+  return ...
+}
+```
+
+---
+
+## 3 Actions Diagram
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/react-core-concept-rendering-state/3-actions-with-react_s77vmf'
+  alt='3-actions-with-react'
+  width={1168}
+  height={639}
+/>
+
+Here is the updated diagram, now you know what useState and setState do.
+
+---
+
+## Test your knowledge
+
+### Quiz 1
+
+Please take a look at this snippet for the next 2 questions.
+
+```tsx {8 ,13}
+import * as React from 'react';
+
+function Component() {
+  let count = 0;
+
+  const mutate = () => {
+    count = count + 1;
+    console.log(count);
+  };
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <Button onClick={mutate}>Mutate</Button>
+    </div>
+  );
+}
+```
+
+<Quiz
+  question={
+    <>
+      After clicking the Button <b>twice</b>, what is the value of the
+      console.log?
+    </>
+  }
+  answers={[
+    {
+      option: '0',
+    },
+    {
+      option: '1',
+    },
+    {
+      option: '2',
+      correct: true,
+    },
+    {
+      option: 'Error',
+    },
+  ]}
+  explanation={
+    <>
+      Yes, even though the declaration is inside the component, there is no
+      rerender, so the <code>Component()</code> won't be called.
+    </>
+  }
+/>
+
+<Quiz
+  question={<>How about the value on screen within the h1 tag?</>}
+  answers={[
+    {
+      option: '0',
+      correct: true,
+    },
+    {
+      option: '1',
+    },
+    {
+      option: '2',
+    },
+    {
+      option: 'Error',
+    },
+  ]}
+  explanation={
+    <>
+      Remember that in that snippets, there are no function that triggers
+      rerender, so the screen will not be updated.
+    </>
+  }
+/>
+
+### Quiz 2
+
+Now, we use some render function simulation, you should be able to answer this one correctly 💪
+
+```tsx {15,22}
+import * as React from 'react';
+
+function Component() {
+  //#region  //*=========== Render Fn Simulation ===========
+  const [toggle, setToggle] = React.useState<boolean>(false);
+  function render() {
+    setToggle((t) => !t);
+  }
+  //#endregion  //*======== Render Fn Simulation ===========
+
+  let count = 0;
+
+  const mutate = () => {
+    count = count + 1;
+    console.log(count);
+
+    render();
+  };
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <Button onClick={mutate}>Mutate</Button>
+    </div>
+  );
+}
+```
+
+<Quiz
+  question={
+    <>
+      After clicking the Button <b>twice</b>, what is the value of the
+      console.log?
+    </>
+  }
+  answers={[
+    {
+      option: '0',
+    },
+    {
+      option: '1',
+      correct: true,
+    },
+    {
+      option: '2',
+    },
+    {
+      option: 'Error',
+    },
+  ]}
+  explanation={
+    <>
+      Watch out the let declaration, it is declared inside the render function,
+      so every rerender (which is on toggle state change) it will be called and
+      redeclared to 0
+    </>
+  }
+/>
+
+<Quiz
+  question={<>How about the value on screen within the h1 tag?</>}
+  answers={[
+    {
+      option: '0',
+      correct: true,
+    },
+    {
+      option: '1',
+    },
+    {
+      option: '2',
+    },
+    {
+      option: 'Error',
+    },
+  ]}
+  explanation={
+    <>
+      Because the count is redeclared to 0 every rerender, so the h1 will be
+      updated to 0 too everytime.
+    </>
+  }
+/>
+
+---
+
+## Recap
+
+Great job, you have finished the first React Core Concept Series. I'll definitely continue this series as there are still many hooks to cover. Please hold on to the mental model that I put in this blog post, as I'm going to reference it again soon on the next post.
+
+With this post, we learned that
+
+1. We can't use normal let because React calls the Component function itself to do the re-rendering.
+2. Re-rendering will cause all of the code in the Component function to be run all over again including the variable and function declaration, as well the console logs and function calls.
+3. Using the useState hook will help us update the variable, and the number on the screen while still persisting the data between re-renders.
+
+See you in the next blog post. Subscribe to my newsletter if you don't want to miss it.

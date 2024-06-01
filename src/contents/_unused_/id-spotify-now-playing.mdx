@@ -1,0 +1,358 @@
+---
+title: 'Cara Menampilkan Lagu Now Playing di Spotify dengan Next.js'
+publishedAt: '2021-01-25'
+lastUpdated: '2021-11-12'
+description: 'API Spotify memberikan kita akses untuk mengetahui lagu yang sedang dimainkan di account kamu.'
+banner: 'spotify-now-playing_n37szf'
+tags: 'nextjs'
+---
+
+## Introduction
+
+Pada website theodorusclarence.com, saya menggunakan sebuah API dari Spotify untuk menunjukkan lagu apa yang sedang saya putar secara live. Sekarang, saya akan memberitahu bagaimana cara membuat persis seperti yang saya tunjukkan dengan menggunakan Next.js.
+
+Next.js memiliki fitur khusus yaitu kita bisa membuat api route semacam express dalam 1 aplikasi itu, maka memilih Next.js menjadi pilihan yang sangat tepat.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/spotify-now-playing/spotify-playing_sx0rej'
+  alt='spotify-playing'
+  width={656}
+  height={410}
+/>
+
+[Website Demo](https://spotify-playing.theodorusclarence.com)
+
+---
+
+## 1. Membuat Aplikasi di Spotify Developer
+
+- Masuk ke website [Spotify Developer](https://developer.spotify.com/dashboard/applications)
+- Klik **Create An App**
+- Masukkan App Name, App description, kemudian **Create**
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/spotify-now-playing/2_jbfz2i.png'
+  alt='Dashboard'
+  width={1437}
+  height={795}
+/>
+
+- Selanjutnya, kamu akan mendapatkan `Client ID` dan `Client Secret` (Jangan memberikan kode ini ke siapa-siapa)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/spotify-now-playing/3_pcmoan.png'
+  alt='Client Info'
+  width={493}
+  height={323}
+/>
+
+- Buka edit settings, kemudian masukkan `http://localhost:3000` pada RedirectURIs
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/spotify-now-playing/4_c4ol4r.png'
+  alt='Edit Settings'
+  width={1437}
+  height={795}
+/>
+
+Step pertama selesai! Sekarang kamu harus melakukan authentication untuk mendapatkan access & refresh token
+
+---
+
+## 2. Authentication Account
+
+Untuk melakukan authentication, kita harus menyiapkan `CLIENT ID` dan memasukkan ke link dibawah:
+
+```text
+https://accounts.spotify.com/authorize?client_id=MASUKKAN_CLIENT_ID_DISINI&response_type=code&redirect_uri=http
+%3A%2F%2Flocalhost:3000&scope=user-read-currently-playing
+```
+
+contoh:
+
+```text
+https://accounts.spotify.com/authorize?client_id=eaccb97f6d0e405897adf1dd80b95c01&response_type=code&redirect_uri=http
+%3A%2F%2Flocalhost:3000&scope=user-read-currently-playing
+```
+
+Buka link tersebut di browser, kemudian anda akan diarahkan ke redirect uri, copy link websitenya
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/spotify-now-playing/5_ynbc2q.png'
+  alt='Redirect URI'
+  width={1440}
+  height={891}
+/>
+
+Contoh link redirect sebagai berikut:
+
+```text
+http://localhost:3000/?code=AQBeA9SD7QbA9hUfv_TfmatYxT51CY87msMnOZmMbhf7ZaxfbvG7oKEsATOJBxDyFap0Aq6uftY0v4Hq1QSy3MgQBfAHhmrifty-62rfDRlFnd0AzXRBOMpoOSA6SNw_uTPp7AixAE5zosgiIIf7efhzf1QOJfLh1HUYi248z8jk1x2jjKG2YLvMyJuP0rjB5tP5UHjoFGBvKbULpchkF6yiJHnS
+```
+
+`code` yang kamu miliki adalah yang setelah tanda sama dengan (=). Jangan lupa dicatat
+
+Kemudian kita membutuhkan authorization client yang telah diencrypt dengan base64, gunakan aplikasi [base64 encoding](https://www.base64encode.org) untuk mengencrypt data dengan format `client_id:client_secret`
+
+Contohnya sebagai berikut:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/spotify-now-playing/6_jkbqaa.png'
+  alt='Base64 Encode'
+  width={784}
+  height={619}
+/>
+
+Kemudian, catat hasil encrypt `base64` tersebut.
+
+Setelah itu buka terminal / cmd, kemudian jalankan command berikut, jangan lupa ubah `base64` dan `code` milik kamu.
+
+```bash
+curl -H "Authorization: Basic MASUKKAN_BASE64_DISINI"
+-d grant_type=authorization_code -d code=MASUKKAN_CODE_DISINI -d redirect_uri=http%3A
+%2F%2Flocalhost:3000 https://accounts.spotify.com/api/token
+```
+
+\*pastikan command berada dalam 1 line
+
+Contoh:
+
+```bash
+curl -H "Authorization: Basic ZWFjY2I5N2Y2ZDBlNDA1ODk3YWRmMWRkODBiOTVjMDE6YTQxOTVjMmQwYTQyNDM2MDllNjk3ZTYwMmU3MGI3NjI=" -d grant_type=authorization_code -d code=AQBeA9SD7QbA9hUfv_TfmatYxT51CY87msMnOZmMbhf7ZaxfbvG7oKEsATOJBxDyFap0Aq6uftY0v4Hq1QSy3MgQBfAHhmrifty-62rfDRlFnd0AzXRBOMpoOSA6SNw_uTPp7AixAE5zosgiIIf7efhzf1QOJfLh1HUYi248z8jk1x2jjKG2YLvMyJuP0rjB5tP5UHjoFGBvKbULpchkF6yiJHnS -d redirect_uri=http%3A%2F%2Flocalhost:3000 https://accounts.spotify.com/api/token
+```
+
+Kamu akan mendapatkan return JSON yaitu:
+
+```json
+{
+  "access_token": "BQDKxO7h1I1wA3esGK9zCFWn97XORJEPjwAHAEIxCnDXcmy9GbEuPacquwWvpiM4d33gJVHVOP9KUxY8AXkpXc-_zRFZBfneHM2vEeV1Fbfr-0Mw94oimlNf77dRiyxPpm4IUVNLloUWgYcfkAO0",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "refresh_token": "AQAtxXvnzRTt4c2-2_Av2WyJQKWxUW_hMVN6QNiqv2i8A2ZElVarmvdhqyc8Pf-Z5n827FTFxTpHq5E3kOsrlRWM3TuJWxjVQsW0icR0zo3BXRFLt2FB2Qfj-pFaZwY-qc8",
+  "scope": "user-read-currently-playing"
+}
+```
+
+Contoh running command pada terminal:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/spotify-now-playing/7_rud11r.png'
+  alt='Terminal'
+  width={920}
+  height={494}
+/>
+
+yang perlu kita catat adalah `refresh_token`. Token tersebut akan berlaku untuk selamanya.
+
+Sekarang kamu sudah bisa request dengan menggunakan Next.js atau aplikasi backend lainnya.
+
+---
+
+## 3. Membuat API di Next.js
+
+Jika kamu butuh referensi untuk membuat aplikasi, kamu bisa [cek repository saya](https://github.com/theodorusclarence/now-playing-spotify). Jangan lupa di star ya!
+
+Kamu bisa menggunakan [nextjs-tailwind-starter](https://github.com/theodorusclarence/nextjs-tailwind-starter) dengan command:
+
+```bash
+npx create-next-app -e https://github.com/theodorusclarence/nextjs-tailwind-starter project-name
+```
+
+Setelah aplikasi terinstall, tambahkan dependency querystring
+
+```bash
+yarn add querystring
+
+atau
+
+npm i querystring
+```
+
+Kemudian, buat api route di /pages/api/spotify.js
+
+Jika anda ingin code TypeScript, anda bisa mengecek codenya di [GitHub](https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/pages/api/spotify.ts)
+
+```jsx
+// /pages/api/spotify.js
+import querystring from 'querystring';
+
+const {
+  SPOTIFY_CLIENT_ID: client_id,
+  SPOTIFY_CLIENT_SECRET: client_secret,
+  SPOTIFY_REFRESH_TOKEN: refresh_token,
+} = process.env;
+
+const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
+const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
+const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
+
+const getAccessToken = async () => {
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${basic}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: querystring.stringify({
+      grant_type: 'refresh_token',
+      refresh_token,
+    }),
+  });
+
+  return response.json();
+};
+
+export const getNowPlaying = async () => {
+  const { access_token } = await getAccessToken();
+
+  return fetch(NOW_PLAYING_ENDPOINT, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+};
+
+export default async (_, res) => {
+  const response = await getNowPlaying();
+
+  if (
+    response.status === 204 ||
+    response.status > 400 ||
+    response.data.currently_playing_type !== 'track'
+  ) {
+    return res.status(200).json({ isPlaying: false });
+  }
+
+  const data = {
+    isPlaying: response.data.is_playing,
+    title: response.data.item.name,
+    album: response.data.item.album.name,
+    artist: response.data.item.album.artists
+      .map((artist) => artist.name)
+      .join(', '),
+    albumImageUrl: response.data.item.album.images[0].url,
+    songUrl: response.data.item.external_urls.spotify,
+  };
+
+  res.status(200).json(data);
+};
+```
+
+Tambahkan .env.local dengan data authorization yang sudah kita dapatkan (ubahlah data" dibawah dengan data kamu)
+
+```text
+SPOTIFY_CLIENT_ID=eaccb97f6d0e405897adf1dd80b95c01
+SPOTIFY_CLIENT_SECRET=a4195c2d0a4243609e697e602e70b7
+SPOTIFY_REFRESH_TOKEN=AQAtxXvnzRTt4c2-2_Av2WyJQKWxUW_hMVN6QNiqv2i8A2ZElVarmvdhqyc8Pf-Z5n827FTFxTpHq5E3kOsrlRWM3TuJWxjVQsW0icR0zo3BXRFLt2FB2Qfj-pFaZwY-qc8
+```
+
+API kamu sudah siap untuk digunakan dengan route: `GET https://localhost:3000/api/spotify`
+
+---
+
+## 4. Menggunakan API di aplikasi Next.js
+
+Untuk fetching, kita bisa menggunakan library [SWR](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjm6NXChrfuAhVEeX0KHZB4BjwQFjAAegQICxAC&url=https%3A%2F%2Fswr.vercel.app%2F&usg=AOvVaw0gJGo0q67gd371C_Ax1J7k). SWR adalah library yang sangat cocok untuk menembak API Spotify secara berkala. SWR akan melakukan refetching pada saat window refocus, dan perpindahan route. Install juga react-icons untuk mendapatkan logo spotify.
+
+```bash
+yarn add swr react-icons
+
+atau
+
+npm i swr react-icons
+```
+
+Tambahkan SWR di pages/index.jsx seperti code dibawah:
+
+[TypeScript Version](https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/components/layout/Spotify.tsx)
+
+```jsx
+import useSWR from 'swr';
+
+export default function Home() {
+  const fetcher = (url) => fetch(url).then((r) => r.json());
+  const { data } = useSWR('/api/spotify', fetcher);
+  return (
+    <>
+      <section className='bg-gray-600'>
+        <main className='flex items-center justify-center'>
+          {console.log(data)}
+        </main>
+      </section>
+    </>
+  );
+}
+```
+
+Akan ada 2 tipe data JSON yang akan diberikan oleh API Spotify:
+
+1. Ketika tidak memainkan lagu apa-apa
+
+   ```json
+   {
+     "isPlaying": false
+   }
+   ```
+
+2. Ketika sedang memainkan lagu
+
+   ```json
+   {
+     "album": "Menari Dengan Bayangan",
+     "albumImageUrl": "https://i.scdn.co/image/ab67616d0000b273d623688488865906052ef96b",
+     "artist": "Hindia",
+     "isPlaying": true,
+     "songUrl": "https://open.spotify.com/track/08OPqLv99g8avzmxQepmiw",
+     "title": "Besok Mungkin Kita Sampai"
+   }
+   ```
+
+Maka, kita bisa membuat component conditional untuk merender data tersebut, disini saya menggunakan icons dengan library 'react-icons'
+
+```jsx
+<a
+  target='_blank'
+  rel='noopener noreferer'
+  href={
+    data?.isPlaying
+      ? data.songUrl
+      : 'https://open.spotify.com/user/erence21?si=yTsrZT5JSHOp7tn3ist7Ig'
+  }
+  className='relative flex w-72 items-center space-x-4 rounded-md border p-5 transition-shadow hover:shadow-md'
+>
+  <div className='w-16'>
+    {data?.isPlaying ? (
+      <img
+        className='w-16 shadow-sm'
+        src={data?.albumImageUrl}
+        alt={data?.album}
+      />
+    ) : (
+      <SiSpotify size={64} color={'#1ED760'} />
+    )}
+  </div>
+
+  <div className='flex-1'>
+    <p className='component font-bold'>
+      {data?.isPlaying ? data.title : 'Not Listening'}
+    </p>
+    <p className='font-dark text-xs'>
+      {data?.isPlaying ? data.artist : 'Spotify'}
+    </p>
+  </div>
+  <div className='absolute bottom-1.5 right-1.5'>
+    <SiSpotify size={20} color={'#1ED760'} />
+  </div>
+</a>
+```
+
+Hasil bisa dilihat di [spotify-playing.theodorusclarence.com](https://spotify-playing.theodorusclarence.com)
+
+### Thanks and Goodluck!

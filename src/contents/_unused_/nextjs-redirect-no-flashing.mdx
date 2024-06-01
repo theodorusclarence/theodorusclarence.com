@@ -1,0 +1,180 @@
+---
+title: 'Next.js Redirect Without Flashing Content'
+publishedAt: '2021-05-18'
+description: 'Next.js is a static site by default, so redirecting unauthenticated user sometimes can be a problem.'
+banner: 'piermanuele-sberni-cLRUmTnN7_c-unsplash_lstsd5'
+tags: 'nextjs'
+---
+
+## Introduction
+
+> Next.js prerenders the static page, then hydrate the site to full interactivity client-side
+
+That means, we see our page first which is the HTML and the CSS, and a split second later, we get the JavaScript and all of the interactivity like button clicks.
+
+## The Problem
+
+In Create React App redirecting or doing `history.push` is not really a problem because all of the data that was sent is fetch on the client-side, including the static page (HTML & CSS). So there won't be any flashing content, and the app will smoothly redirect or push the page.
+
+But, in Next.js, we get the static page first, then only after finishing the hydration, the javascript code that does the redirecting will run. This becomes a problem when we are making a page with an authentication barrier because the unauthorized user can see the content briefly before getting redirected.
+
+I saw a lot of this problem even in the production app, maybe they still cover up the data because some of it was fetched client-side, but the shell sometimes still shows up. Try opening this website [app.splitbee.io/projects](https://app.splitbee.io/projects/theodorusclarence.com). You are not supposed to have access to this page. You will see a flash of the dashboard shell then only after that flash, you will get redirected to the login page.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-redirect-no-flashing/splitbee_ck84xh'
+  alt='splitbee'
+  width={1590}
+  height={896}
+/>
+
+There are a lot of answers lying around the internet to use methods such as server-side rendering the page, and utilizing cookies by using `dangerouslySetInnerHTML` in the Head.
+
+This method of blocking the page does not need any of that, but we will need to have a full-page loader to block the content.
+
+## Solution
+
+I created a demo on [https://learn-auth-redirect-nextjs.vercel.app/](https://learn-auth-redirect-nextjs.vercel.app/)
+
+You can try opening up the page, and directly go to [learn-auth-redirect-nextjs.vercel.app/blocked](http://learn-auth-redirect-nextjs.vercel.app/blocked). You will briefly see the loader, then get redirected to the `/` route.
+
+There are 2 approach that I found.
+
+### 1. Checking on every single page
+
+```jsx
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '@/contexts/auth';
+import FullPageLoader from '@/components/FullPageLoader';
+
+export default function blocked() {
+  const router = useRouter();
+
+  const { isAuthenticated, user, logout, isLoading } = useAuth();
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.push('/');
+    }
+  }, [isAuthenticated, isLoading]);
+
+  if (isLoading || !isAuthenticated) {
+    return <FullPageLoader />;
+  }
+
+  return (
+    <div className='layout space-y-4 py-12'>
+      <h1>YOUR CONTENT THAT SHOULD NOT BE SEEN UNLESS AUTHENTICATED</h1>
+    </div>
+  );
+}
+```
+
+Here, we are getting the `isAuthenticated` from the Auth Context, you can [see the repository](https://github.com/theodorusclarence/learn-auth-redirect-nextjs) for more details.
+
+This set of code will return the FullPageLoader component first while waiting for the page rendered and getting hydrated, then after that, the useEffect will do the checking if we are authenticated.
+
+This code is using useEffect in the Authentication Context, to verify the token that is usually stored in localStorage. You can check my library to [learn more about Authentication Context pattern](http://theodorusclarence.com/library/auth-context)
+
+The context is returning isLoading value, and we show the loader when it is loading, until we get the value of isAuthenticated.
+
+This pattern will effectively block the content that we don't want to give to unauthorized users. But using the first approach, it will be painful to add that pattern to every authenticated page we have. So I try to create a PrivateRoute, kind of similar to the CRA's React Router pattern.
+
+### 2. Using PrivateRoute Component
+
+```jsx
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+import { useAuth } from '@/contexts/auth';
+import FullPageLoader from './FullPageLoader';
+
+export default function PrivateRoute({ protectedRoutes, children }) {
+  const router = useRouter();
+  const { isAuthenticated, isLoading } = useAuth();
+
+  const pathIsProtected = protectedRoutes.indexOf(router.pathname) !== -1;
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated && pathIsProtected) {
+      // Redirect route, you can point this to /login
+      router.push('/');
+    }
+  }, [isLoading, isAuthenticated, pathIsProtected]);
+
+  if ((isLoading || !isAuthenticated) && pathIsProtected) {
+    return <FullPageLoader />;
+  }
+
+  return children;
+}
+```
+
+By using this component, we can specify the routes that we want to protect in \_app.js
+
+```js
+//_app.js
+
+import SEO from '@/next-seo.config';
+import '@/styles/globals.css';
+import { AuthProvider } from '@/contexts/auth';
+import PrivateRoute from '@/components/PrivateRoute';
+
+function MyApp({ Component, pageProps }) {
+  // Add your protected routes here
+  const protectedRoutes = ['/blocked-component'];
+
+  return (
+    <>
+      <AuthProvider>
+        <PrivateRoute protectedRoutes={protectedRoutes}>
+          <Component {...pageProps} />
+        </PrivateRoute>
+      </AuthProvider>
+    </>
+  );
+}
+
+export default MyApp;
+```
+
+> I'm open for all suggestions and contributions to improve 🚀. Open a PR on the repository or email me at me@theodorusclarence.com
+
+## Demo
+
+### 1. Without using full page loader & not authenticated `/blocked-unhandled`
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-redirect-no-flashing/blocked-unhandled_m4chdj'
+  alt='blocked-unhandled'
+  width={1440}
+  height={852}
+/>
+
+As you can see, the red text is still flashed briefly
+
+### 2. Using full page loader & not authenticated `/blocked-component`
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-redirect-no-flashing/blocked_nbwdvm'
+  alt='blocked'
+  width={1440}
+  height={852}
+/>
+
+Using full page loader, no content will be flashed
+
+### 3. Using full page loader & authenticated by checking the token
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-redirect-no-flashing/blocked-token_lhresk'
+  alt='blocked-token'
+  width={1440}
+  height={852}
+/>
+
+Using full page loader will still work if they have the token in localStorage

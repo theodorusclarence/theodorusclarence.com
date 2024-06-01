@@ -1,0 +1,318 @@
+---
+title: 'Back to Basic: Flexbox or Grid?'
+publishedAt: '2021-01-29'
+description: 'My practice on how to choose between flexbox and grid.'
+banner: 'btb-flexbox-grid_gtwzk3'
+tags: 'css,flexbox,grid'
+---
+
+## Introduction
+
+Back to Basic will answer some of my questions when I first started learning CSS. Personally, I think when you start learning CSS, it will be very hard, because CSS has about 520 properties that we can use. Of course, we won't use it all, there are many properties that I still didn't know, but there are plenty of properties that we need to understand to be proficient in CSS. This blog will not cover CSS from the really basic ones, but I will try to show you the implementation.
+
+> If you never have used flexbox or grid before, you can check this [flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) and [grid guide](https://css-tricks.com/snippets/css/complete-guide-grid/) from css-tricks.
+
+---
+
+## Question
+
+> When should we use flex or grid?
+
+When I first started learning CSS and know about flexbox and grid, I got confused about when to use flexbox and grid. In this blog, I will try to explain my approach on how to choose between flexbox and grid according to the condition.
+
+---
+
+## Use Case of Using Flex
+
+I always use flex to give a layout that only has 1 dimension (horizontal only or vertical). In this blog, I will give you some example of flexbox use case with some of my project that I have made.
+
+### 1. Container that has all elements in the center both horizontally and vertically
+
+We usually see this in a landing page
+
+Example:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/1_aa0dum.png'
+  alt='Contoh item tengah'
+  width={1440}
+  height={767}
+/>
+
+To achieve this layout, we only need 3 lines of CSS, I suggest you to memorize this combination, because you will use this in many cases.
+
+```css
+.container {
+  /*  make sure the parent element has height */
+  min-height: 100vh;
+  /* css to align vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* If you want to make a full-page,
+make sure the container has a height of the viewport */
+```
+
+### 2. Divide page into parts
+
+This layout also commonly seen, usually to divide the container into 2 parts with the same width, we can also make it divide into 3, 4, or as many as you want.
+
+[Codepen](https://codepen.io/theodorus/pen/xxRxVeo)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/2_spnrcs.png'
+  alt='Contoh bagi dua'
+  width={1440}
+  height={702}
+/>
+
+This layout can be easily achieved by using flex, let's see the HTML first
+
+```html
+<div class="container">
+  <div class="content">
+    <h1>Hello Bambang</h1>
+    <p>welcome to my page</p>
+    <button>click me</button>
+  </div>
+  <img class="content" src="https://unsplash.it/700/600" alt="unsplash" />
+</div>
+```
+
+As we can see, that `div.container` has 2 items which is `div.content` and `img.content`, so we can make layout that is equal parts.
+
+```css
+.container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.content {
+  /* this will make it divides in equal parts */
+  width: 100%;
+}
+
+div.content {
+  /* the first flexbox use case */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img.content {
+  object-fit: cover;
+}
+```
+
+by using `width: 100%` we make the child element to take as much space as possible. Because both of them wants to be 100%, so they compromise and span over 50%
+
+> If we want to make a responsive design with this layout, we can utilize `flex-direction`
+
+```css
+.container {
+  min-height: 100vh;
+  display: flex;
+  /* add this to make the flex stacked vertically */
+  flex-direction: column;
+}
+
+@media (min-width: 700px) {
+  .container {
+    flex-direction: row;
+  }
+}
+```
+
+So, when we are in a mobile view, flex will stacked vertically (like how HTML normally works), and when we get into larger viewport, flex will make the child elements stack horizontally (check the codepen for demo)
+
+### 3. Creating Navbar (using space-between)
+
+[Codepen](https://codepen.io/theodorus/pen/KKNKMzx)
+
+Creating a simple navbar will be very often to do and usually, the layout is spaced apart where the left side is the logo and the right side is the navigation.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/3_xefqrr.png'
+  alt='Contoh item tengah'
+  width={1440}
+  height={50}
+/>
+
+```html
+<nav>
+  <h3>Home</h3>
+  <ul>
+    <li>Route</li>
+    <li>Route</li>
+  </ul>
+</nav>
+```
+
+`nav` has 2 children which are `h3` and `ul`. Next, we just need to reset the base style and split the children element with space-between
+
+```css
+nav {
+  background-color: lightblue;
+  display: flex;
+  align-items: center;
+
+  /* this property will make the child spaced apart */
+  justify-content: space-between;
+}
+
+ul {
+  /* remove bullet style */
+  list-style: none;
+  display: flex;
+}
+
+ul > li + li {
+  /* add space between navigation links */
+  margin-left: 2em;
+}
+```
+
+All of the examples above actually can be made with a grid too. But, by using grid we need to write more CSS than using flexbox
+
+---
+
+## Use Case of Using Grid
+
+[Codepen](https://codepen.io/theodorus/pen/QWGWEQJ)
+
+Grid is usually used to make a more complex layout. My way of deciding is: _if using flex is too hard, then use grid_.
+
+> Layouting with flex actually can also be implemented for the complex layout, but using grid will be much easier.
+
+### 1. Making 2 dimensional layout
+
+I usually use grid to create this layout because there is a `gap` feature to space them out. Spacing things out using flex is going to be harder if we want to make the design responsive
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/4_t3tnuj.png'
+  alt='Layout kanan kiri'
+  width={1425}
+  height={675}
+/>
+
+Layout like this will be very easy if using grid, we only need to make it into 2 columns.
+
+```html
+<div class="container">
+  <div class="item">item1</div>
+  <div class="item">item2</div>
+  <div class="item">item3</div>
+</div>
+```
+
+We will simplify the layout by using `div.container` and 3 `div.item`
+
+```css
+.container {
+  /* container base layout */
+  max-width: 700px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+.item {
+  border: 0.2px solid white;
+  height: 15em;
+}
+```
+
+By using `grid-template-columns: repeat(2, 1fr)` we set the grid to divide the columns into two, and the `item` will follow the rule that we set. Last, we add the `gap: 1em` to create some whitespace.
+
+> Grid will be very helpful in responsive design, we only need to change the rules on grid-tem to be 1 column when it is on smaller screen size, and make it to 2 columns in the larger screens
+
+```css
+.container {
+  /* container base layout */
+  max-width: 700px;
+  margin: 0 auto;
+
+  display: grid;
+  /* no need to add grid template, because grid defaults to 1 column */
+  gap: 1em;
+}
+
+@media (min-width: 700px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+```
+
+### 2. Make layout with different sizes
+
+[Codepen](https://codepen.io/theodorus/pen/GRNRjjY)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flexbox-grid/5_i0mfuw.png'
+  alt='Layout kanan kiri'
+  width={1425}
+  height={712}
+/>
+
+I recommend you to use Firefox Dev Tools to see lines indicating the grid numbers.
+
+We approach this kind of layout by making 4 columns and 2 rows, then we assign the row and col placement on each of the elements. For example, the first picture spans over 2 columns and 2 rows. Check this if you have not understand the [grid numbering system](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Line-based_Placement_with_CSS_Grid).
+
+```html
+<div class="container">
+  <div class="item item1">item1</div>
+  <div class="item item2">item2</div>
+  <div class="item item3">item3</div>
+  <div class="item item4">item4</div>
+</div>
+```
+
+We will simplify the layout by using `.container` as the parent.
+
+```css
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+
+  display: grid;
+  /* makes the grid into 4 columns and 2 rows */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.item {
+  border: 1px solid white;
+  min-height: 10rem;
+}
+
+.item1 {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.item2 {
+  grid-column: 3 / 5;
+}
+
+/* you can also give value to item 3 and 4,
+but because it follows the natural flow of the grid I won't continue */
+```
+
+> For responsive design, we can put the image according to the rows and columns that we want, we can also change the template
+
+---
+
+## Summary
+
+**Use Grid if using flex is getting too complicated**

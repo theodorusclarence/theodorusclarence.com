@@ -1,0 +1,143 @@
+---
+title: '7 Form Components For React Hook Form I Always Use'
+publishedAt: '2021-07-12'
+lastUpdated: '2022-04-02'
+description: 'Building forms with validation is tedious and repetitive, using reusable component will help building faster.'
+englishOnly: 'true'
+banner: 'nikola-johnny-mirkovic-wyM1KmMUSbA-unsplash_fzyj2q'
+tags: 'react,form'
+---
+
+## Introduction
+
+Building forms with validation is tedious and repetitive. So my friend and I created a library of form input components so we can just copy the code in every code base, styled minimally with all error validation message using Tailwind CSS and react-icons.
+
+---
+
+## Demo Link
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/rhf/rhf-1_m2z3ia.png'
+  alt='Demo Screenshot'
+  width={880}
+  height={438}
+/>
+
+For the demo please visit [rhf.thcl.dev](https://rhf.thcl.dev)
+
+> I'm open for all suggestions and contributions to improve 🚀. Open a PR on the repository (available on the demo website) or email me at me@theodorusclarence.com
+
+## Yup Demo
+
+I also made a validation using Yup, you can access it on [https://rhf.thcl.dev/yup](https://rhf.thcl.dev/yup) along with the source code.
+
+---
+
+## Setup
+
+### 1. Install these dependencies
+
+```bash
+yarn add react-hook-form @tailwindcss/forms react-icons
+
+optional
+
+yarn add react-datepicker react-dropzone react-select
+```
+
+### 2. Configure tailwind.config.js to use [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    // ...
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+    // ...
+  ],
+};
+```
+
+### 3. Form Structure
+
+This is the default boilerplate, then you can insert the components inside the `form`
+
+```jsx
+import { FormProvider, useForm } from 'react-hook-form';
+
+export default function Page() {
+  const methods = useForm();
+  const { handleSubmit } = methods;
+
+  return (
+    <>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>Inputs Here</form>
+      </FormProvider>
+    </>
+  );
+}
+```
+
+---
+
+## Default Form Components
+
+### 1. TextInput
+
+[Link to demo](https://rhf.thcl.dev/inputs#text-input)
+
+Normal Text Input, with error validation
+
+![TextInput](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kdxmfpr423kfz00jiq2g.gif)
+
+### 2. PasswordInput
+
+[Link to demo](https://rhf.thcl.dev/inputs#password-input)
+
+Password input with peek functionality
+
+![PasswordInput](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/km75jce8ne1sz7uezw36.gif)
+
+### 3. TextArea
+
+[Link to demo](https://rhf.thcl.dev/inputs#text-area)
+
+Normal TextArea Input
+
+![TextArea](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/63rwadnb9yoz96fujbon.gif)
+
+### 4. DatePicker
+
+[Link to demo](https://rhf.thcl.dev/inputs#date-picker)
+
+Using `react-datepicker` library, provided with useful props like defaultYear, defaultMonth, locale lang
+
+![DatePicker](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qlayfyv6qwpgvky306zj.gif)
+
+### 5. Select (Native)
+
+[Link to demo](https://rhf.thcl.dev/inputs#select-native)
+
+Select Input using composition
+
+![SelectNative](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qtar72d0x80jxutro873.gif)
+
+### 6. File Upload Dropzone
+
+[Link to demo](https://rhf.thcl.dev/inputs#dropzone-input)
+
+Using `react-dropzone` library, we can specify selected file extension in the props
+
+![Dropzone](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/afxhanaz7tahfdehrglj.gif)
+
+### 7. Select (react-select)
+
+[Link to demo](https://rhf.thcl.dev/inputs#select-react)
+
+Using `react-select` library, allowing us to search on the select input
+
+![ReactSelect](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7vye8zx94k1b8zsidxjd.gif)

@@ -1,0 +1,174 @@
+---
+title: 'Back to Basic: UI Design Fundamental'
+publishedAt: '2021-02-04'
+description: 'Beberapa fundamental yang bisa diterapkan untuk membuat design kita lebih baik'
+banner: 'marek-okon-WScpndZFrOM-unsplash_trqbmo'
+tags: 'design'
+---
+
+## Introduction
+
+> Menurut Gary Simon, Ada 7 UI Design Fundamental yang harus dipenuhi untuk mencapai 'good design'
+
+7 Fundamental Design ini diambil dari video [Design Course - The 2020 UI Design Fundamentals Crash Course](https://www.youtube.com/watch?v=tRpoI6vkqLs)
+
+7 UI design fundamental itu adalah:
+
+1. Whitespace
+2. Alignment
+3. Contrast
+4. Scale
+5. Typography
+6. Color
+7. Visual Hierarchy
+
+Penjelasan lengkapnya akan saya jelaskan dengan ilustrasi,
+
+## 1. White Space
+
+White Space berarti ruang putih kosong, dengan menambahkan whitespace yang cukup, design kita terasa lega dan tidak crowded. Kita harus memberikan 'breathing room' yang cukup pada design kita.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/1_tm864u.jpg'
+  alt='Ilustrasi Whitespace'
+  width={953}
+  height={545}
+/>
+
+Berikan padding yang cukup pada design kalian, pastikan juga padding yang kalian berikan konsisten jadi tidak berat sebelah.
+
+## 2. Alignment
+
+Alignment berarti design kamu memiliki design yang sama rata, biasanya di kiri. Dengan menggunakan fundamental ini, design akan terasa lebih rapi.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/2_fp6ayr.jpg'
+  alt='Ilustrasi Alignment'
+  width={953}
+  height={545}
+/>
+
+Biasanya, dalam developing, kamu bisa menambahkan container untuk memberikan `padding` dan `max-width`
+
+Contoh:
+
+```html
+<section>
+  <div class="container"></div>
+</section>
+
+<style>
+  .container {
+    <!-- Width bisa juga diganti dengan padding -->
+    width: 90%;
+
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section {
+  <!-- tambahkan styling background color disini agar tidak terpotong -->
+  }
+</style>
+```
+
+## 3. Contrast
+
+Contrast adalah perbedaan warna background dengan tulisan text yang kamu miliki. Contrast harus mencukupi agar tulisan bisa dibaca dengan mudah. Contrast harus memenuhi aturan WCAG 2.0, kamu bisa menggunakan [website ini](https://contrastchecker.com/) untuk mengecek contrast. Ada juga extension di figma yaitu [A11y - color contrast checker](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj97tzEzM_uAhUIfSsKHSGLCE8QFjAAegQIAhAC&url=https%3A%2F%2Fwww.figma.com%2Fcommunity%2Fplugin%2F733159460536249875&usg=AOvVaw0QYyNcsQnWIqfZevLmZSvf).
+
+> Fun fact: A11y berarti Accessibility, 11 diambil dari jumlah huruf accessibility di tengah huruf a dan y.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/3_vrqocr.jpg'
+  alt='Ilustrasi Contrast'
+  width={953}
+  height={545}
+/>
+
+## 4. Scale
+
+Scale adalah ukuran tulisan yang kalian gunakan. Gunakanlah ukuran font yang tidak terlalu besar dan tidak terlalu kecil. Untuk font tag `<p>` biasanya adalah `16px`. UI Fundamental **Contrast** dan **Scale** adalah 2 hal yang sangat mempengaruhi WCAG scale.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/4_bqcx66.jpg'
+  alt='Ilustrasi Scale'
+  width={953}
+  height={545}
+/>
+
+> Jangan membuat pengguna websitemu kesulitan untuk membaca ya!
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/squint_ig4wm3.gif'
+  alt='Squint'
+  width={370}
+  height={272}
+/>
+
+## 5. Typography
+
+Typography adalah pilihan font yang kita gunakan. Jangan terlalu banyak menggunakan font, biasanya saya menggunakan 1-2 font, cukup menggunakan 1 font sans-serif dan 1 font serif. Gunakan juga font yang menurut kamu bisa meng-komplemen website kamu dengan baik.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/5_urgogw.jpg'
+  alt='Ilustrasi Typography'
+  width={953}
+  height={545}
+/>
+
+> Pro tip: Jangan pake comic sans ;)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/6_woi3j8.jpg'
+  alt='Comic Sans'
+  width={400}
+  height={400}
+/>
+
+## 6. Color
+
+Warna yang kalian gunakan pada website sangat mempengaruhi penampilan designnya. Jangan gunakan terlalu banyak warna. Biasanya ada beberapa design system yang menganjurkan untuk menggunakan 3 warna yaitu: Primary Color, Secondary Color, dan Accent Color.
+
+Gunakan website yang memberikan rekomendasi warna seperti [mycolor.space](https://mycolor.space/) dan [coolors](https://coolors.co)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/7_zkafqr.jpg'
+  alt='Ilustrasi Color'
+  width={953}
+  height={545}
+/>
+
+## 7. Visual Hierarchy
+
+Visual Hierarchy adalah hal yang sangat penting untuk mendireksikan mata pengguna website kepada alur yang kita inginkan. Berikan font yang lebih besar jika kamu mau membuat tulisanmu menjadi pertama dibaca.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/9_upyluo.jpg'
+  alt='Ilustrasi Visual Hierarchy'
+  width={953}
+  height={545}
+/>
+
+Faktanya pengguna website tidak membaca kata per kata dalam website kita, tapi hanya melakukan 'skimming', yaitu melihat teks yang besar atau heading saja.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-ui-fundamental/8_uap6ow.jpg'
+  alt='Ilustrasi VS'
+  width={400}
+  height={400}
+/>
+
+## Kesimpulan
+
+Demikian penjelasan dari 7 design fundamental, semoga design yang kalian buat bisa lebih baik dari sebelumnya!

@@ -1,0 +1,314 @@
+---
+title: 'One-stop Starter to Maximize Efficiency on Next.js & Tailwind CSS Projects'
+publishedAt: '2022-01-05'
+description: 'Increase your efficiency by using preconfigured starter repository, with rich development features and automations.'
+englishOnly: 'true'
+banner: 'sawyer-bengtson-umRPY9w3q1c-unsplash_aw4tur'
+tags: 'nextjs,tailwindcss,typescript'
+---
+
+## Introduction
+
+I made the [ts-nextjs-tailwind-starter](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter) after I got tired of setting up a new project and have to initialize Tailwind CSS every single time. After some months, this starter has grown and is filled with a lot of development automation and tools that help me when I'm developing.
+
+This is something that I use every project init, features are carefully curated, and put into this repository.
+
+<GithubCard repo='theodorusclarence/ts-nextjs-tailwind-starter' />
+
+## Features
+
+According to my list, these are all the features that I incorporate on ts-nextjs-tailwind-starter:
+
+- ⚡️ Next.js 13
+- ⚛️ React 18
+- ✨ TypeScript
+- 💨 Tailwind CSS 3 — Configured with CSS Variables to extend the **primary** color
+- 💎 Pre-built Components — Components that will **automatically adapt** with your brand color, [check here for the demo](https://tsnext-tw.thcl.dev/components)
+- 🃏 Jest — Configured for unit testing
+- 📈 Absolute Import and Path Alias — Import components using `@/` prefix
+- 📏 ESLint — Find and fix problems in your code, also will **auto sort** your imports
+- 💖 Prettier — Format your code consistently
+- 🐶 Husky & Lint Staged — Run scripts on your staged files before they are committed
+- 🤖 Conventional Commit Lint — Make sure you & your teammates follow conventional commit
+- ⏰ Release Please — Generate your changelog by activating the `release-please` workflow
+- 👷 Github Actions — Lint your code on PR
+- 🚘 Automatic Branch and Issue Autolink — Branch will be automatically created on issue **assign**, and auto linked on PR
+- 🔥 Snippets — A collection of useful snippets
+- 👀 Default Open Graph — Awesome open graph generated using [og](https://github.com/theodorusclarence/og), fork it and deploy!
+- 🗺 Site Map — Automatically generate sitemap.xml
+- 📦 Expansion Pack — Easily install common libraries, additional components, and configs
+
+Quite a lot huh? I'm going to take an in-depth look at each feature and automation with this post.
+
+---
+
+## Easy Initial Config
+
+Don't you hate it when you use a starter, then you see some branding or default configs left out unchanged?
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/one-stop-starter/initial-config_oaxcgp'
+  alt='initial-config'
+  width={1405}
+  height={993}
+/>
+
+I prepared a unique word that you can find, with some guide of what to override. You can remove the comments after you override them, and leave them if you haven't. Treat them as a to-do comment.
+
+## Pre-built Components
+
+I prepared a set of components that is neutral and can be used to help boost your speed in development. These are components that have a **high chance of being used**, not just getting deleted after you finished cloning the repository.
+
+<LiteYouTubeEmbed
+  id='xawHHhqIVVo'
+  poster='maxresdefault'
+  title='Pre-built components demo'
+  noCookie={true}
+/>
+
+All animations are configured to be **motion-safe**.
+
+### Don't like the theme?
+
+You can change it with CSS Variables. I prepared **all Tailwind CSS colors** converted to CSS Variables in the `styles/colors.css` file that you can copy and use.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/one-stop-starter/list-of-tailwind-classes_jqwdxa'
+  alt='list-of-tailwind-classes'
+  width={1504}
+  height={824}
+/>
+
+See more details about components on the [demo page](https://tsnext-tw.thcl.dev/components)
+
+## SEO Enhancement
+
+Do you want your project to be indexed to search engines? Yeah, me too. I optimized the SEO by preparing a custom Seo component and adding [next-sitemap](https://www.npmjs.com/package/next-sitemap).
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/one-stop-starter/seo-component_xpzsab'
+  alt='seo-component'
+  width={1501}
+  height={921}
+/>
+
+If you want to use the default meta tag, just add `<Seo />` on top of your page.
+
+You can also customize it per page by overriding the title, description as props
+
+```tsx
+<Seo title='Next.js Tailwind Starter' description='your description' />
+```
+
+or if you want to still keep the site title like `%s | Next.js Tailwind Starter`, you can use `templateTitle` props.
+
+## Minimal Dependencies
+
+I tried to keep the dependencies small, not the devDeps tho, you'll see why after you see a bunch of automation I create. Here are the 3 dependencies (excluding Next.js and React deps)
+
+1. [clsx](https://bundlephobia.com/package/clsx@latest), a utility for constructing `className` strings conditionally.
+2. [react-icons](https://bundlephobia.com/package/react-icons@latest), easily import popular icon packs in SVG format.
+3. [tailwind-merge](https://github.com/dcastil/tailwind-merge), override tailwind CSS classes without using !important.
+
+The tailwind-merge can be used by importing `clsxm` from `@/lib/clsxm`. All of the pre-built components are using clsxm to ease the use of the reusable components.
+
+Here is a thread that I made about tailwind-merge:
+
+<TweetCard tweetId='1475685363003768836' />
+
+## Absolute Import & Path Alias
+
+```tsx
+import Header from '../../../components/Header';
+
+// simplified to
+
+import Header from '@/components/Header';
+```
+
+Reduce the complexity of importing components by using absolute import, and a nice path alias to differentiate **your** **code** and **external libraries.**
+
+## Prettier with Tailwind CSS Class Sorter
+
+In this repository, I set it up so it will automatically sort class based on the custom config file. It even works with clsx or classnames! You don't need to ask your colleague to download another VS Code extension. All of it is bound to the repository.
+
+<LiteYouTubeEmbed
+  id='AJt5na1E7DE'
+  poster='sddefault'
+  title='Tailwind CSS Class Sort Demo'
+  noCookie={true}
+/>
+
+## ESLint
+
+This repository is prepared with ESLint to reduce human errors during development. Don't worry there won't be any annoying **styling lint** because all of it is taken care of with Prettier. Some cool features such as:
+
+### Auto Import Sort & Unused Import Removal
+
+Don't you hate it when you have to revise your code because your reviewer told you to **reorder imports**? If they haven't automated it, do yourself a favor by recommending this starter.
+
+<LiteYouTubeEmbed
+  id='6W6FSJ6mq6c'
+  poster='sddefault'
+  title='Auto Import Sort & Unused Import Removal Demo'
+  noCookie={true}
+/>
+
+## Husky & Lint Staged
+
+There are 3 Husky hooks that will help you with the automation of:
+
+1. **pre-commit**, run **eslint check** with 0 tolerance to warnings and errors and **format the code** using prettier
+2. **commit-msg**, run commitlint to ensure the use of the [Conventional Commit](https://theodorusclarence.com/library/conventional-commit-readme) for commit messages
+3. **post-merge**, running `yarn` every `git pull` or after merging to ensure all new packages are installed and ready to go
+
+Oh right, you also don't have to wait that long because husky only the code that you **stage** (using [lint-staged](https://github.com/okonet/lint-staged)).
+
+What about the type check, or if the staged code made the other fail? Don't burden your efficiency, just chuck it into Github Actions to run in the background.
+
+## Github Actions
+
+I love automation and I put some useful workflows that you can use.
+
+### Type Check, Whole ESLint & Prettier
+
+For the sake of efficiency, we don't run whole project checks on your local machine. That takes too long just to commit simple changes. We will run it on Github Actions instead, then you can continue working while waiting for it to complete.
+
+Here are the complete lists that will be checked:
+
+1. **ESLint** - will fail if there are any warnings and errors
+2. **Type Check** - will fail on `tsc` error
+3. **Prettier Check** - will fail if there are any formatting errors
+4. **Test** - will fail if there are any test failures
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/one-stop-starter/inline-lint_h8zjrn'
+  alt='inline-lint'
+  width={828}
+  height={623}
+/>
+
+Github also provides useful inline warnings in the Files Changed tab on the PR.
+
+### Auto Create Branch
+
+We can automatically create a branch from the latest main branch after you **assign** an issue.
+
+<LiteYouTubeEmbed
+  id='b2TWOdF2kW0'
+  poster='maxresdefault'
+  title='Auto create branch demo'
+  noCookie={true}
+/>
+
+This will create a **consistent branch name** with the issue number in front of them, and some issue context.
+
+p.s. You have to install the app for your organization/account/repository from the [GitHub Marketplace](https://github.com/marketplace/create-issue-branch) for this to work
+
+## Auto Link PR to Issue
+
+We automated the branch creation, the lint & the test process on the PR, what's next? Yep, linking PR to issue. That is **super annoying** and I always **forgot** to do it. We'll automate it using our consistent branch name.
+
+<LiteYouTubeEmbed
+  id='lOWtCVXq3os'
+  poster='maxresdefault'
+  title='Auto Link PR to Issue demo'
+  noCookie={true}
+/>
+
+It also provides a nice description of related issues, so your reviewer can check the issue first before reviewing.
+
+## Open Graph Generator
+
+I also provided an open graph application that you can [fork and deploy to vercel](https://github.com/theodorusclarence/og) for **free**. It is automatically used with the SEO component and will generate a dynamic open graph based on the page title and description.
+
+It defaults to my deployment, but please **fork it** and self-host. Because I might change the API without notice and could break your app's opengraph.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/one-stop-starter/og-generate_kcbpzt'
+  alt='og-generate'
+  width={1191}
+  height={884}
+/>
+
+You can even customize it with your own brand based on the repo!
+
+## Snippets
+
+Snippets are crucial if you want to make a consistent convention across the application. I prepared some snippets that can help you code faster and more effectively.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/one-stop-starter/snippets_i9vgeg'
+  alt='snippets'
+  width={887}
+  height={907}
+/>
+
+See more detail on [this file](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/blob/main/.vscode/typescriptreact.code-snippets)
+
+### Regions
+
+You might notice the `#region` with green highlight comments. This is something that can be used with `reg` snippets. You can easily separate your logic into named regions, then fold them if they are insignificant.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/one-stop-starter/regions_ws4imm'
+  alt='regions'
+  width={1307}
+  height={415}
+/>
+
+The lesser noise the better. You can also use `⌘ K + ⌘ 8` to fold all regions.
+
+### Snippets Wrap
+
+This is something that I recently added because it is annoying to wrap a component with React Fragment or refactoring className with clsx. So I created a snippet pattern called **Snippets Wrap** that can help you with that.
+
+<LiteYouTubeEmbed
+  id='baCi6IfJzvo'
+  poster='sddefault'
+  title='Snippets Wrap'
+  noCookie={true}
+/>
+
+## Expansion Pack
+
+I have to keep this starter minimal, but there are some libraries that I often use in every project. So I created a bash script to **install, config, and add additional components** to this starter.
+
+Currently, there are some packs in the [expansion-pack repository](https://github.com/theodorusclarence/expansion-pack)
+
+- React Hook Form + Form Input Components
+- [Storybook](https://theodorusclarence.com/blog/nextjs-storybook-tailwind)
+- Cypress + workflow to run on Vercel preview on push
+- [Toast with React Query / SWR](https://theodorusclarence.com/blog/react-loading-state-pattern)
+- [Dialog Manager with Zustand](https://github.com/theodorusclarence/dialog-manager)
+- NProgress
+
+Here is a demo for the React Hook Form one
+
+<LiteYouTubeEmbed
+  id='fna-ekaU0A4'
+  poster='sddefault'
+  title='Expansion pack demo'
+  noCookie={true}
+/>
+
+Hit the terminal then grab some coffee. You're back with complete components also a **sandbox** page to see how to implement the library.
+
+For more demo, check out the [repository readme](https://github.com/theodorusclarence/expansion-pack)
+
+<GithubCard repo='theodorusclarence/expansion-pack' />
+
+## Star the repository
+
+Liking the features? This repository basically grows with me, so the features will go through changes and improvement. If you got anything in mind, leave a comment below, or [open a discussion](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/discussions).
+
+<GithubCard repo='theodorusclarence/ts-nextjs-tailwind-starter' />
+
+Finally, I would be **thrilled** if you give a **star** to the repository.

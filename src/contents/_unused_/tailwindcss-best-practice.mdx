@@ -1,0 +1,368 @@
+---
+title: 'Styling Best Practices I Use With Tailwind CSS'
+publishedAt: '2021-05-15'
+lastUpdated: '2022-01-12'
+description: 'Tailwind CSS helped a lot when developing a consistent design cleanly and rapidly.'
+banner: 'mitchell-luo-j0r6nURLcAg-unsplash_u51v7i'
+tags: 'tailwindcss'
+---
+
+## Introduction
+
+This blog is not about learning Tailwind CSS from the ground up. Tailwind Labs has a complete [playlist in their youtube channel](https://www.youtube.com/watch?v=elgqxmdVms8&list=PL5f_mz_zU5eXWYDXHUDOLBE0scnuJofO0&ab_channel=TailwindLabs). I recommend checking that out, I learned a lot from it.
+
+> For me, Tailwind CSS is like another form of writing CSS, and will not replace the knowledge about basic CSS and responsive design.
+
+## Why Tailwind CSS?
+
+Tailwind CSS is a utility-first framework that is currently my go-to framework for styling on my website. It provides reusable styling and components that I can even use between multiple websites. Checkout [my library](https://theodorusclarence.com/library), I have some of my components put there so I can easily find them when I need them on another website I'm building.
+
+Tailwind CSS is provided with a lot of CSS best practices that I also follow when writing Vanilla CSS or SCSS. It mostly suppresses all of the quirky things that most developers found in writing Vanilla CSS like box-sizing, annoying button defaults, collapsing margins, etc. Which makes many developers think that Tailwind CSS is a way to avoid writing CSS and understanding all of the quirky things in a CSS.
+
+But **I love writing CSS.** I'm quite comfortable in writing CSS and understand how it works. For me, learning Vanilla CSS is really crucial and you should not replace CSS with Tailwind CSS before you understand css.
+
+> Don't get too comfortable with frameworks that you can't make a website without Tailwind CSS or other frameworks like Bootstrap.
+
+Well, enough talking, let's get to the best practices I use in writing CSS and Tailwind CSS. Both applies because like I said, Tailwind CSS is just another form of writing CSS.
+
+## 1. Using Layout Class (or container)
+
+You probably won't notice sites without constraining width if you are not using a big monitor. Sometimes people forget to add this constraint when developing and causing styling issues for someone that have a larger viewport
+
+You can use [container class from Tailwind CSS](https://tailwindcss.com/docs/container), but I prefer my own.
+
+```css
+.layout {
+  max-width: 68.75rem; // 1100px
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+The 90% width will provide a great amount of padding for mobile view and will get constrained at 1100px when we get to a bigger viewport. You can use any value for the max-width, but I found 1100px suits a lot of cases.
+
+To use this class, I usually combine it with `section` tag like this:
+
+```html
+<!-- Put all of background colors in the section tag  -->
+<section>
+  <!-- This `div.layout` is for all of your layout usage, put flex, text-colors, min-height, container's font-size here. -->
+  <div class="layout">
+    <h1>Content</h1>
+  </div>
+</section>
+```
+
+We can put all of the background colors or background image on the `section` tag, to avoid it getting cut off by the constraint.
+
+Here is a demo of the layout class, you can also [check the codepen](https://codepen.io/theodorus/pen/JjWKobM)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/tailwindcss-best-practice/layout_olnbd1'
+  alt='layout'
+  width={1000}
+  height={489}
+/>
+
+## 2. Don't use horizontal padding for layouting
+
+This is a **preference**, but I don't use horizontal padding for layouting, for example:
+
+```html
+<section class="px-8">
+  <h1>Heading</h1>
+</section>
+
+<section class="px-8">
+  <h1>Heading</h1>
+</section>
+```
+
+I avoid this because we implying a new convention to the code, and we need to remember the amount of padding. For example you have navbar, content, and footer, in all three you have to use the same padding value to make it consistent.
+
+I suggest to use `.layout` class instead so you don't need to maintain a convention.
+
+## 3. Add base style
+
+Tailwind CSS has a feature called [Preflight](https://tailwindcss.com/docs/preflight), which is a set of base styles for Tailwind projects that are designed to smooth over cross-browser inconsistencies and make it easier for you to work within the constraints of your design system.
+
+Basically, it does something to the default stylesheet agent like removing margin, padding, even font size. Also adding some base style to buttons, links, list, etc. Find more at the [Preflight Docs](https://tailwindcss.com/docs/preflight).
+
+It is a good thing because we didn't need to do all of the chore like removing blue color and underline from links, resetting font-family, background, border out of buttons, and many more. But, we miss a lot of things like font-size and font-weight for each heading.
+
+I have a preconfigured base style that I usually add in my projects, it is already added to my [starter](https://clarence.link/starters) which I use in every project.
+
+```css
+.h0 {
+  @apply font-primary text-3xl font-bold md:text-5xl;
+}
+
+h1,
+.h1 {
+  @apply font-primary text-2xl font-bold md:text-4xl;
+}
+
+h2,
+.h2 {
+  @apply font-primary text-xl font-bold md:text-3xl;
+}
+
+h3,
+.h3 {
+  @apply font-primary text-lg font-bold md:text-2xl;
+}
+
+h4,
+.h4 {
+  @apply font-primary text-base font-bold md:text-lg;
+}
+
+body,
+.p {
+  @apply font-primary text-sm md:text-base;
+}
+```
+
+This will add responsive font-size, and apply the font you are using. **Don't forget to configure the `font-primary` in tailwind config, or just use font-sans.**
+
+### Disclaimer
+
+This default sizes are added merely for the sake of convenience.
+
+However, **you shouldn't choose heading levels because of the font size**. You still have to check the content hierarchy.
+
+For example, if you need larger font size for a normal paragraph, you can't use `h3` because **it is not a heading**, but you can use `p` tag with the `.h3` class to get the same result.
+
+```tsx
+// ❌
+<h3>Not a content heading</h3>
+
+// ✅
+<p className='h3'>Not a content heading</p>
+```
+
+## 4. Whitespace
+
+Still, because of preflight, default margins are removed from the base style. So we need to add the margin ourselves. I usually found `mb-2` and `mb-4` really great when adding some whitespace.
+
+Also, don't forget that Tailwind CSS has a built-in CSS pattern which is [Lobotomized Owl](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/) by Heydon Pickering. This usually helps a lot even in Vanilla CSS. In Tailwind CSS it is called [Space Between](https://tailwindcss.com/docs/space). It works by adding margin-top to all of the child elements except the first one.
+
+Here is the original one by Heydon:
+
+```css
+.flow-content > * + * {
+  margin-top: 1.5em;
+}
+```
+
+It uses relative units so it will be relative to the element's font size. Learn more about this in my [blog about rem, em, and px units](https://theodorusclarence.com/blog/btb-rem-em)
+
+Tailwind CSS Space Between basically does the same, but with `rem`. So we can only use it if we are sure that the elements inside all have the same spacing. For example:
+
+```html
+<!-- Using normal margin class -->
+<div>
+  <p class="mb-2">Paragraph</p>
+  <p class="mb-2">Paragraph</p>
+  <p class="mb-2">Paragraph</p>
+  <p class="mb-2">Paragraph</p>
+</div>
+
+<!-- Using Space Between -->
+<div class="space-y-2">
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+</div>
+```
+
+### Update
+
+With the recent support of `gap` by [Safari](https://caniuse.com/flexbox-gap), we can safely use `gap` with `flex` now, I prefer to use gap because it is not constrained to only 1 direction.
+
+**IE** is still not supported, so keep that in mind.
+
+```html
+<!-- Using Flex & Gap -->
+<div class="flex flex-col gap-2">
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+</div>
+```
+
+## 5. Use component and map function
+
+I'm using React, so I can easily achieve a DRY code by mapping the value and using components to reuse. A common example is a Button component
+
+```jsx
+export default function CustomLink(props) {
+  return (
+    <UnstyledLink
+      {...props}
+      className={`${props.className} inline-flex items-center font-bold hover:text-primary-400`}
+    >
+      {props.children}
+    </UnstyledLink>
+  );
+}
+```
+
+By using component, we won't repeat the same class over and over again
+
+For the mapping, I usually put my data in a JS file or declare an array, then map it out.
+
+```jsx
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/library', label: 'Library' },
+  { href: '/about', label: 'About' },
+];
+
+export default function Nav() {
+  return (
+    <nav className='bg-gray-700'>
+      <ul className='flex items-center justify-between px-8 py-4'>
+        <li>
+          <Link href='/'>
+            <a className='font-bold text-green-400'>Home</a>
+          </Link>
+        </li>
+        <ul className='flex items-center justify-between space-x-4'>
+          {links.map(({ href, label }) => (
+            <li key={`${href}${label}`}>
+              <Link href={href}>
+                <a className='text-white hover:text-green-400'>{label}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </ul>
+    </nav>
+  );
+}
+```
+
+Notice the use of space between to reduce class too. The code example is taken from this website and [available on github](https://github.com/theodorusclarence/theodorusclarence.com). Kindly star it if it helps!
+
+## 6. Use clsx to merge classes
+
+When we abstract code into components, it will be useful if we merge the component's class with the call function.
+
+I usually avoid put spacing classes in the component, I prefer merging it with props. That way, we don't need to override it every now and then and we can use different margins.
+
+```tsx
+import clsx from 'clsx';
+import * as React from 'react';
+
+export default function Tag({
+  children,
+  className,
+  ...rest
+}: React.ComponentPropsWithoutRef<'button'>) {
+  return (
+    <button
+      className={clsx(
+        className,
+        'inline-block rounded-md px-1.5 py-0.5 font-medium transition-colors',
+        'bg-gray-100 text-gray-700 hover:text-black disabled:bg-gray-200 disabled:text-gray-300',
+        'focus:outline-none focus-visible:ring focus-visible:ring-primary-300 disabled:cursor-not-allowed'
+      )}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+```tsx
+<Tag className='mt-4'>Tag</Tag>
+```
+
+With clsx, we can also group the classes into its own variant. In a complex component class can be really long, and we should separate it to make it easier to read.
+
+### Complex example
+
+Here is one example with more complex use of clsx:
+
+```tsx
+<button
+  {...rest}
+  disabled={disabled}
+  className={clsx(
+    className,
+    'inline-flex rounded px-4 py-2 font-semibold',
+    'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
+    'shadow-sm',
+    'transition-colors duration-75',
+    [
+      variant === 'primary' && [
+        'bg-primary-400 text-white',
+        'border border-primary-500',
+        'hover:bg-primary-500 hover:text-white',
+        'active:bg-primary-600',
+        'disabled:bg-primary-600 disabled:hover:bg-primary-600',
+      ],
+      variant === 'outline' && [
+        'text-primary-500',
+        'border border-primary-500',
+        isDarkBg
+          ? 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800'
+          : 'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
+      ],
+      variant === 'ghost' && [
+        'text-primary-500',
+        'shadow-none',
+        isDarkBg
+          ? 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800'
+          : 'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
+      ],
+      variant === 'light' && [
+        'bg-white text-dark ',
+        'border border-gray-300',
+        'hover:bg-gray-100 hover:text-dark',
+        'active:bg-white/80 disabled:bg-gray-200',
+      ],
+      variant === 'dark' && [
+        'bg-gray-900 text-white',
+        'border border-gray-600',
+        'hover:bg-gray-800 active:bg-gray-700 disabled:bg-gray-700',
+      ],
+    ],
+    'disabled:cursor-not-allowed',
+    isLoading &&
+      'relative !cursor-wait !text-transparent !transition-none hover:!text-transparent'
+  )}
+>
+  {isLoading && (
+    <div
+      className={clsx(
+        'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+        {
+          'text-white': variant === 'dark' || variant === 'primary',
+          'text-black': variant === 'light',
+          'text-primary-500': variant === 'outline' || variant === 'ghost',
+        }
+      )}
+    >
+      <ImSpinner2 className='animate-spin' />
+    </div>
+  )}
+  {children}
+</button>
+```
+
+## Install Tailwind CSS Injector Addons
+
+When tailwindcss is shipped to production, the classes that is shipped is only the class that we use in the site (tree shaken). Sometimes it is needed to add some class for debugging issues, or if we just want to play around with website that don't use tailwindcss.
+
+So, I created an addons that will inject the tailwindcss CDN on the website.
+
+[Install Tailwind CSS Injector](https://clarence.link/tw-inject)

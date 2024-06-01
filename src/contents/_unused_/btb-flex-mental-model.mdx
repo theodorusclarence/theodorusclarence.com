@@ -1,0 +1,251 @@
+---
+title: 'Back To Basic: Mental Model to Understand Flexbox '
+publishedAt: '2021-07-19'
+description: 'These are the mental models that I use to really understand flexbox, and I hope these can help you to understand too.'
+englishOnly: 'true'
+banner: 'btb-flex-mental-model_y9k2ry'
+tags: 'css,flexbox'
+---
+
+## Introduction
+
+Mental models are personal, internal representations of external reality that people use to interact with the world around them. They are constructed by individuals based on their unique life experiences, perceptions, and understandings of the world. These are the mental model that I use to really understand flexbox, and I hope these can help you to understand too.
+
+In this flexbox tutorial we will try to understand these properties & topics
+
+- Flex Direction
+- Justify Content
+- Align Items
+- How Flexbox Divides its children
+- Flex Grow vs Width: 100%
+
+## Flex Direction
+
+There are 4 values for `flex-direction` property which are:
+
+- column
+- row
+- column-reversed
+- row-reversed
+
+[flexbox.help](https://flexbox.help/) has a great interactive illustration if you want to check it out. These are all the output I reproduced:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/Flex_Direction_wp5tpx.png'
+  alt='Flex Direction'
+  width={750}
+  height={832}
+/>
+
+Looking at the property's value, it is kind of confusing, because if we assign `flex-direction: row` it is stacked to the right.
+
+But here is the mental model to understand and to remember it. I want you to remember that we are putting the `flex-direction` to the red box, not the items. According to that, we are basically telling the red box to be a single row. Think of it as an excel spreadsheet. If the red box is a single row, we can only put elements to the right, like the excel spreadsheet.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/Spreadsheet_pljkqc.png'
+  alt='Spreadsheet'
+  width={1155}
+  height={256}
+/>
+
+Got it?
+
+`flex-direction: column` is basically the same, you are telling the red box to be a single column in a spreadsheet, then you can only add items to the bottom.
+
+As for the column-reverse, and the row-reverse, I think you already got the hang of it, just reverse it.
+
+## Justify Content
+
+Justify content is the property to move items around on the **main axis**. What is the main axis? The main axis is the direction we declare using `flex-direction`. For example with the same illustration on top, when we declare `flex-direction: row`, then the main axis is horizontal or to left-right.
+
+Here is a great illustration from [css-tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/justify_content_uelnhn'
+  alt='justify'
+  width={401}
+  height={641}
+/>
+
+> The mental model I use to remember this is, Justify Content moves around items on the main axis.
+
+I think the values of the property is very clear on the illustration.
+
+## Align Items
+
+This is the opposite of `justify-content` but `align-items` do not have all property from justify-content. Align items work on the **cross axis**. Which is the opposite of our main axis.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/align-items_mnzy9w'
+  alt='align-items'
+  width={405}
+  height={535}
+/>
+
+> Same with justify-content mental model, you only need to remember that Align Items work on the cross axis.
+
+## How Flexbox divide its children
+
+We have a red box with 500px width, and 5 items with each 100px width.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/flexbox-divide_xupnpf'
+  alt='flexbox-divide'
+  width={536}
+  height={156}
+/>
+
+with code:
+
+```html
+<div class="red-box">
+  <div class="item">
+    <p>1</p>
+  </div>
+  <div class="item">
+    <p>2</p>
+  </div>
+  <div class="item">
+    <p>3</p>
+  </div>
+  <div class="item">
+    <p>4</p>
+  </div>
+  <div class="item">
+    <p>5</p>
+  </div>
+</div>
+
+<style>
+  .red-box {
+    width: 500px;
+    display: flex;
+  }
+  .item {
+    width: 100px;
+  }
+</style>
+```
+
+I like to create a mental model where each item is requesting to the red box (which will we call **Reddy** for short) how much do they need.
+
+In the beginning Reddy is 500px wide, and each items is requesting 100px.
+
+```text
+Reddy: 500px
+
+Request List:
+1,2,3,4,5: 100px
+```
+
+Because Reddy has 500px space, so Reddy gives each item the requested amount, which is 100px.
+
+### Case 1: When Reddy's width is larger than the requested amount
+
+Let's say that Reddy is 700px, Reddy will still only give the items the requested amount which is 100px and has some spare spaces.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/larger_jkzrud'
+  alt='larger'
+  width={719}
+  height={111}
+/>
+
+### Case 2: When Reddy's width is smaller than the requested amount
+
+When Reddy has limited width, Reddy must give each item a **fair** amount of width according to the **request ratio**.
+
+Now, how do we calculate the ratio? That's quite easy, we need to find the ratio of all the requests, so:
+
+Item1 : Item2 : Item3 : Item4 : Item5 = 1 : 1 : 1 : 1 : 1
+
+So, from the ratio, Reddy will give each items equally.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/divide_equal_nnad59'
+  alt='divide'
+  width={415}
+  height={112}
+/>
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/firefox-devtools_nzmwpm'
+  alt='firefox-devtools'
+  width={315}
+  height={282}
+/>
+
+Firefox Devtool also has a nice information on how much each elements shrinks.
+
+**Now, how small will Reddy give to each item?** The items really care about the content they have, they don't want the content that they bring to get shrunk into non-existent
+
+![flex-shrink-behavior](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1o9yjttj1eyppyev2sju.gif)
+
+This illustration demonstrates that items won't shrink smaller than their content size, which in this case is 35px. Shrinking to content will create overflow.
+
+### Case 3: Different Request Ratio
+
+We already know if the ratio is 1:1:1:1:1, it will shrink the items into equal sizes, let's see how they work when the item requests are not identical.
+
+```text
+Reddy: 700px
+
+Request List:
+1,3,5: 100px
+2,4: 200px
+```
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/different_request_xoxazj'
+  alt='different'
+  width={715}
+  height={204}
+/>
+
+Let's calculate the **request ratio**:
+
+```text
+Item Number = Ratio
+1:2:3:4:5 = 100px:200px:100px:200px:100px
+simplified,
+1:2:3:4:5 = 1:2:1:2:1
+```
+
+So, Reddy will give the items according to that list.
+
+![different-ratio](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pqlfi8uaxpz35ud1nmiq.gif)
+
+As we can see, when Reddy gets shrunk to 350px, the item sizes will be: 50 : 100 : 50 : 100 : 50, identical to the **request ratio**.
+
+You can also force the item to not shrink according to the requested width using `flex-shrink: 0` on the `.item`. Reddy will recognize the item as a VIP Member, and won't shrink it no matter what.
+
+![shrink](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/33b5ltmqlalddkcorusr.gif)
+
+## Flex Grow vs Width 100%
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-flex-mental-model/flex-grow-width_p8sksq'
+  alt='flex-grow-width'
+  width={544}
+  height={534}
+/>
+
+Using `width: 100%` basically will translate to 100% of the container which is 500px. By doing that, this means that width: 100% **will get calculated** in the **request ratio** which is 1:5:1.
+
+But, using `flex-grow: 1`, the items **will not get calculated** in the **request ratio**, but takes the rest of whatever is left.
+
+## Summary
+
+There you go, after I understand how flexbox actually works, working with flexbox is a breeze. I also have a blog post on [how to choose between flex and grid](https://theodorusclarence.com/blog/btb-flexbox-grid), you might want to check it out.
+
+Let me know if you guys have some question!

@@ -1,0 +1,110 @@
+---
+title: 'Back to Basic: Should we use Rem, Em or Pixel?'
+publishedAt: '2021-03-11'
+description: 'Differences between rem, em, and px unit, and some use cases'
+banner: 'btb-rem-em_jt4lce'
+tags: 'css'
+---
+
+## Introduction
+
+> Using Rem and Em units is better than using px.
+
+When we use px, it means that we hardcode the font-size to all of the users. The user can't change the value whatsoever. This actually troubles the user that wants to have a bigger font-size from the default `16px`
+
+## How do rem works?
+
+Rem and Em is a relative unit that many developers use to preserve accessibility.
+
+> Rem (root em) stands for "root element's font-size"
+
+Usually, the default root font-size is `16px`. So, if we see a font-size that is 1rem, we are looking at 16px
+
+Because Rem means root element's font-size, we can also override the default value by using CSS like this:
+
+```css
+:root {
+  font-size: 20px;
+}
+```
+
+Because we changed the root font-size, now `1rem = 20px`
+
+### What if we want to use value other than 16px?
+
+We can get the rem value of a pixels by dividing it with 16px. For example, if we want to use a font-size of 20px, we will write `font-size: 1.25rem`. Which is 20/16.
+
+### But it's so annoying ?!
+
+Yep, using rem will make the development process longer because we need to calculate the rem value. But this gives some freedom to the user, and we are not messing with the accessibility.
+
+They can change the font-size like this:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/btb-rem-em/resize-rem_nr7a33.gif'
+  alt='Resize Rem'
+  width={1118}
+  height={718}
+/>
+
+## How do em works?
+
+> Em stands for "parent element's font-size"
+
+Because css is [cascading and inheritable](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance), em will inherit font-size value from the parent element. For example, we have a parent div, and p tag inside:
+
+```html
+<div>
+  <p>hi</p>
+</div>
+
+<style>
+  div {
+    font-size: 0.5rem; // 8px
+  }
+
+  p {
+    font-size: 1em; // ??px
+  }
+</style>
+```
+
+Because `p` inherit the parent element's font-size, so `1em = 8px`. This means, that the `p` will have `font-size: 8px`.
+
+That kind of confusing right? That's why using **em for font-size is not recommended**.
+
+> Always use REM for font-size to be consistent.
+
+### Where can we use em unit?
+
+Because of the inheritable, em unit will be helpful for **padding** and \*_margin_. By using em, we can make the padding and margin scale proportionately
+
+For example, we are making a button. The button can have different font-sizes in mobile and desktop view. We can see the difference between **rem** and **em** on this codepen:
+
+<iframe
+  height='588'
+  style={{ width: '100%' }}
+  scrolling='no'
+  title='REM, EM Difference'
+  src='https://codepen.io/theodorus/embed/OJbwPow?height=588&theme-id=dark&default-tab=result'
+  frameborder='no'
+  loading='lazy'
+  allowtransparency='true'
+  allowfullscreen='true'
+>
+  See the Pen{' '}
+  <a href='https://codepen.io/theodorus/pen/OJbwPow'>REM, EM Difference</a> by
+  theodorus (<a href='https://codepen.io/theodorus'>@theodorus</a>) on{' '}
+  <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+As we can see, by using **em** the padding stays proportionate to the scaling of font-size. Whereas **rem** has the same padding value on any font-sizes.
+
+## Can't we really use px anymore?
+
+For me, usage of rem and em will be very good on the elements that are crucial like font-size, padding, and margin. But, when giving out border-width, I do still use px value because the value we give is so small that it is almost not noticeable if we change the root font-size.
+
+## Summary
+
+There you go. Try to always use rem for font-size. And utilize the benefit of em for the proportionate padding if you need to.

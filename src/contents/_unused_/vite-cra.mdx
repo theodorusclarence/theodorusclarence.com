@@ -1,0 +1,102 @@
+---
+title: 'Looking at Vite, A Build Tool Faster than Create React App'
+publishedAt: '2021-05-02'
+description: 'Create React App has always been the default for making a React Application, is there a faster way?'
+banner: 'ansgar-scheffold-_fP6zNOrbZI-unsplash_ixywvw'
+tags: 'vite,react'
+---
+
+## Introduction
+
+> Vite improves the developer experience by a significant level and providing minimal install time, first start up build, and quick hot reload
+
+For a long time, we always use Webpack for bundler in a React Application. Create React App and Next.js are currently still using Webpack. While Webpack is really great at doing its job, sometimes it can take a lot of time to spin up a dev server, sometimes up to a minute or two with a large-scale website. Hot reloading also felt really long when using Webpack on a large-scale project.
+
+## What is Vite?
+
+Vite (French word for "fast", pronounced /vit/) is a build tool that pre-bundles dependencies using esbuild. Esbuild is written in Go and pre-bundles dependencies 10-100x faster than JavaScript-based bundlers.
+
+Vite has 2 major features:
+
+- A dev server that provides [rich feature enhancements](https://vitejs.dev/guide/features.html) over [native ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), for example extremely fast [Hot Module Replacement (HMR)](https://vitejs.dev/guide/features.html#hot-module-replacement).
+- A build command that bundles your code with [Rollup](https://rollupjs.org/), pre-configured to output highly optimized static assets for production.
+
+Vite works exactly like a normal React application, you can use all of the features the same as Create React App, but significantly faster.
+
+## How fast is Vite?
+
+I tried to compare the installation time, and build time until the server started, and here is the result:
+
+### Installation Time
+
+<CloudinaryImg
+  className='bg-gray-500'
+  publicId='theodorusclarence/blogs/vite-cra/ss-1_ly7ujv.png'
+  alt='Compare Installation'
+  width={1296}
+  height={387}
+/>
+
+This is the command I'm using to try both Vite and Create React App. I run the yarn command on Vite because the command only scaffold the code and we need to install the dependencies ourselves
+
+<CloudinaryImg
+  className='bg-gray-500'
+  publicId='theodorusclarence/blogs/vite-cra/ss-2_wafn2f.png'
+  alt='Compare Installation'
+  width={1286}
+  height={379}
+/>
+
+The Installation using CRA took a significant amount of time than Vite. Vite is done in only **26 seconds**, and Create React App took **1 minute and 12 seconds**. It is blazingly fast and I am blown away by this.
+
+### Build Time
+
+Now, installation only happen once when we creating the project, but build time happens every single time we want to develop the project! This is far more important and the turning point to change from CRA to Vite.
+
+<CloudinaryImg
+  className='bg-gray-500'
+  publicId='theodorusclarence/blogs/vite-cra/ss-3_daoqv0.png'
+  alt='Compare Build Time'
+  width={1312}
+  height={421}
+/>
+
+Here is the result. Vite only took about **300ms**, my iTerm didn't event pick up the time because it is unreasonably fast. While Create React App took **22 seconds** only to show the first page.
+
+And this is a blank project, the building time will increase greatly when we are working on a larger-scale website.
+
+## Try it out!
+
+I encourage you to try it out yourself and feel the difference, to help you I created a vite-react-tailwind starter template, you can [check it out on my github.](https://github.com/theodorusclarence/vite-react-tailwind-starter) Now, open up your terminal and run this code
+
+```bash
+npx degit https://github.com/theodorusclarence/vite-react-tailwind-starter project-name
+```
+
+then, install all dependencies using
+
+```bash
+yarn
+or
+npm install
+```
+
+To start the server run the code
+
+```bash
+yarn dev
+or
+npm run dev
+```
+
+How was that?
+
+Also, the hot reload is really fast too, try to mess up the Landing Page on `/pages/Home.jsx`
+
+## Summary
+
+### Use the starter as a bonus!
+
+Feel free to use that starter on your project. I personally made that starter to free me from setting up react-router, react-helmet, absolute imports, and tailwindcss every single time. Try it out and kindly **[give it a star](https://github.com/theodorusclarence/vite-react-tailwind-starter)!**
+
+With Vite and Next.js, probably I won't use Create React App ever again. I will definitely choose Vite over CRA when building an authentication gated website and use Next.js when I need to build a static site.

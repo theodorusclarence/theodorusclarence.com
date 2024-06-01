@@ -1,0 +1,398 @@
+---
+title: 'How to choose between Next.js CSR, SSR, SSG, and ISR'
+publishedAt: '2021-10-19'
+lastUpdated: '2021-11-12'
+description: '4 Metrics and examples of how to choose the right fetch method for the right case.'
+englishOnly: 'true'
+banner: 'jake-oates-aWOXPkhZIIs-unsplash_rchayo'
+tags: 'nextjs'
+---
+
+# Introduction
+
+On my last blog, you have explored the technical side of how does it work underneath, now what you will need is how to choose between them. I'll give you 4 metrics and some use cases to help you decide.
+
+These metrics will generally work for **most of the cases** but there might be some cases that are not fit with this metric.
+
+## Prerequisites
+
+This post will not cover the technical difference between Client-Side Rendering, Server-Side Rendering, Static Site Generator, and Incremental Static Regeneration.
+
+You are encouraged to read my blog about [Understanding Next.js Data Fetching (CSR, SSR, SSG, ISR)](https://theodorusclarence.com/blog/nextjs-fetch-method) first.
+
+### **Something to note**
+
+Please do note that when we are talking about a website, you can use more than 1 fetch method. Use the necessary fetch method for each page.
+
+## Review
+
+Let's review the last blog to remember what are the characteristics of each.
+
+- Client-Side Rendering (useEffect) → the data is fetched **after every single render**
+- Server-Side Rendering → the data is fetched **before every single render**
+- Static Site Generator → the data is fetched **once at build time**
+- Incremental Static Regeneration → the data is fetched **once on build time** and will be **fetched again after a certain cooldown** and served on the second visit.
+
+Keep an eye on the frequency of each fetch method.
+
+---
+
+# Metrics
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-0_resw7l'
+  alt='nextjs-fetch-usecase-0'
+  width={1302}
+  height={459}
+/>
+
+Usually, when I'm deciding what fetch method I should use, I consider these 4 metrics.
+
+---
+
+## Metric 1: 🔄 Data Integrity
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-1_uysoq6'
+  alt='nextjs-fetch-usecase-1'
+  width={907}
+  height={520}
+/>
+
+Data integrity is how fresh do you want the data to be.
+
+### High
+
+High integrity means that we want fresh data—the most updated one—**every** **single** **render**. This is usually crucial for pages that are interactive and contain some critical value that can't be stale.
+
+**Simply put:**
+
+> We need the most updated data, every. single. time.
+
+**Sites that benefit high data integrity:**
+
+- Products page that contains price → imagine you have a product page, and the price shown is not the most updated one. You might lose some dough.
+- The comment section on Twitter → we want to see the most recent comment
+- Social media → we want to see the most up-to-date content obviously.
+
+### Medium
+
+Medium integrity means that we want to serve fresh data, but it is not much of a problem if some users get stale data.
+
+**Simply put:**
+
+> We should get fresh data, but it's okay if some still see the stale one.
+
+**Sites that benefit medium data integrity:**
+
+- Blog post with CMS → you can tolerate it when someone gets the stale page with minor typos
+- Profile page → it is rarely updated and it is not that critical
+
+Please note that **only you** can decide what is critical. If you are mainly making a website to showcase your profile and portfolio with a high update rate, then it can be considered critical.
+
+### Low to none
+
+Pages that fall into this category usually won't change or rarely change.
+
+**Simply put:**
+
+> We don't really care, just fetch and show it.
+
+**Sites that benefit low to none data integrity:**
+
+- About page
+- A page with fixed data that won't change → ex: a pokemon stat page (we will use this as an example later)
+
+### Table Result
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-2_smoeod'
+  alt='nextjs-fetch-usecase-2'
+  width={1598}
+  height={665}
+/>
+
+As we can see on the illustration:
+
+1. High: CSR and SSR, as it fetches on every render
+2. Medium: ISR, we still can get the fresh data, but some user will still get the stale one
+3. Low to none: SSG, it is only fetched on build time
+
+---
+
+## Metric 2: 🔍 SEO
+
+SEO (Search Engine Optimization) is going to be useful when we want our content to be easily found on google and bringing in that good organic visitors.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-3_nanwka'
+  alt='nextjs-fetch-usecase-3'
+  width={1100}
+  height={658}
+/>
+
+I only have 2 categories for this, which are **SEO Friendly** and **Not SEO Friendly**.
+
+### SEO Friendly
+
+This category is expected when we are pre-rendering the content on the website, the general difference is when we are doing pre-render, we can see the content on the page source. This type of rendering will help search engines index our page and might put us up on the SEO ranking.
+
+SSR, SSG, ISG categorizes as SEO Friendly because the HTML is prefilled with the content without having to fetch it on the client-side.
+
+**Sites that can benefit SEO**
+
+- Shopping website → it will be great if our products show up on search engine
+- Quora-type website → site that provides an answer of course relies on SEO. You probably not going to search something directly from quora or stack overflow, but you start on google.
+- Social media → contents need to be able to be searched on the internet
+
+### Not SEO Friendly
+
+It is definitely not bad. Although we don't get any content on the page source, it doesn't mean that the search engine crawler can't index your page. The search engine can still index it, but it is not as friendly as the pre-rendered pages.
+
+CSR is categorized as Not SEO Friendly because we do not get any content until after the page renders.
+
+**Sites that don't really need SEO**
+
+- Authentication Gated Apps → things like a dashboard, premium content, or paid courses.
+- Registration page
+
+### Table Result
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-4_tavylr'
+  alt='nextjs-fetch-usecase-4'
+  width={1521}
+  height={697}
+/>
+
+1. SEO Friendly: SSR, SSG, and ISR all have very great SEO because they pre-render the fetched content
+2. Not SEO Friendly: CSR is not that good because we only get the data after render
+
+---
+
+## Metric 3: ⏩ Performance
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-5_kzai0k'
+  alt='nextjs-fetch-usecase-5'
+  width={1009}
+  height={488}
+/>
+
+Performance is whether it is loading when we visit the page or not. It should be very easy to differentiate now if you have read the first blog.
+
+> Please note that performance in this metrics strictly means to the load time before First Contentful Paint, not to be generalized to the whole application performance.
+
+### Instant
+
+Instantly loads because the fetching does not happen when we request.
+
+### Loads before/after render
+
+There will be a slight loading on before or after renders.
+
+### Table Result
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-6_dfk4hy'
+  alt='nextjs-fetch-usecase-6'
+  width={1332}
+  height={542}
+/>
+
+Well, we obviously want better performance, so this is not something that you choose as the main metrics, but rather to consider.
+
+1. Instant: SSG & ISR
+2. Loads before/after render: CSR & SSR
+
+### Editorial
+
+Addition by [Delba de Oliveira](https://www.delbaoliveira.com/).
+
+> This expands on how rendering/data fetching (bringing together your application code and data) affects performance
+
+- **CSR**: Rendering happens on the browser, so users may see a loading spinner while the application is being rendered. The performance (initial load) depends on the **size of the application** and **how much JS is shipped** to the browser.
+- **SSR**: Rendering happens on the server before the result is sent to the browser. There may be **latency** (depending on the server's location) because the request has to go to the server and back.
+- **SSG**: Rendering happens at a built time on the server, the result is **cached** in CDNs closer to users. This helps improve performance because rendering happens once and the result is stored closer to users **(solving latency issues)**.
+- **ISR**: Rendering happens at time intervals and is cached, so it's still **performant** but using ISR ensures data **doesn't become stale**.
+
+---
+
+## Metric 4: ⏰ Build Time
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-7_pl3jkd'
+  alt='nextjs-fetch-usecase-7'
+  width={1182}
+  height={549}
+/>
+
+Build time is the amount of time it takes to build and deploy the website.
+
+This metric is to be considered when we are generating a bunch of pages with parameters, for example, `product/[name]` or `pokemon/[name]`
+
+### Fast (only one page)
+
+When we are using CSR and SSR, we only build 1 page because the data won't be fetched at build time.
+
+For example, if we are visiting `/pokemon/bulbasaur` then we will take that parameter and use it to fetch it before or after render.
+
+### Slow (every single page)
+
+When we are using SSG and ISR, we are fetching it on build time and creating a page out of the response. So if we have 1000 products, it will take quite some time.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-8_goxd3m'
+  alt='nextjs-fetch-usecase-8'
+  width={1097}
+  height={434}
+/>
+
+### Build Time Example
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-9_fuwvo6'
+  alt='nextjs-fetch-usecase-9'
+  width={651}
+  height={182}
+/>
+
+Alt:
+
+- `/ssr/poke/[name]` only have 1 page even though it is serving 100 pokemon
+- `/ssg/poke/[name]` have all of the pokemon names built into a page.
+
+This is something that you'll need to consider if you have thousands of products, or you want to show all of the pokemon out there. We can't wait for them to finish building, using CSR or SSR should be the right answer.
+
+---
+
+## Cheatsheet
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/nextjs-fetch-usecase-10_pk9xlx'
+  alt='nextjs-fetch-usecase-10'
+  width={1296}
+  height={786}
+/>
+
+---
+
+# Examples
+
+## CSR
+
+[https://next-usecase.thcl.dev/csr](https://next-usecase.thcl.dev/csr)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/example_csr_ikwzwk'
+  alt='example_csr'
+  width={1229}
+  height={719}
+/>
+
+Video:
+
+1. there is a loading indicator when visited
+2. the data (repository detail) that is served is the most up to date
+
+It's ideal for a dashboard and authentication-gated website. We need the latest data, and we don't really care about SEO.
+
+## SSG
+
+I'll give SSG example first so we can compare it with SSR
+
+[https://next-usecase.thcl.dev/ssg](https://next-usecase.thcl.dev/ssg)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/example_ssg_rhejqm'
+  alt='example_ssg'
+  width={1342}
+  height={760}
+/>
+
+Video:
+
+1. Data fetched on build time at 13:58:38, when the current time is already 2 hours late—16:28:30
+2. It is instant and has no loading
+3. There are 10 pokemon data to choose
+
+This one is great for pokemon data because the data probably won't change for quite some time. And maybe you have a question:
+
+> Why not just store it as JSON and create every page?
+
+We usually use SSG for convenience, adding hundreds of pages is quite repetitive and we can maintain it better if we use `getStaticProps`
+
+## SSR
+
+You probably notice and have it in mind that apps that have high data integrity and have a good SEO should use SSR, for example, products page, comment section. The obvious example should be Quora, Reddit, Facebook, etc.
+
+But it is not always the case, here is the same pokemon app using SSR:
+
+[https://next-usecase.thcl.dev/ssr](https://next-usecase.thcl.dev/ssr)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nextjs-fetch-usecase/example_ssr_wc97xn'
+  alt='example_ssr'
+  width={1342}
+  height={760}
+/>
+
+Video:
+
+1. Clicking the page takes a second or two before the page shows up
+2. Fetch time is the current time (meaning the data is fresh)
+3. There are considerably a lot of pokemon to choose
+
+This use case fits because there are about 900 pokemon, and if we build all of them using SSG, it is going to take a while. That is why you should also consider the build time metric.
+
+Well actually 900 is not that much, but imagine Amazon or eBay.
+
+## ISR
+
+ISR is quite fun and might be the common grounds between the 4 fetch methods, but we need to emphasize the data integrity. ISR can still give stale data, so it will be dangerous if you are using it on a critical process.
+
+For this example, I suggest you visit it yourself
+
+What to do:
+
+1. Try to star the repo that is linked in the demo page (**disclosure**: you are going to star my personal repository, kindly keep it starred if you like this post 😉)
+2. Wait for about 5-10 seconds
+3. Refresh the page **twice** (remember how ISR works)
+
+Demo page: [https://next-usecase.thcl.dev/isr](https://next-usecase.thcl.dev/isr)
+
+> You done? Cool!
+
+We can see that the data will still update, but we can have medium data integrity and still have a good performance.
+
+This is very useful if you are creating a blog with CMS, and it will be updated without having to rebuild the whole site.
+
+---
+
+## Additional Resource
+
+There is a pattern that uses ISR and [SWR](http://swr.vercel.app/) library, it follows optimistic UI by mutating the value, and regenerating on the background.
+
+I'm not going to cover this topic, but Joe Bell has a really [great article](https://joebell.co.uk/blog/updating-static-next-js-pages-instantly) about it.
+
+---
+
+# Conclusion
+
+Save the 4 metrics cheatsheet, and try to consider each of them when you want to choose.
+
+Remember you can use multiple fetch methods on different pages. You can use CSR on the dashboard, and also use SSR on the product page. Use the best one.

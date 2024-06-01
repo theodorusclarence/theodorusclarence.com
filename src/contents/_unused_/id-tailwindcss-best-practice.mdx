@@ -1,0 +1,345 @@
+---
+title: 'Styling Best Practices untuk Tailwind CSS'
+publishedAt: '2021-05-15'
+lastUpdated: '2021-12-19'
+description: 'Tailwind CSS sangat membantu saat kita ingin develop website yang memiliki design konsisten dan dalam jangka waktu yang cepat.'
+banner: 'mitchell-luo-j0r6nURLcAg-unsplash_u51v7i'
+tags: 'tailwindcss'
+---
+
+## Introduction
+
+Blog ini tidak menjelaskan basic" dari Tailwind CSS. Tailwind Labs memiliki [tutorial lengkap di youtube channel](https://www.youtube.com/watch?v=elgqxmdVms8&list=PL5f_mz_zU5eXWYDXHUDOLBE0scnuJofO0&ab_channel=TailwindLabs). Sangat recommended untuk dicek.
+
+> Menurut saya, Tailwind CSS adalah cara lain untuk menulis CSS, dan tidak akan mengubah knowledge dasar dari CSS dan responsive design.
+
+## Kenapa Tailwind CSS?
+
+Tailwind CSS adalah utility-first framework yang menjadi go-to framework saya untuk project" saya. Tailwind CSS menyediakan class yang reusable sehingga saya bisa menggunakan komponen yang bahkan cocok di lintas website. Cek [Library](https://theodorusclarence.com/library), saya punya beberapa component yang saya simpan supaya mudah diakses ketika saya membutuhkannya.
+
+Tailwind CSS menyediakan banyak CSS best practices yang saya juga sering ikuti ketika menulis Vanilla CSS atau SCSS. Kebanyakan menghilangkan logic" css yang bisa dibilang aneh oleh banyak developer, seperti box-sizing, button defaults yang annoying, collapsing margins, dll. Hal ini menyebabkan banyak developer berpikir bahwa Tailwind CSS adalah sebuah cara untuk menghindari menulis CSS dan menghindari untuk mengerti logic CSS yang 'quirky'.
+
+Tetapi, **saya suka menulis CSS.** Saya cukup nyaman menulis dengan Vanilla CSS dan mengerti bagaimana cara CSS bekerja. Bagi saya, mempelajari Vanilla CSs sangat penting dan Tailwind CSS tidak cocok untuk menggantikan CSS ketika kamu belum mengerti CSS.
+
+> Jangan terlalu nyaman dengan framework sampai-sampai kamu tidak bisa membuat website tanpa menggunakan Tailwind CSS atau framework lainnya seperti bootstrap.
+
+Well, enough talking, let's get to the best practices yang saya gunakan ketike menulis CSS dan Tailwind CSS. Keduanya applies karena seperti yang saya sudah bilang, Tailwind CSS hanya cara lain untuk menulis CSS.
+
+## 1. Menggunakan Layout Class (or container)
+
+Mungkin kamu tidak sadar website" yang tidak menggunakan constraining width jika kamu tidak menggunakan monitor yang besar. Kadang, developers lupa untuk menambahkan constraint ini ketika development dan menimbulkan styling issues untuk orang" yang memiliki layar yang lebih besar.
+
+Kamu bisa juga menggunakan [container class dari Tailwind CSS](https://tailwindcss.com/docs/container). Tapi saya lebih nyaman menggunakan ini:
+
+```css
+.layout {
+  max-width: 68.75rem; // 1100px
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+Width 90% akan memberikan padding ketika user membuka website dalam mobile view dan web akan di constrain ketika containernya sudah mencapai 1100px dan akan tetap stay di tengah. Kamu bisa gunakan value apapun untuk max-width, tetapi saya menemukan 1100px cocok untuk banyak kasus.
+
+Untuk menggunakan class ini, biasanya saya mengkombinasi dengan `section` tag seperti ini:
+
+```html
+<!-- Taruh semua of background colors di section tag  -->
+<section>
+  <!-- Sedangkan pada `div.layout`, kita bisa menambahkan flex, text-colors, min-height, dan container's font-size -->
+  <div class="layout">
+    <h1>Content</h1>
+  </div>
+</section>
+```
+
+Kita bisa meletakkan background colors atau background image pada `section` tag, untuk menghindari terpotong karna constraint yang kita tetapkan.
+
+Dibawah ini adalah demo untuk layout class, kamu juga bisa [check codepennya](https://codepen.io/theodorus/pen/JjWKobM)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/tailwindcss-best-practice/layout_olnbd1'
+  alt='layout'
+  width={1000}
+  height={489}
+/>
+
+## 2. Jangan menggunakan padding horizontal untuk layouting
+
+Ini adalah **preferensi**, tapi saya tidak menggunakan padding horizontal untuk layouting, contohnya:
+
+```html
+<section class="px-8">
+  <h1>Heading</h1>
+</section>
+
+<section class="px-8">
+  <h1>Heading</h1>
+</section>
+```
+
+Saya menghindari karena kita memaksakan sebuah convention baru pada code kita, kita harus mengingat berapa paddingnya. Misalnya, kita memiliki navbar, content, dan footer, di dalam 3 konten tersebut kita harus menggunakan padding yang sama untuk membuat tampilan menjadi konsisten.
+
+Saya menyarankan penggunaan `.layout` sehingga anda tidak perlu memantain sebuah convention baru.
+
+## 3. Tambahkan base style
+
+Tailwincss memiliki feature yang bernama [Preflight](https://tailwindcss.com/docs/preflight), dimana merupakan set of base styles untuk project yang didesign untuk menyamaratakan antar cross-browser dan membuat lebih mudah dengan menambahkan base style.
+
+Simplenya, Preflight mengubah default stylesheet agent seperti meremove margin, padding, dan font-size. Juga memberikan base style dan reset untuk butttons, links, list, dll. Lihat lebih banyak di [Preflight Docs](https://tailwindcss.com/docs/preflight).
+
+Hal ini sangat baik karena kita jadi tidak perlu untuk meremove warna biru dan underline dari link, mereset font-family, background, border dari button, dan banyak hal yang cukup menyebabkan. Tetapi kita kehilangan beberapa hal seperti font-size, dan font-weight dari tiap heading.
+
+Saya memiliki preconfigured base style yang biasanya saya tambahkan ke seluruh project" saya, style ini juga sudah ada di [starter](https://clarence.link/starters) saya yang selalu saya gunakan.
+
+```css
+@layer base {
+  h1 {
+    @apply font-primary text-3xl font-bold md:text-5xl;
+  }
+
+  h2 {
+    @apply font-primary text-2xl font-bold md:text-4xl;
+  }
+
+  h3 {
+    @apply font-primary text-xl font-bold md:text-3xl;
+  }
+
+  h4 {
+    @apply font-primary text-lg font-bold;
+  }
+
+  body {
+    @apply font-primary text-sm md:text-base;
+  }
+}
+```
+
+Style ini akan menambahkan responsive font-size, dan menambahkan font-family yang kamu gunakan. **Jangan lupa untuk mengconfigure `font-primary` di tailwind config, atau gunakan font-sans**
+
+## 4. Whitespace
+
+Sama seperti sebelumnya, karena preflight, default margin dihilangkan dari base style. Maka kita harus menambahkan margin sendiri. Biasanya saya `mb-2` dam `mb-4` cukup.
+
+Tailwind CSS juga memiliki built-in CSS pattern yaitu [Lobotomized Owl](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/) milik Heydon Pickering. Pattern ini sangat membantu bahkan di Vanilla CSS. Di Tailwind CSS, pattern ini disebut [Space Between](https://tailwindcss.com/docs/space). Pattern ini bekerja dengan menambahkan margin-top ke seluruh child elements kecuali yang pertama.
+
+Here is the original one by Heydon:
+
+```css
+.flow-content > * + * {
+  margin-top: 1.5em;
+}
+```
+
+Lobotomized Owl biasanya menggunakan relative units sehingga besarnya relatif pada font size containernya. Untuk mengetahui relative units lebih lanjut, baca [blog saya tentang rem, em, dan px unit](https://theodorusclarence.com/blog/btb-rem-em)
+
+Tailwind CSS Space Between kurang lebih melakukan yang sama, tapi menggunakan `rem`. Maka kita hanya bisa menggunakan ketika kita sudah yakin semua child elementsnya memiliki spacing yang sama. Contoh:
+
+```html
+<!-- Menggunakan normal margin class -->
+<div>
+  <p class="mb-2">Paragraph</p>
+  <p class="mb-2">Paragraph</p>
+  <p class="mb-2">Paragraph</p>
+  <p class="mb-2">Paragraph</p>
+</div>
+
+<!-- Menggunakan Space Between -->
+<div class="space-y-2">
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+</div>
+```
+
+### Update
+
+Dengan support `gap` dari [Safari](https://caniuse.com/flexbox-gap), kita bisa menggunakan `gap` dengan `flex` sekarang, saya lebih suka menggunakan `gap` karena tidak terbatas hanya pada 1 arah.
+
+**IE** masih belum disupport, jadi hati-hati untuk penggunaan.
+
+```html
+<!-- Using Flex & Gap -->
+<div class="flex flex-col gap-2">
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+  <p>Paragraph</p>
+</div>
+```
+
+## 5. Gunakan component dan map function
+
+Saya biasanya menggunakan React, maka DRY code dapat lebih mudahdicapai dengan mapping value, dan menggunakan components. Contohnya adalah button component
+
+```jsx
+export default function CustomLink(props) {
+  return (
+    <UnstyledLink
+      {...props}
+      className={`${props.className} inline-flex items-center font-bold hover:text-primary-400`}
+    >
+      {props.children}
+    </UnstyledLink>
+  );
+}
+```
+
+Dengan menggunakan component, kita tidak akan mengulang class yang sama berkali"
+
+Untuk mapping, biasanya saya meletakkan data di JavaScript file lain, atau mendeclare sebuah array, kemudian di map.
+
+```jsx
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/library', label: 'Library' },
+  { href: '/about', label: 'About' },
+];
+
+export default function Nav() {
+  return (
+    <nav className='bg-gray-700'>
+      <ul className='flex items-center justify-between px-8 py-4'>
+        <li>
+          <Link href='/'>
+            <a className='font-bold text-green-400'>Home</a>
+          </Link>
+        </li>
+        <ul className='flex items-center justify-between space-x-4'>
+          {links.map(({ href, label }) => (
+            <li key={`${href}${label}`}>
+              <Link href={href}>
+                <a className='text-white hover:text-green-400'>{label}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </ul>
+    </nav>
+  );
+}
+```
+
+Notice penggunaan space between untuk mereduce class yang digunakan. Code ini saya ambil dari website ini, codenya dapat [diakses di github](https://github.com/theodorusclarence/theodorusclarence.com). Kindly star kalo membantu!
+
+## 6. Gunakan clsx untuk merge class
+
+Ketika kita mengabstraksi code ke dalam component, akan lebih mudah jika kita menggabungkan class dari component dengan panggilan JSXnya.
+
+Saya biasanya menghindari penggunaan spacing class di dalam component, saya lebih suka menggabungkannya dengan props. Dengan demikian, kita tidak perlu mengganti spacing class setiap saat dan kita bisa menggunakan spacing class yang berbeda.
+
+```tsx
+import clsx from 'clsx';
+import * as React from 'react';
+
+export default function Tag({
+  children,
+  className,
+  ...rest
+}: React.ComponentPropsWithoutRef<'button'>) {
+  return (
+    <button
+      className={clsx(
+        className,
+        'inline-block rounded-md px-1.5 py-0.5 font-medium transition-colors',
+        'bg-gray-100 text-gray-700 hover:text-black disabled:bg-gray-200 disabled:text-gray-300',
+        'focus:outline-none focus-visible:ring focus-visible:ring-primary-300 disabled:cursor-not-allowed'
+      )}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+```tsx
+<Tag className='mt-4'>Tag</Tag>
+```
+
+Dengan clsx, kita juga bisa menggabung-gabungkan class berdasarkan variant. Di component yang lebih complex, class bisa sangat panjang, dan kita dapat memisahkannya supaya lebih mudah dibaca.
+
+### Contoh Complex
+
+Berikut contoh penggunaan clsx yang lebih complex
+
+```tsx
+<button
+  {...rest}
+  disabled={disabled}
+  className={clsx(
+    className,
+    'inline-flex rounded px-4 py-2 font-semibold',
+    'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
+    'shadow-sm',
+    'transition-colors duration-75',
+    [
+      variant === 'primary' && [
+        'bg-primary-400 text-white',
+        'border border-primary-500',
+        'hover:bg-primary-500 hover:text-white',
+        'active:bg-primary-600',
+        'disabled:bg-primary-600 disabled:hover:bg-primary-600',
+      ],
+      variant === 'outline' && [
+        'text-primary-500',
+        'border border-primary-500',
+        isDarkBg
+          ? 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800'
+          : 'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
+      ],
+      variant === 'ghost' && [
+        'text-primary-500',
+        'shadow-none',
+        isDarkBg
+          ? 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800'
+          : 'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
+      ],
+      variant === 'light' && [
+        'bg-white text-dark ',
+        'border border-gray-300',
+        'hover:bg-gray-100 hover:text-dark',
+        'active:bg-white/80 disabled:bg-gray-200',
+      ],
+      variant === 'dark' && [
+        'bg-gray-900 text-white',
+        'border border-gray-600',
+        'hover:bg-gray-800 active:bg-gray-700 disabled:bg-gray-700',
+      ],
+    ],
+    'disabled:cursor-not-allowed',
+    isLoading &&
+      'relative !cursor-wait !text-transparent !transition-none hover:!text-transparent'
+  )}
+>
+  {isLoading && (
+    <div
+      className={clsx(
+        'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+        {
+          'text-white': variant === 'dark' || variant === 'primary',
+          'text-black': variant === 'light',
+          'text-primary-500': variant === 'outline' || variant === 'ghost',
+        }
+      )}
+    >
+      <ImSpinner2 className='animate-spin' />
+    </div>
+  )}
+  {children}
+</button>
+```
+
+## Install Tailwind CSS Injector Addons
+
+Ketika tailwindcss di ship ke production, class yang diship adalah class yang hanya kita gunakan saja di website tersebut (tree shaken). Kadang kita butuh untuk melakukan debug dengan menambah class langsung di dev tools, atau kita mau bermain" dengan website yang tidak menggunakan tailwindcss sama sekali.
+
+Addons yang saya buat ini menyelesaikan problem tersebut dengan menginject tailwindcss CDN di website yang kita inject.
+
+[Install Tailwind CSS Injector](https://clarence.link/tw-inject)
