@@ -22,7 +22,6 @@ import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import TC from '@/components/TC';
-import Tooltip from '@/components/Tooltip';
 
 export default function IndexPage({
   featuredPosts,
@@ -188,33 +187,15 @@ export default function IndexPage({
                 <div className='mt-8 h-full w-full md:mt-0'>
                   <h2 className='text-4xl md:text-6xl'>
                     <Accent className='inline decoration-clone leading-snug dark:leading-none'>
-                      Rebuild your mental model
+                      I do a bunch of shit
                     </Accent>
                   </h2>
                   <div className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>
-                    <Tooltip
-                      withUnderline
-                      tipChildren={
-                        <>
-                          A mental model is an explanation of someone's{' '}
-                          <strong>thought process</strong> about how something
-                          works. You can use it as your own guide that you can
-                          test through some cases.
-                        </>
-                      }
-                    >
-                      <span>Mental model</span>
-                    </Tooltip>{' '}
-                    will make front-end development more{' '}
+                    and sometimes I write about it.{' '}
                     <strong className='text-gray-700 dark:text-gray-200'>
-                      predictable
+                      Check it out
                     </strong>{' '}
-                    by seeing how they work{' '}
-                    <strong className='text-gray-700 dark:text-gray-200'>
-                      fundamentally
-                    </strong>
-                    . In my blog, I'm sharing how I approach something and how
-                    my mental model affect my learning about a certain topic.
+                    by heading over to the blog, project or shorts section!
                   </div>
                 </div>
                 <div className='h-full w-full'>
