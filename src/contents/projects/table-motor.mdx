@@ -104,7 +104,7 @@ If you haven't already flashed micropython to a raspberry pi pico before, google
 The code is pretty straightforward. You will need to put in your network id and password and your MQTT server. The quick and dirty explanation of the code is:
 After the pico is connected to the MQTT server, it will then be ready to receive messages on the `cmd_topic` which will match to the string of `"OPEN"` or `"CLOSED"`. Depending on which one is received, it will change the output pins which switches the polarity to the motors. The `state_topic` sends the updated state of `"OPEN"` or `"CLOSED"` to the MQTT server. The server also gets pinged periodically to maintain the connection, although occasionally (at least for my set up) I have to unplug and replug the pico back in because the connection gets dropped.
 
-```
+```python
 import time
 from machine import Pin
 import network
@@ -237,33 +237,33 @@ while True:
 
 If you would like to use this in conjunction with Home Assistant like I have, I have provided the yaml to do so below:
 
-```
+```yaml
 mqtt:
   switch:
     - name: Table motor switch
       unique_id: b327b0e5-cc0a-488e-93fc-22ec3831296f
-      state_topic: "state/table_motor_switch"
+      state_topic: 'state/table_motor_switch'
       value_template: "{{ value == 'OPEN' }}"
-      command_topic: "cmd/table_motor_switch"
-      payload_on: "OPEN"
-      payload_off: "CLOSED"
+      command_topic: 'cmd/table_motor_switch'
+      payload_on: 'OPEN'
+      payload_off: 'CLOSED'
       state_on: true
       state_off: false
       retain: true
       qos: 1
 
   sensor:
-    - name: "Table Motor Status"
-      state_topic: "state/table_motor_switch/status"
+    - name: 'Table Motor Status'
+      state_topic: 'state/table_motor_switch/status'
 ```
 
 You can then add the following yaml to your dashboard to add a card:
 
-```
-  - type: entities
-    entities:
-      - entity: switch.table_motor_switch
-      - entity: sensor.table_motor_status
+```yaml
+- type: entities
+  entities:
+    - entity: switch.table_motor_switch
+    - entity: sensor.table_motor_status
 ```
 
 ### Final thoughts
