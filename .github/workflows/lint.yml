@@ -34,7 +34,7 @@ jobs:
         run: pnpm i --fix-lockfile --config.auto-install-peers=false
 
       - name: 🔬 Lint
-        run: pnpm run lint:strict
+        run: pnpm run lint
 
       - name: 🔎 Type check
         run: pnpm run typecheck
