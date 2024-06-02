@@ -32,8 +32,8 @@ jobs:
       - name: 📥 Download deps
         run: pnpm i --fix-lockfile --config.auto-install-peers=false
 
-      # - name: 🔬 Lint
-      #   run: pnpm run lint:strict
+      - name: 🔬 Lint
+        run: pnpm run lint:strict
 
       - name: 🔎 Type check
         run: pnpm run typecheck
