@@ -1,0 +1,128 @@
+---
+title: 'PPDB Sumatera Selatan'
+description: 'A website to facilitate students from Sumatera Selatan to register to local high school.'
+category: 'Team of 4, as the Frontend Lead'
+publishedAt: '2021-11-04'
+techs: 'react,tailwindcss'
+banner: 'projects/ppdbsumsel/ppdbsumsel-banner_msa4i5'
+link: 'https://ppdbsumsel.net'
+---
+
+> ## Short Explanation
+
+This specific project was developed to facilitate over 200 thousand students from Sumatera Selatan to register to their local high school. This is quite a large project for me and it succeeded to break the common look for a 'governmental site' by using React and Tailwindcss.
+
+> ## Project Goals
+
+This project objective is to give information about PPDB (Penerimaan Peserta Didik Baru) for local high school in Sumatera Utara. This website should facilitate registration, generating registration proof, and giving announcements about acceptance. This website can also print a test card number for students that are registering by test and their grades. There is also another entry which is using geolocation by calculating the radius from their house to the school location.
+
+<blockquote className='with-icons'>
+  ## Tech Stack Used
+  <div className='not-prose mt-2'>
+    <TechIcons techs={['react', 'tailwindcss']} />
+  </div>
+</blockquote>
+
+This project was developed using Create React App for a snappier website and delivering a quick and easy-to-use interface. We decided to use Tailwindcss for this site for a better look and maintainability.
+
+For the library we use numerous libraries such as:
+
+- **React Hook Form** for form management and form validation
+- **React Leaflet** for maps, also using Google Maps API
+- **React Dropzone** for drag-and-drop file upload
+- **React Datepicker** for accessible date input
+- **React Toastify** for giving toast about success and error
+- **Cypress** for end to end testing, integrated with Github CI and Vercel continuous deployment
+
+<SplitImage>
+  <Split>
+    <CloudinaryImg
+      mdx
+      className='!mb-0'
+      publicId='theodorusclarence/projects/ppdbsumsel/prestasi-tesmandiri_zjaaer'
+      alt='prestasi-tesmandiri'
+      width={1440}
+      height={2899}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/ppdbsumsel/acceptance_tvjpmi'
+      alt='acceptance'
+      width={1280}
+      height={908}
+    />
+  </Split>
+  <Split>
+    <CloudinaryImg
+      mdx
+      className='!mb-0'
+      publicId='theodorusclarence/projects/ppdbsumsel/zonasi_djqq65'
+      alt='zonasi'
+      width={1440}
+      height={2537}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/ppdbsumsel/not-accepted_gxl5qm'
+      alt='not-accepted'
+      width={1280}
+      height={826}
+    />
+  </Split>
+</SplitImage>
+
+> ## Spotlight
+
+### Form Validation
+
+Validation is a big thing in the registering process, so we try to make it strict so the data that is entered is valid.
+
+### Map API
+
+Using a map is quite challenging as we need to calculate the radius, we try to be as accessible and easy to understand as possible, which is why we decided to make the radius reactive to the map movement. For accessibility the user can also search their location or use the GPS.
+
+<LiteYouTubeEmbed
+  id='ns5CZpU3yII'
+  poster='maxresdefault'
+  title='Map API'
+  noCookie={true}
+/>
+
+### End to End Testing
+
+We use Cypress for an end to end testing, which is integrated with Github CI and Vercel continuous deployment. Cypress is a test runner that allows you to write tests in a human-readable language. This eliminates the tedious workflow of testing for every change and gives us the confidentiality that our code didn't break. This also works we
+
+<LiteYouTubeEmbed
+  id='FX4XHrvWST8'
+  poster='maxresdefault'
+  title='End to end testing demo'
+  noCookie={true}
+/>
+
+### Conventional Commit
+
+In this project, My team and I decided to use conventional commit so the commit message is cleaner and easier to read. I've been using it since, I think it is awesome. Also using Vercel, we can practically backtrack to any deployment of the commit.
+
+We also configured it with husky so the commit message is checked before committing. You can check the setup on my library about [how to configure husky](https://theodorusclarence.com/library/husky-commitlint-prettier)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/projects/ppdbsumsel/conventional-commit_e8z1qa'
+  alt='conventional-commit'
+  width={1272}
+  height={525}
+/>
+
+> ## The Problems and How I Deal With It
+
+This is my biggest project with a lot of new technologies for me. It is my first time using React Hook Form, doing testing with cypress, setting up all of the CI/CD, using Google Maps API, also the first time using a convention for the commit message.
+
+But it definitely has been a great learning experience for me. This project strengthens my knowledge about how to build a functional application.
+
+Managing the frontend also has been a great experience, I managed 2 of my team and delegate some issues and features that need to be implemented using Github Issues and Pull Requests
+
+> ## Lessons Learned
+
+I learn a lot from this project, a lot of great libraries that I use, and now I quite understood how reading documentation and actually understanding it is really important.
+
+I am now quite comfortable if I have to learn a new library or stack because I know how to efficiently read documentation now.

@@ -1,0 +1,148 @@
+---
+title: 'love4heroes'
+description: 'An app to express our gratitude to frontline workers using warm messages. Made for uOttaHack 4'
+category: 'Team of 4'
+publishedAt: '2021-02-24'
+techs: 'react,tailwindcss,firebase,swr'
+banner: 'tc-love4heroes_kruael.png'
+github: 'https://github.com/theodorusclarence/love4heroes'
+youtube: 'https://youtu.be/5WN3ZmU_dZ8'
+link: 'https://love4heroes.online'
+---
+
+> ## Short Explanation
+
+This app was created as a team for uOttaHack, Canada in 36 hours. When
+thinking about how we could make a difference within local communities
+impacted by Covid-19, what came to mind are our frontline workers. Our
+doctors, nurses, grocery store workers, and Covid-19 testing
+volunteers, who have tirelessly been putting themselves and their
+families on the line. They are the backbone and heartbeat of our
+society during these past 10 months and counting. We want them to feel
+the appreciation and gratitude they deserve. With this app, we hope to
+bring moments of positivity and joy to those difficult and trying
+moments of our frontline workers.
+
+> ## Project Goals
+
+This project was made so the user is able to create a card and can
+save the card as a link, then the user can send the link to their
+loved frontline workers. The frontline workers can also see all of the
+cards on the "Warm Messages" Board.
+
+<blockquote className='with-icons'>
+  ## Tech Stack Used
+  <div className='not-prose mt-2'>
+    <TechIcons techs={['react', 'tailwindcss', 'firebase', 'swr']} />
+  </div>
+</blockquote>
+
+This project was built using Next.js, Tailwindcss, SWR, and Firebase.
+Personally, I think using these stacks is a great choice due to the
+lack of time and for simplicity. We only use the firebase for the
+firestore because it is simple to configure. Next.js is also a great
+choice because we can mix and match the rendering type that we are
+using. For the dynamic content such as rendering the card's data from
+firestore, we use client-side rendering and utilizing SWR to cache the
+data.
+
+<SplitImage>
+  <Split>
+    <CloudinaryImg
+      mdx
+      className='!mb-0'
+      publicId='theodorusclarence/love4heroes/ss1_jbyadr'
+      alt='ss1'
+      width={800}
+      height={1556}
+    />
+  </Split>
+  <Split>
+    <CloudinaryImg
+      mdx
+      className='!mb-0'
+      publicId='theodorusclarence/love4heroes/ss2_qvyt5u'
+      alt='ss2'
+      width={800}
+      height={426}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/love4heroes/ss3_rr4edc'
+      alt='ss3'
+      width={800}
+      height={426}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/love4heroes/ss4_gvawji'
+      alt='ss4'
+      width={800}
+      height={426}
+    />
+  </Split>
+</SplitImage>
+
+> ## Spotlight
+
+### First Hackathon With 12 Hour Time-Zone Difference & Tight Time
+
+In this project, I collaborated with 3 other teams that live in
+America. It's quite a challenge for me to fit in into their timezone
+so we can still work together. Also, there are only 36 hours to finish
+a functioning full-stack application.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/love4heroes/team_frd6g5'
+  alt='team'
+  width={1000}
+  height={608}
+/>
+
+### Consideration for UX
+
+We incorporated a library to simulate flipping cards, but sometimes
+the user didn't open it while editing. So we decided to make a UX
+improvement by opening it when user starts filling out the form.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/love4heroes/love4heroesux_d9cica'
+  alt='love4heroesux'
+  width={640}
+  height={329}
+/>
+
+> ## The Problems and How I Deal With It
+
+During this project the largest problem is time management because we
+need to map out everything we need on the website, then develop it in
+just a short time. So during the creation of the application, we
+divide the project into little parts so it is still manageable.
+
+There is also a tricky part when I was building a like button. I need
+to get the latest data on the likes from the database, then increment
+it. Also, I need to make a condition where each person can only like
+once. In the end, it was successful by utilizing local storage to
+store the state.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/love4heroes/likebutton_ikdrje'
+  alt='likebutton'
+  width={210}
+  height={149}
+/>
+
+> ## Lessons Learned
+
+After this project, I felt more comfortable working with firebase.
+Before, it seems jarring to set up firebase and firestore connection.
+But turns out it was not that hard, also Next.js has a built-in API
+route so I can implement SWR caching without the use of another
+library.
+
+Because the rest of my team is American, I actually get to practice my
+English in this project. It was definitely harder explaining a code
+with another language 😁.

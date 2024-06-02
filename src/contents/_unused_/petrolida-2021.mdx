@@ -1,0 +1,109 @@
+---
+title: 'Petrolida 2021'
+description: 'This website is used to promote Petrolida 2021 event.'
+category: 'Team of 2'
+publishedAt: '2021-02-01'
+techs: 'nextjs,tailwindcss'
+banner: 'tc-petrolida-2021_bmwmxz.png'
+link: 'http://petrolida.its.ac.id'
+github: 'https://github.com/theodorusclarence/petrolida-2021'
+---
+
+> ## Short Explanation
+
+Petrolida 2021 website was made to promote Petroleum Integrated Days 2021 at Sepuluh Nopember Institute of Technology. I developed this website using Next.js to implement easy route management with Static Side Generation then can be exported statically to Cpanel.
+
+> ## Project Goals
+
+This project objective is to give information and guide the user to
+register for the competitions and the other pre-event through google
+forms. There are four kinds that are developed in the website which
+are Landing Page to give the user general knowledge about the event.
+Then, there are 7 competitions that were made into different routes
+each one. Lastly is the pre-event such as the talk show.
+
+<blockquote className='with-icons'>
+  ## Tech Stack Used
+  <div className='not-prose mt-2'>
+    <TechIcons techs={['nextjs', 'tailwindcss']} />
+  </div>
+</blockquote>
+
+This project was made using Next.js and Tailwindcss. Although this is
+fairly only a static website that didn't really need much complexity,
+using Next.js really simplifies the routing of the website and help me
+make reusable components. I usually use tailwindcss when using the
+Next.js framework to increase productivity.
+
+<SplitImage>
+  <Split>
+    <CloudinaryImg
+      mdx
+      className='!mb-0'
+      publicId='theodorusclarence/petrolida-2021/ss1_pvyttb.png'
+      width={800}
+      height={2366}
+      alt='Web Screenshot'
+    />
+  </Split>
+  <Split>
+    <CloudinaryImg
+      mdx
+      className='!mb-0'
+      publicId='theodorusclarence/petrolida-2021/ss2_fpine4.png'
+      width={800}
+      height={2782}
+      alt='Web Screenshot'
+    />
+  </Split>
+</SplitImage>
+
+> ## Spotlight
+
+### Open Graph & SEO Optimization
+
+The spotlight on this project that I spend some time on SEO and I got
+into opengraph where you can get a link preview with a custom
+description and opengraph image.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/petrolida-2021/opengraph_prie5d'
+  alt='opengraph'
+  width={315}
+  height={227}
+/>
+
+### Animation
+
+I also implemented some animation on this website using the GSAP
+library. It was my first time using GSAP on React projects.
+
+> ## The Problems and How I Deal With It
+
+In this project, the problem that I found was that the domain that was
+given and needed to use its old and kind of hard to configure.
+Eventually, I only host the static files and ditch out the Image
+Optimization feature from Next.js. It was not ideal, because I need to
+optimize images that are being used to increase loading speed.
+
+I also struggled with implementing ScrollTrigger with GSAP because
+there are not many blogs or tutorials on Google, so I take the chance
+on reading the documentation to make it work.
+
+> ## Lessons Learned
+
+This is my first website for an event so I really consider a lot how
+to do a great practice on SEO, I discovered a library called
+[next-seo](https://github.com/garmeeh/next-seo)
+that helped a lot on configuring SEO using Next.js.
+
+In this project, I anticipated that there will be many revisions
+because that is what usually happens, so I try to reduce writing HTML
+and make everything based on the data, so I store the data in a
+javascript file and just map it out to the layout. This makes revising
+much quicker and easier.
+
+This project really taught me a lot about making a cleaner code and
+make the development process more effective by using some library that
+helps.

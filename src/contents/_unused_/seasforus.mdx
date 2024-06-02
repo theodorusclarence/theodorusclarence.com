@@ -1,0 +1,176 @@
+---
+title: 'SeasForUs'
+description: 'Find beach clean-up events in your local coastal area. Built for GarudaHacks 2.0'
+category: 'Team of 4'
+publishedAt: '2021-12-04'
+techs: 'nextjs,tailwindcss,swr'
+banner: 'projects/seasforus/seasforus_zrywji'
+github: 'https://github.com/theodorusclarence/seasfor.us'
+youtube: '#demo-video'
+---
+
+> ## Short Explanation
+
+There are **5.25 trillion pieces of plastic waste** estimated to be in our oceans. 269,000 tons float, 4 billion microfibers per km² dwell below the surface. This alarming number of pieces of plastic damages the marine life in our ocean.
+
+This platform will help the #TeamSeas initiative started by Mr. Beast and Mark Rober, to be the most-impactful cleanup project of all time. #TeamSeas will work with Ocean Conservancy and its partners to remove millions of pounds of plastic and trash from beaches all around the world. They’ll also send professional crews to clean up some of the most iconic, vulnerable ocean spaces.
+
+With this already awesome initiative, we create the #SeasForUs platform that will **speed up** the process of finding clean-up events in your local area. We want it to be as easy as possible for people to contribute and help #TeamSeas clean up coastal areas.
+
+You can start by looking at cleanup events in your local area, and join them. You will directly help at your local beaches to clean up all the trash that we can pick during the time of the event. Then, you can post your activity to the post-board so you can share your moments of contribution to the community.
+
+To help you spark up the motivation to come and clean up the events, we also provide a Leaderboard that will rank how many events you've been attending.
+
+> ## Project Goals
+
+This project aims to create a space so people all over the world can join clean-up events based on their nearest beach. This website has several functionalities which are:
+
+- Authentication using Auth0
+- Browse events and provide a filter to help them find one
+- Join the event
+- Post an activity after they did the clean-up
+- Leaderboard to spark up motivation
+
+<blockquote className='with-icons'>
+  ## Tech Stack Used
+  <div className='not-prose mt-2'>
+    <TechIcons techs={['nextjs', 'tailwindcss', 'swr']} />
+  </div>
+</blockquote>
+
+SeasForUs is a web app using Next.js and Laravel as the back-end framework. The frontend was created using Next.js and TypeScript to provide a good developer experience as well as other advantages like static site generation and image optimization. Data from users is sent to the server and stored in a MySQL database.
+
+As a challenge from MLH, we are also using Auth0 for the authentication and use google OAuth for the provider. Auth0 provides us with the name and profile picture which we show on the website and looks really neat.
+
+We also use Zustand & SWR for the store and fetching strategies so we can utilize the stale-while-revalidate which uses cache to make the whole experience feel snappy.
+
+> ## App Demo & Screenshots
+
+Pro tip: click the image to make it full screen
+
+<SplitImage>
+  <Split>
+    <CloudinaryImg
+      mdx
+      className='!mb-0'
+      publicId='theodorusclarence/projects/seasforus/landing-page_snz4rm'
+      alt='landing-page'
+      width={800}
+      height={426}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/seasforus/login_cpx0l0'
+      alt='login'
+      width={800}
+      height={424}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/seasforus/join_vljir9'
+      alt='join'
+      width={800}
+      height={424}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/seasforus/myevents_rqfytp'
+      alt='myevents'
+      width={1439}
+      height={767}
+    />
+  </Split>
+  <Split>
+    <CloudinaryImg
+      mdx
+      className='!mb-0'
+      publicId='theodorusclarence/projects/seasforus/events-page_eoumfe'
+      alt='events-page'
+      width={800}
+      height={397}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/seasforus/filter_hkzi0u'
+      alt='filter'
+      width={800}
+      height={427}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/seasforus/post-activity_r3o9qz'
+      alt='post-activity'
+      width={800}
+      height={425}
+    />
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/seasforus/leaderboard_wnedjz'
+      alt='leaderboard'
+      width={1441}
+      height={765}
+    />
+  </Split>
+</SplitImage>
+
+> ## Spotlight
+
+### We Won!
+
+<SplitImage>
+  <Split>
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/seasforus/winner-runnerup_d6n2c1'
+      alt='winner-runnerup'
+      width={1920}
+      height={1080}
+    />
+  </Split>
+  <Split>
+    <CloudinaryImg
+      mdx
+      publicId='theodorusclarence/projects/seasforus/winner-auth0_xx8wm9'
+      alt='winner-auth0'
+      width={1920}
+      height={1080}
+    />
+  </Split>
+</SplitImage>
+
+We actually won 2 categories which are
+
+- **Sustainability: Runner Up**
+- **Best Use of Auth0**
+
+We won a $150 cash prize and some swags 🤑. This is actually my first time winning a hackathon ([last hackathon](https://theodorusclarence.com/projects/love4heroes) I only won the Deloitte Challenge), and I'm really happy about it. In the uni, I'm not the type of person that likes to compete in several competitions. Hackathon is an exception, it is super fun to create an application at such a fast pace while still considering the quality
+
+### Demo Video
+
+Here is our submitted video, you can see all of the features here.
+
+<LiteYouTubeEmbed
+  id='YeefWeSYLUQ'
+  poster='maxresdefault'
+  title='Demo Video'
+  noCookie={true}
+/>
+
+> ## The Problems and How I Deal With It
+
+Definitely, time is a problem, but Rizqi (front-end) and I, sprinted all of the UI and layout in just about 12 hours, we constantly work in a Zoom call so the process is fairly quick. I also use my [Starter Repo](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter) which helps a lot to get it started.
+
+We also have some quirks about authentication with Auth0, because it is normally used with Node.js environment, and our backend team is using Laravel, so they need some time to implement the features.
+
+> ## Lessons Learned
+
+Definitely, time is a problem, but Rizqi (front-end) and I, sprinted all of the UI and layout in just about 12 hours, we constantly work in a Zoom call so the process is fairly quick. I also use my [Starter Repo](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter) which helps a lot to get it started.
+
+We also have some quirks about authentication with Auth0, because it is normally used with Node.js environment, and our backend team is using Laravel, so they need some time to implement the features.
+
+> ## Attribution
+
+- [Theodorus Clarence](https://github.com/theodorusclarence): Front-end and Design
+- [Rizqi Tsani](https://github.com/rizqitsani): Front-end and Design
+- [Ishaq Adhel](https://github.com/ishaqadhel): Back-end and Infrastructure
+- [Muhammad Zhafran](https://github.com/franszhafran): Back-end and Infrastructure

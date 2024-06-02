@@ -16,8 +16,7 @@ import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents, {
   HeadingScrollSpy,
 } from '@/components/content/TableOfContents';
-import CloudinaryImg from '@/components/images/CloudinaryImg';
-// import Img from '@/components/images/Img';
+import Img from '@/components/images/Img';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
@@ -66,11 +65,13 @@ export default function SingleProjectPage({ code, frontmatter }: ProjectType) {
       <main>
         <section className=''>
           <div className='layout'>
-            <CloudinaryImg
-              publicId={`theodorusclarence/${frontmatter.banner}`}
+            <Img
+              className='pointer-events-none mt-3 w-full'
+              publicId={frontmatter.banner}
               alt={frontmatter.title}
               width={1440}
               height={792}
+              preview={false}
             />
 
             <h1 className='mt-4'>{frontmatter.title}</h1>
