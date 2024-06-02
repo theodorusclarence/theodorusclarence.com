@@ -339,11 +339,7 @@ export async function getStaticProps() {
   const shorts = await getAllFilesFrontmatter('library');
 
   const featuredPosts = getFeatured(blogs, ['photography']);
-  const featuredProjects = getFeatured(projects, [
-    'hexcape',
-    'notiolink',
-    'ppdbsumsel',
-  ]);
+  const featuredProjects = getFeatured(projects, ['table-motor']);
   const featuredShorts = getFeatured(shorts, [
     'react/absolute-import',
     'auth-context',
