@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import moment from 'moment';
 import * as React from 'react';
 
 import { trackEvent } from '@/lib/analytics';
@@ -16,9 +15,19 @@ import Tooltip from '@/components/Tooltip';
 export default function AboutPage() {
   const isLoaded = useLoaded();
   // const age = 33;
-  const today = moment();
-  const birthday = moment([1990, 10, 3]);
-  const age = today.diff(birthday, 'years');
+  const today = new Date();
+  const birthday = new Date('1990/10/03');
+  const todayMonth = today.getMonth();
+  const birthdayMonth = birthday.getMonth();
+  const todayDate = today.getDate();
+  const birthdayDate = birthday.getDate();
+  let age = today.getFullYear() - birthday.getFullYear();
+  if (birthdayMonth > todayMonth) age--;
+  else {
+    if (birthdayMonth == todayMonth) {
+      if (birthdayDate > todayDate) age--;
+    }
+  }
 
   return (
     <Layout>
