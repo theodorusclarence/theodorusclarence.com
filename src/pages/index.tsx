@@ -340,14 +340,7 @@ export async function getStaticProps() {
 
   const featuredPosts = getFeatured(blogs, ['photography']);
   const featuredProjects = getFeatured(projects, ['table-motor']);
-  const featuredShorts = getFeatured(shorts, [
-    'react/absolute-import',
-    'auth-context',
-    'mac/zsh',
-    'react/jsx-one-parent',
-    'styling/margin-usage',
-    'uncategorized/search-removal',
-  ]);
+  const featuredShorts = getFeatured(shorts, ['hard-problem']);
 
   const introPosts = getFeatured(blogs, ['carnivorous', 'photography']);
 
