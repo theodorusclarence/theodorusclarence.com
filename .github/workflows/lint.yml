@@ -3,9 +3,7 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+  pull_request: {}
 
 concurrency:
   group: ${{ github.job }}-${{ github.ref }}
@@ -33,8 +31,8 @@ jobs:
       - name: 📥 Download deps
         run: pnpm i --fix-lockfile --config.auto-install-peers=false
 
-      # - name: 🔬 Lint
-      #   run: pnpm run lint
+      - name: 🔬 Lint
+        run: pnpm run lint
 
       - name: 🔎 Type check
         run: pnpm run typecheck
