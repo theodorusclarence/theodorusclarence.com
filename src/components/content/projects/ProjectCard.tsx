@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Img from '@/components/images/Img';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import TechIcons, { TechListType } from '@/components/TechIcons';
@@ -13,30 +12,6 @@ type ProjectCardProps = {
 } & React.ComponentPropsWithoutRef<'li'>;
 
 export default function ProjectCard({ project, className }: ProjectCardProps) {
-  let img;
-  if (project.banner.startsWith('/folio-v2')) {
-    img = (
-      <Img
-        className='pointer-events-none mt-3 w-full'
-        publicId={project.banner}
-        alt={project.title}
-        width={1440}
-        height={792}
-        preview={false}
-      />
-    );
-  } else {
-    img = (
-      <CloudinaryImg
-        className='pointer-events-none mt-3 w-full'
-        publicId={`theodorusclarence/${project.banner}`}
-        alt={project.title}
-        width={1440}
-        height={792}
-        preview={false}
-      />
-    );
-  }
   return (
     <li
       className={clsx(
@@ -61,7 +36,14 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
           <TechIcons techs={project.techs.split(',') as Array<TechListType>} />
         </div>
 
-        {img}
+        <Img
+          className='pointer-events-none mt-3 w-full'
+          publicId={project.banner}
+          alt={project.title}
+          width={1440}
+          height={792}
+          preview={false}
+        />
 
         <p className='animated-underline mt-2 inline-block font-medium'>
           See more →
