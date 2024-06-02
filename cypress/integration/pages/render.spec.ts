@@ -14,7 +14,7 @@ describe('All Page', () => {
 
   it('should display about page', () => {
     cy.visit('/about');
-    cy.get('h1').should('contain', 'Theodorus Clarence');
+    cy.get('h1').should('contain', 'Elliot Mackinnon');
   });
 
   it('should display blog page', () => {
