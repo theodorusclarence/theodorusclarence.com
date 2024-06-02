@@ -42,7 +42,7 @@ export default function AboutPage() {
                 height='1195'
                 alt='Portrait under greenhouse grow lights.'
                 preview={false}
-                aspect={{ width: 1, height: 2 }}
+                // aspect={{ width: 1, height: 1 }}
                 title=' '
               />
               <article className='prose dark:prose-invert'>

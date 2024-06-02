@@ -118,8 +118,8 @@ export default function SingleBlogPage({
                 publicId={frontmatter.banner}
                 alt={`Photo from unsplash: ${frontmatter.banner}`}
                 width={1200}
-                height={(1200 * 2) / 5}
-                aspect={{ height: 2, width: 5 }}
+                height={(1500 * 2) / 3}
+                aspect={{ height: 4, width: 5 }}
               />
 
               <h1 className='mt-4'>{frontmatter.title}</h1>

@@ -33,7 +33,7 @@ export default function BlogCard({
         publicId={post.banner}
         alt='Photo taken by me'
         width={1200}
-        height={(1200 * 2) / 3.4}
+        height={(1200 * 2) / 4}
         aspect={{ height: 2.5, width: 5 }}
         preview={false}
       />
