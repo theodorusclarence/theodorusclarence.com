@@ -44,11 +44,11 @@ export default function AboutPage() {
               <Img
                 className='float-right ml-6 w-40 md:w-72'
                 publicId='/folio-v2/images/portrait.jpg'
-                width='1500'
+                width='1700'
                 height='1695'
                 alt='Portrait under greenhouse grow lights.'
                 preview={false}
-                // aspect={{ width: 1, height: 1 }}
+                aspect={{ width: 1, height: 1 }}
                 title=' '
               />
               <article className='prose dark:prose-invert'>
