@@ -42,13 +42,13 @@ export default function AboutPage() {
             <h2 data-fade='0'>Who am I?</h2>
             <div className='mt-4' data-fade='2'>
               <Img
-                className='float-right ml-7 w-40 md:w-72'
+                className='float-right ml-6 w-40 md:w-72'
                 publicId='/folio-v2/images/portrait.jpg'
-                width='1500'
-                height='1195'
+                width='1700'
+                height='1695'
                 alt='Portrait under greenhouse grow lights.'
                 preview={false}
-                // aspect={{ width: 1, height: 1 }}
+                aspect={{ width: 1, height: 1 }}
                 title=' '
               />
               <article className='prose dark:prose-invert'>

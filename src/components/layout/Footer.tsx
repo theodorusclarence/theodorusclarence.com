@@ -32,7 +32,7 @@ export default function Footer() {
         {spotifyFlag && <Spotify className='mt-8' />}
 
         <p className='mt-12 font-medium text-gray-600 dark:text-gray-300'>
-          Reach me out
+          Find me here
         </p>
         <SocialLinks />
 
