@@ -8,10 +8,11 @@ import Img from '@/components/images/Img';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
+// import CustomLink from '@/components/links/CustomLink';
+// import Tooltip from '@/components/Tooltip';
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
-  // const age = 33;
   const today = new Date();
   const birthday = new Date('1990/10/03');
   const todayMonth = today.getMonth();
@@ -33,7 +34,7 @@ export default function AboutPage() {
         description='Elliot is a full stack developer that started his career in 2020.'
       />
 
-      <main>
+      <main style={{ width: '100%' }}>
         <section className={clsx(isLoaded && 'fade-in-start')}>
           <div className='layout pt-20'>
             <h1 className='mt-1' data-fade='1'>
@@ -64,7 +65,7 @@ export default function AboutPage() {
                   describe yourself with finite, restrictive, meer words? Hell
                   if I know, but here’s my best shot:
                 </p>
-                <p data-date='5'>
+                <p data-date='4'>
                   I am chiefly in wonder. The universe is eternally wide and
                   enthralling. There are too many things to learn, people to
                   meet, philosophies to mull, natural beauties to behold,
@@ -80,7 +81,7 @@ export default function AboutPage() {
                   is truly invigorating to take notice of the world and the
                   mysteries in it!
                 </p>
-                <p data-fade='6'>
+                <p data-fade='4'>
                   The series of events leading up to this point in my life have
                   been meandering. I am from Atlanta, GA and lived there until
                   my late twenties (with a brief stint in the gorgeous deserts
