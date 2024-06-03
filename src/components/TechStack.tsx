@@ -7,6 +7,7 @@ import {
   SiGraphql,
   SiJavascript,
   SiNextdotjs,
+  SiNodedotjs,
   SiPostgresql,
   SiPython,
   SiReact,
@@ -42,9 +43,8 @@ const stacks = [
     icon: SiJavascript,
     tooltip: (
       <>
-        <CustomLink href='https://nextjs.org'>Next.js</CustomLink>, currently my
-        go-to framework because of the static generation, dynamic paths, and
-        built-in API. <em>ps: I like pages folder better than the new one.</em>
+        <CustomLink href='https://www.javascript.com/'>JavaScript</CustomLink>,
+        everyone's web developer's first love.
       </>
     ),
   },
@@ -55,7 +55,17 @@ const stacks = [
       <>
         <CustomLink href='https://nextjs.org'>Next.js</CustomLink>, currently my
         go-to framework because of the static generation, dynamic paths, and
-        built-in API. <em>ps: I like pages folder better than the new one.</em>
+        built-in API. <em>ps: this site was built on it.</em>
+      </>
+    ),
+  },
+  {
+    id: 'nodejs',
+    icon: SiNodedotjs,
+    tooltip: (
+      <>
+        <CustomLink href='https://nodejs.org/'>Node.js</CustomLink>, whatever
+        you can do on the frontend, you can do on the backend (or so they say).
       </>
     ),
   },
@@ -65,7 +75,7 @@ const stacks = [
     tooltip: (
       <>
         <CustomLink href='https://reactjs.org/'>React</CustomLink>, underlying
-        library of Next.js. I love the declarative approach and the ecosystem.
+        library of Next.js. It's the only time I'll say it: I love slugs!
       </>
     ),
   },
@@ -77,11 +87,7 @@ const stacks = [
         <CustomLink href='https://www.typescriptlang.org/'>
           TypeScript
         </CustomLink>
-        , can't live without it! Check out my{' '}
-        <CustomLink href='https://github.com/theodorusclarence/ts-nextjs-tailwind-starter'>
-          starter template
-        </CustomLink>{' '}
-        using Next.js, Tailwind CSS, and TypeScript.
+        , for those who like law and order with their JavaScript.
       </>
     ),
   },
@@ -105,11 +111,8 @@ const stacks = [
     icon: SiPython,
     tooltip: (
       <>
-        <CustomLink href='https://www.prisma.io/?via=clarence'>
-          Python
-        </CustomLink>
-        , great and simple ORM. A little bit of documentation and you're good to
-        go.
+        <CustomLink href='https://www.python.org/'>Python</CustomLink>, my
+        favored backend language. I don't even like snakes but here we are.
       </>
     ),
   },
@@ -118,11 +121,10 @@ const stacks = [
     icon: SiAmazonaws,
     tooltip: (
       <>
-        <CustomLink href='https://www.prisma.io/?via=clarence'>
-          Python
+        <CustomLink href='https://aws.amazon.com/'>
+          Amazon Web Services
         </CustomLink>
-        , great and simple ORM. A little bit of documentation and you're good to
-        go.
+        , currently my preferred serverless ecosystem. They offer so much!
       </>
     ),
   },
@@ -131,11 +133,9 @@ const stacks = [
     icon: SiGraphql,
     tooltip: (
       <>
-        <CustomLink href='https://www.prisma.io/?via=clarence'>
-          Python
-        </CustomLink>
-        , great and simple ORM. A little bit of documentation and you're good to
-        go.
+        <CustomLink href='https://graphql.org/'>GraphQL</CustomLink>, one of the
+        best data query and manipulation languages to use. I love the way it
+        pulls declaritive contracts and data fetching into a single layer!
       </>
     ),
   },
@@ -144,11 +144,8 @@ const stacks = [
     icon: SiPostgresql,
     tooltip: (
       <>
-        <CustomLink href='https://www.prisma.io/?via=clarence'>
-          Python
-        </CustomLink>
-        , great and simple ORM. A little bit of documentation and you're good to
-        go.
+        <CustomLink href='https://www.postgresql.org/'>PostgresSQL</CustomLink>,
+        my go-to database management system.
       </>
     ),
   },
@@ -157,11 +154,8 @@ const stacks = [
     icon: SiGit,
     tooltip: (
       <>
-        <CustomLink href='https://www.prisma.io/?via=clarence'>
-          Python
-        </CustomLink>
-        , great and simple ORM. A little bit of documentation and you're good to
-        go.
+        <CustomLink href='https://www.git-scm.com/'>Git</CustomLink>, if you
+        don't have version control, you're living on the edge!
       </>
     ),
   },
@@ -170,11 +164,9 @@ const stacks = [
     icon: SiGithub,
     tooltip: (
       <>
-        <CustomLink href='https://www.prisma.io/?via=clarence'>
-          Python
-        </CustomLink>
-        , great and simple ORM. A little bit of documentation and you're good to
-        go.
+        <CustomLink href='https://github.com/'>GitHub</CustomLink>, "Git is the
+        filing system, GitHub is the best file cabinet", as my grandmother
+        always used to say.
       </>
     ),
   },
