@@ -1,6 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-pnpm run format
 npx lint-staged
 pnpm run lint:fix

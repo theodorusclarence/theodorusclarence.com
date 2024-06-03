@@ -1,16 +1,13 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-import { trackEvent } from '@/lib/analytics';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
 import Img from '@/components/images/Img';
 import Layout from '@/components/layout/Layout';
-import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
-import Tooltip from '@/components/Tooltip';
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
@@ -107,7 +104,7 @@ export default function AboutPage() {
                   Tinkering and building has become a career and a hobby.
                 </p>
               </article>
-              <h3 className='h4 mt-4' data-fade='6'>
+              {/* <h3 className='h4 mt-4' data-fade='6'>
                 What I'm up to?
               </h3>
               <article className='prose mt-2 dark:prose-invert' data-fade='7'>
@@ -156,7 +153,7 @@ export default function AboutPage() {
                     )
                   </li>
                 </ul>
-              </article>
+              </article> */}
 
               <h3 className='mt-12' data-fade='8'>
                 Tech Stack
@@ -170,7 +167,7 @@ export default function AboutPage() {
 
         <section>
           <div className='layout mt-16'>
-            <h2>What I am working on learning these days:</h2>
+            <h2>What I am working on these days:</h2>
             <article className='prose mt-4 dark:prose-invert'>
               <p>
                 Currently I am learning firmware and working on mastering
