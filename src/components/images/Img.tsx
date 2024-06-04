@@ -42,10 +42,11 @@ export default function Img({
   const RESIZE_MAX_WIDTH = 1000;
   const resizedToMaxWidth = mdx && +width >= RESIZE_MAX_WIDTH;
 
-  const path =
-    process.env.VERCEL_DEPLOYMENT === 'true'
-      ? publicId
-      : `/folio-v2${publicId}`;
+  // const path =
+  //   process.env.VERCEL_DEPLOYMENT === 'true'
+  //     ? publicId
+  //     : `/folio-v2${publicId}`;
+  const path = publicId;
 
   return (
     <figure
