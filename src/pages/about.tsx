@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import path from 'path';
 import * as React from 'react';
 
 import useLoaded from '@/hooks/useLoaded';
@@ -10,6 +11,12 @@ import Seo from '@/components/Seo';
 import TechStack from '@/components/TechStack';
 // import CustomLink from '@/components/links/CustomLink';
 // import Tooltip from '@/components/Tooltip';
+
+// import getConfig from 'next/config'
+
+const serverPath = (staticFilePath: string) => {
+  return path.resolve('./public', staticFilePath);
+};
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
@@ -26,6 +33,7 @@ export default function AboutPage() {
       if (birthdayDate > todayDate) age--;
     }
   }
+  console.log('HI', serverPath('/images/portrait.jpg'));
 
   return (
     <Layout>
@@ -44,7 +52,7 @@ export default function AboutPage() {
             <div className='mt-4' data-fade='2'>
               <Img
                 className='float-right ml-6 w-40 md:w-72'
-                publicId='/images/portrait.jpg'
+                publicId='/folio-v2/images/portrait.jpg'
                 width='1700'
                 height='1300'
                 alt='Portrait under greenhouse grow lights.'
