@@ -187,7 +187,7 @@ export default function IndexPage({
                 <div className='mt-8 h-full w-full md:mt-0'>
                   <h2 className='text-4xl md:text-6xl'>
                     <Accent className='inline decoration-clone leading-snug dark:leading-none'>
-                      I do a bunch of shit
+                      I do a bunch of random stuff
                     </Accent>
                   </h2>
                   <div className='mt-4 text-base text-gray-600 dark:text-gray-300 md:text-lg'>

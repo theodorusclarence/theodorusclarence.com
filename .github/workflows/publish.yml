@@ -47,8 +47,10 @@ jobs:
         run: |
           touch .env
           echo ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} >> .env
+          echo NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }} >> .env
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
 
       - name: Build with Next.js 🏗️
         run: npx next build
