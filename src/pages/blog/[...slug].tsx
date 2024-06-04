@@ -4,7 +4,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import * as React from 'react';
-import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
+import { HiOutlineClock } from 'react-icons/hi';
 import { MdHistory } from 'react-icons/md';
 
 import { trackEvent } from '@/lib/analytics';
@@ -14,12 +14,11 @@ import {
   getFileSlugArray,
   getRecommendations,
 } from '@/lib/mdx.server';
-import useContentMeta from '@/hooks/useContentMeta';
+// import useContentMeta from '@/hooks/useContentMeta';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
-import CarbonAds from '@/components/CarbonAds';
 import BlogCard from '@/components/content/blog/BlogCard';
 import SubscribeCard from '@/components/content/blog/SubscribeCard';
 import Comment from '@/components/content/Comment';
@@ -32,10 +31,8 @@ import TableOfContents, {
 import Img from '@/components/images/Img';
 import Layout from '@/components/layout/Layout';
 import CustomLink from '@/components/links/CustomLink';
-import ShareTweetButton from '@/components/links/ShareTweetButton';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
-import Tooltip from '@/components/Tooltip';
 
 import { BlogFrontmatter, BlogType } from '@/types/frontmatters';
 
@@ -56,9 +53,9 @@ export default function SingleBlogPage({
   );
 
   //#region  //*=========== Link Constants ===========
-  const COMMIT_HISTORY_LINK = `https://github.com/theodorusclarence/theodorusclarence.com/commits/main/src/contents/blog/${frontmatter.slug}.mdx`;
-  const GITHUB_EDIT_LINK = `https://github.com/theodorusclarence/theodorusclarence.com/blob/main/src/contents/blog/${frontmatter.slug}.mdx`;
-  const OG_BANNER_LINK = `https://res.cloudinary.com/theodorusclarence/image/upload/f_auto,g_auto,c_fill,ar_4:5,w_1200/theodorusclarence/banner/${frontmatter.banner}`;
+  const COMMIT_HISTORY_LINK = `https://github.com/emackinnon1/folio-v2/tree/main/src/contents/blog${frontmatter.slug}.mdx`;
+  const GITHUB_EDIT_LINK = `https://github.com/emackinnon1/folio-v2/tree/main/src/contents/blog${frontmatter.slug}.mdx`;
+  const OG_BANNER_LINK = `https://raw.githubusercontent.com/emackinnon1/folio-v2/main/public/images/${frontmatter.banner}`;
   //#endregion  //*======== Link Constants ===========
 
   //#region  //*=========== Blog Language ===========
@@ -69,7 +66,7 @@ export default function SingleBlogPage({
 
   //#region  //*=========== Content Meta ===========
   const contentSlug = `b_${cleanSlug}`;
-  const meta = useContentMeta(contentSlug, { runIncrement: true });
+  // const meta = useContentMeta(contentSlug, { runIncrement: true });
   //#endregion  //*======== Content Meta ===========
 
   //#region  //*=========== Scrollspy ===========
@@ -154,7 +151,7 @@ export default function SingleBlogPage({
                   <HiOutlineClock className='inline-block text-base' />
                   <Accent>{frontmatter.readingTime.text}</Accent>
                 </div>
-                {meta?.devtoViews ? (
+                {/* {meta?.devtoViews ? (
                   <Tooltip
                     tipChildren={
                       <>
@@ -180,7 +177,7 @@ export default function SingleBlogPage({
                       {meta?.views?.toLocaleString() ?? '–––'} views
                     </Accent>
                   </div>
-                )}
+                )} */}
               </div>
               {/* {!frontmatter?.englishOnly && (
                 <CustomLink
@@ -219,14 +216,6 @@ export default function SingleBlogPage({
                 </div>
               </aside>
             </section>
-
-            <ShareTweetButton
-              className='mt-12'
-              url={`https://theodorusclarence.com/blog/${frontmatter.slug}`}
-              title={frontmatter.title}
-            />
-
-            <CarbonAds className='mt-8' />
 
             <figure className='mt-12'>
               <Comment key={frontmatter.slug} />
