@@ -48,16 +48,16 @@ const TWEET_REGEXP = new RegExp(
 const devtoFooter = `
 ---
 
-> Originally posted on [my personal site](https://theodorusclarence.com/?ref=devto), find more [blog posts](https://theodorusclarence.com/blog?ref=devto) and [code snippets library](https://theodorusclarence.com/library?ref=devto) I put up for easy access on my site 🚀
+> Originally posted on [my personal site](emackinnon.com/?ref=devto), find more [blog posts](https://theodorusclarence.com/blog?ref=devto) and [code snippets library](https://theodorusclarence.com/library?ref=devto) I put up for easy access on my site 🚀
 
-Like this post? [Subscribe to my newsletter](https://theodorusclarence.com/subscribe?ref=devto) to get notified every time a new post is out!`;
+Like this post? [Subscribe to my newsletter](emackinnon.com/subscribe?ref=devto) to get notified every time a new post is out!`;
 
 const hashnodeFooter = `
 ---
 
-> Originally posted on [my personal site](https://theodorusclarence.com/?ref=hashnode), find more [blog posts](https://theodorusclarence.com/blog?ref=hashnode) and [code snippets library](https://theodorusclarence.com/library?ref=hashnode) I put up for easy access on my site 🚀
+> Originally posted on [my personal site](emackinnon.com/?ref=hashnode), find more [blog posts](https://theodorusclarence.com/blog?ref=hashnode) and [code snippets library](https://theodorusclarence.com/library?ref=hashnode) I put up for easy access on my site 🚀
 
-Like this post? [Subscribe to my newsletter](https://theodorusclarence.com/subscribe?ref=hashnode) to get notified every time a new post is out!`;
+Like this post? [Subscribe to my newsletter](emackinnon.com/subscribe?ref=hashnode) to get notified every time a new post is out!`;
 //#endregion  //*======== Footers ===========
 
 const slug = process.argv[2];
@@ -160,9 +160,9 @@ hashnode();
 const getOgImage = () => {
   readFile(fileName, 'utf8', (err, content) => {
     if (err) reject(err);
-
+    console.log('getogimage');
     const { data: frontmatter } = matter(content);
-    const bannerLink = `https://res.cloudinary.com/theodorusclarence/image/upload/f_auto,c_fill,ar_4:5,w_1200/theodorusclarence/banner/${frontmatter.banner}`;
+    const bannerLink = `https://github.com/emackinnon1/folio-v2/tree/main/public/images/${frontmatter.banner}`;
     const ogLink = `https://og.clarence.link/api/blog?templateTitle=${encodeURIComponent(
       frontmatter.title
     )}&banner=${encodeURIComponent(bannerLink)}`;

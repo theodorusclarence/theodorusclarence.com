@@ -147,49 +147,49 @@ const footerLinks: { href: string; text: string; tooltip: React.ReactNode }[] =
     {
       href: '/design',
       text: 'Design',
-      tooltip: 'emackinnon1.github.io/folio-v2 color palette',
+      tooltip: 'website color palette',
     },
+    // {
+    //   href: 'https://clarence.link/docs',
+    //   text: 'Docs',
+    //   tooltip: 'Personal documentation about my best practices on development',
+    // },
+    // {
+    //   href: 'https://clarence.link/booknotes',
+    //   text: 'Book Notes',
+    //   tooltip: 'Note collection of books that I read',
+    // },
+    // {
+    //   href: 'https://clarence.link/starters',
+    //   text: 'Starter Templates',
+    //   tooltip: 'Starter that I build and use throughout my projects',
+    // },
     {
-      href: 'https://clarence.link/docs',
-      text: 'Docs',
-      tooltip: 'Personal documentation about my best practices on development',
-    },
-    {
-      href: 'https://clarence.link/booknotes',
-      text: 'Book Notes',
-      tooltip: 'Note collection of books that I read',
-    },
-    {
-      href: 'https://clarence.link/starters',
-      text: 'Starter Templates',
-      tooltip: 'Starter that I build and use throughout my projects',
-    },
-    {
-      href: 'https://clarence.link/um',
+      href: 'https://us.umami.is/websites/3a7b3e74-8e84-4d6b-9060-e048a1693916',
       text: 'Analytics',
-      tooltip: 'theodorusclarence.com views and visitors analytics',
+      tooltip: 'elliotmackinnon.com views and visitors analytics',
     },
     {
       href: '/statistics',
       text: 'Statistics',
       tooltip: 'Blog, Projects, and Library Statistics',
     },
-    {
-      href: '/guestbook',
-      text: 'Guestbook',
-      tooltip:
-        'Leave whatever you like to say—message, appreciation, suggestions',
-    },
-    {
-      href: '/subscribe',
-      text: 'Subscribe',
-      tooltip: 'Get an email whenever I post, no spam',
-    },
-    {
-      href: 'https://theodorusclarence.com/rss.xml',
-      text: 'RSS',
-      tooltip: 'Add theodorusclarence.com blog to your feeds',
-    },
+    // {
+    //   href: '/guestbook',
+    //   text: 'Guestbook',
+    //   tooltip:
+    //     'Leave whatever you like to say—message, appreciation, suggestions',
+    // },
+    // {
+    //   href: '/subscribe',
+    //   text: 'Subscribe',
+    //   tooltip: 'Get an email whenever I post, no spam',
+    // },
+    // {
+    //   href: 'https://theodorusclarence.com/rss.xml',
+    //   text: 'RSS',
+    //   tooltip: 'Add theodorusclarence.com blog to your feeds',
+    // },
   ];
 
 type Social = {
