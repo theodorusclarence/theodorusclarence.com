@@ -34,7 +34,7 @@ describe('All Page', () => {
 
   it('should display subscribe page', () => {
     cy.visit('/subscribe');
-    cy.get('h1').should('contain', 'Subscribe to theodorusclarence.com');
+    cy.get('h1').should('contain', 'Subscribe to emackinnon1.github.io');
   });
 
   it('should display trf bca page', () => {

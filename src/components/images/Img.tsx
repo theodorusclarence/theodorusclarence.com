@@ -42,7 +42,10 @@ export default function Img({
   const RESIZE_MAX_WIDTH = 1000;
   const resizedToMaxWidth = mdx && +width >= RESIZE_MAX_WIDTH;
 
-  const url = publicId;
+  const path =
+    process.env.VERCEL_DEPLOYMENT === 'true'
+      ? publicId
+      : `/folio-v2/${publicId}`;
 
   return (
     <figure
@@ -77,14 +80,14 @@ export default function Img({
               resizedToMaxWidth ? (RESIZE_MAX_WIDTH * +height) / +width : height
             }
             unoptimized
-            src={url}
+            src={path}
             alt={alt}
             title={title || alt}
           />
         </div>
       </div>
       {isOpen && (
-        <Lightbox mainSrc={url} onCloseRequest={() => setIsOpen(false)} />
+        <Lightbox mainSrc={path} onCloseRequest={() => setIsOpen(false)} />
       )}
     </figure>
   );

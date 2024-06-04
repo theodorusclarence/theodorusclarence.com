@@ -244,7 +244,7 @@ export default function IndexPage({
                   className='mt-4'
                   href='/blog'
                   onClick={() =>
-                    trackEvent('Home: See more post', { type: 'navigate' })
+                    trackEvent('Home: See more posts', { type: 'navigate' })
                   }
                 >
                   See more post
@@ -283,7 +283,7 @@ export default function IndexPage({
                     trackEvent('Home: See more project', { type: 'navigate' })
                   }
                 >
-                  See more project
+                  See more projects
                 </ButtonLink>
               </article>
             </section>
