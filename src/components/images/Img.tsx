@@ -45,7 +45,7 @@ export default function Img({
   const path =
     process.env.VERCEL_DEPLOYMENT === 'true'
       ? publicId
-      : `/folio-v2/${publicId}`;
+      : `/folio-v2${publicId}`;
 
   return (
     <figure
