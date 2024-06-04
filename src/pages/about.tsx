@@ -46,10 +46,10 @@ export default function AboutPage() {
                 className='float-right ml-6 w-40 md:w-72'
                 publicId='/folio-v2/images/portrait.jpg'
                 width='1700'
-                height='1695'
+                height='1300'
                 alt='Portrait under greenhouse grow lights.'
                 preview={false}
-                aspect={{ width: 1, height: 1 }}
+                aspect={{ width: 1.5, height: 1 }}
                 title=' '
               />
               <article className='prose dark:prose-invert'>
@@ -77,9 +77,10 @@ export default function AboutPage() {
                   that, were I to live to 1000 years old, I would remain
                   desiccated, a husk. Not from the parched and dried bones that
                   come with a body in its twilight, but from the hole I cannot
-                  patch, the void I cannot fill, the things I’ll never know. It
-                  is truly invigorating to take notice of the world and the
-                  mysteries in it!
+                  patch, the void I cannot fill...{' '}
+                  <Accent>the things I’ll never know.</Accent> It is truly
+                  invigorating to take notice of the world and the mysteries in
+                  it!
                 </p>
                 <p data-fade='4'>
                   The series of events leading up to this point in my life have
