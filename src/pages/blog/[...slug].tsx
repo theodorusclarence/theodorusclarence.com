@@ -20,7 +20,6 @@ import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/content/blog/BlogCard';
-import SubscribeCard from '@/components/content/blog/SubscribeCard';
 import Comment from '@/components/content/Comment';
 import LikeButton from '@/components/content/LikeButton';
 import MDXComponents from '@/components/content/MDXComponents';
@@ -240,8 +239,6 @@ export default function SingleBlogPage({
                 </ul>
               </div>
             )}
-
-            <SubscribeCard className='mt-12' title='Enjoying this post?' />
 
             <div className='mt-8 flex flex-col items-start gap-4 md:flex-row-reverse md:justify-between'>
               <CustomLink href={GITHUB_EDIT_LINK}>
