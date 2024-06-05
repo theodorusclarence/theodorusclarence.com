@@ -23,8 +23,6 @@ const nextConfig = {
     unoptimized: true,
   },
   reactStrictMode: true,
-  basePath: 'folio-v2',
-  basePath: process.env.VERCEL_DEPLOYMENT === 'true' ? '' : '/folio-v2',
   async redirects() {
     return [
       {

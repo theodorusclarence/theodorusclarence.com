@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/folio-v2/fonts/inter-var-latin.woff2",
+      "source": "/fonts/inter-var-latin.woff2",
       "headers": [
         {
           "key": "Cache-Control",

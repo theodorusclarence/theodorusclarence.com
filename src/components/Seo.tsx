@@ -110,10 +110,7 @@ export default function Seo(props: SeoProps) {
         <link key={linkProps.href} {...linkProps} />
       ))}
       <meta name='msapplication-TileColor' content='#ffffff' />
-      <meta
-        name='msapplication-TileImage'
-        content='/folio-v2/favicon/ms-icon-144x144.png'
-      />
+      <meta name='msapplication-TileImage' content='/favicon/EM.png' />
       <meta name='theme-color' content='#ffffff' />
     </Head>
   );
@@ -203,6 +200,6 @@ const favicons: Array<Favicons> = [
   // },
   {
     rel: 'manifest',
-    href: '/folio-v2/favicon/manifest.json',
+    href: '/favicon/manifest.json',
   },
 ];
