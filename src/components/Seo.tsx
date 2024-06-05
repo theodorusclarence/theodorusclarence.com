@@ -5,7 +5,7 @@ import { openGraph } from '@/lib/helper.client';
 
 const defaultMeta = {
   title: 'Elliot Mackinnon',
-  siteName: 'https://emackinnon.com',
+  siteName: 'https://emackinnon.io',
   description:
     'An online portfolio and blog by Elliot Mackinnon. Showcase of my projects, and some of my thoughts about website development.',
   url: 'https://emackinnon1.github.io/folio-v2',

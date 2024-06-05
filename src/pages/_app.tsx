@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // Don't increment views if not on main domain
     if (
       window.location.host !==
-        (process.env.NEXT_PUBLIC_BLOCK_DOMAIN_WHITELIST || 'emackinnon.com') &&
+        (process.env.NEXT_PUBLIC_BLOCK_DOMAIN_WHITELIST || 'emackinnon.io') &&
       blockDomainMeta
     ) {
       if (getFromLocalStorage('incrementMetaFlag') !== 'false') {
