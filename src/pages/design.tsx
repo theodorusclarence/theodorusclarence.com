@@ -26,7 +26,7 @@ export default function DesignPage() {
             </h1>
 
             <p data-fade='1' className='mt-2 text-gray-600 dark:text-gray-300'>
-              emackinnon1.github.io color palette
+              emackinnon1.io color palette
             </p>
 
             <div

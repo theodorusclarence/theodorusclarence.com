@@ -229,7 +229,7 @@ export default function StatisticsPage() {
     <Layout>
       <Seo
         templateTitle='Statistics'
-        description='Metadata statistics of emackinnon1.github.io blogs, projects and libraries.'
+        description='Metadata statistics of emackinnon1.io blogs, projects and libraries.'
       />
 
       <main>

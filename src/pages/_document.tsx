@@ -28,7 +28,7 @@ class MyDocument extends Document {
             defer
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || ''}
             src='https://cloud.umami.is/script.js'
-            data-domains='emackinnon1.github.io'
+            data-domains='emackinnon1.io'
           />
         </Head>
         <body className='bg-white antialiased transition-colors dark:bg-dark dark:text-white'>

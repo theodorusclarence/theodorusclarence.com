@@ -8,7 +8,7 @@ const defaultMeta = {
   siteName: 'https://emackinnon.io',
   description:
     'An online portfolio and blog by Elliot Mackinnon. Showcase of my projects, and some of my thoughts about website development.',
-  url: 'https://emackinnon1.github.io/folio-v2',
+  url: 'https://emackinnon1.io/',
   image:
     'https://github.com/emackinnon1/folio-v2/tree/main/public/favicon/EM.png',
   type: 'website',
