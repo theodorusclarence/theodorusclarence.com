@@ -52,9 +52,9 @@ export default function SingleBlogPage({
   );
 
   //#region  //*=========== Link Constants ===========
-  const COMMIT_HISTORY_LINK = `https://github.com/emackinnon1/folio-v2/tree/main/src/contents/blog${frontmatter.slug}.mdx`;
-  const GITHUB_EDIT_LINK = `https://github.com/emackinnon1/folio-v2/tree/main/src/contents/blog${frontmatter.slug}.mdx`;
-  const OG_BANNER_LINK = `https://raw.githubusercontent.com/emackinnon1/folio-v2/main/public/images/${frontmatter.banner}`;
+  const COMMIT_HISTORY_LINK = `https://github.com/emackinnon1/folio-v2/tree/main/src/contents/blog/${frontmatter.slug}.mdx`;
+  const GITHUB_EDIT_LINK = `https://github.com/emackinnon1/folio-v2/tree/main/src/contents/blog/${frontmatter.slug}.mdx`;
+  const OG_BANNER_LINK = `https://raw.githubusercontent.com/emackinnon1/folio-v2/main/public/${frontmatter.banner}`;
   //#endregion  //*======== Link Constants ===========
 
   //#region  //*=========== Blog Language ===========
