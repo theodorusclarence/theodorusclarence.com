@@ -127,7 +127,7 @@ const favicons: Array<Favicons> = [
   {
     rel: 'em-icon',
     sizes: 'large-large',
-    href: '/folio-v2/favicon/EM.png',
+    href: 'favicon/EM.png',
   },
   // {
   //   rel: 'apple-touch-icon',
