@@ -166,7 +166,7 @@ const getOgImage = () => {
     const ogLink = `https://og.clarence.link/api/blog?templateTitle=${encodeURIComponent(
       frontmatter.title
     )}&banner=${encodeURIComponent(bannerLink)}`;
-    const image_path = join(outPath, 'og_image.png');
+    const image_path = join(outPath, 'EM.png');
     axios({
       url: ogLink,
       responseType: 'stream',
