@@ -136,15 +136,6 @@ function SocialLinks() {
 const footerLinks: { href: string; text: string; tooltip: React.ReactNode }[] =
   [
     {
-      href: 'https://github.com/emackinnon1/folio-v2',
-      text: 'Source Code',
-      tooltip: (
-        <>
-          This website is <strong>open source</strong>!
-        </>
-      ),
-    },
-    {
       href: '/design',
       text: 'Design',
       tooltip: 'website color palette',
