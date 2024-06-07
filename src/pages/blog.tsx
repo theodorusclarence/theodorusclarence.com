@@ -12,7 +12,6 @@ import useLoaded from '@/hooks/useLoaded';
 import Accent from '@/components/Accent';
 // import Button from '@/components/buttons/Button';
 import BlogCard from '@/components/content/blog/BlogCard';
-import SubscribeCard from '@/components/content/blog/SubscribeCard';
 import ContentPlaceholder from '@/components/content/ContentPlaceholder';
 import Tag, { SkipNavTag } from '@/components/content/Tag';
 import StyledInput from '@/components/form/StyledInput';
@@ -190,7 +189,6 @@ export default function IndexPage({
                 <ContentPlaceholder />
               )}
             </ul>
-            <SubscribeCard className='mt-8' />
           </div>
         </section>
       </main>
