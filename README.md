@@ -11,7 +11,7 @@ First, fork the repo, then:
 
 ```sh
 git clone <your-fork>
-cd ./theodorusclarence.com
+cd ./folio-v2
 
 # Copy the .env.example to .env.local
 #   most features are turned off by default
