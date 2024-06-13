@@ -1,0 +1,58 @@
+---
+title: 'ESP32-based watering system'
+description: 'An automatic watering system using esphome, capacitive soil moisture sensors, 12v solenoid valves and a watering pump'
+category: 'DIY microcontroller projects'
+publishedAt: '2024-06-27'
+techs: 'esphome,home assistant,'
+banner: '/images/projects/water_system/bog-perennials.jpg'
+---
+
+> Explanation of project
+
+An `ESP32-S3-DevKitC-1-N8R2` dev board runs gathers data from capacitive moisture sensors and
+a fuel gauge and sends it off to home assistant. Home assistant checks the moisture content and water levels and,
+depending on what the readings are, will open valves and turn on a pump to water the correct plants.
+
+I should note that this project is centered around Home Assistant and uses a zigbee relay (I have been trying to save my wifi bandwidth by investing in zigbee products)
+to interact with a wifi-based ESP32, but it is possible to use another platform like AWS's IoT message broker to send MQTT messages back and forth to
+a wifi relay, or you could just have the ESP32 control a relay module directly via GPIO pins. I like housing the main logic in Home Assistant because
+then I can hook into events and send a notification to my phone when the water resevoir is low, announce that the plants are being watered
+through my sonos speaker, etc. It just puts a lot of options on the table that would otherwise be harder to pull off.
+
+## Background
+
+This project was on my mind for quite some time before I built it. I have long had a collection of carnivorous plants,
+and I have even had automatic watering systems for them before. Usually, carnivorous plants have to be kept fairly damp
+which means watering almost every day if you live in Colorado where things dry out pretty quickly. I built up a collection
+of plants once I moved to Denver pretty quickly and watering them so often was a pain (they also don't tolerate anything but distilled
+or reverse osmosis water), and I had was reluctant to leave them for long periods of time on trips.
+
+This prompted me to buy my first automatic watering system which was timer-based, which meant it was not very exact if you have plants
+with different watering needs. It was also hard to get the timing right: for the kind I had, you give it a watering period (say, 30 seconds)
+and then you set the interval to water every 12 hours, 1 day, once a week, or whatever. Rudimentary, but it worked ok!
+Eventually, I got some carnivorous plants with different watering needs and the single timer system wasn't going to cut it anymore.
+
+Eventually, I started getting into microcontrollers and peripherals, and it all started from there.
+Using moisture sensors meant that I could meet different plants' different watering needs. As illustration, I have
+a system for house plants that has both tropical and succulent plants on the same system! I set their levels to start
+watering once the moisture reading drops to < 17% and < %67, respectively. I also made it so I could control the watering
+runtimes as well.
+
+I think that is enough explanation, let's jump into some of the specifics!
+
+## Supply list
+
+You're going to need a fair amount of supplies to pull this off. I got everything from Amazon, so I created an Amazon list of everything you'll need (I hope I remembered everything).
+There are also a few options when it comes to which pump to use, tubing and reducers to buy, etc. I built two of these, so I have had a chance to try some things out.
+Everything will be on the list, but as I go through the steps I'll mention the different routes you can take.
+
+The bare minimum components are:
+
+- solenoid valves
+- relays to control the valves
+- tubing, connectors and spickets
+- moisture sensors
+- ESP32 to read the moisture sensor
+- fuel gauge for the water resevoir level (this can optional)
+- water resevoir (I didn't get this from Amazon, but 5 gallon buckets work fine)
+- water pump and power supply
