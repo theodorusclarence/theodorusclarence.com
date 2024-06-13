@@ -104,7 +104,7 @@ export default function IndexPage({
               className='mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-8'
             >
               <UnstyledLink
-                href='https://apricot-gilbertina-76.tiiny.site/'
+                href='https://www.linkedin.com/in/elliot-mackinnon-34b02194/overlay/1717205272316/single-media-viewer/?profileId=ACoAABPvqqsBIAgsVB1lGUaCgoDVKCwEirjP_Qc'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
                   'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
