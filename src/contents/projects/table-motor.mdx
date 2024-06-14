@@ -12,9 +12,7 @@ link: 'https://github.com/emackinnon1/pico-table-motor/tree/main'
 
 A raspberry pi pico that powers a couple of linear actuators attached to a table hinge using an MQTT server to send and receive messages.
 
-![20240528_084158-ezgif com-optimize](https://github.com/emackinnon1/pico-table-motor/assets/49004020/ae06bcd8-f7e9-4cbe-8672-15942d747368)
-
-[video](https://photos.google.com/share/AF1QipOxRTt1fZprU7FDNkr2YeoZxs5IqVx5rKe-qXA9ltJ0vuCPGBfnsxae41Ng3UkEgA?key=bEtFODZ1ZkVuVEs3YWlqcHM2YlJTelRWT1RiMEpR)
+[VIDEO](https://photos.google.com/share/AF1QipOxRTt1fZprU7FDNkr2YeoZxs5IqVx5rKe-qXA9ltJ0vuCPGBfnsxae41Ng3UkEgA?key=bEtFODZ1ZkVuVEs3YWlqcHM2YlJTelRWT1RiMEpR)
 
 I will go ahead and tell you right now: This is, without a doubt, a _totally_ unnecessary project.  
 This project is built using a coffee table that has a hinged that works _just fine_ when opened manually, as the manufacturer intended. When I wired everything up, put the final pieces together, and ran it successfully for the first time to show my girlfriend, the first words out of my mouth upon it completing the opening and closing movements were: "Pretty pointless, huh?"  
@@ -63,18 +61,56 @@ Countersink bolts (the countersunk nut fit the linear actuator through hole perf
 I unfortunately did not remember to take many photos during the building process, but the finished product photos will hopefully suffice. The other thing that I wish I had done is to build this at the same time as I was putting the table together. It is not the end of the world if you build the table and then later come back and put the motors on, but it sure would have been easier if I could have done it all at once.
 The hardest part of this project was figuring out just how to attach the linear actuators. For quite some time, I tested the actuators without actually drilling any holes or attaching the brackets that come with them to any part of the table; I wanted to see if the stroke length would match up well enough to the arms on the hinge to just attach them to one spot and not have to do anything extra. There are little hydraulic pistons that attach to posts on the hinge that I thought I could co-opt, but unfortunately that didn't work.
 
-![Screenshot 2024-05-28 at 10 22 17](https://github.com/emackinnon1/pico-table-motor/assets/49004020/f0a8af54-10cc-4e1e-be6b-d5beed25bfca)
+<Img
+  mdx
+  publicId='https://github.com/emackinnon1/pico-table-motor/assets/49004020/f0a8af54-10cc-4e1e-be6b-d5beed25bfca'
+  alt='product picture with hinge circled'
+  width={550}
+  height={450}
+  aspect={{ width: 1, height: 1 }}
+/>
 
 However, I knew that if I could attach the end of the actuator to the right spot and then have some way of shutting off power to the actuator once the table reached the right position, this was a doable project!
 
-It is a good idea to power the linear actuator all the way out to the end of its length and use that to figure out where to attach the bottom bracket table's bottom floor in the inner compartment, along with where on the hinge arm you need to attach the end of the actuator  
-![20240528_101628](https://github.com/emackinnon1/pico-table-motor/assets/49004020/5e989384-09be-4670-a2e2-0e5b6cd3976e)  
-In the picture above, the actuator is a little less than fully extended (just enough to give myself a couple of centimeters of extra room, but the distance doesn't matter all that much). At this point, the other thing that you will want to do is to be absolutely _sure_ that once you retract the actuator, the hinge will be fully closed. The bottom bracket (which comes with the actuator usually) was easy to mark the outline of using chalk. You will want to be sure that you don't put it too close to the compartment wall. I also marked off where the top of the actuator should attach via the through hole with a white paint marker on the actual hinge. Another thing I did (because I did all of this _after_ the table was built) was to take the top table part off of the hinges to make things easier to measure and work with. Otherwise you cannot measure where the retracted actuator should be positioned with the hinge all the way closed. I cannot stress enough that you should measure, test, remeasure, and test again as many times as possible until you are absolutely certain you have both the bottom bracket and the top through hole measured to the right spots on the bottom of the table compartment and the hinge arm respectively; it'll make your life way easier if you aren't doing this on the fly later.
+It is a good idea to power the linear actuator all the way out to the end of its length and use that to figure out where to attach the bottom bracket table's bottom floor in the inner compartment, along with where on the hinge arm you need to attach the end of the actuator
+
+<Img
+  mdx
+  publicId='https://github.com/emackinnon1/pico-table-motor/assets/49004020/5e989384-09be-4670-a2e2-0e5b6cd3976e'
+  alt='extended linear actuator attached to hinge'
+  width={550}
+  height={550}
+  aspect={{ width: 1, height: 1 }}
+/>
+In the picture above, the actuator is a little less than fully extended (just enough
+to give myself a couple of centimeters of extra room, but the distance doesn't matter
+all that much). At this point, the other thing that you will want to do is to be
+absolutely _sure_ that once you retract the actuator, the hinge will be fully closed.
+The bottom bracket (which comes with the actuator usually) was easy to mark the outline
+of using chalk. You will want to be sure that you don't put it too close to the compartment
+wall. I also marked off where the top of the actuator should attach via the through
+hole with a white paint marker on the actual hinge. Another thing I did (because
+I did all of this _after_ the table was built) was to take the top table part off
+of the hinges to make things easier to measure and work with. Otherwise you cannot
+measure where the retracted actuator should be positioned with the hinge all the
+way closed. I cannot stress enough that you should measure, test, remeasure, and
+test again as many times as possible until you are absolutely certain you have both
+the bottom bracket and the top through hole measured to the right spots on the bottom
+of the table compartment and the hinge arm respectively; it'll make your life way
+easier if you aren't doing this on the fly later.
 
 Once you figure out where the actuator needs to be positioned, it's time to start drilling the holes. There isn't too much that is special about the bottom bracket. The countersink screws worked pretty well for attaching this as well. For the hinge arm, I took the hole thing off the table and drilled through it, being extra careful to make the hole as centered as possible. I went slow and constantly checked to be sure the hole didn't get too big for the screw. These tables aren't crazy expensive, but I wanted to not have to start over if I ruined it.
 
-Since the end of the linear actuator needs to physically be a little apart from the hinge arm, you will have to get the correctly-sized spacer. I had to cut mine to the right size.  
-![20240528_101635](https://github.com/emackinnon1/pico-table-motor/assets/49004020/4e61e9e1-263e-49a2-a783-98a19c92163e)
+Since the end of the linear actuator needs to physically be a little apart from the hinge arm, you will have to get the correctly-sized spacer. I had to cut mine to the right size.
+
+<Img
+  mdx
+  publicId='https://github.com/emackinnon1/pico-table-motor/assets/49004020/4e61e9e1-263e-49a2-a783-98a19c92163e'
+  alt='Picture of spacer and bolt attached to arm of hinge'
+  width={550}
+  height={650}
+  aspect={{ width: 1, height: 1 }}
+/>
 
 You will want to pick out the right spacer or cut it to size as needed.
 
@@ -83,17 +119,46 @@ After everything is attached, we can move on to getting the limit switches, driv
 ### Wiring
 
 ![motor-controller drawio](https://github.com/emackinnon1/pico-table-motor/assets/49004020/e0951f14-086b-410d-ae31-89a1590b5368)
-![20240528_084543](https://github.com/emackinnon1/pico-table-motor/assets/49004020/405705ab-569e-403e-9d91-0cd942631011)
+
+<Img
+  mdx
+  publicId='https://github.com/emackinnon1/pico-table-motor/assets/49004020/405705ab-569e-403e-9d91-0cd942631011'
+  alt='Ignore the messy wiring...'
+  width={650}
+  height={550}
+  aspect={{ width: 1, height: 1 }}
+/>
 
 All in all, this isn't that complicated of a wiring job. You need to connect the correct pins on the pico to the motor drivers, split the power from the power supply and run it to the power inputs of the motor drivers, then run the motor outputs from the drivers to the limit switches and subsequently to the actuators. The diodes should be wired to the correct poles of the limit switches as well ([here](https://www.firgelliauto.com/products/external-limit-switch-kit-for-actuators) is another graphic that illustrates this better). For the experts who read this, you will already know this, but for others: I recommend _NOT_ soldering anything until you are sure you have it all in working order. Start with one actuator, wiring everything up (using electrical tape to maintain connections before permanently soldering later) and get it working before moving onto the second actuator. Be sure you can disconnect power to the motor quickly in case the limit switches aren't working properly at first. You can also take the pin out of the bottom brackets that hold the actuator to it, if needed, but be aware that it can be a little tricky to get back on when the actuator is attached to the hinge arm.
 
 The limit switches need to be attached in place so the hinge triggers them when the table is fully open. I took some long skinny screws that I got from the hardware store and a plastic spacer cut to size that would hold the switch far enough awa from the sidewall of the table to engage when the hinge was all the way open. For the size, you will probably have to tailor this to the table that you buy. I bought a size that fit snugly through the limit switch bolt holes (just bring the switch to the store with you) and I bought a series of lengths of them starting from something like 25mm on up to 40mm (I think, it was about 6 months ago) and took used the first one that fit well, which was 35mm I believe.
 
-![20240528_101722](https://github.com/emackinnon1/pico-table-motor/assets/49004020/750a0f8a-2482-4684-a106-2c6d48dd197a)
+<Img
+  mdx
+  publicId='https://github.com/emackinnon1/pico-table-motor/assets/49004020/750a0f8a-2482-4684-a106-2c6d48dd197a'
+  alt='limit switch up close and showing how hinge arm engages it'
+  width={800}
+  height={850}
+  aspect={{ width: 1, height: 1 }}
+/>
 
-![20240528_101705](https://github.com/emackinnon1/pico-table-motor/assets/49004020/b0ecdb1a-0963-49bb-a288-178684e0aae3)
+<Img
+  mdx
+  publicId='https://github.com/emackinnon1/pico-table-motor/assets/49004020/b0ecdb1a-0963-49bb-a288-178684e0aae3'
+  alt='Ignore the messy wiring...'
+  width={800}
+  height={850}
 
-![20240528_101649](https://github.com/emackinnon1/pico-table-motor/assets/49004020/823dde5d-70ae-4b36-8f6e-813b8c553b38)
+/>
+
+<Img
+  mdx
+  publicId='https://github.com/emackinnon1/pico-table-motor/assets/49004020/823dde5d-70ae-4b36-8f6e-813b8c553b38'
+  alt='Ignore the messy wiring...'
+  width={800}
+  height={850}
+  aspect={{ width: 2, height: 2 }}
+/>
 
 I used electrical tape to wrap the exposed metal parts of the diode and the poles of the limit switches. As you are wiring / soldering, TEST AND TEST AGAIN to be sure that everything is still working as expected. I left the motor drivers until last so I could use the power outputs to be sure that the limit switches and actuators were working.
 
