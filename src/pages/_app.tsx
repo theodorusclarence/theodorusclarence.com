@@ -13,6 +13,7 @@ import '@/styles/globals.css';
 import '@/styles/carbon.css';
 import '@/styles/mdx.css';
 import '@/styles/nprogress.css';
+import '@/styles/enbla.css';
 
 import { getFromLocalStorage } from '@/lib/helper.client';
 

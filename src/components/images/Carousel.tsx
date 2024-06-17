@@ -10,7 +10,8 @@ import { DotButton, useDotButton } from './CarouselDotButton';
 
 const Carousel = (props: any) => {
   const { slides, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const altSlides = Array.from(Array(5).keys());
+  const [emblaRef, emblaApi] = useEmblaCarousel(options || {});
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
@@ -26,11 +27,18 @@ const Carousel = (props: any) => {
     <section className='embla'>
       <div className='embla__viewport' ref={emblaRef}>
         <div className='embla__container'>
-          {slides.map((index: any) => (
-            <div className='embla__slide' key={index}>
-              <div className='embla__slide__number'>{index + 1}</div>
-            </div>
-          ))}
+          {slides &&
+            slides.map((index: any) => (
+              <div className='embla__slide' key={index}>
+                <div className='embla__slide__number'>{index + 1}</div>
+              </div>
+            ))}
+          {altSlides &&
+            altSlides.map((index: any) => (
+              <div className='embla__slide' key={index}>
+                <div className='embla__slide__number'>{index + 1}</div>
+              </div>
+            ))}
         </div>
       </div>
 
