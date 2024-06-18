@@ -7,10 +7,10 @@ import {
   usePrevNextButtons,
 } from './CarouselArrowButtons';
 import { DotButton, useDotButton } from './CarouselDotButton';
+import Img from './Img';
 
 const Carousel = (props: any) => {
   const { slides, options } = props;
-  const altSlides = Array.from(Array(5).keys());
   const [emblaRef, emblaApi] = useEmblaCarousel(options || {});
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -27,18 +27,17 @@ const Carousel = (props: any) => {
     <section className='embla'>
       <div className='embla__viewport' ref={emblaRef}>
         <div className='embla__container'>
-          {slides &&
-            slides.map((index: any) => (
-              <div className='embla__slide' key={index}>
-                <div className='embla__slide__number'>{index + 1}</div>
-              </div>
-            ))}
-          {altSlides &&
-            altSlides.map((index: any) => (
-              <div className='embla__slide' key={index}>
-                <div className='embla__slide__number'>{index + 1}</div>
-              </div>
-            ))}
+          {Object.entries(slides).map(([path, altText], index) => (
+            <Img
+              key={index}
+              mdx
+              className='embla__slide'
+              publicId={String(path)}
+              alt={String(altText)}
+              width={900}
+              height={900}
+            />
+          ))}
         </div>
       </div>
 
