@@ -7,7 +7,18 @@ techs: 'esphome,home assistant,'
 banner: '/images/projects/water-system/cropped-greenhouse.jpg'
 ---
 
-> Explanation of project
+>
+
+<Img
+  mdx
+  publicId='/images/projects/water-system/plant-stand-watering-system.gif'
+  alt='plant stand'
+  width={700}
+  height={950}
+  aspect={{ width: 1, height: 1.3 }}
+/>
+
+## Explanation of project
 
 An `ESP32-S3-DevKitC-1-N8R2` dev board runs gathers data from capacitive moisture sensors and
 a fuel gauge and sends it off to home assistant. Home assistant checks the moisture content and water levels and,
@@ -109,6 +120,17 @@ Since you can use pressure regulators like [these](https://www.amazon.com/dp/B07
 switch like [this](https://www.amazon.com/dp/B08Y87WD1X/?coliid=I3MJ8UQM31VI1D&colid=2XZYXW2Q6V17Y&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it) to control it, use some reducers to connect them to the water line, and you are up and running.
 The smaller pump required some soldering to connect wires for ground and power, which was a bit of a pain just given the size of the terminals on the pump housing. I also had to try to waterproof it as best because of its placement. However,
 if don't have Home Assistant, this may be a better choice because you can wire this straight into a relay and control it with a micrcocontroller.
+
+Here is a diagram of what the watering lines, valves, and related power supplies and switches should look like:
+
+<Img
+  mdx
+  publicId='/images/projects/water-system/watering_lines_and_valve.drawio.png'
+  alt='watering lines and valves diagram'
+  width={850}
+  height={950}
+  aspect={{ width: 1, height: 1.2 }}
+/>
 
 ## Microcontroller and sensors
 
@@ -291,7 +313,7 @@ sensor:
 
 ```
 
-The [ESPHome docs on ADC sensors](https://esphome.io/components/sensor/adc.html) contain more information. When I set the moisture sensors up, I took a glass of water, commented out this section:
+The [ESPHome docs on ADC sensors](https://esphome.io/components/sensor/adc.html) contain more information. When I set the moisture sensors up, I took a glass of water, commented of code:
 
 ```yaml
 #- platform: adc
@@ -430,7 +452,8 @@ There are probably a few different ways you could string everything together, bu
 
 - "Enable watering" switch
   - This allows you to turn off watering if the plants are overwatered, or if you have seasonal watering needs, if a plant dies and the pot no longer needs to be watered,
-    or a if a leak occurs. You can either have an entity in Home Assistant or you could have this in the microcontroller code
+    or a if a leak occurs. You can either have an entity in Home Assistant or you could have this in the microcontroller code or you could even do it with a physical switch
+    in the circuit.
 - Leak sensors
   - These are good for shutting off the "enable watering" switches.
 - Moisture targets
@@ -444,7 +467,12 @@ There are probably a few different ways you could string everything together, bu
   - I set this up to tell me when a certain valve last opened and the plants on that line were watered. It's probably more useful with the Home Assistant route, but you could
     dispatch this via MQTT and display it on a screen somewhere.
 
-Below are screenshots of my dashboard to give you a sense of how things look and work.
+To do it _exactly_ as I have done it in Home Assistant, set up these helpers:
+
+- A helper to keep track of the target moisture (`input_number`)
+- A helper to set the last watering time (`input_datetime`)
+- A helper to set the runtime (`input_number`)
+- A helper to enable watering (`input_boolean`)
 
 As stated before, I leveraged Automations in Home Assistant to do most of the heavy lifting. I'll include my automations below, but I want to give a quick run through
 of the logic of them first.
@@ -468,23 +496,30 @@ only open and close under certain water pressures, so I wanted to be sure the li
 one of these [pressure regulators](https://www.amazon.com/gp/product/B07DRMWLN6/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) to help. Stick it on the output line
 from the water pump before it gets to the valves.
 
+### Automations
+
 I am going to include the yaml of my watering automation, but I am going to only include two of the valves for simplicity. This will also be from my carnivorous system,
-so the runtimes will be different for the different valves.
+so the runtimes will be different for the different valves. There is a little bit of redundant logic that could be cleaned up
+(I check that the moisture reading is below the target moisture in two places), but I was trying to avoid some edge cases and have just left thigns as-is
+since it all seems to be working great.
 
 ```yaml
 alias: Carnivorous plant watering
 description: ''
 trigger:
+  # Here I have set each trigger to happen when the moisture sensor falls below the moisture target
   - platform: numeric_state
     entity_id:
       - sensor.carnivorous_pump_soil_moisture_north_american_bog
     id: Bog moisture low
+    # This is a helper input number that I use to set the target moisture level
     below: input_number.bog_moisture_target
   - platform: numeric_state
     entity_id:
       - sensor.carnivorous_pump_soil_moisture_nepenthes
     id: nepenthes moisture low
     below: input_number.nepenthes_moisture_target
+  # this is a little redundant, but I also set a trigger when the moisture reading changes for any sensor
   - platform: state
     entity_id:
       - sensor.carnivorous_pump_soil_moisture_north_american_bog
@@ -493,12 +528,16 @@ trigger:
     enabled: true
 condition: []
 action:
+  # depending on which trigger went off, do different things
+  # as mentioned, there is some redundant logic in here that I could clean up, but I
+  # wanted to be as sure as possible that I covered all my bases
   - choose:
       - conditions:
           - condition: trigger
             id:
               - Bog moisture low
               - carnivorous moisture reading change
+          # this is where we check to be sure the "enabled" boolean/switch is on
           - condition: state
             entity_id: input_boolean.enable_bog_watering
             state: 'on'
@@ -524,6 +563,8 @@ action:
                   - thu
                   - fri
                   - sat
+            # I announce that my plants are being watered on my sonos. but I didn't want
+            # to do that after 9pm or before 8pm
             then:
               - service: script.sonos_announcement
                 metadata: {}
@@ -531,10 +572,13 @@ action:
                   entity: media_player.sonos_era
                   volume: 25
                   announcement: Watering north American bog plants
+          # I made a script that waters the plants; I pass it the valve
+          # to use and the delay time
           - service: script.water_carnivorous_plants
             data:
               delay_time: '{{ states("input_number.bog_runtime") }}'
               target: switch.greenhouse_valve_relays_bog
+          # here is where I set the 'last watered datetime'
           - service: input_datetime.set_datetime
             metadata: {}
             data:
@@ -590,6 +634,70 @@ action:
 mode: single
 ```
 
+The script I wrote to do the actual watering is as follows:
+
+```yaml
+alias: Water Carnivorous plants
+sequence:
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      # turn on whatever valve you passed in
+      entity_id: '{{ target }}'
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      # this will be whatever switch you have that turns your pump on and off
+      entity_id: switch.outlet_switch_carnivorous_water_pump
+  - delay:
+      hours: 0
+      minutes: 0
+      # keep the pump switch on for whatever time you set
+      seconds: '{{ delay_time | int }} '
+      milliseconds: 0
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: '{{ target }}'
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.outlet_switch_carnivorous_water_pump
+  - service: notify.mobile_app_samsung_galaxy_23
+    metadata: {}
+    data:
+      message: Watered {{ target }}
+mode: queued
+fields:
+  delay_time:
+    selector:
+      number:
+        min: 0
+        max: 100
+    name: delay time
+    default: 0
+    required: true
+  target:
+    selector:
+      entity: {}
+    name: target
+    required: true
+icon: mdi:water-plus-outline
+max: 10
+```
+
+Here are a few screenshots of my dashboard in Home Assistant. I have some graphs showing moisture levels, all the relevant switches, leak sensors,
+a couple of environment sensors to tell me temp and humidity, last watering times and other relevant bits and pieces.
+
 <Carousel
   slides={{
     '/images/projects/water-system/dashboard-1.png':
@@ -601,4 +709,27 @@ mode: single
     '/images/projects/water-system/dashboard-4.png':
       'dashboard in Home Assistant',
   }}
-/>{' '}
+  height={700}
+  width={900}
+/>
+
+## Summary
+
+A few pictures from the carnivorous system:
+
+<Carousel
+  slides={{
+    '/images/projects/water-system/bog-perennials.jpg':
+      'North American bog species on the right and perennials on the left',
+    '/images/projects/water-system/greenhouse.jpg':
+      'a view of the upper shelves of the greenhouse. note the valves to shut off water supply',
+  }}
+  height={700}
+  width={900}
+/>
+
+I believe I have covered most of the basics of this project. There are a lot of different ways to do this project, so take the parts that work and use them in your own
+way (which is exactly what I did when I made these systems). I will be adding to this if I think of any corrections or extra tidbits that are useful, but feel free to contact me
+through any of my socials that you can find on this website to asks questions or offer suggestions!
+
+If you want to see some of my carnivorous plants, check them out by <a className='mt-4' href='/blog/carnivorous'>clicking here!</a>
