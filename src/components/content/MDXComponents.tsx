@@ -6,6 +6,7 @@ import GithubCard from '@/components/content/card/GithubCard';
 import { Pre } from '@/components/content/Pre';
 import SplitImage, { Split } from '@/components/content/SplitImage';
 import TweetCard from '@/components/content/TweetCard';
+import Carousel from '@/components/images/Carousel';
 import CloudinaryImg from '@/components/images/CloudinaryImg';
 import Img from '@/components/images/Img';
 import CustomLink from '@/components/links/CustomLink';
@@ -25,6 +26,7 @@ const MDXComponents = {
   TweetCard,
   GithubCard,
   Quiz,
+  Carousel,
 };
 
 export default MDXComponents;

@@ -247,7 +247,7 @@ export default function IndexPage({
                     trackEvent('Home: See more posts', { type: 'navigate' })
                   }
                 >
-                  See more post
+                  See more posts
                 </ButtonLink>
               </article>
             </section>

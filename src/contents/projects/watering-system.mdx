@@ -1,0 +1,735 @@
+---
+title: 'ESP32-based watering system'
+description: 'An automatic watering system using esphome, capacitive soil moisture sensors, 12v solenoid valves and a watering pump'
+category: 'DIY microcontroller projects'
+publishedAt: '2024-06-27'
+techs: 'esphome,home assistant,'
+banner: '/images/projects/water-system/cropped-greenhouse.jpg'
+---
+
+>
+
+<Img
+  mdx
+  publicId='/images/projects/water-system/plant-stand-watering-system.gif'
+  alt='plant stand'
+  width={700}
+  height={950}
+  aspect={{ width: 1, height: 1.3 }}
+/>
+
+## Explanation of project
+
+An `ESP32-S3-DevKitC-1-N8R2` dev board runs gathers data from capacitive moisture sensors and
+a fuel gauge and sends it off to home assistant. Home assistant checks the moisture content and water levels and,
+depending on what the readings are, will open valves and turn on a pump to water the correct plants.
+
+I should note that this project is centered around Home Assistant and uses a zigbee relay (I have been trying to save my wifi bandwidth by investing in zigbee products)
+to interact with a wifi-based ESP32, but it is possible to use another platform like AWS's IoT message broker to send MQTT messages back and forth to
+a wifi relay, or you could just have the ESP32 control a relay module directly via GPIO pins (a previous iteration of this system worked this way with an R2040). I like housing the main logic in Home Assistant because
+then I can hook into events and send a notification to my phone when the water resevoir is low, announce that the plants are being watered
+through my sonos speaker, etc. It just puts a lot of options on the table that would otherwise be harder to pull off.
+
+## Background
+
+This project was on my mind for quite some time before I built it. I have long had a collection of carnivorous plants,
+and I have even had automatic watering systems for them before. Usually, carnivorous plants have to be kept fairly damp
+which means watering almost every day if you live in Colorado where things dry out pretty quickly. I built up a collection
+of plants once I moved to Denver pretty quickly and watering them so often was a pain (they also don't tolerate anything but distilled
+or reverse osmosis water), and I had was reluctant to leave them for long periods of time on trips.
+
+This prompted me to buy my first automatic watering system which was timer-based, which meant it was not very exact if you have plants
+with different watering needs. It was also hard to get the timing right: for the kind I had, you give it a watering period (say, 30 seconds)
+and then you set the interval to water every 12 hours, 1 day, once a week, or whatever. Rudimentary, but it worked ok!
+Eventually, I got some carnivorous plants with different watering needs and the single timer system wasn't going to cut it anymore.
+
+Eventually, I started getting into microcontrollers and peripherals, and it all started from there.
+Using moisture sensors meant that I could meet different plants' different watering needs. As illustration, I have
+a system for house plants that has both tropical and succulent plants on the same system! I set their levels to start
+watering once the moisture reading drops to < 17% and < %67, respectively. I also made it so I could control the watering
+runtimes as well.
+
+I think that is enough explanation, let's jump into some of the specifics!
+
+## Supply list
+
+You're going to need a fair amount of supplies to pull this off. I got everything from Amazon, so I created an Amazon list of everything you'll need (I hope I remembered everything).
+There are also a few options when it comes to which pump to use, tubing and reducers to buy, etc. I built two of these, so I have had a chance to try some things out.
+Everything will be on the list, but as I go through the steps I'll mention the different routes you can take.
+
+The bare minimum components are:
+
+- solenoid valves
+- relays to control the valves
+- power supply for valves
+- tubing, connectors and spickets to transport water
+- moisture sensors
+- ESP32 or other microcontroller to read the moisture sensor
+- fuel gauge for the water resevoir level (this is actually optional, but a very nice feature to have)
+- water resevoir (I didn't get this from Amazon, but 5 gallon buckets work fine)
+- water pump and power supply
+
+It seems like a lot of parts and components, but the control flow is actually pretty simple. It boils down to:
+
+> set target moisture levels -> read current moisture levels -> if current moisture level is below target level -> open valve -> turn on pump for a certain run time -> turn off pump -> close valve -> read current moisture levels -> (begin process again)...
+
+## Pre-planning and testing
+
+I am going to include some diagrams and photos throughout this writeup to show you how things connect, but you will need to do some measuring and planning before you even start on this whole project.
+My advice, hard-won through trial and error, is to plan everything out _BEFORE_ you even connect a single piece of wiring or tubing; this can quickly turn into an unwieldy mess. Get the tubing you want to use first (obviously stick to
+a size that will work with the pump, connectors and spickets, I used reducers to make it all work together) and buy some wire and lay it out to be sure you have what you need. Also, definitely think about some failsafes you can utilize
+like trays to catch any overflow, junction boxes to protect electrical equipment, etc. If this is going indoors, get yourself a small wet/dry vacuum (this [one](https://www.amazon.com/dp/B0BCT1CRYS/?coliid=I10EMN0YHGSU61&colid=2XZYXW2Q6V17Y&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it)
+has come in handy when things have gone wrong). I have a number of leak sensors placed in the places that are most likely to be hit with any overflow from the plants and when they go off, they shut the whole thing off.
+
+The initial build I did was for my girlfriend's plants on a four-tiered plant stand.
+
+<Img
+  mdx
+  publicId='/images/projects/water-system/tiered-plant-stand.jpg'
+  alt='plant stand'
+  width={700}
+  height={950}
+  aspect={{ width: 1, height: 1.3 }}
+/>
+
+I traced out the water line shapes in light blue and pointed the purple arrows at the locations of the valves.
+When I was planning this project out, I took the tubing I was going to use and measured the length out first. You can build the watering lines almost fully before attaching the valves and pumps, just be sure to measure before cutting.
+I have found that for bigger plants (around 6-8 inch pots), you can probably do 1-4 plants with the pumps I used and get enough water flowing out to work quite well. The water pressure becomes an issue after a certain point, but this is something you can play with yourself. For smaller plants,
+like my carnivorous, I put 7 on one watering circuit with a pond pump (the weakest pump I could find, I was afraid of _too_ much pressure with a pond pump), but the seventh spicket doesn't get very much water.
+
+After measuring and cutting the water lines, I moved on to the wiring for the valves. You'll just need a power line and a ground line. Afterwards, I measured and cut the wires for the moisture sensors. For these, you'll need
+a data line, a power line, and a ground line. Another thing I figured out at this point was that I wanted to have to waterproof electrical junction boxes, one for the ground and power buses that distributed power to the valves and one for the micrcocontroller
+and the wires going to the moisture sensors. Also think about a good way to organize the wires (I always suck at that, but there are good solutions out there) and the junction housings like electrical box (I eventually settled on having the microcontroller in one box and the valve power and ground lines in another to keep things a little separate).
+
+After all the initial measuring and cutting was out of the way, I then took the valves and tested them out with the [power supply](https://www.amazon.com/dp/B07NKZCWT1/?coliid=I2H68TKJ78O4ZW&colid=2XZYXW2Q6V17Y&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it). Use a dc terminal to attach raw wires to the power supply, which should be 12v and 1 amp. You can share this power across all the valves since only one will be on at a time.
+Grab some spade connectors (the ones included in the amazon list worked perfectly) to make this really easy (the picture below shows how I did it) and connect them to the terminals on the valve body. When power is running through the solenoid, you'll hear a "pop" and will feel the valve jerk once when it opens. Be warned: these valves get _hot_ when
+you leave open them for a long time; I don't open them for more than 30 at a time. You can also blow in them to test the flow when open and closed.
+
+<Img
+  mdx
+  publicId='/images/projects/water-system/valve.jpg'
+  alt='plant stand'
+  width={300}
+  height={350}
+  aspect={{ width: 1, height: 1.3 }}
+/>
+
+The next thing to test is the water pump. At this point, I think it is good to discuss the different pumps I have used for the two different water systems I have built. This [larger one](https://www.amazon.com/dp/B086GJF12M/?coliid=I2OF7NR2BAV4XE&colid=2XZYXW2Q6V17Y&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it) was used
+when I built my carnivorous plant system, but this [smaller one](https://www.amazon.com/dp/B01LXCB9GC/?coliid=I3TNUNO4R6TUU1&colid=2XZYXW2Q6V17Y&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it) was used when I built the plant stand system, which is the one I built first.
+Since you can use pressure regulators like [these](https://www.amazon.com/dp/B07DRMWLN6/?coliid=I26G25069Z9G2F&colid=2XZYXW2Q6V17Y&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it), I think the pond pumps are a little better just because you can pretty much plug them into an outlet
+switch like [this](https://www.amazon.com/dp/B08Y87WD1X/?coliid=I3MJ8UQM31VI1D&colid=2XZYXW2Q6V17Y&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it) to control it, use some reducers to connect them to the water line, and you are up and running.
+The smaller pump required some soldering to connect wires for ground and power, which was a bit of a pain just given the size of the terminals on the pump housing. I also had to try to waterproof it as best because of its placement. However,
+if don't have Home Assistant, this may be a better choice because you can wire this straight into a relay and control it with a micrcocontroller.
+
+Here is a diagram of what the watering lines, valves, and related power supplies and switches should look like:
+
+<Img
+  mdx
+  publicId='/images/projects/water-system/watering_lines_and_valve.drawio.png'
+  alt='watering lines and valves diagram'
+  width={850}
+  height={950}
+  aspect={{ width: 1, height: 1.2 }}
+/>
+
+## Microcontroller and sensors
+
+### Moisture sensor
+
+It's prudent to jump into the actual moisture sensors at this point. There are some things to be aware of with capacitive moisture sensors. There are a _lot_ of defective ones out there, so find a supplier that sells working ones.
+The [ones](https://www.amazon.com/gp/product/B07H3P1NRM/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) I included in the Amazon list have so far never let me down, so you can try those first. I'll
+include this [reddit post](https://www.reddit.com/r/esp8266/comments/q1arb5/beware_of_faulty_capacitive_soil_moisture_sensors/) that I found discussing the main problem you encounter with them, which I
+definitely found out about the hard way when buying from certain sellers on Amazon. Beware!
+
+As far as the micrcocontroller that reads the sensor data, I went with the [ESP32-S3-DevKitC-1-N8R2](https://www.amazon.com/dp/B0B6HT7V7P/?coliid=I12EZPHX8Q3V8V&colid=2XZYXW2Q6V17Y&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it) because it comes with
+2 ADC channels and **_ten_** possible pins on each channel, which is more than enough for most projects! The full pinout docs are [here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html).
+However, you can only use the ADC1 module if you are using the WiFi since the ADC2 module is also [used by the Wi-Fi](https://docs.espressif.com/projects/esp-idf/en/release-v4.4/esp32s3/api-reference/peripherals/adc.html#adc-limitations),
+but you could potentially have a whole fleet of moisture sensors watering plants if you used the TX/RX pins (U0TXD/U0RXD) to out serially communicate to another ESP or microcontroller.
+
+To get this running and reading the sensor data, I used a platform called [ESPHome](https://esphome.io/index.html). It's an open source platform that allows you to YAML config files to get ESP-based microcontrollers (as well as ESP8266 and recently, RP2040)
+up and running extremely quickly (if you're like me and still chicken out on learning lower-level languages like C++) and it allows Over The Air updates, which is probably one of the best parts. I don't have to unplug and undo the microcontroller
+to upload new code; bug fixes are _way_ easier this way. On top of that, there is extensive support for peripherals and external modules. Check out some of the [example
+projects](https://esphome.io/guides/diy)! If you haven't worked with this platform before, you'll need to find some tutorials on setting things up (there are plenty of them out there).
+There is a lot of support for integrating with Home Assistant, another added benefit.
+
+I will include my config file (but I will shorten it to only one pin moisture sensor setup, along with the water resevoir level
+sensor set up to reduce length) along with in-line comments and afterwards will give more explanation.
+
+```yaml
+substitutions:
+  system_name: carnivorous_plants
+  soil_moisture_adc_nepenthes: GPIO4
+  water_level_adc_carnivorous: GPIO6
+
+esphome:
+  name: carnivorous-pump
+  friendly_name: carnivorous-pump
+  # this flashes the onboard LED once (white) when the ESP turns on
+  on_boot:
+    - light.turn_on:
+        id: carn_pump_status_light
+        red: 100%
+        blue: 100%
+        green: 100%
+        brightness: 100%
+        effect: pulse
+
+esp32:
+  # depending on the type of board you use, this may be different
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    # this gets auto-generated
+    key: "{encryption_key}"
+
+ota:
+  # used for over the air updates
+  password: "{ota_password}"
+
+wifi:
+  # these secrets are housed in home assistant, but you can still use wifi without home assistant
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: 10.0.0.206
+    gateway: 10.0.0.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    # auto-generated access point
+    ssid: "Carnivorous-Pump"
+    password: "{ap_password}"
+
+captive_portal:
+
+light:
+    # the board I used from amazon is slightly different, so this config worked
+    # for the onboard LED. I flash the LED to tell me when a reading is taken with the
+    # on_value section in the adc sensor set up.
+  - platform: esp32_rmt_led_strip
+    id: carn_pump_status_light
+    rgb_order: GRB
+    pin: GPIO48
+    num_leds: 1
+    rmt_channel: 0
+    chipset: ws2812
+    name: "Carnivorous Pump Status Light"
+    effects:
+      - pulse:
+          transition_length: 550ms
+          update_interval: 550ms
+
+sensor:
+  - platform: adc
+    pin: $soil_moisture_adc_nepenthes
+    name: "Soil Moisture nepenthes"
+    id: moisture_nepenthes
+    update_interval: 3s
+    unit_of_measurement: "%"
+    accuracy_decimals: 3
+    # https://docs.espressif.com/projects/esp-idf/en/v4.4.3/esp32s3/api-reference/peripherals/adc.html
+    # ^ For more on ADC attenuation
+    attenuation: auto
+    filters:
+      - median:
+          window_size: 7
+          send_every: 4
+          send_first_at: 1
+    # this portion calibrates the voltage reading, which is really nice to not have to do manually
+    # you will need to play with this portion to get the boundaries correct
+      - calibrate_linear:
+          - 2.19 -> 0.00
+          - 0.899 -> 100.00
+      - lambda: if (x < 1) return 0; else if (x > 100) return 100; else return (x);
+    # Flash the LED once the reading is taken
+    on_value:
+      then:
+        - logger.log:
+            format: "Moisture level for nepenthes is: %.2f"
+            args: [ 'id(moisture_nepenthes).state' ]
+        - light.turn_on:
+            id: carn_pump_status_light
+            red: 0%
+            blue: 0%
+            green: 100%
+            brightness: 100%
+            effect: pulse
+        - delay: 500ms
+        - light.turn_off:
+            id: carn_pump_status_light
+
+# this is the sensor up for the water resevoir level
+ - platform: adc
+    pin: $water_level_adc_carnivorous
+    name: "water_resevoir_level"
+    id: water_level_carnivorous
+    update_interval: 3s
+    unit_of_measurement: "%"
+    accuracy_decimals: 3
+    attenuation: auto
+    filters:
+      - median:
+          window_size: 7
+          send_every: 4
+          send_first_at: 1
+      - calibrate_linear:
+          - 0.365 -> 0.00
+          - 0.065 -> 100.00
+      # this ensures you don't get values above 100 or below 0, but you'll want to calibrate things to
+      # avoid that anyway
+      - lambda: if (x < 1) return 0; else if (x > 100) return 100; else return (x);
+    on_value:
+      then:
+        - logger.log:
+            format: "Water resevoir level is: %.2f"
+            args: [ 'id(water_level_carnivorous).state' ]
+
+
+
+  # This below portion is kept in my code and is only used for testing. I comment out the above sensor config
+  # and use this to print out raw voltage values
+
+  # - platform: adc  #Volts will flow to Template Sensor Below
+  #   pin: $soil_moisture_adc_nepenthes
+  #   name: "esph_${system_name}_moisture_level_nepenthes"
+  #   id: moisture_nepenthes
+  #   update_interval: 5s
+  #   unit_of_measurement: 'v'
+  #   accuracy_decimals: 3
+  #   attenuation: auto
+  #   filters:
+  #   - median:
+  #       window_size: 7
+  #       send_every: 4
+  #       send_first_at: 1
+
+```
+
+The [ESPHome docs on ADC sensors](https://esphome.io/components/sensor/adc.html) contain more information. When I set the moisture sensors up, I took a glass of water, commented of code:
+
+```yaml
+#- platform: adc
+#    pin: $soil_moisture_adc_perennial
+#    name: "Soil Moisture Perennial"
+#    id: moisture_perennial
+#    update_interval: 3s
+#    unit_of_measurement: "%"
+#    accuracy_decimals: 3
+#    attenuation: auto
+#    filters:
+#      - median:
+#          window_size: 7
+#          send_every: 4
+#          send_first_at: 1
+#      - calibrate_linear:
+#          - 2.1 -> 0.00
+#          - 0.81 -> 100.00
+#      - lambda: if (x < 1) return 0; else if (x > 100) return 100; else return (x);
+#    on_value:
+#      then:
+#        - logger.log:
+#            format: "Moisture level for perennial is: %.2f"
+#            args: [ 'id(moisture_perennial).state' ]
+#        - light.turn_on:
+#            id: carn_pump_status_light
+#            red: 0%
+#            blue: 100%
+#            green: 100%
+#            brightness: 100%
+#            effect: pulse
+#        - delay: 500ms
+#        - light.turn_off:
+#            id: carn_pump_status_light
+```
+
+uncommented this portion:
+
+```yaml
+- platform: adc
+  pin: $soil_moisture_adc_nepenthes
+  name: 'esph_${system_name}_moisture_level_nepenthes'
+  id: moisture_nepenthes
+  update_interval: 5s
+  unit_of_measurement: 'v'
+  accuracy_decimals: 3
+  attenuation: auto
+  filters:
+    - median:
+        window_size: 7
+        send_every: 4
+        send_first_at: 1
+```
+
+and then uploaded the code. I then used ESPHome's OTA console output (so cool!) to get raw voltage readings and tested with those. Keep the moisture sensor totally dry and let the readings print out. I let it
+sit for a few minutes and went through and estimated what the average voltage was (you can be more precise and actually do math if you want). Once you get that, adjust the linear calibration section with your
+"dry" boundary:
+
+```yaml
+- calibrate_linear:
+    - 2.1 -> 0.00 # <- put your "dry" boundary here (the average reading you just calculated)
+    - 0.81 -> 100.00
+```
+
+Once you do that, stick the sensor in the cup of water and get it wet all the way to the top (there is a little white line), but _don't_ get the resistors, etc above it wet! I shorted a sensor out like that. I should probably mention
+that it is a _very_ good idea to waterproof the upper part of the sensor as best you can with some regular electrical tape, or even better, some liquid electrical tape. Then you can just repeat the process
+that you just did and let the readings print out for a while and get the average. This is your "wet" boundary:
+
+```yaml
+- calibrate_linear:
+    - 2.1 -> 0.00
+    - 0.81 -> 100.00 # <- your "wet" boundary goes here
+```
+
+### Water resevoir sensor set up
+
+This is a nice-to-have feature, but I will go ahead and include it.
+
+There are a number of ways to do this and a number of sensors you can buy (just google water level sensors to use with ESP-based microcontrollers),
+but I co-opted this [fuel sender](https://www.amazon.com/dp/B0B7RV4D55/?coliid=I3CRNM6NS73X2M&colid=2XZYXW2Q6V17Y&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it). A previous version I built of this watering system used one of these
+[contact-less sensors](https://www.amazon.com/gp/product/B086QX726M/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1), but it's just a binary signal and I wanted a little bit more nuanced data.
+I found this [post](https://community.home-assistant.io/t/water-tank-water-level-sensor-using-fuel-water-sender-and-esphome/407889) explaining how to set it up. I got a 14 inch version because that fit my 5 gallon
+Home Depot bucket pretty perfectly.
+
+Do some experimenting, but you have to get the voltage down to a level that is read by the ADC pin on the ESP32. There is a diagram in that thread a little ways down showing how to split the power wire and divert it to the
+ADC pin that you use along with putting the resistor in line, but do some experimenting. I had better luck when I put the resistor on the line that led from the 3.3 v supply. Once you get it set up,
+follow the same procedure that you did for the moisture sensors. Add this to the ESPHome config file:
+
+```yaml
+- platform: adc
+  pin: $water_level_adc_carnivorous
+  name: 'esph_${system_name}_water_level'
+  id: water_level
+  update_interval: 5s
+  unit_of_measurement: 'v'
+  accuracy_decimals: 3
+  attenuation: auto
+  filters:
+    - median:
+        window_size: 7
+        send_every: 4
+        send_first_at: 1
+```
+
+Then let it run and watch the console. Push the slider all the way to the end and let it sit, this will be your "empty" voltage boundary. Then do the same with it pushed all the way up; this will be your
+"full" boundary. Here are a few pictures showing what it looks like all put together:
+
+<Carousel
+  slides={{
+    '/images/projects/water-system/water-reservoir-top.jpg':
+      'reservoir sensor view from top',
+    '/images/projects/water-system/water-reservoir-inside-1.jpg':
+      'reservoir sensor view from underneath',
+    '/images/projects/water-system/water-reservoir-inside-2.jpg':
+      'reservoir sensor view from inside',
+  }}
+/>
+
+The diagram with the sensors wired up and connected to the ESP32 is as follows:
+
+<Img
+  mdx
+  publicId='/images/projects/water-system/esp32-moisture-sensors.png'
+  alt='wiring diagram for sensors'
+  width={800}
+  height={950}
+  aspect={{ width: 1, height: 1.2 }}
+/>
+
+## Home Assistant integrations
+
+The main logic driving the behavior of the pumps and sensors and such all resides in Home Assistant. This is a really easy platform from which to pull together
+all the disparate parts and build out interactions and there are some great dashboards and visuals you can build out to keep track of things.
+
+There are probably a few different ways you could string everything together, but some things you can think about implementing (whether or not you are using Home Asssitant) are:
+
+- "Enable watering" switch
+  - This allows you to turn off watering if the plants are overwatered, or if you have seasonal watering needs, if a plant dies and the pot no longer needs to be watered,
+    or a if a leak occurs. You can either have an entity in Home Assistant or you could have this in the microcontroller code or you could even do it with a physical switch
+    in the circuit.
+- Leak sensors
+  - These are good for shutting off the "enable watering" switches.
+- Moisture targets
+  - This is where you will actually set what moisture level you want to keep your plants at. Again, this can be done in your actual code on the microcontroller
+    or you can do this through Home Assistant as a helper entity (which was my route)
+- Watering run times
+  - I made this system with separate watering run times for different watering needs for different types of plants for my carnivorous plants, but I have a single run time for the plant stand system.
+    Something that was a bit of a "gotcha" for me was realizing that if the time between moisture readings was too long (say a reading happens every 120 seconds), and the watering runtime is only 20 seconds, a loop can occurs
+    because the moisture reading won't change for another 100 seconds after the watering finishes.
+- Last watering time
+  - I set this up to tell me when a certain valve last opened and the plants on that line were watered. It's probably more useful with the Home Assistant route, but you could
+    dispatch this via MQTT and display it on a screen somewhere.
+
+To do it _exactly_ as I have done it in Home Assistant, set up these helpers:
+
+- A helper to keep track of the target moisture (`input_number`)
+- A helper to set the last watering time (`input_datetime`)
+- A helper to set the runtime (`input_number`)
+- A helper to enable watering (`input_boolean`)
+
+As stated before, I leveraged Automations in Home Assistant to do most of the heavy lifting. I'll include my automations below, but I want to give a quick run through
+of the logic of them first.
+
+The first automation does the actual watering. The logic goes like this:
+
+> ```
+> Read moisture
+> Check to see if the reading is below the moisture target
+> If the reading is below the moisture target, open the corresponding valve
+> Wait 1 second with valve open
+> Turn on pump for specified runtime
+> Turn pump off
+> Wait 3 seconds with valve still open
+> Close valve
+> ```
+
+You will notice that I have a buffer on either side where the valve is open with the pump off; this is deliberate. I noticed that turning the pump and valves off
+really close to each other with no time in between meant that the valves would close with water pressure in the tubes and the lines wouldn't clear out properly. The valves
+only open and close under certain water pressures, so I wanted to be sure the lines were clear of water before attempting to close them. You can also add a
+one of these [pressure regulators](https://www.amazon.com/gp/product/B07DRMWLN6/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) to help. Stick it on the output line
+from the water pump before it gets to the valves.
+
+### Automations
+
+I am going to include the yaml of my watering automation, but I am going to only include two of the valves for simplicity. This will also be from my carnivorous system,
+so the runtimes will be different for the different valves. There is a little bit of redundant logic that could be cleaned up
+(I check that the moisture reading is below the target moisture in two places), but I was trying to avoid some edge cases and have just left thigns as-is
+since it all seems to be working great.
+
+```yaml
+alias: Carnivorous plant watering
+description: ''
+trigger:
+  # Here I have set each trigger to happen when the moisture sensor falls below the moisture target
+  - platform: numeric_state
+    entity_id:
+      - sensor.carnivorous_pump_soil_moisture_north_american_bog
+    id: Bog moisture low
+    # This is a helper input number that I use to set the target moisture level
+    below: input_number.bog_moisture_target
+  - platform: numeric_state
+    entity_id:
+      - sensor.carnivorous_pump_soil_moisture_nepenthes
+    id: nepenthes moisture low
+    below: input_number.nepenthes_moisture_target
+  # this is a little redundant, but I also set a trigger when the moisture reading changes for any sensor
+  - platform: state
+    entity_id:
+      - sensor.carnivorous_pump_soil_moisture_north_american_bog
+      - sensor.carnivorous_pump_soil_moisture_nepenthes
+    id: carnivorous moisture reading change
+    enabled: true
+condition: []
+action:
+  # depending on which trigger went off, do different things
+  # as mentioned, there is some redundant logic in here that I could clean up, but I
+  # wanted to be as sure as possible that I covered all my bases
+  - choose:
+      - conditions:
+          - condition: trigger
+            id:
+              - Bog moisture low
+              - carnivorous moisture reading change
+          # this is where we check to be sure the "enabled" boolean/switch is on
+          - condition: state
+            entity_id: input_boolean.enable_bog_watering
+            state: 'on'
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: sensor.carnivorous_pump_soil_moisture_north_american_bog
+                state: unavailable
+          - condition: numeric_state
+            entity_id: sensor.carnivorous_pump_soil_moisture_north_american_bog
+            below: input_number.bog_moisture_target
+            enabled: true
+        sequence:
+          - if:
+              - condition: time
+                after: '08:00:00'
+                before: '21:00:00'
+                weekday:
+                  - sun
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+                  - sat
+            # I announce that my plants are being watered on my sonos. but I didn't want
+            # to do that after 9pm or before 8pm
+            then:
+              - service: script.sonos_announcement
+                metadata: {}
+                data:
+                  entity: media_player.sonos_era
+                  volume: 25
+                  announcement: Watering north American bog plants
+          # I made a script that waters the plants; I pass it the valve
+          # to use and the delay time
+          - service: script.water_carnivorous_plants
+            data:
+              delay_time: '{{ states("input_number.bog_runtime") }}'
+              target: switch.greenhouse_valve_relays_bog
+          # here is where I set the 'last watered datetime'
+          - service: input_datetime.set_datetime
+            metadata: {}
+            data:
+              datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+            target:
+              entity_id: input_datetime.last_bog_watering
+      - conditions:
+          - condition: trigger
+            id:
+              - nepenthes moisture low
+              - carnivorous moisture reading change
+          - condition: state
+            entity_id: input_boolean.enable_nepenthes_watering
+            state: 'on'
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: sensor.carnivorous_pump_soil_moisture_nepenthes
+                state: unknown
+          - condition: numeric_state
+            entity_id: sensor.carnivorous_pump_soil_moisture_nepenthes
+            below: input_number.nepenthes_moisture_target
+        sequence:
+          - if:
+              - condition: time
+                after: '08:00:00'
+                before: '21:00:00'
+                weekday:
+                  - sun
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+                  - sat
+            then:
+              - service: script.sonos_announcement
+                metadata: {}
+                data:
+                  entity: media_player.sonos_era
+                  volume: 27
+                  announcement: Watering nepenthes
+          - service: script.water_carnivorous_plants
+            data:
+              delay_time: '{{ states("input_number.nepenthes_runtime") }}'
+              target: switch.greenhouse_valve_relays_nepenthes
+          - service: input_datetime.set_datetime
+            metadata: {}
+            data:
+              datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+            target:
+              entity_id: input_datetime.last_nepenthes_watering
+mode: single
+```
+
+The script I wrote to do the actual watering is as follows:
+
+```yaml
+alias: Water Carnivorous plants
+sequence:
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      # turn on whatever valve you passed in
+      entity_id: '{{ target }}'
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      # this will be whatever switch you have that turns your pump on and off
+      entity_id: switch.outlet_switch_carnivorous_water_pump
+  - delay:
+      hours: 0
+      minutes: 0
+      # keep the pump switch on for whatever time you set
+      seconds: '{{ delay_time | int }} '
+      milliseconds: 0
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: '{{ target }}'
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.outlet_switch_carnivorous_water_pump
+  - service: notify.mobile_app_samsung_galaxy_23
+    metadata: {}
+    data:
+      message: Watered {{ target }}
+mode: queued
+fields:
+  delay_time:
+    selector:
+      number:
+        min: 0
+        max: 100
+    name: delay time
+    default: 0
+    required: true
+  target:
+    selector:
+      entity: {}
+    name: target
+    required: true
+icon: mdi:water-plus-outline
+max: 10
+```
+
+Here are a few screenshots of my dashboard in Home Assistant. I have some graphs showing moisture levels, all the relevant switches, leak sensors,
+a couple of environment sensors to tell me temp and humidity, last watering times and other relevant bits and pieces.
+
+<Carousel
+  slides={{
+    '/images/projects/water-system/dashboard-1.png':
+      'dashboard in Home Assistant',
+    '/images/projects/water-system/dashboard-2.png':
+      'dashboard in Home Assistant',
+    '/images/projects/water-system/dashboard-3.png':
+      'dashboard in Home Assistant',
+    '/images/projects/water-system/dashboard-4.png':
+      'dashboard in Home Assistant',
+  }}
+  height={700}
+  width={900}
+/>
+
+## Summary
+
+A few pictures from the carnivorous system:
+
+<Carousel
+  slides={{
+    '/images/projects/water-system/bog-perennials.jpg':
+      'North American bog species on the right and perennials on the left',
+    '/images/projects/water-system/greenhouse.jpg':
+      'a view of the upper shelves of the greenhouse. note the valves to shut off water supply',
+  }}
+  height={700}
+  width={900}
+/>
+
+I believe I have covered most of the basics of this project. There are a lot of different ways to do this project, so take the parts that work and use them in your own
+way (which is exactly what I did when I made these systems). I will be adding to this if I think of any corrections or extra tidbits that are useful, but feel free to contact me
+through any of my socials that you can find on this website to asks questions or offer suggestions!
+
+If you want to see some of my carnivorous plants, check them out by <a className='mt-4' href='/blog/carnivorous'>clicking here!</a>

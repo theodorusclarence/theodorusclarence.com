@@ -15,12 +15,12 @@ export default function sayHello() {
     'color: #4ee2d9;'
   );
 
-  console.log(
-    '%cLooks like you are interested in the code 👀\nHere is the repo to fulfill your curiosity ' +
-      '%chttps://github.com/theodorusclarence/theodorusclarence.com\n\n' +
-      "%cDon't forget to give it a star! 🌟",
-    'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500;',
-    'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500; color: #4ee5ae;',
-    'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500;'
-  );
+  // console.log(
+  //   '%cLooks like you are interested in the code 👀\nHere is the repo to fulfill your curiosity ' +
+  //     '%chttps://github.com/theodorusclarence/theodorusclarence.com\n\n' +
+  //     "%cDon't forget to give it a star! 🌟",
+  //   'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500;',
+  //   'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500; color: #4ee5ae;',
+  //   'font-family: Inter, sans-serif; font-size: 1.2rem; font-weight: 500;'
+  // );
 }
