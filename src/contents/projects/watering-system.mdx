@@ -60,7 +60,7 @@ The bare minimum components are:
 
 It seems like a lot of parts and components, but the control flow is actually pretty simple. It boils down to:
 
-> set target moisture levels -> read actual moisture levels -> if actual level is below target level -> open valve -> turn on pump for a certain run time -> turn off pump -> close valve -> read actual moisture levels -> (begin process again)...
+> set target moisture levels -> read current moisture levels -> if current moisture level is below target level -> open valve -> turn on pump for a certain run time -> turn off pump -> close valve -> read current moisture levels -> (begin process again)...
 
 ## Pre-planning and testing
 
@@ -110,7 +110,9 @@ switch like [this](https://www.amazon.com/dp/B08Y87WD1X/?coliid=I3MJ8UQM31VI1D&c
 The smaller pump required some soldering to connect wires for ground and power, which was a bit of a pain just given the size of the terminals on the pump housing. I also had to try to waterproof it as best because of its placement. However,
 if don't have Home Assistant, this may be a better choice because you can wire this straight into a relay and control it with a micrcocontroller.
 
-## Microntroller and moisture sensor set up
+## Microcontroller and sensors
+
+### Moisture sensor
 
 It's prudent to jump into the actual moisture sensors at this point. There are some things to be aware of with capacitive moisture sensors. There are a _lot_ of defective ones out there, so find a supplier that sells working ones.
 The [ones](https://www.amazon.com/gp/product/B07H3P1NRM/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) I included in the Amazon list have so far never let me down, so you can try those first. I'll
@@ -364,7 +366,7 @@ that you just did and let the readings print out for a while and get the average
     - 0.81 -> 100.00 # <- your "wet" boundary goes here
 ```
 
-## Water resevoir sensor set up
+### Water resevoir sensor set up
 
 This is a nice-to-have feature, but I will go ahead and include it.
 
@@ -397,29 +399,15 @@ follow the same procedure that you did for the moisture sensors. Add this to the
 Then let it run and watch the console. Push the slider all the way to the end and let it sit, this will be your "empty" voltage boundary. Then do the same with it pushed all the way up; this will be your
 "full" boundary. Here are a few pictures showing what it looks like all put together:
 
-<Img
-  mdx
-  publicId='/images/projects/water-system/water-resevoir-top.jpg'
-  alt='water resevoir top'
-  width={600}
-  height={650}
-  aspect={{ width: 1, height: 1 }}
-/>
-<Img
-  mdx
-  publicId='/images/projects/water-system/water-resevoir-inside-1.jpg'
-  alt='water resevoir lid bottom'
-  width={600}
-  height={650}
-  aspect={{ width: 1, height: 1 }}
-/>
-<Img
-  mdx
-  publicId='/images/projects/water-system/water-resevoir-inside-2.jpg'
-  alt='water resevoir inside'
-  width={600}
-  height={650}
-  aspect={{ width: 1, height: 1 }}
+<Carousel
+  slides={{
+    '/images/projects/water-system/water-reservoir-top.jpg':
+      'reservoir sensor view from top',
+    '/images/projects/water-system/water-reservoir-inside-1.jpg':
+      'reservoir sensor view from underneath',
+    '/images/projects/water-system/water-reservoir-inside-2.jpg':
+      'reservoir sensor view from inside',
+  }}
 />
 
 The diagram with the sensors wired up and connected to the ESP32 is as follows:
@@ -430,5 +418,187 @@ The diagram with the sensors wired up and connected to the ESP32 is as follows:
   alt='wiring diagram for sensors'
   width={800}
   height={950}
-  aspect={{ width: 1, height: 2 }}
+  aspect={{ width: 1, height: 1.2 }}
 />
+
+## Home Assistant integrations
+
+The main logic driving the behavior of the pumps and sensors and such all resides in Home Assistant. This is a really easy platform from which to pull together
+all the disparate parts and build out interactions and there are some great dashboards and visuals you can build out to keep track of things.
+
+There are probably a few different ways you could string everything together, but some things you can think about implementing (whether or not you are using Home Asssitant) are:
+
+- "Enable watering" switch
+  - This allows you to turn off watering if the plants are overwatered, or if you have seasonal watering needs, if a plant dies and the pot no longer needs to be watered,
+    or a if a leak occurs. You can either have an entity in Home Assistant or you could have this in the microcontroller code
+- Leak sensors
+  - These are good for shutting off the "enable watering" switches.
+- Moisture targets
+  - This is where you will actually set what moisture level you want to keep your plants at. Again, this can be done in your actual code on the microcontroller
+    or you can do this through Home Assistant as a helper entity (which was my route)
+- Watering run times
+  - I made this system with separate watering run times for different watering needs for different types of plants for my carnivorous plants, but I have a single run time for the plant stand system.
+    Something that was a bit of a "gotcha" for me was realizing that if the time between moisture readings was too long (say a reading happens every 120 seconds), and the watering runtime is only 20 seconds, a loop can occurs
+    because the moisture reading won't change for another 100 seconds after the watering finishes.
+- Last watering time
+  - I set this up to tell me when a certain valve last opened and the plants on that line were watered. It's probably more useful with the Home Assistant route, but you could
+    dispatch this via MQTT and display it on a screen somewhere.
+
+Below are screenshots of my dashboard to give you a sense of how things look and work.
+
+As stated before, I leveraged Automations in Home Assistant to do most of the heavy lifting. I'll include my automations below, but I want to give a quick run through
+of the logic of them first.
+
+The first automation does the actual watering. The logic goes like this:
+
+> ```
+> Read moisture
+> Check to see if the reading is below the moisture target
+> If the reading is below the moisture target, open the corresponding valve
+> Wait 1 second with valve open
+> Turn on pump for specified runtime
+> Turn pump off
+> Wait 3 seconds with valve still open
+> Close valve
+> ```
+
+You will notice that I have a buffer on either side where the valve is open with the pump off; this is deliberate. I noticed that turning the pump and valves off
+really close to each other with no time in between meant that the valves would close with water pressure in the tubes and the lines wouldn't clear out properly. The valves
+only open and close under certain water pressures, so I wanted to be sure the lines were clear of water before attempting to close them. You can also add a
+one of these [pressure regulators](https://www.amazon.com/gp/product/B07DRMWLN6/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) to help. Stick it on the output line
+from the water pump before it gets to the valves.
+
+I am going to include the yaml of my watering automation, but I am going to only include two of the valves for simplicity. This will also be from my carnivorous system,
+so the runtimes will be different for the different valves.
+
+```yaml
+alias: Carnivorous plant watering
+description: ''
+trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.carnivorous_pump_soil_moisture_north_american_bog
+    id: Bog moisture low
+    below: input_number.bog_moisture_target
+  - platform: numeric_state
+    entity_id:
+      - sensor.carnivorous_pump_soil_moisture_nepenthes
+    id: nepenthes moisture low
+    below: input_number.nepenthes_moisture_target
+  - platform: state
+    entity_id:
+      - sensor.carnivorous_pump_soil_moisture_north_american_bog
+      - sensor.carnivorous_pump_soil_moisture_nepenthes
+    id: carnivorous moisture reading change
+    enabled: true
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id:
+              - Bog moisture low
+              - carnivorous moisture reading change
+          - condition: state
+            entity_id: input_boolean.enable_bog_watering
+            state: 'on'
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: sensor.carnivorous_pump_soil_moisture_north_american_bog
+                state: unavailable
+          - condition: numeric_state
+            entity_id: sensor.carnivorous_pump_soil_moisture_north_american_bog
+            below: input_number.bog_moisture_target
+            enabled: true
+        sequence:
+          - if:
+              - condition: time
+                after: '08:00:00'
+                before: '21:00:00'
+                weekday:
+                  - sun
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+                  - sat
+            then:
+              - service: script.sonos_announcement
+                metadata: {}
+                data:
+                  entity: media_player.sonos_era
+                  volume: 25
+                  announcement: Watering north American bog plants
+          - service: script.water_carnivorous_plants
+            data:
+              delay_time: '{{ states("input_number.bog_runtime") }}'
+              target: switch.greenhouse_valve_relays_bog
+          - service: input_datetime.set_datetime
+            metadata: {}
+            data:
+              datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+            target:
+              entity_id: input_datetime.last_bog_watering
+      - conditions:
+          - condition: trigger
+            id:
+              - nepenthes moisture low
+              - carnivorous moisture reading change
+          - condition: state
+            entity_id: input_boolean.enable_nepenthes_watering
+            state: 'on'
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: sensor.carnivorous_pump_soil_moisture_nepenthes
+                state: unknown
+          - condition: numeric_state
+            entity_id: sensor.carnivorous_pump_soil_moisture_nepenthes
+            below: input_number.nepenthes_moisture_target
+        sequence:
+          - if:
+              - condition: time
+                after: '08:00:00'
+                before: '21:00:00'
+                weekday:
+                  - sun
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+                  - sat
+            then:
+              - service: script.sonos_announcement
+                metadata: {}
+                data:
+                  entity: media_player.sonos_era
+                  volume: 27
+                  announcement: Watering nepenthes
+          - service: script.water_carnivorous_plants
+            data:
+              delay_time: '{{ states("input_number.nepenthes_runtime") }}'
+              target: switch.greenhouse_valve_relays_nepenthes
+          - service: input_datetime.set_datetime
+            metadata: {}
+            data:
+              datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+            target:
+              entity_id: input_datetime.last_nepenthes_watering
+mode: single
+```
+
+<Carousel
+  slides={{
+    '/images/projects/water-system/dashboard-1.png':
+      'dashboard in Home Assistant',
+    '/images/projects/water-system/dashboard-2.png':
+      'dashboard in Home Assistant',
+    '/images/projects/water-system/dashboard-3.png':
+      'dashboard in Home Assistant',
+    '/images/projects/water-system/dashboard-4.png':
+      'dashboard in Home Assistant',
+  }}
+/>{' '}
