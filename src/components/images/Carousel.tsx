@@ -10,7 +10,7 @@ import { DotButton, useDotButton } from './CarouselDotButton';
 import Img from './Img';
 
 const Carousel = (props: any) => {
-  const { slides, options } = props;
+  const { slides, options, height, width } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options || {});
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -34,8 +34,8 @@ const Carousel = (props: any) => {
               className='embla__slide'
               publicId={String(path)}
               alt={String(altText)}
-              width={900}
-              height={900}
+              width={width || 900}
+              height={height || 900}
             />
           ))}
         </div>
