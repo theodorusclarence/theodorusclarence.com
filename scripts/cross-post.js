@@ -184,5 +184,5 @@ const getOgImage = () => {
     );
   });
 };
-getOgImage();
+// getOgImage();
 //#endregion  //*======== Download OG Image ===========
