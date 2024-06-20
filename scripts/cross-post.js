@@ -166,7 +166,7 @@ const getOgImage = () => {
     const ogLink = `https://og-elliot-mackinnon.vercel.app/api/blog?templateTitle=${encodeURIComponent(
       frontmatter.title
     )}&banner=${encodeURIComponent(bannerLink)}`;
-    const image_path = join(outPath, 'EM.png');
+    const image_path = join(outPath, 'og_image.png');
     axios({
       url: ogLink,
       responseType: 'stream',
