@@ -156,7 +156,7 @@ const footerLinks: { href: string; text: string; tooltip: React.ReactNode }[] =
     //   tooltip: 'Starter that I build and use throughout my projects',
     // },
     {
-      href: 'https://cloud.umami.is/share/JUOTmj43Mo6lEoVo/emackinnon.io',
+      href: 'https://us.umami.is/share/ESzFFWN1lFieRVkb/emackinnon.io',
       text: 'Analytics',
       tooltip: 'elliotmackinnon.com views and visitors analytics',
     },
