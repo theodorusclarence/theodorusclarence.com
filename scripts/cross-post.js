@@ -163,7 +163,7 @@ const getOgImage = () => {
     console.log('getogimage');
     const { data: frontmatter } = matter(content);
     const bannerLink = `https://github.com/emackinnon1/folio-v2/tree/main/public/images/${frontmatter.banner}`;
-    const ogLink = `https://og.clarence.link/api/blog?templateTitle=${encodeURIComponent(
+    const ogLink = `https://og-elliot-mackinnon.vercel.app/api/blog?templateTitle=${encodeURIComponent(
       frontmatter.title
     )}&banner=${encodeURIComponent(bannerLink)}`;
     const image_path = join(outPath, 'EM.png');
@@ -184,5 +184,5 @@ const getOgImage = () => {
     );
   });
 };
-// getOgImage();
+getOgImage();
 //#endregion  //*======== Download OG Image ===========
