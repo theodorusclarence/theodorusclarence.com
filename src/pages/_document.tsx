@@ -18,7 +18,7 @@ class MyDocument extends Document {
         <Head>
           <link
             rel='preload'
-            href='/folio-v2/fonts/inter-var-latin.woff2'
+            href='/fonts/inter-var-latin.woff2'
             as='font'
             type='font/woff2'
             crossOrigin='anonymous'
