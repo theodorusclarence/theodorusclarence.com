@@ -48,14 +48,14 @@ const TWEET_REGEXP = new RegExp(
 const devtoFooter = `
 ---
 
-> Originally posted on [my personal site](emackinnon.io/?ref=devto), find more [blog posts](https://theodorusclarence.com/blog?ref=devto) and [code snippets library](https://theodorusclarence.com/library?ref=devto) I put up for easy access on my site 🚀
+> Originally posted on [my personal site](emackinnon.io/?ref=devto), find more [blog posts](https://emackinnon.io/blog?ref=devto) and [code snippets library](https://emackinnon.io/library?ref=devto) I put up for easy access on my site 🚀
 
 Like this post? [Subscribe to my newsletter](emackinnon.io/subscribe?ref=devto) to get notified every time a new post is out!`;
 
 const hashnodeFooter = `
 ---
 
-> Originally posted on [my personal site](emackinnon.io/?ref=hashnode), find more [blog posts](https://theodorusclarence.com/blog?ref=hashnode) and [code snippets library](https://theodorusclarence.com/library?ref=hashnode) I put up for easy access on my site 🚀
+> Originally posted on [my personal site](emackinnon.io/?ref=hashnode), find more [blog posts](https://emackinnon.io/blog?ref=hashnode) and [code snippets library](https://emackinnon.io/library?ref=hashnode) I put up for easy access on my site 🚀
 
 Like this post? [Subscribe to my newsletter](emackinnon.io/subscribe?ref=hashnode) to get notified every time a new post is out!`;
 //#endregion  //*======== Footers ===========

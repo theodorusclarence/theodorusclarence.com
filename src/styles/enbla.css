@@ -38,7 +38,7 @@
 }
 .embla__buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 0.5fr);
   gap: 0.6rem;
   align-items: center;
 }
@@ -55,8 +55,8 @@
   padding: 0;
   margin: 0;
   box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  width: 3.6rem;
-  height: 3.6rem;
+  width: 3rem;
+  height: 3rem;
   z-index: 1;
   border-radius: 50%;
   color: var(--text-body);
