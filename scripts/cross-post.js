@@ -162,7 +162,7 @@ const getOgImage = () => {
     if (err) reject(err);
     console.log('getogimage');
     const { data: frontmatter } = matter(content);
-    const bannerLink = `https://github.com/emackinnon1/folio-v2/tree/main/public/images/${frontmatter.banner}`;
+    const bannerLink = `https://raw.githubusercontent.com/emackinnon1/folio-v2/main/public/${frontmatter.banner}`;
     const ogLink = `https://og-elliot-mackinnon.vercel.app/api/blog?templateTitle=${encodeURIComponent(
       frontmatter.title
     )}&banner=${encodeURIComponent(bannerLink)}`;
