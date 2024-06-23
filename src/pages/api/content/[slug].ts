@@ -12,7 +12,6 @@ export default async function handler(
 ) {
   const slug = z.string().parse(req.query.slug);
   const sessionId = getSessionId(req);
-
   try {
     if (req.method === 'GET') {
       const content = await prismaClient.contentMeta.findFirst({

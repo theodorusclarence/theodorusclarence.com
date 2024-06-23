@@ -338,8 +338,15 @@ export async function getStaticProps() {
   const projects = await getAllFilesFrontmatter('projects');
   const shorts = await getAllFilesFrontmatter('library');
 
-  const featuredPosts = getFeatured(blogs, ['carnivorous', 'photography']);
-  const featuredProjects = getFeatured(projects, ['table-motor']);
+  const featuredPosts = getFeatured(blogs, [
+    'carnivorous',
+    'photography',
+    'tattoos',
+  ]);
+  const featuredProjects = getFeatured(projects, [
+    'table-motor',
+    'watering-system',
+  ]);
   const featuredShorts = getFeatured(shorts, ['hard-problem']);
 
   const introPosts = getFeatured(blogs, ['carnivorous', 'photography']);
