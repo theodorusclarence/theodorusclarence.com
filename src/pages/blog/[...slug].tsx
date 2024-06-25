@@ -4,7 +4,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import * as React from 'react';
-import { HiOutlineClock } from 'react-icons/hi';
+import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi';
 import { MdHistory } from 'react-icons/md';
 
 import { trackEvent } from '@/lib/analytics';
@@ -14,7 +14,7 @@ import {
   getFileSlugArray,
   getRecommendations,
 } from '@/lib/mdx.server';
-// import useContentMeta from '@/hooks/useContentMeta';
+import useContentMeta from '@/hooks/useContentMeta';
 import useInjectContentMeta from '@/hooks/useInjectContentMeta';
 import useScrollSpy from '@/hooks/useScrollspy';
 
@@ -65,7 +65,7 @@ export default function SingleBlogPage({
 
   //#region  //*=========== Content Meta ===========
   const contentSlug = `b_${cleanSlug}`;
-  // const meta = useContentMeta(contentSlug, { runIncrement: true });
+  const meta = useContentMeta(contentSlug, { runIncrement: true });
   //#endregion  //*======== Content Meta ===========
 
   //#region  //*=========== Scrollspy ===========
@@ -150,33 +150,12 @@ export default function SingleBlogPage({
                   <HiOutlineClock className='inline-block text-base' />
                   <Accent>{frontmatter.readingTime.text}</Accent>
                 </div>
-                {/* {meta?.devtoViews ? (
-                  <Tooltip
-                    tipChildren={
-                      <>
-                        {meta.devtoViews.toLocaleString()} views on{' '}
-                        <CustomLink href='https://dev.to/theodorusclarence'>
-                          dev.to
-                        </CustomLink>
-                      </>
-                    }
-                    position='bottom'
-                  >
-                    <div className='flex items-center gap-1'>
-                      <HiOutlineEye className='inline-block text-base' />
-                      <Accent>
-                        {meta?.views?.toLocaleString() ?? '–––'} views
-                      </Accent>
-                    </div>
-                  </Tooltip>
-                ) : (
-                  <div className='flex items-center gap-1'>
-                    <HiOutlineEye className='inline-block text-base' />
-                    <Accent>
-                      {meta?.views?.toLocaleString() ?? '–––'} views
-                    </Accent>
-                  </div>
-                )} */}
+                <div className='flex items-center gap-1'>
+                  <HiOutlineEye className='inline-block text-base' />
+                  <Accent>
+                    {meta?.views?.toLocaleString() ?? '–––'} views
+                  </Accent>
+                </div>
               </div>
               {/* {!frontmatter?.englishOnly && (
                 <CustomLink
