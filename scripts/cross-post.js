@@ -11,7 +11,7 @@ const quote = '["\']';
 const select = '(.*)';
 
 /**
- * @argument $1 publicId e.g. theodorusclarence/blogs/one-stop-starter/seo-component_xpzsab
+ * @argument $1 publicId e.g. og-blush.vercel.app
  * @argument $2 alt e.g. seo-component
  */
 const CLOUDINARY_REGEXP = new RegExp(
