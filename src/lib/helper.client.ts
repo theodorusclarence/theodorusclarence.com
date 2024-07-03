@@ -31,10 +31,10 @@ export function openGraph({
     const ogTags = tags ? encodeURIComponent(tags.trim()) : undefined;
     const ogBanner = banner ? encodeURIComponent(banner.trim()) : undefined;
 
-    return `https://og-blush.vercel.app/api/blog?templateTitle=${ogTemplateTitle}&banner=${ogBanner}&tags=${ogTags}`;
+    return `https://og-elliot-mackinnon.vercel.app/api/blog?templateTitle=${ogTemplateTitle}&banner=${ogBanner}&tags=${ogTags}`;
   }
 
-  return `https://og-blush.vercel.app/api/gradient?siteName=${ogSiteName}&description=${ogDesc}&logo=${ogLogo}${
+  return `https://og-elliot-mackinnon.vercel.app/api/gradient?siteName=${ogSiteName}&description=${ogDesc}&logo=${ogLogo}${
     ogTemplateTitle ? `&templateTitle=${ogTemplateTitle}` : ''
   }`;
 }
