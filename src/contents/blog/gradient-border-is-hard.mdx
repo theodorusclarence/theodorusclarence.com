@@ -1,0 +1,268 @@
+---
+title: 'Gradient Border is Unexpectedly Hard'
+publishedAt: '2024-07-14'
+description: 'A simple gradient border is not as simple as it seems.'
+banner: 'milad-fakurian-PGdW_bHDbpI-unsplash'
+tags: 'css,design'
+englishOnly: true
+---
+
+## Introduction
+
+I was doing a design revamp for this blog, and my designer came up with a button that looks like this.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled'
+  alt='Button with a gray gradient border and a translucent background'
+  width={1286}
+  height={774}
+/>
+
+Looks great, right?
+
+I thought to myself, that would be simple enough to make: a button, with a transparent and blur background, and add in a gray-ish gradient border around it. Probably something like `border: linear-gradient()` would definitely work.
+
+Spoiler: I was wrong
+
+## Border Gradient Attempt
+
+So I set my goal, to build a proof of concept.
+
+I whipped out a simple codepen, and created a button with a linear gradient border.
+
+```css
+button {
+  all: unset;
+  font-family: sans-serif;
+  font-size: 2rem;
+
+  padding: 1rem 2rem;
+  background: #172554;
+  color: white;
+
+  border: linear-gradient(
+    to bottom right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+}
+```
+
+That must be the most colorful gradient known to man. I was confident that it would work.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled_1'
+  alt='Button without a rainbow gradient border'
+  width={1106}
+  height={788}
+/>
+
+It must be a dry season because **I can’t see any rainbow!**
+
+Yeah, turns out **linear-gradient does not work with border.**
+
+## Stacked Element Method
+
+As a seasoned problem solver, I went to google, searched “How to make a gradient border in CSS”, and found an interesting method:
+
+You basically create two divs, first is for the rainbow background, and second one is the button text itself. It sounds like a great idea.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled_2'
+  alt='Diagram of how stacked element method works'
+  width={2534}
+  height={1338}
+/>
+
+I updated my code using a pseudo element as a background.
+
+```css
+button {
+  all: unset;
+  position: relative;
+
+  font-family: sans-serif;
+  font-size: 2rem;
+
+  padding: 1rem 2rem;
+  background: #000;
+  color: white;
+  /* formula for 2 stacked radius is: (radius - (border-width / 2)) */
+  border-radius: calc(12px - (2px / 2));
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  /* this is the border width */
+  inset: -2px;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  border-radius: 12px;
+}
+```
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled_3'
+  alt='Button with a rainbow gradient border'
+  width={744}
+  height={494}
+/>
+
+**IT WORKS!**
+
+The code looks a bit complicated, but it does the job. I was really happy about it.
+
+## Adding a transparent background
+
+I continued my work by adding the transparent and blurred background.
+
+```css
+button {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+}
+```
+
+And it looks like this:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled_4'
+  alt='Button with a rainbow gradient background, but the border is gone'
+  width={1256}
+  height={816}
+/>
+
+Remember that we have a rainbow div behind? Introducing a translucent background means we will see the rainbow.
+
+If you think that maybe we can try making a rainbow background with a hollow transparent background in the middle, that would be called **a gradient border 🙃**. So we're back to square one.
+
+## Ultimate Solution with Mask Exclude
+
+So I did some more digging, and found the perfect solution that can cater all cases.
+
+There’s a new property that’s recently gained a major support across browsers which is [mask-composite](https://developer.mozilla.org/en-US/docs/Web/CSS/mask-composite).
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled_5'
+  alt='Button with a rainbow gradient background'
+  width={2538}
+  height={808}
+/>
+
+According to [CSS Tricks](https://css-tricks.com/almanac/properties/m/mask-composite/), we can remove a certain part of element by creating mask with 2 elements on top of each other, and use mask-composite exclude.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/css-tricks-exclude'
+  alt='css-tricks-exclude'
+  width={2294}
+  height={1188}
+/>
+
+That means, if we create two boxes with one smaller than the other, we can have a mask that can show anything we like.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled_7'
+  alt='Mask Composite caniuse'
+  width={2054}
+  height={1514}
+/>
+
+With mask, the element's background will be reflected. This even includes background-image.
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled_8'
+  alt='CSS Tricks exclude'
+  width={1160}
+  height={794}
+/>
+
+### Final Code
+
+This is how the final code looks like!
+
+```css
+button {
+  all: unset;
+  position: relative;
+
+  font-family: sans-serif;
+  font-size: 1rem;
+
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(2px);
+  color: white;
+  border-radius: 12px;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0px;
+
+  border-radius: inherit;
+  /* this is the border width */
+  padding: 1px;
+  background: linear-gradient(
+    to bottom right,
+    #171717 0%,
+    #525252 62%,
+    #171717 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+```
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/Untitled_9'
+  alt='Untitled'
+  width={1520}
+  height={1060}
+/>
+
+Reference: [https://stackoverflow.com/a/51496341](https://stackoverflow.com/a/51496341)
+
+## Final Words
+
+There you have it! A working set of gradient border with translucent background. With this new widely-supported property, we can create anything that comes to mind.
+
+Including something like this:
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/gradient-border-is-hard/gradient-gif'
+  alt='GIF about get started'
+  width={800}
+  height={320}
+/>
+
+ps: I can’t open-source this because it’s from work ✌️. But it's using the same method!
