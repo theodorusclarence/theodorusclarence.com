@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 
+import CloudinaryVideoPlayer from '@/components/CloudinaryVideoPlayer';
 import Quiz from '@/components/content/blog/Quiz';
 import GithubCard from '@/components/content/card/GithubCard';
 import { Pre } from '@/components/content/Pre';
@@ -16,6 +17,7 @@ const MDXComponents = {
   pre: Pre,
   // code: CustomCode,
   CloudinaryImg,
+  CloudinaryVideoPlayer,
   LiteYouTubeEmbed,
   SplitImage,
   Split,
