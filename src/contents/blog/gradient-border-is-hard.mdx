@@ -21,7 +21,7 @@ I was doing a design revamp for this blog, and my designer came up with a button
 
 Looks great, right?
 
-I thought to myself, that would be simple enough to make: a button, with a transparent and blur background, and add in a gray-ish gradient border around it. Probably something like `border: linear-gradient()` would definitely work.
+I thought to myself, that would be simple enough to make: a button, with a transparent and blur background, and add in a gray-ish gradient border around it. Probably something like `border: 1px solid linear-gradient()` would definitely work.
 
 Spoiler: I was wrong
 
@@ -41,16 +41,7 @@ button {
   background: #172554;
   color: white;
 
-  border: linear-gradient(
-    to bottom right,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet
-  );
+  border: 1px solid linear-gradient(to bottom right, red, orange, yellow, green, blue, indigo, violet);
 }
 ```
 
