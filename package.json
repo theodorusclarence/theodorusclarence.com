@@ -73,6 +73,7 @@
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "glob": "^11.0.0",
     "gray-matter": "^4.0.3",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
