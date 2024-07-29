@@ -1,10 +1,41 @@
 ---
 title: 'Lightning Cloud Lamp'
-description: 'Lightning cloud lamp with pimonori pico display that runs on MQTT'
+description: 'Lightning cloud lamp with pimonori pico display and an Arduino Uno that runs on MQTT and integrates with Home Assistant'
 category: 'DIY microcontroller projects'
 publishedAt: '2024-07-07'
 techs: 'raspberry pi pico,home assistant,arduino'
 banner: '/images/projects/lightning-lamp/lightning.jpg'
 ---
 
-# Lightning Cloud
+>
+
+<Img
+  mdx
+  publicId='/images/projects/lightning-lamp/lightning-lamp-on.gif'
+  alt='plant stand'
+  width={700}
+  height={600}
+  aspect={{ width: 1, height: 1 }}
+/>
+
+## Explanation of project
+
+This project runs on a Raspberry Pi Pico sharing a serial connection with an Arduino Uno. The bones of this project
+were taken from another project that uses 2 Arduino Unos, one running the lightning logic an IR remote and another
+running logic to receive the IR signal and send it along using I2C protocol. Having built this version first, I thought
+I might be able to improve on it and control this via MQTT and home assistant. I mostly left the physical structure and
+code from the Arduino Uno driving the led strip, but altered it slightly to read bytes from the pico on a Tx/Rx connection
+instead of another Uno via I2C connection.
+
+The relevant project instructions are for the lightning cloud and such are [here](https://www.makeuseof.com/tag/build-cloud-lamp-sound-reactive-lightning/).
+It's a good idea to read through the instructions so you can get an idea of how you want to create the cloud. You could make this
+into a ceiling feature, a hanging lamp, or any number of other configurations. I also stuck some noodle LEDs on this to make a
+sort of "lightning" that flashes.
+
+Materials list:
+Raspberry pi pico - [Amazon]()
+Noodle noodles - [Adafruit]()
+Arduino Uno - [Amazon]()
+Raspberry pi pico screen - [Pimonori]()
+Logic level converter (5 to 3.3) - [Amazon]()
+Double transistor
