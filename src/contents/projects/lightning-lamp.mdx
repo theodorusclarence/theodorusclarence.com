@@ -12,7 +12,7 @@ banner: '/images/projects/lightning-lamp/lightning.jpg'
 <Img
   mdx
   publicId='/images/projects/lightning-lamp/lightning-lamp-on.gif'
-  alt='plant stand'
+  alt='lightning cloud lamp'
   width={700}
   height={600}
   aspect={{ width: 1, height: 1 }}
@@ -27,14 +27,15 @@ I might be able to improve on it and control this via MQTT and home assistant. I
 code from the Arduino Uno driving the led strip, but altered it slightly to read bytes from the pico on a Tx/Rx connection
 instead of another Uno via I2C connection.
 
-The relevant project instructions are for the lightning cloud and such are [here](https://www.makeuseof.com/tag/build-cloud-lamp-sound-reactive-lightning/).
-It's a good idea to read through the instructions so you can get an idea of how you want to create the cloud. You could make this
+The relevant project instructions for the original lightning cloud and such are [here](https://www.makeuseof.com/tag/build-cloud-lamp-sound-reactive-lightning/); this
+is a great project to get started with if the micropython, MQTT, Home Assistant, etc portions aren't necessary for you. Either way,
+it's a good idea to read through those instructions so you can get an idea of how you want to create the cloud and some of the background info that I may have overlooked while writing this post. You could make this
 into a ceiling feature, a hanging lamp, or any number of other configurations. I also stuck some noodle LEDs on this to make a
-sort of "lightning" that flashes.
+sort of "lightning" that flashes as you can see in the gif of the cloud at the top of this article.
 
 ## Materials list:
 
-Raspberry pi pico w - [Amazon](https://www.amazon.com/gp/product/B0B72GV3K3/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+Raspberry pi pico W - [Amazon](https://www.amazon.com/gp/product/B0B72GV3K3/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 Noodle noodles - [Amazon](https://www.amazon.com/Flexible-Filament-Edison-Diodes-Accessories/dp/B0CDX2D39K/ref=sr_1_4?crid=1T98AGVBPB3ZS&dib=eyJ2IjoiMSJ9.YHCT4ozcdYV1x6XV7-90yBtcFie82Ot0IDpgD-ByQ9bj_-9s0MKhoOhuMT4Mr_oaefEMmd2TA-ga3_CMM4lnDlnA4AO2CtFAzm3Xh0VHVmmybiLS1UJBsc2dJjM1JoCoOybhKJ9FO7jiB443ODo3ufwwTttfB8Bfy1eWzcsBR_NiDG8dqI9MRvsj96o3tVVrG6MS7h5bZxSUMUwi5HQ0WsUgD5Ghsm6_9CSLzaTCs6frEDvGCeqqds7abTbyrm7rEZXbJQGOi8Al0-b43HCZPptckKPXCi0OiE-Vl-lkYQw.OBGijik-1_eRw0QpYrI6a1tnOW9MywIb2nlMtcpiDco&dib_tag=se&keywords=led%2Bnoodle&qid=1722306848&sprefix=led%2Bnoodle%2Caps%2C132&sr=8-4&th=1)
 Arduino Uno or equivalent - [Amazon](https://www.amazon.com/gp/product/B01EWOE0UU/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 Raspberry pi pico screen - [Pimonori](https://shop.pimoroni.com/products/pico-display-pack?variant=32368664215635)
@@ -53,8 +54,85 @@ Material to make cloud lamp (mine is made using this [bell jar display](https://
 - Spray glue (holds the polyster fibers together)
 - Steel wire (provides foundation for cloud shape; I used a cage of this to hold the polyester and LED strip)
 - styrofoam (if you follow the linked tutorial's idea)
+- micro usb cable for pico power
 
-## Getting started
+## Getting started and code explanation
 
-You'll want to first plan out how you are going to pull off the cloud. This will influence the rest of your materials like the number of LEDs
-you use, whether or not you want the sound module, etc.
+You'll want to first plan out how you are going to construct the cloud. This will influence the rest of your materials like the number of LEDs
+you use, whether or not you want the sound module (this is in the original lightning cloud project on makeuseof.com), if you want to
+include the LED noodle for the lightning bolts, etc.
+
+As with many of my project write ups, this is being written post-completion, so I unfortunately do not have pictures of the in-progress steps. You can see the
+final product in the gif above and some of the menu functionality here:
+
+<Img
+  mdx
+  publicId='/images/projects/lightning-lamp/lighting-menu.gif'
+  alt='lightning cloud lamp menu'
+  width={350}
+  height={600}
+  aspect={{ width: 1.2, height: 2 }}
+/>
+
+The rough wiring diagram looks like this:
+
+<Img
+  mdx
+  publicId='/images/projects/lightning-lamp/lightning-cloud-lamp.jpg'
+  alt='wiring'
+  width={1350}
+  height={800}
+  aspect={{ width: 1.7, height: 1 }}
+/>
+
+To set up the pico for this project, there is a great guide that Pimonori has put together [here](https://learn.pimoroni.com/article/getting-started-with-pico) that will take you
+from installing the firmware to installing the best IDE for micropython, Thonny. If you already know how to do all of this and just want the firmware, you can head over to
+the [pimonori github repo](https://github.com/pimoroni/pimoroni-pico?tab=readme-ov-file) or browse the releases of the firmware [here](https://github.com/pimoroni/pimoroni-pico/releases). To use the
+pimonori display pack, you have to flash the pico With the right firmware (it will have all the relevant methods built in), which should be the pico W version of the firmware.
+
+The pico should be put on the GPIO expander (listed in the materials for this project). This will allow you to have the display pack along with access to the GPIO pins.
+Some pins are used by the display pack and you will have to avoid those in order for it to function properly, but sticking to the pins I have used should keep you safe
+here. The basic idea is that the menu is used to select the mode of the lightning cloud. Once a new mode is selected via the menu, two things happen: the mode selection is
+sent in bytes over a serial connection to the Arduino UNO, and the selection is also sent via MQTT to an MQTT server on the state topic.
+
+The pico code that sets up the menu, handles the MQTT pub/sub pieces, and sends the bytes over serial is located in this [file](https://github.com/emackinnon1/lightning_cloud_with_display/blob/main/main.py).
+The B and Y buttons are used to move the highlighted selection up and down while the A and X buttons are used to select a mode.
+
+Looking into the [Arduino Uno code](https://github.com/emackinnon1/lightning_cloud_with_display/blob/main/lightning_lamp.ino) shows that is a pretty straightforward state machine. It processes the incoming bytes from the serial
+connection with the pico W and sets a `mode`. In the `loop()` function, the `mode` is set in the `receiveEvent()` call, and directly after that the `mode` is passed through a switch statement to call the correct function to
+control the LED strip.
+
+One side note is that there is a [simple function](https://github.com/emackinnon1/lightning_cloud_with_display/blob/main/lightning_lamp.ino#L57-L60) that controls the LED noodles if you're implementing that feature. I controlled two
+LED noodles with one dual output mosfet, but I would go back and control them separately so this function is where you can add more output pins for doing so.
+
+## Home Assistant Integration
+
+This project was made so I could control it via my Home Assistant instance. To do that, I had to connect the pico W to my wifi, set up an MQTT server (I have a Mosquito instance running on Home Assistant), and
+create some automations and helpers to string it all together.
+
+The first thing you'll want to do is create an `input_select` helper in Home Assistant (seen below) that will represent the lightning cloud lamp's state. You will want to make sure the members of this input select
+_exactly match_ the options of the pico menu.
+
+<Img
+  mdx
+  publicId='/images/projects/lightning-lamp/input-select-helper.png'
+  alt='input select helper'
+  width={400}
+  height={550}
+  aspect={{ width: 1, height: 1 }}
+/>
+
+After this is created, you will want to create an automation that does two things:
+
+1. Upon the changing of this helper's state, it sends a message to the `cmd/lightning_cloud/mode` topic for the lightning cloud lamp
+2. When the state is changed directly from the pico menu, a message will be sent to the `state/lightning_cloud/mode` topic. Every time this happens, the helper should match its state to the payload received on this topic.
+
+The automation I created to do this can be found [here](https://github.com/emackinnon1/lightning_cloud_with_display/blob/main/lightning_cloud_lamp_state_hass_automation.yaml).
+
+## Summary
+
+All in all, this is a really fun project to make and is a fun conversation piece when people come over. If I owned my own home, I would have made a larger, more [permamanent fixture](https://www.tiktok.com/@thatsjustjessiee/video/7126391426992196907).
+It was a fun exercise to learn more about I2C (not used in this project but used in the original tutorial on makeuseof) and serial connections. Things I might do differently might be to clean up the box I used to hold the pico W menu as it was a
+little messy and not having two LED noodles controlled by a single MOSFET would be ideal for a little variability in that feature.
+
+I would love to hear feedback on this write up and project, so if you have any questions or comments feel free to find me on any of my socials that are linked on this website!
