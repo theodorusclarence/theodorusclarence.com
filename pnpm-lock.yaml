@@ -29,9 +29,6 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.10.7
         version: 8.11.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@types/react-vertical-timeline-component':
-        specifier: ^3.3.6
-        version: 3.3.6
       axios:
         specifier: ^0.24.0
         version: 0.24.0
@@ -147,6 +144,9 @@ importers:
       '@types/react':
         specifier: ^18.2.28
         version: 18.2.47
+      '@types/react-vertical-timeline-component':
+        specifier: ^3.3.6
+        version: 3.3.6
       '@types/umami':
         specifier: ^0.1.4
         version: 0.1.5
