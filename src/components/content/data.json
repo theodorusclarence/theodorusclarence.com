@@ -1,0 +1,123 @@
+[
+  {
+    "date": "Sep 2022 - May 2024",
+    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
+    "title": "Software Engineer II",
+    "company": "Guild Education",
+    "link": "https://guild.com/",
+    "description": {
+      "responsibilities": [
+        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
+        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
+        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
+        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
+        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
+      ],
+      "accomplishments": [
+        "Reduced customer onboarding engineering overhead by 100%",
+        "Reduced consumer calls by 30% through architecture redesign"
+      ]
+    }
+  },
+  {
+    "date": "Mar 2021 - Sep 2022",
+    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
+    "title": "Software Engineer I",
+    "company": "Guild Education",
+    "link": "https://guild.com/",
+    "description": {
+      "responsibilities": [
+        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
+        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
+        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
+        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
+        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
+      ],
+      "accomplishments": [
+        "Reduced customer onboarding engineering overhead by 100%",
+        "Reduced consumer calls by 30% through architecture redesign"
+      ]
+    }
+  },
+
+  {
+    "date": "Aug 2020 - Mar 2021",
+    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
+    "title": "Software Engineer II",
+    "company": "Guild Education",
+    "link": "https://guild.com/",
+    "description": {
+      "responsibilities": [
+        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
+        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
+        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
+        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
+        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
+      ],
+      "accomplishments": [
+        "Reduced customer onboarding engineering overhead by 100%",
+        "Reduced consumer calls by 30% through architecture redesign"
+      ]
+    }
+  },
+  {
+    "date": "Apr 2018 - Nov 2019",
+    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
+    "title": "Software Engineer II",
+    "company": "Guild Education",
+    "link": "https://guild.com/",
+    "description": {
+      "responsibilities": [
+        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
+        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
+        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
+        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
+        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
+      ],
+      "accomplishments": [
+        "Reduced customer onboarding engineering overhead by 100%",
+        "Reduced consumer calls by 30% through architecture redesign"
+      ]
+    }
+  },
+  {
+    "date": "Jun 2017 - Dec 2017",
+    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
+    "title": "Software Engineer II",
+    "company": "Guild Education",
+    "link": "https://guild.com/",
+    "description": {
+      "responsibilities": [
+        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
+        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
+        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
+        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
+        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
+      ],
+      "accomplishments": [
+        "Reduced customer onboarding engineering overhead by 100%",
+        "Reduced consumer calls by 30% through architecture redesign"
+      ]
+    }
+  },
+  {
+    "date": "Sep 2016 - Jun 2017",
+    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
+    "title": "Software Engineer II",
+    "company": "Guild Education",
+    "link": "https://guild.com/",
+    "description": {
+      "responsibilities": [
+        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
+        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
+        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
+        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
+        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
+      ],
+      "accomplishments": [
+        "Reduced customer onboarding engineering overhead by 100%",
+        "Reduced consumer calls by 30% through architecture redesign"
+      ]
+    }
+  }
+]
