@@ -29,6 +29,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.10.7
         version: 8.11.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@types/react-vertical-timeline-component':
+        specifier: ^3.3.6
+        version: 3.3.6
       axios:
         specifier: ^0.24.0
         version: 0.24.0
@@ -1002,6 +1005,9 @@ packages:
 
   '@types/react-transition-group@4.4.11':
     resolution: {integrity: sha512-RM05tAniPZ5DZPzzNFP+DmrcOdD0efDUxMy3145oljWSl3x9ZV5vhme98gTxFrj2lhXvmGNnUiuDyJgY9IKkNA==}
+
+  '@types/react-vertical-timeline-component@3.3.6':
+    resolution: {integrity: sha512-OUvyPXRjXvUD/SNLO0CW0GbIxVF32Ios5qHecMSfw6kxnK1cPULD9NV80EuqZ3WmS/s6BgbcwmN8k4ISb3akhQ==}
 
   '@types/react@18.2.47':
     resolution: {integrity: sha512-xquNkkOirwyCgoClNk85BjP+aqnIS+ckAJ8i37gAbDs14jfW/J23f2GItAf33oiUPQnqNMALiFeoM9Y5mbjpVQ==}
@@ -5045,6 +5051,10 @@ snapshots:
   '@types/prop-types@15.7.12': {}
 
   '@types/react-transition-group@4.4.11':
+    dependencies:
+      '@types/react': 18.2.47
+
+  '@types/react-vertical-timeline-component@3.3.6':
     dependencies:
       '@types/react': 18.2.47
 
