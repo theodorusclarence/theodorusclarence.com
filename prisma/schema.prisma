@@ -36,5 +36,3 @@ model View {
   contentMetaId Int?
   ContentMeta   ContentMeta? @relation(fields: [contentMetaId], references: [id], onDelete: Cascade)
 }
-
-model
