@@ -5,6 +5,7 @@ import * as React from 'react';
 import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
+import Timeline from '@/components/content/Timeline';
 import Img from '@/components/images/Img';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -64,7 +65,7 @@ export default function AboutPage() {
                 <p data-fade='3'>
                   Like most people my age, I am {age}. (That was a joke).
                 </p>
-                <p data-fade='4'>
+                {/* <p data-fade='4'>
                   But seriously, how do you sum yourself up? How are you
                   supposed to enumerate the set of all qualities and facets, all
                   surfaces, themselves initiates of functions of situation and
@@ -89,29 +90,32 @@ export default function AboutPage() {
                   <Accent>the things I’ll never know.</Accent> It is truly
                   invigorating to take notice of the world and the mysteries in
                   it!
-                </p>
+                </p> */}
                 <p data-fade='4'>
                   The series of events leading up to this point in my life have
-                  been meandering. I am from Atlanta, GA and lived there until
-                  my late twenties (with a brief stint in the gorgeous deserts
-                  of west Texas). I went to college at Georgia State University,
-                  where I studied what you might call "neuropsych" these days (a
-                  mix of psychology and neuroscience curriculum). I worked
-                  aimlessly at a few sales jobs afterwards but, tired of the
-                  life I knew, I packed my bags and moved to Munich, Germany
-                  where I was stumbling distance from the festival grounds of
-                  Oktoberfest for a few years. I taught English to
-                  kindergarten-aged children over there, realizing that I am no
-                  different from them: I too hate my vegetables and refuse to
-                  wear socks and shoes idoors. While being a shephard to a
-                  roving heard of small humans and in between solo online German
-                  lessons before and after work, I taught myself how to code.
-                  Wanting to learn faster, I came back to the States and did a
-                  frontend program at Turing School in Denver, CO and got a job
-                  soon after doing full stack work. Since then, I have been
-                  fiddling with firmware, puttering around with raspberry pi's
-                  and getting my hands into everything software-related.
-                  Tinkering and building has become a career and a hobby.
+                  been meandering.
+                </p>
+                <p data-fade='4'>
+                  I am from Atlanta, GA and lived there until my late twenties
+                  (with a brief stint in the gorgeous deserts of west Texas). I
+                  went to college at Georgia State University, where I studied
+                  what you might call "neuropsych" these days (a mix of
+                  psychology and neuroscience curriculum). I worked aimlessly at
+                  a few sales jobs afterwards but, tired of the life I knew, I
+                  packed my bags and moved to Munich, Germany where I was
+                  stumbling distance from the festival grounds of Oktoberfest
+                  for a few years. I taught English to kindergarten-aged
+                  children over there, realizing that I am no different from
+                  them: I too hate my vegetables and refuse to wear socks and
+                  shoes idoors. While being a shepherd to a roving herd of small
+                  humans and in between solo online German lessons before and
+                  after work, I taught myself how to code. Wanting to learn
+                  faster, I came back to the States and did a frontend program
+                  at Turing School in Denver, CO and got a job soon after doing
+                  full stack work. Since then, I have been fiddling with
+                  firmware, puttering around with raspberry pi's and getting my
+                  hands into everything software-related. Tinkering and building
+                  has become a career and a hobby.
                 </p>
               </article>
               {/* <h3 className='h4 mt-4' data-fade='6'>
@@ -173,6 +177,9 @@ export default function AboutPage() {
               </figure>
             </div>
           </div>
+        </section>
+        <section>
+          <Timeline />
         </section>
 
         <section>
