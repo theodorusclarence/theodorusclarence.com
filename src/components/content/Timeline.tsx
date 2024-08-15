@@ -170,9 +170,11 @@ const Timeline = () => {
         <VerticalTimelineElement
           className='vertical-timeline-element--work text-gray-700 dark:text-gray-200'
           contentStyle={{
+            background: theme === 'light' ? '#00e0f3' : '#ffffff',
+            color: theme === 'light' ? '#0e1111' : '#ffffff',
             marginTop: '1px',
             padding: '1px',
-            border: '2px solid grey',
+            border: '2px solid #00e0f3',
             boxShadow: 'none',
           }}
           contentArrowStyle={{
@@ -187,7 +189,23 @@ const Timeline = () => {
           icon={<MdWork />}
           intersectionObserverProps={{ triggerOnce: false }}
         >
-          <Box sx={{ margin: 10 }}></Box>
+          {/* <Box sx={{ margin: 10 }}> */}
+          <Typography
+            gutterBottom
+            className='text-gray-700 dark:text-gray-200'
+            variant='h5'
+            component='div'
+            style={{
+              fontSize: '1.3em',
+              fontWeight: 'bold',
+              background: theme === 'light' ? '#00e0f3' : '#ffffff',
+              color: theme === 'light' ? '#ffffff' : '#00e0f3',
+              padding: 10,
+            }}
+          >
+            The spaceship that was carrying me as a baby crash-landed on earth.
+          </Typography>
+          {/* </Box> */}
         </VerticalTimelineElement>
       </VerticalTimeline>
     </Box>
