@@ -141,7 +141,6 @@
   }
 
   .accordion-summary .accordion-details {
-    /* background-color: rgba(0, 0, 0, .03); */
     flexdirection: 'row-reverse';
     border: 1px solid rgba(var(--tw-clr-primary-300));
 

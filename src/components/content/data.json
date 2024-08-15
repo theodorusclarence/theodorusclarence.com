@@ -27,25 +27,25 @@
     "link": "https://guild.com/",
     "description": {
       "responsibilities": [
-        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
-        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
-        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
-        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
-        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
+        "Designed and implemented event-driven microservices within the AWS ecosystem; brought down system error rates to less than 1%.",
+        "Implemented a new integration with a business partner that set the standard for public-facing APIs at Guild.",
+        "Leveraged Python and Object Oriented Programming to build one of the central services to Guild's operations; 76% of Guild's teams used system data.",
+        "Collaborated with the more business-oriented teams to ensure code met the needs of users and partners with scalability in mind.",
+        "Took lead on architecture designs and influenced direction of our software to future-proof systems and allow for the growth of the platform; facilitated 50% faster feature deployment and supported an internal 2x consumer expansion within 18 months."
       ],
       "accomplishments": [
-        "Reduced customer onboarding engineering overhead by 100%",
-        "Reduced consumer calls by 30% through architecture redesign"
+        "Brought system error rates to less than 1% for data pipeline",
+        "Built systems to support 2x number of consumers in 18 months"
       ]
     }
   },
 
   {
     "date": "Aug 2020 - Mar 2021",
-    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
-    "title": "Software Engineer II",
-    "company": "Guild Education",
-    "link": "https://guild.com/",
+    "imageSrc": "https://media.licdn.com/dms/image/v2/C560BAQHGlgjiElkrWg/company-logo_200_200/company-logo_200_200/0/1661476655580/techtonicgroup_logo?e=1731542400&v=beta&t=mlwdgA3hRco55RjxTyTCysloGIo-X2D8mjkZ6Cb4zKo",
+    "title": "Junior Software Engineer",
+    "company": "Techtonic",
+    "link": "https://www.linkedin.com/company/techtonicgroup/",
     "description": {
       "responsibilities": [
         "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
@@ -62,61 +62,54 @@
   },
   {
     "date": "Apr 2018 - Nov 2019",
-    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
-    "title": "Software Engineer II",
-    "company": "Guild Education",
-    "link": "https://guild.com/",
+    "imageSrc": "https://media.licdn.com/dms/image/C4D0BAQEi0LWgqDgF6w/company-logo_200_200/0/1630495063413?e=1731542400&v=beta&t=WfGoZPWqGd1KFBvt4BwPQLmU9gUoox-hgUib7Kt4-cU",
+    "title": "English Teacher",
+    "company": "Elly und Stoffl, Gmbh",
+    "link": "https://www.ellyundstoffl.de/",
     "description": {
       "responsibilities": [
-        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
-        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
-        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
-        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
-        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
-      ],
-      "accomplishments": [
-        "Reduced customer onboarding engineering overhead by 100%",
-        "Reduced consumer calls by 30% through architecture redesign"
+        "Provided high-quality language lesson development and delivery",
+        "Advised co-curricular clubs and activities",
+        "Participated in on-going planning development and evaluation of curriculum",
+        "Used a variety of instructional strategies to provide equity and excellence to students of all ability levels",
+        "Worked cooperatively with other teachers in developing and sharing curriculum strategies",
+        "Ensured effective and positive parent communication"
       ]
     }
   },
   {
     "date": "Jun 2017 - Dec 2017",
-    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
-    "title": "Software Engineer II",
-    "company": "Guild Education",
-    "link": "https://guild.com/",
+    "imageSrc": "https://www.brightreeanalytics.com/Branding/Brightree/logoPhoneLarge.png",
+    "title": "Enterprise Software Sales",
+    "company": "Brightree",
+    "link": "https://www.brightree.com/",
     "description": {
       "responsibilities": [
-        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
-        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
-        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
-        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
-        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
-      ],
-      "accomplishments": [
-        "Reduced customer onboarding engineering overhead by 100%",
-        "Reduced consumer calls by 30% through architecture redesign"
+        "- Researched potential market, studying rivals' products, and defining marketing strategies",
+        "Provided creative and analytical input to the sales and marketing teams",
+        "Integrated sales and marketing strategies in order to exceed expected results",
+        "Led outbound prospect development, increased outbound leads by a factor of three",
+        "Worked closely with senior sales directors to schedule calls and meetings with future customers",
+        "Provided feedback to sales and marketing team to determine effective sales strategies"
       ]
     }
   },
   {
     "date": "Sep 2016 - Jun 2017",
-    "imageSrc": "https://pbs.twimg.com/profile_images/1646127546218741765/cP5J5SC3_400x400.png",
-    "title": "Software Engineer II",
-    "company": "Guild Education",
-    "link": "https://guild.com/",
+    "imageSrc": "https://scontent-den2-1.xx.fbcdn.net/v/t39.30808-6/363989408_269541345708841_8132021673870295532_n.png?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=PE4tPNJ_EIsQ7kNvgEprpDl&_nc_ht=scontent-den2-1.xx&oh=00_AYDVzIMGsrFpuV-kQkP3xaxN_uNRVu3QLxcoJyYQW-JTDw&oe=66C33CF6",
+    "title": "Inside Sales Rep",
+    "company": "Heattrak",
+    "link": "https://heattrak.com/",
     "description": {
       "responsibilities": [
-        "Managed and processed data used by over 22 of Guild’s 26 teams; data required to be top notch and services highly performant for the business to function and flourish.",
-        "Led an effort to free engineers from manually onboarding new partners through code. This involved leveraging JsonLogic in a React frontend portal to allow implementation and delivery managers to build the business logic needed instead of having engineers log hours doing so in a Python/Node.js backend; reduced amount of engineer touchpoints for a new onboarding by 100%.",
-        "Built event-driven, distributed microservices in Node.js/Typescript and Python to interact with other arms and systems of the business in AWS's serverless ecosystem.",
-        "As a part of the business's most central development team, led efforts to improve performance, throughput and data quality of services to better serve consumers, both internal Guild and exogenous customers. More than doubled the amount of partner's data that passed through our systems.",
-        "Merged data, domains, and design through domain consolidation and shared systems, decreasing consumer calls by 30% and improving architecture for better business and user-centered logic organization-wide."
-      ],
-      "accomplishments": [
-        "Reduced customer onboarding engineering overhead by 100%",
-        "Reduced consumer calls by 30% through architecture redesign"
+        "Exceeded monthly expected sales by 45%-75%",
+        "Regularly recognized by customers and management for customer service skills",
+        "Provided detailed technical diagrams of product based on individual customer needs",
+        "Assisted with customer service disputes and troubleshooting calls",
+        "Built rapport with customer to maintain relationships, leading to future purchases",
+        "Required to have extensive knowledge of product in order to provide expert advice on customers’ needs",
+        "Utilized online store customer database to pursue leads via phone calls and email to achieve sales",
+        "Researched potential business partners all over the country, reached out via phone calls and email to produce partnerships for future company growth and success"
       ]
     }
   }
