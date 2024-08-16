@@ -18,8 +18,6 @@ const nextConfig = {
       // Spotify Album
       'i.scdn.co',
     ],
-  },
-  images: {
     unoptimized: true,
   },
   reactStrictMode: true,

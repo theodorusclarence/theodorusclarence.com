@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import path from 'path';
+// import path from 'path';
 import * as React from 'react';
 
 import useLoaded from '@/hooks/useLoaded';
@@ -15,9 +15,9 @@ import TechStack from '@/components/TechStack';
 
 // import getConfig from 'next/config'
 
-const serverPath = (staticFilePath: string) => {
-  return path.resolve('./public', staticFilePath);
-};
+// const serverPath = (staticFilePath: string) => {
+//   return path.resolve('./public', staticFilePath);
+// };
 
 export default function AboutPage() {
   const isLoaded = useLoaded();
@@ -34,7 +34,6 @@ export default function AboutPage() {
       if (birthdayDate > todayDate) age--;
     }
   }
-  console.log('HI', serverPath('/images/portrait.jpg'));
 
   return (
     <Layout>

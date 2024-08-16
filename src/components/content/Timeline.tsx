@@ -1,5 +1,5 @@
 'use client';
-import { CardActions, CardContent, List, ListItem } from '@mui/material';
+import { CardContent, List, ListItem } from '@mui/material';
 import { Box, Typography } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -55,39 +55,55 @@ const Timeline = () => {
               icon={<MdWork />}
               intersectionObserverProps={{ triggerOnce: false }}
             >
-              <CardContent>
+              <CardContent
+                sx={{ display: 'flex', justifyContent: 'space-between' }}
+              >
                 <Image
                   src={item?.imageSrc}
-                  width={100}
-                  alt='Guild logo'
-                  height={110}
-                  style={{ display: 'inline-grid' }}
+                  width={80}
+                  alt='Company logo'
+                  height={90}
                 />
-                <Typography
-                  gutterBottom
-                  className='text-gray-700 dark:text-gray-200'
-                  variant='h5'
-                  component='div'
-                  style={{
-                    fontSize: '1.3em',
-                    fontWeight: 'bold',
-                    color: theme === 'light' ? '#ffffff' : '#00e0f3',
-                  }}
-                >
-                  {item.title}
-                </Typography>
+                <Box>
+                  <Typography
+                    gutterBottom
+                    className='text-gray-700 dark:text-gray-200'
+                    variant='h5'
+                    component='div'
+                    style={{
+                      fontSize: '1.7em',
+                      fontWeight: 'bold',
+                      color: theme === 'light' ? '#ffffff' : '#00e0f3',
+                      marginBottom: 0,
+                      marginLeft: 10,
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <CustomLink
+                    href={item.link}
+                    style={{
+                      marginLeft: '1' + 'em',
+                      marginTop: 0,
+                      fontSize: '1.2em',
+                    }}
+                  >
+                    {item.company}
+                  </CustomLink>
+                </Box>
               </CardContent>
-              <CardActions>
+              {/* <CardActions>
                 <CustomLink
                   href={item.link}
                   style={{
                     marginLeft: '1' + 'em',
+                    marginTop: 0,
                     fontSize: '15px',
                   }}
                 >
                   {item.company}
                 </CustomLink>
-              </CardActions>
+              </CardActions> */}
               {item?.description?.responsibilities && (
                 <Accordion
                   className='accordian'
