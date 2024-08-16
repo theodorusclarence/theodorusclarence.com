@@ -44,7 +44,7 @@ export default function IndexPage({
       <main>
         <section
           className={clsx(
-            'min-h-main -mt-20 mb-20 flex flex-col justify-center',
+            'min-h-main mt-15 mb-20 flex flex-col justify-center',
             isLoaded && 'fade-in-start'
           )}
         >
