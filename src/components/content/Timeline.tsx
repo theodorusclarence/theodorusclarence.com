@@ -36,7 +36,7 @@ const Timeline = () => {
               key={index}
               className='vertical-timeline-element--work text-gray-700 dark:text-gray-200'
               contentStyle={{
-                background: theme === 'light' ? '#00e0f3' : '#ffffff',
+                background: theme === 'light' ? '#00e0f3' : '#0e1111',
                 color: theme === 'light' ? '#0e1111' : '#ffffff',
                 marginTop: '1px',
                 padding: '1px',
@@ -74,7 +74,7 @@ const Timeline = () => {
                       fontSize: '1.7em',
                       fontWeight: 'bold',
                       color: theme === 'light' ? '#ffffff' : '#00e0f3',
-                      marginBottom: 0,
+                      marginBottom: 5,
                       marginLeft: 10,
                     }}
                   >
@@ -106,7 +106,7 @@ const Timeline = () => {
               </CardActions> */}
               {item?.description?.responsibilities && (
                 <Accordion
-                  className='accordian'
+                  className='accordian dark:bg-dark dark:text-white bg-primary-400'
                   expanded={expanded === `${item.date}-responsibilities`}
                   onChange={(e, expanded) =>
                     expanded
@@ -116,7 +116,9 @@ const Timeline = () => {
                 >
                   <AccordionSummary
                     className='accordion-summary'
-                    expandIcon={<IoArrowDownOutline />}
+                    expandIcon={
+                      <IoArrowDownOutline className='dark:bg-dark dark:text-white' />
+                    }
                     aria-controls='panel2-content'
                     id='panel2-header'
                   >
@@ -144,7 +146,7 @@ const Timeline = () => {
               {item?.description?.accomplishments &&
                 Array.isArray(item?.description?.accomplishments) && (
                   <Accordion
-                    className='accordion'
+                    className='accordion dark:bg-dark dark:text-white bg-primary-400'
                     expanded={expanded === `${item.date}-accomplishments`}
                     onChange={(e, expanded) =>
                       expanded
@@ -154,7 +156,9 @@ const Timeline = () => {
                   >
                     <AccordionSummary
                       className='accordion-summary'
-                      expandIcon={<IoArrowDownOutline />}
+                      expandIcon={
+                        <IoArrowDownOutline className='dark:bg-dark dark:text-white' />
+                      }
                       aria-controls='panel2-content'
                       id='panel2-header'
                     >
@@ -186,7 +190,7 @@ const Timeline = () => {
         <VerticalTimelineElement
           className='vertical-timeline-element--work text-gray-700 dark:text-gray-200'
           contentStyle={{
-            background: theme === 'light' ? '#00e0f3' : '#ffffff',
+            background: theme === 'light' ? '#00e0f3' : '#0e1111',
             color: theme === 'light' ? '#0e1111' : '#ffffff',
             marginTop: '1px',
             padding: '1px',
@@ -214,7 +218,7 @@ const Timeline = () => {
             style={{
               fontSize: '1.3em',
               fontWeight: 'bold',
-              background: theme === 'light' ? '#00e0f3' : '#ffffff',
+              background: theme === 'light' ? '#00e0f3' : '#0e1111',
               color: theme === 'light' ? '#ffffff' : '#00e0f3',
               padding: 10,
             }}

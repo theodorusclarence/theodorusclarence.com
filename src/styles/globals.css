@@ -133,11 +133,11 @@
   }
 
   .accordian :not(:last-child) {
-    /* border-bottom: 2px; */
+    border-bottom: 2px;
   }
 
   .accordian :before {
-    display: none;
+    /* display: none; */
   }
 
   .accordion-summary .accordion-details {
