@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 import { IoArrowDownOutline } from 'react-icons/io5';
-import { IoNewspaperSharp } from 'react-icons/io5';
-import { SiGithub, SiInstagram } from 'react-icons/si';
+// import { IoNewspaperSharp } from 'react-icons/io5';
+import { SiGithub, SiInstagram, SiLinkedin } from 'react-icons/si';
 import { InView } from 'react-intersection-observer';
 
 import { trackEvent } from '@/lib/analytics';
@@ -19,7 +19,6 @@ import ContributionGraph from '@/components/content/ContributionGraph';
 import ProjectCard from '@/components/content/projects/ProjectCard';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
-import CustomLink from '@/components/links/CustomLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import TC from '@/components/TC';
@@ -49,63 +48,24 @@ export default function IndexPage({
           )}
         >
           <article className='layout'>
-            <h1
-              className='mt-1 text-3xl md:text-5xl 2xl:text-6xl'
-              data-fade='2'
-            >
-              With great power comes a <Accent>huge electric bill</Accent>.
-            </h1>
-            <br />
-            <h2 className='text-2xl md:text-4xl 2xl:text-5xl' data-fade='1'>
-              Elliot Mackinnon
-            </h2>
-            <p
-              className='mt-2 max-w-4xl text-sm leading-relaxed text-gray-700 dark:text-gray-200 md:mt-3 md:text-base 2xl:text-lg'
-              data-fade='2'
-              onClick={() => {
-                trackEvent('Social Link: Dimension', { type: 'link' });
-              }}
-            >
-              Full-time Engineer | The-Rest-Of-The-Time Tinkerer
-              {/* <CustomLink href='https://dimension.dev/?ref=theodorusclarence.com'>
-                Dimension
-              </CustomLink> */}
-            </p>
-            <p>
-              I am a full stack engineer, comfortable from starting at the
-              design of an application or system and carrying it all the way to
-              testing and implementation and efficient execution
-            </p>
-            <p
-              className='mt-3 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 md:mt-4 md:text-lg 2xl:text-xl'
-              data-fade='4'
-            >
-              Don't forget to check out my{' '}
-              <CustomLink href='/projects'>projects</CustomLink>!
-            </p>
-            <div
-              data-fade='5'
-              className='mt-8 flex flex-wrap gap-4 md:!text-lg'
-            >
-              <div className='group relative'>
-                <div
-                  className={clsx(
-                    'absolute -inset-0.5 animate-tilt rounded blur',
-                    'bg-gradient-to-r from-primary-300 to-primary-400',
-                    'dark:from-primary-200 dark:via-primary-300',
-                    'opacity-75 transition duration-1000 group-hover:opacity-100 group-hover:duration-200'
-                  )}
-                />
-                <ButtonLink href='#intro'>Read the blog</ButtonLink>
-              </div>
-              <ButtonLink href='/about'>Learn more about me</ButtonLink>
+            <div className='flex items-center justify-between'>
+              <h2 className='text-5xl md:text-5xl 5xl:text-6xl' data-fade='1'>
+                <Accent>Elliot Mackinnon</Accent>
+              </h2>
+              <h3
+                // className='mt-2 ml-20 max-w-4xl text-sm text-[#1da1f2] leading-relaxed text-gray-700 dark:text-gray-200 md:mt-3 md:text-base 2xl:text-lg'
+                className='mt-3 ml-20'
+                data-fade='2'
+              >
+                Full-time Engineer | Rest-Of-The-Time Tinkerer
+              </h3>
             </div>
             <div
               data-fade='6'
-              className='mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-8'
+              className='mt-4 flex align-middle gap-4 gap-y-2 md:mt-2 justify-start'
             >
               <UnstyledLink
-                href='https://www.linkedin.com/in/elliot-mackinnon-34b02194/overlay/1718740063812/single-media-viewer/?profileId=ACoAABPvqqsBIAgsVB1lGUaCgoDVKCwEirjP_Qc'
+                href='https://www.linkedin.com/in/elliot-mackinnon-34b02194/'
                 className={clsx(
                   'inline-flex items-center gap-1 text-sm font-medium md:text-base',
                   'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
@@ -113,11 +73,11 @@ export default function IndexPage({
                   'transition-colors'
                 )}
                 onClick={() => {
-                  trackEvent('Social Link: Resume', { type: 'link' });
+                  trackEvent('Social Link: LinkedIn', { type: 'link' });
                 }}
               >
-                <IoNewspaperSharp className='shrink-0' />
-                <span>Resume</span>
+                <SiLinkedin className='shrink-0' />
+                <span>LinkedIn</span>
               </UnstyledLink>
               <UnstyledLink
                 href='https://www.instagram.com/emackinnon1/'
@@ -150,7 +110,38 @@ export default function IndexPage({
                 <span>emackinnon1</span>
               </UnstyledLink>
             </div>
-            <div className='h-full w-full mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-8'>
+            <br />
+            <h1
+              className='mt-10 text-4xl md:text-4xl 4xl:text-5xl'
+              data-fade='2'
+            >
+              With great power comes a <Accent>huge electric bill</Accent>.
+            </h1>
+            {/* <p>
+              I am a full stack engineer, comfortable from starting at the
+              design of an application or system and carrying it all the way to
+              testing and implementation and efficient execution
+            </p> */}
+            <div
+              data-fade='5'
+              className='mt-8 mb-20 flex flex-wrap gap-4 md:!text-lg'
+            >
+              <div className='group relative'>
+                <div
+                  className={clsx(
+                    'absolute -inset-0.5 animate-tilt rounded blur',
+                    'bg-gradient-to-r from-primary-300 to-primary-400',
+                    'dark:from-primary-200 dark:via-primary-300',
+                    'opacity-75 transition duration-1000 group-hover:opacity-100 group-hover:duration-200'
+                  )}
+                />
+                <ButtonLink href='/about'>Learn more about me</ButtonLink>
+              </div>
+              <ButtonLink href='/blog'>Read the blog</ButtonLink>
+              <ButtonLink href='/projects'>See my projects</ButtonLink>
+            </div>
+
+            <div className='h-full w-full mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-10'>
               <ContributionGraph />
             </div>
           </article>

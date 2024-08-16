@@ -106,15 +106,18 @@ export default function AboutPage() {
                   for a few years. I taught English to kindergarten-aged
                   children over there, realizing that I am no different from
                   them: I too hate my vegetables and refuse to wear socks and
-                  shoes idoors. While being a shepherd to a roving herd of small
-                  humans and in between solo online German lessons before and
-                  after work, I taught myself how to code. Wanting to learn
-                  faster, I came back to the States and did a frontend program
-                  at Turing School in Denver, CO and got a job soon after doing
-                  full stack work. Since then, I have been fiddling with
-                  firmware, puttering around with raspberry pi's and getting my
-                  hands into everything software-related. Tinkering and building
-                  has become a career and a hobby.
+                  shoes indoors.
+                </p>
+                <p data-fade='4'>
+                  While being a shepherd to a roving herd of small humans and in
+                  between solo online German lessons before and after work, I
+                  taught myself how to code. Wanting to learn faster, I came
+                  back to the States and did a frontend program at Turing School
+                  in Denver, CO and got a job soon after doing full stack work.
+                  Since then, I have been fiddling with firmware, puttering
+                  around with raspberry pi's and getting my hands into
+                  everything software-related. Tinkering and building has become
+                  a career and a hobby.
                 </p>
               </article>
               {/* <h3 className='h4 mt-4' data-fade='6'>
