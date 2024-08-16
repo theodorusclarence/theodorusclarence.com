@@ -1,11 +1,4 @@
 import Image from 'next/image';
-import path from 'path';
-
-const serverPath = (staticFilePath: string) => {
-  return path.resolve('./public', staticFilePath);
-};
-
-console.log('HI', serverPath('/images/searching-duck.gif'));
 
 type stateType = {
   value?: string;
