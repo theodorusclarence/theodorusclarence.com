@@ -15,6 +15,7 @@ import useLoaded from '@/hooks/useLoaded';
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/content/blog/BlogCard';
 import ShortsCard from '@/components/content/card/ShortsCard';
+import ContributionGraph from '@/components/content/ContributionGraph';
 import ProjectCard from '@/components/content/projects/ProjectCard';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
@@ -148,6 +149,9 @@ export default function IndexPage({
                 <SiGithub className='shrink-0' />
                 <span>emackinnon1</span>
               </UnstyledLink>
+            </div>
+            <div className='h-full w-full mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-8'>
+              <ContributionGraph />
             </div>
           </article>
           <UnstyledLink

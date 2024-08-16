@@ -1,5 +1,5 @@
 'use client';
-import { CardActions, CardContent, List, ListItem } from '@mui/material';
+import { CardContent, List, ListItem } from '@mui/material';
 import { Box, Typography } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -36,7 +36,7 @@ const Timeline = () => {
               key={index}
               className='vertical-timeline-element--work text-gray-700 dark:text-gray-200'
               contentStyle={{
-                background: theme === 'light' ? '#00e0f3' : '#ffffff',
+                background: theme === 'light' ? '#00e0f3' : '#0e1111',
                 color: theme === 'light' ? '#0e1111' : '#ffffff',
                 marginTop: '1px',
                 padding: '1px',
@@ -55,42 +55,58 @@ const Timeline = () => {
               icon={<MdWork />}
               intersectionObserverProps={{ triggerOnce: false }}
             >
-              <CardContent>
+              <CardContent
+                sx={{ display: 'flex', justifyContent: 'space-between' }}
+              >
                 <Image
                   src={item?.imageSrc}
-                  width={100}
-                  alt='Guild logo'
-                  height={110}
-                  style={{ display: 'inline-grid' }}
+                  width={80}
+                  alt='Company logo'
+                  height={90}
                 />
-                <Typography
-                  gutterBottom
-                  className='text-gray-700 dark:text-gray-200'
-                  variant='h5'
-                  component='div'
-                  style={{
-                    fontSize: '1.3em',
-                    fontWeight: 'bold',
-                    color: theme === 'light' ? '#ffffff' : '#00e0f3',
-                  }}
-                >
-                  {item.title}
-                </Typography>
+                <Box>
+                  <Typography
+                    gutterBottom
+                    className='text-gray-700 dark:text-gray-200'
+                    variant='h5'
+                    component='div'
+                    style={{
+                      fontSize: '1.7em',
+                      fontWeight: 'bold',
+                      color: theme === 'light' ? '#ffffff' : '#00e0f3',
+                      marginBottom: 5,
+                      marginLeft: 10,
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <CustomLink
+                    href={item.link}
+                    style={{
+                      marginLeft: '1' + 'em',
+                      marginTop: 0,
+                      fontSize: '1.2em',
+                    }}
+                  >
+                    {item.company}
+                  </CustomLink>
+                </Box>
               </CardContent>
-              <CardActions>
+              {/* <CardActions>
                 <CustomLink
                   href={item.link}
                   style={{
                     marginLeft: '1' + 'em',
+                    marginTop: 0,
                     fontSize: '15px',
                   }}
                 >
                   {item.company}
                 </CustomLink>
-              </CardActions>
+              </CardActions> */}
               {item?.description?.responsibilities && (
                 <Accordion
-                  className='accordian'
+                  className='accordian dark:bg-dark dark:text-white bg-primary-400'
                   expanded={expanded === `${item.date}-responsibilities`}
                   onChange={(e, expanded) =>
                     expanded
@@ -100,7 +116,9 @@ const Timeline = () => {
                 >
                   <AccordionSummary
                     className='accordion-summary'
-                    expandIcon={<IoArrowDownOutline />}
+                    expandIcon={
+                      <IoArrowDownOutline className='dark:bg-dark dark:text-white' />
+                    }
                     aria-controls='panel2-content'
                     id='panel2-header'
                   >
@@ -128,7 +146,7 @@ const Timeline = () => {
               {item?.description?.accomplishments &&
                 Array.isArray(item?.description?.accomplishments) && (
                   <Accordion
-                    className='accordion'
+                    className='accordion dark:bg-dark dark:text-white bg-primary-400'
                     expanded={expanded === `${item.date}-accomplishments`}
                     onChange={(e, expanded) =>
                       expanded
@@ -138,7 +156,9 @@ const Timeline = () => {
                   >
                     <AccordionSummary
                       className='accordion-summary'
-                      expandIcon={<IoArrowDownOutline />}
+                      expandIcon={
+                        <IoArrowDownOutline className='dark:bg-dark dark:text-white' />
+                      }
                       aria-controls='panel2-content'
                       id='panel2-header'
                     >
@@ -170,7 +190,7 @@ const Timeline = () => {
         <VerticalTimelineElement
           className='vertical-timeline-element--work text-gray-700 dark:text-gray-200'
           contentStyle={{
-            background: theme === 'light' ? '#00e0f3' : '#ffffff',
+            background: theme === 'light' ? '#00e0f3' : '#0e1111',
             color: theme === 'light' ? '#0e1111' : '#ffffff',
             marginTop: '1px',
             padding: '1px',
@@ -198,7 +218,7 @@ const Timeline = () => {
             style={{
               fontSize: '1.3em',
               fontWeight: 'bold',
-              background: theme === 'light' ? '#00e0f3' : '#ffffff',
+              background: theme === 'light' ? '#00e0f3' : '#0e1111',
               color: theme === 'light' ? '#ffffff' : '#00e0f3',
               padding: 10,
             }}
