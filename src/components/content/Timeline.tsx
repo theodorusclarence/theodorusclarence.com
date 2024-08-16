@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import React, { useState } from 'react';
 import { IoArrowDownOutline } from 'react-icons/io5';
-import { MdWork } from 'react-icons/md';
+import { MdRocket, MdWork } from 'react-icons/md';
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -36,8 +36,8 @@ const Timeline = () => {
               key={index}
               className='vertical-timeline-element--work text-gray-700 dark:text-gray-200'
               contentStyle={{
-                background: theme === 'light' ? '#00e0f3' : '#0e1111',
-                color: theme === 'light' ? '#0e1111' : '#ffffff',
+                background: theme === 'light' ? '#ffffff' : '#0e1111',
+                color: theme === 'light' ? '#00e0f3' : '#ffffff',
                 marginTop: '1px',
                 padding: '1px',
                 border: '2px solid #00e0f3',
@@ -67,13 +67,12 @@ const Timeline = () => {
                 <Box>
                   <Typography
                     gutterBottom
-                    className='text-gray-700 dark:text-gray-200'
+                    className='text-gray-700 dark:text-primary-400'
                     variant='h5'
                     component='div'
                     style={{
                       fontSize: '1.7em',
                       fontWeight: 'bold',
-                      color: theme === 'light' ? '#ffffff' : '#00e0f3',
                       marginBottom: 5,
                       marginLeft: 10,
                     }}
@@ -188,9 +187,9 @@ const Timeline = () => {
           </>
         ))}
         <VerticalTimelineElement
-          className='vertical-timeline-element--work text-gray-700 dark:text-gray-200'
+          className='vertical-timeline-element--work text-gray-700 dark:text-primary-400'
           contentStyle={{
-            background: theme === 'light' ? '#00e0f3' : '#0e1111',
+            background: theme === 'light' ? '#ffffff' : '#0e1111',
             color: theme === 'light' ? '#0e1111' : '#ffffff',
             marginTop: '1px',
             padding: '1px',
@@ -206,10 +205,9 @@ const Timeline = () => {
             backgroundImage:
               'linear-gradient(to top, #00ff94, #00e0f3, #00c4fd)',
           }}
-          icon={<MdWork />}
+          icon={<MdRocket />}
           intersectionObserverProps={{ triggerOnce: false }}
         >
-          {/* <Box sx={{ margin: 10 }}> */}
           <Typography
             gutterBottom
             className='text-gray-700 dark:text-gray-200'
@@ -218,8 +216,7 @@ const Timeline = () => {
             style={{
               fontSize: '1.3em',
               fontWeight: 'bold',
-              background: theme === 'light' ? '#00e0f3' : '#0e1111',
-              color: theme === 'light' ? '#ffffff' : '#00e0f3',
+              background: theme === 'light' ? '#ffffff' : '#0e1111',
               padding: 10,
             }}
           >
