@@ -14,7 +14,7 @@ import useLoaded from '@/hooks/useLoaded';
 
 import Accent from '@/components/Accent';
 import BlogCard from '@/components/content/blog/BlogCard';
-import ShortsCard from '@/components/content/card/ShortsCard';
+// import ShortsCard from '@/components/content/card/ShortsCard';
 import ContributionGraph from '@/components/content/ContributionGraph';
 import ProjectCard from '@/components/content/projects/ProjectCard';
 import Layout from '@/components/layout/Layout';
@@ -26,13 +26,13 @@ import TC from '@/components/TC';
 export default function IndexPage({
   featuredPosts,
   featuredProjects,
-  featuredShorts,
+  // featuredShorts,
   introPosts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const populatedPosts = useInjectContentMeta('blog', featuredPosts);
   const populatedIntro = useInjectContentMeta('blog', introPosts);
   const populatedProjects = useInjectContentMeta('projects', featuredProjects);
-  const populatedShorts = useInjectContentMeta('library', featuredShorts);
+  // const populatedShorts = useInjectContentMeta('library', featuredShorts);
 
   const isLoaded = useLoaded();
 
@@ -190,7 +190,7 @@ export default function IndexPage({
                     <strong className='text-gray-700 dark:text-gray-200'>
                       Check it out
                     </strong>{' '}
-                    by heading over to the blog, project or shorts section!
+                    by heading over to the blog or project sections!
                   </div>
                 </div>
                 <div className='h-full w-full'>
@@ -285,7 +285,7 @@ export default function IndexPage({
           )}
         </InView>
 
-        <InView triggerOnce rootMargin='-40% 0px'>
+        {/* <InView triggerOnce rootMargin='-40% 0px'>
           {({ ref, inView }) => (
             <section
               ref={ref}
@@ -320,7 +320,7 @@ export default function IndexPage({
               </article>
             </section>
           )}
-        </InView>
+        </InView> */}
       </main>
     </Layout>
   );
@@ -331,7 +331,7 @@ export async function getStaticProps() {
 
   const blogs = await getAllFilesFrontmatter('blog');
   const projects = await getAllFilesFrontmatter('projects');
-  const shorts = await getAllFilesFrontmatter('library');
+  // const shorts = await getAllFilesFrontmatter('library');
 
   const featuredPosts = getFeatured(blogs, [
     'carnivorous',
@@ -342,7 +342,7 @@ export async function getStaticProps() {
     'table-motor',
     'watering-system',
   ]);
-  const featuredShorts = getFeatured(shorts, ['hard-problem']);
+  // const featuredShorts = getFeatured(shorts, ['hard-problem']);
 
   const introPosts = getFeatured(blogs, ['carnivorous', 'photography']);
 
@@ -350,7 +350,7 @@ export async function getStaticProps() {
     props: {
       featuredPosts,
       featuredProjects,
-      featuredShorts,
+      // featuredShorts,
       introPosts,
     },
   };
