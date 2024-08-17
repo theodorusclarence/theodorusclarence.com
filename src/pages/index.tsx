@@ -138,7 +138,7 @@ export default function IndexPage({
               <ButtonLink href='/projects'>See my projects</ButtonLink>
             </div>
 
-            <div className='hidden md:block h-full w-full mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-10'>
+            <div className='h-full w-full mt-4 flex flex-wrap gap-4 gap-y-2 md:mt-10'>
               <ContributionGraph />
             </div>
           </article>
