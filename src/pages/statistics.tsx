@@ -148,51 +148,6 @@ export default function StatisticsPage() {
   //#endregion  //*======== ProjectColumns ===========
 
   //#region  //*=========== LibraryColumns ===========
-  const shorts = pickContentMeta(contentMeta, 'library');
-  const shortsColumns: ColumnDef<(typeof shorts)[number]>[] = [
-    {
-      accessorKey: 'slug',
-      header: 'Slug',
-      cell: ({ row }) => (
-        <UnstyledLink
-          className='font-medium'
-          openNewTab
-          href={`/shorts/${row.original.slug}?ref=statistics`}
-        >
-          {row.original.slug}
-        </UnstyledLink>
-      ),
-      footer: 'Total',
-      sortDescFirst: true,
-    },
-    {
-      accessorKey: 'views',
-      header: 'Total Views',
-      cell: ({ row }) => row.original.views.toLocaleString(),
-      footer: ({ table }) =>
-        table
-          .getFilteredRowModel()
-          .rows.reduce((sum, row) => sum + row.original.views, 0)
-          .toLocaleString(),
-      meta: {
-        align: 'right',
-      },
-    },
-    {
-      accessorKey: 'likes',
-      header: 'Likes',
-      cell: ({ row }) => row.original.likes.toLocaleString(),
-      footer: ({ table }) =>
-        table
-          .getFilteredRowModel()
-          .rows.reduce((sum, row) => sum + row.original.likes, 0)
-          .toLocaleString(),
-      meta: {
-        align: 'right',
-      },
-    },
-  ];
-  //#endregion  //*======== LibraryColumns ===========
 
   //#region  //*=========== Statistic Cards ===========
   const statCards = [
@@ -210,16 +165,6 @@ export default function StatisticsPage() {
         .toLocaleString(),
       likes: projects
         .reduce((sum, project) => sum + project.likes, 0)
-        .toLocaleString(),
-    },
-    {
-      title: 'Shorts',
-      count: shorts.length,
-      views: shorts
-        .reduce((sum, short) => sum + short.views, 0)
-        .toLocaleString(),
-      likes: shorts
-        .reduce((sum, short) => sum + short.likes, 0)
         .toLocaleString(),
     },
   ];
@@ -293,17 +238,6 @@ export default function StatisticsPage() {
                 className='mt-4'
                 data={projects}
                 columns={projectColumns}
-              />
-            )}
-
-            <h2 className='h3 mt-8'>Shorts</h2>
-            {shorts && (
-              <Table
-                withFilter
-                withFooter
-                className='mt-4'
-                data={shorts}
-                columns={shortsColumns}
               />
             )}
           </div>
