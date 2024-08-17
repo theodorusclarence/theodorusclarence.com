@@ -41,7 +41,9 @@ export default function Img({
 
   const RESIZE_MAX_WIDTH = 1000;
   const resizedToMaxWidth = mdx && +width >= RESIZE_MAX_WIDTH;
-  const path = publicId;
+  const path: string = publicId.startsWith('/images')
+    ? `https://folio-v2-images.s3.us-west-2.amazonaws.com${publicId}`
+    : publicId;
 
   return (
     <figure
