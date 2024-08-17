@@ -52,7 +52,7 @@ export default function AboutPage() {
             <div className='mt-4' data-fade='2'>
               <Img
                 className='float-right ml-6 w-40 md:w-72'
-                publicId='/images/portrait.jpg'
+                publicId='https://folio-v2-images.s3.us-west-2.amazonaws.com/images/portrait.jpg'
                 width='1700'
                 height='1300'
                 alt='Portrait under greenhouse grow lights.'
