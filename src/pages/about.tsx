@@ -60,6 +60,7 @@ export default function AboutPage() {
                 aspect={{ width: 1.5, height: 1 }}
                 title=' '
               />
+
               <article className='prose dark:prose-invert'>
                 <p data-fade='3'>
                   Like most people my age, I am {age}. (That was a joke).
@@ -177,23 +178,22 @@ export default function AboutPage() {
               <figure className='mt-2' data-fade='9'>
                 <TechStack />
               </figure>
+              <section>
+                <div className='mt-8'>
+                  <h4>What I am working on these days:</h4>
+                  <article className='prose dark:prose-invert'>
+                    <p>
+                      Currently I am learning firmware and working on mastering
+                      microcontrollers in C++!
+                    </p>
+                  </article>
+                </div>
+              </section>
             </div>
           </div>
         </section>
         <section>
           <Timeline />
-        </section>
-
-        <section>
-          <div className='layout mt-16'>
-            <h2>What I am working on these days:</h2>
-            <article className='prose mt-4 dark:prose-invert'>
-              <p>
-                Currently I am learning firmware and working on mastering
-                microcontrollers in C++!
-              </p>
-            </article>
-          </div>
         </section>
       </main>
     </Layout>
