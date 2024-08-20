@@ -64,7 +64,7 @@ const Timeline = () => {
                   alt='Company logo'
                   height={90}
                 />
-                <Box>
+                <Box className='flex flex-col items-end justify-center'>
                   <Typography
                     gutterBottom
                     className='text-gray-700 dark:text-primary-400'
@@ -73,8 +73,6 @@ const Timeline = () => {
                     style={{
                       fontSize: '1.7em',
                       fontWeight: 'bold',
-                      marginBottom: 5,
-                      marginLeft: 10,
                     }}
                   >
                     {item.title}
@@ -82,8 +80,6 @@ const Timeline = () => {
                   <CustomLink
                     href={item.link}
                     style={{
-                      marginLeft: '1' + 'em',
-                      marginTop: 0,
                       fontSize: '1.2em',
                     }}
                   >
@@ -91,18 +87,21 @@ const Timeline = () => {
                   </CustomLink>
                 </Box>
               </CardContent>
-              {/* <CardActions>
-                <CustomLink
-                  href={item.link}
-                  style={{
-                    marginLeft: '1' + 'em',
-                    marginTop: 0,
-                    fontSize: '15px',
-                  }}
-                >
-                  {item.company}
-                </CustomLink>
-              </CardActions> */}
+              {item?.description?.accomplishments && (
+                <CardContent>
+                  {item?.description?.accomplishments.map((line, index) => (
+                    <ListItem
+                      disableGutters
+                      className='text-gray-700 dark:text-primary-400'
+                      sx={{ display: 'list-item', marginLeft: 0 }}
+                      style={{ fontSize: '1em' }}
+                      key={index}
+                    >
+                      {line}
+                    </ListItem>
+                  ))}
+                </CardContent>
+              )}
               {item?.description?.responsibilities && (
                 <Accordion
                   className='accordian dark:bg-dark dark:text-white bg-primary-400'
@@ -131,7 +130,11 @@ const Timeline = () => {
                       {item?.description?.responsibilities.map(
                         (line, index) => (
                           <ListItem
-                            sx={{ display: 'list-item', marginLeft: 0 }}
+                            sx={{
+                              display: 'list-item',
+                              marginLeft: 0,
+                              fontSize: 12,
+                            }}
                             key={index}
                           >
                             {line}
@@ -142,7 +145,7 @@ const Timeline = () => {
                   </AccordionDetails>
                 </Accordion>
               )}
-              {item?.description?.accomplishments &&
+              {/* {item?.description?.accomplishments &&
                 Array.isArray(item?.description?.accomplishments) && (
                   <Accordion
                     className='accordion dark:bg-dark dark:text-white bg-primary-400'
@@ -182,7 +185,7 @@ const Timeline = () => {
                       </List>
                     </AccordionDetails>
                   </Accordion>
-                )}
+                )} */}
             </VerticalTimelineElement>
           </>
         ))}
