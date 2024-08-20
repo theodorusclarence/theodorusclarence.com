@@ -187,7 +187,7 @@ const Timeline = () => {
           </>
         ))}
         <VerticalTimelineElement
-          className='vertical-timeline-element--work text-gray-700 dark:text-primary-400'
+          className='vertical-timeline-element--work text-gray-700 dark:text-gray-200'
           contentStyle={{
             background: theme === 'light' ? '#ffffff' : '#0e1111',
             color: theme === 'light' ? '#0e1111' : '#ffffff',
