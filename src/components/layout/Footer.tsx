@@ -1,4 +1,3 @@
-import { FeedbackFish } from '@feedback-fish/react';
 import * as React from 'react';
 import { FiMail } from 'react-icons/fi';
 import { IconType } from 'react-icons/lib';
@@ -12,7 +11,7 @@ import Spotify from '@/components/layout/Spotify';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Tooltip from '@/components/Tooltip';
 
-import { feedbackFlag, spotifyFlag } from '@/constants/env';
+import { spotifyFlag } from '@/constants/env';
 
 export default function Footer() {
   return (
@@ -29,18 +28,6 @@ export default function Footer() {
 
         <p className='mt-8 text-sm text-gray-600 dark:text-gray-300'>
           © Theodorus Clarence {new Date().getFullYear()}
-          {feedbackFlag && (
-            <>
-              {' • '}
-              <FeedbackFish
-                projectId={process.env.NEXT_PUBLIC_FEEDBACK_FISH_ID || ''}
-              >
-                <button className='rounded-sm hover:text-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:hover:text-gray-100'>
-                  Got any feedback?
-                </button>
-              </FeedbackFish>
-            </>
-          )}
         </p>
       </main>
     </footer>
