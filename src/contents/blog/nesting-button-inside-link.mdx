@@ -1,0 +1,206 @@
+---
+title: 'Nesting a button inside a link'
+publishedAt: '2024-09-28'
+description: 'Discover whether you can nest a <button> element inside an <a> tag.'
+banner: 'maurice-schalker-biJCd2N-1ms-unsplash'
+tags: 'web,react'
+englishOnly: true
+---
+
+## Introduction
+
+If you have ever used Linear. You might notice that they use a link for their kanban item
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nesting-button-inside-link/CleanShot_2024-09-28_at_10.32.43'
+  alt='Linear kanban is using a link for the their kanban item'
+  width={500}
+  height={527}
+/>
+
+But it’s also interactable
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nesting-button-inside-link/CleanShot_2024-09-24_at_23.22.532x'
+  alt="Linear kanban has button inside a link that's interactable"
+  width={400}
+  height={343}
+/>
+
+If you ever tried to build this, you might found some problem. That’s probably the reason you came across this article. It’s not entirely straightforward to nest an interactive button inside a link. How is that possible?
+
+### HTML5 Spec Disclaimer
+
+Just for disclaimer, it’s actually not recommended to have a button nested inside an `<a>` tag.
+
+> The a element may be wrapped around entire paragraphs, lists, tables, and so forth, even entire sections, so long as there is no interactive content within (e.g. buttons or other links).
+> \- [stackoverflow](https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5)
+
+I’m not well-versed on the a11y side of the web. But this link and nested interactive is getting more popular since linear used the same pattern.
+
+### If it has to be done
+
+If your designer/PM said to ignore the spec and **it has to be done**. I got the solution.
+
+I’m gonna walk you through the attempts that I made, and the flaws each step until I make the current working solution.
+
+Note: My examples is going to use React. But it will be the same with any framework, because it’s purely DOM operations.
+
+## First Mundane Attempt
+
+It’s quite natural to reach to this solution using markup
+
+```jsx
+<a href='https://theodorusclarence.com'>
+  hello this is a link
+  <button onClick={open}>open combobox</button>
+</a>
+```
+
+However, you’re gonna get quickly disappointed because when you have a button inside a link, the link default behavior will take precedence. Thus, clicking the button will send you directly to the link instead of doing the `onClick`.
+
+<CloudinaryVideoPlayer
+  mdx
+  publicId='theodorusclarence/blogs/nesting-button-inside-link/mundane-attempt'
+  width='400'
+  height='464'
+/>
+
+## Preventing Default
+
+You can actually stop the `<a>` from redirecting by using `e.preventDefault` .
+
+```jsx
+<a href='https://theodorusclarence.com' onClick={(e) => e.preventDefault()}>
+  hello this is a link
+  <button onClick={() => alert('open combobox')}>open combobox</button>
+</a>
+```
+
+By preventing the default behavior, we won’t be redirected to the link.
+
+<CloudinaryVideoPlayer
+  mdx
+  publicId='theodorusclarence/blogs/nesting-button-inside-link/preventing-default'
+  width={400}
+  height={380}
+/>
+
+That means, we can selectively prevent the default behavior when we are clicking a **button**.
+
+```tsx
+<a
+  href='https://theodorusclarence.com'
+  onClick={(e) => {
+    if (e.target instanceof HTMLElement && e.target.tagName === 'BUTTON') {
+      e.preventDefault();
+    }
+  }}
+>
+  hello this is a link{' '}
+  <button onClick={() => alert('open combobox')}>(open combobox)</button>
+</a>
+```
+
+That works right? Or is it 🤨?
+
+## Putting icons inside a button
+
+It’s very common for a button to have icons inside, or maybe other elements like span and stuff.
+
+This is where another problem comes.
+
+```tsx
+<a
+  href='https://theodorusclarence.com'
+  onClick={(e) => {
+    if (e.target instanceof HTMLElement && e.target.tagName === 'BUTTON') {
+      e.preventDefault();
+    }
+  }}
+>
+  hello this is a link{' '}
+  <button onClick={() => alert('open combobox')}>
+    <svg width='12' height='12' viewBox='0 0 12 12'>
+      <circle cx='6' cy='6' r='6' fill='currentColor' />
+    </svg>
+  </button>
+</a>
+```
+
+<CloudinaryVideoPlayer
+  mdx
+  publicId='theodorusclarence/blogs/nesting-button-inside-link/icons-inside-buttons'
+  width={400}
+  height={464}
+/>
+
+It doesn’t work.
+
+If your button has svg inside, when we are checking the `e.target.tagName` it won’t detect as a button since we are actually clicking on the SVG element itself (`circle`)
+
+<CloudinaryImg
+  mdx
+  publicId='theodorusclarence/blogs/nesting-button-inside-link/CleanShot_2024-09-24_at_23.54.222x'
+  alt='CleanShot'
+  width={500}
+  height={358}
+/>
+
+## Solution: Recursive Check
+
+The solution is to do a recursive check up to the parent.
+
+```tsx
+const checkIgnoreNestedLink = React.useCallback(
+  (e: React.MouseEvent<HTMLAnchorElement>) => {
+    let cur = e.target as HTMLElement;
+
+    while (cur) {
+      if (cur.dataset?.ignoreNestedLink) {
+        return true;
+      }
+
+      if (cur.parentElement) {
+        cur = cur.parentElement;
+      } else {
+        break;
+      }
+    }
+
+    return false;
+  },
+  []
+);
+
+return (
+  <button
+    onClick={(e) => {
+      if (checkIgnoreNestedLink(e)) {
+        e.preventDefault();
+      }
+    }}
+  >
+    <svg />
+  </button>
+);
+```
+
+This code will ensure that we check all of the element that we click, as well as all of the parent elements until we found `data-ignore-nested-link`.
+
+To use it, you can just add the data attribute to the button that you have.
+
+```tsx
+<a>
+  ...
+  <button data-ignore-nested-link />
+</a>
+```
+
+Note: If you’re using Radix UI, you also need to add the attribute to the popover content/other element content.
+
+## Conclusion
+
+This will work since the check is guaranteed to be exhaustive. Good luck!
