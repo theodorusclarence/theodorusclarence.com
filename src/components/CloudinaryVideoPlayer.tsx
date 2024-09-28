@@ -16,15 +16,17 @@ export default function CloudinaryVideoPlayer({
 }: CloudinaryVideoPlayerProps) {
   return (
     <div
-      className='not-prose'
+      className='not-prose mx-auto'
       style={
         {
+          maxWidth: `${rest.width}px`,
           '--width': rest.width,
           '--height': rest.height,
         } as React.CSSProperties
       }
     >
       <CldVideoPlayer
+        id={publicId}
         className={clsx([
           '[&_.vjs-poster_img]:!object-contain !pt-[calc(var(--height)/var(--width)*100%)]',
           // remove white overlay
