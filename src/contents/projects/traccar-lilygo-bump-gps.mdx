@@ -19,7 +19,7 @@ in articles like [these](SIM7000G chip). I used mine with an MPU6050 to allow fo
 
 ### Supply list
 
-- [Lilygo T-Sim7000g](https://www.lilygo.cc/en-pl/products/t-sim7000g?srsltid=AfmBOopCDDR9SqL6_LpWweL-p6BrUHF4FsLO8fOUN2q282IJ-ty6Kr5G)
+- [Lilygo T-Sim7000g](https://www.lilygo.cc/en-pl/products/t-sim7000g?srsltid=AfmBOopCDDR9SqL6_LpWweL-p6BrUHF4FsLO8fOUN2q282IJ-ty6Kr5G).
   Amazon also has them in America.
 - SIM card. I got one from [Hologram](https://www.hologram.io/) and it was super easy to set up.
 - 18650 battery. You can get these from Amazon and many other places online, just make sure it's a decent one.
@@ -36,7 +36,7 @@ This is largely based on the code found in this article under the section titled
 I also used the relevants parts of this code that [sends data to Traccar](https://github.com/onlinegill/LILYGO-TTGO-T-SIM7000G-ESP32-Traccar-GPS-tracker/blob/main/traccar.ino).
 
 You will want to get your SIM card set up first and test this near a window or outside for good service. Uncomment [these lines with test server and resources](https://github.com/emackinnon1/lilygo-bump-GPS/blob/main/lilygo_bump_GPS.ino#L49-L52) and
-and comment out [these lines](https://github.com/emackinnon1/lilygo-bump-GPS/blob/main/lilygo_bump_GPS.ino#L43-L44) in order to try out making http requests. You can comment out the other
+comment out [these lines](https://github.com/emackinnon1/lilygo-bump-GPS/blob/main/lilygo_bump_GPS.ino#L43-L44) in order to try out making http requests. You can comment out the other
 lines setting up the MPU while you are testing as well.
 
 The other [major part of the code that contains an http call](https://github.com/emackinnon1/lilygo-bump-GPS/blob/main/lilygo_bump_GPS.ino#L189-L231) is making a call to my Traccar
@@ -49,4 +49,12 @@ SDA to GPIO XX and GPIO XX respectively. After that you just need a line for 3.3
 
 It's optional, but you can also use a solar panel to charge the battery.
 
-##
+## Wrap Up
+
+As mentioned above, this was the iteration I wanted to make after I made my first [motion sensor](/projects/motion-sensor). MPU6050 modules are extremely useful for motion or
+vibration detection and now that I can combine them with this Lilygo T-SIM7000g, I can send data untethered from a wifi connection or point-to-point communication protocol.
+
+A few of the drawbacks of this iteration are the slow up time (the previous iteration with HC-12s pinged my phone in a matter of seconds that the motion sensor was bumped).
+It takes about a full minute to connect to the hologram network and send updates via http requests. I may redo this project yet again if there is an available 5G solution,
+but a board or module with this capability seems to be hard-to-find as of now. One other piece about boards is that there is an [MCU based around Nordic Semi's nRF9160](https://www.adafruit.com/product/4753)
+with an accelerometer built in as well as a bunch of other features that are extendable with the [FeatherWing](https://www.adafruit.com/category/945) line of products from Adafruit.
