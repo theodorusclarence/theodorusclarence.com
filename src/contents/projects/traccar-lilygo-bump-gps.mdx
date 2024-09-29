@@ -1,0 +1,60 @@
+---
+title: 'ESP32-based bump sensor with GPS monitoring'
+description: 'ESP32-based bump sensor with SIM '
+category: 'DIY microcontroller projects'
+publishedAt: '2024-09-27'
+techs: 'c++,home assistant'
+banner: '/images/projects/traccar-lilygo-bump-gps/lilygo-t-sim7000g.jpg'
+link: 'https://github.com/emackinnon1/lilygo-bump-GPS'
+---
+
+>
+
+## Explanation of project
+
+The previous [iteration of this project](/projects/motion-sensor) was bound to distances of less than 1 KM because the HC-12, while extremely useful for sending simple,
+low bitrate serial data, was not going to allow me to know if someone bumped into my motorcycle while parked somewhere that wasn't within the range. This Lilygo T-Sim7000g
+module gives the functionality of an ESP32 with a SIM7000G chip, allowing you to make requests over mobile networks. More info about the pinouts and details can be found
+in articles like [these](SIM7000G chip). I used mine with an MPU6050 to allow for a notification to be sent to my phone from home assistant when my motorcycle is bumped while out and about.
+
+### Supply list
+
+- [Lilygo T-Sim7000g](https://www.lilygo.cc/en-pl/products/t-sim7000g?srsltid=AfmBOopCDDR9SqL6_LpWweL-p6BrUHF4FsLO8fOUN2q282IJ-ty6Kr5G).
+  Amazon also has them in America.
+- SIM card. I got one from [Hologram](https://www.hologram.io/) and it was super easy to set up.
+- 18650 battery. You can get these from Amazon and many other places online, just make sure it's a decent one.
+- 6v Solar panel. [Amazon](https://www.amazon.com/gp/product/B09ZL3F7CT/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) had these. DFRobot also has a [semi flexible version](https://www.dfrobot.com/product-1775.html)
+  that is a little more robust.
+- Electrical enclosure box. There are plenty of these to choose from on Amazon and other online stores.
+
+## Setting up SIM and testing code
+
+My code can be found here:
+https://github.com/emackinnon1/lilygo-bump-GPS/blob/main/lilygo_bump_GPS.ino
+
+This is largely based on the code found in this article under the section titled: [LILYGO T-SIM7000G ESP32: Connect to the Internet, Send SMS, and Get GPS Data](https://randomnerdtutorials.com/lilygo-t-sim7000g-esp32-lte-gprs-gps/#:~:text=LILYGO%20T%2DSIM7000G%20ESP32%3A%20Connect%20to%20the%20Internet%2C%20Send%20SMS%2C%20and%20Get%20GPS%20Data)
+I also used the relevants parts of this code that [sends data to Traccar](https://github.com/onlinegill/LILYGO-TTGO-T-SIM7000G-ESP32-Traccar-GPS-tracker/blob/main/traccar.ino).
+
+You will want to get your SIM card set up first and test this near a window or outside for good service. Uncomment [these lines with test server and resources](https://github.com/emackinnon1/lilygo-bump-GPS/blob/main/lilygo_bump_GPS.ino#L49-L52) and
+comment out [these lines](https://github.com/emackinnon1/lilygo-bump-GPS/blob/main/lilygo_bump_GPS.ino#L43-L44) in order to try out making http requests. You can comment out the other
+lines setting up the MPU while you are testing as well.
+
+The other [major part of the code that contains an http call](https://github.com/emackinnon1/lilygo-bump-GPS/blob/main/lilygo_bump_GPS.ino#L189-L231) is making a call to my Traccar
+server, which I set up to track GPS location. Traccar has an integration with Home Assistant that makes everything very easy.
+
+## Wiring
+
+The wiring on this module is fairly simple since the only peripheral is a MPU6050 but you could use this as a starting point for a lot of other peripherals. The SCL and
+SDA to GPIO 32 and GPIO 33 respectively. After that you just need a line for 3.3V and GND and one connected to GPIO 34 for an INT signal to wakeup the board.
+
+It's optional, but you can also use a solar panel to charge the battery.
+
+## Wrap Up
+
+As mentioned above, this was the iteration I wanted to make after I made my first [motion sensor](/projects/motion-sensor). MPU6050 modules are extremely useful for motion or
+vibration detection and now that I can combine them with this Lilygo T-SIM7000g, I can send data untethered from a wifi connection or point-to-point communication protocol.
+
+A few of the drawbacks of this iteration are the slow up time (the previous iteration with HC-12s pinged my phone in a matter of seconds that the motion sensor was bumped).
+It takes about a full minute to connect to the hologram network and send updates via http requests. I may redo this project yet again if there is an available 5G solution,
+but a board or module with this capability seems to be hard-to-find as of now. One other piece about boards is that there is an [MCU based around Nordic Semi's nRF9160](https://www.adafruit.com/product/4753)
+with an accelerometer built in as well as a bunch of other features that are extendable with the [FeatherWing](https://www.adafruit.com/category/945) line of products from Adafruit.
