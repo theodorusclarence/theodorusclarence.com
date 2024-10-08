@@ -298,6 +298,7 @@ export async function getStaticProps() {
     'tattoos',
   ]);
   const featuredProjects = getFeatured(projects, [
+    'lightning-lamp',
     'table-motor',
     'watering-system',
   ]);
