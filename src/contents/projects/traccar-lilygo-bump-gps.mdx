@@ -2,7 +2,7 @@
 title: 'ESP32-based bump sensor with GPS monitoring'
 description: 'ESP32-based bump sensor with SIM '
 category: 'DIY microcontroller projects'
-publishedAt: '2024-09-27'
+publishedAt: '2024-10-17'
 techs: 'c++,home assistant'
 banner: '/images/projects/traccar-lilygo-bump-gps/lilygo-t-sim7000g.jpg'
 link: 'https://github.com/emackinnon1/lilygo-bump-GPS'
@@ -12,7 +12,7 @@ link: 'https://github.com/emackinnon1/lilygo-bump-GPS'
 
 <Img
   mdx
-  publicId='/images/projects/traccar-lilygo-bump-gps/20241005_200852.jpg'
+  publicId='/images/projects/traccar-lilygo-bump-gps/mounted-3.jpg'
   alt='full assembly'
   height={800}
   width={600}
@@ -34,6 +34,11 @@ in articles like [these](SIM7000G chip). I used mine with an MPU6050 to allow fo
 - 6v Solar panel. [Amazon](https://www.amazon.com/gp/product/B09ZL3F7CT/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) had these. DFRobot also has a [semi flexible version](https://www.dfrobot.com/product-1775.html)
   that is a little more robust.
 - Electrical enclosure box. There are plenty of these to choose from on Amazon and other online stores.
+- [DF Robot Solar Power Manager](https://www.amazon.com/gp/product/B0CT2ZBML9/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1)
+- [3V channel relays](https://www.amazon.com/dp/B08W3XDNGK?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
+- [Buzzer](https://www.amazon.com/dp/B0D7W5S2GY?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
+- [12v A23 batteries](https://www.amazon.com/dp/B0CQ1WRJ96?ref=ppx_yo2ov_dt_b_fed_asin_title)
+- [A23 battery holder](https://www.amazon.com/dp/B0BDT1DTGW?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
 
 ## Setting up SIM and testing code
 
@@ -52,18 +57,42 @@ server, which I set up to track GPS location. Traccar has an integration with Ho
 
 ## Wiring
 
-The wiring on this module is fairly simple since the only peripheral is a MPU6050 but you could use this as a starting point for a lot of other peripherals. The SCL and
-SDA to GPIO 22 and GPIO 21 respectively. After that you just need a line for 3.3V and GND and one connected to GPIO 34 for an INT signal to wakeup the board.
+<Img
+  mdx
+  publicId='/images/projects/traccar-lilygo-bump-gps/lilygo-wiring.png'
+  alt='lilygo-wiring'
+  height={800}
+  width={600}
+/>
 
-It's optional, but you can also use a solar panel to charge the battery.
+The wiring on this module is fairly simple since the only peripherals wired to the board are an MPU6050 and a relay. The relay should have a 12v A23 battery on it and the
+buzzer.
+
+For the MPU, the SCL and SDA to GPIO 22 and GPIO 21 respectively. After that you just need a wire for 3.3V and GND and one connected to GPIO 32 for an INT signal to
+wakeup the board. The relay is pretty straightforward, connect one end to the other ground pin, one to the other 3v3 pin and one to a GPIO (I used 33).
+
+It's optional, but you can also use a solar panel to charge the battery. I did this and used the solar power manager. The nice part about the power manager
+is it tops ou your capacity to a quadruple factor with three more 18650 batteries and you can use whatever solar panel you want even if the voltage is higher than the
+recommended 6v. It does require a little more space inside the electrical box, so you may want to see if that will work for your uses.
 
 ## Wrap Up
 
-As mentioned above, this was the iteration I wanted to make after I made my first [motion sensor](/projects/motion-sensor). MPU6050 modules are extremely useful for motion or
-vibration detection and now that I can combine them with this Lilygo T-SIM7000g, I can send data untethered from a wifi connection or point-to-point communication protocol. In
-the future, I would like to add a small alarm to beep when the motion sensor is triggered.
+<Img
+  mdx
+  publicId='/images/projects/traccar-lilygo-bump-gps/mounted.jpg'
+  alt='full assembly with solar on motorcycle'
+  height={750}
+  width={500}
+/>
+
+As mentioned in the beginning, this was the iteration I wanted to make after I made my first [motion sensor](/projects/motion-sensor). MPU6050 modules are extremely useful for motion or
+vibration detection and now that I can combine them with this Lilygo T-SIM7000g, I can send data untethered from a wifi connection or point-to-point communication protocol.
 
 A few of the drawbacks of this iteration are the slow up time (the previous iteration with HC-12s pinged my phone in a matter of seconds that the motion sensor was bumped).
 It takes about a full minute to connect to the hologram network and send updates via http requests. I may redo this project yet again if there is an available 5G solution,
 but a board or module with this capability seems to be hard-to-find as of now. One other piece about boards is that there is an [MCU based around Nordic Semi's nRF9160](https://www.adafruit.com/product/4753)
-with an accelerometer built in as well as a bunch of other features that are extendable with the [FeatherWing](https://www.adafruit.com/category/945) line of products from Adafruit.
+with an accelerometer built in as well as a bunch of other features that are extendable with the [FeatherWing](https://www.adafruit.com/category/945) line of products from
+Adafruit.
+
+The last thing I wish I could change is the form factor. I might be able to make a smaller box once I figure out 3D printing, but for now I am stuck with this bulky, unwieldy
+electrical junction box that makes it look like I have an explosive strapped to my motorcycle... It is a _very_ DIY-looking project.
