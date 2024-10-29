@@ -12,10 +12,10 @@ link: 'https://github.com/emackinnon1/lilygo-bump-GPS'
 
 <Img
   mdx
-  publicId='/images/projects/traccar-lilygo-bump-gps/mounted-3.jpg'
+  publicId='/images/projects/traccar-lilygo-bump-gps/modular.jpg'
   alt='full assembly'
-  height={800}
-  width={600}
+  height={600}
+  width={800}
 />
 
 ## Explanation of project
@@ -39,6 +39,9 @@ in articles like [these](https://randomnerdtutorials.com/lilygo-t-sim7000g-esp32
 - [Buzzer](https://www.amazon.com/dp/B0D7W5S2GY?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
 - [12v A23 batteries](https://www.amazon.com/dp/B0CQ1WRJ96?ref=ppx_yo2ov_dt_b_fed_asin_title)
 - [A23 battery holder](https://www.amazon.com/dp/B0BDT1DTGW?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
+- [Electrical box for the alarm and relay](https://www.amazon.com/gp/product/B07S7RM4CT/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)
+- [Electrical box for the MPU](https://www.amazon.com/gp/product/B07SBWQL18/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)
+- [Industrial velcro](https://www.amazon.com/gp/product/B00006IC2T/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 
 ## Setting up SIM and testing code
 
@@ -66,7 +69,9 @@ server, which I set up to track GPS location. Traccar has an integration with Ho
 />
 
 The wiring on this module is fairly simple since the only peripherals wired to the board are an MPU6050 and a relay. The relay should have a 12v A23 battery on it and the
-buzzer.
+buzzer. I broke up the MPU and alarms into their own separate modules which made the form factor more manageable. You
+can use electrical glands to run the wires into the different boxes and velcro to attach everything to whatever it is
+you are using this system on.
 
 For the MPU, the SCL and SDA to GPIO 22 and GPIO 21 respectively. After that you just need a wire for 3.3V and GND and one connected to GPIO 32 for an INT signal to
 wakeup the board. The relay is pretty straightforward, connect one end to the other ground pin, one to the other 3v3 pin and one to a GPIO (I used 33).
@@ -77,22 +82,32 @@ recommended 6v. It does require a little more space inside the electrical box, s
 
 ## Wrap Up
 
-<Img
-  mdx
-  publicId='/images/projects/traccar-lilygo-bump-gps/mounted.jpg'
-  alt='full assembly with solar on motorcycle'
-  height={750}
-  width={500}
-/>
+<div className='flex items-center'>
+  <Img
+    mdx
+    publicId='/images/projects/traccar-lilygo-bump-gps/modular-2.jpg'
+    alt='Modular bump sensor'
+    width={375}
+    height={525}
+  />
+  <Img
+    mdx
+    publicId='/images/projects/traccar-lilygo-bump-gps/modular-3.jpg'
+    alt='Modular bump sensor'
+    width={375}
+    height={525}
+  />
+</div>
 
 As mentioned in the beginning, this was the iteration I wanted to make after I made my first [motion sensor](/projects/motion-sensor). MPU6050 modules are extremely useful for motion or
 vibration detection and now that I can combine them with this Lilygo T-SIM7000g, I can send data untethered from a wifi connection or point-to-point communication protocol.
 
 A few of the drawbacks of this iteration are the slow up time (the previous iteration with HC-12s pinged my phone in a matter of seconds that the motion sensor was bumped).
-It takes about a full minute to connect to the hologram network and send updates via http requests. I may redo this project yet again if there is an available 5G solution,
-but a board or module with this capability seems to be hard-to-find as of now. One other piece about boards is that there is an [MCU based around Nordic Semi's nRF9160](https://www.adafruit.com/product/4753)
-with an accelerometer built in as well as a bunch of other features that are extendable with the [FeatherWing](https://www.adafruit.com/category/945) line of products from
-Adafruit.
+It takes about a full minute to connect to the hologram network and send updates via http requests, not counting the the GPS calculation and upload, which could be upwards of
+15 minutes. I ended up removing the GPS portion of the code because it took so long and I moved the battery logging to Home Assistant. I may redo this project yet again
+if there is an available 5G solution, but a board or module with this capability seems to be hard-to-find as of now. One other piece about boards is that there is an [MCU based
+around Nordic Semi's nRF9160](https://www.adafruit.com/product/4753) with an accelerometer built in as well as a bunch of other features that are extendable
+with the [FeatherWing](https://www.adafruit.com/category/945) line of products from Adafruit.
 
-The last thing I wish I could change is the form factor. I might be able to make a smaller box once I figure out 3D printing, but for now I am stuck with this bulky, unwieldy
-electrical junction box that makes it look like I have an explosive strapped to my motorcycle... It is a _very_ DIY-looking project.
+The last thing I wish I could change is the form factor. I was able to break things up into more three small electrical boxes, but... It is still a _very_ DIY-looking
+project.
