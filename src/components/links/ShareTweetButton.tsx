@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { SiTwitter } from 'react-icons/si';
+import { SiX } from 'react-icons/si';
 
 import ButtonLink, { ButtonLinkProps } from '@/components/links/ButtonLink';
 
@@ -26,8 +26,8 @@ export default function ShareTweetButton({
       href={intentUrl}
       className={clsx('items-center gap-2', className)}
     >
-      <SiTwitter className='text-[1.2em] text-[#1da1f2]' />
-      Tweet this article
+      <SiX className='text-[1.2em] text-[#1da1f2]' />
+      Share this article
     </ButtonLink>
   );
 }
