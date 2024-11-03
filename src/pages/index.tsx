@@ -3,7 +3,7 @@ import { InferGetStaticPropsType } from 'next';
 import * as React from 'react';
 import { IoArrowDownOutline } from 'react-icons/io5';
 import { IoNewspaperSharp } from 'react-icons/io5';
-import { SiGithub, SiTwitter } from 'react-icons/si';
+import { SiBluesky, SiGithub, SiX } from 'react-icons/si';
 import { InView } from 'react-intersection-observer';
 
 import { trackEvent } from '@/lib/analytics';
@@ -136,8 +136,23 @@ export default function IndexPage({
                   trackEvent('Social Link: Twitter', { type: 'link' });
                 }}
               >
-                <SiTwitter className='shrink-0 transition-colors group-hover:text-[#1da1f2]' />
+                <SiX className='shrink-0 transition-colors group-hover:text-black dark:group-hover:text-white' />
                 <span>@th_clarence</span>
+              </UnstyledLink>
+              <UnstyledLink
+                href='https://clarence.link/bsky'
+                className={clsx(
+                  'inline-flex items-center gap-1 text-sm font-medium md:text-base',
+                  'group text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
+                  'focus:outline-none focus-visible:ring focus-visible:ring-primary-300',
+                  'transition-colors'
+                )}
+                onClick={() => {
+                  trackEvent('Social Link: Bluesky', { type: 'link' });
+                }}
+              >
+                <SiBluesky className='shrink-0 transition-colors group-hover:text-[#0285FF]' />
+                <span>@theodorusclarence.com</span>
               </UnstyledLink>
               <UnstyledLink
                 href='https://github.com/theodorusclarence'

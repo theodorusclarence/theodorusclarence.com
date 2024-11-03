@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FiMail } from 'react-icons/fi';
 import { IconType } from 'react-icons/lib';
-import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
+import { SiBluesky, SiGithub, SiLinkedin, SiX } from 'react-icons/si';
 
 import { trackEvent } from '@/lib/analytics';
 import useCopyToClipboard from '@/hooks/useCopyToClipboard';
@@ -199,13 +199,19 @@ const socials: Social[] = [
   },
   {
     href: 'https://clarence.link/twt',
-    icon: SiTwitter,
-    id: 'Twitter',
+    icon: SiX,
+    id: 'X',
     text: (
       <>
         I post updates, tips, insight, and sometimes do some talk. Follow me on{' '}
-        <Accent className='font-medium'>Twitter</Accent>!
+        <Accent className='font-medium'>X</Accent>!
       </>
     ),
+  },
+  {
+    href: 'https://clarence.link/bsky',
+    icon: SiBluesky,
+    id: 'Bluesky',
+    text: <>Trying out Bluesky! Will be posting the same update as X.</>,
   },
 ];
