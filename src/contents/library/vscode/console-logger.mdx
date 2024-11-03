@@ -1,0 +1,38 @@
+---
+title: 'VSCode Console Log Shortcut'
+tags: 'vscode'
+description: 'Quickly add console log in VSCode using keyboard shortcut'
+---
+
+This doesn't need any extra extension, just use the default VSCode editor.
+
+Go to Command Palette (⌘ ⇧ + P) and open `Preferences: Open Keyboard Shortcuts (JSON)` menu.
+
+Inside the JSON file, add this object:
+
+```json title="keybindings.json"
+{
+  "key": "ctrl+alt+l",
+  "command": "editor.action.insertSnippet",
+  "when": "editorTextFocus",
+  "args": {
+    "snippet": "console.log({ ${1:${CLIPBOARD}} }, '${TM_FILENAME} line ${TM_LINE_NUMBER}')"
+  }
+}
+```
+
+Note: This is for macOS. You can change the [keybinding](https://code.visualstudio.com/docs/getstarted/keybindings) to which you prefer.
+
+You can also customize the snippet format to your liking. VSCode has a bunch of [magic variables](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_variables) that you can use!
+
+## Usage
+
+1. Copy the text that you want to log. Notice the usage of `{${1:${CLIPBOARD}}`)
+2. Press `Ctrl + Alt + L` to insert the console log statement.
+
+<CloudinaryVideoPlayer
+  mdx
+  publicId='theodorusclarence/shorts/vscode/console-logger/console-logger-demo'
+  width='1376'
+  height='1096'
+/>
