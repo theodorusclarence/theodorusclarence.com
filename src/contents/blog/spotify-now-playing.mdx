@@ -65,7 +65,13 @@ The first step is done! Now, you need to do authentication to get access & refre
 
 ## 2. Authenticate Your Account
 
-To do authentication, we need to prepare `CLIENT_ID` and put it into this link below:
+### 2.1 Automatic Token Generation
+
+For a quicker way to obtain the tokens, you can use [Spotify Refresh Token Generator](https://spotify-refresh-token-generator.vercel.app/) and skip section 2.2 on manual generation.
+
+### 2.2 Manual Token Generation
+
+Prepare `CLIENT_ID` and put it into this link below:
 
 ```text
 https://accounts.spotify.com/authorize?client_id=CLIENT_ID_HERE&response_type=code&redirect_uri=http
@@ -149,9 +155,7 @@ Example on the terminal:
   height={494}
 />
 
-what we need to write down is the `refresh_token`. That token will last infinitely
-
-Now you can do the request with Next.js or another backend application
+> Once you've obtained your `refresh_token` (from either method above), write it down. That token will last indefinitely and can be used in your Next.js or other backend applications.
 
 ---
 
