@@ -3,9 +3,11 @@
   <p>💠 Personal website and blog made using Next.js, TypeScript, Tailwind CSS, MDX Bundler, Prisma, and SWR.</p>
 </div>
 
-## Contributing & Project Setup
+## Notice of Revamp
 
-If you are interested in contributing or running this project on your local machine, please check the [contributing guide](CONTRIBUTING.md)
+With the revamp in November 2024, the new design and animations repository will not be open-sourced. This is done so I can maintain the originality of the design. You are still allowed to use the new design as inspiration!
+
+This repository will remain open-sourced for you to see the structure and the tech stack I used. There's no significant changes aside from the new design.
 
 ## Notable Features
 
